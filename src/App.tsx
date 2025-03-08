@@ -84,7 +84,7 @@ function App() {
               <p className="text-indigo-400/80 mb-3">June 2021 - May 2024 · 3 years</p>
               <p className="text-gray-400 mb-2">Self-employed</p>
               <p className="text-gray-300">
-              Developed advanced security testing tools and provided consultations for authentication system analysis. Disclosed critical vulnerabilities in major platforms, improving web security standards.
+              Engineered innovative techniques to bypass JavaScript-based security defenses on major platforms, including Google, Microsoft, and Yahoo, allowing the hacking of accounts.
               </p>
             </div>
 
