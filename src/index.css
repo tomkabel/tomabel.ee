@@ -1,3 +1,249 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+/* Modern color palette */
+:root {
+  --color-primary: #6366f1;
+  --color-secondary: #818cf8;
+  --color-accent: #4f46e5;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+}
+
+/* Base styles */
+body {
+  background-color: var(--color-background);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Enhanced glitch effect */
+.glitch {
+  font-family: 'Staatliches', cursive;
+  position: relative;
+  color: #fff;
+  font-size: inherit;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-background);
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--color-secondary);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--color-primary);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(11px, 9999px, 86px, 0);
+  }
+  5% {
+    clip: rect(69px, 9999px, 71px, 0);
+  }
+  10% {
+    clip: rect(29px, 9999px, 43px, 0);
+  }
+  15% {
+    clip: rect(56px, 9999px, 29px, 0);
+  }
+  20% {
+    clip: rect(60px, 9999px, 56px, 0);
+  }
+  25% {
+    clip: rect(77px, 9999px, 63px, 0);
+  }
+  30% {
+    clip: rect(61px, 9999px, 37px, 0);
+  }
+  35% {
+    clip: rect(72px, 9999px, 46px, 0);
+  }
+  40% {
+    clip: rect(89px, 9999px, 89px, 0);
+  }
+  45% {
+    clip: rect(10px, 9999px, 98px, 0);
+  }
+  50% {
+    clip: rect(52px, 9999px, 35px, 0);
+  }
+  55% {
+    clip: rect(28px, 9999px, 16px, 0);
+  }
+  60% {
+    clip: rect(62px, 9999px, 1px, 0);
+  }
+  65% {
+    clip: rect(89px, 9999px, 27px, 0);
+  }
+  70% {
+    clip: rect(83px, 9999px, 98px, 0);
+  }
+  75% {
+    clip: rect(94px, 9999px, 94px, 0);
+  }
+  80% {
+    clip: rect(35px, 9999px, 73px, 0);
+  }
+  85% {
+    clip: rect(67px, 9999px, 88px, 0);
+  }
+  90% {
+    clip: rect(36px, 9999px, 27px, 0);
+  }
+  95% {
+    clip: rect(87px, 9999px, 23px, 0);
+  }
+  100% {
+    clip: rect(50px, 9999px, 46px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(65px, 9999px, 100px, 0);
+  }
+  5% {
+    clip: rect(52px, 9999px, 49px, 0);
+  }
+  10% {
+    clip: rect(79px, 9999px, 85px, 0);
+  }
+  15% {
+    clip: rect(75px, 9999px, 5px, 0);
+  }
+  20% {
+    clip: rect(67px, 9999px, 61px, 0);
+  }
+  25% {
+    clip: rect(14px, 9999px, 79px, 0);
+  }
+  30% {
+    clip: rect(1px, 9999px, 66px, 0);
+  }
+  35% {
+    clip: rect(86px, 9999px, 30px, 0);
+  }
+  40% {
+    clip: rect(23px, 9999px, 98px, 0);
+  }
+  45% {
+    clip: rect(85px, 9999px, 72px, 0);
+  }
+  50% {
+    clip: rect(71px, 9999px, 75px, 0);
+  }
+  55% {
+    clip: rect(2px, 9999px, 48px, 0);
+  }
+  60% {
+    clip: rect(30px, 9999px, 16px, 0);
+  }
+  65% {
+    clip: rect(59px, 9999px, 50px, 0);
+  }
+  70% {
+    clip: rect(41px, 9999px, 62px, 0);
+  }
+  75% {
+    clip: rect(2px, 9999px, 82px, 0);
+  }
+  80% {
+    clip: rect(47px, 9999px, 73px, 0);
+  }
+  85% {
+    clip: rect(3px, 9999px, 27px, 0);
+  }
+  90% {
+    clip: rect(26px, 9999px, 55px, 0);
+  }
+  95% {
+    clip: rect(42px, 9999px, 97px, 0);
+  }
+  100% {
+    clip: rect(38px, 9999px, 49px, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles */
+:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Animated background */
+.animated-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #2d3748, #1a237e);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Card styles */
+.card-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(79, 70, 229, 0.1) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
