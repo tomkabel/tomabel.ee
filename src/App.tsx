@@ -71,7 +71,7 @@ function App() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
-              <h3 className="text-xl font-semibold mb-3">Cyber Security Analyst</h3>
+              <h3 className="text-xl font-semibold mb-3">Security Engineer</h3>
               <p className="text-indigo-400/80 mb-3">January 2025 - Present</p>
               <p className="text-gray-400 mb-2">ProksiAbel OÜ</p>
               <p className="text-gray-300">
