@@ -42,7 +42,7 @@ function App() {
               <Shield className="w-4 h-4" />
               Company
             </a>
-            <a href="https://www.linkedin.com/in/tom-kristian-a-75ba4b191"
+            <a href="https://www.linkedin.com/in/tom-kristian-abel-75ba4b191"
                target="_blank"
                rel="noopener noreferrer"
                className="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 transition-all duration-300 rounded-lg shadow-lg hover:shadow-gray-700/25">
@@ -75,7 +75,7 @@ function App() {
               <p className="text-indigo-400/80 mb-3">January 2025 - Present</p>
               <p className="text-gray-400 mb-2">ProksiAbel OÜ</p>
               <p className="text-gray-300">
-               Leading Estonia’s top cybersecurity firm in MITM attack detection and prevention, setting industry standards with innovative solutions against advanced phishing threats and digital asset protection.
+               Leading a cybersecurity firm specializing in MITM attack detection and prevention, setting industry standards with innovative solutions against advanced phishing threats and digital asset protection.
               </p>
             </div>
 
@@ -84,7 +84,7 @@ function App() {
               <p className="text-indigo-400/80 mb-3">June 2021 - May 2024 · 3 years</p>
               <p className="text-gray-400 mb-2">Self-employed</p>
               <p className="text-gray-300">
-              Engineered innovative techniques to bypass JavaScript-based security defenses on major platforms, including Google, Microsoft, and Yahoo, allowing the hacking of accounts.
+              Engineered innovative techniques to bypass JavaScript-based security defenses on major platforms, including Google, Microsoft, and Yahoo.
               </p>
             </div>
 
@@ -106,10 +106,10 @@ function App() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10 animate-fade-in">
+            {/* <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10 animate-fade-in">
               <h3 className="text-2xl font-semibold mb-4 text-indigo-400">Certified Hacker</h3>
               <p className="text-gray-300">   <a href="https://forte.delfi.ee/artikkel/120300810/intervjuu-krakkeriga-noor-mees-kellele-keskkriminaalpolitsei-esitas-enneolematu-kahtlustuse" target="_blank" rel="noopener noreferrer" className="no-underline">Convicted of cybercrime</a> for forking a publicly available open-source GitHub repository and sharing its configuration files online.</p>
-            </div>
+            </div> */}
 
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
               <h3 className="text-2xl font-semibold mb-4 text-indigo-400">Google Botguard</h3>
