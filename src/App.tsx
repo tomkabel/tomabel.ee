@@ -49,6 +49,14 @@ function App() {
               <Linkedin className="w-4 h-4" />
               LinkedIn
             </a>
+            <a href="/pub/.well-known/openpgpkey/public-key.asc"
+               target="_blank"
+               rel="noopener noreferrer"
+               title="My GPG Public Key"
+               className="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 transition-all duration-300 rounded-lg shadow-lg hover:shadow-gray-700/25">
+              <Shield className="w-4 h-4" />
+              GPG Key
+            </a>
           </div>
 
           <button
