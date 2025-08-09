@@ -49,7 +49,7 @@ function App() {
               <Linkedin className="w-4 h-4" />
               LinkedIn
             </a>
-            <a href="/pub/.well-known/openpgpkey/public-key.asc"
+            <a href="/public-key.asc"
                target="_blank"
                rel="noopener noreferrer"
                title="My GPG Public Key"
