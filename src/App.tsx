@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Shield, Linkedin, ChevronDown } from 'lucide-react';
 
 function App() {
@@ -27,14 +27,14 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
       {/* Hero Section */}
-      <div className="h-screen flex items-center justify-center relative">
+      <div className="h-screen flex items-center justify-center relative px-4">
         <div className="text-center">
           <div className="mb-6">
-          <h1 className="text-6xl font-bold tracking-tight " data-text="Tom Kristian Abel">Tom Kristian Abel</h1>
-          <h2 className="text-2xl font-semibold mb-6  " data-text="Software Developer">Software Developer</h2>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight break-words" data-text="Tom Kristian Abel">Tom Kristian Abel</h1>
+          <h2 className="text-xl md:text-2xl font-semibold mb-6 break-words" data-text="Software Developer">Security Researcher</h2>
           </div>
 
-          <div className="flex justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             <a href="https://proksiabel.ee"
                target="_blank"
                rel="noopener noreferrer"
@@ -42,7 +42,7 @@ function App() {
               <Shield className="w-4 h-4" />
               Company
             </a>
-            <a href="https://www.linkedin.com/in/tom-kristian-abel-75ba4b191"
+            <a href="https://www.linkedin.com/in/hr-abel/"
                target="_blank"
                rel="noopener noreferrer"
                className="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 transition-all duration-300 rounded-lg shadow-lg hover:shadow-gray-700/25">
@@ -79,29 +79,52 @@ function App() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
-              <h3 className="text-xl font-semibold mb-3">Security Engineer</h3>
-              <p className="text-indigo-400/80 mb-3">January 2025 - Present</p>
+              <h3 className="text-xl font-semibold mb-3">Founder & Principal Security Consultant</h3>
+              <p className="text-indigo-400/80 mb-3">June 2024 - Present</p>
               <p className="text-gray-400 mb-2">ProksiAbel OÜ</p>
               <p className="text-gray-300">
-               Leading a cybersecurity firm specializing in MITM attack detection and prevention, setting industry standards with innovative solutions against advanced phishing threats and digital asset protection.
+                Founded ProksiAbel OÜ, specializing in digital security consulting. I conduct web application penetration testing, manage vulnerabilities, and implement secure development practices to protect against threats.
               </p>
             </div>
 
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
-              <h3 className="text-xl font-semibold mb-3">Hacker Tools Developer</h3>
-              <p className="text-indigo-400/80 mb-3">June 2021 - May 2024 · 3 years</p>
+              <h3 className="text-xl font-semibold mb-3">Independent Security Researcher</h3>
+              <p className="text-indigo-400/80 mb-3">June 2021 - Present</p>
               <p className="text-gray-400 mb-2">Self-employed</p>
               <p className="text-gray-300">
-              Engineered innovative techniques to bypass JavaScript-based security defenses on major platforms, including Google, Microsoft, and Yahoo.
+                Advanced security research through innovative analysis and tool development. Conducted in-depth analysis on complex JavaScript applications, identifying critical vulnerabilities and authoring a PoC for bypassing a major platform's bot detection.
               </p>
             </div>
 
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
               <h3 className="text-xl font-semibold mb-3">Software Developer</h3>
-              <p className="text-indigo-400/80 mb-3">September 2019 - May 2021 · 1 year 9 months</p>
-              <p className="text-gray-400 mb-2">Smaily - Email Marketing and Automation</p>
+              <p className="text-indigo-400/80 mb-3">September 2019 - May 2021</p>
+              <p className="text-gray-400 mb-2">Smaily</p>
               <p className="text-gray-300">
-              Led the development of various PHP integrations for Smaily's API, expanding the platform's compatibility across multiple e-commerce and content management systems.
+                Owned the development of plugins for seamless integration with popular platforms, driving user engagement and ensuring high performance and reliability through effective bug fixes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Education Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-indigo-400">
+            Education
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
+              <h3 className="text-xl font-semibold mb-3">University of Tartu</h3>
+              <p className="text-indigo-400/80 mb-3">June 2025 - June 2028</p>
+              <p className="text-gray-300">
+                Bachelor's degree, Computer Science
+              </p>
+            </div>
+            <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
+              <h3 className="text-xl font-semibold mb-3">Tallinn Polytechnic School</h3>
+              <p className="text-indigo-400/80 mb-3">2017 - 2020</p>
+              <p className="text-gray-300">
+                Software Developer
               </p>
             </div>
           </div>
@@ -120,9 +143,8 @@ function App() {
             </div> */}
 
             <div className="fade-in card-gradient rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
-              <h3 className="text-2xl font-semibold mb-4 text-indigo-400">Google Botguard</h3>
-              <p className="text-gray-300">Analyzed and discovered bypass methods for Google's Botguard and MFA, compromising account security. Published <a href="https://github.com/M41KL-N41TT/evilginx.botguard" target="_blank" rel="noopener noreferrer" className="no-underline">a detailed report and proof-of-concept on GitHub.</a></p>
-
+              <h3 className="text-2xl font-semibold mb-4 text-indigo-400">JavaScript Security Research</h3>
+              <p className="text-gray-300">Analyzed and developed bypass methods for Google's Botguard and MFA, demonstrating expertise in web security. Published <a href="https://github.com/tomkabel/js-security-research" target="_blank" rel="noopener noreferrer" className="no-underline">a detailed report and proof-of-concept on GitHub.</a></p>
             </div>
           </div>
         </div>
