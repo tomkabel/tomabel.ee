@@ -13,7 +13,7 @@ export default function Expertise() {
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                 <img
-                  src="/1772115798117.jpg"
+                  src="/expert.jpg"
                   alt="Tom Kristian Abel - Founder and Security Consultant at ProksiAbel OÜ"
                   className="object-cover w-full h-full"
                 />
