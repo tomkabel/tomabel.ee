@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  
+  <!-- Background grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="0" x2="1200" y2="630" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="50" x2="1200" y2="680" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="100" x2="1200" y2="730" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="150" x2="1200" y2="780" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="1200" y2="830" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="250" x2="1200" y2="880" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="1200" y2="930" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="350" x2="1200" y2="980" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1200" y2="1030" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="450" x2="1200" y2="1080" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="1200" y2="1130" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="550" x2="1200" y2="1180" stroke="#22d3ee" stroke-width="0.5"/>
+    <line x1="0" y1="600" x2="1200" y2="1230" stroke="#22d3ee" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Shield icon -->
+  <path d="M600 130L300 200v150c0 138.75 128.33 393.33 300 450 171.67-56.67 300-311.25 300-450v-150L600 130z" fill="#1e293b" stroke="#22d3ee" stroke-width="3"/>
+  <path d="M600 170L350 230v120c0 111 102.67 315.67 250 360 147.33-44.33 250-249 250-360v-120L600 170z" fill="#0f172a"/>
+  
+  <!-- Lock icon inside shield -->
+  <rect x="560" y="320" width="80" height="70" rx="8" fill="#22d3ee"/>
+  <path d="M570 320v-25c0-16.57 13.43-30 30-30s30 13.43 30 30v25h-60z" fill="#22d3ee"/>
+  <circle cx="600" cy="355" r="8" fill="#0f172a"/>
+  <rect x="596" y="355" width="8" height="20" fill="#0f172a"/>
+  
+  <!-- Company name -->
+  <text x="600" y="550" font-family="monospace" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle">ProksiAbel OÜ</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="590" font-family="monospace" font-size="28" fill="#22d3ee" text-anchor="middle">Cybersecurity Consultancy</text>
+</svg>
