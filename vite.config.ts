@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'pub',
   },
-  base: './',
+  base: '/',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
