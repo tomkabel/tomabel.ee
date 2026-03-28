@@ -1,0 +1,10 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "skills": {
+    "paths": [
+      ".kilocode/skills/code-reviewer",
+      ".kilocode/skills/implementation-planner",
+      ".kilocode/skills/web-design-reviewer"
+    ]
+  }
+}
