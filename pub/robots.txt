@@ -1,0 +1,10 @@
+# Robots.txt for proksiabel.ee
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive paths
+Disallow: /.well-known/openpgpkey/
+
+# Sitemap
+Sitemap: https://proksiabel.ee/sitemap.xml
