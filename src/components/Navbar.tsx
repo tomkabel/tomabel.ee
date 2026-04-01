@@ -21,8 +21,6 @@ export default function Navbar() {
     if (isMenuOpen) {
       mobileMenuRef.current?.focus();
       document.body.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
           setIsMenuOpen(false);
@@ -59,9 +57,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-slate-900/90 backdrop-blur-2xl border-b border-white/5 shadow-2xl shadow-sky-500/5'
+          ? 'bg-[#030407]/95 backdrop-blur-xl border-b border-slate-800'
           : 'bg-transparent'
       }`}
     >
@@ -69,11 +67,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center shadow-lg shadow-sky-500/30 group-hover:shadow-sky-500/50 transition-shadow duration-300">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-sky-500 to-teal-500 opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300" aria-hidden="true" />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
+              <Shield className="h-6 w-6 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="text-white font-bold text-xl tracking-tight">ProksiAbel</span>
@@ -87,10 +82,9 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 group"
+                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
               >
                 {link.label}
-                <span className="absolute inset-x-4 -bottom-px h-px bg-gradient-to-r from-sky-500 to-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -99,7 +93,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all duration-200"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
               aria-label={language === 'et' ? 'Switch to English' : 'Switch to Estonian'}
             >
               <Globe className="h-4 w-4" aria-hidden="true" />
@@ -108,7 +102,7 @@ export default function Navbar() {
 
             <a
               href="/#contact"
-              className="glow-button flex items-center gap-2 text-sm"
+              className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
             >
               {t.nav.bookConsultation}
               <ChevronRight className="h-4 w-4" aria-hidden="true" />
@@ -119,10 +113,10 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleLanguage}
-              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all duration-200"
+              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
               aria-label={language === 'et' ? 'Switch to English' : 'Switch to Estonian'}
             >
-              <Globe className="h-5 w-5" aria-hidden="true" />
+              <Globe className="h-5 w-5" />
             </button>
             <button
               ref={menuButtonRef}
@@ -130,7 +124,7 @@ export default function Navbar() {
               aria-label={isMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
-              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all duration-200"
+              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -147,7 +141,7 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label={t.nav.services}
-          className="lg:hidden bg-slate-900/95 backdrop-blur-2xl border-t border-white/5"
+          className="lg:hidden bg-[#030407]/98 backdrop-blur-xl border-t border-slate-800"
         >
           <div className="container-custom py-6 space-y-2">
             {navLinks.map((link) => (
@@ -155,9 +149,9 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-200"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
               >
-                <ChevronRight className="h-4 w-4 text-sky-500" aria-hidden="true" />
+                <ChevronRight className="h-4 w-4 text-cyan-400" aria-hidden="true" />
                 {link.label}
               </a>
             ))}
@@ -165,7 +159,7 @@ export default function Navbar() {
               <a
                 href="/#contact"
                 onClick={closeMenu}
-                className="glow-button w-full flex items-center justify-center gap-2"
+                className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-5 py-3 rounded-xl transition-colors"
               >
                 {t.nav.bookConsultation}
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
