@@ -8,7 +8,10 @@
     "build": "vite build",
     "postbuild": "cp pub/index.html pub/404.html",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "optimize-images": "node scripts/optimize-images.js",
+    "check-imagemagick": "bash scripts/check-imagemagick.sh",
+    "verify-requirements": "node scripts/verify-optimization-requirements.js"
   },
   "dependencies": {
     "lucide-react": "0.469.0",
@@ -28,6 +31,7 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
+    "terser": "^5.46.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.15"
