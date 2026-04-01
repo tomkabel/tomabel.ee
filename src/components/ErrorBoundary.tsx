@@ -23,7 +23,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
         <div className="min-h-screen bg-slate-900 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl text-white mb-4">Something went wrong</h1>
-            <p className="text-gray-400">Please refresh the page</p>
+            <p className="text-slate-400">Please refresh the page</p>
           </div>
         </div>
       );
