@@ -1,98 +1,131 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MessageSquare, Send } from 'lucide-react';
-import { contactInfo } from '../data/contact.tsx';
+import React, { useState, useRef } from 'react';
+import { Mail, Phone, MapPin, Send, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
+import { contactInfo } from '../data/contact';
 import { useTranslation } from '../i18n';
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
   const { t, locale } = useTranslation();
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [messageSent, setMessageSent] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setEmailError(null);
+
     const formData = new FormData(e.currentTarget);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    const subject = locale === 'et' 
-      ? 'Kontaktvorm - proksiabel.ee' 
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    if (!EMAIL_REGEX.test(email)) {
+      setEmailError(locale === 'et' ? 'Palun sisesta kehtiv e-posti aadress' : 'Please enter a valid email address');
+      return;
+    }
+
+    if (!message.trim()) {
+      return;
+    }
+
+    const subject = locale === 'et'
+      ? 'Kontaktvorm - proksiabel.ee'
       : 'Contact Form - proksiabel.ee';
-    
+
     const nl = '%0A';
     const body = locale === 'et'
       ? 'Nimi: ' + (name || 'Pole märgitud') + nl + 'E-post: ' + email + nl + nl + 'Sõnum:' + nl + message
       : 'Name: ' + (name || 'Not specified') + nl + 'Email: ' + email + nl + nl + 'Message:' + nl + message;
-    
-    const mailtoLink = 'mailto:' + contactInfo.email + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-    
-    setFormState('sending');
-    
-    setTimeout(() => {
-      window.location.href = mailtoLink;
-      setFormState('success');
-    }, 500);
+
+    const mailtoLink = 'mailto:' + contactInfo.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body).replace(/%0A/g, nl);
+
+    window.location.href = mailtoLink;
+    setMessageSent(true);
+    formRef.current?.reset();
   };
 
+  const contactMethods = [
+    {
+      icon: Mail,
+      title: t.contact.email,
+      value: contactInfo.email,
+      href: `mailto:${contactInfo.email}`,
+      color: 'from-sky-500 to-sky-600',
+    },
+    {
+      icon: Phone,
+      title: t.contact.call,
+      value: contactInfo.phoneDisplay,
+      href: `tel:${contactInfo.phone}`,
+      color: 'from-teal-500 to-teal-600',
+    },
+    {
+      icon: MapPin,
+      title: t.contact.address,
+      value: contactInfo.address.display,
+      href: null,
+      color: 'from-purple-500 to-purple-600',
+    },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            {t.contact.title}
-          </h2>
-          <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
+    <section id="contact" className="section-padding bg-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-mesh opacity-40" aria-hidden="true" />
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-sky-500/15 rounded-full blur-[120px]" aria-hidden="true" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-teal-500/15 rounded-full blur-[120px]" aria-hidden="true" />
+
+      <div className="relative z-10 container-custom">
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="accent-line mx-auto mb-6" />
+          <h2 className="heading-2 mb-4">{t.contact.title}</h2>
+          <p className="body-large text-slate-400 max-w-3xl mx-auto">
             {t.contact.description}
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-slate-800 rounded-xl p-8 text-center hover:shadow-cyan-500/10 transition-all">
-            <Mail className="h-10 w-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
-            <h3 className="text-xl font-bold text-white mb-2">{t.contact.email}</h3>
-            <a href={'mailto:' + contactInfo.email} className="text-cyan-400 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:rounded-md px-1 -mx-1 transition-colors">
-              {contactInfo.email}
-            </a>
-          </div>
-          
-          <div className="bg-slate-800 rounded-xl p-8 text-center hover:shadow-cyan-500/10 transition-all">
-            <Phone className="h-10 w-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
-            <h3 className="text-xl font-bold text-white mb-2">{t.contact.call}</h3>
-            <a href={'tel:' + contactInfo.phone} className="text-cyan-400 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:rounded-md px-1 -mx-1 transition-colors">
-              {contactInfo.phoneDisplay}
-            </a>
-          </div>
-          
-          <div className="bg-slate-800 rounded-xl p-8 text-center hover:shadow-cyan-500/10 transition-all">
-            <MessageSquare className="h-10 w-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
-            <h3 className="text-xl font-bold text-white mb-2">{t.contact.address}</h3>
-            <p className="text-gray-300">
-              {contactInfo.address.display}
-            </p>
-          </div>
+
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          {contactMethods.map((method, index) => (
+            <div
+              key={method.title}
+              className="group animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <a
+                href={method.href || undefined}
+                className="block glass-card-hover p-8 text-center h-full"
+              >
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                  <method.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{method.title}</h3>
+                <p className={`text-sm ${method.href ? 'text-sky-400 group-hover:text-sky-300' : 'text-slate-400'} transition-colors`}>
+                  {method.value}
+                </p>
+              </a>
+            </div>
+          ))}
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-slate-800 rounded-xl p-8 border border-slate-700">
-            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <Send className="h-5 w-5 text-cyan-500" />
-              {t.contact.form.title}
-            </h3>
-            
-            {formState === 'success' && (
-              <div className="mb-6 p-4 bg-green-900/30 border border-green-700 rounded-lg text-green-400">
-                {t.contact.form.success}
+        <div className="max-w-2xl mx-auto animate-slide-up stagger-3">
+          <div className="glass-card p-8 md:p-10">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center">
+                <Send className="h-5 w-5 text-white" />
               </div>
-            )}
-            
-            {formState === 'error' && (
-              <div className="mb-6 p-4 bg-red-900/30 border border-red-700 rounded-lg text-red-400">
-                {t.contact.form.error}
+              <h3 className="text-xl font-bold text-white">{t.contact.form.title}</h3>
+            </div>
+
+            {messageSent && (
+              <div className="mb-6 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center gap-3" role="alert">
+                <CheckCircle2 className="h-5 w-5 text-teal-400 flex-shrink-0" />
+                <p className="text-teal-300">{t.contact.form.success}</p>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="name" className="input-label">
                   {t.contact.form.name}
                 </label>
                 <input
@@ -100,12 +133,13 @@ export default function Contact() {
                   id="name"
                   name="name"
                   placeholder={t.contact.form.namePlaceholder}
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  className="input-field"
+                  autoComplete="name"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="email" className="input-label">
                   {t.contact.form.email} *
                 </label>
                 <input
@@ -114,12 +148,18 @@ export default function Contact() {
                   name="email"
                   placeholder={t.contact.form.emailPlaceholder}
                   required
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? 'email-error' : undefined}
+                  className={`input-field ${emailError ? 'border-red-500' : ''}`}
+                  autoComplete="email"
                 />
+                {emailError && (
+                  <p id="email-error" className="text-red-400 text-sm mt-1" role="alert">{emailError}</p>
+                )}
               </div>
-              
+
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="message" className="input-label">
                   {t.contact.form.message} *
                 </label>
                 <textarea
@@ -128,28 +168,29 @@ export default function Contact() {
                   rows={5}
                   placeholder={t.contact.form.messagePlaceholder}
                   required
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
+                  className="input-field resize-none"
                 />
               </div>
-              
+
               <button
                 type="submit"
-                disabled={formState === 'sending'}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-cyan-600 text-white font-semibold rounded-lg hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="glow-button w-full flex items-center justify-center gap-2 text-base"
               >
-                {formState === 'sending' ? (
-                  <>
-                    <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-                    {t.contact.form.sending}
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" />
-                    {t.contact.form.send}
-                  </>
-                )}
+                {t.contact.form.send}
+                <ArrowRight className="h-5 w-5" />
               </button>
             </form>
+
+            <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-slate-700/50">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <Clock className="h-4 w-4" />
+                <span>{t.contact.responseTime}</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <CheckCircle2 className="h-4 w-4" />
+                <span>{t.contact.secureConfidential}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
