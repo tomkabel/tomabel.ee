@@ -26,6 +26,10 @@ body {
   color: #fff;
   font-size: inherit;
   display: inline-block;
+  text-shadow: 
+    0 0 10px rgba(99, 102, 241, 0.5),
+    0 0 20px rgba(99, 102, 241, 0.3),
+    0 0 40px rgba(99, 102, 241, 0.2);
 }
 
 .glitch::before,
