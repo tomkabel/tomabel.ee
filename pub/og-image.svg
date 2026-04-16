@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="50" y="50" width="1100" height="530" rx="20" fill="none" stroke="#6366f1" stroke-width="4"/>
+  <text x="600" y="280" font-family="system-ui, sans-serif" font-size="80" fill="#fff" text-anchor="middle" font-weight="bold">Tom Kristian Abel</text>
+  <text x="600" y="360" font-family="system-ui, sans-serif" font-size="40" fill="#818cf8" text-anchor="middle">CTO & Principal Security Consultant</text>
+  <text x="600" y="420" font-family="system-ui, sans-serif" font-size="28" fill="#9ca3af" text-anchor="middle">tomabel.ee</text>
+</svg>
