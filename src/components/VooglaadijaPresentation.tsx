@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import VooglaadijaVideoPlayer from './VooglaadijaVideoPlayer';
 
 export default function VooglaadijaPresentation() {
   const [videoEnded, setVideoEnded] = useState(false);
 
-  const handleVideoEnded = () => {
+  const handleVideoEnded = useCallback(() => {
     setVideoEnded(true);
-  };
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden animated-bg flex flex-col items-center justify-center px-4">

@@ -11,8 +11,11 @@ interface VooglaadijaVideoPlayerProps {
 export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVideoPlayerProps) {
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<Player | null>(null);
+  const onEndedRef = useRef(onEnded);
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  onEndedRef.current = onEnded;
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -47,7 +50,7 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
       });
 
       player.on('ended', () => {
-        if (onEnded) onEnded();
+        if (onEndedRef.current) onEndedRef.current();
       });
 
       playerRef.current = player;
@@ -62,7 +65,7 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
         playerRef.current = null;
       }
     };
-  }, [src, onEnded]);
+  }, [src]);
 
   if (error) {
     return (
