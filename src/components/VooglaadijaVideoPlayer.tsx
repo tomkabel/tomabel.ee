@@ -32,8 +32,6 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
         controls: true,
         autoplay: true,
         preload: 'auto',
-        fluid: true,
-        responsive: true,
         playbackRates: [0.5, 1, 1.5, 2],
         poster: '/og-image.svg',
       });
@@ -79,11 +77,11 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto">
+    <div className="relative w-full max-w-[1400px] mx-auto">
       <div
         ref={videoRef}
         className="video-container relative rounded-2xl overflow-hidden shadow-2xl"
-        style={{ backgroundColor: '#0f0f0f' }}
+        style={{ backgroundColor: '#0f0f0f', aspectRatio: '16/9' }}
       />
       {!isReady && !error && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 rounded-2xl">

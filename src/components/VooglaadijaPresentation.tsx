@@ -16,18 +16,18 @@ export default function VooglaadijaPresentation() {
         <div className="absolute top-1/2 left-1/2 w-[40rem] h-[40rem] bg-indigo-600/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center">
-        <div className="text-center mb-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
+        <div className="text-center mb-6">
           <span className="inline-block px-5 py-2.5 bg-indigo-500/20 rounded-full text-indigo-300 text-sm font-medium tracking-wide">
             VOOGLAADIJA
           </span>
         </div>
 
-        <h1 className="font-['Staatliches'] text-5xl md:text-6xl lg:text-7xl text-white mb-4 tracking-wider text-center">
+        <h1 className="font-['Staatliches'] text-4xl md:text-5xl text-white mb-4 tracking-wider text-center">
           Video Esitlus
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-300 mb-10 font-medium">
+        <p className="text-base md:text-lg text-slate-300 mb-8 font-medium">
           Vooglaadija 2026
         </p>
 
@@ -52,7 +52,7 @@ export default function VooglaadijaPresentation() {
         )}
       </div>
 
-      <footer className="mt-auto pt-16 pb-8 text-center">
+      <footer className="mt-auto pt-8 pb-6 text-center">
         <a
           href="/"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm group"
