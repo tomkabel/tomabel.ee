@@ -42,8 +42,8 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
 
       player.on('error', () => {
         if (mounted) {
-          const error = player.error();
-          setError(error?.message || 'Video failed to load');
+          const err = player.error();
+          setError(err?.message || 'Video failed to load');
         }
       });
 
@@ -67,7 +67,10 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
 
   if (error) {
     return (
-      <div className="relative w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl bg-slate-900 p-8 text-center" style={{ aspectRatio: '16/9' }}>
+      <div
+        className="relative w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl bg-slate-900 p-8 text-center"
+        style={{ aspectRatio: '16/9' }}
+      >
         <div className="flex flex-col items-center justify-center h-full">
           <p className="text-red-400 mb-2">Videot ei saa laadida</p>
           <p className="text-slate-400 text-sm">{error}</p>
