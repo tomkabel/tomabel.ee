@@ -9,7 +9,7 @@ interface TimeLeft {
   total: number;
 }
 
-const TARGET_DATE = new Date('2026-04-17T14:00:00+03:00');
+const TARGET_DATE = new Date('2026-04-17T13:00:00+03:00');
 
 function calculateTimeLeft(): TimeLeft {
   const now = new Date();
