@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import VooglaadijaPresentation from './VooglaadijaPresentation';
 
 interface TimeLeft {
   days: number;
@@ -8,7 +9,7 @@ interface TimeLeft {
   total: number;
 }
 
-const TARGET_DATE = new Date('2026-04-17T12:00:00+03:00');
+const TARGET_DATE = new Date('2026-04-17T14:00:00+03:00');
 
 function calculateTimeLeft(): TimeLeft {
   const now = new Date();
@@ -71,6 +72,8 @@ function CountdownSeparator({ visible }: CountdownSeparatorProps) {
 export default function VooglaadijaCountdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
   const [isVisible, setIsVisible] = useState(false);
+  const [showPresentation, setShowPresentation] = useState(false);
+  const hasStartedRef = useRef(false);
 
   const tick = useCallback(() => {
     setTimeLeft(calculateTimeLeft());
@@ -86,7 +89,21 @@ export default function VooglaadijaCountdown() {
     return () => clearInterval(timerId);
   }, [tick]);
 
+  useEffect(() => {
+    if (isComplete && !hasStartedRef.current && isVisible) {
+      hasStartedRef.current = true;
+      const timer = setTimeout(() => {
+        setShowPresentation(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, isVisible]);
+
   const isComplete = timeLeft.total <= 0;
+
+  if (showPresentation) {
+    return <VooglaadijaPresentation />;
+  }
 
   return (
     <div className={`relative min-h-screen w-full overflow-hidden animated-bg flex flex-col items-center justify-center px-4 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -113,12 +130,9 @@ export default function VooglaadijaCountdown() {
 
           {isComplete ? (
             <div className="mt-12 animate-fade-in">
-              <div className="inline-block px-8 py-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/40 rounded-2xl">
-                <p className="text-2xl md:text-3xl font-['Staatliches'] text-green-400 tracking-wider">
-                  VIDEO ON KOOS!
-                </p>
-                <p className="mt-2 text-slate-300">
-                  Vooglaadija presentation on nüüd saadaval.
+              <div className="inline-block px-8 py-6 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/40 rounded-2xl">
+                <p className="text-2xl md:text-3xl font-['Staatliches'] text-white tracking-wider animate-pulse">
+                  VIDEO ALGAB PEAGI!
                 </p>
               </div>
             </div>
