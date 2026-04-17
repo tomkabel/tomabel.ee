@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
 import type Player from 'video.js/dist/types/player';
 
 interface VooglaadijaVideoPlayerProps {
@@ -11,46 +12,68 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<Player | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!videoRef.current) return;
 
-    const videoElement = document.createElement('video');
-    videoElement.className = 'video-js vjs-big-play-centered vjs-theme-custom';
-    videoElement.innerHTML = `
-      <source src="${src}" type="video/mp4" />
-    `;
-    videoRef.current.appendChild(videoElement);
+    let mounted = true;
 
-    const player = videojs(videoElement, {
-      controls: true,
-      autoplay: true,
-      preload: 'auto',
-      fluid: true,
-      responsive: true,
-      playbackRates: [0.5, 1, 1.5, 2],
-      poster: '/og-image.svg',
-    });
+    try {
+      const videoElement = document.createElement('video');
+      videoElement.className = 'video-js vjs-big-play-centered vjs-theme-custom';
+      videoElement.innerHTML = `<source src="${src}" type="video/mp4" />`;
+      videoRef.current.appendChild(videoElement);
 
-    player.on('ready', () => {
-      setIsReady(true);
-    });
+      const player = videojs(videoElement, {
+        controls: true,
+        autoplay: true,
+        preload: 'auto',
+        fluid: true,
+        responsive: true,
+        playbackRates: [0.5, 1, 1.5, 2],
+        poster: '/og-image.svg',
+      });
 
-    player.on('ended', () => {
-      if (onEnded) {
-        onEnded();
-      }
-    });
+      player.on('ready', () => {
+        if (mounted) setIsReady(true);
+      });
 
-    playerRef.current = player;
+      player.on('error', () => {
+        if (mounted) {
+          const error = player.error();
+          setError(error?.message || 'Video failed to load');
+        }
+      });
+
+      player.on('ended', () => {
+        if (onEnded) onEnded();
+      });
+
+      playerRef.current = player;
+    } catch (err) {
+      if (mounted) setError(err instanceof Error ? err.message : 'Failed to initialize video');
+    }
 
     return () => {
+      mounted = false;
       if (playerRef.current) {
         playerRef.current.dispose();
         playerRef.current = null;
       }
     };
   }, [src, onEnded]);
+
+  if (error) {
+    return (
+      <div className="relative w-full max-w-6xl mx-auto">
+        <div className="rounded-2xl overflow-hidden shadow-2xl bg-slate-900 p-8 text-center">
+          <p className="text-red-400 mb-2">Videot ei saa laadida</p>
+          <p className="text-slate-400 text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full max-w-6xl mx-auto">
@@ -59,7 +82,7 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
         className="video-container relative rounded-2xl overflow-hidden shadow-2xl"
         style={{ backgroundColor: '#0f0f0f' }}
       />
-      {!isReady && (
+      {!isReady && !error && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 rounded-2xl">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
