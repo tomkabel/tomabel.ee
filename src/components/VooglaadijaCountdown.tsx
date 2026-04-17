@@ -8,7 +8,7 @@ interface TimeLeft {
   total: number;
 }
 
-const TARGET_DATE = new Date('2026-04-17T06:00:00+03:00');
+const TARGET_DATE = new Date('2026-04-17T09:00:00+03:00');
 
 function calculateTimeLeft(): TimeLeft {
   const now = new Date();
@@ -140,7 +140,7 @@ export default function VooglaadijaCountdown() {
 
               <div className="mt-10 md:mt-12 text-slate-500 text-sm">
                 <p>
-                  Sihtkuupäev: 17. aprill 2026, kell 06:00 (Eesti aeg)
+                  Sihtkuupäev: 17. aprill 2026, kell 09:00 (Eesti aeg)
                 </p>
               </div>
             </div>
