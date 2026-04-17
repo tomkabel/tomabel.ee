@@ -67,8 +67,8 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
 
   if (error) {
     return (
-      <div className="relative w-full max-w-6xl mx-auto">
-        <div className="rounded-2xl overflow-hidden shadow-2xl bg-slate-900 p-8 text-center">
+      <div className="relative w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl bg-slate-900 p-8 text-center" style={{ aspectRatio: '16/9' }}>
+        <div className="flex flex-col items-center justify-center h-full">
           <p className="text-red-400 mb-2">Videot ei saa laadida</p>
           <p className="text-slate-400 text-sm">{error}</p>
         </div>
@@ -77,11 +77,31 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
   }
 
   return (
-    <div className="relative w-full max-w-[1400px] mx-auto">
+    <div className="relative w-full max-w-[1400px] mx-auto" style={{ aspectRatio: '16/9' }}>
+      <style>{`
+        .video-js {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .video-js .vjs-control-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        .video-js .vjs-big-play-button {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      `}</style>
       <div
         ref={videoRef}
-        className="video-container relative rounded-2xl overflow-hidden shadow-2xl"
-        style={{ backgroundColor: '#0f0f0f', aspectRatio: '16/9' }}
+        className="video-container relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
+        style={{ backgroundColor: '#0f0f0f' }}
       />
       {!isReady && !error && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 rounded-2xl">
