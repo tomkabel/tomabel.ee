@@ -89,6 +89,8 @@ export default function VooglaadijaCountdown() {
     return () => clearInterval(timerId);
   }, [tick]);
 
+  const isComplete = timeLeft.total <= 0;
+
   useEffect(() => {
     if (isComplete && !hasStartedRef.current && isVisible) {
       hasStartedRef.current = true;
@@ -98,8 +100,6 @@ export default function VooglaadijaCountdown() {
       return () => clearTimeout(timer);
     }
   }, [isComplete, isVisible]);
-
-  const isComplete = timeLeft.total <= 0;
 
   if (showPresentation) {
     return <VooglaadijaPresentation />;
