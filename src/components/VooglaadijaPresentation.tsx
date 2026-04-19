@@ -92,7 +92,7 @@ export default function VooglaadijaPresentation() {
   const [videoEnded, setVideoEnded] = useState(false);
 
   const handleVideoEnded = useCallback(() => {
-    setVideoEnded((prev) => true);
+    setVideoEnded(true);
   }, []);
 
   return (
@@ -120,7 +120,7 @@ export default function VooglaadijaPresentation() {
           <section aria-label="Video player">
             <VideoContainer>
               <VooglaadijaVideoPlayer
-                src="/Vooglaadija-Presentation-6-Final.mp4"
+                src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 onEnded={handleVideoEnded}
               />
             </VideoContainer>

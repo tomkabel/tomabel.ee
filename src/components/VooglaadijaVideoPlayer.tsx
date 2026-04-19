@@ -1,7 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
-import type Player from 'video.js/dist/types/player';
 
 interface VooglaadijaVideoPlayerProps {
   src: string;
@@ -9,57 +6,111 @@ interface VooglaadijaVideoPlayerProps {
 }
 
 export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVideoPlayerProps) {
-  const videoRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const onEndedRef = useRef(onEnded);
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const playerRef = useRef<YT.Player | null>(null);
 
   onEndedRef.current = onEnded;
 
   useEffect(() => {
-    if (!videoRef.current) return;
+    // Extract YouTube video ID from URL
+    const getYouTubeVideoId = (url: string): string | null => {
+      const patterns = [
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\n?#]+)/,
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^&\n?#]+)/,
+        /(?:https?:\/\/)?youtu\.be\/([^&\n?#]+)/
+      ];
 
-    let mounted = true;
+      for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match) return match[1];
+      }
+      return null;
+    };
 
-    try {
-      const videoElement = document.createElement('video');
-      videoElement.className = 'video-js vjs-big-play-centered vjs-theme-custom';
-      videoElement.innerHTML = `<source src="${src}" type="video/mp4" />`;
-      videoRef.current.appendChild(videoElement);
+    const videoId = getYouTubeVideoId(src);
 
-      const player = videojs(videoElement, {
-        controls: true,
-        autoplay: true,
-        preload: 'auto',
-        playbackRates: [0.5, 1, 1.5, 2],
-        poster: '/og-image.svg',
-      });
+    if (!videoId) {
+      setError('Invalid YouTube URL provided. Expected format: https://www.youtube.com/watch?v=VIDEO_ID');
+      return;
+    }
 
-      player.on('ready', () => {
-        if (mounted) setIsReady(true);
-      });
+    // Load YouTube IFrame API if not already loaded
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
 
-      player.on('error', () => {
-        if (mounted) {
-          const err = player.error();
-          setError(err?.message || 'Video failed to load');
-        }
-      });
+      window.onYouTubeIframeAPIReady = () => {
+        createPlayer(videoId);
+      };
+    } else {
+      createPlayer(videoId);
+    }
 
-      player.on('ended', () => {
-        if (onEndedRef.current) onEndedRef.current();
-      });
+    function createPlayer(videoId: string) {
+      if (!containerRef.current) return;
 
-      playerRef.current = player;
-    } catch (err) {
-      if (mounted) setError(err instanceof Error ? err.message : 'Failed to initialize video');
+      // Clear any existing content
+      containerRef.current.innerHTML = '';
+
+      try {
+        playerRef.current = new window.YT.Player(containerRef.current, {
+          videoId: videoId,
+          width: '100%',
+          height: '100%',
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+            modestbranding: 1,
+            showinfo: 0,
+            controls: 1,
+            playsinline: 1,
+            fs: 1,
+          },
+          events: {
+            onReady: () => {
+              setIsReady(true);
+            },
+            onError: (event: { data: number }) => {
+              let errorMessage = 'YouTube player error';
+              switch (event.data) {
+                case 2:
+                  errorMessage = 'Invalid video ID or URL';
+                  break;
+                case 5:
+                  errorMessage = 'HTML5 player error';
+                  break;
+                case 100:
+                  errorMessage = 'Video not found or private';
+                  break;
+                case 101:
+                case 150:
+                  errorMessage = 'Video embedding not allowed';
+                  break;
+                default:
+                  errorMessage = `YouTube player error: ${event.data}`;
+              }
+              setError(errorMessage);
+            },
+            onStateChange: (event: { data: number }) => {
+              if (event.data === window.YT.PlayerState.ENDED && onEndedRef.current) {
+                onEndedRef.current();
+              }
+            },
+          },
+        });
+    } catch {
+      setError('Failed to initialize YouTube player');
+    }
     }
 
     return () => {
-      mounted = false;
-      if (playerRef.current) {
-        playerRef.current.dispose();
+      if (playerRef.current && typeof playerRef.current.destroy === 'function') {
+        playerRef.current.destroy();
         playerRef.current = null;
       }
     };
@@ -72,8 +123,11 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
         style={{ aspectRatio: '16/9' }}
       >
         <div className="flex flex-col items-center justify-center h-full">
-          <p className="text-red-400 mb-2">Videot ei saa laadida</p>
-          <p className="text-slate-400 text-sm">{error}</p>
+          <div className="text-red-400 mb-4 text-lg font-medium">Video laadimine ebaõnnestus</div>
+          <div className="text-slate-400 text-sm mb-4 max-w-md">{error}</div>
+          <div className="text-slate-500 text-xs">
+            Veenduge, et YouTube URL on õige ja video on avalikult kättesaadav
+          </div>
         </div>
       </div>
     );
@@ -81,28 +135,8 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
 
   return (
     <div className="relative w-full max-w-[1400px] mx-auto" style={{ aspectRatio: '16/9' }}>
-      <style>{`
-        .video-js {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-        .video-js .vjs-control-bar {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-        }
-        .video-js .vjs-big-play-button {
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      `}</style>
       <div
-        ref={videoRef}
+        ref={containerRef}
         className="video-container relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
         style={{ backgroundColor: '#0f0f0f' }}
       />
@@ -110,10 +144,31 @@ export default function VooglaadijaVideoPlayer({ src, onEnded }: VooglaadijaVide
         <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 rounded-2xl">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-slate-300 font-medium">Laen videoklippi...</p>
+            <p className="text-slate-300 font-medium">Laen YouTube videot...</p>
           </div>
         </div>
       )}
     </div>
   );
+}
+
+// Add YouTube API types
+declare global {
+  interface Window {
+    YT: {
+      Player: new (
+        element: HTMLElement | string,
+        options: Record<string, unknown>
+      ) => Record<string, unknown>;
+      PlayerState: {
+        UNSTARTED: -1;
+        ENDED: 0;
+        PLAYING: 1;
+        PAUSED: 2;
+        BUFFERING: 3;
+        CUED: 5;
+      };
+    };
+    onYouTubeIframeAPIReady: () => void;
+  }
 }
