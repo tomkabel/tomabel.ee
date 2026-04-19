@@ -120,7 +120,7 @@ export default function VooglaadijaPresentation() {
           <section aria-label="Video player">
             <VideoContainer>
               <VooglaadijaVideoPlayer
-                src="/vooglaadija-presentation-1.mp4"
+                src="/Vooglaadija-Presentation-6-Final.mp4"
                 onEnded={handleVideoEnded}
               />
             </VideoContainer>
