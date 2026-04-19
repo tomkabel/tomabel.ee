@@ -8,6 +8,7 @@ export default defineConfig({
   base: './',
   build: {
     outDir: 'pub',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
