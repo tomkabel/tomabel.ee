@@ -10,9 +10,10 @@ export default defineConfig({
     assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['lucide-react']
+        manualChunks(id: string) {
+          if (id.includes('RadarChart')) return 'radar';
+          if (id.includes('lucide-react')) return 'ui';
+          if (id.includes('node_modules/react')) return 'vendor';
         }
       }
     }
