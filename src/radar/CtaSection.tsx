@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
-import { Send, ArrowRight, Shield, Key } from 'lucide-react';
+import { ArrowRight, Shield, Key } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { contactInfo } from '../data/contact';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function CtaSection() {
-  const { t, locale } = useTranslation();
+  const { t, language } = useTranslation();
   const [emailError, setEmailError] = useState<string | null>(null);
   const [messageSent, setMessageSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -20,14 +20,14 @@ export default function CtaSection() {
     const message = formData.get('message') as string;
 
     if (!EMAIL_REGEX.test(email)) {
-      setEmailError(locale === 'et' ? 'Palun sisesta kehtiv e-posti aadress' : 'Please enter a valid email address');
+      setEmailError(language === 'et' ? 'Palun sisesta kehtiv e-posti aadress' : 'Please enter a valid email address');
       return;
     }
     if (!message.trim()) return;
 
-    const subject = locale === 'et' ? 'Kontaktvorm - proksiabel.ee' : 'Contact Form - proksiabel.ee';
+    const subject = language === 'et' ? 'Kontaktvorm - proksiabel.ee' : 'Contact Form - proksiabel.ee';
     const nl = '%0A';
-    const body = locale === 'et'
+    const body = language === 'et'
       ? `Nimi: ${name || 'Pole märgitud'}${nl}E-post: ${email}${nl}${nl}Sõnum:${nl}${message}`
       : `Name: ${name || 'Not specified'}${nl}Email: ${email}${nl}${nl}Message:${nl}${message}`;
     const mailtoLink = `mailto:${contactInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body).replace(/%0A/g, nl)}`;
