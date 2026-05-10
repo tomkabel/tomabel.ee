@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { Menu, X, Globe, Shield, ChevronRight } from 'lucide-react';
+import { Menu, X, Globe, ChevronRight } from 'lucide-react';
 import { useTranslation } from '../i18n';
 
 export default function Navbar() {
@@ -48,18 +48,17 @@ export default function Navbar() {
   }, [language, setLanguage]);
 
   const navLinks = [
-    { href: '/#services', label: t.nav.services },
-    { href: '/#expertise', label: t.nav.expertise },
-    { href: '/#about', label: t.nav.about },
-    { href: '/#contact', label: t.nav.contact },
-    { href: '/#pgp', label: t.nav.pgpKey },
+    { href: '/#reverse-engineering', label: 'Capabilities' },
+    { href: '/#research', label: 'Research' },
+    { href: '/#contact', label: 'Contact' },
+    { href: '/#pgp', label: 'PGP' },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#030407]/95 backdrop-blur-xl border-b border-slate-800'
+          ? 'bg-[#020203]/95 backdrop-blur-xl border-b border-[#1a1a2e]'
           : 'bg-transparent'
       }`}
     >
@@ -67,12 +66,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
-              <Shield className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-xl tracking-tight">ProksiAbel</span>
-              <span className="text-xs text-slate-500 -mt-0.5">{t.hero.securityConsultancy}</span>
+            <div className="font-display text-white font-bold text-xl tracking-tight">
+              Tom<span className="text-[#00D4FF]">.</span>Abel
             </div>
           </a>
 
@@ -100,13 +95,6 @@ export default function Navbar() {
               <span className="uppercase">{language}</span>
             </button>
 
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
-            >
-              {t.nav.bookConsultation}
-              <ChevronRight className="h-4 w-4" aria-hidden="true" />
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -141,7 +129,7 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label={t.nav.services}
-          className="lg:hidden bg-[#030407]/98 backdrop-blur-xl border-t border-slate-800"
+          className="lg:hidden bg-[#020203]/98 backdrop-blur-xl border-t border-[#1a1a2e]"
         >
           <div className="container-custom py-6 space-y-2">
             {navLinks.map((link) => (
@@ -155,16 +143,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="pt-4">
-              <a
-                href="/#contact"
-                onClick={closeMenu}
-                className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-5 py-3 rounded-xl transition-colors"
-              >
-                {t.nav.bookConsultation}
-                <ChevronRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
           </div>
         </div>
       )}

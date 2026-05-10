@@ -1,4 +1,4 @@
-import { Shield, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import { contactInfo } from '../data/contact';
 import { useTranslation } from '../i18n';
 
@@ -8,10 +8,10 @@ export default function Footer() {
 
   const footerLinks = {
     services: [
-      { label: t.footer.services, href: '/#services' },
-      { label: t.footer.expertise, href: '/#expertise' },
-      { label: t.footer.contact, href: '/#contact' },
-      { label: t.footer.pgp, href: '/#pgp' },
+      { label: 'Capabilities', href: '/#reverse-engineering' },
+      { label: 'Research', href: '/#research' },
+      { label: 'Contact', href: '/#contact' },
+      { label: 'PGP', href: '/#pgp' },
     ],
     legal: [
       { label: t.footer.privacy, href: '/privacy' },
@@ -22,31 +22,23 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#030407] border-t border-slate-800">
+    <footer className="bg-[#020203] border-t border-[#1a1a2e]">
       <div className="container-custom py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <a href="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <span className="text-white font-bold text-lg">ProksiAbel</span>
-                <p className="text-xs text-slate-500">{t.hero.securityConsultancy}</p>
-              </div>
-            </a>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              {t.footer.brandDescription}
-            </p>
-            
+            <div className="mb-6">
+              <div className="font-display text-white font-bold text-lg">Tom Kristian Abel</div>
+              <p className="text-xs text-slate-500">Deep-Tech AI Engineering</p>
+            </div>
+
             {/* Contact Quick Links */}
             <div className="space-y-3">
-              <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-2 text-sm text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#00D4FF] transition-colors">
                 <Mail className="h-4 w-4" />
                 {contactInfo.email}
               </a>
-              <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-2 text-sm text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#00D4FF] transition-colors">
                 <Phone className="h-4 w-4" />
                 {contactInfo.phoneDisplay}
               </a>
@@ -95,22 +87,22 @@ export default function Footer() {
 
           {/* CTA */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t.footer.getInTouch}</h3>
+            <h3 className="text-white font-semibold mb-4">Engage</h3>
             <p className="text-slate-400 text-sm mb-4">
-              {t.footer.ctaDescription}
+              Available for contract and technical B2B partnership via ProksiAbel OÜ.
             </p>
-            <a 
+            <a
               href="/#contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#00D4FF] hover:text-[#00D4FF]/80 transition-colors"
             >
-              {t.footer.ctaButton}
+              Get in touch
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-800">
+        <div className="mt-12 pt-8 border-t border-[#1a1a2e]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-slate-500 text-sm">
               © {currentYear} {contactInfo.company.name}. {t.footer.rights}
