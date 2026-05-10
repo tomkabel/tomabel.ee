@@ -2,13 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './i18n';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Expertise from './components/Expertise';
-import About from './components/About';
-import Contact from './components/Contact';
-import Pgp from './components/Pgp';
 import Footer from './components/Footer';
+import RadarHero from './radar/RadarHero';
+import CapabilitySections from './radar/CapabilitySections';
+import ResearchSection from './radar/ResearchSection';
+import CtaSection from './radar/CtaSection';
+import Pgp from './components/Pgp';
 
 const PrivacyPolicy = React.lazy(() => import('./components/PrivacyPolicy'));
 const TermsOfService = React.lazy(() => import('./components/TermsOfService'));
@@ -21,11 +20,10 @@ function HomePage() {
     <>
       <Navbar />
       <main id="main-content" tabIndex={-1}>
-        <Hero />
-        <Services />
-        <Expertise />
-        <About />
-        <Contact />
+        <RadarHero />
+        <CapabilitySections />
+        <ResearchSection />
+        <CtaSection />
         <Pgp />
       </main>
       <Footer />
@@ -37,7 +35,13 @@ function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
-      <React.Suspense fallback={<div className="min-h-screen bg-slate-900 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <React.Suspense
+        fallback={
+          <div className="min-h-screen bg-[#020203] flex items-center justify-center">
+            <div className="text-[#64748B]">Loading...</div>
+          </div>
+        }
+      >
         {children}
       </React.Suspense>
       <Footer />
@@ -49,10 +53,10 @@ function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-slate-900">
+        <div className="min-h-screen bg-[#020203]">
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-sky-500 focus:text-white focus:rounded-md"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#00D4FF] focus:text-[#020203] focus:rounded-md"
             onClick={(e) => { e.preventDefault(); const el = document.getElementById('main-content'); el?.focus(); el?.scrollIntoView(); }}
           >
             Skip to main content
