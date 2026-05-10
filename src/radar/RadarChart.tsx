@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CapabilityAxis } from './types';
 
 interface Props {
@@ -11,7 +11,6 @@ interface Props {
 export default function RadarChart({ axes, size = 400, className, onAxisFocus }: Props) {
   const [animated, setAnimated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const polyRef = useRef<SVGPolygonElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -32,6 +31,8 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
   const labelRadius = radius + 28;
 
   const axisAngles = axes.map((_, i) => (Math.PI * (i * 60 - 90)) / 180);
+
+  const dashLen = Math.ceil(6 * radius * 1.1);
 
   // Grid rings (3 rings: 33%, 66%, 100%)
   const rings = [0.33, 0.66, 1.0];
@@ -87,7 +88,6 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
 
       {/* Data polygon */}
       <polygon
-        ref={polyRef}
         points={points}
         fill="url(#radarGrad)"
         stroke="#00D4FF"
@@ -96,8 +96,8 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
           reducedMotion
             ? {}
             : {
-                strokeDasharray: 1000,
-                strokeDashoffset: animated ? 0 : 1000,
+                strokeDasharray: dashLen,
+                strokeDashoffset: animated ? 0 : dashLen,
                 transition: 'stroke-dashoffset 1.5s ease-out',
               }
         }
@@ -151,8 +151,8 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
         );
       })}
 
-      {/* Screen reader data table (hidden) */}
-      <g aria-hidden="true" style={{ display: 'none' }}>
+      {/* Screen reader data — visually hidden but accessible */}
+      <g style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>
         <text>
           {axes.map((a) => `${a.label.en}: ${Math.round(a.value * 10)}/10`).join(', ')}
         </text>
