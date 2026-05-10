@@ -77,7 +77,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                className="px-4 py-2 text-sm font-medium text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
               >
                 {link.label}
               </a>
@@ -88,7 +88,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
               aria-label={language === 'et' ? 'Switch to English' : 'Switch to Estonian'}
             >
               <Globe className="h-4 w-4" aria-hidden="true" />
@@ -101,7 +101,7 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleLanguage}
-              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
               aria-label={language === 'et' ? 'Switch to English' : 'Switch to Estonian'}
             >
               <Globe className="h-5 w-5" />
@@ -112,7 +112,7 @@ export default function Navbar() {
               aria-label={isMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
-              className="p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -137,7 +137,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#94A3B8] hover:text-[#00D4FF] hover:bg-[#1a1a2e] transition-colors"
               >
                 <ChevronRight className="h-4 w-4 text-cyan-400" aria-hidden="true" />
                 {link.label}

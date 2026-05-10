@@ -27,7 +27,7 @@ export default function ResearchSection() {
           {researchPapers.map((paper) => (
             <article
               key={paper.id}
-              className={`p-6 rounded-xl border ${
+              className={`p-6 rounded-xl border shadow-[0_4px_24px_rgba(0,0,0,0.12)] ${
                 paper.featured
                   ? 'border-[#F59E0B]/30 bg-[#F59E0B]/5'
                   : 'border-[#1a1a2e] bg-[#040408]'

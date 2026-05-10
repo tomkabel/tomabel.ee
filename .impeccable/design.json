@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-11T00:58:00.000Z",
+  "title": "Design System: Tom Kristian Abel — Capability Radar",
+  "extensions": {
+    "colorMeta": {
+      "signal": {
+        "role": "primary",
+        "displayName": "Signal Cyan",
+        "canonical": "oklch(0.78 0.18 220)",
+        "tonalRamp": [
+          "oklch(0.15 0.18 220)",
+          "oklch(0.25 0.18 220)",
+          "oklch(0.35 0.18 220)",
+          "oklch(0.50 0.18 220)",
+          "oklch(0.65 0.18 220)",
+          "oklch(0.78 0.18 220)",
+          "oklch(0.88 0.12 220)",
+          "oklch(0.95 0.04 220)"
+        ]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Amber Beacon",
+        "canonical": "oklch(0.82 0.16 85)",
+        "tonalRamp": [
+          "oklch(0.15 0.16 85)",
+          "oklch(0.25 0.16 85)",
+          "oklch(0.35 0.16 85)",
+          "oklch(0.50 0.16 85)",
+          "oklch(0.65 0.16 85)",
+          "oklch(0.82 0.16 85)",
+          "oklch(0.90 0.10 85)",
+          "oklch(0.96 0.04 85)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Slate Void",
+        "canonical": "oklch(0.02 0.005 250)",
+        "tonalRamp": [
+          "oklch(0.01 0.003 250)",
+          "oklch(0.02 0.005 250)",
+          "oklch(0.04 0.005 250)",
+          "oklch(0.06 0.005 250)",
+          "oklch(0.08 0.005 250)",
+          "oklch(0.12 0.005 250)",
+          "oklch(0.18 0.005 250)",
+          "oklch(0.25 0.005 250)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero heading only. Space Grotesk 700. Used exclusively for the name in the hero section."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraphs, descriptions, long-form content. Inter 400."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Data, labels, tags, code, legal text. JetBrains Mono 400."
+      }
+    },
+    "shadows": [
+      { "name": "surface", "value": "0 4px 24px rgba(0, 0, 0, 0.12)", "purpose": "Card and container elevation against the background." },
+      { "name": "hover-lift", "value": "0 8px 32px rgba(0, 0, 0, 0.16)", "purpose": "Interactive cards on hover." },
+      { "name": "signal-glow", "value": "0 0 24px rgba(0, 212, 255, 0.08)", "purpose": "Cyan signal glow for active/interactive elements." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for state transitions (the CSS variable --easing-out)." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Quick transitions: hover, focus, color changes." },
+      { "name": "duration-normal", "value": "400ms", "purpose": "Standard transitions: panel reveals, content shifts." },
+      { "name": "radar-draw", "value": "1500ms ease-out", "purpose": "Radar chart stroke-dashoffset draw-in animation on mount." },
+      { "name": "fade-in", "value": "600ms ease-out", "purpose": "Content fade-in with translateY(20px) offset on scroll reveal." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width cyan submit button used in the CTA contact form.",
+      "html": "<button class=\"ds-btn-primary\">Saada sõnum<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem 1.5rem; background: #00D4FF; color: #020203; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.875rem; border: none; border-radius: 0.75rem; cursor: pointer; transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { opacity: 0.9; } .ds-btn-primary:focus-visible { outline: 2px solid #00D4FF; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Dark-themed text input with cyan focus border.",
+      "html": "<div><label class=\"ds-label\" for=\"demo-email\">E-post *</label><input class=\"ds-input\" id=\"demo-email\" type=\"email\" placeholder=\"mina@näide.ee\" /></div>",
+      "css": ".ds-label { display: block; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #94A3B8; margin-bottom: 0.5rem; } .ds-input { width: 100%; padding: 0.75rem 1rem; background: #020203; color: #F1F5F9; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; border: 1px solid #1a1a2e; border-radius: 0.75rem; outline: none; transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1); box-sizing: border-box; } .ds-input::placeholder { color: #64748B; } .ds-input:focus { border-color: #00D4FF; box-shadow: 0 0 0 1px #00D4FF; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Compact cyan-tinted metadata tags on project cards.",
+      "html": "<span class=\"ds-chip\">Reverse Engineering</span><span class=\"ds-chip\">Go</span>",
+      "css": ".ds-chip { display: inline-block; padding: 0.25rem 0.625rem; background: rgba(0, 212, 255, 0.08); color: #00D4FF; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; border-radius: 0.5rem; white-space: nowrap; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Capability project card with subtle border and shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">EchoGuard</h3><p class=\"ds-card-body\">End-to-end AI voice cloning red-teaming pipeline using RunPod Serverless GPU.</p><div class=\"ds-card-chips\"><span class=\"ds-chip\">FastAPI</span><span class=\"ds-chip\">Python</span><span class=\"ds-chip\">GPU</span></div></div>",
+      "css": ".ds-card { background: #040408; border: 1px solid #1a1a2e; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12); } .ds-card-title { font-family: 'Space Grotesk', Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.125rem; color: #F1F5F9; margin: 0 0 0.5rem 0; line-height: 1.3; } .ds-card-body { font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; color: #94A3B8; line-height: 1.5; margin: 0 0 1rem 0; } .ds-card-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Top nav bar link with cyan hover.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Capabilities</a><a class=\"ds-nav-link\" href=\"#\">Research</a><a class=\"ds-nav-link\" href=\"#\">Contact</a><a class=\"ds-nav-link\" href=\"#\">PGP</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 1rem; align-items: center; } .ds-nav-link { font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #94A3B8; text-decoration: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); padding: 0.25rem 0; } .ds-nav-link:hover { color: #00D4FF; } .ds-nav-link:focus-visible { outline: 2px solid #00D4FF; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Signal Floor",
+    "overview": "A dark instrument panel where capability appears as live radar readings. The OLED black background is the quiet room before detection; cyan traces are signals worth tracking; amber markers note points of interest. Every element emerges from darkness with purpose -- nothing glows without reason. The system rejects template-driven portfolio cliches: no cards-with-icons repeated endlessly, no hero-metric templates, no glassmorphism as default. The radar chart is not decoration -- it is navigation, table of contents, and proof, all at once. The layout is sparse but not empty; every pixel is earned.",
+    "keyCharacteristics": [
+      "Dark depth, not dark mode. The black (#020203) is atmospheric, not a UI default. Surfaces emerge through subtle tonal shifts.",
+      "Three-voice typography. Space Grotesk for authority (headings), Inter for readability (body), JetBrains Mono for precision (data, labels).",
+      "Signal as structure. Cyan (#00D4FF) traces appear on interactive elements, the radar chart, and focus indicators -- never decoratively.",
+      "Radar coherence. The 6-axis radar is the information architecture. Every section maps to an axis."
+    ],
+    "rules": [
+      { "name": "The Signal Rule", "body": "Cyan is used on <10% of any given screen. Its rarity is the point -- when cyan appears, the user knows something is interactive or alive.", "section": "colors" },
+      { "name": "The No-Decoration Rule", "body": "No element uses cyan or amber purely for decoration. Every colored element signals something: interactivity, focus, warning, or data.", "section": "colors" },
+      { "name": "The Beacon Rule", "body": "Amber is reserved for legal notes, PGP encryption signals, and the amber glow in the background. It should never compete with cyan for visual priority.", "section": "colors" },
+      { "name": "The Three-Voice Rule", "body": "Never use one font for everything. Display always gets Space Grotesk, body always gets Inter, data/labels always get JetBrains Mono.", "section": "typography" },
+      { "name": "The Flat First Rule", "body": "Flat surfaces are the default. Shadows appear only to establish hierarchy on interactive or containered elements.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use cyan (#00D4FF) as the only accent for interactive elements, focus indicators, and the radar chart.",
+      "Do use amber (#F59E0B) sparingly and deliberately -- PGP, legal notes, amber background glow.",
+      "Do use the three-typeface system: Space Grotesk for display, Inter for body, JetBrains Mono for data/labels.",
+      "Do compose the radar chart so it remains legible at 375px default viewport width.",
+      "Do respect prefers-reduced-motion: disable Lenis, skip draw-in animations, instant-reveal content.",
+      "Do use tonal layering (surface-overlay tints) in preference to shadows for structural depth.",
+      "Do keep the cyan signal at <10% screen coverage. Saturation through rarity.",
+      "Do use generous rounded corners (0.75rem) on containers and inputs consistently."
+    ],
+    "donts": [
+      "Don't use gradient text (background-clip: text). Solid colors only.",
+      "Don't use glassmorphism (backdrop-blur) as default treatment.",
+      "Don't build cards-with-icons repeated endlessly. Vary the card pattern by context.",
+      "Don't use the hero-metric template (big number + small label + stats).",
+      "Don't use border-left or border-right greater than 1px as a colored accent stripe.",
+      "Don't use em dashes in copy. Use commas, colons, or periods.",
+      "Don't add shadows to every surface. Flat is the default; shadows are earned.",
+      "Don't use pure black (#000) or pure white (#fff).",
+      "Don't make the site look vibe-coded or template-driven."
+    ]
+  }
+}

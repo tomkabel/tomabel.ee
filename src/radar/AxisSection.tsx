@@ -47,11 +47,11 @@ export default function AxisSection({ axis, index }: Props) {
             {axis.projects.map((project) => (
               <div
                 key={project.id}
-                className={`p-4 rounded-xl border ${
+                className={`p-4 rounded-xl border shadow-[0_4px_24px_rgba(0,0,0,0.12)] transition-shadow duration-200 ${
                   project.id === axis.accentProject
                     ? 'border-[#00D4FF]/30 bg-[#00D4FF]/5'
                     : 'border-[#1a1a2e] bg-[#020203]/60'
-                }`}
+                } hover:shadow-[0_8px_32px_rgba(0,0,0,0.16)]`}
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="font-display text-base font-semibold text-[#F1F5F9]">
@@ -87,7 +87,7 @@ export default function AxisSection({ axis, index }: Props) {
                   {project.techTags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-mono text-[#64748B] bg-[#1a1a2e]/50 px-2 py-1 rounded"
+                      className="text-xs font-mono text-[#00D4FF] bg-[#00D4FF]/[0.08] px-2.5 py-0.5 rounded-md"
                     >
                       {tag}
                     </span>
