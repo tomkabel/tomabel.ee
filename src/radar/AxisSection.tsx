@@ -28,7 +28,7 @@ export default function AxisSection({ axis, index }: Props) {
       ref={ref}
       className={`py-20 md:py-28 transition-all duration-700 ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      } ${index % 2 === 1 ? 'bg-[#040408]' : 'bg-[#020203]'}`}
+      } ${index % 2 === 0 ? 'bg-[#040408]' : 'bg-[#020203]'}`}
     >
       <div className="w-full max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
