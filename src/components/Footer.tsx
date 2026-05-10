@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, Github, Linkedin } from 'lucide-react';
 import { contactInfo } from '../data/contact';
 import { useTranslation } from '../i18n';
 
@@ -45,6 +45,26 @@ export default function Footer() {
               <div className="flex items-center gap-2 text-sm text-slate-400">
                 <MapPin className="h-4 w-4" />
                 {contactInfo.address.display}
+              </div>
+              <div className="flex items-center gap-3 pt-2">
+                <a
+                  href="https://github.com/tkabel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-[#00D4FF] transition-colors"
+                  aria-label="GitHub profile"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/tomkabel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-[#00D4FF] transition-colors"
+                  aria-label="LinkedIn profile"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -111,6 +131,10 @@ export default function Footer() {
               {contactInfo.company.name} • Reg. {contactInfo.company.registrationCode} • {contactInfo.address.full}
             </p>
           </div>
+          {/* Colophon */}
+          <p className="mt-6 text-center text-xs text-slate-700 font-mono tracking-tight">
+            Set in Space Grotesk · Inter · JetBrains Mono
+          </p>
         </div>
       </div>
     </footer>

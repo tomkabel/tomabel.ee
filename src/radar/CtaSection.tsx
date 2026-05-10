@@ -105,7 +105,7 @@ export default function CtaSection() {
               </div>
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#020203] font-semibold py-3 rounded-xl transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#020203] font-semibold py-4 rounded-xl transition-colors min-h-[48px]"
               >
                 {t.cta.form.send}
                 <ArrowRight className="w-5 h-5" />
