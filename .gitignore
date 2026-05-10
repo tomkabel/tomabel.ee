@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 .bolt/prompt
 .bolt/config.json
+
+# Build artifacts
+tsconfig.tsbuildinfo
+mydatabase.db
