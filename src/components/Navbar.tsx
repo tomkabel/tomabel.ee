@@ -48,10 +48,10 @@ export default function Navbar() {
   }, [language, setLanguage]);
 
   const navLinks = [
-    { href: '/#reverse-engineering', label: 'Capabilities' },
-    { href: '/#research', label: 'Research' },
-    { href: '/#contact', label: 'Contact' },
-    { href: '/#pgp', label: 'PGP' },
+    { href: '/#reverse-engineering', key: 'capabilities' as const },
+    { href: '/#research', key: 'research' as const },
+    { href: '/#contact', key: 'contact' as const },
+    { href: '/#pgp', key: 'pgp' as const },
   ];
 
   return (
@@ -79,7 +79,7 @@ export default function Navbar() {
                 href={link.href}
                 className="px-4 py-2 text-sm font-medium text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
               >
-                {link.label}
+                {t.nav.links[link.key]}
               </a>
             ))}
           </div>
@@ -101,7 +101,7 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleLanguage}
-              className="p-2.5 rounded-lg text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
+              className="p-3 rounded-lg text-[#94A3B8] hover:text-[#00D4FF] transition-colors"
               aria-label={language === 'et' ? 'Switch to English' : 'Switch to Estonian'}
             >
               <Globe className="h-5 w-5" />
@@ -128,7 +128,7 @@ export default function Navbar() {
           tabIndex={-1}
           role="dialog"
           aria-modal="true"
-          aria-label={t.nav.services}
+          aria-label={t.nav.mobileMenu}
           className="lg:hidden bg-[#020203]/98 backdrop-blur-xl border-t border-[#1a1a2e]"
         >
           <div className="container-custom py-6 space-y-2">
@@ -139,8 +139,8 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#94A3B8] hover:text-[#00D4FF] hover:bg-[#1a1a2e] transition-colors"
               >
-                <ChevronRight className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-                {link.label}
+                <ChevronRight className="h-4 w-4 text-[#00D4FF]" aria-hidden="true" />
+                {t.nav.links[link.key]}
               </a>
             ))}
           </div>
