@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './i18n';
+import { getLenis } from './lib/lenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import RadarHero from './radar/RadarHero';
@@ -38,7 +39,10 @@ function LegalLayout({ children }: { children: React.ReactNode }) {
       <React.Suspense
         fallback={
           <div className="min-h-screen bg-[#020203] flex items-center justify-center">
-            <div className="text-[#64748B]">Loading...</div>
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-6 h-6 rounded-full border-2 border-[#1a1a2e] border-t-[#00D4FF] animate-spin" />
+              <span className="text-sm text-[#64748B] font-mono">Loading...</span>
+            </div>
           </div>
         }
       >
@@ -57,7 +61,7 @@ function App() {
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#00D4FF] focus:text-[#020203] focus:rounded-md"
-            onClick={(e) => { e.preventDefault(); const el = document.getElementById('main-content'); el?.focus(); el?.scrollIntoView(); }}
+            onClick={(e) => { e.preventDefault(); const el = document.getElementById('main-content'); el?.focus(); getLenis()?.scrollTo('#main-content', { immediate: false }); }}
           >
             Skip to main content
           </a>
