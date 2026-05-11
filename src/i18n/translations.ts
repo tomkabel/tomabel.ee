@@ -1,14 +1,16 @@
 export const translations = {
   en: {
     nav: {
-      services: 'Services',
-      expertise: 'Expertise',
-      about: 'About',
-      contact: 'Contact',
-      pgpKey: 'PGP Key',
-      bookConsultation: 'Book Consultation',
+      services: 'Capabilities',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
+      mobileMenu: 'Mobile navigation',
+      links: {
+        capabilities: 'Capabilities',
+        research: 'Research',
+        contact: 'Contact',
+        pgp: 'PGP',
+      },
     },
     radarHero: {
       subtitle: 'Deep-Tech AI Engineering | Reverse Engineering · AI Infrastructure · Systems Architecture',
@@ -106,6 +108,11 @@ export const translations = {
       },
       generalInquiries: 'For general inquiries',
     },
+    notFound: {
+      title: 'Page Not Found',
+      description: 'The page you are looking for does not exist or has been moved.',
+      returnHome: 'Return Home',
+    },
     pgp: {
       title: 'PGP Public Key',
       description: 'Use this to encrypt your emails to me. Keep it secure.',
@@ -113,20 +120,15 @@ export const translations = {
     },
     footer: {
       rights: 'All rights reserved.',
-      links: 'Links',
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       cookies: 'Cookie Policy',
       disclosure: 'Research Policy',
-      services: 'Services',
-      expertise: 'Expertise',
-      contact: 'Contact',
-      pgp: 'PGP Key',
-      brandDescription: 'Professional cybersecurity consulting services from Estonia. Specializing in MITM attack prevention and enterprise security solutions.',
+      engage: 'Engage',
+      services: 'Navigate',
       getInTouch: 'Get in Touch',
       ctaDescription: 'Ready to secure your infrastructure? Let\'s discuss your needs.',
-      ctaButton: 'Contact us',
     },
     legal: {
       lastUpdated: 'Last updated',
@@ -417,14 +419,16 @@ export const translations = {
   },
   et: {
     nav: {
-      services: 'Teenused',
-      expertise: 'Kogemus',
-      about: 'Meist',
-      contact: 'Kontakt',
-      pgpKey: 'PGP võti',
-      bookConsultation: 'Broneeri konsultatsioon',
+      services: 'Valdkonnad',
       openMenu: 'Ava menüü',
       closeMenu: 'Sulge menüü',
+      mobileMenu: 'Mobiilne navigatsioon',
+      links: {
+        capabilities: 'Valdkonnad',
+        research: 'Uurimistöö',
+        contact: 'Kontakt',
+        pgp: 'PGP',
+      },
     },
     radarHero: {
       subtitle: 'Deep-Tech AI Inseneriteadus | Pöördprojekteerimine · AI Infrastruktuur · Süsteemiarhitektuur',
@@ -450,41 +454,6 @@ export const translations = {
     research: {
       title: 'Uurimistöö & Väljaanded',
       description: 'Tehnilised materjalid, analüüsid ja leiud käimasolevatest turvauuringutest.',
-    },
-    services: {
-      title: 'Mida me teeme',
-      description: 'Unusta automatiseeritud müra. Teeme reaalset, praktilist läbistustestimist (pentestimist). Otsime üles su arhitektuuri nõrgad kohad ja aitame need ära parandada, enne kui keegi teine neid ära kasutab.',
-      learnMore: 'Loe lisaks',
-      service1: {
-        title: 'Läbistustestimine ja nõrkuste haldus',
-        description: 'Reaalne veebirakenduste ründamine. Me kaardistame sinu autentimisvood, simuleerime sessioonide kaaperdamist ja näitame sulle täpselt, mida ründaja näeb. Sest automatiseeritud tööriistad? Need magavad loogikavead iga kord maha.',
-        features: [
-          'Manuaalne veebirakenduste läbistustestimine',
-          'Autentimisvoogude ohumudeldamine',
-          'Sessioonide kaaperdamise ja AiTM simulatsioonid',
-        ],
-        heroDescription: 'Näeme su süsteeme täpselt nii, nagu ründaja neid näeb.',
-      },
-      service2: {
-        title: 'Turvaline arendus',
-        description: 'Turvalisuse sissekirjutamine koodi esimesest päevast. Ausalt, kaitsesüsteemide tagantjärele külge kleepimine ei toimi peaaegu kunagi. Aitame sul juurutada praktilisi vastumeetmeid MITM rünnakute vastu – asju, mis ka päriselt töötavad.',
-        features: [
-          'Tööriistaspetsiifilised MITM vastumeetmed',
-          'Autentimise kaitsmine aktiivse vaheltlõike eest',
-          'TLS kliendi sõrmejälje kaitse',
-        ],
-        heroDescription: 'Praktilised insenerilahendused, mis peavad reaalse rünnaku all vastu.',
-      },
-      service3: {
-        title: 'Turvauuringud ja tööriistade arendus',
-        description: 'Mõnikord ei ole meile vajalikku tööriista veel olemas. Seega me kirjutame selle ise. Koodi süüvimine võimaldab meil mööda minna modernsetest JavaScripti bot-tuvastussüsteemidest ja mõista, kuidas uue põlvkonna pettusevõrgustikud toimivad.',
-        features: [
-          'Reageerimine dokumenteerimata küberohtudele',
-          'Tööriistade kirjutamine Golangis',
-          'Bot-tuvastuse ja pettusesüsteemide pöördprojekteerimine',
-        ],
-        heroDescription: 'Toores uurimistöö sellest, kuidas tänapäeva süsteemid kokku kukuvad.',
-      },
     },
     disclosure: {
       version: 'Versioon',
@@ -557,6 +526,11 @@ export const translations = {
       },
       generalInquiries: 'Üldiste päringute jaoks',
     },
+    notFound: {
+      title: 'Lehte ei leitud',
+      description: 'Otsitavat lehte ei eksisteeri või see on teisaldatud.',
+      returnHome: 'Tagasi avalehele',
+    },
     pgp: {
       title: 'PGP Avalik Võti',
       description: 'Kasuta seda, et mulle saadetavaid kirju krüpteerida. Hoia see turvalisena.',
@@ -564,20 +538,15 @@ export const translations = {
     },
     footer: {
       rights: 'Kõik õigused kaitstud.',
-      links: 'Lingid',
       legal: 'Juriidika',
       privacy: 'Privaatsuspoliitika',
       terms: 'Kasutustingimused',
       cookies: 'Küpsiste poliitika',
       disclosure: 'Uuringute Poliitika',
-      services: 'Teenused',
-      expertise: 'Kogemus',
-      contact: 'Kontakt',
-      pgp: 'PGP Võti',
-      brandDescription: 'Professionaalsed küberturbe konsultatsiooniteenused Eestist. Spetsialiseerunud MITM-rünnakute ennetamisele ja ettevõtte turvalahendustele.',
+      engage: 'Võta ühendust',
+      services: 'Navigatsioon',
       getInTouch: 'Võta ühendust',
       ctaDescription: 'Oled valmis oma taristu turvamiseks? Arutame sinu vajadusi.',
-      ctaButton: 'Võta meiega ühendust',
     },
     legal: {
       lastUpdated: 'Viimati uuendatud',
