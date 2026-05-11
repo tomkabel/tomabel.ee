@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
+import { useTranslation } from '../i18n';
 import type { CapabilityAxis } from './types';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function AxisSection({ axis, index }: Props) {
+  const { language } = useTranslation();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -35,10 +37,10 @@ export default function AxisSection({ axis, index }: Props) {
           {/* Left: label + description */}
           <div>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F1F5F9] mb-4">
-              {axis.label.en}
+              {axis.label[language]}
             </h2>
-            <p className="text-[#94A3B8] leading-relaxed">
-              {axis.description.en}
+            <p className="text-[#94A3B8] text-sm leading-relaxed">
+              {axis.description[language]}
             </p>
           </div>
 
@@ -81,7 +83,7 @@ export default function AxisSection({ axis, index }: Props) {
                   </div>
                 </div>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-3">
-                  {project.description.en}
+                  {project.description[language]}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.techTags.map((tag) => (

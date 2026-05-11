@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { ArrowRight, Shield, Key } from 'lucide-react';
+import { ArrowRight, Shield, Key, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { contactInfo } from '../data/contact';
 
@@ -46,7 +46,7 @@ export default function CtaSection() {
           <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F1F5F9] mb-3">
             {t.cta.title}
           </h2>
-          <p className="text-[#94A3B8] max-w-lg mx-auto">
+          <p className="text-[#94A3B8] text-sm max-w-lg mx-auto">
             {t.cta.description}
           </p>
         </div>
@@ -64,7 +64,15 @@ export default function CtaSection() {
           <div className="bg-[#040408] border border-[#1a1a2e] rounded-xl p-6 lg:p-8">
             {messageSent && (
               <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3">
-                <p className="text-emerald-300 text-sm">{t.cta.form.success}</p>
+                <p className="text-emerald-300 text-sm flex-1">{t.cta.form.success}</p>
+                <button
+                  type="button"
+                  onClick={() => setMessageSent(false)}
+                  className="text-emerald-400/60 hover:text-emerald-300 transition-colors p-1 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  aria-label="Dismiss"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
             )}
 

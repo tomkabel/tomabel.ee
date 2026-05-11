@@ -3,7 +3,7 @@ import { useTranslation } from '../i18n';
 import { researchPapers } from './research-data';
 
 export default function ResearchSection() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const statusColor = (status: string) => {
     switch (status) {
@@ -19,7 +19,7 @@ export default function ResearchSection() {
         <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F1F5F9] mb-2">
           {t.research.title}
         </h2>
-        <p className="text-[#64748B] mb-10 max-w-xl">
+        <p className="text-[#64748B] text-sm mb-10 max-w-xl">
           {t.research.description}
         </p>
 
@@ -46,7 +46,7 @@ export default function ResearchSection() {
                     {paper.title}
                   </h3>
                   <p className="text-[#64748B] text-sm mb-3 leading-relaxed">
-                    {paper.abstract.en}
+                    {paper.abstract[language]}
                   </p>
                   <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
                     <span className={`px-2 py-0.5 rounded ${statusColor(paper.status)}`}>

@@ -3,7 +3,7 @@ import RadarChart from './RadarChart';
 import { capabilityAxes } from './capability-data';
 
 export default function RadarHero() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const handleAxisFocus = (id: string) => {
     const el = document.getElementById(id);
@@ -29,11 +29,12 @@ export default function RadarHero() {
             size={400}
             className="w-full h-auto"
             onAxisFocus={handleAxisFocus}
+            language={language}
           />
         </div>
 
         <p className="text-[#64748B] text-xs font-mono">
-          ProksiAbel O&mdash; B2B Partnership
+          ProksiAbel OÜ — B2B Partnership
         </p>
       </div>
 

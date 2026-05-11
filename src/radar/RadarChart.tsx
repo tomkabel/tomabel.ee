@@ -6,9 +6,10 @@ interface Props {
   size?: number;
   className?: string;
   onAxisFocus?: (id: string) => void;
+  language?: 'en' | 'et';
 }
 
-export default function RadarChart({ axes, size = 400, className, onAxisFocus }: Props) {
+export default function RadarChart({ axes, size = 400, className, onAxisFocus, language = 'en' }: Props) {
   const [animated, setAnimated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -29,6 +30,8 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
   const cy = size / 2;
   const radius = size * 0.35;
   const labelRadius = radius + 28;
+
+  const labelsSummary = axes.map((a) => `${a.label[language]}: ${Math.round(a.value * 10)}/10`).join(', ');
 
   const axisAngles = axes.map((_, i) => (Math.PI * (i * 60 - 90)) / 180);
 
@@ -51,8 +54,9 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
       viewBox={`0 0 ${size} ${size}`}
       className={className}
       role="img"
-      aria-label="Capability radar chart showing expertise across 6 domains"
+      aria-label={`Capability radar chart: ${labelsSummary}`}
     >
+      <desc>Radar chart of professional capabilities across {axes.length} domains. {labelsSummary}.</desc>
       {/* Grid rings */}
       {rings.map((ring) => (
         <polygon
@@ -131,7 +135,7 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
               className="cursor-pointer"
               tabIndex={0}
               role="button"
-              aria-label={`${axis.label.en}, value ${Math.round(axis.value * 10)} out of 10`}
+              aria-label={`${axis.label[language]}, ${Math.round(axis.value * 10)} out of 10`}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onAxisFocus?.(axis.id); }}
               onClick={() => onAxisFocus?.(axis.id)}
             />
@@ -145,18 +149,12 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus }:
               fontFamily="JetBrains Mono, monospace"
               className="pointer-events-none"
             >
-              {axis.label.en}
+              {axis.label[language]}
             </text>
           </g>
         );
       })}
 
-      {/* Screen reader data — visually hidden but accessible */}
-      <g style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>
-        <text>
-          {axes.map((a) => `${a.label.en}: ${Math.round(a.value * 10)}/10`).join(', ')}
-        </text>
-      </g>
     </svg>
   );
 }
