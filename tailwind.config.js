@@ -14,8 +14,11 @@ export default {
           grid: '#1a1a2e',
           signal: '#00D4FF',
           accent: '#F59E0B',
+          surface: '#040408',
+          'surface-overlay': '#05050f',
           'text-primary': '#F1F5F9',
           'text-secondary': '#94A3B8',
+          'text-muted': '#64748B',
         },
       },
       animation: {
