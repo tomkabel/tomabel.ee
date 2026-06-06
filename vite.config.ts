@@ -10,7 +10,11 @@ export default defineConfig({
     assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
+        chunkFileNames: 'assets/[name]-[hash].js',
         manualChunks(id: string) {
+          if (id.includes('node_modules/three')) return 'three';
+          if (id.includes('node_modules/ogl')) return 'ogl';
+          if (id.includes('node_modules/gsap')) return 'gsap';
           if (id.includes('RadarChart')) return 'radar';
           if (id.includes('lucide-react')) return 'ui';
           if (id.includes('node_modules/react')) return 'vendor';
