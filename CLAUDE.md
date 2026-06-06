@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Routing & Layouts
 
 React Router v7 with `BrowserRouter`. Two layout types:
-- **HomePage** — Full scrollable landing with hash-anchor sections (`#venn`, `#capabilities`, `#engagement`, `#about`, `#contact`, `#pgp`)
+- **HomePage** — Full scrollable landing with hash-anchor sections: `#reverse-engineering`, `#ai-ml-infrastructure`, `#offensive-tooling`, `#systems-engineering`, `#research-analysis`, `#architecture-design` (capability axes), `#research`, `#contact`, `#pgp`
 - **LegalLayout** — Simple layout for `/privacy`, `/terms`, `/cookies`, `/disclosure` (lazy-loaded via `React.lazy()`)
 
 ### i18n
@@ -32,18 +32,40 @@ Translations in `src/i18n/translations.ts`, organized by component section. Swit
 
 ### Key Source Map
 
-- `src/App.tsx` — Router + route definitions + layouts
-- `src/components/Navbar.tsx` — Fixed nav with mobile menu, language toggle, hash-scroll
-- `src/intersection/` — Custom interactive visualization suite:
-  - `constellation.ts` — Force-directed graph physics engine
-  - `Constellation.tsx` — React wrapper (WebGL → Canvas 2D fallback)
-  - `venn/VennDiagram.tsx` — Interactive SVG Venn diagram (3 domains: Security, AI/ML, Systems)
-  - `zones.ts` — Venn zone definitions (7 zones incl. intersections)
-  - `projects.ts` — 10 portfolio projects with bilingual descriptions
-  - `Capabilities.tsx` — Capabilities card grid
-  - `EngagementModels.tsx` — Engagement model sections
-- `src/i18n/translations.ts` — All bilingual UI strings
-- `src/index.css` — Tailwind directives, dark theme base, custom animations (gradient, float, glow)
+- `src/App.tsx` — Router + route definitions + layouts (HomePage renders RadarHero, CapabilitySections, ProjectShowcase, ResearchSection, CtaSection, Pgp; legal pages use LegalLayout)
+- `src/components/Navbar.tsx` — Fixed nav with mobile menu, language toggle, hash-scroll via Lenis. Backdrop blur and background opacity react to scroll position and velocity.
+- `src/radar/` — Capability Radar visualization suite (replaces legacy intersection):
+  - `RadarHero.tsx` — Full-screen hero section with parallax background layers: gradient, ASCIIArt, CyberpunkScene (Three.js), ParticleTrails, and the RadarChart SVG. Scroll-driven parallax transforms the content group (translateY + scale).
+  - `RadarChart.tsx` — Interactive SVG radar chart with 6 axes. Draw-in stroke animation on mount (1.5s ease-out). Three grid rings (33%/66%/100%). Each axis point is a keyboard-focusable button that scrolls to the corresponding capability section. Gradient fill (cyan). Respects prefers-reduced-motion.
+  - `CapabilitySections.tsx` — Renders one AxisSection per capability axis. Wraps each in `[data-lenis-snap]` for section snap scrolling.
+  - `AxisSection.tsx` — Two-column layout: label + description (left), project cards (right). Lenis-driven progress opacity/translateY animation. Accent project gets cyan border highlight. FlowmapDistortion wraps heading.
+  - `ProjectShowcase.tsx` — Featured projects grid (2-column). Filters capabilityAxes for featured projects with images. Lenis-driven reveal animation.
+  - `ShowcaseCard.tsx` — Individual project card with ShaderReveal image, tech tags, GitHub/link buttons.
+  - `ResearchSection.tsx` — Timeline of research papers with Lenis-driven progress fill. Cyan timeline dot transitions and staggered opacity reveals. Amber accent for featured papers.
+  - `CtaSection.tsx` — Contact form with mailto: fallback. Dynamic amber glow effect driven by scroll position via Lenis. PGP link reference.
+  - `capability-data.tsx` — 6 capability axes with bilingual labels, descriptions, value scores (0-1), and 10 portfolio projects.
+  - `research-data.ts` — Research paper entries with bilingual abstracts, status, dates, tags.
+  - `types.ts` — TypeScript interfaces: RadarProject, CapabilityAxis, ResearchPaper.
+- `src/components/` — Shared UI components:
+  - `ASCIIArt.tsx` — Background ASCII matrix animation (Canvas 2D).
+  - `CyberpunkScene.tsx` — Three.js 3D scene: wireframe server racks, floating icosahedron/torus-knot, scan rings, ambient particles. Auto-rotates with mouse parallax.
+  - `ParticleTrails.tsx` — Three.js instanced particle system with 3D simplex noise flow field. Performance-tiered (low/mid/high). Trail segments shrink and fade.
+  - `FlowmapDistortion.tsx` — OGL/WebGL flowmap distortion effect on headings. Pointer-driven with GSAP interpolation. Chromatic aberration.
+  - `ShaderReveal.tsx` — Three.js shader-based image reveal (block or dissolve variant) driven by GSAP ScrollTrigger. Falls back to CSS reveal on mobile/reduced motion.
+  - `ThreeProvider.tsx` — Initializes Three.js renderer/composer and handles resize. Renders children as overlay.
+  - `ScrollProgress.tsx` — Fixed-position scroll progress indicator (cyan bar at top).
+  - `Footer.tsx` — Site footer with nav links, legal links, language-aware rights notice.
+  - `Pgp.tsx` — PGP public key display section.
+- `src/lib/` — Utility modules:
+  - `lenis.ts` — Lenis smooth scroll singleton: creates instance, tracks scroll state (scroll, velocity, direction, progress, limit, isScrolling), syncs CSS custom properties and GSAP ScrollTrigger. Recreates on prefers-reduced-motion change.
+  - `useLenis.ts` — React hook wrapping useSyncExternalStore for reactive scroll state.
+  - `useSectionSnap.ts` — Lenis snap-scrolling integration: creates Snap with proximity type, adds elements matching a selector.
+  - `LazySection.tsx` — IntersectionObserver-based lazy loader for deferred section rendering.
+  - `RouteTransition.tsx` — Page transition wrapper for legal route changes.
+  - `three.ts` — Three.js renderer singleton with EffectComposer (bloom + chromatic aberration + output passes). subscribeToRenderLoop for custom animation frames.
+  - `ogl.ts` — OGL renderer/camera singletons for FlowmapDistortion.
+- `src/i18n/translations.ts` — All bilingual UI strings (nav, radarHero, cta, research, showcase, disclosure, notFound, pgp, footer, legal).
+- `src/index.css` — Tailwind directives, dark theme base, design tokens as CSS custom properties, Lenis overrides, prefers-reduced-motion reset, focus-visible styles, safe-area padding.
 
 ### Build & Deploy
 
