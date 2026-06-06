@@ -57,6 +57,31 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus, l
       aria-label={`Capability radar chart: ${labelsSummary}`}
     >
       <desc>Radar chart of professional capabilities across {axes.length} domains. {labelsSummary}.</desc>
+
+      <style>{`
+        .radar-point {
+          cursor: pointer;
+          transition: r 0.2s ease, opacity 0.2s ease;
+        }
+        .radar-point:hover, .radar-point:focus-visible {
+          r: 6;
+          opacity: 0.8;
+        }
+        .radar-point:focus-visible {
+          outline: none;
+          stroke: #00D4FF;
+          stroke-width: 3;
+          stroke-opacity: 0.6;
+        }
+        .radar-point:active {
+          r: 5;
+          opacity: 0.7;
+        }
+        .radar-label-text {
+          transition: fill 0.2s ease;
+        }
+      `}</style>
+
       {/* Grid rings */}
       {rings.map((ring) => (
         <polygon
@@ -125,18 +150,18 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus, l
         const isLeft = Math.cos(angle) < 0;
 
         return (
-          <g key={axis.id}>
+          <g key={axis.id} className="radar-point-group">
             {/* Interactive point */}
             <circle
               cx={px}
               cy={py}
               r={4}
               fill="#00D4FF"
-              className="cursor-pointer"
+              className="radar-point"
               tabIndex={0}
               role="button"
               aria-label={`${axis.label[language]}, ${Math.round(axis.value * 10)} out of 10`}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onAxisFocus?.(axis.id); }}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onAxisFocus?.(axis.id); } }}
               onClick={() => onAxisFocus?.(axis.id)}
             />
             {/* Label */}
@@ -147,7 +172,7 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus, l
               fill="#94A3B8"
               fontSize={10}
               fontFamily="JetBrains Mono, monospace"
-              className="pointer-events-none"
+              className="radar-label-text pointer-events-none"
             >
               {axis.label[language]}
             </text>
