@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="50%" stop-color="#0d1b2a"/>
+      <stop offset="100%" stop-color="#0a0a1a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <!-- Network proxy diagram -->
+  <g stroke="#00D4FF" stroke-opacity="0.15" stroke-width="1.5">
+    <line x1="100" y1="225" x2="350" y2="225"/>
+    <line x1="450" y1="225" x2="700" y2="225"/>
+  </g>
+  <g>
+    <rect x="250" y="195" width="200" height="60" rx="8" fill="none" stroke="#00D4FF" stroke-opacity="0.3" stroke-width="1.5"/>
+    <text x="350" y="225" text-anchor="middle" fill="#00D4FF" font-family="monospace" font-size="11" opacity="0.4">MITM PROXY</text>
+  </g>
+  <g fill="#00D4FF" fill-opacity="0.12">
+    <rect x="80" y="200" width="36" height="50" rx="4"/>
+    <rect x="684" y="200" width="36" height="50" rx="4"/>
+  </g>
+  <text x="98" y="215" text-anchor="middle" fill="#00D4FF" font-family="monospace" font-size="7" opacity="0.3">CLIENT</text>
+  <text x="702" y="215" text-anchor="middle" fill="#00D4FF" font-family="monospace" font-size="7" opacity="0.3">SERVER</text>
+  <!-- TLS handshake arrows -->
+  <path d="M130 200 L240 200" fill="none" stroke="#00D4FF" stroke-opacity="0.08" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M560 200 L670 200" fill="none" stroke="#00D4FF" stroke-opacity="0.08" stroke-width="1"/>
+  <!-- JA3 fingerprint display -->
+  <text x="400" y="310" text-anchor="middle" fill="#00D4FF" fill-opacity="0.15" font-family="monospace" font-size="9">JA3: 6734f5f63b5c3f0c6d9d9b0b0c...</text>
+  <text x="400" y="330" text-anchor="middle" fill="#64748B" fill-opacity="0.2" font-family="monospace" font-size="8">80+ Browser Profiles | HTTP/2 | TLS 1.3</text>
+  <!-- Accent bar -->
+  <rect x="0" y="380" width="800" height="4" fill="url(#accent)"/>
+  <!-- Title -->
+  <text x="400" y="160" text-anchor="middle" fill="#00D4FF" font-family="monospace" font-size="18" font-weight="bold" opacity="0.9">fingerprintproxy</text>
+  <text x="400" y="185" text-anchor="middle" fill="#64748B" font-family="monospace" font-size="11">TLS Fingerprinting Forward Proxy</text>
+</svg>

@@ -5,8 +5,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'reverse-engineering',
     label: { en: 'Reverse Engineering', et: 'Pöördprojekteerimine' },
     description: {
-      en: 'Decompiling obfuscated virtual machines, deconstructing hostile JavaScript environments, and mapping opcode architectures. Deep experience with anti-debug, chronometric defense, and anti-fraud system analysis.',
-      et: 'Obfitseeritud virtuaalmasinate dekompileerimine, vaenulike JavaScripti keskkondade lahtimonteerimine ja opkoodi arhitektuuride kaardistamine. Sügav kogemus anti-debug, kronomeetrilise kaitse ja pettustõrjesüsteemide analüüsiga.',
+      en: 'Decompiling obfuscated virtual machines, deconstructing hostile JavaScript environments, and mapping opcode architectures. Working knowledge of anti-debug, chronometric defense, and anti-fraud system analysis.',
+      et: 'Obfitseeritud virtuaalmasinate dekompileerimine, vaenulike JavaScripti keskkondade lahtimonteerimine ja opkoodi arhitektuuride kaardistamine. Praktiline kogemus anti-debug, kronomeetrilise kaitse ja pettustõrjesüsteemide analüüsiga.',
     },
     value: 0.9,
     projects: [
@@ -14,28 +14,38 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'botguard-vm',
         name: 'BotGuard VM Research',
         description: {
-          en: "Reverse-engineered Google's BotGuard VM opcode architecture, anti-debug chronometric defenses, and anti-logger mechanisms. Published original research advancing public understanding of obfuscated JavaScript VMs.",
-          et: 'Google\'i BotGuard VM opkoodi arhitektuuri, anti-debug kronomeetriliste kaitsemehhanismide ja anti-loggeri mehhanismide pöördprojekteerimine. Avaldatud originaaluuring, mis edendab obfitseeritud JavaScripti VM-de mõistmist.',
+          en: "Reverse-engineered Google's BotGuard VM opcode architecture and anti-debug defenses. Published original research on obfuscated JavaScript VMs.",
+          et: 'Google\'i BotGuard VM opkoodi arhitektuuri ja anti-debug kaitsemehhanismide pöördprojekteerimine. Avaldatud originaaluuring obfitseeritud JavaScripti VM-de kohta.',
         },
         techTags: ['Go', 'JavaScript', 'VM Decompilation', 'Anti-Debug'],
         url: '/#research',
+        featured: true,
+        image: {
+          src: '/projects/botguard-vm.svg',
+          alt: {
+            en: 'BotGuard VM Research — reverse engineering obfuscated JavaScript virtual machines',
+            et: 'BotGuard VM uurimistöö — obfitseeritud JavaScripti virtuaalmasinate pöördprojekteerimine',
+          },
+          width: 800,
+          height: 450,
+        },
       },
       {
         id: 'bg-decompiler',
         name: 'bg-vm-decompiler',
         description: {
-          en: 'Open-source decompiler and static analyzer for BotGuard VM bytecode. Enables researchers to analyze opcode sequences without dynamic execution. Includes control-flow graph reconstruction.',
-          et: 'Avatud lähtekoodiga dekompilaator ja staatiline analüsaator BotGuard VM baitkoodi jaoks. Võimaldab teadlastel analüüsida opkoodi järjestusi ilma dünaamilise täitmiseta.',
+          en: 'Open-source decompiler and static analyzer for BotGuard VM bytecode. Enables analysis of opcode sequences without dynamic execution.',
+          et: 'Avatud lähtekoodiga dekompilaator ja staatiline analüsaator BotGuard VM baitkoodi jaoks. Võimaldab analüüsida opkoodi järjestusi ilma dünaamilise täitmiseta.',
         },
         techTags: ['Go', 'Compiler', 'Static Analysis', 'CLI'],
         github: 'https://github.com/tkabel',
       },
       {
         id: 'fraud-network-analysis',
-        name: 'Fraud Network Analysis Engine',
+        name: 'Fraud Network Analysis',
         description: {
-          en: 'Reverse-engineered modern JavaScript-based fraud detection networks to understand their heuristics. Mapped device fingerprinting, behavioral analysis, and reputation scoring systems.',
-          et: 'Pöördprojekteeris kaasaegsed JavaScript-põhised pettusetuvastusvõrgustikud, et mõista nende heuristikat. Kaardistas seadmete sõrmejäljetuvastuse ja käitumusliku analüüsi süsteemid.',
+          en: 'Reverse-engineered JavaScript-based fraud detection networks to understand their heuristics. Mapped device fingerprinting and behavioral analysis systems.',
+          et: 'Pöördprojekteeris JavaScript-põhised pettusetuvastusvõrgustikud, et mõista nende heuristikat. Kaardistas seadmete sõrmejäljetuvastuse süsteemid.',
         },
         techTags: ['JavaScript', 'ML', 'Network Analysis', 'Security'],
       },
@@ -46,8 +56,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'ai-ml-infrastructure',
     label: { en: 'AI/ML Infrastructure', et: 'AI/ML Taristu' },
     description: {
-      en: 'Architecting production-grade AI pipelines with GPU orchestration, serverless inference, and MCP-based agentic workflows. Building the infrastructure that makes AI actually work at scale.',
-      et: 'Tootmiskõlblike AI torustike arhitekteerimine GPU orkestreerimise, serverless inferentsi ja MCP-põhiste agentide töövoogudega. Taristu ehitamine, mis paneb AI päriselt mastaabis tööle.',
+      en: 'Working with AI pipelines, GPU orchestration, serverless inference, and MCP-based agentic workflows. Building the tooling that connects AI to real workloads.',
+      et: 'AI torustike, GPU orkestreerimise, serverless inferentsi ja MCP-põhiste agentide töövoogude arendamine. Tööriistade ehitamine, mis ühendavad AI päris töödega.',
     },
     value: 0.85,
     projects: [
@@ -55,18 +65,28 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'echoguard',
         name: 'EchoGuard',
         description: {
-          en: 'End-to-end AI voice cloning red-teaming pipeline using RunPod Serverless GPU cloud compute. FastAPI backend with Redis caching and async job queues orchestrating Demucs, WhisperX, and RMVPE models.',
-          et: 'AI hääleklonimise punase meeskonna torustik, kasutades RunPod Serverless GPU pilvandmetöötlust. FastAPI backend Redis vahemäluga ja asünkroonsete tööjärjekordadega.',
+          en: 'AI voice cloning red-teaming pipeline using RunPod Serverless GPU compute. FastAPI backend with Redis caching and async job queues.',
+          et: 'AI hääleklonimise punase meeskonna torustik, kasutades RunPod Serverless GPU arvutust. FastAPI backend Redis vahemäluga.',
         },
         techTags: ['FastAPI', 'Python', 'GPU', 'RunPod', 'Redis'],
         github: 'https://github.com/tkabel',
+        featured: true,
+        image: {
+          src: '/projects/echoguard.svg',
+          alt: {
+            en: 'EchoGuard — AI voice cloning red-teaming pipeline with GPU compute',
+            et: 'EchoGuard — AI hääleklonimise punase meeskonna torustik GPU arvutusega',
+          },
+          width: 800,
+          height: 450,
+        },
       },
       {
         id: 'ml-pipeline',
         name: 'ML Pipeline Infrastructure',
         description: {
-          en: 'Designed and deployed infrastructure for training and serving ML models at scale. Automated data pipeline from collection through feature engineering to model deployment.',
-          et: 'Kavandas ja juurutas taristu masinõppemudelite treenimiseks ja teenindamiseks mastaabis. Automatiseeris andmetorustiku kogumisest mudeli juurutamiseni.',
+          en: 'Infrastructure for training and serving ML models. Automated data pipeline from collection through feature engineering to deployment.',
+          et: 'Taristu masinõppemudelite treenimiseks ja teenindamiseks. Automatiseeritud andmetorustik kogumisest juurutamiseni.',
         },
         techTags: ['Docker', 'MLflow', 'Python', 'Kubernetes'],
       },
@@ -77,8 +97,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'offensive-tooling',
     label: { en: 'Offensive Tooling', et: 'Ründetööriistad' },
     description: {
-      en: 'Building high-performance offensive security tools in Go. Custom MITM frameworks, TLS fingerprinting proxies, and bypass tooling that operates at the edge of what detection systems can identify.',
-      et: 'Suure jõudlusega ründeturbetööriistade ehitamine Go keeles. Kohandatud MITM raamistikud, TLS sõrmejäljeproksid ja möödaviimistööriistad.',
+      en: 'Building security tools in Go. Custom MITM frameworks, TLS fingerprinting proxies, and bypass utilities.',
+      et: 'Turvatööriistade ehitamine Go keeles. Kohandatud MITM raamistikud, TLS sõrmejäljeproksid ja möödaviimistööriistad.',
     },
     value: 0.95,
     projects: [
@@ -86,18 +106,28 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'fingerprintproxy',
         name: 'fingerprintproxy',
         description: {
-          en: 'Production-grade TLS fingerprinting forward proxy with 80+ browser profiles, MITM support, and per-request fingerprint selection. Custom http.RoundTripper for fine-grained TLS handshake control.',
-          et: 'Tootmiskõlblik TLS sõrmejälje puhverserver 80+ brauseriprofiiliga, MITM toega ja päringupõhise sõrmejälje valikuga.',
+          en: 'TLS fingerprinting forward proxy with 80+ browser profiles, MITM support, and per-request fingerprint selection. Custom http.RoundTripper for TLS handshake control.',
+          et: 'TLS sõrmejälje puhverserver 80+ brauseriprofiiliga, MITM toega ja päringupõhise sõrmejälje valikuga.',
         },
         techTags: ['Go', 'TLS', 'HTTP/2', 'JA3'],
         github: 'https://github.com/tkabel',
+        featured: true,
+        image: {
+          src: '/projects/fingerprintproxy.svg',
+          alt: {
+            en: 'fingerprintproxy — TLS fingerprinting forward proxy with 80+ browser profiles',
+            et: 'fingerprintproxy — TLS sõrmejälje puhverserver 80+ brauseriprofiiliga',
+          },
+          width: 800,
+          height: 450,
+        },
       },
       {
         id: 'aitm-proxy',
         name: 'AiTM Proxy Toolkit',
         description: {
-          en: 'Advanced adversary-in-the-middle proxy framework for testing modern authentication flows. Bypasses certificate pinning, intercepts OAuth2/OIDC exchanges.',
-          et: 'Täiustatud vaheltlõike proksi raamistik kaasaegsete autentimisvoogude testimiseks.',
+          en: 'Adversary-in-the-middle proxy framework for testing modern authentication flows. Handles certificate pinning and OAuth2/OIDC exchanges.',
+          et: 'Vaheltlõike proksi raamistik kaasaegsete autentimisvoogude testimiseks.',
         },
         techTags: ['Go', 'TLS', 'OAuth2', 'HTTP/2'],
         github: 'https://github.com/tkabel',
@@ -106,8 +136,8 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'go-security-suite',
         name: 'Go Security Suite',
         description: {
-          en: 'Collection of purpose-built offensive security tools in Go. Custom HTTP fuzzer, TLS analysis toolkit, and concurrent scanning infrastructure designed for scale.',
-          et: 'Kogumik Go keeles kirjutatud ründeturbetööriistu.',
+          en: 'Collection of security tools in Go. Custom HTTP fuzzer, TLS analysis toolkit, and concurrent scanning infrastructure.',
+          et: 'Kogumik Go keeles kirjutatud turvatööriistu.',
         },
         techTags: ['Go', 'Concurrency', 'TLS', 'HTTP'],
         github: 'https://github.com/tkabel',
@@ -119,8 +149,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'systems-engineering',
     label: { en: 'Systems Engineering', et: 'Süsteemitehnika' },
     description: {
-      en: 'Designing distributed, resilient systems with zero-trust architecture, custom transport layers, and infrastructure automation. From kernel concepts to cloud-native deployments.',
-      et: 'Jaotatud, vastupidavate süsteemide projekteerimine null-usalduse arhitektuuri, kohandatud transpordikihtide ja taristu automatiseerimisega.',
+      en: 'Building and configuring security-related systems with zero-trust principles, custom transport layers, and infrastructure automation. Working from server configuration to cloud-native deployments.',
+      et: 'Turvalisusega seotud süsteemide ehitamine ja seadistamine null-usalduse põhimõtetel, kohandatud transpordikihtide ja taristu automatiseerimisega.',
     },
     value: 0.8,
     projects: [
@@ -138,10 +168,20 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'zero-trust',
         name: 'Zero-Trust Architecture Framework',
         description: {
-          en: 'Complete reference architecture for zero-trust network security in cloud-native environments. Policy engine design, microsegmentation patterns, continuous verification pipelines.',
-          et: 'Terviklik võrdlusarhitektuur null-usalduse võrgu turbe juurutamiseks pilv-native keskkondades.',
+          en: 'Zero-trust network security patterns for cloud-native environments. Policy engine design, microsegmentation, and verification pipelines.',
+          et: 'Null-usalduse võrgu turbe mustrid pilv-native keskkondade jaoks. Poliitikamootori disain, mikrosegmentatsioon.',
         },
         techTags: ['Kubernetes', 'Istio', 'OPA', 'Cloud'],
+        featured: true,
+        image: {
+          src: '/projects/zero-trust.svg',
+          alt: {
+            en: 'Zero-Trust Architecture Framework — microsegmentation and continuous verification',
+            et: 'Null-usalduse arhitektuuri raamistik — mikrosegmentatsioon ja pidev kontroll',
+          },
+          width: 800,
+          height: 450,
+        },
       },
       {
         id: 'infra-automation',
@@ -159,8 +199,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'research-analysis',
     label: { en: 'Research & Analysis', et: 'Uurimistöö ja analüüs' },
     description: {
-      en: 'Deep-dive technical research into hostile software, obfuscated VMs, and anti-fraud ecosystems. Producing whitepapers and original findings that advance the field.',
-      et: 'Põhjalik tehniline uurimistöö vaenuliku tarkvara, obfitseeritud VM-de ja pettustõrje ökosüsteemide kohta.',
+      en: 'Technical research into hostile software, obfuscated VMs, and anti-fraud ecosystems. Producing whitepapers and sharing findings.',
+      et: 'Tehniline uurimistöö vaenuliku tarkvara, obfitseeritud VM-de ja pettustõrje ökosüsteemide kohta.',
     },
     value: 0.85,
     projects: [
@@ -168,11 +208,21 @@ export const capabilityAxes: CapabilityAxis[] = [
         id: 'botguard-research',
         name: 'BotGuard VM Security Research',
         description: {
-          en: "Comprehensive research on Google's BotGuard VM: opcode architecture mapping, chronometric defense analysis, anti-debug mechanisms, and Puppet bypass strategy using go-rod.",
+          en: "Research on Google's BotGuard VM: opcode architecture mapping, chronometric defense analysis, anti-debug mechanisms, and Puppet bypass strategy using go-rod.",
           et: 'Põhjalik uurimistöö Google\'i BotGuard VM-i kohta: opkoodi arhitektuur, kronomeetrilise kaitse analüüs, anti-debug mehhanismid.',
         },
         techTags: ['Reverse Engineering', 'VM', 'JavaScript', 'Security'],
         url: '/#research',
+        featured: true,
+        image: {
+          src: '/projects/botguard-research.svg',
+          alt: {
+            en: 'BotGuard VM Security Research — comprehensive analysis of obfuscated JavaScript VM',
+            et: 'BotGuard VM turbeuuring — põhjalik analüüs obfitseeritud JavaScripti VM-ist',
+          },
+          width: 800,
+          height: 450,
+        },
       },
     ],
     accentProject: 'botguard-research',
@@ -181,8 +231,8 @@ export const capabilityAxes: CapabilityAxis[] = [
     id: 'architecture-design',
     label: { en: 'Architecture & Design', et: 'Arhitektuur ja disain' },
     description: {
-      en: 'System design and API architecture that balances security, scalability, and maintainability. Building the blueprints that turn capability into production systems.',
-      et: 'Süsteemidisain ja API arhitektuur, mis tasakaalustab turvalisust, mastaabitavust ja hooldatavust.',
+      en: 'System design and API architecture with a focus on security, scalability, and maintainability. Turning capability into working software.',
+      et: 'Süsteemidisain ja API arhitektuur, keskendudes turvalisusele, mastaabitavusele ja hooldatavusele.',
     },
     value: 0.75,
     projects: [
@@ -194,13 +244,23 @@ export const capabilityAxes: CapabilityAxis[] = [
           et: 'Platvorm, mis ühendab ründeturbe testimise AI-põhise analüüsiga.',
         },
         techTags: ['Go', 'Python', 'React', 'PostgreSQL'],
+        featured: true,
+        image: {
+          src: '/projects/pentest-platform.svg',
+          alt: {
+            en: 'AI-Assisted Pentest Intelligence Platform — automated reconnaissance and AI-driven analysis',
+            et: 'AI-toega luureturbe platvorm — automatiseeritud luure ja AI-põhine analüüs',
+          },
+          width: 800,
+          height: 450,
+        },
       },
       {
         id: 'session-security',
-        name: 'Session Security Analysis Framework',
+        name: 'Session Security Analysis',
         description: {
-          en: 'In-depth framework for analyzing web application session management. Token generation analysis, session fixation testing, concurrent session handling evaluation.',
-          et: 'Põhjalik raamistik veebirakenduste sessioonihalduse analüüsimiseks.',
+          en: 'Framework for analyzing web application session management. Token generation analysis, session fixation testing, concurrent session handling.',
+          et: 'Raamistik veebirakenduste sessioonihalduse analüüsimiseks.',
         },
         techTags: ['Security', 'OAuth', 'JWT', 'React'],
       },

@@ -5,6 +5,13 @@ export interface RadarProject {
   techTags: string[];
   url?: string;
   github?: string;
+  image?: {
+    src: string;
+    alt: { en: string; et: string };
+    width: number;
+    height: number;
+  };
+  featured?: boolean;
 }
 
 export interface CapabilityAxis {

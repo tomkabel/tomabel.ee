@@ -1,5 +1,9 @@
 export const translations = {
   en: {
+    app: {
+      skipToContent: 'Skip to main content',
+      loading: 'Loading...',
+    },
     nav: {
       services: 'Capabilities',
       openMenu: 'Open menu',
@@ -13,7 +17,9 @@ export const translations = {
       },
     },
     radarHero: {
-      subtitle: 'Deep-Tech AI Engineering | Reverse Engineering · AI Infrastructure · Systems Architecture',
+      subtitle: 'Software Development & Security Engineering | Reverse Engineering · Tooling · Systems',
+      scrollHint: 'Explore capabilities',
+      location: 'Tallinn, Estonia',
     },
     cta: {
       title: 'Engage',
@@ -36,6 +42,12 @@ export const translations = {
     research: {
       title: 'Research & Publications',
       description: 'Technical papers, analyses, and findings from ongoing security research.',
+    },
+    showcase: {
+      title: 'Featured Projects',
+      description: 'Selected projects demonstrating capability across reverse engineering, AI/ML, and security tooling.',
+      source: 'Source',
+      learnMore: 'Learn more',
     },
     disclosure: {
       version: 'Version',
@@ -117,8 +129,10 @@ export const translations = {
       title: 'PGP Public Key',
       description: 'Use this to encrypt your emails to me. Keep it secure.',
       download: 'Download Key',
+      keyType: 'RSA 4096-bit',
     },
     footer: {
+      tagline: 'Software Development & Security',
       rights: 'All rights reserved.',
       legal: 'Legal',
       privacy: 'Privacy Policy',
@@ -128,7 +142,7 @@ export const translations = {
       engage: 'Engage',
       services: 'Navigate',
       getInTouch: 'Get in Touch',
-      ctaDescription: 'Ready to secure your infrastructure? Let\'s discuss your needs.',
+      ctaDescription: 'Interested in working together? Let\'s talk.',
     },
     legal: {
       lastUpdated: 'Last updated',
@@ -418,6 +432,10 @@ export const translations = {
     },
   },
   et: {
+    app: {
+      skipToContent: 'Liigu sisu juurde',
+      loading: 'Laadin...',
+    },
     nav: {
       services: 'Valdkonnad',
       openMenu: 'Ava menüü',
@@ -431,7 +449,9 @@ export const translations = {
       },
     },
     radarHero: {
-      subtitle: 'Deep-Tech AI Inseneriteadus | Pöördprojekteerimine · AI Infrastruktuur · Süsteemiarhitektuur',
+      subtitle: 'Tarkvaraarendus & Turbetehnika | Pöördprojekteerimine · Tööriistad · Süsteemid',
+      scrollHint: 'Tutvu võimekustega',
+      location: 'Tallinn, Eesti',
     },
     cta: {
       title: 'Võta ühendust',
@@ -454,6 +474,12 @@ export const translations = {
     research: {
       title: 'Uurimistöö & Väljaanded',
       description: 'Tehnilised materjalid, analüüsid ja leiud käimasolevatest turvauuringutest.',
+    },
+    showcase: {
+      title: 'Esiletõstetud Projektid',
+      description: 'Valitud projektid, mis demonstreerivad võimekust pöördprojekteerimise, AI/ML-i ja turvatööriistade valdkonnas.',
+      source: 'Lähtekood',
+      learnMore: 'Loe rohkem',
     },
     disclosure: {
       version: 'Versioon',
@@ -535,8 +561,10 @@ export const translations = {
       title: 'PGP Avalik Võti',
       description: 'Kasuta seda, et mulle saadetavaid kirju krüpteerida. Hoia see turvalisena.',
       download: 'Lae Võti Alla',
+      keyType: 'RSA 4096-bitine',
     },
     footer: {
+      tagline: 'Tarkvaraarendus & Turve',
       rights: 'Kõik õigused kaitstud.',
       legal: 'Juriidika',
       privacy: 'Privaatsuspoliitika',
@@ -546,7 +574,7 @@ export const translations = {
       engage: 'Võta ühendust',
       services: 'Navigatsioon',
       getInTouch: 'Võta ühendust',
-      ctaDescription: 'Oled valmis oma taristu turvamiseks? Arutame sinu vajadusi.',
+      ctaDescription: 'Huvitatud koostööst? Arutame.',
     },
     legal: {
       lastUpdated: 'Viimati uuendatud',
