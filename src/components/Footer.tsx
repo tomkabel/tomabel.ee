@@ -117,7 +117,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t.footer.services}</h3>
+            <h3 className="text-white text-sm font-semibold mb-4">{t.footer.services}</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.key}>
@@ -132,7 +132,7 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t.footer.legal}</h3>
+            <h3 className="text-white text-sm font-semibold mb-4">{t.footer.legal}</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
@@ -147,7 +147,7 @@ export default function Footer() {
 
           {/* CTA */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t.footer.engage}</h3>
+            <h3 className="text-white text-sm font-semibold mb-4">{t.footer.engage}</h3>
             <p className="text-radar-text-secondary text-sm mb-4">
               {t.footer.ctaDescription}
             </p>
