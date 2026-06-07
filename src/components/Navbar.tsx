@@ -115,24 +115,15 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1" aria-label={t.nav.services}>
+            <ul className="flex items-center gap-1" role="list">
             {navLinks.map((link) => {
               const sectionId = link.href.split('#')[1];
               const isActive = activeSection === sectionId;
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }
-                  }}
+                <li key={link.href}>
+                <button
+                  onClick={() => scrollToSection(link.href)}
                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-radar-signal focus-visible:outline-offset-1 ${
                     isActive
                       ? 'text-radar-signal bg-radar-signal/[0.08]'
@@ -141,10 +132,12 @@ export default function Navbar() {
                   aria-current={isActive ? 'true' : undefined}
                 >
                   {t.nav.links[link.key]}
-                </a>
+                </button>
+                </li>
               );
             })}
-          </div>
+            </ul>
+          </nav>
 
           {/* Right Side */}
           <div className="hidden lg:flex items-center gap-4">
@@ -192,26 +185,18 @@ export default function Navbar() {
           className="lg:hidden bg-radar-bg/98 backdrop-blur-xl border-t border-radar-grid entrance-slide-down"
         >
           <div className="container-custom py-6 space-y-2">
+            <ul role="list" className="space-y-2">
             {navLinks.map((link) => {
               const sectionId = link.href.split('#')[1];
               const isActive = activeSection === sectionId;
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
+                <li key={link.href}>
+                <button
+                  onClick={() => {
                     scrollToSection(link.href);
                     closeMenu();
                   }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                      closeMenu();
-                    }
-                  }}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all min-h-[48px] focus-visible:outline-2 focus-visible:outline-radar-signal focus-visible:outline-offset-1 ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all min-h-[48px] w-full text-left focus-visible:outline-2 focus-visible:outline-radar-signal focus-visible:outline-offset-1 ${
                     isActive
                       ? 'text-radar-signal bg-radar-signal/[0.08]'
                       : 'text-radar-text-secondary hover:text-radar-signal hover:bg-radar-grid'
@@ -220,9 +205,11 @@ export default function Navbar() {
                 >
                   <ChevronRight className={`h-4 w-4 flex-shrink-0 ${isActive ? 'text-radar-signal' : 'text-radar-signal'}`} aria-hidden="true" />
                   {t.nav.links[link.key]}
-                </a>
+                </button>
+                </li>
               );
             })}
+            </ul>
           </div>
         </div>
       )}
