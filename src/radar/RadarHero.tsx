@@ -24,9 +24,15 @@ export default function RadarHero() {
     return () => clearTimeout(timer);
   }, [reduced]);
 
+  const [liveMessage, setLiveMessage] = useState('');
+
   const handleAxisFocus = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
+      const axis = capabilityAxes.find((a) => a.id === id);
+      if (axis) {
+        setLiveMessage(`${axis.label[language]}. ${Math.round(axis.value * 100)} / 100.`);
+      }
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
@@ -44,7 +50,8 @@ export default function RadarHero() {
   const d = 'none';
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-radar-bg overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center bg-radar-bg overflow-hidden">
+      <div className="sr-only" aria-live="polite" aria-atomic="true" role="status">{liveMessage}</div>
       {/* Background atmosphere — subtle chart aura */}
       <div className="absolute inset-0 bg-gradient-to-br from-radar-bg via-radar-surface-overlay to-radar-bg" />
       <div
@@ -58,12 +65,12 @@ export default function RadarHero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-32">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-24 items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-32">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-16 items-center">
           {/* Left: Identity — the focal point */}
           <div>
             <p
-              className="font-mono text-xs tracking-[0.12em] uppercase text-radar-signal mb-4"
+              className="font-mono text-xs tracking-[0.12em] uppercase text-radar-accent mb-4"
               style={reduced ? noMotion : {
                 opacity: r ? 1 : 0,
                 transform: r ? 'translateY(0)' : 'translateY(12px)',
@@ -73,7 +80,7 @@ export default function RadarHero() {
               ProksiAbel OÜ
             </p>
             <h1
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-radar-text-primary leading-[0.95] tracking-tight mb-8"
+              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-radar-text-primary leading-[0.95] tracking-tight mb-8"
               style={reduced ? noMotion : {
                 opacity: r ? 1 : 0,
                 transform: r ? 'translateY(0)' : 'translateY(16px)',
@@ -115,7 +122,7 @@ export default function RadarHero() {
               transition: r ? `opacity 700ms ${s} 200ms, transform 700ms ${s} 200ms` : d,
             }}
           >
-            <div className="w-full max-w-[360px] border border-radar-grid/40 rounded-2xl bg-radar-surface/30 backdrop-blur-sm p-4">
+            <div className="w-full max-w-[480px] border border-radar-grid/40 rounded-2xl bg-radar-surface/30 backdrop-blur-sm p-4">
               <RadarChart
                 axes={capabilityAxes}
                 size={360}
@@ -138,11 +145,11 @@ export default function RadarHero() {
       >
         <button
           onClick={scrollToContent}
-          className="flex flex-col items-center gap-2 text-radar-text-muted hover:text-radar-signal transition-colors focus-visible:outline-2 focus-visible:outline-radar-signal focus-visible:outline-offset-2 rounded"
+          className="flex flex-col items-center gap-2 text-radar-text-muted hover:text-radar-accent transition-colors focus-visible:outline-2 focus-visible:outline-radar-signal focus-visible:outline-offset-2 rounded group"
           aria-label={language === 'et' ? 'Keri sisuni' : 'Scroll to content'}
         >
-          <span className="text-[10px] font-mono uppercase tracking-[0.2em]">{t.radarHero.scrollHint}</span>
-          <ArrowDown className="w-4 h-4 animate-bounce" aria-hidden="true" />
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] group-hover:text-radar-accent transition-colors">{t.radarHero.scrollHint}</span>
+          <ArrowDown className="w-4 h-4 animate-bounce text-radar-accent/60" aria-hidden="true" />
         </button>
       </div>
 

@@ -26,14 +26,16 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus, l
     return () => clearTimeout(timer);
   }, []);
 
-  const cx = size / 2;
+  const padH = 60;
+  const cx = size / 2 + padH;
   const cy = size / 2;
   const radius = size * 0.35;
   const labelRadius = radius + 28;
 
   const labelsSummary = axes.map((a) => `${a.label[language]}: ${Math.round(a.value * 10)}/10`).join(', ');
 
-  const axisAngles = axes.map((_, i) => (Math.PI * (i * 60 - 90)) / 180);
+  const axisCount = axes.length;
+  const axisAngles = axes.map((_, i) => (Math.PI * (i * (360 / axisCount) - 90)) / 180);
 
   const dashLen = Math.ceil(6 * radius * 1.1);
 
@@ -51,7 +53,7 @@ export default function RadarChart({ axes, size = 400, className, onAxisFocus, l
 
   return (
     <svg
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox={`0 0 ${size + padH * 2} ${size}`}
       className={className}
       role="img"
       aria-label={`Capability radar chart: ${labelsSummary}`}

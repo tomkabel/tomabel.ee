@@ -82,7 +82,8 @@ export default function AxisSection({ axis, index, variant = 'grid' }: Props) {
             transition: revealed ? 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 50ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 50ms' : 'none',
           }}
         >
-          <div className="mb-10">
+          <div className="mb-8">
+            <div className="w-12 h-px bg-radar-accent/60 mb-4" />
             <h2 className="font-display text-2xl md:text-3xl font-bold text-radar-text-primary mb-3">
               {axis.label[language]}
             </h2>
@@ -213,7 +214,7 @@ export default function AxisSection({ axis, index, variant = 'grid' }: Props) {
                             )}
                           </div>
                         </div>
-                        <p className="text-radar-text-muted text-xs leading-relaxed mb-3">
+                        <p className="text-radar-text-muted text-[13px] leading-relaxed mb-3">
                           {project.description[language]}
                         </p>
                         <div className="flex flex-wrap gap-1">
