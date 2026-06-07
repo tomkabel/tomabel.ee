@@ -17,7 +17,7 @@ export const translations = {
       },
     },
     radarHero: {
-      subtitle: 'Software Development & Security Engineering | Reverse Engineering · Tooling · Systems',
+      subtitle: 'Software Development & Security Engineering | Reverse Engineering · Security Tooling · Infrastructure',
       scrollHint: 'Explore capabilities',
       location: 'Tallinn, Estonia',
     },
@@ -45,7 +45,7 @@ export const translations = {
     },
     showcase: {
       title: 'Featured Projects',
-      description: 'Selected projects demonstrating capability across reverse engineering, AI/ML, and security tooling.',
+      description: 'Selected projects demonstrating capability across reverse engineering, security tooling, infrastructure, and research.',
       source: 'Source',
       learnMore: 'Learn more',
     },
@@ -449,7 +449,7 @@ export const translations = {
       },
     },
     radarHero: {
-      subtitle: 'Tarkvaraarendus & Turbetehnika | Pöördprojekteerimine · Tööriistad · Süsteemid',
+      subtitle: 'Tarkvaraarendus & Turbetehnika | Pöördprojekteerimine · Turvatööriistad · Taristu',
       scrollHint: 'Tutvu võimekustega',
       location: 'Tallinn, Eesti',
     },
@@ -477,7 +477,7 @@ export const translations = {
     },
     showcase: {
       title: 'Esiletõstetud Projektid',
-      description: 'Valitud projektid, mis demonstreerivad võimekust pöördprojekteerimise, AI/ML-i ja turvatööriistade valdkonnas.',
+      description: 'Valitud projektid, mis demonstreerivad võimekust pöördprojekteerimise, turvatööriistade, taristu ja uurimistöö valdkonnas.',
       source: 'Lähtekood',
       learnMore: 'Loe rohkem',
     },
