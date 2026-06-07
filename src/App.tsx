@@ -26,8 +26,7 @@ function HomePage() {
         </React.Suspense>
         <LazySection loader={() => import('./radar/CapabilitySections')} skeletonHeight={600} />
         <LazySection loader={() => import('./radar/ResearchSection')} skeletonHeight={500} />
-        <LazySection loader={() => import('./radar/CtaSection')} skeletonHeight={400} />
-        <LazySection loader={() => import('./components/Pgp')} skeletonHeight={300} />
+        <LazySection loader={() => import('./radar/EngageSection')} skeletonHeight={500} />
       </main>
       <React.Suspense fallback={null}><Footer /></React.Suspense>
     </>
