@@ -47,7 +47,7 @@
     vertical-align: -0.12em;
     margin-left: 0.12em;
     background: #22C55E;
-    animation: caret-blink 1.1s steps(2) infinite;
+    animation: caret-blink 1.1s steps(2, start) infinite;
   }
 
   .rise-in {

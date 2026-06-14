@@ -22,7 +22,7 @@ export default {
         warning: '#F59E0B',
       },
       animation: {
-        'caret-blink': 'caret-blink 1.1s steps(1) infinite',
+        'caret-blink': 'caret-blink 1.1s steps(2, start) infinite',
         'rise-in': 'rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both',
         'pulse-dot': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
