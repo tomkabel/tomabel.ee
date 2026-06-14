@@ -1,33 +1,25 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "tomabel.ee",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "postbuild": "cp pub/index.html pub/404.html",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "optimize-images": "node scripts/optimize-images.js",
-    "check-imagemagick": "bash scripts/check-imagemagick.sh",
-    "verify-requirements": "node scripts/verify-optimization-requirements.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.15.0",
-    "lenis": "^1.3.23",
     "lucide-react": "0.469.0",
-    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.13.2",
-    "three": "^0.184.0"
+    "react-router-dom": "^7.13.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@types/three": "^0.184.1",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
     "eslint": "^9.9.1",
@@ -36,7 +28,6 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "terser": "^5.46.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.15"

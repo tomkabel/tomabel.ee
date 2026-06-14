@@ -28,3 +28,4 @@ dist-ssr
 # Build artifacts
 tsconfig.tsbuildinfo
 mydatabase.db
+package-lock.json
