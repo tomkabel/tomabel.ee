@@ -27,20 +27,24 @@ export default function SiteNav() {
 
         <div className="flex items-center gap-6">
           <div className="hidden gap-8 text-xs font-medium uppercase tracking-widest text-muted-foreground md:flex">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className={`group relative transition-colors hover:text-accent ${
-                  location.pathname === l.to ? 'text-foreground' : ''
-                }`}
-              >
-                <span aria-hidden className="mr-1 text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                  /
-                </span>
-                {localize(l.label, language)}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const isActive = location.pathname === l.to;
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`group relative transition-colors hover:text-accent ${
+                    isActive ? 'text-foreground' : ''
+                  }`}
+                >
+                  <span aria-hidden className="mr-1 text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                    /
+                  </span>
+                  {localize(l.label, language)}
+                </Link>
+              );
+            })}
           </div>
 
           <button
@@ -69,20 +73,28 @@ export default function SiteNav() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div
+          className="border-t border-border bg-background md:hidden"
+          role="dialog"
+          aria-label={t.nav.mobileMenu}
+        >
           <div className="flex flex-col px-6 py-4 gap-3">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setIsOpen(false)}
-                className={`text-sm font-medium uppercase tracking-widest transition-colors hover:text-accent ${
-                  location.pathname === l.to ? 'text-foreground' : 'text-muted-foreground'
-                }`}
-              >
-                {localize(l.label, language)}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const isActive = location.pathname === l.to;
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setIsOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`text-sm font-medium uppercase tracking-widest transition-colors hover:text-accent ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
+                  }`}
+                >
+                  {localize(l.label, language)}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

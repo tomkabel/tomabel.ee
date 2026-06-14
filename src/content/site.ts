@@ -31,10 +31,10 @@ export const site = {
     et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib. Olen aastaid veetnud mõlemal pool seda lõhet — algul seda ära kasutades, nüüd sulgedes. Tänapäeval uurin identiteediprotokolle (FIDO2 / WebAuthn, eIDAS, Smart-ID), pöördprojekteerin pettusevastaseid süsteeme opkoodi tasemel ja tarnin tootmisplatvorme, mis on turvalised disaini järgi, mitte lootuse peale. Avaldan oma leiud avalikult ja võtan kõige eest vastutuse.",
   },
   contact: {
-    github: 'https://github.com/cyber-kratt',
-    linkedin: 'https://www.linkedin.com/in/tom-kristian-abel/',
+    github: 'https://github.com/tomkabel',
+    linkedin: 'https://www.linkedin.com/in/hr-abel',
     email: 'mailto:tom@tomabel.ee',
-    rss: '#',
+    rss: '/writing.xml',
   },
   disclaimer: {
     en: 'ProksiAbel OÜ maintains strict client confidentiality. I, personally, am publicly accountable for my research and opinions.',
@@ -195,7 +195,7 @@ export const projects: Project[] = [
       en: 'A production-grade TLS-fingerprinting proxy: 65+ browser profiles, JA3/JA4 emulation, MITM support, and a clean API. The practical companion to the research — this is what understanding TLS fingerprinting looks like in code.',
       et: 'Tootmiskõlblik TLS-sõrmejäljeproksi: 65+ brauseriprofiili, JA3/JA4 emulatsioon, MITM tugi ja puhas API. Praktiline kaaslane uurimistööle — selline näeb TLS-i sõrmejäljetuvastuse mõistmine koodis välja.',
     },
-    href: 'https://github.com/cyber-kratt/fingerprintproxy',
+    href: 'https://github.com/tomkabel/fingerprintproxy',
   },
   {
     name: 'Vooglaadija (team21)',
@@ -204,7 +204,7 @@ export const projects: Project[] = [
       en: "A media-extraction service done right: Redis queues, JWT auth, CSRF and rate limiting, Prometheus + OpenTelemetry + Sentry, SSE streaming, an HTMX UI, and a 7-service Docker Compose stack. A reference for what \"FastAPI with proper observability\" actually means.",
       et: 'Meediumi eraldamise teenus tehtud õigesti: Redis järjekorrad, JWT autentimine, CSRF ja kiiruspiirangud, Prometheus + OpenTelemetry + Sentry, SSE voogedastus, HTMX kasutajaliides ja 7-teenuseline Docker Compose pinud. Viide sellele, mida "FastAPI korraliku jälgitavusega" tegelikult tähendab.',
     },
-    href: 'https://github.com/cyber-kratt',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'Discord RAG pipeline',
@@ -213,7 +213,7 @@ export const projects: Project[] = [
       en: 'A retrieval-augmented pipeline with LanceDB vector search, BM25 hybrid retrieval, RBAC-aware filtering, and LLM synthesis, served over FastAPI with systemd integration and CI. RAG with access control treated as a first-class concern, not an afterthought.',
       et: 'Hankimisega täiendatud torujuhe LanceDB vektorotsinguga, BM25 hübriidotsinguga, RBAC-teadliku filtreerimise ja LLM sünteesiga, serveeritud FastAPI kaudu koos systemd integratsiooni ja CI-ga. RAG koos pääsuhaldusega käsitletud esmatähtsa murena, mitte järelmõttena.',
     },
-    href: 'https://github.com/cyber-kratt',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'PunanePastakas (valge-marker)',
@@ -222,7 +222,7 @@ export const projects: Project[] = [
       en: 'An AI math-grading assistant: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-compliant by design. Built for real classrooms, not a demo.',
       et: 'AI matemaatikahindamise assistent: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-iga kooskõlas disainist alates. Ehitatud päris klassiruumide jaoks, mitte demoks.',
     },
-    href: 'https://github.com/cyber-kratt',
+    href: 'https://github.com/tomkabel',
   },
 ];
 

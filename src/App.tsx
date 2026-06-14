@@ -8,6 +8,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Disclosure from './components/Disclosure';
 import NotFound from './components/NotFound';
+import Cookies from './components/Cookies';
 
 const ResearchPage = React.lazy(() => import('./pages/ResearchPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
@@ -36,9 +37,18 @@ function PageLoader() {
 
 function SkipLink() {
   const { t } = useTranslation();
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const main = document.getElementById('main-content');
+    if (main) {
+      main.setAttribute('tabindex', '-1');
+      main.focus();
+    }
+  };
   return (
     <a
       href="#main-content"
+      onClick={handleClick}
       className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-md"
     >
       {t.app.skipToContent}
@@ -50,7 +60,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteNav />
-      <main id="main-content" tabIndex={-1} className="flex-1">
+      <main id="main-content" className="flex-1 focus:outline-none">
         <Lazy>{children}</Lazy>
       </main>
       <SiteFooter />
@@ -74,6 +84,7 @@ function App() {
             <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
             <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />
             <Route path="/disclosure" element={<Layout><Disclosure /></Layout>} />
+            <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
         </div>

@@ -16,7 +16,7 @@ export default function EntryRow({
   const { language } = useTranslation();
 
   return (
-    <article className="group relative border-b border-border py-8 transition-colors hover:bg-white/[0.02]">
+    <article className="group relative border-b border-border py-8 transition-colors hover:bg-white/[0.02] cursor-default">
       <span aria-hidden className="absolute left-0 top-0 h-full w-0.5 origin-top scale-y-0 bg-accent transition-transform duration-300 group-hover:scale-y-100" />
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-6 md:grid-cols-12">
