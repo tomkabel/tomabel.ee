@@ -29,3 +29,22 @@ dist-ssr
 tsconfig.tsbuildinfo
 mydatabase.db
 package-lock.json
+ruvector.db
+
+# Local dev tooling
+.agents/
+.claude/
+.claude-flow/
+.commandcode/
+.kilocode/
+skills-lock.json
+
+# Local research and notes
+research/
+scroll-codrops.txt
+tutorials.txt
+
+# Nested projects / vendored deps
+lenis/
+openspec/
+tomabel/
