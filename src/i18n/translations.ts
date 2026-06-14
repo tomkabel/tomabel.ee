@@ -97,7 +97,7 @@ export const translations = {
         title: 'Contact',
         text: 'Got questions about a scan? Need to talk to us about your systems? Reach out:',
         email: 'Email',
-        emailLabel: 'security@proksiabel.ee (Use PGP, please)',
+        emailLabel: 'security@tomabel.ee (Use PGP, please)',
         phone: 'Phone',
       },
       company: {
@@ -137,7 +137,6 @@ export const translations = {
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
-      cookies: 'Cookie Policy',
       disclosure: 'Research Policy',
       engage: 'Engage',
       services: 'Navigate',
@@ -149,12 +148,11 @@ export const translations = {
       effectiveDate: 'Effective date',
       privacyTitle: 'Privacy Policy',
       termsTitle: 'Terms of Service',
-      cookiesTitle: 'Cookie Policy',
 
       privacy: {
         intro: {
           title: 'The Short Version',
-          text: 'Let\'s be clear: we care about privacy. ProksiAbel OÜ runs proksiabel.ee. This policy explains what little data we actually collect when you visit. We don\'t track you across the web.',
+          text: 'Let\'s be clear: we care about privacy. ProksiAbel OÜ runs tomabel.ee. This policy explains what little data we actually collect when you visit. We don\'t track you across the web.',
           text2: 'Yes, this complies with the GDPR and Estonian data laws. We follow the rules.',
         },
         controller: {
@@ -162,8 +160,8 @@ export const translations = {
           name: 'ProksiAbel OÜ',
           registryCode: 'Registry code: 17017826',
           address: 'Address: Pargi tn 2 Sindi, Tori vald, Pärnumaa 86705, Estonia',
-          email: 'Email: info@proksiabel.ee',
-          dpo: 'DPO: info@proksiabel.ee',
+          email: 'Email: info@tomabel.ee',
+          dpo: 'DPO: info@tomabel.ee',
         },
         dataCollected: {
           title: 'What We Actually Collect',
@@ -251,7 +249,7 @@ export const translations = {
           portability: 'Export - Get your data in a clean format.',
           objection: 'Object - Tell us you hate our legitimate interest claim.',
           complaint: 'Complain - Go to the Estonian Data Protection Inspectorate (AKI) if we mess up.',
-          text: 'Email info@proksiabel.ee to make any of this happen. We have 30 days to reply by law, but we are usually much faster.',
+          text: 'Email info@tomabel.ee to make any of this happen. We have 30 days to reply by law, but we are usually much faster.',
         },
         cookies: {
           title: 'Cookies (Or Lack Thereof)',
@@ -268,7 +266,7 @@ export const translations = {
         contact: {
           title: 'Questions?',
           text: 'Hit us up:',
-          email: 'Email: info@proksiabel.ee',
+          email: 'Email: info@tomabel.ee',
           address: 'Address: ProksiAbel OÜ, Pargi tn 2 Sindi, Tori vald, Pärnumaa 86705, Estonia',
           aki: 'If you think we broke the law, you can complain to the AKI:',
           akiAddress: 'Address: 39 Tatari, 10134 Tallinn, Estonia',
@@ -279,7 +277,7 @@ export const translations = {
       terms: {
         intro: {
           title: 'The Rules',
-          text: 'Welcome to proksiabel.ee. These are the Terms of Service. If you use the site, you agree to them.',
+          text: 'Welcome to tomabel.ee. These are the Terms of Service. If you use the site, you agree to them.',
           text2: 'If you don\'t like these terms, simply close the tab.',
         },
         services: {
@@ -349,86 +347,11 @@ export const translations = {
         contact: {
           title: 'Questions?',
           text: 'Email us:',
-          email: 'Email: info@proksiabel.ee',
+          email: 'Email: info@tomabel.ee',
         },
       },
 
-      cookies: {
-        intro: {
-          title: 'No Marketing Junk',
-          text: 'This is our Cookie Policy. It is short because we use almost zero cookies. We follow GDPR, the ePrivacy Directive, and the upcoming EU Digital Omnibus 2026 rules.',
-          text2: 'We use Cloudflare Analytics. It respects your privacy and gives us the basic traffic stats we need without stalking you across the internet.',
-        },
-        whatAre: {
-          title: 'What Are Cookies?',
-          text: 'They are tiny text files websites drop on your browser. Most sites use them to serve you ads. We don\'t.',
-          text2: 'Under Estonian AKI guidelines, if a cookie is strictly for security and doesn\'t track your identity, we don\'t have to ask your permission to load it.',
-        },
-        ourApproach: {
-          title: 'Our Privacy-First Stance',
-          text: 'We stripped out the garbage:',
-          noCookies: 'NO tracking cookies needed for our analytics.',
-          noTracking: 'NO marketing trackers.',
-          noProfiling: 'NO user profiling.',
-          noThirdParty: 'NO Facebook or Google ad pixels.',
-          securityOnly: 'ONLY essential Cloudflare security tokens to block DDoS bots.',
-        },
-        cookiesUsed: {
-          title: 'The Only Cookies We Drop',
-          text: 'Literally just these:',
-          cloudflare: {
-            name: 'Cloudflare Security Cookies',
-            provider: 'Cloudflare Inc.',
-            purpose: 'DDoS mitigation and bot filtering. Keeps the site online.',
-            duration: 'Session or 30 days max.',
-            type: 'Strictly Essential',
-            legalBasis: 'Legitimate interest (stopping attacks) - Art. 6(1)(f) GDPR',
-          },
-          note: 'Because these are purely for infosec under the Estonian Cybersecurity Act, they are mandatory for the site to function safely.',
-        },
-        analytics: {
-          title: 'How We Handle Analytics',
-          text: 'We rely on Cloudflare Analytics. Here is why it matters to you:',
-          items: [
-            'It does not use cookies at all.',
-            'It does not fingerprint your browser.',
-            'Your data is never sold to brokers.',
-            'We just see aggregated stats—like "50 people visited the contact page today."',
-          ],
-          summary: 'We get to see if our site works without invading your personal life. Win-win.',
-        },
-        consent: {
-          title: 'Why There Is No Cookie Banner',
-          text: 'Since we only use essential security cookies:',
-          text2: 'We don\'t need to flash a giant "ACCEPT ALL" banner in your face. This follows:',
-          items: [
-            'EDPB guidelines on technically necessary cookies.',
-            'AKI guidelines for security tokens.',
-          ],
-          text3: 'If you absolutely hate all cookies, you can disable them in your browser, but the firewall might block you.',
-        },
-        browserSettings: {
-          title: 'Kill Them Yourself',
-          text: 'If you want to clear your cookies anyway, check your browser settings:',
-          items: [
-            'Chrome: Settings > Privacy and Security.',
-            'Firefox: Settings > Privacy & Security.',
-            'Safari: Preferences > Privacy.',
-          ],
-          text2: 'We highly recommend using a privacy browser like Brave or Firefox with strict tracking protection anyway.',
-          items2: [],
-        },
-        updates: {
-          title: 'Changes',
-          text: 'If the law changes or we change our tech stack, we will rewrite this page.',
-          text2: 'Check the date below to see when we last touched it.',
-        },
-        contact: {
-          title: 'Talk To Us',
-          text: 'If you want to argue about cookie legislation with us:',
-          email: 'Email: info@proksiabel.ee',
-        },
-      },
+
     },
   },
   et: {
@@ -529,7 +452,7 @@ export const translations = {
         title: 'Kontakt',
         text: 'On küsimusi mingi skänni kohta? Tahad rääkida oma süsteemidest? Kirjuta:',
         email: 'E-post',
-        emailLabel: 'security@proksiabel.ee (Palun kasuta PGP-d)',
+        emailLabel: 'security@tomabel.ee (Palun kasuta PGP-d)',
         phone: 'Telefon',
       },
       company: {
@@ -569,7 +492,6 @@ export const translations = {
       legal: 'Juriidika',
       privacy: 'Privaatsuspoliitika',
       terms: 'Kasutustingimused',
-      cookies: 'Küpsiste poliitika',
       disclosure: 'Uuringute Poliitika',
       engage: 'Võta ühendust',
       services: 'Navigatsioon',
@@ -581,12 +503,11 @@ export const translations = {
       effectiveDate: 'Jõustumise kuupäev',
       privacyTitle: 'Privaatsuspoliitika',
       termsTitle: 'Kasutustingimused',
-      cookiesTitle: 'Küpsiste poliitika',
 
       privacy: {
         intro: {
           title: 'Lühidalt',
-          text: 'Teeme asja selgeks: me hoolime privaatsusest. ProksiAbel OÜ haldab veebisaiti proksiabel.ee. See poliitika selgitab, kui vähe andmeid me su külastuse ajal tegelikult kogume. Me ei jälgi sind mööda internetti.',
+          text: 'Teeme asja selgeks: me hoolime privaatsusest. ProksiAbel OÜ haldab veebisaiti tomabel.ee. See poliitika selgitab, kui vähe andmeid me su külastuse ajal tegelikult kogume. Me ei jälgi sind mööda internetti.',
           text2: 'Jah, see vastab GDPR-ile ja Eesti andmekaitseseadustele. Me jälgime reegleid.',
         },
         controller: {
@@ -594,8 +515,8 @@ export const translations = {
           name: 'ProksiAbel OÜ',
           registryCode: 'Registrikood: 17017826',
           address: 'Aadress: Pargi tn 2 Sindi, Tori vald, Pärnumaa 86705, Eesti',
-          email: 'E-post: info@proksiabel.ee',
-          dpo: 'Andmekaitseametnik: info@proksiabel.ee',
+          email: 'E-post: info@tomabel.ee',
+          dpo: 'Andmekaitseametnik: info@tomabel.ee',
         },
         dataCollected: {
           title: 'Mida me tegelikult kogume',
@@ -683,7 +604,7 @@ export const translations = {
           portability: 'Eksportimine - Saa oma andmed puhtas formaadis kätte.',
           objection: 'Vastuväide - Ütle, et sulle ei meeldi meie õigustatud huvi argument.',
           complaint: 'Kaebamine - Mine Andmekaitse Inspektsiooni (AKI) jutule, kui me asja ära rikume.',
-          text: 'Saada e-kiri info@proksiabel.ee, et mõni neist käiku lasta. Seaduse järgi on meil vastamiseks 30 päeva, aga me teeme seda tavaliselt palju kiiremini.',
+          text: 'Saada e-kiri info@tomabel.ee, et mõni neist käiku lasta. Seaduse järgi on meil vastamiseks 30 päeva, aga me teeme seda tavaliselt palju kiiremini.',
         },
         cookies: {
           title: 'Küpsised (või nende puudumine)',
@@ -700,7 +621,7 @@ export const translations = {
         contact: {
           title: 'Küsimusi?',
           text: 'Kirjuta meile:',
-          email: 'E-post: info@proksiabel.ee',
+          email: 'E-post: info@tomabel.ee',
           address: 'Aadress: ProksiAbel OÜ, Pargi tn 2 Sindi, Tori vald, Pärnumaa 86705, Eesti',
           aki: 'Kui arvad, et rikkusime seadust, võid kaevata AKI-le:',
           akiAddress: 'Aadress: Tatari 39, 10134 Tallinn, Eesti',
@@ -711,7 +632,7 @@ export const translations = {
       terms: {
         intro: {
           title: 'Reeglid',
-          text: 'Tere tulemast lehele proksiabel.ee. Need on Kasutustingimused. Kui kasutad saiti, nõustud nendega.',
+          text: 'Tere tulemast lehele tomabel.ee. Need on Kasutustingimused. Kui kasutad saiti, nõustud nendega.',
           text2: 'Kui need tingimused sulle ei sobi, pane lihtsalt vaheleht kinni.',
         },
         services: {
@@ -781,86 +702,11 @@ export const translations = {
         contact: {
           title: 'Küsimusi?',
           text: 'Kirjuta meile:',
-          email: 'E-post: info@proksiabel.ee',
+          email: 'E-post: info@tomabel.ee',
         },
       },
 
-      cookies: {
-        intro: {
-          title: 'Ei Mingit Turunduslikku Rämpsu',
-          text: 'See on meie Küpsiste Poliitika. See on lühike, sest me ei kasuta peaaegu üldse küpsiseid. Me järgime GDPR-i, ePrivacy Direktiivi ja tulevasi EU Digital Omnibus 2026 reegleid.',
-          text2: 'Kasutame Cloudflare Analytics\'it. See austab su privaatsust ja annab meile vajaliku põhiliikluse statistika, ilma et me sind mööda internetti taga ajaksime.',
-        },
-        whatAre: {
-          title: 'Mis on Küpsised?',
-          text: 'Need on väikesed tekstifailid, mida veebilehed su brauserisse sokutavad. Enamik lehti kasutab neid sulle reklaamide näitamiseks. Meie mitte.',
-          text2: 'Eesti AKI juhiste kohaselt, kui küpsis on puhtalt turvalisuse tagamiseks ja ei tuvasta sinu isikut, ei pea me selle laadimiseks sinult luba küsima.',
-        },
-        ourApproach: {
-          title: 'Meie Privaatsus-Esikohal Lähenemine',
-          text: 'Viskasime prügi välja:',
-          noCookies: 'EI MINGEID jälgimisküpsiseid analüütika jaoks.',
-          noTracking: 'EI MINGEID turunduslikke jälgijaid.',
-          noProfiling: 'EI MINGIT kasutajate profileerimist.',
-          noThirdParty: 'EI MINGEID Facebooki või Google\'i reklaamipiksleid.',
-          securityOnly: 'AINULT hädavajalikud Cloudflare\'i turvatokenid DDoS bottide blokeerimiseks.',
-        },
-        cookiesUsed: {
-          title: 'Ainsad Küpsised, mida me kasutame',
-          text: 'Sõna otseses mõttes ainult need:',
-          cloudflare: {
-            name: 'Cloudflare\'i Turvaküpsised',
-            provider: 'Cloudflare Inc.',
-            purpose: 'DDoS rünnete leevendamine ja botide filtreerimine. Hoiab lehe üleval.',
-            duration: 'Sessioon või maksimaalselt 30 päeva.',
-            type: 'Rangelt vajalikud',
-            legalBasis: 'Õigustatud huvi (rünnakute peatamine) - GDPR Art. 6(1)(f)',
-          },
-          note: 'Kuna need on puhtalt infoturbe tagamiseks Eesti Küberturvalisuse seaduse all, on need lehe turvaliseks toimimiseks kohustuslikud.',
-        },
-        analytics: {
-          title: 'Kuidas me Analüütikaga toimetame',
-          text: 'Me tugineme Cloudflare Analytics\'ile. Siin on see, mis peaks sulle korda minema:',
-          items: [
-            'See ei kasuta üldse küpsiseid.',
-            'See ei tee su brauserist sõrmejälge (fingerprinti).',
-            'Sinu andmeid ei müüda kunagi kolmandatele osapooltele.',
-            'Me näeme ainult üldist statistikat – näiteks "Täna külastas kontaktilehte 50 inimest."',
-          ],
-          summary: 'Me näeme, kas meie leht töötab, tungimata su eraellu. Kõik võidavad.',
-        },
-        consent: {
-          title: 'Miks meil pole Küpsisebännerit',
-          text: 'Kuna me kasutame ainult hädavajalikke turvaküpsiseid:',
-          text2: 'Me ei pea sulle hiiglaslikku "NÕUSTUN KÕIGEGA" bännerit näkku viskama. See lähenemine järgib:',
-          items: [
-            'EDPB juhiseid tehniliselt vajalike küpsiste kohta.',
-            'AKI juhiseid turvatokenite kohta.',
-          ],
-          text3: 'Kui sa tõesti vihkad kõiki küpsiseid, võid need oma brauseris välja lülitada, aga meie tulemüür võib su selle peale blokeerida.',
-        },
-        browserSettings: {
-          title: 'Tapa need ise',
-          text: 'Kui tahad oma küpsiseid niikuinii kustutada, vaata oma brauseri seadeid:',
-          items: [
-            'Chrome: Seaded > Privaatsus ja turvalisus.',
-            'Firefox: Seaded > Privaatsus ja turvalisus.',
-            'Safari: Eelistused > Privaatsus.',
-          ],
-          text2: 'Me soovitame niikuinii kasutada privaatsusele suunatud brausereid nagu Brave või tugevate piirangutega Firefox.',
-          items2: [],
-        },
-        updates: {
-          title: 'Muudatused',
-          text: 'Kui seadus muutub või me vahetame oma tehnoloogilist lahendust, kirjutame selle lehe ümber.',
-          text2: 'Vaata allolevat kuupäeva, et näha, millal me seda viimati muutsime.',
-        },
-        contact: {
-          title: 'Räägi Meiega',
-          text: 'Kui tahad meiega küpsiseseaduste üle vaielda:',
-          email: 'E-post: info@proksiabel.ee',
-        },
-      },
+
     },
   },
 } as const;

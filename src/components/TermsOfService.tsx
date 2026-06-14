@@ -4,55 +4,55 @@ export default function TermsOfService() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-radar-bg pt-24 pb-12">
+    <div className="min-h-screen bg-background pt-24 pb-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-radar-text-primary mb-8">{t.legal.termsTitle}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8">{t.legal.termsTitle}</h1>
 
-        <div className="max-w-none text-radar-text-secondary">
+        <div className="max-w-none text-muted">
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.intro.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.intro.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.intro.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-4">
+            <p className="text-muted leading-relaxed mt-4">
               {t.legal.terms.intro.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.services.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.services.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.services.text}
             </p>
-            <ul className="list-disc list-inside text-radar-text-secondary space-y-1 mt-2">
+            <ul className="list-disc list-inside text-muted space-y-1 mt-2">
               {t.legal.terms.services.items.map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
-            <p className="text-radar-text-secondary leading-relaxed mt-4">
+            <p className="text-muted leading-relaxed mt-4">
               {t.legal.terms.services.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.intellectual.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.intellectual.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.intellectual.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.intellectual.text2}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.intellectual.text3}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.userObligations.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.userObligations.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.userObligations.text}
             </p>
-            <ul className="list-disc list-inside text-radar-text-secondary space-y-1 mt-2">
+            <ul className="list-disc list-inside text-muted space-y-1 mt-2">
               {t.legal.terms.userObligations.items.map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))}
@@ -60,46 +60,46 @@ export default function TermsOfService() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.Disclaimer.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.Disclaimer.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.Disclaimer.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.Disclaimer.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.thirdParty.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.thirdParty.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.thirdParty.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.thirdParty.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.limitation.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.limitation.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.limitation.text}
             </p>
-            <ul className="list-disc list-inside text-radar-text-secondary space-y-1 mt-2">
+            <ul className="list-disc list-inside text-muted space-y-1 mt-2">
               {t.legal.terms.limitation.items.map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.limitation.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.indemnification.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.indemnification.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.indemnification.text}
             </p>
-            <ul className="list-disc list-inside text-radar-text-secondary space-y-1 mt-2">
+            <ul className="list-disc list-inside text-muted space-y-1 mt-2">
               {t.legal.terms.indemnification.items.map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))}
@@ -107,41 +107,41 @@ export default function TermsOfService() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.governingLaw.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.governingLaw.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.governingLaw.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.governingLaw.text2}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.governingLaw.text3}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.termination.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.termination.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.termination.text}
             </p>
-            <p className="text-radar-text-secondary leading-relaxed mt-2">
+            <p className="text-muted leading-relaxed mt-2">
               {t.legal.terms.termination.text2}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl text-radar-signal font-semibold mb-4">{t.legal.terms.contact.title}</h2>
-            <p className="text-radar-text-secondary leading-relaxed">
+            <h2 className="text-xl text-accent font-semibold mb-4">{t.legal.terms.contact.title}</h2>
+            <p className="text-muted leading-relaxed">
               {t.legal.terms.contact.text}
             </p>
-            <p className="text-radar-signal mt-2">
+            <p className="text-accent mt-2">
               {t.legal.terms.contact.email}
             </p>
           </section>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-radar-grid">
-          <p className="text-radar-text-muted text-sm">
+        <div className="mt-12 pt-8 border-t border-border">
+          <p className="text-subtle text-sm">
             {t.legal.lastUpdated}: {new Date().toLocaleDateString()}
           </p>
         </div>

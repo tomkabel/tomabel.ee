@@ -12,19 +12,15 @@ export default defineConfig({
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',
         manualChunks(id: string) {
-          if (id.includes('node_modules/three')) return 'three';
-          if (id.includes('node_modules/ogl')) return 'ogl';
-          if (id.includes('node_modules/gsap')) return 'gsap';
-          if (id.includes('RadarChart')) return 'radar';
-          if (id.includes('lucide-react')) return 'ui';
           if (id.includes('node_modules/react')) return 'vendor';
-        }
-      }
-    }
+          if (id.includes('lucide-react')) return 'ui';
+        },
+      },
+    },
   },
   base: '/',
   server: {
     host: '0.0.0.0',
     port: 5173,
-  }
+  },
 });
