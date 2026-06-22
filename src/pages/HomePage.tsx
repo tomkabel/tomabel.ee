@@ -84,12 +84,12 @@ export default function HomePage() {
                 [02] {language === 'en' ? 'Writing' : 'Kirjutised'}
               </p>
               <h2 className="mb-6 font-display text-4xl font-bold text-foreground">
-                {language === 'en' ? 'Essays in progress' : 'Esseed töös'}
+                {language === 'en' ? 'Essays and arguments' : 'Esseed ja argumendid'}
               </h2>
               <p className="mb-8 text-muted">
                 {language === 'en'
-                  ? "Shorter pieces — the through-lines that connect the research, and arguments I want to make in public."
-                  : 'Lühemad palad — läbivad jooned, mis seovad uuringuid, ja argumendid, mida tahan avalikult esitada.'}
+                  ? "The through-lines that connect the research, and arguments I want to make in public."
+                  : 'Läbivad jooned, mis seovad uuringuid, ja argumendid, mida tahan avalikult esitada.'}
               </p>
               <Link
                 to="/writing"
@@ -103,14 +103,17 @@ export default function HomePage() {
                 {essays.slice(0, 3).map((e) => (
                   <li
                     key={e.title.en}
-                    className="group flex flex-col justify-between border-b border-border p-6 transition-colors hover:bg-white/5 md:flex-row md:items-center"
+                    className="border-b border-border transition-colors hover:bg-white/5"
                   >
-                    <h3 className="font-display text-lg font-medium text-foreground transition-colors group-hover:text-accent">
-                      {e.title[language]}
-                    </h3>
-                    <span className="mt-2 text-xs uppercase tracking-widest text-muted-foreground md:mt-0">
-                      {language === 'en' ? 'Essay' : 'Essee'}
-                    </span>
+                    {e.href ? (
+                      <Link to={e.href} className="group flex flex-col justify-between p-6 md:flex-row md:items-center">
+                        <HomeEssayRowContent essay={e} language={language} />
+                      </Link>
+                    ) : (
+                      <div className="group flex flex-col justify-between p-6 md:flex-row md:items-center">
+                        <HomeEssayRowContent essay={e} language={language} />
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -118,6 +121,30 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+function HomeEssayRowContent({
+  essay,
+  language,
+}: {
+  essay: (typeof essays)[number];
+  language: 'en' | 'et';
+}) {
+  return (
+    <>
+      <h3 className="font-display text-lg font-medium text-foreground transition-colors group-hover:text-accent">
+        {essay.title[language]}
+        {essay.href ? (
+          <span className="ml-2 inline-block font-mono text-sm text-subtle opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+            →
+          </span>
+        ) : null}
+      </h3>
+      <span className="mt-2 text-xs uppercase tracking-widest text-muted-foreground md:mt-0">
+        {essay.meta[language]}
+      </span>
     </>
   );
 }

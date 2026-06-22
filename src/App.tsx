@@ -13,6 +13,7 @@ import Cookies from './components/Cookies';
 const ResearchPage = React.lazy(() => import('./pages/ResearchPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const WritingPage = React.lazy(() => import('./pages/WritingPage'));
+const AuthenticationEssayPage = React.lazy(() => import('./pages/AuthenticationEssayPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 function ScrollToTop() {
@@ -80,6 +81,7 @@ function App() {
             <Route path="/research" element={<Layout><Lazy><ResearchPage /></Lazy></Layout>} />
             <Route path="/projects" element={<Layout><Lazy><ProjectsPage /></Lazy></Layout>} />
             <Route path="/writing" element={<Layout><Lazy><WritingPage /></Lazy></Layout>} />
+            <Route path="/writing/i-used-to-break-authentication" element={<Layout><Lazy><AuthenticationEssayPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
             <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
             <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />

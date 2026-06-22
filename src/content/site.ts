@@ -231,6 +231,8 @@ export const projects: Project[] = [
 export type Essay = {
   title: { en: string; et: string };
   blurb: { en: string; et: string };
+  href?: string;
+  meta: { en: string; et: string };
 };
 
 export const essays: Essay[] = [
@@ -243,6 +245,11 @@ export const essays: Essay[] = [
       en: 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the arms race looks like from both sides.',
       et: 'Lõputöö essee kõigele muule sellel saidil: miks ründe mõistmine on usaldusväärse kaitse eeltingimus ja milline näeb võidurelvastumine välja mõlemalt poolt.',
     },
+    href: '/writing/i-used-to-break-authentication',
+    meta: {
+      en: 'Published · 10 min read',
+      et: 'Avaldatud · 10 min lugemist',
+    },
   },
   {
     title: {
@@ -252,6 +259,10 @@ export const essays: Essay[] = [
     blurb: {
       en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
       et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
+    },
+    meta: {
+      en: 'Planned',
+      et: 'Plaanitud',
     },
   },
   {
@@ -263,6 +274,10 @@ export const essays: Essay[] = [
       en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
       et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
     },
+    meta: {
+      en: 'Planned',
+      et: 'Plaanitud',
+    },
   },
   {
     title: {
@@ -272,6 +287,10 @@ export const essays: Essay[] = [
     blurb: {
       en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
       et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
+    },
+    meta: {
+      en: 'Planned',
+      et: 'Plaanitud',
     },
   },
 ];
