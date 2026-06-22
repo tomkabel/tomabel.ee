@@ -20,8 +20,14 @@
   </url>
   <url>
     <loc>https://tomabel.ee/writing</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/writing/i-used-to-break-authentication</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
