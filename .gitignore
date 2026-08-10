@@ -41,6 +41,9 @@ skills-lock.json
 
 # Local research and notes
 research/
+# GitHub Pages route dirs (see scripts/spa-routes.mjs) — 'research/' above
+# would otherwise ignore the pub/research/ SPA route shell
+!pub/research/
 scroll-codrops.txt
 tutorials.txt
 
