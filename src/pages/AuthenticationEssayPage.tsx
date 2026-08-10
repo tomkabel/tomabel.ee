@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 type EssaySection = {
@@ -8,7 +7,6 @@ type EssaySection = {
 
 const title = "I used to break authentication. Here's what that taught me about building it.";
 const standfirst = 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.';
-const essayUrl = 'https://tomabel.ee/writing/i-used-to-break-authentication';
 
 const openingParagraphs = [
   'For a while, I made money by understanding authentication better than the people deploying it.',
@@ -104,46 +102,6 @@ const sections: EssaySection[] = [
 ];
 
 export default function AuthenticationEssayPage() {
-  React.useEffect(() => {
-    const previousTitle = document.title;
-    const metadataUpdates = [
-      { selector: 'meta[name="description"]', attribute: 'content', value: standfirst },
-      { selector: 'link[rel="canonical"]', attribute: 'href', value: essayUrl },
-      { selector: 'meta[property="og:type"]', attribute: 'content', value: 'article' },
-      { selector: 'meta[property="og:url"]', attribute: 'content', value: essayUrl },
-      { selector: 'meta[property="og:title"]', attribute: 'content', value: title },
-      { selector: 'meta[property="og:description"]', attribute: 'content', value: standfirst },
-      { selector: 'meta[name="twitter:url"]', attribute: 'content', value: essayUrl },
-      { selector: 'meta[name="twitter:title"]', attribute: 'content', value: title },
-      { selector: 'meta[name="twitter:description"]', attribute: 'content', value: standfirst },
-    ];
-    const previousMetadata = metadataUpdates.map(({ selector, attribute }) => {
-      const element = document.querySelector(selector);
-      return { element, attribute, value: element?.getAttribute(attribute) ?? null };
-    });
-
-    document.title = `${title} | tomabel.ee`;
-    metadataUpdates.forEach(({ selector, attribute, value }) => {
-      document.querySelector(selector)?.setAttribute(attribute, value);
-    });
-
-    return () => {
-      document.title = previousTitle;
-      previousMetadata.forEach(({ element, attribute, value }) => {
-        if (!element) {
-          return;
-        }
-
-        if (value === null) {
-          element.removeAttribute(attribute);
-          return;
-        }
-
-        element.setAttribute(attribute, value);
-      });
-    };
-  }, []);
-
   return (
     <article>
       <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">

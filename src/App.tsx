@@ -9,6 +9,7 @@ import TermsOfService from './components/TermsOfService';
 import Disclosure from './components/Disclosure';
 import NotFound from './components/NotFound';
 import Cookies from './components/Cookies';
+import Seo from './components/Seo';
 
 const ResearchPage = React.lazy(() => import('./pages/ResearchPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
@@ -60,6 +61,7 @@ function SkipLink() {
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <Seo />
       <SiteNav />
       <main id="main-content" className="flex-1 focus:outline-none">
         <Lazy>{children}</Lazy>
