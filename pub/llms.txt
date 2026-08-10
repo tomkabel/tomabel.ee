@@ -15,6 +15,7 @@ Based in Estonia. Writes in English and Estonian. Research focuses on identity p
 - [Projects](https://tomabel.ee/projects/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
 - [Writing](https://tomabel.ee/writing/): Essays.
   - [I used to break authentication. Here's what that taught me about building it.](https://tomabel.ee/writing/i-used-to-break-authentication/): the thesis essay — why understanding offense is a prerequisite for credible defense.
+  - [What client-side trust is actually worth](https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/): the BotGuard teardown as a case study for why any defense running on a machine you don't control is a claim, not a proof — and what to build instead.
 - [About](https://tomabel.ee/about/): Bio, philosophy, and the kratt metaphor.
 - [Privacy Policy](https://tomabel.ee/privacy/), [Terms of Service](https://tomabel.ee/terms/), [Cookie Policy](https://tomabel.ee/cookies/), [Security Research Policy](https://tomabel.ee/disclosure/)
 

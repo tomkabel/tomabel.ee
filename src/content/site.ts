@@ -260,9 +260,10 @@ export const essays: Essay[] = [
       en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
       et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
     },
+    href: '/writing/what-client-side-trust-is-actually-worth',
     meta: {
-      en: 'Planned',
-      et: 'Plaanitud',
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
     },
   },
   {

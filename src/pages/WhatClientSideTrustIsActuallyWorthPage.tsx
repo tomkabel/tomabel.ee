@@ -1,0 +1,126 @@
+import { Link } from 'react-router-dom';
+
+type EssaySection = {
+  heading: string;
+  paragraphs: string[];
+};
+
+const title = 'What client-side trust is actually worth';
+const standfirst =
+  "BotGuard is Google's VM-based anti-fraud system. Taking it apart is the cleanest demonstration I know of a structural truth: any defense that runs on a machine you do not control is a claim about that machine, made by that machine. Here is what that claim is worth, and what to do with it.";
+
+const openingParagraphs = [
+  'Every vendor in the fraud business eventually ships the same product. A JavaScript bundle looks at the browser, decides whether the browser can be trusted, and issues a verdict the server checks before letting a request through.',
+  'BotGuard is the most interesting version of that product I have taken apart. Google deploys it as part of its anti-abuse stack, and it is genuinely well built. It took real effort to crack. That is exactly why it is the right case study for the point I want to make: a defense that runs on a machine you do not control is negotiable. Not because it is weak. Because it is a claim, and the server that accepts it has no way to check the claim against the machine.',
+];
+
+const sections: EssaySection[] = [
+  {
+    heading: 'The defense is a CPU, not a script',
+    paragraphs: [
+      'The first thing the teardown shows is that BotGuard is not really JavaScript. The bundle the page loads contains a custom bytecode program, executed by a virtual machine written in JavaScript. The obfuscated code you can read in DevTools is the interpreter. The actual logic is the bytecode it runs.',
+      "That design choice is the core of BotGuard's strength. Static analysis of the bundle tells you almost nothing, because the program is data, and the data is only meaningful inside the VM. The VM is register-based. It reads its own bytecode string out of the bundle, derives a key from a prefix of that string, and uses the key to find its initialization routine. Byte reads go through a decoder that re-seeds itself as it goes, so the same position in the stream can decrypt to different values depending on execution history.",
+      "I did not get to all of this on my own. Cypa's botguard-reverse repository did the foundational VM analysis, and LuanRT's work on PO tokens mapped how the system is used in production. My teardown builds on both. That is normal for this kind of work, and worth saying plainly: reverse engineering is cumulative, and anyone who implies they reversed a system like this alone in a weekend is not being honest about it.",
+      'The point of describing the VM is not to impress you with its cleverness. The point is that all of this engineering protects a single assumption: that the machine running the VM is a real browser, operated by a real person. The entire defense is a mechanism for getting that machine to testify about itself.',
+    ],
+  },
+  {
+    heading: 'What the token actually proves',
+    paragraphs: [
+      'The output of the whole exercise is a token. BotGuard mints it after the VM runs its checks, and the server verifies it alongside the request. On YouTube these are called PO tokens, short for proof of origin. The web player mints a fresh one for each video request, binds it to the video ID, and reuses the minting session for as long as the page is open.',
+      'Here is the structural problem. The server verifies the token, but the client produces it. The server is not checking the browser. It is checking a claim about the browser, written by the browser. If the two disagree, the claim wins by default, because the server never sees the browser at all.',
+      "Everything BotGuard does, every layer of the VM, every anti-debugging trick, every obfuscation pass, exists to make one thing harder: getting a machine that is not a real browser to produce a token that looks like one. The history of this exact system shows how that arms race ends. LuanRT's BgUtils generates PO tokens and runs attestation challenges with no browser involved, based on the same reverse engineering this essay draws on. The yt-dlp project documents PO token handling as a routine part of keeping a downloader working. What the vendor treats as a root of trust is, to the people who took it apart, a function with known inputs and outputs.",
+    ],
+  },
+  {
+    heading: 'A token is a ticket',
+    paragraphs: [
+      'My teardown of BotGuard identified a token portability weakness. Once minted, the token carries weight beyond the environment that produced it. It can be moved from one context to another and still be accepted, because the server validates the token, not the conditions of its creation.',
+      'The defense starts as a check on the client. It ends as a check on a bearer artifact, no different in kind from a session cookie. The moment the output of a client-side check becomes a standalone object that can be relocated, the check has stopped being about the client. It has become a ticket. And tickets are stolen, shared, and re-issued by design.',
+      'This is not a flaw unique to BotGuard. It is the natural endpoint of every client-side attestation scheme. The server wants to know something about a machine it cannot see. The only evidence it can receive is a report from that machine. No amount of engineering on the reporting side changes the fact that the report is a self-report.',
+    ],
+  },
+  {
+    heading: 'What client-side trust is worth',
+    paragraphs: [
+      'None of this means client-side defenses are worthless. They are worth exactly what any deterrent is worth: they make the cheap attack expensive, they filter out the unbothered, and at scale they change the economics of abuse.',
+      "BotGuard does raise the cost of automated abuse against Google's properties. It is a real obstacle. It has pushed attackers toward instrumenting real browsers over the Chrome DevTools Protocol and paying for real devices, which is more expensive and easier to detect than pure scripted requests. That is a genuine win, and dismissing it would be dishonest.",
+      'The failure mode is not the control. The failure mode is the belief that the control is a verdict rather than a signal. A fraud engine that treats client attestation as proof that a user is legitimate is trusting an attacker-controlled input. A fraud engine that treats it as one feature among many, weighted against server-side evidence, is using it correctly.',
+      'The same logic applies to device fingerprinting, browser integrity checks, behavioral analysis, and every other client-side control in the catalog. They are all reports from a machine you do not control. Use them to rank and filter. Never use them as the ground truth of a decision that matters.',
+    ],
+  },
+  {
+    heading: 'The question to ask',
+    paragraphs: [
+      'The next time you review a product that sells client-side trust, ask one question: what happens to the verdict after the client produces it? If it becomes a token, a fingerprint, or any other portable object that the server accepts at face value, the vendor has built a ticket dispenser. It will work until someone learns to mint tickets. Someone always does.',
+      'The better version of the same product does not try to make the client honest. It assumes the client is lying and designs the system so the lie is expensive to maintain. That is where the engineering budget should go: server-side verification, rate limiting, anomaly detection that does not depend on the client\'s account of itself, and defenses that bind decisions to state only the server controls.',
+      'Client-side trust is real. It is just not what the vendors sell it as. It raises the cost of abuse and proves nothing about the user. Treat it as a cost raiser, and design the parts of the system that matter so they do not depend on it.',
+    ],
+  },
+];
+
+export default function WhatClientSideTrustIsActuallyWorthPage() {
+  return (
+    <article>
+      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
+        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
+        <div className="relative mx-auto max-w-4xl">
+          <Link
+            to="/writing"
+            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
+          >
+            ← Back to writing
+          </Link>
+          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
+            Essay · Reverse Engineering · Client-Side Security
+          </p>
+          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
+            {title}
+          </h1>
+          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
+            {standfirst}
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <span className="border border-border bg-white/[0.03] px-3 py-2">Published · August 11, 2026</span>
+            <span className="border border-border bg-white/[0.03] px-3 py-2">6 min read</span>
+            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
+        <aside className="lg:col-span-3">
+          <div className="sticky top-24 border border-border bg-white/[0.02] p-5">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+              Thesis
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              A defense that runs on a machine you don't control is a claim about that machine, made by that machine. Treat it as a signal, not a verdict.
+            </p>
+          </div>
+        </aside>
+
+        <div className="lg:col-span-9">
+          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+            {openingParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+
+          {sections.map((section) => (
+            <section key={section.heading} className="mt-16 max-w-3xl">
+              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+                {section.heading}
+              </h2>
+              <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}

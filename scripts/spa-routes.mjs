@@ -49,6 +49,25 @@ const META = {
       },
     },
   },
+  'writing/what-client-side-trust-is-actually-worth': {
+    title: 'What client-side trust is actually worth — Tom Kristian Abel',
+    description:
+      "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: 'What client-side trust is actually worth',
+      description:
+        "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
+      url: `${BASE}/writing/what-client-side-trust-is-actually-worth/`,
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
