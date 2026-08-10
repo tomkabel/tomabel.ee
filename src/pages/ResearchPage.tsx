@@ -37,7 +37,7 @@ export default function ResearchPage() {
             title={entry.title}
             blurb={entry.blurb}
             type={entry.type}
-            meta={entry.keywords ? `Keywords: ${entry.keywords}` : undefined}
+            meta={entry.meta ? entry.meta[language] : entry.keywords ? `Keywords: ${entry.keywords}` : undefined}
             href={entry.href}
           />
         ))}

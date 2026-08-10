@@ -123,6 +123,7 @@ export type ResearchEntry = {
   title: { en: string; et: string };
   blurb: { en: string; et: string };
   keywords?: string;
+  meta?: { en: string; et: string };
   type: { en: string; et: string };
   // Detail page route, e.g. '/research/botguard-disassembled'. Absent = queued.
   href?: string;
@@ -141,6 +142,11 @@ export const researchEntries: ResearchEntry[] = [
     },
     keywords: 'browser automation, CDP, VM analysis, anti-fraud, client-side security',
     type: { en: 'Technical Teardown', et: 'Tehniline Analüüs' },
+    meta: {
+      en: 'Published · 13 min read',
+      et: 'Avaldatud · 13 min lugemist',
+    },
+    href: '/research/botguard-disassembled',
   },
   {
     code: 'R-02',

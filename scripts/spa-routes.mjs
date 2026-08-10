@@ -87,6 +87,27 @@ const META = {
       },
     },
   },
+  'research/botguard-disassembled': {
+    title:
+      "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
+    description:
+      "An opcode-level teardown of Google's BotGuard anti-fraud VM: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the token-portability weakness at the end of the chain. Builds on Cypa's VM analysis and LuanRT's PO-token research.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline:
+        "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
+      description:
+        "An opcode-level teardown of Google's BotGuard anti-fraud VM: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the token-portability weakness at the end of the chain. Builds on Cypa's VM analysis and LuanRT's PO-token research.",
+      url: `${BASE}/research/botguard-disassembled/`,
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
