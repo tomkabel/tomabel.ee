@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node scripts/spa-routes.mjs && cp pub/index.html pub/404.html",
+    "postbuild": "node scripts/spa-routes.mjs",
     "sbom:gen": "pnpm sbom --sbom-format cyclonedx --lockfile-only > pub/sbom.json",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -16,7 +16,7 @@
     "lucide-react": "0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.13.2"
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
