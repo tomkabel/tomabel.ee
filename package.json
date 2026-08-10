@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/spa-routes.mjs && cp pub/index.html pub/404.html",
+    "sbom:gen": "pnpm sbom --sbom-format cyclonedx --lockfile-only > pub/sbom.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -19,6 +20,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -26,6 +30,7 @@
     "eslint": "^9.9.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
+    "fontaine": "^0.8.0",
     "globals": "^15.9.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
