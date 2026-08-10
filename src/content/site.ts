@@ -124,6 +124,8 @@ export type ResearchEntry = {
   blurb: { en: string; et: string };
   keywords?: string;
   type: { en: string; et: string };
+  // Detail page route, e.g. '/research/botguard-disassembled'. Absent = queued.
+  href?: string;
 };
 
 export const researchEntries: ResearchEntry[] = [
@@ -275,9 +277,10 @@ export const essays: Essay[] = [
       en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
       et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
     },
+    href: '/writing/the-kratt-problem',
     meta: {
-      en: 'Planned',
-      et: 'Plaanitud',
+      en: 'Published · 4 min read',
+      et: 'Avaldatud · 4 min lugemist',
     },
   },
   {
