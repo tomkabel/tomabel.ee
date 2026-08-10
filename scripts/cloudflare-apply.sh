@@ -22,8 +22,14 @@ echo "== verify token =="
 curl -sf "${AUTH[@]}" -X GET "$API/user/tokens/verify" | jq -r '"token: \(.result.status) (\(.result.id))"' || { echo "TOKEN INVALID"; exit 1; }
 
 echo "== resolve zone =="
-ZONE_ID=$(curl -sf "${AUTH[@]}" "$API/zones?name=$ZONE" | jq -r '.result[0].id')
-[ -n "$ZONE_ID" ] && [ "$ZONE_ID" != "null" ] || { echo "zone not found"; exit 1; }
+ZONE_RESP=$(curl -sf "${AUTH[@]}" "$API/zones?name=$ZONE" || { echo "  API error (HTTP $(curl -s -o /dev/null -w '%{http_code}' "${AUTH[@]}" "$API/zones?name=$ZONE" 2>/dev/null)) — token may lack Zone:Read"; exit 1; })
+ZONE_ID=$(echo "$ZONE_RESP" | jq -r '.result[0].id // empty')
+if [ -z "$ZONE_ID" ]; then
+  echo "  zone not found: $ZONE"
+  echo "  hint: token may belong to a different account, or the zone is not on Cloudflare"
+  echo "$ZONE_RESP" | jq -r '.errors[]? | "  api: \(.message)"'
+  exit 1
+fi
 echo "zone_id: $ZONE_ID"
 
 cfg() { # cfg <id> <value>
