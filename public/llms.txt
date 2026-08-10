@@ -16,6 +16,7 @@ Based in Estonia. Writes in English and Estonian. Research focuses on identity p
 - [Writing](https://tomabel.ee/writing/): Essays.
   - [I used to break authentication. Here's what that taught me about building it.](https://tomabel.ee/writing/i-used-to-break-authentication/): the thesis essay — why understanding offense is a prerequisite for credible defense.
   - [What client-side trust is actually worth](https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/): the BotGuard teardown as a case study for why any defense running on a machine you don't control is a claim, not a proof — and what to build instead.
+  - [The kratt problem](https://tomabel.ee/writing/the-kratt-problem/): offensive capability as Estonian folklore — a servant that works tirelessly while pointed and turns on its maker when idle; ethics as a pointing problem.
 - [About](https://tomabel.ee/about/): Bio, philosophy, and the kratt metaphor.
 - [Privacy Policy](https://tomabel.ee/privacy/), [Terms of Service](https://tomabel.ee/terms/), [Cookie Policy](https://tomabel.ee/cookies/), [Security Research Policy](https://tomabel.ee/disclosure/)
 
