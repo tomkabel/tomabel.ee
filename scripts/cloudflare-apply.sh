@@ -53,7 +53,7 @@ echo "== ai bot policy settings (2026) =="
 curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/settings" | jq -r '.result[] | select(.id | test("ai|bot|rum|web_analytics")) | "  \(.id): \(.value)"' || true
 
 echo "== current rulesets (transform/cache/waf) =="
-for phase in http_response_header_modification http_request_cache_settings http_request_firewall_managed; do
+for phase in http_response_headers_transform http_request_cache_settings http_request_firewall_managed; do
   echo "  -- $phase --"
   curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/$phase/entrypoint" | jq -r '.result.rules[]? | "    \(.description // .action) | \(.expression)"' || echo "    (empty)"
 done
@@ -74,18 +74,18 @@ cfg rocket_loader '"off"'
 cfg automatic_https_rewrites '"on"'
 # SSL mode: strict is correct for GH Pages (valid public cert, HTTPS-only origin).
 # Only move from flexible/off; never downgrade from strict.
-CUR_SSL=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/settings/ssl" | jq -r '.result.value')
+CUR_SSL=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/settings/ssl" | jq -r '.result.value' 2>/dev/null || echo "unknown")
 case "$CUR_SSL" in
   strict|full) echo "  ssl: $CUR_SSL (keep)" ;;
   *) cfg ssl '"strict"' ;;
 esac
 
 echo "== APPLY: security headers via response-header transform rule =="
-RT_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_response_header_modification/entrypoint")
+RT_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_response_headers_transform/entrypoint" || true)
 if echo "$RT_RULES" | jq -e '.result.rules[]? | select(.description == "tomabel security headers")' >/dev/null 2>&1; then
   echo "  rule exists, skip"
 else
-  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_response_header_modification/entrypoint" -d @- <<'JSON' | jq -r '"  created: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"'
+  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_response_headers_transform/entrypoint" -d @- <<'JSON' | jq -r '"  created: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"' || echo "  security headers: FAILED (need Transform Rules:Edit)"
 {
   "rules": [{
     "description": "tomabel security headers",
@@ -111,11 +111,11 @@ JSON
 fi
 
 echo "== APPLY: cache rule for hashed /assets/* =="
-CR_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_request_cache_settings/entrypoint")
+CR_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_request_cache_settings/entrypoint" || true)
 if echo "$CR_RULES" | jq -e '.result.rules[]? | select(.description == "tomabel hashed assets")' >/dev/null 2>&1; then
   echo "  rule exists, skip"
 else
-  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_request_cache_settings/entrypoint" -d @- <<'JSON' | jq -r '"  created: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"'
+  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_request_cache_settings/entrypoint" -d @- <<'JSON' | jq -r '"  created: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"' || echo "  cache rule: FAILED (need Cache Rules:Edit)"
 {
   "rules": [{
     "description": "tomabel hashed assets",
@@ -132,11 +132,11 @@ JSON
 fi
 
 echo "== APPLY: WAF managed ruleset (free) =="
-WAF_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint")
+WAF_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint" || true)
 if echo "$WAF_RULES" | jq -e '.result.rules[]? | select(.action_parameters.id == "efb7b8c949ac4650a09736fc376e9aee")' >/dev/null 2>&1; then
   echo "  Cloudflare Managed Ruleset deployed, skip"
 else
-  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint" -d @- <<'JSON' | jq -r '"  deployed: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"'
+  curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint" -d @- <<'JSON' | jq -r '"  deployed: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"' || echo "  WAF: FAILED (need Zone WAF:Edit)"
 {
   "rules": [{
     "description": "Cloudflare Managed Ruleset",
