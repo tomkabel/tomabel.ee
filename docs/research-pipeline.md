@@ -114,6 +114,8 @@ pass is not published: leave the draft, report why, skip the week.
 7. `public/llms.txt` — add the report under Research with one-line summary.
 8. `src/pages/ResearchPage.tsx` / `src/components/site/entry-row.tsx` —
    entries with href render as links (mirror WritingPage row pattern).
+   ALREADY SHIPPED (commit 0547e80): EntryRow accepts href and wraps in
+   Link; ResearchEntry type has href?. Verify it still holds, don't redo.
 
 Items 4 and 5 must have identical content. Missing any of these is a failed
 run.
