@@ -50,7 +50,9 @@ export default function SiteNav() {
           <button
             onClick={() => setLanguage(language === 'en' ? 'et' : 'en')}
             className="flex items-center gap-1 text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
-            aria-label={language === 'en' ? 'Switch to Estonian' : 'Switch to English'}
+            aria-label={
+              language === 'en' ? 'ET — switch to Estonian' : 'EN — switch to English'
+            }
           >
             <Globe className="size-3.5" />
             {language === 'en' ? 'ET' : 'EN'}
@@ -60,6 +62,8 @@ export default function SiteNav() {
             onClick={() => setIsOpen(!isOpen)}
             className="text-muted-foreground hover:text-foreground md:hidden"
             aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               {isOpen ? (
@@ -74,9 +78,8 @@ export default function SiteNav() {
 
       {isOpen && (
         <div
+          id="mobile-menu"
           className="border-t border-border bg-background md:hidden"
-          role="dialog"
-          aria-label={t.nav.mobileMenu}
         >
           <div className="flex flex-col px-6 py-4 gap-3">
             {links.map((l) => {

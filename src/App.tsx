@@ -21,6 +21,13 @@ function ScrollToTop() {
   const { pathname } = useLocation();
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    // SPA route change: move focus to the content landmark so keyboard and
+    // screen-reader users start the new view (WCAG 2.4.3).
+    const main = document.getElementById('main-content');
+    if (main) {
+      main.setAttribute('tabindex', '-1');
+      (main as HTMLElement).focus({ preventScroll: true });
+    }
   }, [pathname]);
   return null;
 }

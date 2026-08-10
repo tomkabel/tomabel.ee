@@ -17,9 +17,9 @@ export default function SiteFooter() {
             </p>
           </div>
           <div>
-            <h4 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+            <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
               [{language === 'en' ? 'Contact' : 'Kontakt'}]
-            </h4>
+            </h3>
             <ul className="space-y-2 font-mono text-sm">
               <li>
                 <a className="text-foreground transition-colors hover:text-accent" href={site.contact.github}>
