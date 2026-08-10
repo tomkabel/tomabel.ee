@@ -115,9 +115,6 @@ export default function Seo() {
     setMeta('meta[name="twitter:title"]', 'content', meta.title);
     setMeta('meta[name="twitter:description"]', 'content', meta.description);
     setMeta('meta[name="twitter:url"]', 'content', meta.url);
-    setMeta('link[rel="alternate"][hreflang="et"]', 'href', meta.url);
-    setMeta('link[rel="alternate"][hreflang="en"]', 'href', meta.url);
-    setMeta('link[rel="alternate"][hreflang="x-default"]', 'href', meta.url);
 
     document.getElementById('seo-jsonld')?.remove();
     if (meta.jsonLd) {
