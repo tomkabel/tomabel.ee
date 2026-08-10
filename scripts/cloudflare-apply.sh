@@ -19,7 +19,14 @@ AUTH=(-H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json")
 API="https://api.cloudflare.com/client/v4"
 
 echo "== verify token =="
-curl -sf "${AUTH[@]}" -X GET "$API/user/tokens/verify" | jq -r '"token: \(.result.status) (\(.result.id))"' || { echo "TOKEN INVALID"; exit 1; }
+# /user/tokens/verify only accepts API tokens (cfut_/cfat_); OAuth tokens (cfoat_, e.g. from wrangler login)
+# 401 here but work fine on real endpoints — warn, don't abort; zone lookup below is the real gate.
+if ! curl -sf "${AUTH[@]}" -X GET "$API/user/tokens/verify" | jq -r '"token: \(.result.status) (\(.result.id))"'; then
+  case "$TOKEN" in
+    cfoat_*) echo "token: oauth (cfoat_) — verify endpoint unsupported, continuing" ;;
+    *) echo "TOKEN INVALID"; exit 1 ;;
+  esac
+fi
 
 echo "== resolve zone =="
 ZONE_RESP=$(curl -sf "${AUTH[@]}" "$API/zones?name=$ZONE" || { echo "  API error (HTTP $(curl -s -o /dev/null -w '%{http_code}' "${AUTH[@]}" "$API/zones?name=$ZONE" 2>/dev/null)) — token may lack Zone:Read"; exit 1; })
