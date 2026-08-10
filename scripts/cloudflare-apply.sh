@@ -44,7 +44,7 @@ cfg() { # cfg <id> <value>
 }
 
 echo "== current relevant settings =="
-for s in ssl always_use_https min_tls_version tls_1_3 brotli early_hints crawler_hints rocket_loader automatic_https_rewrites security_level zero_rtt http3; do
+for s in ssl always_use_https min_tls_version tls_1_3 brotli early_hints rocket_loader automatic_https_rewrites security_level zero_rtt http3; do
   v=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/settings/$s" | jq -r '.result.value // "n/a"' 2>/dev/null || echo "?")
   echo "  $s: $v"
 done
@@ -69,7 +69,6 @@ cfg min_tls_version '"1.2"'
 cfg tls_1_3 '"on"'
 cfg brotli '"on"'
 cfg early_hints '"on"'
-cfg crawler_hints '"on"'
 cfg rocket_loader '"off"'
 cfg automatic_https_rewrites '"on"'
 # SSL mode: strict is correct for GH Pages (valid public cert, HTTPS-only origin).
@@ -120,7 +119,7 @@ else
   "rules": [{
     "description": "tomabel hashed assets",
     "expression": "starts_with(http.request.uri.path, \"/assets/\")",
-    "action": "cache_eligible",
+    "action": "set_cache_settings",
     "action_parameters": {
       "cache": true,
       "edge_ttl": { "mode": "override_origin", "default": 2592000 },
@@ -133,16 +132,16 @@ fi
 
 echo "== APPLY: WAF managed ruleset (free) =="
 WAF_RULES=$(curl -sf "${AUTH[@]}" "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint" || true)
-if echo "$WAF_RULES" | jq -e '.result.rules[]? | select(.action_parameters.id == "efb7b8c949ac4650a09736fc376e9aee")' >/dev/null 2>&1; then
-  echo "  Cloudflare Managed Ruleset deployed, skip"
+if echo "$WAF_RULES" | jq -e '.result.rules[]? | select(.action_parameters.id == "77454fe2d30c4220b5701f6fdfb893ba")' >/dev/null 2>&1; then
+  echo "  Cloudflare Free Managed Ruleset deployed, skip"
 else
   curl -sf "${AUTH[@]}" -X PUT "$API/zones/$ZONE_ID/rulesets/phases/http_request_firewall_managed/entrypoint" -d @- <<'JSON' | jq -r '"  deployed: \(.result.rules[-1].description) (id \(.result.rules[-1].id))"' || echo "  WAF: FAILED (need Zone WAF:Edit)"
 {
   "rules": [{
-    "description": "Cloudflare Managed Ruleset",
+    "description": "Cloudflare Free Managed Ruleset",
     "expression": "true",
     "action": "execute",
-    "action_parameters": { "id": "efb7b8c949ac4650a09736fc376e9aee", "version": "latest" }
+    "action_parameters": { "id": "77454fe2d30c4220b5701f6fdfb893ba", "version": "latest" }
   }]
 }
 JSON
