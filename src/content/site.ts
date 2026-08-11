@@ -155,10 +155,16 @@ export const researchEntries: ResearchEntry[] = [
       et: 'Eesti e-riigi Achilleuse kand — Smart-ID / eID uuringud',
     },
     blurb: {
-      en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to RIA / CERT-EE before publication. Names the gaps; proposes the fixes.",
-      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud RIA-le / CERT-EE-le enne avaldamist. Nimetab lüngad; pakub parandused.',
+      en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to the vendor before publication. Names the gaps; proposes the fixes.",
+      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
     },
+    keywords: 'Smart-ID, eID, phishing, vishing, signing relay, BITB, Estonia, eIDAS',
     type: { en: 'Disclosed Research', et: 'Avalikustatud Uuring' },
+    meta: {
+      en: 'Published · 14 min read',
+      et: 'Avaldatud · 14 min lugemist',
+    },
+    href: '/research/smart-id-achilles-heel',
   },
   {
     code: 'R-03',

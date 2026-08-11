@@ -19,6 +19,7 @@ const WhatClientSideTrustIsActuallyWorthPage = React.lazy(() => import('./pages/
 const KrattProblemPage = React.lazy(() => import('./pages/KrattProblemPage'));
 const CoordinatedDisclosureInASmallCountryPage = React.lazy(() => import('./pages/CoordinatedDisclosureInASmallCountryPage'));
 const BotGuardDisassembledResearchPage = React.lazy(() => import('./pages/BotGuardDisassembledResearchPage'));
+const SmartIdAchillesHeelResearchPage = React.lazy(() => import('./pages/SmartIdAchillesHeelResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 function ScrollToTop() {
@@ -99,6 +100,7 @@ function App() {
             <Route path="/writing/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
             <Route path="/writing/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
             <Route path="/research/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
+            <Route path="/research/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
             <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
             <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />

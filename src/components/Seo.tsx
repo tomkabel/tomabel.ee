@@ -145,6 +145,28 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/research/smart-id-achilles-heel': {
+    title:
+      "The Achilles' heel of Estonia's e-state — Smart-ID / eID research — Tom Kristian Abel",
+    description:
+      "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows.",
+    url: 'https://tomabel.ee/research/smart-id-achilles-heel/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
+      description:
+        "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows.",
+      url: 'https://tomabel.ee/research/smart-id-achilles-heel/',
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/about': {
     title: 'About — Tom Kristian Abel',
     description:

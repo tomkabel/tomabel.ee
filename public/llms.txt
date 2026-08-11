@@ -9,7 +9,7 @@ Based in Estonia. Writes in English and Estonian. Research focuses on identity p
 - [Home](https://tomabel.ee/): Hero, featured research and projects, recent essays.
 - [Research](https://tomabel.ee/research/): Long-form technical research.
   - [BotGuard, disassembled — reverse engineering Google's anti-fraud VM](https://tomabel.ee/research/botguard-disassembled/): an opcode-level teardown of the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness.
-  - The Achilles' heel of Estonia's e-state — Smart-ID / eID research: protocol-level analysis of the authentication ecosystem used daily by 1.4M+ Estonians, Latvians, and Lithuanians. Disclosed to RIA / CERT-EE before publication.
+  - [The Achilles' heel of Estonia's e-state — Smart-ID / eID research](https://tomabel.ee/research/smart-id-achilles-heel/): why the protocol resists MITM and endpoint attacks by design, how the approval layer fails instead, and the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows. Disclosed to the vendor before publication.
   - Zero-Trust Octagon — a framework from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.
   - The evolution of cyber fraud in Estonia, 2010–2026: an 80-page, heavily cited history of phishing, vishing, and fraud in one of the world's most digitized states.
 - [Projects](https://tomabel.ee/projects/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
