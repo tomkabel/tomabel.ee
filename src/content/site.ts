@@ -298,9 +298,10 @@ export const essays: Essay[] = [
       en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
       et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
     },
+    href: '/writing/coordinated-disclosure-in-a-small-country',
     meta: {
-      en: 'Planned',
-      et: 'Plaanitud',
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
     },
   },
 ];

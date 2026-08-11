@@ -87,6 +87,25 @@ const META = {
       },
     },
   },
+  'writing/coordinated-disclosure-in-a-small-country': {
+    title: 'Coordinated disclosure in a small country — Tom Kristian Abel',
+    description:
+      "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: 'Coordinated disclosure in a small country',
+      description:
+        "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
+      url: `${BASE}/writing/coordinated-disclosure-in-a-small-country/`,
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   'research/botguard-disassembled': {
     title:
       "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
