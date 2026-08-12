@@ -1,10 +1,11 @@
 # Research Pipeline Spec — tomabel.ee
 
-Automated weekly research pipeline. A Hermes cron job runs this end-to-end:
-premise discovery (backlog + local files) → write (EN) → fact-check →
-humanize → peer review (critical) → implement → code review → commit → push
-to main (GH Actions deploys to Pages). One report per run. This file is the
-strategy anchor the job reads every run.
+Automated research pipeline, runs every 2 days. A Hermes cron job runs this
+end-to-end: premise discovery (backlog + local files) → write (EN) →
+fact-check → humanize → peer review (critical) → implement → code review →
+commit on a branch → open a PR. A human reviews and merges the PR; merging
+to main deploys via GH Actions to Pages. One report per run. This file is
+the strategy anchor the job reads every run.
 
 ## Strategy (why we publish research at all)
 
@@ -27,8 +28,10 @@ Source: PRODUCT.md (brand/voice), docs/seo-research-2026.md (discovery play).
 
 An entry is PUBLISHED when it has an `href` (its detail page exists and is
 wired into routes/SEO/sitemap). The queue is entries WITHOUT `href`, in array
-order. The job publishes the FIRST queued entry per run, then flips it to
-published (href + meta). Current queue:
+order. The job publishes the FIRST queued entry per run that has no open PR
+for it (check `gh pr list --state open`; skip slugs already on a
+`research/<slug>` branch), then flips it to published (href + meta). Current
+queue:
 
 1. R-01 BotGuard, disassembled — reverse engineering Google's anti-fraud VM
    (source material: BotGuard teardown work; cross-link the essay at
@@ -120,7 +123,7 @@ pass is not published: leave the draft, report why, skip the week.
 Items 4 and 5 must have identical content. Missing any of these is a failed
 run.
 
-## Quality gates (fail → do not push)
+## Quality gates (fail → do not open a PR)
 
 - `pnpm lint` clean.
 - `npx tsc --noEmit` clean.
@@ -134,14 +137,25 @@ run.
 ## Abort conditions (report and stop, commit nothing)
 
 - `git status --porcelain` is non-empty (owner may be mid-edit).
-- Local main is behind origin/main (fetch first; never push without pulling).
+- Local main is behind origin/main (fetch first; pull --ff-only before
+  branching so PRs build on the latest main).
 - Queue is empty AND no publishable new premise exists.
+- An open PR already exists for the chosen entry (branch `research/<slug>`).
 - The report cannot clear the quality gates after one honest revision pass.
-  (Skipping a week is a valid outcome.)
+  (Skipping a cycle is a valid outcome.)
 
-## Commit convention
+## PR flow (human-in-the-loop; never push to main directly)
 
-- `feat(research): add report "<title>"` — includes implementation files.
-- Precise staging: only the files the run touched. Never `git add -A` if
-  unrelated files exist.
-- Push to main. GH Actions deploys to GitHub Pages automatically.
+1. From clean, up-to-date main: `git checkout -b research/<slug>`.
+2. Precise staging: only the files the run touched. Never `git add -A` if
+   unrelated files exist.
+3. Commit: `feat(research): add report "<title>"` — includes implementation
+   files.
+4. `git push -u origin research/<slug>`, then
+   `gh pr create --base main` with title `Research: <title>` and a body
+   summarizing sources, disclosure status, and what the reviewer should
+   verify.
+5. Do NOT merge, do NOT push to main, do NOT delete the branch.
+6. `git checkout main` so the tree is clean for the next run.
+7. The merge (human) triggers GH Actions deploy to GitHub Pages
+   (workflow runs on push to main only).

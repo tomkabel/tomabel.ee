@@ -1,9 +1,10 @@
 # Content Pipeline Spec — tomabel.ee
 
-Automated weekly content pipeline. A Hermes cron job runs this end-to-end:
-plan (strategy-driven) → write (EN + ET) → editorial review → implement →
-code review → commit → push to main (GH Actions deploys to Pages). One piece
-per run. This file is the strategy anchor the job reads every run.
+Automated content pipeline, runs every 2 days. A Hermes cron job runs this
+end-to-end: plan (strategy-driven) → write (EN + ET) → editorial review →
+implement → code review → commit on a branch → open a PR. A human reviews
+and merges the PR; merging to main deploys via GH Actions to Pages. One
+piece per run. This file is the strategy anchor the job reads every run.
 
 ## Strategy (why we write at all)
 
@@ -24,8 +25,10 @@ Source: PRODUCT.md (brand/voice), docs/seo-research-2026.md (discovery play).
 ## Backlog (source of truth: `essays` array in src/content/site.ts)
 
 Essays whose `meta` is `Planned` are the queue. The job publishes the FIRST
-Planned entry in array order, then flips its meta to `Published · N min read`
-(and ET equivalent). Current queue:
+Planned entry in array order that has no open PR for it (check
+`gh pr list --state open`; skip slugs already on a `content/<slug>` branch),
+then flips its meta to `Published · N min read` (and ET equivalent). Current
+queue:
 
 1. What client-side trust is actually worth — BotGuard teardown as case study;
    why any defense running on a machine you don't control is negotiable.
@@ -75,7 +78,7 @@ topics without owner input).
 Items 4 and 5 must have identical content (the comment in spa-routes.mjs
 says so). Missing any of these is a failed run.
 
-## Quality gates (fail → do not push)
+## Quality gates (fail → do not open a PR)
 
 - `pnpm lint` clean.
 - `npx tsc --noEmit` clean.
@@ -88,14 +91,25 @@ says so). Missing any of these is a failed run.
 ## Abort conditions (report and stop, commit nothing)
 
 - `git status --porcelain` is non-empty (owner may be mid-edit).
-- Local main is behind origin/main (fetch first; never push without pulling).
+- Local main is behind origin/main (fetch first; pull --ff-only before
+  branching so PRs build on the latest main).
 - No Planned essays remain.
+- An open PR already exists for the chosen essay (branch `content/<slug>`).
 - The draft cannot clear the quality gates after one honest revision pass.
-  (Better to skip a week than publish weak copy. Skipping is a valid outcome.)
+  (Better to skip a cycle than publish weak copy. Skipping is a valid
+  outcome.)
 
-## Commit convention
+## PR flow (human-in-the-loop; never push to main directly)
 
-- `feat(content): add essay "<title>"` — includes the ET translation.
-- Precise staging: only the files the run touched. Never `git add -A` if
-  unrelated files exist.
-- Push to main. GH Actions deploys to GitHub Pages automatically.
+1. From clean, up-to-date main: `git checkout -b content/<slug>`.
+2. Precise staging: only the files the run touched. Never `git add -A` if
+   unrelated files exist.
+3. Commit: `feat(content): add essay "<title>"` — includes the ET translation.
+4. `git push -u origin content/<slug>`, then
+   `gh pr create --base main` with title `Content: <title>` and a body
+   summarizing what was checked (gates, voice, EN/ET parity) and what the
+   reviewer should verify.
+5. Do NOT merge, do NOT push to main, do NOT delete the branch.
+6. `git checkout main` so the tree is clean for the next run.
+7. The merge (human) triggers GH Actions deploy to GitHub Pages
+   (workflow runs on push to main only).
