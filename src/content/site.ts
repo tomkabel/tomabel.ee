@@ -176,7 +176,12 @@ export const researchEntries: ResearchEntry[] = [
       en: "Most \"zero trust\" is a vendor checklist. This is the opposite: 8 axioms, a 9-dimension morphological matrix for reasoning about any architecture, and archetypal breach walkthroughs that show where designs actually fail. Written to be argued with.",
       et: "Enamik \"null-usaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
     },
+    meta: {
+      en: 'Published · 19 min read',
+      et: 'Avaldatud · 19 min lugemist',
+    },
     type: { en: 'Framework', et: 'Raamistik' },
+    href: '/research/zero-trust-octagon',
   },
   {
     code: 'R-04',
