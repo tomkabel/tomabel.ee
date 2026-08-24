@@ -199,49 +199,259 @@ export const researchEntries: ResearchEntry[] = [
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
+export type ProjectCategory =
+  | 'offensive'
+  | 'products'
+  | 'ai-ml'
+  | 'systems'
+  | 'research'
+  | 'foundations';
+
 export type Project = {
   name: string;
   stack: string;
   blurb: { en: string; et: string };
-  href: string;
+  href: string; // primary/fallback link (kept for backward compatibility)
+  category?: ProjectCategory;
+  tags?: string[];
+  repo?: string; // public GitHub source, if any
+  live?: string; // live deployment / docs URL, if any
+  stars?: number; // surfaced as a badge when notable
+  featured?: boolean; // eligible to surface on the homepage later
 };
 
+// Ordered category metadata for grouping on the projects page.
+export const projectCategories: { id: ProjectCategory; label: { en: string; et: string } }[] = [
+  { id: 'offensive', label: { en: 'Offensive & Reverse Engineering', et: 'Rünne ja pöördprojekteerimine' } },
+  { id: 'products', label: { en: 'Applied Security Products', et: 'Rakenduslikud turvatooted' } },
+  { id: 'ai-ml', label: { en: 'AI & Retrieval Systems', et: 'AI- ja hankesüsteemid' } },
+  { id: 'systems', label: { en: 'Systems & Infrastructure', et: 'Süsteemid ja taristu' } },
+  { id: 'research', label: { en: 'Research & Frameworks', et: 'Uuringud ja raamistikud' } },
+  { id: 'foundations', label: { en: 'Foundations', et: 'Alused' } },
+];
+
 export const projects: Project[] = [
+  // ── Offensive & Reverse Engineering ────────────────────────────────────────
+  {
+    name: 'google-botguard-security-research',
+    stack: 'Reverse Engineering · 105★',
+    category: 'offensive',
+    tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
+    stars: 105,
+    featured: true,
+    blurb: {
+      en: "Opcode-level teardown of Google's VM-based BotGuard anti-fraud engine — the bytecode interpreter, its anti-debug and obfuscation layers, and a token-portability weakness. 105★ and the reference the client-side-security crowd actually cites.",
+      et: "Google'i VM-põhise BotGuardi pettusevastase mootori opkooditasemel lahtivõtmine — baitkoodi interpretaator, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. 105★ ja viide, mida kliendipoolse turbe kogukond tegelikult tsiteerib.",
+    },
+    href: 'https://github.com/tomkabel/google-botguard-security-research',
+    repo: 'https://github.com/tomkabel/google-botguard-security-research',
+  },
   {
     name: 'fingerprintproxy',
     stack: 'Go · actively maintained',
+    category: 'offensive',
+    tags: ['Go', 'TLS / JA4', 'MITM'],
+    featured: true,
     blurb: {
       en: 'A production-grade TLS-fingerprinting proxy: 65+ browser profiles, JA3/JA4 emulation, MITM support, and a clean API. The practical companion to the research — this is what understanding TLS fingerprinting looks like in code.',
       et: 'Tootmiskõlblik TLS-sõrmejäljeproksi: 65+ brauseriprofiili, JA3/JA4 emulatsioon, MITM tugi ja puhas API. Praktiline kaaslane uurimistööle — selline näeb TLS-i sõrmejäljetuvastuse mõistmine koodis välja.',
     },
     href: 'https://github.com/tomkabel/fingerprintproxy',
+    repo: 'https://github.com/tomkabel/fingerprintproxy',
   },
   {
-    name: 'Vooglaadija (team21)',
-    stack: 'FastAPI · collaborative',
+    name: 'skid-security-research',
+    stack: 'Security Research · disclosed',
+    category: 'offensive',
+    tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     blurb: {
-      en: "A media-extraction service done right: Redis queues, JWT auth, CSRF and rate limiting, Prometheus + OpenTelemetry + Sentry, SSE streaming, an HTMX UI, and a 7-service Docker Compose stack. A reference for what \"FastAPI with proper observability\" actually means.",
-      et: 'Meediumi eraldamise teenus tehtud õigesti: Redis järjekorrad, JWT autentimine, CSRF ja kiiruspiirangud, Prometheus + OpenTelemetry + Sentry, SSE voogedastus, HTMX kasutajaliides ja 7-teenuseline Docker Compose pinud. Viide sellele, mida "FastAPI korraliku jälgitavusega" tegelikult tähendab.',
+      en: "Protocol-level research into Smart-ID's cross-device authentication flows and where the trust boundaries leak. The coordinated-disclosure companion to the Achilles'-heel paper — findings shown, not just asserted.",
+      et: "Protokollitasemel uuring Smart-ID seadmeteülestest autentimisvoogudest ja sellest, kus usalduspiirid lekivad. Koordineeritud avalikustamise kaaslane Achilleuse kanna tööle — leiud näidatud, mitte lihtsalt väidetud.",
     },
-    href: 'https://github.com/tomkabel',
+    href: 'https://github.com/tomkabel/skid-security-research',
+    repo: 'https://github.com/tomkabel/skid-security-research',
+    live: 'https://tomkabel.github.io/skid-security-research/',
   },
+  {
+    name: 'C3EE-Cyber-CTF',
+    stack: 'Go · CTF write-up',
+    category: 'offensive',
+    tags: ['Go', 'CTF', 'Write-up'],
+    blurb: {
+      en: 'Full write-up of the C3 Cyber CTF — the exploit chains, the dead ends, and the reasoning behind each. Solutions in Go, shown end to end, not just claimed.',
+      et: 'C3 Cyber CTF täielik läbimäng — exploit-ahelad, ummikteed ja iga sammu põhjendus. Lahendused Go-s, näidatud algusest lõpuni, mitte lihtsalt väidetud.',
+    },
+    href: 'https://github.com/tomkabel/C3EE-Cyber-CTF',
+    repo: 'https://github.com/tomkabel/C3EE-Cyber-CTF',
+  },
+
+  // ── Applied Security Products (live) ───────────────────────────────────────
+  {
+    name: 'Proksimity',
+    stack: 'Cloudflare · live',
+    category: 'products',
+    tags: ['Identity', 'TLS', 'Privacy'],
+    featured: true,
+    blurb: {
+      en: "“We don't watch you. We recognize you.” Identity verification from network-behavior signals — TLS handshakes, HTTP timing — instead of cookies or invasive fingerprinting. Reads no content, stores no PII. The defensive inversion of the fingerprinting research.",
+      et: "„Me ei jälgi sind. Me tunneme su ära.“ Identiteedi tuvastamine võrgukäitumise signaalidest — TLS-i käepigistused, HTTP ajastus — küpsiste või pealetükkiva sõrmejäljetuvastuse asemel. Ei loe sisu, ei salvesta isikuandmeid. Sõrmejälje-uuringu kaitsev ümberpööramine.",
+    },
+    href: 'https://proksimity.pages.dev',
+    live: 'https://proksimity.pages.dev',
+  },
+  {
+    name: 'Specter',
+    stack: 'Edge · live',
+    category: 'products',
+    tags: ['Edge', 'Access Control', 'Signed Audit'],
+    blurb: {
+      en: 'Behavioral access control with forensic teeth: classifies traffic as human, automated, or adversarial at the edge and serves graduated access — with a cryptographically signed audit trail behind every decision.',
+      et: 'Käitumuslik juurdepääsukontroll kohtuekspertiisi hammastega: liigitab liikluse serva peal inimeseks, automaatikaks või vaenulikuks ja pakub astmelist juurdepääsu — iga otsuse taga krüptograafiliselt allkirjastatud auditijälg.',
+    },
+    href: 'https://specter-48f.pages.dev',
+    live: 'https://specter-48f.pages.dev',
+  },
+  {
+    name: 'SteroidID',
+    stack: 'FIDO2 + Smart-ID · live',
+    category: 'products',
+    tags: ['FIDO2', 'Smart-ID', 'Passwordless'],
+    featured: true,
+    blurb: {
+      en: 'Phishing-resistant login that keeps your phone in your pocket: FIDO2 passkeys fused with Smart-ID via a browser extension, local daemon, and accessibility bridge — full authentication in under 8 seconds from a single fingerprint touch.',
+      et: 'Õngitsemiskindel sisselogimine, mis hoiab telefoni taskus: FIDO2 pääsuvõtmed sulatatud Smart-ID-ga brauserilaienduse, kohaliku deemoni ja ligipääsetavuse silla kaudu — täielik autentimine alla 8 sekundi ühest sõrmejälje puudutusest.',
+    },
+    href: 'https://steroidid.pages.dev',
+    live: 'https://steroidid.pages.dev',
+  },
+
+  // ── AI & Retrieval Systems ─────────────────────────────────────────────────
   {
     name: 'Discord RAG pipeline',
-    stack: 'retrieval · FastAPI',
+    stack: 'Retrieval · FastAPI',
+    category: 'ai-ml',
+    tags: ['RAG', 'LanceDB', 'BM25'],
     blurb: {
       en: 'A retrieval-augmented pipeline with LanceDB vector search, BM25 hybrid retrieval, RBAC-aware filtering, and LLM synthesis, served over FastAPI with systemd integration and CI. RAG with access control treated as a first-class concern, not an afterthought.',
       et: 'Hankimisega täiendatud torujuhe LanceDB vektorotsinguga, BM25 hübriidotsinguga, RBAC-teadliku filtreerimise ja LLM sünteesiga, serveeritud FastAPI kaudu koos systemd integratsiooni ja CI-ga. RAG koos pääsuhaldusega käsitletud esmatähtsa murena, mitte järelmõttena.',
     },
-    href: 'https://github.com/tomkabel',
+    href: 'https://github.com/tomkabel/discord-rag-pipeline',
+    repo: 'https://github.com/tomkabel/discord-rag-pipeline',
   },
   {
-    name: 'PunanePastakas (valge-marker)',
+    name: 'deepgram-batch',
+    stack: 'Go · Deepgram Nova-3',
+    category: 'ai-ml',
+    tags: ['Go', 'Speech-to-Text', '50+ languages'],
+    blurb: {
+      en: 'Blazing-fast batch speech-to-text across 50+ languages on Deepgram Nova-3 — concurrent, resumable, and built to chew through whole archives rather than single clips.',
+      et: 'Välkkiire hulgi-kõnetuvastus 50+ keeles Deepgram Nova-3 peal — paralleelne, jätkatav ja ehitatud tervete arhiivide läbinärimiseks, mitte üksikute klippide jaoks.',
+    },
+    href: 'https://github.com/tomkabel/deepgram-batch',
+    repo: 'https://github.com/tomkabel/deepgram-batch',
+  },
+  {
+    name: 'lovable-codebase-agent',
+    stack: 'Python · codemod',
+    category: 'ai-ml',
+    tags: ['Python', 'Codegen', 'Refactor'],
+    blurb: {
+      en: '“Lovable Surgeon”: turns Lovable.dev exports into production-ready repos — strips proprietary wrappers, prunes dead deps, converts SSR→SSG, and ships README/LICENSE/CI. Vibe-code in, real repo out.',
+      et: '„Lovable Surgeon“: muudab Lovable.dev ekspordid tootmisvalmis repodeks — eemaldab omanduslikud kestad, kärbib surnud sõltuvused, teisendab SSR→SSG ja lisab README/LICENSE/CI. Vibe-kood sisse, päris repo välja.',
+    },
+    href: 'https://github.com/tomkabel/lovable-codebase-agent',
+    repo: 'https://github.com/tomkabel/lovable-codebase-agent',
+  },
+  {
+    name: 'SKILL Lab',
+    stack: 'Cloudflare · live',
+    category: 'ai-ml',
+    tags: ['LLM', 'Writing', 'On-device'],
+    blurb: {
+      en: 'In-browser A/B tester that strips the tells of AI writing — filler, passive voice, formulaic structure — while keeping your voice. Runs GPT-4o-mini locally; no data leaves your device.',
+      et: 'Brausisisene A/B-tester, mis eemaldab AI-kirjutamise reetlikud märgid — täitesõnad, umbisikuline kõne, valemlik struktuur — säilitades sinu hääle. Töötab GPT-4o-mini peal kohapeal; andmed ei lahku su seadmest.',
+    },
+    href: 'https://ai.tomabel.ee',
+    live: 'https://ai.tomabel.ee',
+  },
+  {
+    name: 'deepseek-offpeak',
+    stack: 'JS · Cloudflare Pages',
+    category: 'ai-ml',
+    tags: ['JavaScript', 'Pricing', 'DevTool'],
+    blurb: {
+      en: 'Live peak/off-peak clock, rate matrix, and cost calculator for DeepSeek API pricing — WCAG-clean, dark-mode, zero-dependency. Time your batches, cut your bill.',
+      et: 'Reaalajas tipp-/väljaspool-tippu kell, hinnamaatriks ja kulukalkulaator DeepSeeki API hinnastamiseks — WCAG-puhas, tumeda režiimiga, sõltuvusteta. Ajasta oma pakktööd, kärbi arvet.',
+    },
+    href: 'https://github.com/tomkabel/deepseek-offpeak',
+    repo: 'https://github.com/tomkabel/deepseek-offpeak',
+    live: 'https://deepseek-offpeak.pages.dev',
+  },
+  {
+    name: 'Hele Beež Pastakas',
     stack: 'Flask · PWA',
+    category: 'ai-ml',
+    tags: ['Flask', 'PWA', 'VLM'],
     blurb: {
       en: 'An AI math-grading assistant: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-compliant by design. Built for real classrooms, not a demo.',
       et: 'AI matemaatikahindamise assistent: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-iga kooskõlas disainist alates. Ehitatud päris klassiruumide jaoks, mitte demoks.',
     },
     href: 'https://github.com/tomkabel',
+  },
+
+  // ── Systems & Infrastructure ───────────────────────────────────────────────
+  {
+    name: 'Vooglaadija',
+    stack: 'FastAPI · collaborative',
+    category: 'systems',
+    tags: ['FastAPI', 'Redis', 'Observability'],
+    blurb: {
+      en: "A media-extraction service done right: Redis queues, JWT auth, CSRF and rate limiting, Prometheus + OpenTelemetry + Sentry, SSE streaming, an HTMX UI, and a 7-service Docker Compose stack. A reference for what \"FastAPI with proper observability\" actually means.",
+      et: 'Meediumi eraldamise teenus tehtud õigesti: Redis järjekorrad, JWT autentimine, CSRF ja kiiruspiirangud, Prometheus + OpenTelemetry + Sentry, SSE voogedastus, HTMX kasutajaliides ja 7-teenuseline Docker Compose pinud. Viide sellele, mida "FastAPI korraliku jälgitavusega" tegelikult tähendab.',
+    },
+    href: 'https://github.com/tomkabel/vooglaadija',
+    repo: 'https://github.com/tomkabel/vooglaadija',
+  },
+  {
+    name: 'scripts',
+    stack: 'Shell · ops',
+    category: 'systems',
+    tags: ['Bash', 'Server Setup', 'Ops'],
+    blurb: {
+      en: "Tom's Awesome Scripts — a battle-worn collection of bash for server setup and management. The stuff you'd otherwise copy-paste at 2am, made idempotent and safe.",
+      et: "Tom's Awesome Scripts — lahingus karastunud bash-skriptide kogu serveri seadistamiseks ja haldamiseks. Skriptid, mida muidu kopeeriksid kell 2 öösel, tehtud idempotentseks ja turvaliseks.",
+    },
+    href: 'https://github.com/tomkabel/scripts',
+    repo: 'https://github.com/tomkabel/scripts',
+  },
+
+  // ── Research & Frameworks ──────────────────────────────────────────────────
+  {
+    name: 'zero-trust-octagon',
+    stack: 'VitePress · framework',
+    category: 'research',
+    tags: ['Zero Trust', 'Architecture', 'NIST 800-207'],
+    featured: true,
+    blurb: {
+      en: 'Zero-trust from first principles, not a vendor checklist: 8 irreducible axioms, a 9-dimension morphological matrix, archetypal breach analysis, and concrete implementation pathways. Written to be argued with.',
+      et: 'Null-usaldus esimestest põhimõtetest, mitte müüja kontrollnimekiri: 8 taandamatut aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs ja konkreetsed teostusrajad. Kirjutatud selleks, et selle üle vaieldaks.',
+    },
+    href: 'https://github.com/tomkabel/zero-trust-octagon',
+    repo: 'https://github.com/tomkabel/zero-trust-octagon',
+  },
+
+  // ── Foundations ────────────────────────────────────────────────────────────
+  {
+    name: 'tartu-progeksam-2025',
+    stack: 'Python · education',
+    category: 'foundations',
+    tags: ['Python', 'Education'],
+    blurb: {
+      en: 'Questions and clean Python solutions for the University of Tartu 2025 programming exam. A study resource, worked end to end.',
+      et: 'Tartu Ülikooli 2025. aasta programmeerimiseksami küsimused ja puhtad Python-lahendused. Õppematerjal, läbi töötatud algusest lõpuni.',
+    },
+    href: 'https://github.com/tomkabel/tartu-progeksam-2025',
+    repo: 'https://github.com/tomkabel/tartu-progeksam-2025',
   },
 ];
 
