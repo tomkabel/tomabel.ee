@@ -6,9 +6,7 @@ export default {
       fontFamily: {
         sans: ['"Geist Variable"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         display: ['"Space Grotesk Variable"', '"Geist Variable"', 'system-ui', 'sans-serif'],
-        // "Commit Mono" activates automatically once self-hosted (see PR notes);
-        // until then it falls through to JetBrains Mono with no visual regression.
-        mono: ['"Commit Mono"', '"JetBrains Mono Variable"', 'monospace'],
+        mono: ['"Commit Mono"', 'ui-monospace', 'monospace'],
         serif: ['"Newsreader Variable"', 'Charter', 'Georgia', 'serif'],
       },
       colors: {
