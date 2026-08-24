@@ -142,6 +142,25 @@ const META = {
       },
     },
   },
+  'disclosures/zero-trust-octagon': {
+    title: 'Zero-Trust Octagon — a framework from first principles — Tom Kristian Abel',
+    description:
+      'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Zero-Trust Octagon — a framework from first principles',
+      description:
+        'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+      url: `${BASE}/disclosures/zero-trust-octagon/`,
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:

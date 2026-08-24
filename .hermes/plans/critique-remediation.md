@@ -24,10 +24,10 @@ The critique was written against an older/stale build. Verified current state:
 | `[01]`/R-0X ticket codes | VALID (contradicts site's own convention) | Drop code column (WP3) |
 | Polymorphic card (6 card types) | OVERSTATED (3 list-row variants) | Unify to 1 row component (WP3) |
 | GPG proof on articles | VALID | Honest version: WebCrypto SHA-256 + .asc, no new deps (WP4) |
-| Live JA4/TLS telemetry drawer | REJECT | Impossible from JS (JA4 derives from ClientHello); the site's own essay *What client-side trust is actually worth* argues client-side attestation is theater — faking it would be self-parody |
-| "Hardware Enclave Verified", "VPN anomaly", "Passkey Ready" drawer rows | REJECT | Fabricated claims; cannot be determined client-side |
+| Live JA4/TLS telemetry drawer | VALID (real backend) | Server-side JA4/TLS from Tom's own collector: `GET https://proksimity.proksiabel.ee/connection.json` → `{live, ja4, tls:{version, alpn, negotiated, ciphers[]}, geo}`. Verified live 2026-08-24. Opt-in drawer (WP5) |
+| "Hardware Enclave Verified", "VPN anomaly", "Passkey Ready" drawer rows | REJECT | Not provided by connection.json; fabricated claims stay out |
 | Severity badges (CRITICAL 9.2) on cards | REJECT | No CVE/CVSS exists for these findings; fabricated severity is a legal/ethical hazard for disclosed research. Neutral type labels only (already the case) |
-| Fonts → Geist/Commit Mono/Newsreader | REJECT | Current Inter/Space Grotesk/JetBrains Mono variable fonts + fontaine already handle CLS; new fonts = new deps |
+| Fonts → Geist/Commit Mono/Newsreader | DO | User approved. Swap sans→Geist, mono→Commit Mono, add Newsreader serif for pull quotes; keep fontaine + font-display:swap for CLS (WP6) |
 | Mermaid sequence diagrams | DEFER | `ProtocolTable` + `CodeBlock` cover it; add only when a specific article needs a diagram |
 | 1360px grid, fluid clamps | OPTIONAL | Skip; current max-w-6xl is consistent |
 | Mouse-following specular border | OPTIONAL | CSS hover states already exist; skip JS version |
@@ -72,17 +72,35 @@ git status   # tree is dirty (pub/ churn from last build) — leave unrelated pu
 
 ### WP4 — Honest cryptographic proof block (no new deps)
 1. New `src/components/site/article-proof.tsx`: props `{ slug, expectedSha256 }`. On mount: `fetch('/verification/<slug>.txt')` → `crypto.subtle.digest('SHA-256', ...)` → show hex + `MATCH ✓` / `MISMATCH ✗` (green/red). Footer line: link to `/public-key.asc`, fingerprint short form, and gpg verify instructions (`gpg --verify <slug>.txt.asc <slug>.txt`). CSP `connect-src 'self'` already permits the fetch; `script-src 'self'` permits WebCrypto.
-2. Scaffold `public/verification/README.md` + placeholder `<slug>.txt` copies of each article's canonical text (export plain text from each article page; 8 files). **Tom must run `gpg --detach-sign --armor public/verification/<slug>.txt`** to create the `.asc` files — the agent does NOT sign; put this in the PR description as a required manual step before deploy.
+2. Scaffold `public/verification/README.md` + placeholder `<slug>.txt` copies. **Scope: the three articles that carry an `ArticleProof` call — `botguard-disassembled`, `smart-id-achilles-heel`, `zero-trust-octagon`.** These three pairs (`.txt` + detached `.asc`) exist and ship; the remaining five articles do NOT get a proof block until their canonical text is finalized and signed (add the `.txt`, hash, and `<ArticleProof>` call per article at that time — do not scaffold empty proofs for them). **Tom must run `gpg --detach-sign --armor public/verification/<slug>.txt`** to create the `.asc` files — the agent does NOT sign; put this in the PR description as a required manual step before deploy.
 3. Expected hashes: agent computes `sha256sum` of each `.txt` once Tom's copies are final and fills them into the component props. Until Tom signs, ship the block with hashes of the placeholder files and mark "pending signature" in the PR.
 4. Do NOT build in-browser GPG signature verification (openpgp.js) — deferred; CLI path is honest and dependency-free.
 
-### WP5 — Telemetry drawer
-**Not built.** See verdict table. No code changes.
+### WP5 — Live telemetry drawer (real backend: proksimity.proksiabel.ee)
+Backend already verified live:
+```
+curl https://proksimity.proksiabel.ee/connection.json
+→ {"live":true,"ja4":"tls12_30_13_282abf249f80",
+   "tls":{"version":"TLS 1.3","alpn":"h2","negotiated":"TLS_CHACHA20_POLY1305_SHA256","ciphers":[...]},
+   "geo":{"city":"Tallinn (Põhja-Tallinna linnaosa)","country":"Estonia","cc":"EE","isp":"AS3249 Telia Eesti AS"}, ...}
+```
+(Reference implementation: `~/Documents/proksimity/site/connection.html` fetches `<origin>/connection.json`.)
 
-### WP6 — Polish
-1. APCA spot-check of existing tokens (`#A2AAB8` on `#0A0B0D`, `#6C7788`, `#8B94A4`, accent `#34D399` on dark) against targets (body Lc≥75, headings ≥60, metadata ≥45). Adjust only tokens that fail, in `tailwind.config.js`. Use a quick node script (e.g. `node -e` with a tiny APCA implementation or an online reference — no new deps).
-2. Verify CLS hygiene: fonts are self-hosted variable fonts + `fontaine` in devDeps — confirm build output has `font-display: swap` (grep pub/ CSS) and document as verified. No font changes.
-3. Do NOT: rename to /advisory, add status dot, change fonts, add Mermaid, widen container.
+1. **Prereq (Tom, one-time)**: confirm the collector sends `Access-Control-Allow-Origin: https://tomabel.ee` for `/connection.json` (Tom controls both origins; if CORS is refused, fall back to a same-origin Cloudflare Worker proxy on tomabel.ee — document whichever is chosen in the PR).
+2. **CSP**: `public/_headers` — add `https://proksimity.proksiabel.ee` to `connect-src` (currently `'self'` only).
+3. **Drawer component** `src/components/site/telemetry.tsx` (new, small): slide-over panel; on open, `fetch('https://proksimity.proksiabel.ee/connection.json')`; render ONLY real fields: JA4, TLS version, ALPN, negotiated cipher, geo (city/cc/ISP). States: loading / live / unavailable (show nothing but the title + "collector unreachable" in muted text — no fake values, ever).
+4. **Nav trigger**: `src/components/site/nav.tsx` — add a subtle icon button (e.g. `Radio`/`Activity` from lucide-react, already a dep) with aria-label, opens the drawer. No status dot.
+5. **i18n**: `src/i18n/translations.ts` — EN/ET keys for drawer title, field labels (JA4, TLS version, ALPN, Negotiated cipher, Geo), close, and the unreachable state. Footer microcopy: "Passively read from your TLS handshake by Proksimity (ProksiAbel OÜ). No payloads, no personal data stored." — mirrors the site's own privacy stance; opt-in only (panel is closed by default).
+6. **Privacy note**: the drawer makes a third-party request per open; it is opt-in, disclosed in the footer line, and hits Tom's own infrastructure. Do not auto-fire it on page load.
+
+### WP6 — Font swap (Geist / Commit Mono / Newsreader) + polish
+1. **Deps**: `pnpm add @fontsource-variable/geist-sans @fontsource-variable/newsreader`. Try `@fontsource-variable/commit-mono`; if that package doesn't exist (Commit Mono is newer), self-host the woff2 from the mgtv/CommitMono GitHub release (OFL) into `public/fonts/` with `@font-face` in `src/index.css`. Keep JetBrains Mono as fallback in the mono stack.
+2. **`src/main.tsx`**: swap font imports — `@fontsource-variable/inter` → `@fontsource-variable/geist-sans`, `@fontsource-variable/jetbrains-mono` → commit-mono (per step 1); keep `space-grotesk` (display stack unchanged — critique specified no display font).
+3. **`tailwind.config.js`** `fontFamily`: `sans` → `['"Geist Variable"', 'Inter', ...fallbacks]`, `mono` → `['"Commit Mono"', '"JetBrains Mono Variable"', 'monospace']`, add `serif` → `['"Newsreader Variable"', 'Charter', 'Georgia', 'serif']`.
+4. **Apply serif**: `src/components/site/article.tsx` PullQuote blockquote + `src/pages/HomePage.tsx` intro blockquote get `font-serif` (one class each; quotes only — body stays sans).
+5. **CLS**: keep `fontaine` fallback metrics (already in devDeps/vite config); after build, grep `pub/` CSS for `font-display: swap` and confirm no layout shift from the swap (document in PR).
+6. **APCA spot-check** (unchanged from before): existing tokens against targets (body Lc≥75, headings ≥60, metadata ≥45); adjust only failing tokens in `tailwind.config.js` via a quick node script — no new deps.
+7. Do NOT: rename to /advisory, add status dot, add Mermaid, widen container.
 
 ### WP7 — Verification (mandatory, in order)
 ```
@@ -97,13 +115,16 @@ Manual checks:
 - One article page: proof block shows MATCH against its `.txt`.
 - `public/sitemap.xml` + `llms.txt` reference only live canonical URLs.
 - Homepage, about, footer, cross-nav links all point to live routes (grep for `/research`, `/writing`, `/projects` leftovers).
+- Telemetry drawer (dev + preview): opens, fetches `connection.json`, shows real JA4/TLS/geo; shows the "collector unreachable" state when the endpoint is blocked; no fetch fires on page load.
+- Fonts: computed styles show Geist Variable on body, Commit Mono on mono elements, Newsreader on pull quotes; `pub/` CSS contains `font-display: swap`.
 
 ### WP8 — Commit + PR
-Logical commits (WP1, WP2, WP3, WP4, WP6+SEO separately), then push `design/critique-remediation`, open PR. In the PR description: call out the rejected critique items with one-line reasons, list the PGP `.asc` signing as the required manual deploy step, and note that `pub/` churn is the normal build output (repo convention per recent commits).
+Logical commits (WP1, WP2, WP3, WP4, WP5, WP6+SEO separately), then push `design/critique-remediation`, open PR. In the PR description: call out the rejected critique items with one-line reasons, list the PGP `.asc` signing as the required manual deploy step, and note that `pub/` churn is the normal build output (repo convention per recent commits).
 
 ## 3. Explicit do-not-build list
-- JA4/TLS/VPN/enclave "telemetry" — impossible client-side; contradicts the site's own thesis
+- Fake telemetry rows ("Hardware Enclave Verified", "VPN anomaly", "Passkey Ready") — connection.json doesn't provide them; fabricated claims stay out
+- Client-side JA4 calculation or any client-side attestation claims (the site's own essay argues against them) — the drawer must source everything from proksimity.proksiabel.ee
 - Severity/CVSS badges without a real CVE
 - The critique's fake key id `0x8F92A4` / "14 papers" / "45%" mockup values
-- Geist/Commit Mono/Newsreader fonts, Mermaid.js, mouse-following gradient borders, 1360px grid, /advisory route
+- Mermaid.js, mouse-following gradient borders, 1360px grid, /advisory route
 - openpgp.js in-browser signature verification (deferred)
