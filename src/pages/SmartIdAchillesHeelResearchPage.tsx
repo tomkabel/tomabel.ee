@@ -1,8 +1,12 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import { ProtocolTable, PullQuote } from '../components/site/article';
 
 type ReportSection = {
   heading: string;
   paragraphs: string[];
+  after?: ReactNode;
 };
 
 const title = "The Achilles' heel of Estonia's e-state — Smart-ID / eID research";
@@ -58,6 +62,20 @@ const sections: ReportSection[] = [
       'The relay defeats the verification-code mitigation structurally. A code that exists to bind an approval to its context is only as good as the context it is displayed in, and the relay controls the display. It also defeats the drag test, the usual advice for spotting browser-in-the-browser tricks: a real popup can be dragged off the browser onto the desktop, a fake one cannot. That heuristic assumes the victim knows to run it.',
       'One honest caveat. This attack class was implemented as a proof of concept in a research environment against SK\u2019s public demo portal, with automation for the relay pipeline. It was disclosed to the vendor, whose assessment, per the research file, classified the risk as known and accepted. The pipeline was implemented and the mechanism demonstrated piecewise in the research environment; an end-to-end run of the full relay chain was still pending when this report was written. The claim here is not that this exact chain has been run against a live bank; it is that the architecture of cross-device QR flows makes the relay possible, and that the verification-code mitigation does not stop it. The production flow does not change the underlying design.',
     ],
+    after: (
+      <ProtocolTable
+        columns={['#', 'Actor', 'What happens']}
+        rows={[
+          ['1', 'Victim', "Opens the attacker's page \u2014 a fake browser window streaming a real bank session from a container"],
+          ['2', 'Relay', "Victim scans the genuine Smart-ID+ QR inside the remote session; the session cookie lands in the attacker's browser"],
+          ['3', 'Attacker', 'Automation initiates a transfer; the bank returns a PIN2 challenge carrying a 4-digit verification code'],
+          ['4', 'Relay', 'Reads the genuine code and mirrors it into the fake window: \u201center this code, confirm with PIN2\u201d'],
+          ['5', 'Victim', 'Checks the phone, sees the same code, approves \u2014 every indicator they can check is genuine'],
+          ['6', 'Attacker', "Holds an authorized transaction; the code was verified against the attacker's display, not the bank's"],
+        ]}
+        caption={"Interactive signing-relay \u2014 the verification code is real, but it is bound to the attacker's display, not the bank's."}
+      />
+    ),
   },
   {
     heading: "What this says about the e-state's trust model",
@@ -67,6 +85,12 @@ const sections: ReportSection[] = [
       'That is the same lesson as client-side trust generally. Any attestation produced by a device is a report from a machine you do not control. It is a signal, never a verdict. The signing key on the phone is doing real cryptographic work, but the decision being signed is made by a human looking at a screen, and that screen is the attacker\u2019s territory.',
       'The cost of the gap is visible in national numbers: 29 million euros lost in 2025, three times the year before, with Smart-ID approval abuse recurring through the cases RIA describes. That banks chose not to fix the weakness, and that the state is left managing the consequences, is Paršovs\u2019 argument, and the fraud statistics support it. And the accountability structure makes it worse. By law, banks are not obliged to refund fraudulent payments if they were authorized with the method agreed with the bank. The party with the least information, the user, carries the loss; the parties that chose the authentication method, the banks and the vendor they own, carry nearly none. Paršovs\u2019 framing is that the security breach happens earlier than the PIN2 confirmation, at the moment the bank grants a scammer access to the account in the first place, and victims should stop blaming themselves and seek compensation from their bank instead.',
     ],
+    after: (
+      <PullQuote cite="On the e-state’s trust model">
+        The approval is not bound to the context it is approving. The phone reports that the user
+        approved — it cannot report what the user was shown, because it never sees it.
+      </PullQuote>
+    ),
   },
   {
     heading: 'Fixes that would actually move the numbers',
@@ -184,7 +208,10 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
-          <div className="sticky top-24 border border-border bg-white/[0.02] p-5">
+          <div className="sticky top-24">
+            <ReaderRail sections={sections} backHref="/research" backLabel="All research" />
+          </div>
+          <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
               Thesis
             </p>
@@ -201,8 +228,9 @@ export default function SmartIdAchillesHeelResearchPage() {
             ))}
           </div>
 
-          {sections.map((section) => (
-            <section key={section.heading} className="mt-16 max-w-3xl">
+          {sections.map((section, i) => (
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
+              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -211,6 +239,7 @@ export default function SmartIdAchillesHeelResearchPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {section.after}
             </section>
           ))}
 

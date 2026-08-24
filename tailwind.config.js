@@ -9,22 +9,31 @@ export default {
         mono: ['"JetBrains Mono Variable"', 'monospace'],
       },
       colors: {
-        background: '#0A0A0B',
-        surface: '#111114',
-        foreground: '#F1F5F9',
-        muted: '#94A3B8',
-        'muted-foreground': '#8494AB',
-        subtle: '#70829B',
-        border: 'rgba(255, 255, 255, 0.05)',
-        'border-strong': 'rgba(255, 255, 255, 0.10)',
-        accent: '#22C55E',
-        'accent-foreground': '#0A0A0B',
-        warning: '#F59E0B',
+        // Engineered multi-tier dark surface system — no pure black, so white
+        // body text never halates against a #000 void. Each layer steps up in
+        // luminance to read as elevation rather than a flat plane.
+        background: '#0A0B0D', // Layer 0 — canvas
+        surface: '#111318', // Layer 1 — resting cards / strips
+        'surface-2': '#171A21', // Layer 2 — hovered / elevated cards
+        foreground: '#F2F4F8',
+        muted: '#A2AAB8', // lifted for APCA on the darker canvas
+        'muted-foreground': '#8B94A4',
+        subtle: '#6C7788',
+        border: 'rgba(255, 255, 255, 0.08)',
+        'border-strong': 'rgba(255, 255, 255, 0.14)',
+        // Single precision phosphor accent, reserved for semantic signals and
+        // focus. Sharper and higher-contrast than the old #22C55E; no glow.
+        accent: '#34D399',
+        'accent-foreground': '#04130D',
+        warning: '#F5B544',
+      },
+      boxShadow: {
+        // Specular top highlight + diffused depth, tuned for dark surfaces.
+        elevated: 'inset 0 1px 0 0 rgba(255,255,255,0.04), 0 8px 30px -12px rgba(0,0,0,0.7)',
+        'elevated-accent': 'inset 0 1px 0 0 rgba(52,211,153,0.14), 0 18px 44px -18px rgba(0,0,0,0.85)',
       },
       animation: {
-        'caret-blink': 'caret-blink 1.1s steps(2, start) infinite',
         'rise-in': 'rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both',
-        'pulse-dot': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         'caret-blink': {

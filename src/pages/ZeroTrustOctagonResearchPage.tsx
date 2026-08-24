@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
 
 type ReportSection = {
   heading: string;
@@ -224,7 +225,10 @@ export default function ZeroTrustOctagonResearchPage() {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
-          <div className="sticky top-24 border border-border bg-white/[0.02] p-5">
+          <div className="sticky top-24">
+            <ReaderRail sections={sections} backHref="/research" backLabel="All research" />
+          </div>
+          <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
               Thesis
             </p>
@@ -241,8 +245,9 @@ export default function ZeroTrustOctagonResearchPage() {
             ))}
           </div>
 
-          {sections.map((section) => (
-            <section key={section.heading} className="mt-16 max-w-3xl">
+          {sections.map((section, i) => (
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
+              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
                 {section.heading}
               </h2>

@@ -18,8 +18,13 @@ export default function SiteNav() {
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="size-2.5 animate-pulse rounded-full bg-accent" />
+        <Link to="/" className="group flex items-center gap-2.5">
+          <span
+            aria-hidden
+            className="grid size-5 place-items-center rounded-[3px] border border-border-strong bg-surface font-mono text-[11px] font-bold leading-none text-accent transition-colors group-hover:border-accent/50"
+          >
+            /
+          </span>
           <span className="font-display font-bold tracking-tight text-foreground">
             tomabel.ee
           </span>
@@ -49,13 +54,15 @@ export default function SiteNav() {
 
           <button
             onClick={() => setLanguage(language === 'en' ? 'et' : 'en')}
-            className="flex items-center gap-1 text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+            className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
             aria-label={
-              language === 'en' ? 'ET — switch to Estonian' : 'EN — switch to English'
+              language === 'en' ? 'Switch to Estonian' : 'Switch to English'
             }
+            title={language === 'en' ? 'Switch to Estonian' : 'Switch to English'}
           >
             <Globe className="size-3.5" />
-            {language === 'en' ? 'ET' : 'EN'}
+            {/* Show the language the toggle switches TO, in its own tongue. */}
+            {language === 'en' ? 'Eesti' : 'English'}
           </button>
 
           <button

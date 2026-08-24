@@ -412,7 +412,7 @@ export const translations = {
       intro: 'See näitab täpselt, kuidas me oma turvauuringuid läbi viime.',
       purpose: {
         title: 'Eesmärk',
-        text: 'See dokument selgitab reegleid, mida me järgime, kui me kolmandate osapoolte süsteeme uurime. Tahame olla süsteemiadministraatoritega täiesti läbipaistvad selles osas, mida me teeme, miks me seda teeme ja kuidas sa saad meil paluda lõpetada.',
+        text: 'See dokument selgitab reegleid, mida me järgime, kui me kolmandate osapoolte süsteeme uurime. Tahame olla süsteemiadministraatoritega täiesti läbipaistvad selles, mida me teeme, miks me seda teeme ja kuidas sa saad meil paluda lõpetada.',
       },
       whyExists: {
         title: 'Miks me selle kirjutasime',

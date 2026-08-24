@@ -1,6 +1,7 @@
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
 import EntryRow from '../components/site/entry-row';
+import CrossNav from '../components/site/cross-nav';
 import { researchEntries } from '../content/site';
 
 export default function ResearchPage() {
@@ -42,6 +43,15 @@ export default function ResearchPage() {
           />
         ))}
       </section>
+
+      <CrossNav
+        to="/writing"
+        label={language === 'en' ? 'Shorter arguments' : 'Lühemad argumendid'}
+        blurb={language === 'en'
+          ? 'The research is the rigorous, disclosed technical work. The essays are the shorter, more opinionated arguments that connect it — less formal, more direct.'
+          : 'Uuringud on range, avalikustatud tehniline töö. Esseed on lühemad, arvamuslikumad argumendid, mis neid seovad — vähem formaalsed, otsekohesemad.'}
+        cta={language === 'en' ? 'Browse writing' : 'Sirvi kirjutisi'}
+      />
     </>
   );
 }

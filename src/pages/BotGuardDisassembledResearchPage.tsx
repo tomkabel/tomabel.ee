@@ -1,8 +1,12 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import { Callout, CodeBlock } from '../components/site/article';
 
 type ReportSection = {
   heading: string;
   paragraphs: string[];
+  after?: ReactNode;
 };
 
 const title = "BotGuard, disassembled — reverse engineering Google's anti-fraud VM";
@@ -37,6 +41,25 @@ const sections: ReportSection[] = [
       'The instruction set mixes standard operations with custom ones. Identified opcodes include 328 (USHR) and 381 (ADD) for bitwise and arithmetic work, 65 (SETPROP) and 467 (GETPROP) for object property manipulation, 220 (IN) which checks for property existence, likely hunting for webdriver flags, and 289 (HALT). The VM context holds critical globals, and several opcodes read or write it directly.',
       'The more consequential piece is self-modifying code. The VM constructs an array of integers, Register 274, and maps them to string definitions. A LOADSTRING opcode generates new instructions on the fly, and an EVAL opcode, mapped as LOADOP, compiles them into executable logic. The code visible at the start of execution is not the code that runs at the end. This is why static analysis of a single snapshot understates the program: the instruction stream grows while it executes.',
     ],
+    after: (
+      <CodeBlock
+        title="BotGuard VM — opcode surface"
+        lang="disasm"
+        lines={[
+          '; opcode numbers drift between Google rebuilds',
+          '328  USHR             ; unsigned bit-shift',
+          '381  ADD              ; arithmetic',
+          '065  SETPROP          ; write property / scramble keys',
+          '467  GETPROP          ; read property',
+          '220  IN               ; property test — hunts for `webdriver`',
+          '289  HALT',
+          '',
+          '; self-modifying core: the stream rewrites itself',
+          'LOADSTRING  r274      ; materialize new instruction bytes',
+          'LOADOP      (EVAL)    ; compile them into live logic',
+        ]}
+      />
+    ),
   },
   {
     heading: 'The timing-based anti-debug diverts instead of crashing',
@@ -74,6 +97,17 @@ const sections: ReportSection[] = [
       'The mechanism matters less than what it proves. Google\u2019s server validates the token\u2019s integrity, not its origin. That was demonstrated in 2021 and documented in my repository; it has not been independently reproduced or re-verified against current builds. The token demonstrates that a browser passed the checks, not which browser, and not which user or context is holding it. The environment spoofing required to mint valid tokens is documented in the public repository: a hardened browser automation setup that masks the usual headless tells, lets BotGuard run its checks on a legitimate domain, and captures the token before the network call finishes.',
       'The reason the attack works is architectural, not cryptographic. The server never sees the machine that produced the token. It sees a claim written by that machine. The claim is accepted because there is no way to cryptographically verify it against the machine; at best it can be weighted against server-side heuristics.',
     ],
+    after: (
+      <Callout label="Finding — token portability">
+        <p>
+          A token minted in a compliant browser, captured before the minting request completes, is
+          accepted on a request from a different context. The server validates the token&rsquo;s{' '}
+          <span className="text-foreground">integrity</span>, not its{' '}
+          <span className="text-foreground">origin</span> — so it proves that <em>a</em> browser
+          passed the checks, never which browser, which user, or which context now holds it.
+        </p>
+      </Callout>
+    ),
   },
   {
     heading: 'PO tokens are the same pattern with more layers',
@@ -166,7 +200,10 @@ export default function BotGuardDisassembledResearchPage() {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
-          <div className="sticky top-24 border border-border bg-white/[0.02] p-5">
+          <div className="sticky top-24">
+            <ReaderRail sections={sections} backHref="/research" backLabel="All research" />
+          </div>
+          <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
               Thesis
             </p>
@@ -183,8 +220,9 @@ export default function BotGuardDisassembledResearchPage() {
             ))}
           </div>
 
-          {sections.map((section) => (
-            <section key={section.heading} className="mt-16 max-w-3xl">
+          {sections.map((section, i) => (
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
+              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -193,6 +231,7 @@ export default function BotGuardDisassembledResearchPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {section.after}
             </section>
           ))}
 
