@@ -4,11 +4,18 @@ import { projects, projectCategories, type Project } from '../content/site';
 
 type ProjectLink = { label: string; url: string };
 
+// A fallback link is only useful when href points at the project itself —
+// not an internal route or the bare GitHub profile (github.com/<user>).
+function isProjectUrl(href: string): boolean {
+  if (!/^https?:\/\//.test(href)) return false;
+  return !/^https?:\/\/github\.com\/[^/]+\/?$/.test(href);
+}
+
 function projectLinks(p: Project, isEn: boolean): ProjectLink[] {
   const links: ProjectLink[] = [];
   if (p.repo) links.push({ label: isEn ? 'Source' : 'Kood', url: p.repo });
   if (p.live) links.push({ label: isEn ? 'Live' : 'Vaata', url: p.live });
-  if (links.length === 0) {
+  if (links.length === 0 && isProjectUrl(p.href)) {
     links.push({ label: isEn ? 'View on GitHub' : 'Vaata GitHubis', url: p.href });
   }
   return links;
@@ -132,7 +139,7 @@ function ProjectCard({
       <div className="mt-auto flex flex-wrap gap-x-6 gap-y-2">
         {links.map((l) => (
           <a
-            key={l.url}
+            key={`${l.label}-${l.url}`}
             href={l.url}
             target="_blank"
             rel="noopener noreferrer"

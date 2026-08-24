@@ -6,7 +6,6 @@
         "code-review-graph",
         "serve"
       ],
-      "cwd": "/home/notroot/Documents/tomabel.ee",
       "type": "stdio"
     }
   }

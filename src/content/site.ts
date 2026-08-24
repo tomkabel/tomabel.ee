@@ -234,7 +234,7 @@ export const projects: Project[] = [
   // ── Offensive & Reverse Engineering ────────────────────────────────────────
   {
     name: 'google-botguard-security-research',
-    stack: 'Reverse Engineering · 105★',
+    stack: 'Reverse Engineering',
     category: 'offensive',
     tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
     stars: 105,
@@ -369,7 +369,7 @@ export const projects: Project[] = [
     tags: ['LLM', 'Writing', 'On-device'],
     blurb: {
       en: 'In-browser A/B tester that strips the tells of AI writing — filler, passive voice, formulaic structure — while keeping your voice. Runs GPT-4o-mini locally; no data leaves your device.',
-      et: 'Brausisisene A/B-tester, mis eemaldab AI-kirjutamise reetlikud märgid — täitesõnad, umbisikuline kõne, valemlik struktuur — säilitades sinu hääle. Töötab GPT-4o-mini peal kohapeal; andmed ei lahku su seadmest.',
+      et: 'Brauserisisene A/B-tester, mis eemaldab AI-kirjutamise reetlikud märgid — täitesõnad, umbisikuline kõne, valemlik struktuur — säilitades sinu hääle. Töötab GPT-4o-mini peal kohapeal; andmed ei lahku su seadmest.',
     },
     href: 'https://ai.tomabel.ee',
     live: 'https://ai.tomabel.ee',
