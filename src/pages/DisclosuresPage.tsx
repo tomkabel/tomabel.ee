@@ -42,14 +42,14 @@ export default function DisclosuresPage() {
 
       <div className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-6">
-          <div role="tablist" aria-label={language === 'en' ? 'Filter disclosures' : 'Filtreeri avalikustatud'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
+          <div role="group" aria-label={language === 'en' ? 'Filter disclosures' : 'Filtreeri avalikustatud'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
             {available.map((f) => {
               const active = filter === f.id;
               return (
                 <button
                   key={f.id}
-                  role="tab"
-                  aria-selected={active}
+                  type="button"
+                  aria-pressed={active}
                   onClick={() => setFilter(f.id)}
                   className={`font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
                     active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'

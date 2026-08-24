@@ -80,7 +80,7 @@ export default function SystemsPage() {
 
       <div className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-6">
-          <div role="tablist" aria-label={isEn ? 'Filter systems' : 'Filtreeri süsteeme'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
+          <div role="group" aria-label={isEn ? 'Filter systems' : 'Filtreeri süsteeme'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
             <FilterTab active={filter === 'all'} onClick={() => setFilter('all')}>
               {isEn ? 'All' : 'Kõik'}
             </FilterTab>
@@ -118,8 +118,8 @@ function FilterTab({
 }) {
   return (
     <button
-      role="tab"
-      aria-selected={active}
+      type="button"
+      aria-pressed={active}
       onClick={onClick}
       className={`font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
         active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
