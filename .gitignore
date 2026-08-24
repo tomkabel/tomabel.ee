@@ -52,3 +52,5 @@ lenis/
 openspec/
 tomabel/
 drafts/
+# Added by code-review-graph
+.code-review-graph/
