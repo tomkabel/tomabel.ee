@@ -1,5 +1,6 @@
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
+import PgpCard from '../components/site/pgp-card';
 import { bio, site } from '../content/site';
 
 export default function AboutPage() {
@@ -49,6 +50,11 @@ export default function AboutPage() {
               <a href={site.contact.email} className="text-foreground hover:text-accent">
                 Email
               </a>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">PGP</h3>
+              <PgpCard />
             </div>
           </div>
         </div>

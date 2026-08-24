@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { LanguageProvider, useTranslation } from './i18n';
 import SiteNav from './components/site/nav';
 import SiteFooter from './components/site/footer';
@@ -11,9 +11,8 @@ import NotFound from './components/NotFound';
 import Cookies from './components/Cookies';
 import Seo from './components/Seo';
 
-const ResearchPage = React.lazy(() => import('./pages/ResearchPage'));
-const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
-const WritingPage = React.lazy(() => import('./pages/WritingPage'));
+const DisclosuresPage = React.lazy(() => import('./pages/DisclosuresPage'));
+const SystemsPage = React.lazy(() => import('./pages/SystemsPage'));
 const AuthenticationEssayPage = React.lazy(() => import('./pages/AuthenticationEssayPage'));
 const WhatClientSideTrustIsActuallyWorthPage = React.lazy(() => import('./pages/WhatClientSideTrustIsActuallyWorthPage'));
 const KrattProblemPage = React.lazy(() => import('./pages/KrattProblemPage'));
@@ -22,6 +21,13 @@ const BotGuardDisassembledResearchPage = React.lazy(() => import('./pages/BotGua
 const SmartIdAchillesHeelResearchPage = React.lazy(() => import('./pages/SmartIdAchillesHeelResearchPage'));
 const ZeroTrustOctagonResearchPage = React.lazy(() => import('./pages/ZeroTrustOctagonResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+
+// Old /research/<slug> and /writing/<slug> deep links now live under
+// /disclosures/<slug> (slug unchanged). Preserve the leaf, swap the parent.
+function LegacyDisclosureRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={slug ? `/disclosures/${slug}` : '/disclosures'} replace />;
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -93,17 +99,24 @@ function App() {
           <SkipLink />
           <Routes>
             <Route path="/" element={<Layout><HomePage /></Layout>} />
-            <Route path="/research" element={<Layout><Lazy><ResearchPage /></Lazy></Layout>} />
-            <Route path="/projects" element={<Layout><Lazy><ProjectsPage /></Lazy></Layout>} />
-            <Route path="/writing" element={<Layout><Lazy><WritingPage /></Lazy></Layout>} />
-            <Route path="/writing/i-used-to-break-authentication" element={<Layout><Lazy><AuthenticationEssayPage /></Lazy></Layout>} />
-            <Route path="/writing/what-client-side-trust-is-actually-worth" element={<Layout><Lazy><WhatClientSideTrustIsActuallyWorthPage /></Lazy></Layout>} />
-            <Route path="/writing/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
-            <Route path="/writing/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
-            <Route path="/research/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
-            <Route path="/research/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
-            <Route path="/research/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures" element={<Layout><Lazy><DisclosuresPage /></Lazy></Layout>} />
+            <Route path="/systems" element={<Layout><Lazy><SystemsPage /></Lazy></Layout>} />
+            <Route path="/disclosures/i-used-to-break-authentication" element={<Layout><Lazy><AuthenticationEssayPage /></Lazy></Layout>} />
+            <Route path="/disclosures/what-client-side-trust-is-actually-worth" element={<Layout><Lazy><WhatClientSideTrustIsActuallyWorthPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
+            <Route path="/disclosures/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
+            <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
+
+            {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
+                301s live in public/_redirects for hosts that honor it. */}
+            <Route path="/research" element={<Navigate to="/disclosures" replace />} />
+            <Route path="/writing" element={<Navigate to="/disclosures" replace />} />
+            <Route path="/projects" element={<Navigate to="/systems" replace />} />
+            <Route path="/research/:slug" element={<LegacyDisclosureRedirect />} />
+            <Route path="/writing/:slug" element={<LegacyDisclosureRedirect />} />
             <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
             <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />
             <Route path="/disclosure" element={<Layout><Disclosure /></Layout>} />

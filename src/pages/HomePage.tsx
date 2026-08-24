@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../i18n/LanguageContext';
 import WorkCard from '../components/site/work-card';
-import { featuredWork, site, essays } from '../content/site';
+import { featuredWork, site, disclosures } from '../content/site';
+
+// The homepage essay teaser pulls from the same unified disclosures source,
+// filtered to the essay kind — no parallel essays array to drift.
+const essays = disclosures.filter((d) => d.kind === 'essay');
 
 export default function HomePage() {
   const { language } = useTranslation();
@@ -25,14 +29,14 @@ export default function HomePage() {
           </p>
           <div className="rise-in mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 font-mono text-xs uppercase tracking-widest" style={{ animationDelay: '260ms' }}>
             <Link
-              to="/research"
+              to="/disclosures"
               className="group inline-flex items-center gap-2 text-accent hover:underline"
             >
               {language === 'en' ? 'Read the research' : 'Loe uuringuid'}{' '}
               <span className="arrow-shift">→</span>
             </Link>
             <Link
-              to="/projects"
+              to="/systems"
               className="group inline-flex items-center gap-2 text-foreground hover:text-accent"
             >
               {language === 'en' ? 'What I build' : 'Mida ma ehitan'}{' '}
@@ -95,10 +99,10 @@ export default function HomePage() {
                   : 'Läbivad jooned, mis seovad uuringuid, ja argumendid, mida tahan avalikult esitada.'}
               </p>
               <Link
-                to="/writing"
+                to="/disclosures"
                 className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
               >
-                {language === 'en' ? 'Browse writing' : 'Sirvi kirjutisi'} →
+                {language === 'en' ? 'Browse disclosures' : 'Sirvi avalikustatut'} →
               </Link>
             </div>
             <div className="lg:col-span-8">
@@ -147,7 +151,7 @@ function HomeEssayRowContent({
       </h3>
       {/* Metadata sits directly under the title, not pinned across a void. */}
       <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-        {essay.meta[language]}
+        {essay.meta?.[language]}
       </span>
     </>
   );

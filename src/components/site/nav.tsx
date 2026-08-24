@@ -4,9 +4,8 @@ import { useTranslation } from '../../i18n/LanguageContext';
 import { Globe } from 'lucide-react';
 
 const links = [
-  { to: '/research', label: { en: 'Research', et: 'Uuringud' } },
-  { to: '/projects', label: { en: 'Projects', et: 'Projektid' } },
-  { to: '/writing', label: { en: 'Writing', et: 'Kirjutised' } },
+  { to: '/disclosures', label: { en: 'Disclosures', et: 'Avalikustatud' } },
+  { to: '/systems', label: { en: 'Systems', et: 'Süsteemid' } },
   { to: '/about', label: { en: 'About', et: 'Minust' } },
 ] as const;
 

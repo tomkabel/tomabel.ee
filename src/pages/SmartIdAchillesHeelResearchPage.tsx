@@ -159,12 +159,12 @@ const sources = [
   },
   {
     label: 'Companion essay: Coordinated disclosure in a small country',
-    url: 'https://tomabel.ee/writing/coordinated-disclosure-in-a-small-country/',
+    url: 'https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/',
     note: 'what national-infrastructure disclosure looks like in Estonia',
   },
   {
     label: 'Companion essay: What client-side trust is actually worth',
-    url: 'https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/',
+    url: 'https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/',
     note: 'the argument this report\u2019s evidence supports',
   },
 ];
@@ -184,10 +184,10 @@ export default function SmartIdAchillesHeelResearchPage() {
         <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
         <div className="relative mx-auto max-w-4xl">
           <Link
-            to="/research"
+            to="/disclosures"
             className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
           >
-            ← Back to research
+            ← Back to disclosures
           </Link>
           <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Research · Disclosed Research · Smart-ID
@@ -209,7 +209,7 @@ export default function SmartIdAchillesHeelResearchPage() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
-            <ReaderRail sections={sections} backHref="/research" backLabel="All research" />
+            <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
           <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">

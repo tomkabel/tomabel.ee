@@ -65,10 +65,10 @@ export default function KrattProblemPage() {
         <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
         <div className="relative mx-auto max-w-4xl">
           <Link
-            to="/writing"
+            to="/disclosures"
             className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
           >
-            ← Back to writing
+            ← Back to disclosures
           </Link>
           <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Essay · Ethics · Offensive Security
@@ -90,7 +90,7 @@ export default function KrattProblemPage() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
-            <ReaderRail sections={sections} backHref="/writing" backLabel="All essays" />
+            <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
           <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">

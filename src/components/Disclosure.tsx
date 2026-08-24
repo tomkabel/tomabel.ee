@@ -1,4 +1,5 @@
 import { useTranslation } from '../i18n';
+import PgpCard from './site/pgp-card';
 
 export default function Disclosure() {
   const { t } = useTranslation();
@@ -106,14 +107,7 @@ export default function Disclosure() {
 
           <section className="mb-8">
             <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.pgp.title}</h2>
-            <div className="bg-surface p-4 border border-border text-muted space-y-2">
-              <p>
-                <a href="/public-key.asc" className="text-accent hover:underline">{t.disclosure.pgp.download}</a>
-              </p>
-              <p><strong className="text-accent">{t.disclosure.pgp.keyId}:</strong> 0x30A8306F110AAAC5</p>
-              <p><strong className="text-accent">{t.disclosure.pgp.fingerprint}:</strong> 03D8E5A59306ECB7025A21090CA0C6F110AAAC500</p>
-              <p><strong className="text-accent">{t.disclosure.pgp.sha256}:</strong> a63667ca9b1729e02b24c19cf2441953b76b934417a17b042fd1eeab68d8530a</p>
-            </div>
+            <PgpCard />
           </section>
 
           <section className="mb-8">

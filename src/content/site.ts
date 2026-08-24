@@ -34,7 +34,6 @@ export const site = {
     github: 'https://github.com/tomkabel',
     linkedin: 'https://www.linkedin.com/in/hr-abel',
     email: 'mailto:tom@tomabel.ee',
-    rss: '/writing.xml',
   },
   disclaimer: {
     en: 'ProksiAbel OÜ maintains strict client confidentiality. I, personally, am publicly accountable for my research and opinions.',
@@ -71,7 +70,7 @@ export const featuredWork: FeaturedWork[] = [
       et: "Google'i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
     },
     tags: ['Reverse Engineering', 'Anti-Fraud VM'],
-    href: '/research',
+    href: '/disclosures/botguard-disassembled',
     cta: { en: 'Read', et: 'Loe' },
   },
   {
@@ -85,7 +84,7 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta, koordineeritud avalikustamisega RIA-le ja CERT-EE-le.',
     },
     tags: ['eIDAS', 'Coordinated Disclosure'],
-    href: '/research',
+    href: '/disclosures/smart-id-achilles-heel',
     cta: { en: 'Read', et: 'Loe' },
   },
   {
@@ -99,8 +98,8 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Tootmisvalmis Go TLS-sõrmejäljeproksi. 65+ brauseriprofiili, JA3/JA4, MITM tugi, puhas API.',
     },
     tags: ['Go', 'TLS / JA4'],
-    href: '/projects',
-    cta: { en: 'View on GitHub', et: 'Vaata GitHubis' },
+    href: '/systems',
+    cta: { en: 'View systems', et: 'Vaata süsteeme' },
   },
   {
     impact: { en: 'Open framework', et: 'Avatud raamistik' },
@@ -113,27 +112,32 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Null-usalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
     },
     tags: ['Architecture', 'Zero Trust'],
-    href: '/research',
+    href: '/disclosures/zero-trust-octagon',
     cta: { en: 'Read', et: 'Loe' },
   },
 ];
 
-// ─── Research entries ────────────────────────────────────────────────────────
+// ─── Disclosures (unified research + essays index) ───────────────────────────
 
-export type ResearchEntry = {
-  code: string;
+// One editorial surface. `kind` drives the filter tabs on /disclosures; `type`
+// is the human-facing label shown on each row. Slugs live under /disclosures/.
+export type DisclosureKind = 'disclosure' | 'teardown' | 'essay' | 'framework';
+
+export type Disclosure = {
+  kind: DisclosureKind;
   title: { en: string; et: string };
   blurb: { en: string; et: string };
-  keywords?: string;
-  meta?: { en: string; et: string };
   type: { en: string; et: string };
-  // Detail page route, e.g. '/research/botguard-disassembled'. Absent = queued.
+  meta?: { en: string; et: string };
+  tags?: string[];
+  keywords?: string;
+  // Detail page route, e.g. '/disclosures/botguard-disassembled'. Absent = queued.
   href?: string;
 };
 
-export const researchEntries: ResearchEntry[] = [
+export const disclosures: Disclosure[] = [
   {
-    code: 'R-01',
+    kind: 'teardown',
     title: {
       en: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
       et: "BotGuard, lahti võetud — Google'i pettusevastase VM-i pöördprojekteerimine",
@@ -142,16 +146,17 @@ export const researchEntries: ResearchEntry[] = [
       en: "A deep, opcode-level teardown of Google's BotGuard: the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness. Builds on Cypa's VM analysis and LuanRT's PO-token research. If you've ever wondered what \"client-side trust\" is really worth, start here.",
       et: "Põhjalik opkooditasemel analüüs Google'i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
     },
+    tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
     keywords: 'browser automation, CDP, VM analysis, anti-fraud, client-side security',
-    type: { en: 'Technical Teardown', et: 'Tehniline Analüüs' },
+    type: { en: 'Technical Teardown', et: 'Tehniline analüüs' },
     meta: {
       en: 'Published · 13 min read',
       et: 'Avaldatud · 13 min lugemist',
     },
-    href: '/research/botguard-disassembled',
+    href: '/disclosures/botguard-disassembled',
   },
   {
-    code: 'R-02',
+    kind: 'disclosure',
     title: {
       en: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
       et: 'Eesti e-riigi Achilleuse kand — Smart-ID / eID uuringud',
@@ -160,16 +165,17 @@ export const researchEntries: ResearchEntry[] = [
       en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to the vendor before publication. Names the gaps; proposes the fixes.",
       et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
     },
+    tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     keywords: 'Smart-ID, eID, phishing, vishing, signing relay, BITB, Estonia, eIDAS',
-    type: { en: 'Disclosed Research', et: 'Avalikustatud Uuring' },
+    type: { en: 'Disclosed Research', et: 'Avalikustatud uuring' },
     meta: {
       en: 'Published · 14 min read',
       et: 'Avaldatud · 14 min lugemist',
     },
-    href: '/research/smart-id-achilles-heel',
+    href: '/disclosures/smart-id-achilles-heel',
   },
   {
-    code: 'R-03',
+    kind: 'framework',
     title: {
       en: 'Zero-Trust Octagon — a framework from first principles',
       et: 'Zero-Trust Octagon — raamistik esimestest põhimõtetest',
@@ -178,15 +184,84 @@ export const researchEntries: ResearchEntry[] = [
       en: "Most \"zero trust\" is a vendor checklist. This is the opposite: 8 axioms, a 9-dimension morphological matrix for reasoning about any architecture, and archetypal breach walkthroughs that show where designs actually fail. Written to be argued with.",
       et: "Enamik \"null-usaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
     },
+    tags: ['Architecture', 'Zero Trust', 'NIST 800-207'],
     meta: {
       en: 'Published · 19 min read',
       et: 'Avaldatud · 19 min lugemist',
     },
     type: { en: 'Framework', et: 'Raamistik' },
-    href: '/research/zero-trust-octagon',
+    href: '/disclosures/zero-trust-octagon',
   },
   {
-    code: 'R-04',
+    kind: 'essay',
+    title: {
+      en: "I used to break authentication. Here's what that taught me about building it.",
+      et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
+    },
+    blurb: {
+      en: 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the arms race looks like from both sides.',
+      et: 'Lõputöö essee kõigele muule sellel saidil: miks ründe mõistmine on usaldusväärse kaitse eeltingimus ja milline näeb võidurelvastumine välja mõlemalt poolt.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 10 min read',
+      et: 'Avaldatud · 10 min lugemist',
+    },
+    href: '/disclosures/i-used-to-break-authentication',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'What client-side trust is actually worth',
+      et: 'Mida kliendipoolne usaldus tegelikult väärt on',
+    },
+    blurb: {
+      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
+      et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
+    },
+    href: '/disclosures/what-client-side-trust-is-actually-worth',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'The kratt problem',
+      et: 'Krati probleem',
+    },
+    blurb: {
+      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
+      et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 4 min read',
+      et: 'Avaldatud · 4 min lugemist',
+    },
+    href: '/disclosures/the-kratt-problem',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'Coordinated disclosure in a small country',
+      et: 'Koordineeritud avalikustamine väikeses riigis',
+    },
+    blurb: {
+      en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
+      et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
+    },
+    href: '/disclosures/coordinated-disclosure-in-a-small-country',
+  },
+  {
+    kind: 'essay',
     title: {
       en: 'The evolution of cyber fraud in Estonia, 2010–2026',
       et: 'Küberpettuste areng Eestis, 2010–2026',
@@ -454,78 +529,6 @@ export const projects: Project[] = [
     },
     href: 'https://github.com/tomkabel/tartu-progeksam-2025',
     repo: 'https://github.com/tomkabel/tartu-progeksam-2025',
-  },
-];
-
-// ─── Essays ──────────────────────────────────────────────────────────────────
-
-export type Essay = {
-  title: { en: string; et: string };
-  blurb: { en: string; et: string };
-  href?: string;
-  meta: { en: string; et: string };
-};
-
-export const essays: Essay[] = [
-  {
-    title: {
-      en: "I used to break authentication. Here's what that taught me about building it.",
-      et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
-    },
-    blurb: {
-      en: 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the arms race looks like from both sides.',
-      et: 'Lõputöö essee kõigele muule sellel saidil: miks ründe mõistmine on usaldusväärse kaitse eeltingimus ja milline näeb võidurelvastumine välja mõlemalt poolt.',
-    },
-    href: '/writing/i-used-to-break-authentication',
-    meta: {
-      en: 'Published · 10 min read',
-      et: 'Avaldatud · 10 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'What client-side trust is actually worth',
-      et: 'Mida kliendipoolne usaldus tegelikult väärt on',
-    },
-    blurb: {
-      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
-      et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
-    },
-    href: '/writing/what-client-side-trust-is-actually-worth',
-    meta: {
-      en: 'Published · 6 min read',
-      et: 'Avaldatud · 6 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'The kratt problem',
-      et: 'Krati probleem',
-    },
-    blurb: {
-      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
-      et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
-    },
-    href: '/writing/the-kratt-problem',
-    meta: {
-      en: 'Published · 4 min read',
-      et: 'Avaldatud · 4 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'Coordinated disclosure in a small country',
-      et: 'Koordineeritud avalikustamine väikeses riigis',
-    },
-    blurb: {
-      en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
-      et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
-    },
-    href: '/writing/coordinated-disclosure-in-a-small-country',
-    meta: {
-      en: 'Published · 6 min read',
-      et: 'Avaldatud · 6 min lugemist',
-    },
   },
 ];
 
