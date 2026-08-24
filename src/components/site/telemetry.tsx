@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { useTranslation } from '../../i18n/LanguageContext';
 
@@ -12,6 +12,12 @@ type Connection = {
   tls?: { version?: string; alpn?: string; negotiated?: string };
 };
 
+// The endpoint is Tom's own, but the response is still untrusted input: never
+// hand a non-object (or null) to Fields, which reads nested keys off it.
+function isConnection(v: unknown): v is Connection {
+  return typeof v === 'object' && v !== null;
+}
+
 type State =
   | { kind: 'loading' }
   | { kind: 'live'; data: Connection }
@@ -22,6 +28,7 @@ type State =
 export default function Telemetry({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useTranslation();
   const [state, setState] = useState<State>({ kind: 'loading' });
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -31,7 +38,8 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
       try {
         const res = await fetch(ENDPOINT, { signal: controller.signal, cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data: Connection = await res.json();
+        const data: unknown = await res.json();
+        if (!isConnection(data)) throw new Error('malformed payload');
         setState({ kind: 'live', data });
       } catch {
         if (!controller.signal.aborted) setState({ kind: 'unavailable' });
@@ -40,13 +48,46 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
     return () => controller.abort();
   }, [open]);
 
+  // Focus management: on open, remember what was focused (the nav trigger),
+  // move focus into the panel, trap Tab/Shift+Tab within it, and restore focus
+  // to the trigger on close.
   useEffect(() => {
     if (!open) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const panel = panelRef.current;
+    panel?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !panel) return;
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) {
+        e.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = focusable[0]!;
+      const last = focusable[focusable.length - 1]!;
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || active === panel)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      trigger?.focus();
+    };
   }, [open, onClose]);
 
   if (!open) return null;
@@ -58,7 +99,11 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
         onClick={onClose}
         aria-hidden
       />
-      <div className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col border-l border-border-strong bg-surface shadow-elevated">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col border-l border-border-strong bg-surface shadow-elevated outline-none"
+      >
         <div className="flex items-start justify-between border-b border-border px-6 py-5">
           <div>
             <h2 className="font-display text-lg font-bold text-foreground">{t.telemetry.title}</h2>
