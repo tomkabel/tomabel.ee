@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ArticleProof from '../components/site/article-proof';
 import { Callout, CodeBlock } from '../components/site/article';
 
 type ReportSection = {
@@ -274,6 +275,11 @@ export default function BotGuardDisassembledResearchPage() {
           </section>
         </div>
       </div>
+
+      <ArticleProof
+        slug="botguard-disassembled"
+        expectedSha256="7f3dc326faa743b252c2da0bc320b6b4732f8b0e5dba52fefe40a054d6e5467d"
+      />
     </article>
   );
 }

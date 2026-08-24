@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ArticleProof from '../components/site/article-proof';
 import { ProtocolTable, PullQuote } from '../components/site/article';
 
 type ReportSection = {
@@ -283,6 +284,11 @@ export default function SmartIdAchillesHeelResearchPage() {
           </section>
         </div>
       </div>
+
+      <ArticleProof
+        slug="smart-id-achilles-heel"
+        expectedSha256="dabcc2ad8c28871f3bdd64df1f01598bd7ed8369545c7d3cd531fa1f548a5f8f"
+      />
     </article>
   );
 }

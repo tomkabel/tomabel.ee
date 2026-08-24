@@ -26,6 +26,7 @@ export default {
         accent: '#34D399',
         'accent-foreground': '#04130D',
         warning: '#F5B544',
+        danger: '#F87171', // integrity-mismatch / destructive signal only
       },
       boxShadow: {
         // Specular top highlight + diffused depth, tuned for dark surfaces.

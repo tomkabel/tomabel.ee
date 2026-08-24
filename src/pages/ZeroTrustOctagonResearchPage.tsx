@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ArticleProof from '../components/site/article-proof';
 
 type ReportSection = {
   heading: string;
@@ -298,6 +299,11 @@ export default function ZeroTrustOctagonResearchPage() {
           </section>
         </div>
       </div>
+
+      <ArticleProof
+        slug="zero-trust-octagon"
+        expectedSha256="48b2a50eeeb2b5efee6a351f7eecbcbe9fc6774deb327c838480561c7946961c"
+      />
     </article>
   );
 }
