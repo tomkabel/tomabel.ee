@@ -6,18 +6,17 @@ Based in Estonia. Writes in English and Estonian. Research focuses on identity p
 
 ## Pages
 
-- [Home](https://tomabel.ee/): Hero, featured research and projects, recent essays.
-- [Research](https://tomabel.ee/research/): Long-form technical research.
-  - [BotGuard, disassembled — reverse engineering Google's anti-fraud VM](https://tomabel.ee/research/botguard-disassembled/): an opcode-level teardown of the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness.
-  - [The Achilles' heel of Estonia's e-state — Smart-ID / eID research](https://tomabel.ee/research/smart-id-achilles-heel/): why the protocol resists MITM and endpoint attacks by design, how the approval layer fails instead, and the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows. Disclosed to the vendor before publication.
-  - Zero-Trust Octagon — a framework from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.
+- [Home](https://tomabel.ee/): Hero, featured research and systems, recent essays.
+- [Disclosures](https://tomabel.ee/disclosures/): Research, teardowns, frameworks, and essays in one index (client-side filter tabs).
+  - [BotGuard, disassembled — reverse engineering Google's anti-fraud VM](https://tomabel.ee/disclosures/botguard-disassembled/): an opcode-level teardown of the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness.
+  - [The Achilles' heel of Estonia's e-state — Smart-ID / eID research](https://tomabel.ee/disclosures/smart-id-achilles-heel/): why the protocol resists MITM and endpoint attacks by design, how the approval layer fails instead, and the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows. Disclosed to the vendor before publication.
+  - [Zero-Trust Octagon — a framework from first principles](https://tomabel.ee/disclosures/zero-trust-octagon/): 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.
   - The evolution of cyber fraud in Estonia, 2010–2026: an 80-page, heavily cited history of phishing, vishing, and fraud in one of the world's most digitized states.
-- [Projects](https://tomabel.ee/projects/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
-- [Writing](https://tomabel.ee/writing/): Essays.
-  - [I used to break authentication. Here's what that taught me about building it.](https://tomabel.ee/writing/i-used-to-break-authentication/): the thesis essay — why understanding offense is a prerequisite for credible defense.
-  - [What client-side trust is actually worth](https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/): the BotGuard teardown as a case study for why any defense running on a machine you don't control is a claim, not a proof — and what to build instead.
-  - [The kratt problem](https://tomabel.ee/writing/the-kratt-problem/): offensive capability as Estonian folklore — a servant that works tirelessly while pointed and turns on its maker when idle; ethics as a pointing problem.
-  - [Coordinated disclosure in a small country](https://tomabel.ee/writing/coordinated-disclosure-in-a-small-country/): what national-infrastructure disclosure looks like in Estonia, where everyone knows each other — the legal exposure, the incentives, and why owning your story in public is the protection that scales.
+  - [I used to break authentication. Here's what that taught me about building it.](https://tomabel.ee/disclosures/i-used-to-break-authentication/): the thesis essay — why understanding offense is a prerequisite for credible defense.
+  - [What client-side trust is actually worth](https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/): the BotGuard teardown as a case study for why any defense running on a machine you don't control is a claim, not a proof — and what to build instead.
+  - [The kratt problem](https://tomabel.ee/disclosures/the-kratt-problem/): offensive capability as Estonian folklore — a servant that works tirelessly while pointed and turns on its maker when idle; ethics as a pointing problem.
+  - [Coordinated disclosure in a small country](https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/): what national-infrastructure disclosure looks like in Estonia, where everyone knows each other — the legal exposure, the incentives, and why owning your story in public is the protection that scales.
+- [Systems](https://tomabel.ee/systems/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
 - [About](https://tomabel.ee/about/): Bio, philosophy, and the kratt metaphor.
 - [Privacy Policy](https://tomabel.ee/privacy/), [Terms of Service](https://tomabel.ee/terms/), [Cookie Policy](https://tomabel.ee/cookies/), [Security Research Policy](https://tomabel.ee/disclosure/)
 

@@ -1,0 +1,8 @@
+Zero-Trust Octagon — a framework from first principles
+Author: Tom Kristian Abel
+Canonical URL: https://tomabel.ee/disclosures/zero-trust-octagon/
+
+NOTE: This is a canonical-text placeholder pending the final export of the
+article body. The integrity mechanism (WebCrypto SHA-256 vs. the hash committed
+to source) is live; the detached PGP signature (.asc) is pending. See README.md
+in this directory for the maintenance and signing procedure.
