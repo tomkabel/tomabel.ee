@@ -7,6 +7,21 @@ export const translations = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
     },
+    telemetry: {
+      open: 'Connection',
+      title: 'Your connection',
+      subtitle: 'Read passively from your TLS handshake.',
+      close: 'Close',
+      loading: 'Reading handshake…',
+      ja4: 'JA4',
+      tlsVersion: 'TLS version',
+      alpn: 'ALPN',
+      cipher: 'Negotiated cipher',
+      geo: 'Origin',
+      unavailable: 'Collector unreachable.',
+      footer:
+        'Passively read from your TLS handshake by Proksimity (ProksiAbel OÜ). No payloads, no personal data stored.',
+    },
     disclosure: {
       version: 'Version',
       published: 'Published',
@@ -301,6 +316,21 @@ export const translations = {
     nav: {
       openMenu: 'Ava menüü',
       closeMenu: 'Sulge menüü',
+    },
+    telemetry: {
+      open: 'Ühendus',
+      title: 'Sinu ühendus',
+      subtitle: 'Loetud passiivselt sinu TLS-käepigistusest.',
+      close: 'Sulge',
+      loading: 'Loen käepigistust…',
+      ja4: 'JA4',
+      tlsVersion: 'TLS-i versioon',
+      alpn: 'ALPN',
+      cipher: 'Kokkulepitud šiffer',
+      geo: 'Päritolu',
+      unavailable: 'Koguja pole kättesaadav.',
+      footer:
+        'Loetud passiivselt sinu TLS-käepigistusest Proksimity (ProksiAbel OÜ) poolt. Sisu ei loeta, isikuandmeid ei salvestata.',
     },
     disclosure: {
       version: 'Versioon',

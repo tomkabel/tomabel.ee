@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from '../../i18n/LanguageContext';
-import { Globe } from 'lucide-react';
+import { Globe, Activity } from 'lucide-react';
+import Telemetry from './telemetry';
 
 const links = [
   { to: '/disclosures', label: { en: 'Disclosures', et: 'Avalikustatud' } },
@@ -13,6 +14,7 @@ export default function SiteNav() {
   const location = useLocation();
   const { language, setLanguage, t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
+  const [telemetryOpen, setTelemetryOpen] = React.useState(false);
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -50,6 +52,15 @@ export default function SiteNav() {
               );
             })}
           </div>
+
+          <button
+            onClick={() => setTelemetryOpen(true)}
+            className="text-muted-foreground transition-colors hover:text-accent"
+            aria-label={t.telemetry.open}
+            title={t.telemetry.open}
+          >
+            <Activity className="size-3.5" />
+          </button>
 
           <button
             onClick={() => setLanguage(language === 'en' ? 'et' : 'en')}
@@ -107,6 +118,8 @@ export default function SiteNav() {
           </div>
         </div>
       )}
+
+      <Telemetry open={telemetryOpen} onClose={() => setTelemetryOpen(false)} />
     </nav>
   );
 }
