@@ -34,7 +34,6 @@ export const site = {
     github: 'https://github.com/tomkabel',
     linkedin: 'https://www.linkedin.com/in/hr-abel',
     email: 'mailto:tom@tomabel.ee',
-    rss: '/writing.xml',
   },
   disclaimer: {
     en: 'ProksiAbel OÜ maintains strict client confidentiality. I, personally, am publicly accountable for my research and opinions.',
@@ -42,14 +41,16 @@ export const site = {
   },
   languages: {
     en: 'Estonia-based. I write in English and Estonian.',
-    et: 'Eestis baseeruv. Kirjutan inglise ja eesti keeles.',
+    et: 'Asun Eestis. Kirjutan inglise ja eesti keeles.',
   },
 };
 
 // ─── Featured work (homepage cards) ──────────────────────────────────────────
 
 export type FeaturedWork = {
-  code: string;
+  // A system-impact badge (real proper nouns / posture), not a ticket code —
+  // it tells a client or peer what the work touched, not an invented ID.
+  impact: { en: string; et: string };
   title: { en: string; et: string };
   blurb: { en: string; et: string };
   tags: string[];
@@ -59,7 +60,7 @@ export type FeaturedWork = {
 
 export const featuredWork: FeaturedWork[] = [
   {
-    code: 'REV-ENG-01',
+    impact: { en: "Google's anti-fraud VM", et: "Google'i pettusevastane VM" },
     title: {
       en: 'BotGuard, disassembled',
       et: 'BotGuard, lahti võetud',
@@ -69,11 +70,11 @@ export const featuredWork: FeaturedWork[] = [
       et: "Google'i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
     },
     tags: ['Reverse Engineering', 'Anti-Fraud VM'],
-    href: '/research',
+    href: '/disclosures/botguard-disassembled',
     cta: { en: 'Read', et: 'Loe' },
   },
   {
-    code: 'ID-EID-02',
+    impact: { en: 'Disclosed · RIA / CERT-EE', et: 'Avalikustatud · RIA / CERT-EE' },
     title: {
       en: 'Smart-ID / eID research',
       et: 'Smart-ID / eID uuringud',
@@ -83,11 +84,11 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta, koordineeritud avalikustamisega RIA-le ja CERT-EE-le.',
     },
     tags: ['eIDAS', 'Coordinated Disclosure'],
-    href: '/research',
+    href: '/disclosures/smart-id-achilles-heel',
     cta: { en: 'Read', et: 'Loe' },
   },
   {
-    code: 'TOOL-03',
+    impact: { en: 'Open source · Go', et: 'Avatud lähtekood · Go' },
     title: {
       en: 'fingerprintproxy',
       et: 'fingerprintproxy',
@@ -97,11 +98,11 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Tootmisvalmis Go TLS-sõrmejäljeproksi. 65+ brauseriprofiili, JA3/JA4, MITM tugi, puhas API.',
     },
     tags: ['Go', 'TLS / JA4'],
-    href: '/projects',
-    cta: { en: 'View on GitHub', et: 'Vaata GitHubis' },
+    href: '/systems',
+    cta: { en: 'View systems', et: 'Vaata süsteeme' },
   },
   {
-    code: 'ARCH-04',
+    impact: { en: 'Open framework', et: 'Avatud raamistik' },
     title: {
       en: 'Zero-Trust Octagon',
       et: 'Zero-Trust Octagon',
@@ -111,27 +112,32 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Null-usalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
     },
     tags: ['Architecture', 'Zero Trust'],
-    href: '/research',
+    href: '/disclosures/zero-trust-octagon',
     cta: { en: 'Read', et: 'Loe' },
   },
 ];
 
-// ─── Research entries ────────────────────────────────────────────────────────
+// ─── Disclosures (unified research + essays index) ───────────────────────────
 
-export type ResearchEntry = {
-  code: string;
+// One editorial surface. `kind` drives the filter tabs on /disclosures; `type`
+// is the human-facing label shown on each row. Slugs live under /disclosures/.
+export type DisclosureKind = 'disclosure' | 'teardown' | 'essay' | 'framework';
+
+export type Disclosure = {
+  kind: DisclosureKind;
   title: { en: string; et: string };
   blurb: { en: string; et: string };
-  keywords?: string;
-  meta?: { en: string; et: string };
   type: { en: string; et: string };
-  // Detail page route, e.g. '/research/botguard-disassembled'. Absent = queued.
+  meta?: { en: string; et: string };
+  tags?: string[];
+  keywords?: string;
+  // Detail page route, e.g. '/disclosures/botguard-disassembled'. Absent = queued.
   href?: string;
 };
 
-export const researchEntries: ResearchEntry[] = [
+export const disclosures: Disclosure[] = [
   {
-    code: 'R-01',
+    kind: 'teardown',
     title: {
       en: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
       et: "BotGuard, lahti võetud — Google'i pettusevastase VM-i pöördprojekteerimine",
@@ -140,16 +146,17 @@ export const researchEntries: ResearchEntry[] = [
       en: "A deep, opcode-level teardown of Google's BotGuard: the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness. Builds on Cypa's VM analysis and LuanRT's PO-token research. If you've ever wondered what \"client-side trust\" is really worth, start here.",
       et: "Põhjalik opkooditasemel analüüs Google'i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
     },
+    tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
     keywords: 'browser automation, CDP, VM analysis, anti-fraud, client-side security',
-    type: { en: 'Technical Teardown', et: 'Tehniline Analüüs' },
+    type: { en: 'Technical Teardown', et: 'Tehniline analüüs' },
     meta: {
       en: 'Published · 13 min read',
       et: 'Avaldatud · 13 min lugemist',
     },
-    href: '/research/botguard-disassembled',
+    href: '/disclosures/botguard-disassembled',
   },
   {
-    code: 'R-02',
+    kind: 'disclosure',
     title: {
       en: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
       et: 'Eesti e-riigi Achilleuse kand — Smart-ID / eID uuringud',
@@ -158,16 +165,17 @@ export const researchEntries: ResearchEntry[] = [
       en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to the vendor before publication. Names the gaps; proposes the fixes.",
       et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
     },
+    tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     keywords: 'Smart-ID, eID, phishing, vishing, signing relay, BITB, Estonia, eIDAS',
-    type: { en: 'Disclosed Research', et: 'Avalikustatud Uuring' },
+    type: { en: 'Disclosed Research', et: 'Avalikustatud uuring' },
     meta: {
       en: 'Published · 14 min read',
       et: 'Avaldatud · 14 min lugemist',
     },
-    href: '/research/smart-id-achilles-heel',
+    href: '/disclosures/smart-id-achilles-heel',
   },
   {
-    code: 'R-03',
+    kind: 'framework',
     title: {
       en: 'Zero-Trust Octagon — a framework from first principles',
       et: 'Zero-Trust Octagon — raamistik esimestest põhimõtetest',
@@ -176,15 +184,84 @@ export const researchEntries: ResearchEntry[] = [
       en: "Most \"zero trust\" is a vendor checklist. This is the opposite: 8 axioms, a 9-dimension morphological matrix for reasoning about any architecture, and archetypal breach walkthroughs that show where designs actually fail. Written to be argued with.",
       et: "Enamik \"null-usaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
     },
+    tags: ['Architecture', 'Zero Trust', 'NIST 800-207'],
     meta: {
       en: 'Published · 19 min read',
       et: 'Avaldatud · 19 min lugemist',
     },
     type: { en: 'Framework', et: 'Raamistik' },
-    href: '/research/zero-trust-octagon',
+    href: '/disclosures/zero-trust-octagon',
   },
   {
-    code: 'R-04',
+    kind: 'essay',
+    title: {
+      en: "I used to break authentication. Here's what that taught me about building it.",
+      et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
+    },
+    blurb: {
+      en: 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the arms race looks like from both sides.',
+      et: 'Lõputöö essee kõigele muule sellel saidil: miks ründe mõistmine on usaldusväärse kaitse eeltingimus ja milline näeb võidurelvastumine välja mõlemalt poolt.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 10 min read',
+      et: 'Avaldatud · 10 min lugemist',
+    },
+    href: '/disclosures/i-used-to-break-authentication',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'What client-side trust is actually worth',
+      et: 'Mida kliendipoolne usaldus tegelikult väärt on',
+    },
+    blurb: {
+      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
+      et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
+    },
+    href: '/disclosures/what-client-side-trust-is-actually-worth',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'The kratt problem',
+      et: 'Krati probleem',
+    },
+    blurb: {
+      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
+      et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 4 min read',
+      et: 'Avaldatud · 4 min lugemist',
+    },
+    href: '/disclosures/the-kratt-problem',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'Coordinated disclosure in a small country',
+      et: 'Koordineeritud avalikustamine väikeses riigis',
+    },
+    blurb: {
+      en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
+      et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
+    },
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 6 min read',
+      et: 'Avaldatud · 6 min lugemist',
+    },
+    href: '/disclosures/coordinated-disclosure-in-a-small-country',
+  },
+  {
+    kind: 'essay',
     title: {
       en: 'The evolution of cyber fraud in Estonia, 2010–2026',
       et: 'Küberpettuste areng Eestis, 2010–2026',
@@ -240,8 +317,8 @@ export const projects: Project[] = [
     stars: 105,
     featured: true,
     blurb: {
-      en: "Opcode-level teardown of Google's VM-based BotGuard anti-fraud engine — the bytecode interpreter, its anti-debug and obfuscation layers, and a token-portability weakness. 105★ and the reference the client-side-security crowd actually cites.",
-      et: "Google'i VM-põhise BotGuardi pettusevastase mootori opkooditasemel lahtivõtmine — baitkoodi interpretaator, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. 105★ ja viide, mida kliendipoolse turbe kogukond tegelikult tsiteerib.",
+      en: "An opcode-level breakdown of Google's VM-based BotGuard engine. It documents the bytecode interpreter, the anti-debugging tricks, the obfuscation layers, and a specific flaw in token portability.",
+      et: "Google'i VM-põhise BotGuardi mootori opkooditasemel lahtivõtmine. Dokumenteerib baitkoodi interpretaatori, anti-debug võtted, obfuskeerimiskihid ja konkreetse nõrkuse tokenite ülekantavuses.",
     },
     href: 'https://github.com/tomkabel/google-botguard-security-research',
     repo: 'https://github.com/tomkabel/google-botguard-security-research',
@@ -253,8 +330,8 @@ export const projects: Project[] = [
     tags: ['Go', 'TLS / JA4', 'MITM'],
     featured: true,
     blurb: {
-      en: 'A production-grade TLS-fingerprinting proxy: 65+ browser profiles, JA3/JA4 emulation, MITM support, and a clean API. The practical companion to the research — this is what understanding TLS fingerprinting looks like in code.',
-      et: 'Tootmiskõlblik TLS-sõrmejäljeproksi: 65+ brauseriprofiili, JA3/JA4 emulatsioon, MITM tugi ja puhas API. Praktiline kaaslane uurimistööle — selline näeb TLS-i sõrmejäljetuvastuse mõistmine koodis välja.',
+      en: 'A TLS-fingerprinting proxy written in Go. It supports JA3/JA4 emulation across 65+ browser profiles, MITM packet interception, and a straightforward configuration API.',
+      et: 'Go-s kirjutatud TLS-sõrmejäljeproksi. Toetab JA3/JA4 emulatsiooni üle 65+ brauseriprofiili, MITM-pakettide kinnipüüdmist ja arusaadavat seadistus-API-t.',
     },
     href: 'https://github.com/tomkabel/fingerprintproxy',
     repo: 'https://github.com/tomkabel/fingerprintproxy',
@@ -265,8 +342,8 @@ export const projects: Project[] = [
     category: 'offensive',
     tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     blurb: {
-      en: "Protocol-level research into Smart-ID's cross-device authentication flows and where the trust boundaries leak. The coordinated-disclosure companion to the Achilles'-heel paper — findings shown, not just asserted.",
-      et: "Protokollitasemel uuring Smart-ID seadmeteülestest autentimisvoogudest ja sellest, kus usalduspiirid lekivad. Koordineeritud avalikustamise kaaslane Achilleuse kanna tööle — leiud näidatud, mitte lihtsalt väidetud.",
+      en: "Protocol analysis of Smart-ID's cross-device authentication, pinpointing where the trust boundaries break down during device handoffs. Published through coordinated disclosure.",
+      et: 'Smart-ID seadmeteülese autentimise protokollianalüüs, mis täpsustab, kus usalduspiirid seadmete üleandmisel murduvad. Avaldatud koordineeritud avalikustamise kaudu.',
     },
     href: 'https://github.com/tomkabel/skid-security-research',
     repo: 'https://github.com/tomkabel/skid-security-research',
@@ -278,8 +355,8 @@ export const projects: Project[] = [
     category: 'offensive',
     tags: ['Go', 'CTF', 'Write-up'],
     blurb: {
-      en: 'Full write-up of the C3 Cyber CTF — the exploit chains, the dead ends, and the reasoning behind each. Solutions in Go, shown end to end, not just claimed.',
-      et: 'C3 Cyber CTF täielik läbimäng — exploit-ahelad, ummikteed ja iga sammu põhjendus. Lahendused Go-s, näidatud algusest lõpuni, mitte lihtsalt väidetud.',
+      en: 'Estonia’s Cybercrime Unit (C3, part of the Keskkriminaalpolitsei) decided to skip standard LinkedIn job postings and put out a recruitment challenge disguised as a CTF, but calling it a CTF is giving it way too much credit. It was just an old-school book cipher for beginners.',
+      et: 'Eesti küberkuritegevuse üksus (C3, osa Keskkriminaalpolitseist) otsustas tavalised LinkedIni tööpakkumised vahele jätta ja avaldas CTF-iks maskeeritud värbamisülesande, aga selle CTF-iks nimetamine on sellele liiga palju au andmine. See oli lihtsalt vanakooli raamatušiffer algajatele.',
     },
     href: 'https://github.com/tomkabel/C3EE-Cyber-CTF',
     repo: 'https://github.com/tomkabel/C3EE-Cyber-CTF',
@@ -293,8 +370,8 @@ export const projects: Project[] = [
     tags: ['Identity', 'TLS', 'Privacy'],
     featured: true,
     blurb: {
-      en: "“We don't watch you. We recognize you.” Identity verification from network-behavior signals — TLS handshakes, HTTP timing — instead of cookies or invasive fingerprinting. Reads no content, stores no PII. The defensive inversion of the fingerprinting research.",
-      et: "„Me ei jälgi sind. Me tunneme su ära.“ Identiteedi tuvastamine võrgukäitumise signaalidest — TLS-i käepigistused, HTTP ajastus — küpsiste või pealetükkiva sõrmejäljetuvastuse asemel. Ei loe sisu, ei salvesta isikuandmeid. Sõrmejälje-uuringu kaitsev ümberpööramine.",
+      en: 'Passive identity verification from network-level timing and TLS handshake characteristics instead of tracking cookies or canvas fingerprinting. It reads no packet payload and stores no personal data.',
+      et: 'Passiivne identiteedi tuvastamine võrgutaseme ajastusest ja TLS-i käepigistuse omadustest, mitte jälgivatest küpsistest ega canvas-sõrmejälgedest. Ei loe pakettide sisu ega salvesta isikuandmeid.',
     },
     href: 'https://proksimity.pages.dev',
     live: 'https://proksimity.pages.dev',
@@ -305,8 +382,8 @@ export const projects: Project[] = [
     category: 'products',
     tags: ['Edge', 'Access Control', 'Signed Audit'],
     blurb: {
-      en: 'Behavioral access control with forensic teeth: classifies traffic as human, automated, or adversarial at the edge and serves graduated access — with a cryptographically signed audit trail behind every decision.',
-      et: 'Käitumuslik juurdepääsukontroll kohtuekspertiisi hammastega: liigitab liikluse serva peal inimeseks, automaatikaks või vaenulikuks ja pakub astmelist juurdepääsu — iga otsuse taga krüptograafiliselt allkirjastatud auditijälg.',
+      en: 'Edge-based access control that classifies requests into human, scripted, and hostile sessions. It applies progressive rate limiting and emits a cryptographically signed audit log for every routing decision.',
+      et: 'Servapõhine juurdepääsukontroll, mis liigitab päringud inimese, skriptitud ja vaenulikeks seansideks. Rakendab astmelist kiiruspiirangut ja väljastab iga marsruutimisotsuse kohta krüptograafiliselt allkirjastatud auditijälje.',
     },
     href: 'https://specter-48f.pages.dev',
     live: 'https://specter-48f.pages.dev',
@@ -318,8 +395,8 @@ export const projects: Project[] = [
     tags: ['FIDO2', 'Smart-ID', 'Passwordless'],
     featured: true,
     blurb: {
-      en: 'Phishing-resistant login that keeps your phone in your pocket: FIDO2 passkeys fused with Smart-ID via a browser extension, local daemon, and accessibility bridge — full authentication in under 8 seconds from a single fingerprint touch.',
-      et: 'Õngitsemiskindel sisselogimine, mis hoiab telefoni taskus: FIDO2 pääsuvõtmed sulatatud Smart-ID-ga brauserilaienduse, kohaliku deemoni ja ligipääsetavuse silla kaudu — täielik autentimine alla 8 sekundi ühest sõrmejälje puudutusest.',
+      en: 'Pairs FIDO2 passkeys with Smart-ID to remove the mobile prompt from desktop login. A browser extension, a local daemon, and an accessibility hook finish authentication in roughly 8 seconds from a single fingerprint read.',
+      et: 'Ühendab FIDO2 pääsuvõtmed Smart-ID-ga, et kaotada mobiiliviip töölaua sisselogimisest. Brauserilaiendus, kohalik deemon ja ligipääsetavuse haak viivad autentimise lõpule umbes 8 sekundiga ühest sõrmejälje lugemisest.',
     },
     href: 'https://steroidid.pages.dev',
     live: 'https://steroidid.pages.dev',
@@ -332,8 +409,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['RAG', 'LanceDB', 'BM25'],
     blurb: {
-      en: 'A retrieval-augmented pipeline with LanceDB vector search, BM25 hybrid retrieval, RBAC-aware filtering, and LLM synthesis, served over FastAPI with systemd integration and CI. RAG with access control treated as a first-class concern, not an afterthought.',
-      et: 'Hankimisega täiendatud torujuhe LanceDB vektorotsinguga, BM25 hübriidotsinguga, RBAC-teadliku filtreerimise ja LLM sünteesiga, serveeritud FastAPI kaudu koos systemd integratsiooni ja CI-ga. RAG koos pääsuhaldusega käsitletud esmatähtsa murena, mitte järelmõttena.',
+      en: 'A role-based retrieval pipeline over FastAPI: LanceDB vector search and BM25 combined into hybrid retrieval, with RBAC-aware filtering so access control is part of the query, not an afterthought.',
+      et: 'Rollipõhine hankekonveier FastAPI peal: LanceDB vektorotsing ja BM25 ühendatud hübriidhankeks, RBAC-teadliku filtreerimisega, nii et pääsuhaldus on osa päringust, mitte järelmõte.',
     },
     href: 'https://github.com/tomkabel/discord-rag-pipeline',
     repo: 'https://github.com/tomkabel/discord-rag-pipeline',
@@ -344,8 +421,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['Go', 'Speech-to-Text', '50+ languages'],
     blurb: {
-      en: 'Blazing-fast batch speech-to-text across 50+ languages on Deepgram Nova-3 — concurrent, resumable, and built to chew through whole archives rather than single clips.',
-      et: 'Välkkiire hulgi-kõnetuvastus 50+ keeles Deepgram Nova-3 peal — paralleelne, jätkatav ja ehitatud tervete arhiivide läbinärimiseks, mitte üksikute klippide jaoks.',
+      en: 'A CLI for batch speech-to-text jobs across 50+ languages on Deepgram Nova-3. Built to process entire directory archives, not single files.',
+      et: 'Käsurea tööriist hulgi-kõnetuvastuseks 50+ keeles Deepgram Nova-3 peal. Ehitatud tervete kaustaarhiivide töötlemiseks, mitte üksikute failide jaoks.',
     },
     href: 'https://github.com/tomkabel/deepgram-batch',
     repo: 'https://github.com/tomkabel/deepgram-batch',
@@ -356,8 +433,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['Python', 'Codegen', 'Refactor'],
     blurb: {
-      en: '“Lovable Surgeon”: turns Lovable.dev exports into production-ready repos — strips proprietary wrappers, prunes dead deps, converts SSR→SSG, and ships README/LICENSE/CI. Vibe-code in, real repo out.',
-      et: '„Lovable Surgeon“: muudab Lovable.dev ekspordid tootmisvalmis repodeks — eemaldab omanduslikud kestad, kärbib surnud sõltuvused, teisendab SSR→SSG ja lisab README/LICENSE/CI. Vibe-kood sisse, päris repo välja.',
+      en: 'An AST-based cleanup tool for raw Lovable.dev exports. It strips vendor wrappers, removes dead dependencies, migrates SSR setups to SSG, and generates standard CI workflows.',
+      et: 'AST-põhine puhastustööriist toorete Lovable.dev ekspordifailide jaoks. Eemaldab tarnija kestad, kustutab surnud sõltuvused, teisendab SSR-seadistused SSG-ks ja loob standardsed CI-töövood.',
     },
     href: 'https://github.com/tomkabel/lovable-codebase-agent',
     repo: 'https://github.com/tomkabel/lovable-codebase-agent',
@@ -368,8 +445,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['LLM', 'Writing', 'On-device'],
     blurb: {
-      en: 'In-browser A/B tester that strips the tells of AI writing — filler, passive voice, formulaic structure — while keeping your voice. Runs GPT-4o-mini locally; no data leaves your device.',
-      et: 'Brauserisisene A/B-tester, mis eemaldab AI-kirjutamise reetlikud märgid — täitesõnad, umbisikuline kõne, valemlik struktuur — säilitades sinu hääle. Töötab GPT-4o-mini peal kohapeal; andmed ei lahku su seadmest.',
+      en: 'An in-browser editor that catches the mechanical patterns of AI writing: filler transitions, structural symmetry, passive constructions. It runs on-device, with no external API calls.',
+      et: 'Brauserisisene toimetaja, mis püüab AI-kirjutamise mehaanilised mustrid: täiteüleminekud, struktuurne sümmeetria, umbisikulised konstruktsioonid. Töötab seadmes, ilma väliste API-kutseteta.',
     },
     href: 'https://ai.tomabel.ee',
     live: 'https://ai.tomabel.ee',
@@ -380,8 +457,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['JavaScript', 'Pricing', 'DevTool'],
     blurb: {
-      en: 'Live peak/off-peak clock, rate matrix, and cost calculator for DeepSeek API pricing — WCAG-clean, dark-mode, zero-dependency. Time your batches, cut your bill.',
-      et: 'Reaalajas tipp-/väljaspool-tippu kell, hinnamaatriks ja kulukalkulaator DeepSeeki API hinnastamiseks — WCAG-puhas, tumeda režiimiga, sõltuvusteta. Ajasta oma pakktööd, kärbi arvet.',
+      en: "A zero-dependency timezone tracker and cost calculator for DeepSeek's discounted off-peak pricing windows.",
+      et: 'Sõltuvusteta ajavööndijälgija ja kulukalkulaator DeepSeeki tipuväliste soodushinnaperioodide jaoks.',
     },
     href: 'https://github.com/tomkabel/deepseek-offpeak',
     repo: 'https://github.com/tomkabel/deepseek-offpeak',
@@ -393,8 +470,8 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['Flask', 'PWA', 'VLM'],
     blurb: {
-      en: 'An AI math-grading assistant: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-compliant by design. Built for real classrooms, not a demo.',
-      et: 'AI matemaatikahindamise assistent: Flask + VLM (OpenAI / Anthropic), offline-first PWA, GDPR-iga kooskõlas disainist alates. Ehitatud päris klassiruumide jaoks, mitte demoks.',
+      en: 'A math-grading interface built on Vision-Language Models (OpenAI / Anthropic), wrapped in an offline-first PWA. Designed for evaluating handwritten work with local data storage.',
+      et: 'Matemaatikahindamise liides, mis põhineb visuaal-keelemudelitel (OpenAI / Anthropic), pakitud offline-first PWA-sse. Kavandatud käsitsi kirjutatud tööde hindamiseks kohaliku andmesalvestusega.',
     },
     href: 'https://github.com/tomkabel',
   },
@@ -406,8 +483,8 @@ export const projects: Project[] = [
     category: 'systems',
     tags: ['FastAPI', 'Redis', 'Observability'],
     blurb: {
-      en: "A media-extraction service done right: Redis queues, JWT auth, CSRF and rate limiting, Prometheus + OpenTelemetry + Sentry, SSE streaming, an HTMX UI, and a 7-service Docker Compose stack. A reference for what \"FastAPI with proper observability\" actually means.",
-      et: 'Meediumi eraldamise teenus tehtud õigesti: Redis järjekorrad, JWT autentimine, CSRF ja kiiruspiirangud, Prometheus + OpenTelemetry + Sentry, SSE voogedastus, HTMX kasutajaliides ja 7-teenuseline Docker Compose pinud. Viide sellele, mida "FastAPI korraliku jälgitavusega" tegelikult tähendab.',
+      en: 'A media-extraction service backed by Redis task queues, JWT auth, and rate limiting, with an HTMX frontend and SSE streaming. Instrumented with Prometheus, OpenTelemetry, and Sentry inside a 7-container Docker Compose setup.',
+      et: 'Meediafailide eraldamise teenus Redis-ülesandejärjekordade, JWT-autentimise ja kiiruspiiranguga, HTMX-liidese ja SSE-voogedastusega. Instrumenteeritud Prometheuse, OpenTelemetry ja Sentryga 7-konteinerilises Docker Compose seadistuses.',
     },
     href: 'https://github.com/tomkabel/vooglaadija',
     repo: 'https://github.com/tomkabel/vooglaadija',
@@ -433,8 +510,8 @@ export const projects: Project[] = [
     tags: ['Zero Trust', 'Architecture', 'NIST 800-207'],
     featured: true,
     blurb: {
-      en: 'Zero-trust from first principles, not a vendor checklist: 8 irreducible axioms, a 9-dimension morphological matrix, archetypal breach analysis, and concrete implementation pathways. Written to be argued with.',
-      et: 'Null-usaldus esimestest põhimõtetest, mitte müüja kontrollnimekiri: 8 taandamatut aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs ja konkreetsed teostusrajad. Kirjutatud selleks, et selle üle vaieldaks.',
+      en: 'An architectural reference that breaks Zero Trust into 8 structural axioms and a 9-dimension evaluation matrix, focused on concrete breach failure modes rather than vendor compliance checklists.',
+      et: 'Arhitektuuriline teatmematerjal, mis jaotab null-usalduse 8 struktuurseks aksioomiks ja 9-dimensiooniliseks hindamismaatriksiks, keskendudes konkreetsetele rikkumiste tõrkerežiimidele, mitte tarnijate vastavuskontroll-nimekirjadele.',
     },
     href: 'https://github.com/tomkabel/zero-trust-octagon',
     repo: 'https://github.com/tomkabel/zero-trust-octagon',
@@ -452,78 +529,6 @@ export const projects: Project[] = [
     },
     href: 'https://github.com/tomkabel/tartu-progeksam-2025',
     repo: 'https://github.com/tomkabel/tartu-progeksam-2025',
-  },
-];
-
-// ─── Essays ──────────────────────────────────────────────────────────────────
-
-export type Essay = {
-  title: { en: string; et: string };
-  blurb: { en: string; et: string };
-  href?: string;
-  meta: { en: string; et: string };
-};
-
-export const essays: Essay[] = [
-  {
-    title: {
-      en: "I used to break authentication. Here's what that taught me about building it.",
-      et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
-    },
-    blurb: {
-      en: 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the arms race looks like from both sides.',
-      et: 'Lõputöö essee kõigele muule sellel saidil: miks ründe mõistmine on usaldusväärse kaitse eeltingimus ja milline näeb võidurelvastumine välja mõlemalt poolt.',
-    },
-    href: '/writing/i-used-to-break-authentication',
-    meta: {
-      en: 'Published · 10 min read',
-      et: 'Avaldatud · 10 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'What client-side trust is actually worth',
-      et: 'Mida kliendipoolne usaldus tegelikult väärt on',
-    },
-    blurb: {
-      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
-      et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
-    },
-    href: '/writing/what-client-side-trust-is-actually-worth',
-    meta: {
-      en: 'Published · 6 min read',
-      et: 'Avaldatud · 6 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'The kratt problem',
-      et: 'Krati probleem',
-    },
-    blurb: {
-      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
-      et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
-    },
-    href: '/writing/the-kratt-problem',
-    meta: {
-      en: 'Published · 4 min read',
-      et: 'Avaldatud · 4 min lugemist',
-    },
-  },
-  {
-    title: {
-      en: 'Coordinated disclosure in a small country',
-      et: 'Koordineeritud avalikustamine väikeses riigis',
-    },
-    blurb: {
-      en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
-      et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
-    },
-    href: '/writing/coordinated-disclosure-in-a-small-country',
-    meta: {
-      en: 'Published · 6 min read',
-      et: 'Avaldatud · 6 min lugemist',
-    },
   },
 ];
 

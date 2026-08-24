@@ -13,22 +13,17 @@ const BASE = 'https://tomabel.ee';
 
 // Per-route static meta, stamped into each shell. Mirrors Seo.tsx META.
 const META = {
-  research: {
-    title: 'Research & Publications — Tom Kristian Abel',
+  disclosures: {
+    title: 'Disclosures — Tom Kristian Abel',
     description:
-      'Technical papers, analyses, and findings from ongoing security research.',
+      'Disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and essays. Where research touches live systems, it was disclosed responsibly before publication.',
   },
-  projects: {
-    title: 'Featured Projects — Tom Kristian Abel',
+  systems: {
+    title: 'Systems — Tom Kristian Abel',
     description:
-      'Selected projects demonstrating capability across reverse engineering, security tooling, infrastructure, and research.',
+      'Tools, security products, and backend services I have built and deployed — from a Go TLS-fingerprinting proxy to production identity platforms.',
   },
-  writing: {
-    title: 'Writing — Tom Kristian Abel',
-    description:
-      'Essays and arguments connecting the research. Less formal than the research, more opinionated.',
-  },
-  'writing/i-used-to-break-authentication': {
+  'disclosures/i-used-to-break-authentication': {
     title:
       "I used to break authentication. Here's what that taught me about building it. — Tom Kristian Abel",
     description:
@@ -40,7 +35,7 @@ const META = {
         "I used to break authentication. Here's what that taught me about building it.",
       description:
         'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.',
-      url: `${BASE}/writing/i-used-to-break-authentication/`,
+      url: `${BASE}/disclosures/i-used-to-break-authentication/`,
       datePublished: '2026-06-22',
       author: {
         '@type': 'Person',
@@ -49,7 +44,7 @@ const META = {
       },
     },
   },
-  'writing/what-client-side-trust-is-actually-worth': {
+  'disclosures/what-client-side-trust-is-actually-worth': {
     title: 'What client-side trust is actually worth — Tom Kristian Abel',
     description:
       "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
@@ -59,7 +54,7 @@ const META = {
       headline: 'What client-side trust is actually worth',
       description:
         "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
-      url: `${BASE}/writing/what-client-side-trust-is-actually-worth/`,
+      url: `${BASE}/disclosures/what-client-side-trust-is-actually-worth/`,
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -68,7 +63,7 @@ const META = {
       },
     },
   },
-  'writing/the-kratt-problem': {
+  'disclosures/the-kratt-problem': {
     title: 'The kratt problem — Tom Kristian Abel',
     description:
       "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
@@ -78,7 +73,7 @@ const META = {
       headline: 'The kratt problem',
       description:
         "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
-      url: `${BASE}/writing/the-kratt-problem/`,
+      url: `${BASE}/disclosures/the-kratt-problem/`,
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -87,7 +82,7 @@ const META = {
       },
     },
   },
-  'writing/coordinated-disclosure-in-a-small-country': {
+  'disclosures/coordinated-disclosure-in-a-small-country': {
     title: 'Coordinated disclosure in a small country — Tom Kristian Abel',
     description:
       "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
@@ -97,7 +92,7 @@ const META = {
       headline: 'Coordinated disclosure in a small country',
       description:
         "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
-      url: `${BASE}/writing/coordinated-disclosure-in-a-small-country/`,
+      url: `${BASE}/disclosures/coordinated-disclosure-in-a-small-country/`,
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -106,7 +101,7 @@ const META = {
       },
     },
   },
-  'research/botguard-disassembled': {
+  'disclosures/botguard-disassembled': {
     title:
       "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
     description:
@@ -118,7 +113,7 @@ const META = {
         "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
       description:
         "An opcode-level teardown of Google's BotGuard anti-fraud VM: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the token-portability weakness at the end of the chain. Builds on Cypa's VM analysis and LuanRT's PO-token research.",
-      url: `${BASE}/research/botguard-disassembled/`,
+      url: `${BASE}/disclosures/botguard-disassembled/`,
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -127,7 +122,7 @@ const META = {
       },
     },
   },
-  'research/smart-id-achilles-heel': {
+  'disclosures/smart-id-achilles-heel': {
     title:
       "The Achilles' heel of Estonia's e-state — Smart-ID / eID research — Tom Kristian Abel",
     description:
@@ -138,7 +133,26 @@ const META = {
       headline: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
       description:
         "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows.",
-      url: `${BASE}/research/smart-id-achilles-heel/`,
+      url: `${BASE}/disclosures/smart-id-achilles-heel/`,
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/zero-trust-octagon': {
+    title: 'Zero-Trust Octagon — a framework from first principles — Tom Kristian Abel',
+    description:
+      'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Zero-Trust Octagon — a framework from first principles',
+      description:
+        'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+      url: `${BASE}/disclosures/zero-trust-octagon/`,
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',

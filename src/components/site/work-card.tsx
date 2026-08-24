@@ -8,24 +8,20 @@ export default function WorkCard({ item }: { item: FeaturedWork }) {
   const blurb = item.blurb[language];
   const cta = item.cta[language];
 
+  // The entire card is the interactive target (Fitts's Law), with tangible
+  // elevation: a resting surface that lifts and gains a specular edge on hover.
   return (
     <Link
       to={item.href}
-      className="group relative flex flex-col border border-border-strong p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:bg-white/[0.015]"
+      className="group relative flex flex-col rounded-lg border border-border-strong bg-surface p-8 shadow-elevated transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-surface-2 hover:shadow-elevated-accent"
     >
-      <span aria-hidden className="pointer-events-none absolute left-0 top-0 size-3 border-l border-t border-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <span aria-hidden className="pointer-events-none absolute right-0 bottom-0 size-3 border-r border-b border-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-      <div className="mb-12 flex items-start justify-between">
-        <span className="bg-white/5 px-2 py-1 font-mono text-[10px] text-muted-foreground transition-colors group-hover:text-accent">
-          {item.code}
-        </span>
-        <span className="size-2 bg-subtle transition-colors group-hover:bg-accent" />
-      </div>
-      <h3 className="mb-4 font-display text-2xl font-bold text-foreground transition-colors group-hover:text-accent">
+      <span className="mb-10 inline-flex w-fit items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.07] px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-widest text-accent">
+        {item.impact[language]}
+      </span>
+      <h3 className="mb-4 font-display text-2xl font-bold leading-snug text-foreground transition-colors group-hover:text-accent">
         {title}
       </h3>
-      <p className="mb-8 text-muted">{blurb}</p>
+      <p className="prose-measure mb-8 text-muted">{blurb}</p>
       <div className="mt-auto flex items-end justify-between gap-6">
         <div className="flex flex-wrap gap-x-4 gap-y-2">
           {item.tags.map((t) => (
@@ -37,7 +33,7 @@ export default function WorkCard({ item }: { item: FeaturedWork }) {
             </span>
           ))}
         </div>
-        <span className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground transition-colors group-hover:text-accent">
+        <span className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
           {cta} <span className="arrow-shift inline-block">→</span>
         </span>
       </div>

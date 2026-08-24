@@ -1,0 +1,8 @@
+# Legacy IA → consolidated IA (301). Honored by Cloudflare Pages / Netlify.
+# On hosts that ignore this file, the router performs the same redirect
+# client-side (see LegacyDisclosureRedirect in src/App.tsx).
+/research/*  /disclosures/:splat  301
+/writing/*   /disclosures/:splat  301
+/research    /disclosures         301
+/writing     /disclosures         301
+/projects    /systems             301

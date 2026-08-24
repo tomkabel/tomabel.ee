@@ -54,3 +54,8 @@ tomabel/
 drafts/
 # Added by code-review-graph
 .code-review-graph/
+
+# Leaked/exported cookie jars — never commit
+cookie.txt
+*.cookies
+cookies.txt

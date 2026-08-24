@@ -1,5 +1,10 @@
 import { useTranslation } from '../i18n';
 
+// Fixed review date (ISO), rendered identically for every visitor. Not
+// `new Date()` — that would falsely claim the terms were updated on page load
+// and vary by the reader's locale.
+const LAST_UPDATED = '2026-08-10';
+
 export default function TermsOfService() {
   const { t } = useTranslation();
 
@@ -142,7 +147,7 @@ export default function TermsOfService() {
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-subtle text-sm">
-            {t.legal.lastUpdated}: {new Date().toLocaleDateString()}
+            {t.legal.lastUpdated}: {LAST_UPDATED}
           </p>
         </div>
       </div>

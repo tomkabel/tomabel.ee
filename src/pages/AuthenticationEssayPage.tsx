@@ -1,8 +1,12 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import { Callout, PullQuote } from '../components/site/article';
 
 type EssaySection = {
   heading: string;
   paragraphs: string[];
+  after?: ReactNode;
 };
 
 const title = "I used to break authentication. Here's what that taught me about building it.";
@@ -41,6 +45,12 @@ const sections: EssaySection[] = [
       'The offensive mindset is useful because it thinks in terms of substitution, not confrontation.',
       'Very few systems are broken head-on. Many are broken diagonally.',
     ],
+    after: (
+      <PullQuote cite="On substitution, not confrontation">
+        The offensive mindset thinks in terms of substitution, not confrontation. Very few systems
+        are broken head-on. Many are broken diagonally.
+      </PullQuote>
+    ),
   },
   {
     heading: 'Most authentication fails at the boundary, not the center',
@@ -83,6 +93,17 @@ const sections: EssaySection[] = [
       'A mature defender is hard to impress with adjectives. "AI-powered." "Military-grade." "Passwordless." "Zero trust." Fine. What is the claim? What is the trust boundary? What fails open? What can be relayed? What can be replayed? What depends on a browser the adversary controls? What happens when the user is deceived but technically compliant?',
       'Those are offensive questions. They are also the beginning of adult defense.',
     ],
+    after: (
+      <Callout label="The hierarchy of questions">
+        <ol className="list-decimal space-y-2 pl-5 marker:font-mono marker:text-accent">
+          <li>What is this control actually asserting?</li>
+          <li>Which part of that assertion is cryptographic, which is an environment signal, and which is human interpretation?</li>
+          <li>Which assumptions depend on the attacker behaving politely?</li>
+          <li>Where are the fallback paths, and are they held to the same standard as the flagship flow?</li>
+          <li>If this control fails, what stops a local failure from becoming an account- or platform-level compromise?</li>
+        </ol>
+      </Callout>
+    ),
   },
   {
     heading: 'Understanding offense is not optional if you want to defend reality',
@@ -108,10 +129,10 @@ export default function AuthenticationEssayPage() {
         <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
         <div className="relative mx-auto max-w-4xl">
           <Link
-            to="/writing"
+            to="/disclosures"
             className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
           >
-            ← Back to writing
+            ← Back to disclosures
           </Link>
           <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Essay · Authentication · Offense / Defense
@@ -132,7 +153,10 @@ export default function AuthenticationEssayPage() {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
-          <div className="sticky top-24 border border-border bg-white/[0.02] p-5">
+          <div className="sticky top-24">
+            <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
+          </div>
+          <div hidden className="border border-border bg-white/[0.02] p-5">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
               Thesis
             </p>
@@ -149,8 +173,9 @@ export default function AuthenticationEssayPage() {
             ))}
           </div>
 
-          {sections.map((section) => (
-            <section key={section.heading} className="mt-16 max-w-3xl">
+          {sections.map((section, i) => (
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
+              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -159,6 +184,7 @@ export default function AuthenticationEssayPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {section.after}
             </section>
           ))}
         </div>

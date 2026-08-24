@@ -17,8 +17,8 @@ export default function SiteFooter() {
             </p>
           </div>
           <div>
-            <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
-              [{language === 'en' ? 'Contact' : 'Kontakt'}]
+            <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+              {language === 'en' ? 'Contact' : 'Kontakt'}
             </h3>
             <ul className="space-y-2 font-mono text-sm">
               <li>

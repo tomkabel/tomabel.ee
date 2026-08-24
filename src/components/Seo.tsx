@@ -18,30 +18,24 @@ const META: Record<string, Meta> = {
       'Tom Kristian Abel — Security Researcher & Systems Architect. I reverse engineer how authentication fails, then build systems that survive what I find.',
     url: 'https://tomabel.ee/',
   },
-  '/research': {
-    title: 'Research & Publications — Tom Kristian Abel',
+  '/disclosures': {
+    title: 'Disclosures — Tom Kristian Abel',
     description:
-      'Technical papers, analyses, and findings from ongoing security research.',
-    url: 'https://tomabel.ee/research/',
+      'Disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and essays. Where research touches live systems, it was disclosed responsibly before publication.',
+    url: 'https://tomabel.ee/disclosures/',
   },
-  '/projects': {
-    title: 'Featured Projects — Tom Kristian Abel',
+  '/systems': {
+    title: 'Systems — Tom Kristian Abel',
     description:
-      'Selected projects demonstrating capability across reverse engineering, security tooling, infrastructure, and research.',
-    url: 'https://tomabel.ee/projects/',
+      'Tools, security products, and backend services I have built and deployed — from a Go TLS-fingerprinting proxy to production identity platforms.',
+    url: 'https://tomabel.ee/systems/',
   },
-  '/writing': {
-    title: 'Writing — Tom Kristian Abel',
-    description:
-      'Essays and arguments connecting the research. Less formal than the research, more opinionated.',
-    url: 'https://tomabel.ee/writing/',
-  },
-  '/writing/i-used-to-break-authentication': {
+  '/disclosures/i-used-to-break-authentication': {
     title:
       "I used to break authentication. Here's what that taught me about building it. — Tom Kristian Abel",
     description:
       'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.',
-    url: 'https://tomabel.ee/writing/i-used-to-break-authentication/',
+    url: 'https://tomabel.ee/disclosures/i-used-to-break-authentication/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -50,7 +44,7 @@ const META: Record<string, Meta> = {
         "I used to break authentication. Here's what that taught me about building it.",
       description:
         'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.',
-      url: 'https://tomabel.ee/writing/i-used-to-break-authentication/',
+      url: 'https://tomabel.ee/disclosures/i-used-to-break-authentication/',
       datePublished: '2026-06-22',
       author: {
         '@type': 'Person',
@@ -59,11 +53,11 @@ const META: Record<string, Meta> = {
       },
     },
   },
-  '/writing/what-client-side-trust-is-actually-worth': {
+  '/disclosures/what-client-side-trust-is-actually-worth': {
     title: 'What client-side trust is actually worth — Tom Kristian Abel',
     description:
       "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
-    url: 'https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/',
+    url: 'https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -71,7 +65,7 @@ const META: Record<string, Meta> = {
       headline: 'What client-side trust is actually worth',
       description:
         "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
-      url: 'https://tomabel.ee/writing/what-client-side-trust-is-actually-worth/',
+      url: 'https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/',
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -80,11 +74,11 @@ const META: Record<string, Meta> = {
       },
     },
   },
-  '/writing/the-kratt-problem': {
+  '/disclosures/the-kratt-problem': {
     title: 'The kratt problem — Tom Kristian Abel',
     description:
       "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
-    url: 'https://tomabel.ee/writing/the-kratt-problem/',
+    url: 'https://tomabel.ee/disclosures/the-kratt-problem/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -92,7 +86,7 @@ const META: Record<string, Meta> = {
       headline: 'The kratt problem',
       description:
         "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
-      url: 'https://tomabel.ee/writing/the-kratt-problem/',
+      url: 'https://tomabel.ee/disclosures/the-kratt-problem/',
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -101,11 +95,11 @@ const META: Record<string, Meta> = {
       },
     },
   },
-  '/writing/coordinated-disclosure-in-a-small-country': {
+  '/disclosures/coordinated-disclosure-in-a-small-country': {
     title: 'Coordinated disclosure in a small country — Tom Kristian Abel',
     description:
       "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
-    url: 'https://tomabel.ee/writing/coordinated-disclosure-in-a-small-country/',
+    url: 'https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -113,7 +107,7 @@ const META: Record<string, Meta> = {
       headline: 'Coordinated disclosure in a small country',
       description:
         "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection.",
-      url: 'https://tomabel.ee/writing/coordinated-disclosure-in-a-small-country/',
+      url: 'https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/',
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -122,12 +116,12 @@ const META: Record<string, Meta> = {
       },
     },
   },
-  '/research/botguard-disassembled': {
+  '/disclosures/botguard-disassembled': {
     title:
       "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
     description:
       "An opcode-level teardown of Google's BotGuard anti-fraud VM: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the token-portability weakness at the end of the chain. Builds on Cypa's VM analysis and LuanRT's PO-token research.",
-    url: 'https://tomabel.ee/research/botguard-disassembled/',
+    url: 'https://tomabel.ee/disclosures/botguard-disassembled/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -136,7 +130,7 @@ const META: Record<string, Meta> = {
         "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
       description:
         "An opcode-level teardown of Google's BotGuard anti-fraud VM: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the token-portability weakness at the end of the chain. Builds on Cypa's VM analysis and LuanRT's PO-token research.",
-      url: 'https://tomabel.ee/research/botguard-disassembled/',
+      url: 'https://tomabel.ee/disclosures/botguard-disassembled/',
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',
@@ -145,12 +139,12 @@ const META: Record<string, Meta> = {
       },
     },
   },
-  '/research/smart-id-achilles-heel': {
+  '/disclosures/smart-id-achilles-heel': {
     title:
       "The Achilles' heel of Estonia's e-state — Smart-ID / eID research — Tom Kristian Abel",
     description:
       "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows.",
-    url: 'https://tomabel.ee/research/smart-id-achilles-heel/',
+    url: 'https://tomabel.ee/disclosures/smart-id-achilles-heel/',
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -158,7 +152,7 @@ const META: Record<string, Meta> = {
       headline: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
       description:
         "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows.",
-      url: 'https://tomabel.ee/research/smart-id-achilles-heel/',
+      url: 'https://tomabel.ee/disclosures/smart-id-achilles-heel/',
       datePublished: '2026-08-11',
       author: {
         '@type': 'Person',

@@ -1,5 +1,10 @@
 import { useTranslation } from '../i18n';
 
+// Fixed review date (ISO), rendered identically for every visitor. Not
+// `new Date()` — that would falsely claim the policy was updated on page load
+// and vary by the reader's locale.
+const LAST_UPDATED = '2026-08-10';
+
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
 
@@ -156,7 +161,7 @@ export default function PrivacyPolicy() {
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-subtle text-sm">
-            {t.legal.lastUpdated}: {new Date().toLocaleDateString()}
+            {t.legal.lastUpdated}: {LAST_UPDATED}
           </p>
         </div>
       </div>
