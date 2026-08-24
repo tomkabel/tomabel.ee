@@ -41,7 +41,7 @@ export function Callout({
 export function PullQuote({ children, cite }: { children: ReactNode; cite?: string }) {
   return (
     <figure className="my-12 border-l-2 border-accent/60 pl-6 md:pl-8">
-      <blockquote className="font-display text-2xl font-medium leading-snug text-foreground md:text-3xl">
+      <blockquote className="font-serif text-2xl font-medium leading-snug text-foreground md:text-3xl">
         {children}
       </blockquote>
       {cite ? (

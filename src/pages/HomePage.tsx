@@ -53,7 +53,7 @@ export default function HomePage() {
               {language === 'en' ? 'The fault line' : 'Murdejoon'}
             </p>
             <blockquote className="lg:col-span-9 border-l-2 border-accent/50 pl-6 md:pl-8">
-              <p className="prose-measure font-display text-xl leading-relaxed text-foreground md:text-2xl md:leading-relaxed">
+              <p className="prose-measure font-serif text-xl leading-relaxed text-foreground md:text-2xl md:leading-relaxed">
                 {site.introStrip[language]}
               </p>
             </blockquote>

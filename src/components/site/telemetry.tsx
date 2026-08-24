@@ -25,9 +25,9 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
 
   useEffect(() => {
     if (!open) return;
-    setState({ kind: 'loading' });
     const controller = new AbortController();
     (async () => {
+      setState({ kind: 'loading' });
       try {
         const res = await fetch(ENDPOINT, { signal: controller.signal, cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

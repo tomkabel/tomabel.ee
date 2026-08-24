@@ -4,9 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['"Space Grotesk Variable"', '"Inter Variable"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono Variable"', 'monospace'],
+        sans: ['"Geist Variable"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Space Grotesk Variable"', '"Geist Variable"', 'system-ui', 'sans-serif'],
+        // "Commit Mono" activates automatically once self-hosted (see PR notes);
+        // until then it falls through to JetBrains Mono with no visual regression.
+        mono: ['"Commit Mono"', '"JetBrains Mono Variable"', 'monospace'],
+        serif: ['"Newsreader Variable"', 'Charter', 'Georgia', 'serif'],
       },
       colors: {
         // Engineered multi-tier dark surface system — no pure black, so white
