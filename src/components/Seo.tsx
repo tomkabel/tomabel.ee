@@ -161,6 +161,28 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/disclosures/the-evolution-of-cyber-fraud-in-estonia': {
+    title:
+      'The evolution of cyber fraud in Estonia, 2010–2026 — Tom Kristian Abel',
+    description:
+      "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025.",
+    url: 'https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The evolution of cyber fraud in Estonia, 2010–2026',
+      description:
+        "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025.",
+      url: 'https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/',
+      datePublished: '2026-08-26',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/about': {
     title: 'About — Tom Kristian Abel',
     description:

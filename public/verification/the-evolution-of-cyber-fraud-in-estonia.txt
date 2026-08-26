@@ -1,0 +1,8 @@
+The evolution of cyber fraud in Estonia, 2010–2026
+Author: Tom Kristian Abel
+Canonical URL: https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/
+
+NOTE: This is a canonical-text placeholder pending the final export of the
+article body. The integrity mechanism (WebCrypto SHA-256 vs. the hash committed
+to source) is live; the detached PGP signature (.asc) is pending. See README.md
+in this directory for the maintenance and signing procedure.

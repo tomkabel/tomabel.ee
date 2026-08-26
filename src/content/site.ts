@@ -267,10 +267,18 @@ export const disclosures: Disclosure[] = [
       et: 'Küberpettuste areng Eestis, 2010–2026',
     },
     blurb: {
-      en: "An 80-page, heavily cited history of how phishing, vishing, and fraud have evolved in one of the world's most digitized states — through the arrival of AI-assisted attacks and deepfakes, and the regulatory responses that chased them. The reference I wished existed when I started.",
-      et: "80-leheküljeline, rohkelt viidatud ajalugu sellest, kuidas õngitsemine, vishing ja pettused on arenenud ühes maailma kõige digiteeritumas riigis — läbi AI-abistatavate rünnakute ja süvavõltsingute saabumise ning regulatiivsete vastuste, mis neid taga ajasid. Viide, mille olemasolu ma oleksin tahtnud, kui alustasin.",
+      en: "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB's Baltic victim statistics, and the ERR/Äripäev investigation.",
+      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt-kümnele miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
     },
+    tags: ['Phishing', 'Vishing', 'AI Fraud', 'Estonia'],
+    keywords:
+      'Estonia, phishing, vishing, fraud, Smart-ID, deepfake, AI fraud, RIA, cybercrime',
     type: { en: 'Reference Paper', et: 'Viitetöö' },
+    meta: {
+      en: 'Published · 12 min read',
+      et: 'Avaldatud · 12 min lugemist',
+    },
+    href: '/disclosures/the-evolution-of-cyber-fraud-in-estonia',
   },
 ];
 

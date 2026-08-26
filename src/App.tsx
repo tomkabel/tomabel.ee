@@ -20,6 +20,7 @@ const CoordinatedDisclosureInASmallCountryPage = React.lazy(() => import('./page
 const BotGuardDisassembledResearchPage = React.lazy(() => import('./pages/BotGuardDisassembledResearchPage'));
 const SmartIdAchillesHeelResearchPage = React.lazy(() => import('./pages/SmartIdAchillesHeelResearchPage'));
 const ZeroTrustOctagonResearchPage = React.lazy(() => import('./pages/ZeroTrustOctagonResearchPage'));
+const TheEvolutionOfCyberFraudInEstoniaResearchPage = React.lazy(() => import('./pages/TheEvolutionOfCyberFraudInEstoniaResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
@@ -108,6 +109,7 @@ function App() {
             <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-evolution-of-cyber-fraud-in-estonia" element={<Layout><Lazy><TheEvolutionOfCyberFraudInEstoniaResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
