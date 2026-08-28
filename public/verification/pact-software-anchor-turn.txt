@@ -1,0 +1,8 @@
+PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens
+Author: Tom Kristian Abel
+Canonical URL: https://tomabel.ee/disclosures/pact-software-anchor-turn/
+
+NOTE: This is a canonical-text placeholder pending the final export of the
+article body. The integrity mechanism (WebCrypto SHA-256 vs. the hash committed
+to source) is live; the detached PGP signature (.asc) is pending. See README.md
+in this directory for the maintenance and signing procedure.
