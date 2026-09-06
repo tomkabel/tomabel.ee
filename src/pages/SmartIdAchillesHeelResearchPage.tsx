@@ -168,6 +168,16 @@ const sources = [
     url: 'https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/',
     note: 'the argument this report\u2019s evidence supports',
   },
+  {
+    label: 'Companion essay: The fix that doesn\u2019t need SK',
+    url: 'https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/',
+    note: 'a sixth fix beyond the five below, scoped to the cross-device relay case',
+  },
+  {
+    label: 'skid-security-research (disclosed research corpus)',
+    url: 'https://tomkabel.github.io/skid-security-research/',
+    note: 'the fuller technical corpus this report and its companion essay are drawn from',
+  },
 ];
 
 const disclosureParagraphs = [
