@@ -58,9 +58,9 @@ export default function DisclosuresPage() {
                   <Link to="/systems" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                     Systems
                   </Link>
-                  , and Proksimity specifically, is that sentence turned into a product: check the
-                  session's context at the network edge, because the client's account of itself is
-                  not enough. The academic version of the same claim, extended to AI agents driving
+                  . That work turns the sentence into a product, with Proksimity as the concrete
+                  example: check the session's context at the network edge, because the client's
+                  account of itself is not enough. The academic version of the same claim, extended to AI agents driving
                   real browsers, is in the public SoK paper,{' '}
                   <a href="https://github.com/tomkabel/google-botguard-security-research" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                     "Client-Side Anti-Automation Under VLM-Based Attack"
