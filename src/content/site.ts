@@ -272,6 +272,26 @@ export const disclosures: Disclosure[] = [
     },
     type: { en: 'Reference Paper', et: 'Viitetöö' },
   },
+  {
+    kind: 'essay',
+    title: {
+      en: 'ChatGPT is not a phishing scanner',
+      et: 'ChatGPT ei ole õngitsusskanner',
+    },
+    blurb: {
+      en: "A fact check of the advice to paste a suspicious link into ChatGPT. What ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele AI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
+    },
+    tags: ['Phishing', 'LLMs', 'Cloaking'],
+    keywords:
+      'ChatGPT, phishing, LLM, domain age, VirusTotal, Safe Browsing, TDS, cloaking, RDAP, Claude, Gemini',
+    type: { en: 'Fact Check', et: 'Faktikontroll' },
+    meta: {
+      en: 'Published · 9 min read',
+      et: 'Avaldatud · 9 min lugemist',
+    },
+    href: '/disclosures/chatgpt-is-not-a-phishing-scanner',
+  },
 ];
 
 // ─── Projects ────────────────────────────────────────────────────────────────

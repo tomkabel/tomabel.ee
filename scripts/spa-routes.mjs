@@ -161,6 +161,25 @@ const META = {
       },
     },
   },
+  'disclosures/chatgpt-is-not-a-phishing-scanner': {
+    title: 'ChatGPT is not a phishing scanner — Tom Kristian Abel',
+    description:
+      "A fact check of the advice to paste a suspicious link into ChatGPT: what ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'ChatGPT is not a phishing scanner',
+      description:
+        "A fact check of the advice to paste a suspicious link into ChatGPT: what ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+      url: `${BASE}/disclosures/chatgpt-is-not-a-phishing-scanner/`,
+      datePublished: '2026-09-06',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
