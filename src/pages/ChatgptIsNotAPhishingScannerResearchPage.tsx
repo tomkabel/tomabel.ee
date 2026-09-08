@@ -261,7 +261,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
       <ArticleProof
         slug="chatgpt-is-not-a-phishing-scanner"
-        expectedSha256="1f275fa304e8db169618c5b085295848385edd2ddc70974b343b77faf1f587f7"
+        expectedSha256="b034b1ec28d15b92b7a60fbb90fa2d46bdba2a9e1e6fe49ea96eaa99aa3591fd"
       />
     </article>
   );
