@@ -105,6 +105,8 @@ This report deliberately omits operational detail: no selectors, no message patt
 - BSides Tallinn 2026, event and call for papers — https://openssf.org/event/cfp-bsides-tallinn-estonia/ (September 24-25, 2026, Tallinn)
 - Companion essay: Coordinated disclosure in a small country — https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/ (what national-infrastructure disclosure looks like in Estonia)
 - Companion essay: What client-side trust is actually worth — https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/ (the argument this report’s evidence supports)
+- Companion essay: The fix that doesn’t need SK — https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/ (a sixth fix beyond the five below, scoped to the cross-device relay case)
+- skid-security-research (disclosed research corpus) — https://tomkabel.github.io/skid-security-research/ (the fuller technical corpus this report and its companion essay are drawn from)
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/smart-id-achilles-heel/
