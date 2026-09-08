@@ -268,7 +268,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB's Baltic victim statistics, and the ERR/Äripäev investigation.",
-      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt-kümnele miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
+      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
     },
     tags: ['Phishing', 'Vishing', 'AI Fraud', 'Estonia'],
     keywords:
