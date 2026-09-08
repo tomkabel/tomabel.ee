@@ -73,6 +73,12 @@ The shift from hardware anchors to software and contextual anchors is not inhere
 
 The least controversial part of PACT is the cryptography. Blind signatures give plausible unlinkability at the verifier, and Privacy Pass is a mature, published architecture. The protocol’s security ultimately depends on who is allowed to issue tokens and how tightly their admission process is controlled. That layer is absent. Until it exists, PACT is not a trust protocol. It is a trust-proxy protocol, and the web has a working precedent for where that ends: a small set of platforms acting as the gatekeepers of legitimacy, with a cryptographically elegant credential standing in for the admission decisions nobody standardized.
 
+## Disclosure
+
+This report is an analysis of public record: press releases, IETF documents, a public design repository, and published commentary. It touches no live system, discloses no vulnerability, and contains no private or client material. PACT is not deployed as of August 2026, so there is no vendor to coordinate with and no disclosure obligation. Cloudflare and the browser vendors were not contacted for comment; this analysis stands on the public record alone.
+
+Where the design changes, this analysis will need revisiting; the governance questions it raises will not. Research conduct follows the site’s 
+
 ## Sources
 
 - Cloudflare, press release, June 22, 2026: "Cloudflare Collaborates With Leading Browsers to Develop a Privacy-First Protocol for the Global Internet" — https://www.cloudflare.com/press/press-releases/2026/cloudflare-collaborates-with-leading-browsers-to-develop-a-privacy-first-protocol-for-the-global-internet/ (announcement, partner list, personhood framing, blind-signature mechanism, stated CAPTCHA and tracking motivation)
@@ -87,12 +93,6 @@ The least controversial part of PACT is the cryptography. Blind signatures give 
 - TechTimes and Tom's Hardware, June 5, 2026: Cloudflare CEO Matthew Prince on automated traffic passing humans — https://www.techtimes.com/articles/317877/20260605/bot-traffic-passes-humans-online-cloudflare-says-agentic-ai-drove-575-share.htm (57.5 percent bots against 42.5 percent humans)
 - Wikipedia: "Web Environment Integrity" — https://en.wikipedia.org/wiki/Web_Environment_Integrity (proposal abandoned, Chromium prototype removed November 2023)
 - Companion essay: What client-side trust is actually worth — https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/ (the argument this report’s evidence supports)
-
-## Disclosure
-
-This report is an analysis of public record: press releases, IETF documents, a public design repository, and published commentary. It touches no live system, discloses no vulnerability, and contains no private or client material. PACT is not deployed as of August 2026, so there is no vendor to coordinate with and no disclosure obligation. Cloudflare and the browser vendors were not contacted for comment; this analysis stands on the public record alone.
-
-Where the design changes, this analysis will need revisiting; the governance questions it raises will not. Research conduct follows the site’s 
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/pact-software-anchor-turn/

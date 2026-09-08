@@ -229,6 +229,25 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
+      en: "The fix that doesn't need SK",
+      et: 'Parandus, mis SK-d ei vaja',
+    },
+    blurb: {
+      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today, scoped honestly to the cross-device relay case, not the vishing case Smart-ID+ already closes.",
+      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise relay-rünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator esimesena liiguks. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese relay-juhtumiga, mitte vishinguga, mille Smart-ID+ juba sulgeb.',
+    },
+    tags: ['Smart-ID', 'Fraud Prevention', 'Session Continuity'],
+    keywords: 'Smart-ID, signing relay, session continuity, fraud prevention, network fingerprinting',
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 4 min read',
+      et: 'Avaldatud · 4 min lugemist',
+    },
+    href: '/disclosures/the-fix-that-doesnt-need-sk',
+  },
+  {
+    kind: 'essay',
+    title: {
       en: 'The kratt problem',
       et: 'Krati probleem',
     },

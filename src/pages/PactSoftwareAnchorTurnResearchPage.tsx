@@ -278,7 +278,7 @@ export default function PactSoftwareAnchorTurnResearchPage() {
 
       <ArticleProof
         slug="pact-software-anchor-turn"
-        expectedSha256="c562e0e9815ebce3a31623e496947c6419b8f769b1add7a545c6d0d17be4594b"
+        expectedSha256="2d9a534b0f7005bca7ac3d50a74f349daf60e94cf444d7fa2b1ed6902d87f8ff"
       />
     </article>
   );

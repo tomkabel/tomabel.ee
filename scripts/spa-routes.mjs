@@ -101,6 +101,25 @@ const META = {
       },
     },
   },
+  'disclosures/the-fix-that-doesnt-need-sk': {
+    title: "The fix that doesn't need SK — Tom Kristian Abel",
+    description:
+      "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: "The fix that doesn't need SK",
+      description:
+        "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today.",
+      url: `${BASE}/disclosures/the-fix-that-doesnt-need-sk/`,
+      datePublished: '2026-09-06',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   'disclosures/botguard-disassembled': {
     title:
       "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
