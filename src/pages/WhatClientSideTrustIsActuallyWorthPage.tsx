@@ -124,6 +124,27 @@ export default function WhatClientSideTrustIsActuallyWorthPage() {
               </div>
             </section>
           ))}
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                This essay's structural claim, that a client-side attestation is a self-report and
+                not a verdict, is formalized and extended to AI agents driving real browsers in the
+                public SoK paper{' '}
+                <a
+                  href="https://github.com/tomkabel/google-botguard-security-research"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  "Client-Side Anti-Automation Under VLM-Based Attack"
+                </a>
+                , which covers the same argument at academic depth and traces which architectural
+                properties survive the shift from scripted bots to VLM-driven ones.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </article>
