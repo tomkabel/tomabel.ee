@@ -44,10 +44,13 @@ export default function ArticleProof({
       }
     })();
     (async () => {
-      const res = await fetch(`/verification/${slug}.txt.asc`, { method: 'HEAD' }).catch(
-        () => null,
-      );
-      if (!cancelled) setSigned(Boolean(res?.ok));
+      // Check the body, not just the status: under SPA fallback hosting a
+      // missing file answers 200 with index.html, which would let us claim a
+      // signature exists when it does not.
+      const body = await fetch(`/verification/${slug}.txt.asc`)
+        .then((res) => (res.ok ? res.text() : null))
+        .catch(() => null);
+      if (!cancelled) setSigned(Boolean(body?.startsWith('-----BEGIN PGP SIGNATURE-----')));
     })();
     return () => {
       cancelled = true;

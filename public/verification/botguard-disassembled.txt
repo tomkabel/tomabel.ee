@@ -85,6 +85,12 @@ The failure mode is not the control. It is the belief that the control is a verd
 
 The same logic applies to device fingerprinting, browser integrity checks, and the rest of the client-side catalog. They are all reports from a machine you do not control. Use them to rank and filter. Never use them as the ground truth of a decision that matters.
 
+## Disclosure
+
+This report describes Google's production anti-fraud systems. The technical analysis is drawn from research that was already public before this report: Cypa's botguard-reverse (open source), LuanRT's BgUtils (MIT), and my own google-botguard-security-research repository, public since its release. The portability demonstration predates this report by years and is documented in that repository.
+
+No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. Google updates BotGuard continuously; variable names and opcode numbers shift between compiles, and PO token enforcement is rolling out per client and format. Nothing in this report should be read as current bypass guidance, and operational detail is deliberately left at the architecture level. Research conduct follows the site’s 
+
 ## Sources
 
 - Cypa, botguard-reverse — https://github.com/dsekz/botguard-reverse (VM analysis, anti-debug and anti-logger internals, disassembler and decompiler)
@@ -93,12 +99,6 @@ The same logic applies to device fingerprinting, browser integrity checks, and t
 - yt-dlp, Po-Token-Guide — https://github.com/yt-dlp/yt-dlp/wiki/Po-Token-Guide (token enforcement, content binding, platform attestation providers)
 - Brainicism, bgutil-ytdlp-pot-provider — https://github.com/Brainicism/bgutil-ytdlp-pot-provider (PO token provider for yt-dlp built on BgUtils, maintained by a yt-dlp maintainer)
 - Companion essay: What client-side trust is actually worth — https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/ (the argument this report’s evidence supports)
-
-## Disclosure
-
-This report describes Google's production anti-fraud systems. The technical analysis is drawn from research that was already public before this report: Cypa's botguard-reverse (open source), LuanRT's BgUtils (MIT), and my own google-botguard-security-research repository, public since its release. The portability demonstration predates this report by years and is documented in that repository.
-
-No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. Google updates BotGuard continuously; variable names and opcode numbers shift between compiles, and PO token enforcement is rolling out per client and format. Nothing in this report should be read as current bypass guidance, and operational detail is deliberately left at the architecture level. Research conduct follows the site’s 
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/botguard-disassembled/

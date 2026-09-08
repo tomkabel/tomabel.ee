@@ -278,7 +278,7 @@ export default function BotGuardDisassembledResearchPage() {
 
       <ArticleProof
         slug="botguard-disassembled"
-        expectedSha256="72a5c3c3fdcabbe31d6449d3f6915647705fabd8f83c3c554f6ac9b2f353f3bb"
+        expectedSha256="f4e9435203e9958bdc20f07fcfc31094b6d22e5731bccea4b55ded4823174b37"
       />
     </article>
   );
