@@ -63,6 +63,12 @@ If someone does use an assistant, the responsible prompt treats the task as tria
 
 The reply's caveat was right: results depend heavily on model and mode, and a capable user can get useful context out of a web-enabled assistant. The generalized claim that LLMs check domain age and public reviews for pasted links holds only under conditions the popular advice omits, and the cloaking objection applies even when those conditions are met: a single model fetch of a suspicious URL can be served a decoy, because cloaking is designed to defeat single-vantage-point checks. The advice should stop treating ChatGPT as a scanner and start treating it as what it is: a good explainer of evidence gathered by better tools.
 
+## Disclosure
+
+This report examines a public claim made in a public discussion and checks it against vendor documentation and public threat research. The exchange took place publicly on LinkedIn in June 2026; the reply is quoted in translation and attributed. LinkedIn does not expose a stable public permalink to an individual reply without an account, so the thread is described from the public record rather than deep-linked. The original Estonian text is recorded in the author's working notes, which are available on request.
+
+The author wrote the original post under review and adjudicates the dispute in this report; the reply's accurate parts are stated as such, and the author's own claims are held to the same standard. The named participant was not contacted before publication. No private correspondence, client material, or non-public data was used, no live system was tested, no suspicious URL was fetched, and no vulnerability is disclosed. If any error is pointed out, the piece will be corrected. Research conduct follows the site's 
+
 ## Sources
 
 - OpenAI Help Center, "ChatGPT Search" — https://help.openai.com/en/articles/9237897-chatgpt-search (search runs automatically when helpful, manual toggle, citations)
@@ -80,12 +86,6 @@ The reply's caveat was right: results depend heavily on model and mode, and a ca
 - Lee, Lim, Hooi, Divakaran, "Multimodal Large Language Models for Phishing Webpage Detection and Identification" (eCrime 2024) — https://arxiv.org/abs/2408.05941 (brand identification plus domain comparison for phishing detection)
 - Goldenits, König, Raubitzek, Ekelhart, "Small Language Models for Phishing Website Detection" (arXiv:2511.15434, November 2025) — https://arxiv.org/abs/2511.15434 (phishing classification benchmark over raw HTML)
 - Wang et al., "Can You Walk Me Through It? Explainable SMS Phishing Detection using LLM-based Agents" (SOUPS 2025) — https://gangw.cs.illinois.edu/soups2025.pdf (context-gathering tools before LLM reasoning)
-
-## Disclosure
-
-This report examines a public claim made in a public discussion and checks it against vendor documentation and public threat research. The exchange took place publicly on LinkedIn in June 2026; the reply is quoted in translation and attributed. LinkedIn does not expose a stable public permalink to an individual reply without an account, so the thread is described from the public record rather than deep-linked. The original Estonian text is recorded in the author's working notes, which are available on request.
-
-The author wrote the original post under review and adjudicates the dispute in this report; the reply's accurate parts are stated as such, and the author's own claims are held to the same standard. The named participant was not contacted before publication. No private correspondence, client material, or non-public data was used, no live system was tested, no suspicious URL was fetched, and no vulnerability is disclosed. If any error is pointed out, the piece will be corrected. Research conduct follows the site's 
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/chatgpt-is-not-a-phishing-scanner/

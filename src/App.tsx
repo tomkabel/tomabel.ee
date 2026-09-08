@@ -17,6 +17,7 @@ const AuthenticationEssayPage = React.lazy(() => import('./pages/AuthenticationE
 const WhatClientSideTrustIsActuallyWorthPage = React.lazy(() => import('./pages/WhatClientSideTrustIsActuallyWorthPage'));
 const KrattProblemPage = React.lazy(() => import('./pages/KrattProblemPage'));
 const CoordinatedDisclosureInASmallCountryPage = React.lazy(() => import('./pages/CoordinatedDisclosureInASmallCountryPage'));
+const TheFixThatDoesntNeedSkPage = React.lazy(() => import('./pages/TheFixThatDoesntNeedSkPage'));
 const BotGuardDisassembledResearchPage = React.lazy(() => import('./pages/BotGuardDisassembledResearchPage'));
 const SmartIdAchillesHeelResearchPage = React.lazy(() => import('./pages/SmartIdAchillesHeelResearchPage'));
 const ZeroTrustOctagonResearchPage = React.lazy(() => import('./pages/ZeroTrustOctagonResearchPage'));
@@ -106,6 +107,7 @@ function App() {
             <Route path="/disclosures/what-client-side-trust-is-actually-worth" element={<Layout><Lazy><WhatClientSideTrustIsActuallyWorthPage /></Lazy></Layout>} />
             <Route path="/disclosures/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
             <Route path="/disclosures/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-fix-that-doesnt-need-sk" element={<Layout><Lazy><TheFixThatDoesntNeedSkPage /></Lazy></Layout>} />
             <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
