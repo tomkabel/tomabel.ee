@@ -354,9 +354,9 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0][language]}</p>
+              <p>{disclosureParagraphs[0]?.[language]}</p>
               <p>
-                {disclosureParagraphs[1][language]}
+                {disclosureParagraphs[1]?.[language]}
                 <a
                   href={disclosurePolicyUrl}
                   className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
