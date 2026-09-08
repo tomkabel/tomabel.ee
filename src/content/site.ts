@@ -200,7 +200,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why \"delegated credentials\" do not change it, and the OAuth-style pattern that actually works.",
-      et: 'Miks ei saa AI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD tegevusjuhend ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
+      et: 'Miks ei saa AI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse praktika avaldus ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
     },
     tags: ['Smart-ID', 'eIDAS', 'AI Agents'],
     keywords: 'Smart-ID, eIDAS, AI agents, delegated credentials, sole control, qualified electronic signature, PIN automation',
