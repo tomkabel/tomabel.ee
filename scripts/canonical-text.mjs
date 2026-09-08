@@ -14,7 +14,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { transformWithEsbuild } from 'vite';
+import * as esbuild from 'esbuild';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pagesDir = join(root, 'src/pages');
@@ -63,7 +63,9 @@ function stubLocalImports(code) {
 /** Loads the page module's content constants without requiring the page to export them. */
 async function loadContent(file) {
   const source = await readFile(file, 'utf8');
-  const { code } = await transformWithEsbuild(source, file, {
+  // esbuild directly, not vite's transformWithEsbuild: vite 8 deprecated that
+  // wrapper and no longer bundles esbuild at all.
+  const { code } = await esbuild.transform(source, {
     loader: 'tsx',
     format: 'esm',
     jsx: 'automatic',
