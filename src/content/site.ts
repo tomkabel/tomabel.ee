@@ -195,6 +195,25 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
+      en: 'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS',
+      et: 'PIN, mida ei saa delegeerida — Smart-ID, AI-agendid ja eIDAS',
+    },
+    blurb: {
+      en: "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why \"delegated credentials\" do not change it, and the OAuth-style pattern that actually works.",
+      et: 'Miks ei saa AI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse praktika avaldus ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
+    },
+    tags: ['Smart-ID', 'eIDAS', 'AI Agents'],
+    keywords: 'Smart-ID, eIDAS, AI agents, delegated credentials, sole control, qualified electronic signature, PIN automation',
+    type: { en: 'Analysis', et: 'Analüüs' },
+    meta: {
+      en: 'Published · 11 min read',
+      et: 'Avaldatud · 11 min lugemist',
+    },
+    href: '/disclosures/the-pin-that-cannot-be-delegated',
+  },
+  {
+    kind: 'essay',
+    title: {
       en: "I used to break authentication. Here's what that taught me about building it.",
       et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
     },
