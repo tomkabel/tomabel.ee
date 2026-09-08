@@ -49,8 +49,32 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://tomabel.ee/disclosures/zero-trust-octagon/</loc>
     <lastmod>2026-08-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/pact-software-anchor-turn/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/chatgpt-is-not-a-phishing-scanner/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/the-pin-that-cannot-be-delegated/</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -89,5 +113,11 @@
     <lastmod>2026-08-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

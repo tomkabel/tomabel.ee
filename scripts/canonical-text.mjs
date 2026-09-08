@@ -78,29 +78,52 @@ async function loadContent(file) {
   return import(pathToFileURL(out).href);
 }
 
+// Bilingual pages store every string as { en, et }. The canonical text has to
+// cover what is actually published, so those pages get one full rendering per
+// language rather than an [object Object].
+const isBilingual = (value) =>
+  value !== null && typeof value === 'object' && typeof value.en === 'string';
+
+const pick = (value, lang) => (lang && isBilingual(value) ? value[lang] : value);
+
+const LANGUAGE_HEADINGS = { en: 'English', et: 'Eesti' };
+
 /** The canonical text is plain prose: headings, paragraphs, and cited sources. */
 function renderCanonical(mod, { slug, url }) {
-  const lines = [mod.title, '', 'Author: Tom Kristian Abel', `Canonical URL: ${url}`, ''];
+  const langs = isBilingual(mod.title) ? Object.keys(LANGUAGE_HEADINGS) : [null];
+  const lines = [
+    pick(mod.title, langs[0]),
+    '',
+    'Author: Tom Kristian Abel',
+    `Canonical URL: ${url}`,
+    '',
+  ];
 
-  if (mod.standfirst) lines.push(mod.standfirst, '');
-  for (const p of mod.openingParagraphs ?? []) lines.push(p, '');
+  for (const lang of langs) {
+    if (lang) lines.push(`# ${LANGUAGE_HEADINGS[lang]}`, '', pick(mod.title, lang), '');
+    if (mod.standfirst) lines.push(pick(mod.standfirst, lang), '');
+    for (const p of mod.openingParagraphs ?? []) lines.push(pick(p, lang), '');
 
-  for (const section of mod.sections ?? []) {
-    lines.push(`## ${section.heading}`, '');
-    for (const p of section.paragraphs ?? []) lines.push(p, '');
+    for (const section of mod.sections ?? []) {
+      lines.push(`## ${pick(section.heading, lang)}`, '');
+      for (const p of section.paragraphs ?? []) lines.push(pick(p, lang), '');
+    }
+
+    if (mod.disclosureParagraphs?.length) {
+      lines.push('## Disclosure', '');
+      for (const p of mod.disclosureParagraphs) lines.push(pick(p, lang), '');
+    }
   }
 
+  // Sources are URLs and publication titles — the same in either language.
   if (mod.sources?.length) {
     lines.push('## Sources', '');
     for (const s of mod.sources) {
-      lines.push(`- ${s.label}${s.url ? ` — ${s.url}` : ''}${s.note ? ` (${s.note})` : ''}`);
+      const label = pick(s.label, langs[0]);
+      const note = pick(s.note, langs[0]);
+      lines.push(`- ${label}${s.url ? ` — ${s.url}` : ''}${note ? ` (${note})` : ''}`);
     }
     lines.push('');
-  }
-
-  if (mod.disclosureParagraphs?.length) {
-    lines.push('## Disclosure', '');
-    for (const p of mod.disclosureParagraphs) lines.push(p, '');
   }
 
   lines.push(
