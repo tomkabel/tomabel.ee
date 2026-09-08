@@ -21,6 +21,7 @@ const TheFixThatDoesntNeedSkPage = React.lazy(() => import('./pages/TheFixThatDo
 const BotGuardDisassembledResearchPage = React.lazy(() => import('./pages/BotGuardDisassembledResearchPage'));
 const SmartIdAchillesHeelResearchPage = React.lazy(() => import('./pages/SmartIdAchillesHeelResearchPage'));
 const ZeroTrustOctagonResearchPage = React.lazy(() => import('./pages/ZeroTrustOctagonResearchPage'));
+const PactSoftwareAnchorTurnResearchPage = React.lazy(() => import('./pages/PactSoftwareAnchorTurnResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
@@ -110,6 +111,7 @@ function App() {
             <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/pact-software-anchor-turn" element={<Layout><Lazy><PactSoftwareAnchorTurnResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server

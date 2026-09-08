@@ -180,6 +180,27 @@ const META = {
       },
     },
   },
+  'disclosures/pact-software-anchor-turn': {
+    title:
+      'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens — Tom Kristian Abel',
+    description:
+      "A critical analysis of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what blind-signature tokens actually prove, why the missing governance layer is the real risk, and the markers that would make the design defensible.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline:
+        'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens',
+      description:
+        "A critical analysis of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what blind-signature tokens actually prove, why the missing governance layer is the real risk, and the markers that would make the design defensible.",
+      url: `${BASE}/disclosures/pact-software-anchor-turn/`,
+      datePublished: '2026-08-28',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
