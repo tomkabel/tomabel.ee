@@ -161,6 +161,28 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/disclosures/the-pin-that-cannot-be-delegated': {
+    title:
+      'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS — Tom Kristian Abel',
+    description:
+      "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why delegated credentials do not change it, and the OAuth-style pattern that actually works.",
+    url: 'https://tomabel.ee/disclosures/the-pin-that-cannot-be-delegated/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS',
+      description:
+        "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why delegated credentials do not change it, and the OAuth-style pattern that actually works.",
+      url: 'https://tomabel.ee/disclosures/the-pin-that-cannot-be-delegated/',
+      datePublished: '2026-09-08',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/about': {
     title: 'About — Tom Kristian Abel',
     description:
