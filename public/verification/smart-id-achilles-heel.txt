@@ -83,6 +83,14 @@ Use the regulatory floor. NIS2, whose transposition deadline passed in October 2
 
 None of this requires new cryptography. The protocol was never the weak link. The strongest part of the system is trusted to protect the weakest part, and the weakest part is a human looking at a screen the attacker can control.
 
+## Disclosure
+
+The MITM feasibility analysis is a documentation review. It probed no live system and disclosed nothing new; every protocol claim traces to SK’s published API documentation.
+
+The signing-relay analysis was carried out in a containerized research environment (Docker, local test domains, SK’s public demo portal as target), authorized by Arnis Paršovs of the University of Tartu. Per the research file, the findings were disclosed to SK ID Solutions ahead of public release, and the vendor assessed the risk class as known and accepted. The work was scheduled for presentation at BSides Tallinn in September 2026.
+
+This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site’s 
+
 ## Sources
 
 - SK-EID, Smart-ID Relying Party API technical description — https://sk-eid.github.io/smart-id-documentation/rp-api/api_details.html (endpoint authentication, IP+UUID authentication)
@@ -99,14 +107,6 @@ None of this requires new cryptography. The protocol was never the weak link. Th
 - Companion essay: What client-side trust is actually worth — https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/ (the argument this report’s evidence supports)
 - Companion essay: The fix that doesn’t need SK — https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/ (a sixth fix beyond the five below, scoped to the cross-device relay case)
 - skid-security-research (disclosed research corpus) — https://tomkabel.github.io/skid-security-research/ (the fuller technical corpus this report and its companion essay are drawn from)
-
-## Disclosure
-
-The MITM feasibility analysis is a documentation review. It probed no live system and disclosed nothing new; every protocol claim traces to SK’s published API documentation.
-
-The signing-relay analysis was carried out in a containerized research environment (Docker, local test domains, SK’s public demo portal as target), authorized by Arnis Paršovs of the University of Tartu. Per the research file, the findings were disclosed to SK ID Solutions ahead of public release, and the vendor assessed the risk class as known and accepted. The work was scheduled for presentation at BSides Tallinn in September 2026.
-
-This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site’s 
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/smart-id-achilles-heel/

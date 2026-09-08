@@ -192,7 +192,7 @@ export default function TheFixThatDoesntNeedSkPage() {
 
       <ArticleProof
         slug="the-fix-that-doesnt-need-sk"
-        expectedSha256="77db4a66cc44d3b4ed8759161e62ed26a62d7827cb46b30a032d6194fb110856"
+        expectedSha256="8353ca3ed1476dc672a2433cf178519b9925e43a42524c42c9dd507553c8c807"
       />
     </article>
   );

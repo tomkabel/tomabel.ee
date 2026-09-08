@@ -297,7 +297,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="a69fbcf977a26e36ef1856d75e5a95488640d08154cebaa8f1a5265ead229358"
+        expectedSha256="7805987152eea9563a7b8d4394a7a3deca19518b7a7d668d8ea0ffad1cdda60d"
       />
     </article>
   );
