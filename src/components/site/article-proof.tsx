@@ -24,6 +24,10 @@ export default function ArticleProof({
 }) {
   const [status, setStatus] = useState<Status>('checking');
   const [computed, setComputed] = useState<string | null>(null);
+  // Signing is a manual, offline step. Until the detached signature is actually
+  // published, claiming one exists would be the dishonest half of an honesty
+  // widget — so probe for it and only then print the gpg instructions.
+  const [signed, setSigned] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -38,6 +42,12 @@ export default function ArticleProof({
       } catch {
         if (!cancelled) setStatus('error');
       }
+    })();
+    (async () => {
+      const res = await fetch(`/verification/${slug}.txt.asc`, { method: 'HEAD' }).catch(
+        () => null,
+      );
+      if (!cancelled) setSigned(Boolean(res?.ok));
     })();
     return () => {
       cancelled = true;
@@ -80,23 +90,38 @@ export default function ArticleProof({
         </dl>
 
         <div className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted">
-          <p>
-            The canonical text is signed with PGP key{' '}
-            <span className="text-foreground">{pgpKey.fingerprint}</span>. Verify the
-            detached signature yourself:
-          </p>
-          <pre className="mt-2 overflow-x-auto rounded border border-border bg-background/60 p-3 text-foreground">
+          {signed ? (
+            <>
+              <p>
+                The canonical text is signed with PGP key{' '}
+                <span className="text-foreground">{pgpKey.fingerprint}</span>. Verify the
+                detached signature yourself:
+              </p>
+              <pre className="mt-2 overflow-x-auto rounded border border-border bg-background/60 p-3 text-foreground">
 {`curl -O https://tomabel.ee/public-key.asc
 curl -O https://tomabel.ee/verification/${slug}.txt
 curl -O https://tomabel.ee/verification/${slug}.txt.asc
 gpg --import public-key.asc
 gpg --verify ${slug}.txt.asc ${slug}.txt`}
-          </pre>
-          <p className="mt-3">
-            <a href="/public-key.asc" className="text-accent hover:underline">
-              Download public key
-            </a>
-          </p>
+              </pre>
+              <p className="mt-3">
+                <a href="/public-key.asc" className="text-accent hover:underline">
+                  Download public key
+                </a>
+              </p>
+            </>
+          ) : (
+            <p>
+              This article&rsquo;s detached PGP signature is not published yet. The hash above
+              proves the served text matches the digest committed to source; it does not yet
+              prove authorship. Signing key{' '}
+              <span className="text-foreground">{pgpKey.fingerprint}</span> &mdash;{' '}
+              <a href="/public-key.asc" className="text-accent hover:underline">
+                download public key
+              </a>
+              .
+            </p>
+          )}
         </div>
       </div>
     </section>
