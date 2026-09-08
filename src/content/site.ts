@@ -248,6 +248,25 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
+      en: "The fix that doesn't need SK",
+      et: 'Parandus, mis SK-d ei vaja',
+    },
+    blurb: {
+      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today, scoped honestly to the cross-device relay case, not the vishing case Smart-ID+ already closes.",
+      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise relay-rünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator esimesena liiguks. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese relay-juhtumiga, mitte vishinguga, mille Smart-ID+ juba sulgeb.',
+    },
+    tags: ['Smart-ID', 'Fraud Prevention', 'Session Continuity'],
+    keywords: 'Smart-ID, signing relay, session continuity, fraud prevention, network fingerprinting',
+    type: { en: 'Essay', et: 'Essee' },
+    meta: {
+      en: 'Published · 4 min read',
+      et: 'Avaldatud · 4 min lugemist',
+    },
+    href: '/disclosures/the-fix-that-doesnt-need-sk',
+  },
+  {
+    kind: 'essay',
+    title: {
       en: 'The kratt problem',
       et: 'Krati probleem',
     },
@@ -282,14 +301,61 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
+      en: 'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens',
+      et: 'PACT ja tarkvaralise ankru pööre — Private Access Control Tokenite kriitiline analüüs',
+    },
+    blurb: {
+      en: "A critical reading of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what the blind-signature mechanism actually proves, why the missing governance layer decides whether the web gets an open anti-bot layer or another trust oligopoly, and the concrete markers that would make the design defensible.",
+      et: "Kriitiline lugemine Cloudflare'i PACT-ettepanekust, mis tehti 2026. aasta juunis koos Firefoxi, Chrome'i, Edge'i ja Shopifyga: mida pimesignatuuri mehhanism tegelikult tõestab, miks puuduv juhtimiskiht otsustab, kas veeb saab avatud robotitõrje kihi või järjekordse usaldusoligopoli, ja millised konkreetsed märgid muudaksid kavandi kaitstavaks.",
+    },
+    tags: ['PACT', 'Privacy Pass', 'Anti-Fraud'],
+    keywords: 'PACT, Private Access Control Tokens, Privacy Pass, blind signatures, CAPTCHA, WEI, anti-bot, trust, governance',
+    type: { en: 'Critical Analysis', et: 'Kriitiline analüüs' },
+    meta: {
+      en: 'Published · 10 min read',
+      et: 'Avaldatud · 10 min lugemist',
+    },
+    href: '/disclosures/pact-software-anchor-turn',
+  },
+  {
+    kind: 'essay',
+    title: {
       en: 'The evolution of cyber fraud in Estonia, 2010–2026',
       et: 'Küberpettuste areng Eestis, 2010–2026',
     },
     blurb: {
-      en: "An 80-page, heavily cited history of how phishing, vishing, and fraud have evolved in one of the world's most digitized states — through the arrival of AI-assisted attacks and deepfakes, and the regulatory responses that chased them. The reference I wished existed when I started.",
-      et: "80-leheküljeline, rohkelt viidatud ajalugu sellest, kuidas õngitsemine, vishing ja pettused on arenenud ühes maailma kõige digiteeritumas riigis — läbi AI-abistatavate rünnakute ja süvavõltsingute saabumise ning regulatiivsete vastuste, mis neid taga ajasid. Viide, mille olemasolu ma oleksin tahtnud, kui alustasin.",
+      en: "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB's Baltic victim statistics, and the ERR/Äripäev investigation.",
+      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
     },
+    tags: ['Phishing', 'Vishing', 'AI Fraud', 'Estonia'],
+    keywords:
+      'Estonia, phishing, vishing, fraud, Smart-ID, deepfake, AI fraud, RIA, cybercrime',
     type: { en: 'Reference Paper', et: 'Viitetöö' },
+    meta: {
+      en: 'Published · 12 min read',
+      et: 'Avaldatud · 12 min lugemist',
+    },
+    href: '/disclosures/the-evolution-of-cyber-fraud-in-estonia',
+  },
+  {
+    kind: 'essay',
+    title: {
+      en: 'ChatGPT is not a phishing scanner',
+      et: 'ChatGPT ei ole õngitsusskanner',
+    },
+    blurb: {
+      en: "A fact check of the advice to paste a suspicious link into ChatGPT. What ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele AI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
+    },
+    tags: ['Phishing', 'LLMs', 'Cloaking'],
+    keywords:
+      'ChatGPT, phishing, LLM, domain age, VirusTotal, Safe Browsing, TDS, cloaking, RDAP, Claude, Gemini',
+    type: { en: 'Fact Check', et: 'Faktikontroll' },
+    meta: {
+      en: 'Published · 9 min read',
+      et: 'Avaldatud · 9 min lugemist',
+    },
+    href: '/disclosures/chatgpt-is-not-a-phishing-scanner',
   },
 ];
 

@@ -116,6 +116,27 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/disclosures/the-fix-that-doesnt-need-sk': {
+    title: "The fix that doesn't need SK — Tom Kristian Abel",
+    description:
+      "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today.",
+    url: 'https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: "The fix that doesn't need SK",
+      description:
+        "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today.",
+      url: 'https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/',
+      datePublished: '2026-09-06',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/disclosures/botguard-disassembled': {
     title:
       "BotGuard, disassembled — reverse engineering Google's anti-fraud VM — Tom Kristian Abel",
@@ -161,6 +182,50 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/disclosures/pact-software-anchor-turn': {
+    title:
+      'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens — Tom Kristian Abel',
+    description:
+      "A critical analysis of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what blind-signature tokens actually prove, why the missing governance layer is the real risk, and the markers that would make the design defensible.",
+    url: 'https://tomabel.ee/disclosures/pact-software-anchor-turn/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline:
+        'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens',
+      description:
+        "A critical analysis of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what blind-signature tokens actually prove, why the missing governance layer is the real risk, and the markers that would make the design defensible.",
+      url: 'https://tomabel.ee/disclosures/pact-software-anchor-turn/',
+      datePublished: '2026-08-28',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/chatgpt-is-not-a-phishing-scanner': {
+    title: 'ChatGPT is not a phishing scanner — Tom Kristian Abel',
+    description:
+      "A fact check of the advice to paste a suspicious link into ChatGPT: what ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+    url: 'https://tomabel.ee/disclosures/chatgpt-is-not-a-phishing-scanner/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'ChatGPT is not a phishing scanner',
+      description:
+        "A fact check of the advice to paste a suspicious link into ChatGPT: what ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
+      url: 'https://tomabel.ee/disclosures/chatgpt-is-not-a-phishing-scanner/',
+      datePublished: '2026-09-06',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/disclosures/the-pin-that-cannot-be-delegated': {
     title:
       'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS — Tom Kristian Abel',
@@ -176,6 +241,28 @@ const META: Record<string, Meta> = {
         "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why delegated credentials do not change it, and the OAuth-style pattern that actually works.",
       url: 'https://tomabel.ee/disclosures/the-pin-that-cannot-be-delegated/',
       datePublished: '2026-09-08',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/the-evolution-of-cyber-fraud-in-estonia': {
+    title:
+      'The evolution of cyber fraud in Estonia, 2010–2026 — Tom Kristian Abel',
+    description:
+      "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025.",
+    url: 'https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The evolution of cyber fraud in Estonia, 2010–2026',
+      description:
+        "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025.",
+      url: 'https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/',
+      datePublished: '2026-08-26',
       author: {
         '@type': 'Person',
         name: 'Tom Kristian Abel',

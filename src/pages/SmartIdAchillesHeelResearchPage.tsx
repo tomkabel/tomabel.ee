@@ -168,6 +168,16 @@ const sources = [
     url: 'https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/',
     note: 'the argument this report\u2019s evidence supports',
   },
+  {
+    label: 'Companion essay: The fix that doesn\u2019t need SK',
+    url: 'https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/',
+    note: 'a sixth fix beyond the five below, scoped to the cross-device relay case',
+  },
+  {
+    label: 'skid-security-research (disclosed research corpus)',
+    url: 'https://tomkabel.github.io/skid-security-research/',
+    note: 'the fuller technical corpus this report and its companion essay are drawn from',
+  },
 ];
 
 const disclosureParagraphs = [
@@ -287,7 +297,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="f30bea1b860bec99c6e087a5580c8dfc21f2060971d74002f92eab14dc62250f"
+        expectedSha256="7805987152eea9563a7b8d4394a7a3deca19518b7a7d668d8ea0ffad1cdda60d"
       />
     </article>
   );

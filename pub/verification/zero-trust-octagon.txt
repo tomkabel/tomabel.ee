@@ -143,6 +143,12 @@ Score each axiom green, yellow, or red. Green means satisfied, yellow means part
 
 The book’s full rubric, with per-question scoring guidance, is Appendix B of the source work. Start with the lowest-cost fix or the highest-leverage one.
 
+## Disclosure
+
+This report describes no live system under test and discloses no vulnerability. The framework is the author’s own work, built on public standards and public incident reporting; the engineering reference implementation that accompanies the book is the author’s own project. No vendor was consulted or compensated, and the framework names no product as a solution. Where the book makes estimates (cost floors, triage loads), they are labeled as estimates in the source and treated as such here.
+
+Research conduct follows the site’s 
+
 ## Sources
 
 - NIST SP 800-207, Zero Trust Architecture (2020) — https://csrc.nist.gov/pubs/sp/800/207/final
@@ -157,12 +163,6 @@ The book’s full rubric, with per-question scoring guidance, is Appendix B of t
 - RSA 2026 ID IQ Report — https://www.rsa.com/id-iq/ (69% identity-related breach in three years; 57% self-assess advanced)
 - CSA Research Note, "UNC6426: nx Supply Chain to AWS Admin via OIDC", documenting Mandiant’s UNC6426 findings on the s1ngularity attack (2026) — https://labs.cloudsecurityalliance.org/research/csa-research-note-oidc-trust-chain-abuse-cloud-takeover-2026/ (documents Mandiant UNC6426 findings on the s1ngularity nx breach)
 - Datadog Security Labs, LiteLLM and Telnyx TeamPCP supply-chain campaign analysis (March 2026) — https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-teampcp-supply-chain-campaign/ (LiteLLM, Telnyx, Trivy, and KICS TeamPCP campaign, March 2026)
-
-## Disclosure
-
-This report describes no live system under test and discloses no vulnerability. The framework is the author’s own work, built on public standards and public incident reporting; the engineering reference implementation that accompanies the book is the author’s own project. No vendor was consulted or compensated, and the framework names no product as a solution. Where the book makes estimates (cost floors, triage loads), they are labeled as estimates in the source and treated as such here.
-
-Research conduct follows the site’s 
 
 ---
 This file is the canonical plain-text copy of https://tomabel.ee/disclosures/zero-trust-octagon/
