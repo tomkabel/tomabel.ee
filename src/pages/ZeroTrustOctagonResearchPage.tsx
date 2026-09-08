@@ -302,7 +302,7 @@ export default function ZeroTrustOctagonResearchPage() {
 
       <ArticleProof
         slug="zero-trust-octagon"
-        expectedSha256="48b2a50eeeb2b5efee6a351f7eecbcbe9fc6774deb327c838480561c7946961c"
+        expectedSha256="9636c3f322a35032670b8504d8654097055735b6dc932531c1cf0cb8e26be945"
       />
     </article>
   );
