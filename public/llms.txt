@@ -1,0 +1,30 @@
+# tomabel.ee
+
+> Tom Kristian Abel — security researcher and systems architect. I reverse engineer how authentication and browser defenses fail, then design the systems that survive what I find.
+
+Based in Estonia. Writes in English and Estonian. Research focuses on identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), anti-fraud VMs, TLS fingerprinting, and zero-trust architecture. Coordinated disclosure with RIA / CERT-EE where research touches live systems.
+
+## Pages
+
+- [Home](https://tomabel.ee/): Hero, featured research and systems, recent essays.
+- [Disclosures](https://tomabel.ee/disclosures/): Research, teardowns, frameworks, and essays in one index (client-side filter tabs).
+  - [BotGuard, disassembled — reverse engineering Google's anti-fraud VM](https://tomabel.ee/disclosures/botguard-disassembled/): an opcode-level teardown of the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness.
+  - [The Achilles' heel of Estonia's e-state — Smart-ID / eID research](https://tomabel.ee/disclosures/smart-id-achilles-heel/): why the protocol resists MITM and endpoint attacks by design, how the approval layer fails instead, and the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows. Disclosed to the vendor before publication.
+  - [Zero-Trust Octagon — a framework from first principles](https://tomabel.ee/disclosures/zero-trust-octagon/): 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.
+  - [PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens](https://tomabel.ee/disclosures/pact-software-anchor-turn/): why Cloudflare's PACT proposal moves trust from hardware anchors to issuer judgment, and why the missing governance layer decides whether the web gets an open anti-bot layer or another trust oligopoly.
+  - The evolution of cyber fraud in Estonia, 2010–2026: an 80-page, heavily cited history of phishing, vishing, and fraud in one of the world's most digitized states.
+  - [I used to break authentication. Here's what that taught me about building it.](https://tomabel.ee/disclosures/i-used-to-break-authentication/): the thesis essay — why understanding offense is a prerequisite for credible defense.
+  - [What client-side trust is actually worth](https://tomabel.ee/disclosures/what-client-side-trust-is-actually-worth/): the BotGuard teardown as a case study for why any defense running on a machine you don't control is a claim, not a proof — and what to build instead.
+  - [The kratt problem](https://tomabel.ee/disclosures/the-kratt-problem/): offensive capability as Estonian folklore — a servant that works tirelessly while pointed and turns on its maker when idle; ethics as a pointing problem.
+  - [Coordinated disclosure in a small country](https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/): what national-infrastructure disclosure looks like in Estonia, where everyone knows each other — the legal exposure, the incentives, and why owning your story in public is the protection that scales.
+  - [The fix that doesn't need SK](https://tomabel.ee/disclosures/the-fix-that-doesnt-need-sk/): the Achilles' heel report's five fixes all need SK, a bank, or a regulator to move — a sixth, session-continuity checking at a bank's own edge, doesn't, scoped honestly to the cross-device relay case.
+  - [ChatGPT is not a phishing scanner](https://tomabel.ee/disclosures/chatgpt-is-not-a-phishing-scanner/): a fact check of the "paste the suspicious link into ChatGPT" advice — what ChatGPT, Claude, and Gemini actually document, why TDS cloaking can feed a single AI fetch a decoy page, and why VirusTotal and Safe Browsing remain the verdict layer.
+- [Systems](https://tomabel.ee/systems/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
+- [About](https://tomabel.ee/about/): Bio, philosophy, and the kratt metaphor.
+- [Privacy Policy](https://tomabel.ee/privacy/), [Terms of Service](https://tomabel.ee/terms/), [Cookie Policy](https://tomabel.ee/cookies/), [Security Research Policy](https://tomabel.ee/disclosure/)
+
+## Contact
+
+- GitHub: https://github.com/tomkabel
+- LinkedIn: https://www.linkedin.com/in/hr-abel
+- Email: tom@tomabel.ee

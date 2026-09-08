@@ -282,6 +282,25 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
+      en: 'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens',
+      et: 'PACT ja tarkvaralise ankru pööre — Private Access Control Tokenite kriitiline analüüs',
+    },
+    blurb: {
+      en: "A critical reading of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what the blind-signature mechanism actually proves, why the missing governance layer decides whether the web gets an open anti-bot layer or another trust oligopoly, and the concrete markers that would make the design defensible.",
+      et: "Kriitiline lugemine Cloudflare'i PACT-ettepanekust, mis tehti 2026. aasta juunis koos Firefoxi, Chrome'i, Edge'i ja Shopifyga: mida pimesignatuuri mehhanism tegelikult tõestab, miks puuduv juhtimiskiht otsustab, kas veeb saab avatud robotitõrje kihi või järjekordse usaldusoligopoli, ja millised konkreetsed märgid muudaksid kavandi kaitstavaks.",
+    },
+    tags: ['PACT', 'Privacy Pass', 'Anti-Fraud'],
+    keywords: 'PACT, Private Access Control Tokens, Privacy Pass, blind signatures, CAPTCHA, WEI, anti-bot, trust, governance',
+    type: { en: 'Critical Analysis', et: 'Kriitiline analüüs' },
+    meta: {
+      en: 'Published · 10 min read',
+      et: 'Avaldatud · 10 min lugemist',
+    },
+    href: '/disclosures/pact-software-anchor-turn',
+  },
+  {
+    kind: 'essay',
+    title: {
       en: 'The evolution of cyber fraud in Estonia, 2010–2026',
       et: 'Küberpettuste areng Eestis, 2010–2026',
     },
