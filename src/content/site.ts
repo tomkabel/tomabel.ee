@@ -14,8 +14,8 @@ export const site = {
       et: 'Tom Kristian Abel — Eesti',
     },
     line1: {
-      en: 'I break authentication for a living.',
-      et: 'Elatise teenimiseks murran autentimist.',
+      en: 'I broke authentication for a living.',
+      et: 'Elatise teenimiseks murdsin autentimist.',
     },
     line2: {
       en: 'Now I build the kind that doesn\'t.',
