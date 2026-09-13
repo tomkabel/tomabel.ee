@@ -31,6 +31,9 @@ mydatabase.db
 package-lock.json
 ruvector.db
 
+# KDE folder metadata
+.directory
+
 # Local dev tooling
 .agents/
 .claude/
