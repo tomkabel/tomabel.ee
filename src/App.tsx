@@ -25,6 +25,7 @@ const PactSoftwareAnchorTurnResearchPage = React.lazy(() => import('./pages/Pact
 const ChatgptIsNotAPhishingScannerResearchPage = React.lazy(() => import('./pages/ChatgptIsNotAPhishingScannerResearchPage'));
 const TheEvolutionOfCyberFraudInEstoniaResearchPage = React.lazy(() => import('./pages/TheEvolutionOfCyberFraudInEstoniaResearchPage'));
 const ThePinThatCannotBeDelegatedResearchPage = React.lazy(() => import('./pages/ThePinThatCannotBeDelegatedResearchPage'));
+const RussianCyberOpsEstoniaHostingResearchPage = React.lazy(() => import('./pages/RussianCyberOpsEstoniaHostingResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
@@ -118,6 +119,7 @@ function App() {
             <Route path="/disclosures/chatgpt-is-not-a-phishing-scanner" element={<Layout><Lazy><ChatgptIsNotAPhishingScannerResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/the-evolution-of-cyber-fraud-in-estonia" element={<Layout><Lazy><TheEvolutionOfCyberFraudInEstoniaResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/the-pin-that-cannot-be-delegated" element={<Layout><Lazy><ThePinThatCannotBeDelegatedResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/russian-cyber-ops-estonia-hosting" element={<Layout><Lazy><RussianCyberOpsEstoniaHostingResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server

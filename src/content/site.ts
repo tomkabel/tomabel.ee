@@ -357,6 +357,26 @@ export const disclosures: Disclosure[] = [
     },
     href: '/disclosures/chatgpt-is-not-a-phishing-scanner',
   },
+  {
+    kind: 'essay',
+    title: {
+      en: 'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
+      et: 'Hall ruum: Venemaa küberoperatsioonid ja Eesti hostingutaristu',
+    },
+    blurb: {
+      en: "An OSINT assessment of Estonia's dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers. Maps Ilia Trusov's infrastructure network, RIPE geolocation manipulation, and documented DDoS operations against Rappler and Azerbaijan-critical targets. Distinguishes gray-space infrastructure from proven APT attribution.",
+      et: 'OSINT-hinnang Eesti kahesele rollile Venemaa küberökosüsteemis: tavahostinguteenuse pakkujad, bulletproof-üksused nagu Vault Dweller OÜ ja halli ruumi proxy-võrgud (Fineproxy, Quality Network OÜ), mis on ankrus Eesti andmekeskustes. Kaardistab Ilia Trusovi taristuvõrgustiku, RIPE geolokatsiooni võltsimise ja dokumenteeritud DDoS-operatsioonid Rappleri ja Aserbaidžaani-kriitiliste sihtmärkide vastu. Eristab halli ruumi taristut tõestatud APT omistusest.',
+    },
+    tags: ['OSINT', 'Estonia', 'Cyber Operations', 'Infrastructure', 'DDoS'],
+    keywords:
+      'Estonia, Russian cyber operations, Fineproxy, Quality Network, Ilia Trusov, Vault Dweller, RIPE geolocation spoofing, bulletproof hosting, DDoS, gray space, Region40, Kingservers, UGB Hosting, Rappler',
+    type: { en: 'Reference Paper', et: 'Viitetöö' },
+    meta: {
+      en: 'Published · 8 min read',
+      et: 'Avaldatud · 8 min lugemist',
+    },
+    href: '/disclosures/russian-cyber-ops-estonia-hosting',
+  },
 ];
 
 // ─── Projects ────────────────────────────────────────────────────────────────
