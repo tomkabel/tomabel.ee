@@ -278,6 +278,28 @@ const META = {
       },
     },
   },
+  'disclosures/russian-cyber-ops-estonia-hosting': {
+    title:
+      'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure — Tom Kristian Abel',
+    description:
+      "An OSINT assessment of Estonia's dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers. Maps Ilia Trusov's infrastructure network, RIPE geolocation manipulation, and documented DDoS operations against Rappler and Azerbaijan-critical targets.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline:
+        'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
+      description:
+        "An OSINT assessment of Estonia's dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers.",
+      url: `${BASE}/disclosures/russian-cyber-ops-estonia-hosting/`,
+      datePublished: '2026-09-14',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+
   about: {
     title: 'About — Tom Kristian Abel',
     description:
