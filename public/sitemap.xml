@@ -133,4 +133,40 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://tomabel.ee/disclosures/why-vlms-break-client-side-anti-fraud/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/nine-dimensions-of-zero-trust/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/the-fortune-500-illusion-of-control/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/move-fast-fix-it-in-prod/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/saas-glued-lean-defense/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tomabel.ee/disclosures/identity-is-the-root-proof-is-the-gate/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
