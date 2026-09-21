@@ -62,3 +62,13 @@ drafts/
 cookie.txt
 *.cookies
 cookies.txt
+
+# Private reputation-strategy drafts and research artifacts.
+# These normally live one directory up, OUTSIDE this worktree, so git never
+# sees them. This is a guard in case one is ever copied in while working:
+# they contain personal strategy and unpublished drafts and must never land
+# in the public site repo.
+phase5*.md
+phase5-source/
+phase*-handoff-prompt.md
+identity-rebrand-plan.md
