@@ -154,11 +154,6 @@ const sources = [
     note: 'founded 2001 by Swedbank, SEB Bank and Telia Eesti',
   },
   {
-    label: 'BSides Tallinn 2026, event and call for papers',
-    url: 'https://openssf.org/event/cfp-bsides-tallinn-estonia/',
-    note: 'September 24-25, 2026, Tallinn',
-  },
-  {
     label: 'Companion essay: Coordinated disclosure in a small country',
     url: 'https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/',
     note: 'what national-infrastructure disclosure looks like in Estonia',
@@ -182,7 +177,7 @@ const sources = [
 
 const disclosureParagraphs = [
   'The MITM feasibility analysis is a documentation review. It probed no live system and disclosed nothing new; every protocol claim traces to SK\u2019s published API documentation.',
-  'The signing-relay analysis was carried out in a containerized research environment (Docker, local test domains, SK\u2019s public demo portal as target), authorized by Arnis Paršovs of the University of Tartu. Per the research file, the findings were disclosed to SK ID Solutions ahead of public release, and the vendor assessed the risk class as known and accepted. The work was scheduled for presentation at BSides Tallinn in September 2026.',
+  'The signing-relay analysis was carried out in a containerized research environment (Docker, local test domains, SK\u2019s public demo portal as target), authorized by Arnis Paršovs of the University of Tartu. Per the research file, the findings were disclosed to SK ID Solutions ahead of public release, and the vendor assessed the risk class as known and accepted.',
   'This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site\u2019s ',
 ];
 
@@ -297,7 +292,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="7805987152eea9563a7b8d4394a7a3deca19518b7a7d668d8ea0ffad1cdda60d"
+        expectedSha256="20a3167f7dbb5f074ec9022fa79bb488538ad1f0c986423a9836b620b4a19340"
       />
     </article>
   );
