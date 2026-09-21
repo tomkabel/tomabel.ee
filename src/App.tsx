@@ -28,6 +28,12 @@ const ThePinThatCannotBeDelegatedResearchPage = React.lazy(() => import('./pages
 const RussianCyberOpsEstoniaHostingResearchPage = React.lazy(() => import('./pages/RussianCyberOpsEstoniaHostingResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const MyStoryPage = React.lazy(() => import('./pages/MyStoryPage'));
+const VlmAntiFraudResearchPage = React.lazy(() => import('./pages/VlmAntiFraudResearchPage'));
+const NineDimensionsZeroTrustPage = React.lazy(() => import('./pages/NineDimensionsZeroTrustPage'));
+const Fortune500IllusionResearchPage = React.lazy(() => import('./pages/Fortune500IllusionResearchPage'));
+const MoveFastFixItInProdResearchPage = React.lazy(() => import('./pages/MoveFastFixItInProdResearchPage'));
+const SaasGluedLeanDefenseResearchPage = React.lazy(() => import('./pages/SaasGluedLeanDefenseResearchPage'));
+const IdentityRootProofGateResearchPage = React.lazy(() => import('./pages/IdentityRootProofGateResearchPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
 // /disclosures/<slug> (slug unchanged). Preserve the leaf, swap the parent.
@@ -123,6 +129,12 @@ function App() {
             <Route path="/disclosures/russian-cyber-ops-estonia-hosting" element={<Layout><Lazy><RussianCyberOpsEstoniaHostingResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
             <Route path="/my-story" element={<Layout><Lazy><MyStoryPage /></Lazy></Layout>} />
+            <Route path="/disclosures/why-vlms-break-client-side-anti-fraud" element={<Layout><Lazy><VlmAntiFraudResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/nine-dimensions-of-zero-trust" element={<Layout><Lazy><NineDimensionsZeroTrustPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-fortune-500-illusion-of-control" element={<Layout><Lazy><Fortune500IllusionResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/move-fast-fix-it-in-prod" element={<Layout><Lazy><MoveFastFixItInProdResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/saas-glued-lean-defense" element={<Layout><Lazy><SaasGluedLeanDefenseResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/identity-is-the-root-proof-is-the-gate" element={<Layout><Lazy><IdentityRootProofGateResearchPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
                 301s live in public/_redirects for hosts that honor it. */}

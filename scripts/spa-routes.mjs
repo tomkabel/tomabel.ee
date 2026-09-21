@@ -300,6 +300,126 @@ const META = {
     },
   },
 
+  'disclosures/why-vlms-break-client-side-anti-fraud': {
+    title:
+      'How client-side anti-fraud actually works, and why VLMs break it — Tom Kristian Abel',
+    description:
+      'Fifteen years of bot detection assumes an automated client must forge something a real browser produces naturally. A vision-language model driving a stock browser forges nothing. The five defensive paradigms, which survive operator synthesis, and the attestation centralization problem.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'How client-side anti-fraud actually works, and why VLMs break it',
+      description:
+        'Fifteen years of bot detection assumes an automated client must forge something a real browser produces naturally. A vision-language model driving a stock browser forges nothing. The five defensive paradigms, which survive operator synthesis, and the attestation centralization problem.',
+      url: `${BASE}/disclosures/why-vlms-break-client-side-anti-fraud/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/nine-dimensions-of-zero-trust': {
+    title:
+      'The Nine Dimensions of Zero Trust — Tom Kristian Abel',
+    description:
+      'Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The Nine Dimensions of Zero Trust',
+      description:
+        'Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it.',
+      url: `${BASE}/disclosures/nine-dimensions-of-zero-trust/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/the-fortune-500-illusion-of-control': {
+    title:
+      'The Fortune 500 Illusion of Control — Tom Kristian Abel',
+    description:
+      'A full breach trace of Archetype B from the Zero-Trust Octagon: the enterprise with the largest security budget, the most tooling and the most attestations, taken from a stolen session cookie to full database exfiltration in twenty minutes.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The Fortune 500 Illusion of Control',
+      description:
+        'A full breach trace of Archetype B from the Zero-Trust Octagon: the enterprise with the largest security budget, the most tooling and the most attestations, taken from a stolen session cookie to full database exfiltration in twenty minutes.',
+      url: `${BASE}/disclosures/the-fortune-500-illusion-of-control/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/move-fast-fix-it-in-prod': {
+    title:
+      'Move Fast, Fix It In Prod — Tom Kristian Abel',
+    description:
+      'A full supply-chain and CI/CD breach trace of Archetype C, the velocity-optimised startup: a typosquatted dependency passes the only verification gate the architecture has and reaches production with a valid workload identity. Composite analytical model, not a real incident.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Move Fast, Fix It In Prod: A Full Breach Trace of the Startup Archetype',
+      description:
+        'A full supply-chain and CI/CD breach trace of Archetype C, the velocity-optimised startup: a typosquatted dependency passes the only verification gate the architecture has and reaches production with a valid workload identity. Composite analytical model, not a real incident.',
+      url: `${BASE}/disclosures/move-fast-fix-it-in-prod/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/saas-glued-lean-defense': {
+    title:
+      'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D — Tom Kristian Abel',
+    description:
+      'A step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, OAuth grant cascade, and five fixes one operator can apply in an afternoon without a budget.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D',
+      description:
+        'A step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, OAuth grant cascade, and five fixes one operator can apply in an afternoon without a budget.',
+      url: `${BASE}/disclosures/saas-glued-lean-defense/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
+  'disclosures/identity-is-the-root-proof-is-the-gate': {
+    title:
+      'Identity Is the Root. Proof Is the Gate. — Tom Kristian Abel',
+    description:
+      'Every control in a zero-trust architecture is downstream of identity, so the proof taken at the gate is the ceiling on everything above it. On authentication events versus continuous proof, the six distinct claims people call authenticated, and why phishing-resistant credentials are necessary but not sufficient.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Identity Is the Root. Proof Is the Gate.',
+      description:
+        'Every control in a zero-trust architecture is downstream of identity, so the proof taken at the gate is the ceiling on everything above it. On authentication events versus continuous proof, the six distinct claims people call authenticated, and why phishing-resistant credentials are necessary but not sufficient.',
+      url: `${BASE}/disclosures/identity-is-the-root-proof-is-the-gate/`,
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
@@ -396,6 +516,26 @@ if (offenders.length > 0) {
 }
 
 console.log(`spa-routes: emitted ${routes.length} route shells with per-route meta`);
+
+// Build-time gate: this map and Seo.tsx's META must stay in sync. If a route is
+// missing from Seo.tsx, the client-side Seo component falls through to FALLBACK
+// on mount and rewrites the page's title to "Page Not Found" and its canonical
+// to the homepage — which tells Google the page is a duplicate of "/" and
+// deindexes it. The static shell looks fine, so this fails silently and only
+// shows up in search rankings weeks later. (Caught exactly that on
+// /disclosures/zero-trust-octagon.)
+const seoSrc = readFileSync('src/components/Seo.tsx', 'utf-8');
+const seoKeys = new Set(
+  [...seoSrc.matchAll(/^ {2}'(\/[^']*)':\s*\{/gm)].map((m) => m[1]),
+);
+const unsynced = routes.filter((route) => !seoKeys.has(`/${route}`));
+if (unsynced.length > 0) {
+  console.error(
+    'FAIL: routes present here but missing from Seo.tsx META (they would render as "Page Not Found" and self-canonicalize to the homepage):',
+    unsynced,
+  );
+  process.exit(1);
+}
 
 // GH Pages fallback for unknown paths: serve a noindex copy of the shell.
 // HTTP 404 + noindex keeps unknown URLs out of the index.

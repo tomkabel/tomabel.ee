@@ -182,6 +182,27 @@ const META: Record<string, Meta> = {
       },
     },
   },
+  '/disclosures/zero-trust-octagon': {
+    title: 'Zero-Trust Octagon — a framework from first principles — Tom Kristian Abel',
+    description:
+      'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+    url: 'https://tomabel.ee/disclosures/zero-trust-octagon/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Zero-Trust Octagon — a framework from first principles',
+      description:
+        'A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs.',
+      url: 'https://tomabel.ee/disclosures/zero-trust-octagon/',
+      datePublished: '2026-08-11',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/disclosures/pact-software-anchor-turn': {
     title:
       'PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens — Tom Kristian Abel',
@@ -313,6 +334,138 @@ const META: Record<string, Meta> = {
         "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the published research that is the evidence. With a link to the original Delfi interview.",
       url: 'https://tomabel.ee/my-story/',
       datePublished: '2026-09-21',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/why-vlms-break-client-side-anti-fraud': {
+    title:
+      'How client-side anti-fraud actually works, and why VLMs break it — Tom Kristian Abel',
+    description:
+      'Fifteen years of bot detection assumes an automated client must forge something a real browser produces naturally. A vision-language model driving a stock browser forges nothing. The five defensive paradigms, which survive operator synthesis, and the attestation centralization problem.',
+    url: 'https://tomabel.ee/disclosures/why-vlms-break-client-side-anti-fraud/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'How client-side anti-fraud actually works, and why VLMs break it',
+      description:
+        'Fifteen years of bot detection assumes an automated client must forge something a real browser produces naturally. A vision-language model driving a stock browser forges nothing. The five defensive paradigms, which survive operator synthesis, and the attestation centralization problem.',
+      url: 'https://tomabel.ee/disclosures/why-vlms-break-client-side-anti-fraud/',
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/nine-dimensions-of-zero-trust': {
+    title:
+      'The Nine Dimensions of Zero Trust — Tom Kristian Abel',
+    description:
+      'Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it.',
+    url: 'https://tomabel.ee/disclosures/nine-dimensions-of-zero-trust/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The Nine Dimensions of Zero Trust',
+      description:
+        'Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it.',
+      url: 'https://tomabel.ee/disclosures/nine-dimensions-of-zero-trust/',
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/the-fortune-500-illusion-of-control': {
+    title:
+      'The Fortune 500 Illusion of Control — Tom Kristian Abel',
+    description:
+      'A full breach trace of Archetype B from the Zero-Trust Octagon: the enterprise with the largest security budget, the most tooling and the most attestations, taken from a stolen session cookie to full database exfiltration in twenty minutes.',
+    url: 'https://tomabel.ee/disclosures/the-fortune-500-illusion-of-control/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'The Fortune 500 Illusion of Control',
+      description:
+        'A full breach trace of Archetype B from the Zero-Trust Octagon: the enterprise with the largest security budget, the most tooling and the most attestations, taken from a stolen session cookie to full database exfiltration in twenty minutes.',
+      url: 'https://tomabel.ee/disclosures/the-fortune-500-illusion-of-control/',
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/move-fast-fix-it-in-prod': {
+    title:
+      'Move Fast, Fix It In Prod — Tom Kristian Abel',
+    description:
+      'A full supply-chain and CI/CD breach trace of Archetype C, the velocity-optimised startup: a typosquatted dependency passes the only verification gate the architecture has and reaches production with a valid workload identity. Composite analytical model, not a real incident.',
+    url: 'https://tomabel.ee/disclosures/move-fast-fix-it-in-prod/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Move Fast, Fix It In Prod: A Full Breach Trace of the Startup Archetype',
+      description:
+        'A full supply-chain and CI/CD breach trace of Archetype C, the velocity-optimised startup: a typosquatted dependency passes the only verification gate the architecture has and reaches production with a valid workload identity. Composite analytical model, not a real incident.',
+      url: 'https://tomabel.ee/disclosures/move-fast-fix-it-in-prod/',
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/saas-glued-lean-defense': {
+    title:
+      'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D — Tom Kristian Abel',
+    description:
+      'A step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, OAuth grant cascade, and five fixes one operator can apply in an afternoon without a budget.',
+    url: 'https://tomabel.ee/disclosures/saas-glued-lean-defense/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D',
+      description:
+        'A step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, OAuth grant cascade, and five fixes one operator can apply in an afternoon without a budget.',
+      url: 'https://tomabel.ee/disclosures/saas-glued-lean-defense/',
+      datePublished: '2026-09-22',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
+  '/disclosures/identity-is-the-root-proof-is-the-gate': {
+    title:
+      'Identity Is the Root. Proof Is the Gate. — Tom Kristian Abel',
+    description:
+      'Every control in a zero-trust architecture is downstream of identity, so the proof taken at the gate is the ceiling on everything above it. On authentication events versus continuous proof, the six distinct claims people call authenticated, and why phishing-resistant credentials are necessary but not sufficient.',
+    url: 'https://tomabel.ee/disclosures/identity-is-the-root-proof-is-the-gate/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: 'Identity Is the Root. Proof Is the Gate.',
+      description:
+        'Every control in a zero-trust architecture is downstream of identity, so the proof taken at the gate is the ceiling on everything above it. On authentication events versus continuous proof, the six distinct claims people call authenticated, and why phishing-resistant credentials are necessary but not sufficient.',
+      url: 'https://tomabel.ee/disclosures/identity-is-the-root-proof-is-the-gate/',
+      datePublished: '2026-09-22',
       author: {
         '@type': 'Person',
         name: 'Tom Kristian Abel',
