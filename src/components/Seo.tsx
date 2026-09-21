@@ -276,6 +276,27 @@ const META: Record<string, Meta> = {
       'The way of seeing — background, philosophy, and how to work with Tom Kristian Abel.',
     url: 'https://tomabel.ee/about/',
   },
+  '/my-story': {
+    title: 'My story — Tom Kristian Abel',
+    description:
+      "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the published research that is the evidence. With a link to the original Delfi interview.",
+    url: 'https://tomabel.ee/my-story/',
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'My story — Tom Kristian Abel',
+      description:
+        "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the published research that is the evidence. With a link to the original Delfi interview.",
+      url: 'https://tomabel.ee/my-story/',
+      datePublished: '2026-09-21',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: 'https://tomabel.ee/',
+      },
+    },
+  },
   '/privacy': {
     title: 'Privacy Policy — Tom Kristian Abel',
     description:

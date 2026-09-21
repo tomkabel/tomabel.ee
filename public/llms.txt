@@ -23,6 +23,7 @@ Based in Estonia. Writes in English and Estonian. Research focuses on identity p
   - [The evolution of cyber fraud in Estonia, 2010–2026](https://tomabel.ee/disclosures/the-evolution-of-cyber-fraud-in-estonia/): how Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell — recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing to €29 million in 2025.
 - [Systems](https://tomabel.ee/systems/): Shipped systems — fingerprintproxy (production Go TLS-fingerprinting proxy, 65+ browser profiles, JA3/JA4), Vooglaadija (FastAPI media-extraction service with Redis queues, JWT auth, observability), Discord RAG pipeline (LanceDB + BM25 hybrid retrieval with RBAC-aware filtering).
 - [About](https://tomabel.ee/about/): Bio, philosophy, and the kratt metaphor.
+- [My story](https://tomabel.ee/my-story/): How I got here, in three acts — the criminal case, the pivot from offense to research, and the published work as evidence. Links the original Delfi interview.
 - [Privacy Policy](https://tomabel.ee/privacy/), [Terms of Service](https://tomabel.ee/terms/), [Cookie Policy](https://tomabel.ee/cookies/), [Security Research Policy](https://tomabel.ee/disclosure/)
 
 ## Contact

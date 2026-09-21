@@ -26,6 +26,7 @@ const ChatgptIsNotAPhishingScannerResearchPage = React.lazy(() => import('./page
 const TheEvolutionOfCyberFraudInEstoniaResearchPage = React.lazy(() => import('./pages/TheEvolutionOfCyberFraudInEstoniaResearchPage'));
 const ThePinThatCannotBeDelegatedResearchPage = React.lazy(() => import('./pages/ThePinThatCannotBeDelegatedResearchPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const MyStoryPage = React.lazy(() => import('./pages/MyStoryPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
 // /disclosures/<slug> (slug unchanged). Preserve the leaf, swap the parent.
@@ -119,6 +120,7 @@ function App() {
             <Route path="/disclosures/the-evolution-of-cyber-fraud-in-estonia" element={<Layout><Lazy><TheEvolutionOfCyberFraudInEstoniaResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/the-pin-that-cannot-be-delegated" element={<Layout><Lazy><ThePinThatCannotBeDelegatedResearchPage /></Lazy></Layout>} />
             <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
+            <Route path="/my-story" element={<Layout><Lazy><MyStoryPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
                 301s live in public/_redirects for hosts that honor it. */}

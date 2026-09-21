@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { site } from '../../content/site';
 
@@ -40,6 +41,11 @@ export default function SiteFooter() {
                 <a className="text-foreground transition-colors hover:text-accent" href="/public-key.asc">
                   PGP
                 </a>
+              </li>
+              <li className="pt-2">
+                <Link className="text-muted-foreground transition-colors hover:text-accent" to="/my-story">
+                  {language === 'en' ? 'My story' : 'Minu lugu'}
+                </Link>
               </li>
             </ul>
           </div>
