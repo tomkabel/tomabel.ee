@@ -64,8 +64,8 @@ importers:
         specifier: ^0.8.1
         version: 0.8.2(esbuild@0.28.2)(postcss@8.5.28)(rolldown@1.2.7)(vite@8.3.0(esbuild@0.28.2)(jiti@1.21.7)(terser@5.47.1))
       globals:
-        specifier: ^15.9.0
-        version: 15.15.0
+        specifier: ^17.12.0
+        version: 17.12.0
       postcss:
         specifier: ^8.5.28
         version: 8.5.28
@@ -963,8 +963,8 @@ packages:
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
-  globals@15.15.0:
-    resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
+  globals@17.12.0:
+    resolution: {integrity: sha512-cezEd/DTyyht9cvSSURyygXPfy04GtWO/5e6ZPvH7fCtjKz9PYOmuawphw1Ctd1f6C+5JypXfGD7ahNMXvevBA==}
     engines: {node: '>=18'}
 
   hashery@1.5.1:
@@ -2494,7 +2494,7 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  globals@15.15.0: {}
+  globals@17.12.0: {}
 
   hashery@1.5.1:
     dependencies:
