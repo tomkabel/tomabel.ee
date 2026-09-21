@@ -259,6 +259,25 @@ const META = {
       },
     },
   },
+  'my-story': {
+    title: 'My story — Tom Kristian Abel',
+    description:
+      "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the published research that is the evidence. With a link to the original Delfi interview.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'My story — Tom Kristian Abel',
+      description:
+        "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the published research that is the evidence. With a link to the original Delfi interview.",
+      url: `${BASE}/my-story/`,
+      datePublished: '2026-09-21',
+      author: {
+        '@type': 'Person',
+        name: 'Tom Kristian Abel',
+        url: `${BASE}/`,
+      },
+    },
+  },
   about: {
     title: 'About — Tom Kristian Abel',
     description:
