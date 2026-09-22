@@ -257,6 +257,33 @@ export default function BotGuardDisassembledResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                <Link
+                  to="/disclosures/what-client-side-trust-is-actually-worth"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  What client-side trust is actually worth
+                </Link>{' '}
+                uses this teardown as its central case study for a broader argument about
+                attestation architectures.
+              </p>
+              <p>
+                <Link
+                  to="/disclosures/why-vlms-break-client-side-anti-fraud"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  Why VLMs break client-side anti-fraud
+                </Link>{' '}
+                extends the same structural weakness to VLM-driven agents operating a real browser.
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

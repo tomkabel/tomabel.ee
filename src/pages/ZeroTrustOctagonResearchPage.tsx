@@ -281,6 +281,41 @@ export default function ZeroTrustOctagonResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <li>
+                <Link
+                  to="/disclosures/nine-dimensions-of-zero-trust"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  Nine dimensions of zero trust
+                </Link>{' '}
+                — applies this octagon model across a broader audit framework.
+              </li>
+              <li>
+                <Link
+                  to="/disclosures/the-fortune-500-illusion-of-control"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  The Fortune 500 illusion of control
+                </Link>{' '}
+                — shows the same trust-model gaps playing out at enterprise scale.
+              </li>
+              <li>
+                <Link
+                  to="/disclosures/identity-is-the-root-proof-is-the-gate"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  Identity is the root, proof is the gate
+                </Link>{' '}
+                — extends the trust-anchor argument to identity and approval flows specifically.
+              </li>
+            </ul>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

@@ -270,6 +270,32 @@ export default function SmartIdAchillesHeelResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <li>
+                <Link
+                  to="/disclosures/the-fix-that-doesnt-need-sk"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  The fix that doesn't need SK
+                </Link>{' '}
+                — proposes a remediation that closes this gap without depending on the issuer.
+              </li>
+              <li>
+                <Link
+                  to="/disclosures/identity-is-the-root-proof-is-the-gate"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  Identity is the root, proof is the gate
+                </Link>{' '}
+                — places this finding inside a broader argument about identity and approval flows.
+              </li>
+            </ul>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

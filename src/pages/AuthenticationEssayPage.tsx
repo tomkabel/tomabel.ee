@@ -187,6 +187,32 @@ export default function AuthenticationEssayPage() {
               {section.after}
             </section>
           ))}
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <li>
+                <Link
+                  to="/disclosures/what-client-side-trust-is-actually-worth"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  What client-side trust is actually worth
+                </Link>{' '}
+                — applies this thesis to attestation and anti-fraud architectures specifically.
+              </li>
+              <li>
+                <Link
+                  to="/disclosures/smart-id-achilles-heel"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  The Achilles' heel of Estonia's e-state
+                </Link>{' '}
+                — applies it to a national-scale authentication and identity system.
+              </li>
+            </ul>
+          </section>
         </div>
       </div>
     </article>

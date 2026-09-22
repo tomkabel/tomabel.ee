@@ -209,7 +209,7 @@ function ProjectCard({
       </div>
 
       <div className="mb-3 flex items-start justify-between gap-3">
-        <h3 className="break-words font-display text-xl font-bold leading-tight text-foreground">{p.name}</h3>
+        <h2 className="break-words font-display text-xl font-bold leading-tight text-foreground">{p.name}</h2>
         {p.stars ? <StarMetric stars={p.stars} /> : null}
       </div>
 

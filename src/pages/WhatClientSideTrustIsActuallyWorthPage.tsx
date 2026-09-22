@@ -143,6 +143,16 @@ export default function WhatClientSideTrustIsActuallyWorthPage() {
                 , which covers the same argument at academic depth and traces which architectural
                 properties survive the shift from scripted bots to VLM-driven ones.
               </p>
+              <p>
+                The case study behind this essay is{' '}
+                <Link
+                  to="/disclosures/botguard-disassembled"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  BotGuard, disassembled
+                </Link>
+                , the technical teardown of the anti-fraud VM referenced above.
+              </p>
             </div>
           </section>
         </div>
