@@ -351,6 +351,40 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              {isEn ? 'Related reading' : 'Seotud lugemine'}
+            </h2>
+            <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <li>
+                <Link
+                  to="/disclosures/smart-id-achilles-heel"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  {isEn
+                    ? "The Achilles' heel of Estonia's e-state"
+                    : "Eesti e-riigi Achilleuse kand"}
+                </Link>{' '}
+                {isEn
+                  ? '— the companion Smart-ID report this one builds the delegation argument on top of.'
+                  : '— kaasnev Smart-ID raport, millele see delegeerimisargument toetub.'}
+              </li>
+              <li>
+                <Link
+                  to="/disclosures/identity-is-the-root-proof-is-the-gate"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  {isEn
+                    ? 'Identity is the root, proof is the gate'
+                    : 'Identiteet on juur, tõend on värav'}
+                </Link>{' '}
+                {isEn
+                  ? '— places PIN delegation inside the broader identity and approval-flow argument.'
+                  : '— asetab PIN-i delegeerimise laiema identiteedi ja kinnitusvoo argumendi konteksti.'}
+              </li>
+            </ul>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

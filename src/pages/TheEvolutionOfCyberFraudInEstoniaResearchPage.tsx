@@ -347,6 +347,30 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              {isEn ? 'Related reading' : 'Seotud lugemine'}
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                {isEn
+                  ? 'The separate technical report referenced above is '
+                  : 'Ülal viidatud eraldi tehniline raport on '}
+                <Link
+                  to="/disclosures/smart-id-achilles-heel"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  {isEn
+                    ? "The Achilles' heel of Estonia's e-state"
+                    : "Eesti e-riigi Achilleuse kand"}
+                </Link>
+                {isEn
+                  ? ', which covers the Smart-ID consent-step weakness this fraud data measures the cost of.'
+                  : ', mis käsitleb Smart-ID nõusolekusammu nõrkust, mille kulu see pettuseandmestik mõõdab.'}
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               {isEn ? 'Disclosure status' : 'Avalikustamise staatus'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

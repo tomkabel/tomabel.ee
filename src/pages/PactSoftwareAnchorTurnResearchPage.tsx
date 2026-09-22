@@ -257,6 +257,24 @@ export default function PactSoftwareAnchorTurnResearchPage() {
 
           <section className="mt-16 max-w-3xl">
             <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              Related reading
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                The comparison above to a system I "take seriously" refers to{' '}
+                <Link
+                  to="/disclosures/botguard-disassembled"
+                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                >
+                  BotGuard, disassembled
+                </Link>
+                , the teardown of Google's anti-fraud VM.
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-3xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
