@@ -70,7 +70,7 @@ export default function SystemsPage() {
             title={isEn ? "Things I've shipped." : 'Mida olen tarninud.'}
             intro={isEn
               ? "Research is one thing; getting it to hold up under real traffic is another. These are the tools, security prototypes, and backend services I've built and deployed."
-              : 'Uuring on üks asi; selle vastupidavus päris liikluse all on teine. Need on tööriistad, turvaprototüübid ja backend-teenused, mille olen ehitanud ja juurutanud.'}
+              : 'Uuring on üks asi; selle vastupidavus päris liikluse all on teine. Need on tööriistad, turvaprototüübid ja taustateenused, mille olen ehitanud ja juurutanud.'}
           />
           <p className="label mt-8 text-muted-foreground">
             {projects.length} {isEn ? 'projects · public repositories & live deployments' : 'projekti · avalikud repod ja live-juurutused'}

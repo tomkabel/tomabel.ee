@@ -18,18 +18,18 @@ type Source = {
 
 const title: Bi = {
   en: 'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
-  et: 'Hall ruum: Venemaa küberoperatsioonid ja Eesti hostingutaristu',
+  et: 'Hall ala: Venemaa küberoperatsioonid ja Eesti majutustaristu',
 };
 
 const standfirst: Bi = {
   en: "Estonia's hosting infrastructure sits at the intersection of legitimate EU-based cloud services, bulletproof providers catering to ransomware networks, and gray-space proxy platforms that enable politically motivated DDoS operations. This assessment maps the ecosystem from mainstream data centers to geopolitically weaponized proxy networks, anchored in Estonian corporate registrations and RIPE-manipulated IP space.",
-  et: 'Eesti hostingu ökosüsteem asub seaduslike ELi pilveplatvormide, ransomware võrgustikke teenindavate bulletproof-pakkujate ja poliitiliselt motiveeritud DDoS-operatsioone võimaldavate halli ruumi proksiplatvormide ristumiskohas. See hinnang kaardistab ökosüsteemi alates tavapärastest andmekeskustest kuni geopoliitiliselt relvastatud proksivõrkudeni, mis on ankrus Eesti äriregistris ja RIPE-i manipuleeritud IP-ruumis.',
+  et: 'Eesti serverimajutuse ökosüsteem asub seaduslike ELi pilveplatvormide, ransomware võrgustikke teenindavate kuulikindla majutuse pakkujate ja poliitiliselt motiveeritud DDoS-operatsioone võimaldavate halli ala proksiplatvormide ristumiskohas. See hinnang kaardistab ökosüsteemi alates tavapärastest andmekeskustest kuni geopoliitiliselt relvastatud proksivõrkudeni, mis on ankrus Eesti äriregistris ja RIPE-i manipuleeritud IP-ruumis.',
 };
 
 const openingParagraphs: Bi[] = [
   {
     en: 'Between mainstream EU-registered hosting providers and overtly criminal bulletproof hosts sits a gray zone of proxy networks, RIPE metadata manipulation, and commercially operated DDoS infrastructure anchored in Estonian data centers and corporate registrations. Estonia itself remains a recurring cyber target in the wider Russia-West contest.',
-    et: 'Tavaliste ELis registreeritud hostinguettevõtjate ja ilmselgelt kriminaalsete bulletproof-peremeeste vahel on hall tsoon: proksivõrgud, RIPE metaandmete võltsimine ja kommertslikult käitatav DDoS-taristu, mis on ankrus Eesti andmekeskustes ja äriregistris. Eesti ise on korduv küberrünnete sihtmärk laiemas Vene-Lääne konfliktis.',
+    et: 'Tavaliste ELis registreeritud majutusteenuse pakkujate ja ilmselgelt kriminaalsete kuulikindla majutuse pakkujate vahel on hall tsoon: proksivõrgud, RIPE metaandmete võltsimine ja kommertslikult käitatav DDoS-taristu, mis on ankrus Eesti andmekeskustes ja äriregistris. Eesti ise on korduv küberrünnete sihtmärk laiemas Vene-Lääne konfliktis.',
   },
 ];
 
@@ -42,15 +42,15 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Estonian hosting infrastructure relevant to Russian cyber operations breaks into three tiers.',
-        et: 'Venemaa küberoperatsioonide seisukohast oluline Eesti hostingu taristu jaguneb kolmeks kihiks.',
+        et: 'Venemaa küberoperatsioonide seisukohast oluline Eesti serverimajutuse taristu jaguneb kolmeks kihiks.',
       },
       {
         en: 'Mainstream providers. EDIS Global offers KVM VPS in Telia\'s Sõpruse pst data center in Tallinn. FairyHosting (RJ Network OÜ) provides VPS, dedicated servers, and shared hosting from the same Telia Tier III facility. Sawia Digital sells DreamHost-based shared hosting in Narva. All three respond to abuse complaints and experience opportunistic abuse, as most large shared hosting environments do.',
-        et: 'Tavapakkujad. EDIS Global pakub KVM VPS-i Telia Sõpruse pst andmekeskuses Tallinnas. FairyHosting (RJ Network OÜ) pakub VPS-i, dedicated servereid ja ühishostingut samast Telia III taseme keskusest. Sawia Digital müüb DreamHostil põhinevat ühishostingut Narvas. Kõik kolm reageerivad kaebustele ja nende teenuseid kasutatakse opportunistlikult ära, nagu iga suure ühishostingu keskkonna puhul.',
+        et: 'Tavapakkujad. EDIS Global pakub KVM VPS-i Telia Sõpruse pst andmekeskuses Tallinnas. FairyHosting (RJ Network OÜ) pakub VPS-i, dedicated servereid ja jagatud veebimajutust samast Telia III taseme keskusest. Sawia Digital müüb DreamHostil põhinevat jagatud veebimajutust Narvas. Kõik kolm reageerivad kaebustele ja nende teenuseid kasutatakse opportunistlikult ära, nagu iga suure jagatud veebimajutuse keskkonna puhul.',
       },
       {
         en: 'Bulletproof entities like Vault Dweller OÜ, registered in Tallinn with NACE code 63.10 ("data processing, hosting and related activities"). Its ASN (AS203834, created 2022) is cataloged by the bulletproof-hosting research profile "BPH-02 / Estonia Reg / No Sanctions" as serving Russia/CIS-linked ransomware networks, with 307 IOCs on ThreatFox. The infrastructure is physically hosted in Bulgaria. IPinfo notes no active IPv4 or IPv6 allocations as of the latest scan, so the operational status may be partially stale or obfuscated. Services are advertised on the Carder.su underground forum.',
-        et: 'Bulletproof-üksused nagu Vault Dweller OÜ, registreeritud Tallinnas NACE koodiga 63.10 ("andmetöötlus, veebimajutus ja sellega seotud tegevused"). Selle ASN (AS203834, loodud 2022) on kataloogitud bulletproof-hosting profiilis "BPH-02 / Estonia Reg / No Sanctions" kui Venemaa/ SRÜ-ga seotud ransomware võrgustikke teenindav, 307 IoC-ga ThreatFoxi andmebaasis. Füüsiline taristu asub Bulgaarias. IPinfo märgib aktiivseid IPv4/IPv6 eraldusi mitte, seega võib operatiivne staatus olla osaliselt aegunud või varjatud. Teenuseid reklaamitakse Carder.su põrandaaluses foorumis.',
+        et: 'Kuulikindla majutuse pakkujad nagu Vault Dweller OÜ, registreeritud Tallinnas NACE koodiga 63.10 ("andmetöötlus, veebimajutus ja sellega seotud tegevused"). Selle ASN (AS203834, loodud 2022) on kataloogitud kuulikindla majutuse profiilis "BPH-02 / Estonia Reg / No Sanctions" kui Venemaa/ SRÜ-ga seotud ransomware võrgustikke teenindav, 307 IoC-ga ThreatFoxi andmebaasis. Füüsiline taristu asub Bulgaarias. IPinfo märgib aktiivseid IPv4/IPv6 eraldusi mitte, seega võib operatiivne staatus olla osaliselt aegunud või varjatud. Teenuseid reklaamitakse Carder.su põrandaaluses foorumis.',
       },
       {
         en: 'Gray-space proxy networks like Fineproxy and Rayobyte present themselves as web-scraping and SEO automation platforms, but their IP space shows up repeatedly in politically motivated DDoS campaigns. Fineproxy is registered through Quality Network OÜ in Estonia, owned by Russian IT entrepreneur Ilia Trusov. Its physical servers are concentrated in a small number of European data centers (including UGB Hosting in Estonia), while its RIPE objects claim multi-country presence through systematically falsified geolocation metadata. Rayobyte (Sprious LLC, US-based) is included because its infrastructure is co-identified in the same DDoS campaigns.',
@@ -58,7 +58,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'Bulletproof hosting, the highest-risk tier, refers to providers that advertise tolerance of abuse in underground forums, actively resist takedowns, and supply infrastructure to botnet C2, ransomware, and malware operations. The DOJ prosecution of Aleksandr Grichishkin and associates (2009–2015) is a documented exemplar.',
-        et: 'Bulletproof-hosting, kõrgeima riskiga kiht, viitab pakkujatele, kes reklaamivad kuritarvituste talumist põrandaalustes foorumites, osutavad aktiivselt vastupanu sulgemistele ja varustavad taristuga botnet C2, ransomware ja malware operatsioone. USA justiitsministeeriumi süüdistus Aleksandr Grišikini ja kaaslaste vastu (2009–2015) on dokumenteeritud näide.',
+        et: 'Kuulikindel majutus, kõrgeima riskiga kiht, viitab pakkujatele, kes reklaamivad kuritarvituste talumist põrandaalustes foorumites, osutavad aktiivselt vastupanu sulgemistele ja varustavad taristuga botnet C2, ransomware ja malware operatsioone. USA justiitsministeeriumi süüdistus Aleksandr Grišikini ja kaaslaste vastu (2009–2015) on dokumenteeritud näide.',
       },
     ],
   },
@@ -114,11 +114,11 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Kingservers / HOSTING-SOLUTIONS (AS14576): classified by Qurium as an Eastern European hosting provider with a flagged Estonian nexus. Integrated into Fineproxy\'s upstream network. Per WaysCloud, 90 malicious IPs and 3,778 abuse reports (Aug 2022–Dec 2025), though the same source rates overall threat activity as "minimal" and the majority of abuse originates from NL, US, and RU. Kingservers sits between mainstream and fully adversarial: a legitimate host whose services are disproportionately used in high-risk operations.',
-        et: 'Kingservers / HOSTING-SOLUTIONS (AS14576): Quriumi poolt klassifitseeritud Ida-Euroopa hostingupakkujaks, kellel on märgitud Eesti seos. Integreeritud Fineproxy ülesvooluvõrku. WaysCloudi andmetel 90 pahatahtlikku IP-d ja 3 778 kuritarvitusteadet (august 2022–detsember 2025), kuigi sama allikas hindab üldist ohutegevust "minimaalseks" ja enamik kuritarvitusi pärineb Hollandist, USAst ja Venemaalt. Kingservers asub tavapärase ja täielikult vaenuliku vahel: seaduslik host, kelle teenuseid kasutatakse ebaproportsionaalselt palju kõrge riskiga operatsioonides.',
+        et: 'Kingservers / HOSTING-SOLUTIONS (AS14576): Quriumi poolt klassifitseeritud Ida-Euroopa majutusteenuse pakkujaks, kellel on märgitud Eesti seos. Integreeritud Fineproxy ülesvooluvõrku. WaysCloudi andmetel 90 pahatahtlikku IP-d ja 3 778 kuritarvitusteadet (august 2022–detsember 2025), kuigi sama allikas hindab üldist ohutegevust "minimaalseks" ja enamik kuritarvitusi pärineb Hollandist, USAst ja Venemaalt. Kingservers asub tavapärase ja täielikult vaenuliku vahel: seaduslik host, kelle teenuseid kasutatakse ebaproportsionaalselt palju kõrge riskiga operatsioonides.',
       },
       {
         en: 'Vault Dweller OÜ (AS203834): registered in Tallinn in 2019 with €2,500 capital. Cataloged under the bulletproof-hosting profile "BPH-02 / Estonia Reg / No Sanctions," with 307 IoCs on ThreatFox and advertisement on Carder.su as of 2026. Beneficial owner is Yehor Minin. Physical infrastructure in Bulgaria; IPinfo shows no active IPv4/IPv6 allocations. These entities demonstrate a recurring pattern: Russian-language cyber operators exploit the gap between Estonian corporate registration and actual physical hosting.',
-        et: 'Vault Dweller OÜ (AS203834): registreeritud Tallinnas 2019. aastal kapitaliga 2500 eurot. Kataloogitud bulletproof-hostingu profiilis "BPH-02 / Estonia Reg / No Sanctions", 307 IoC-ga ThreatFoxis ja reklaamiga Carder.su-s 2026. aasta seisuga. Kasusaaja on Yehor Minin. Füüsiline taristu Bulgaarias; IPinfo näitab aktiivseid IPv4/IPv6 eraldusi mitte. Need üksused näitavad korduvat mustrit: venekeelsed küberoperaatorid kasutavad ära lõhet Eesti ettevõtte registreerimise ja tegeliku füüsilise hostimise vahel.',
+        et: 'Vault Dweller OÜ (AS203834): registreeritud Tallinnas 2019. aastal kapitaliga 2500 eurot. Kataloogitud kuulikindla majutuse profiilis "BPH-02 / Estonia Reg / No Sanctions", 307 IoC-ga ThreatFoxis ja reklaamiga Carder.su-s 2026. aasta seisuga. Kasusaaja on Yehor Minin. Füüsiline taristu Bulgaarias; IPinfo näitab aktiivseid IPv4/IPv6 eraldusi mitte. Need üksused näitavad korduvat mustrit: venekeelsed küberoperaatorid kasutavad ära lõhet Eesti ettevõtte registreerimise ja tegeliku füüsilise hostimise vahel.',
       },
     ],
   },
@@ -130,7 +130,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Russian APT groups (APT28, APT29, Turla, Sandworm) rely on globally distributed proxy, VPS, and bulletproof hosting to mask operational origin. APT28, attributed to Russia\'s GRU 85th Main Special Service Center, has been active since at least 2004, employing multi-layer proxy chains, compromised servers, and rented VPS.',
-        et: 'Vene APT rühmad (APT28, APT29, Turla, Sandworm) tuginevad üle maailma jaotatud proksidele, VPS-ile ja bulletproof-hostinguile, et varjata oma tegevuse päritolu. APT28, omistatud Venemaa GRU 85. Peaspetsiaalse Teenistuse Keskusele, on tegutsenud vähemalt aastast 2004, kasutades mitmekihilisi proksiahelaid, ohtu sattunud servereid ja renditud VPS-i.',
+        et: 'Vene APT rühmad (APT28, APT29, Turla, Sandworm) tuginevad üle maailma jaotatud proksidele, VPS-ile ja kuulikindlale majutusele, et varjata oma tegevuse päritolu. APT28, omistatud Venemaa GRU 85. Peaspetsiaalse Teenistuse Keskusele, on tegutsenud vähemalt aastast 2004, kasutades mitmekihilisi proksiahelaid, ohtu sattunud servereid ja renditud VPS-i.',
       },
       {
         en: 'The infrastructure patterns associated with gray-space providers like Fineproxy are consistent with the procurement patterns described in public APT reporting. However, none of the sources reviewed establishes a direct, high-confidence link between Trusov or his businesses and named Russian state APT campaigns. The known operations are DDoS and spam — politically motivated in some cases, but not formally attributed to GRU or SVR units.',
@@ -138,7 +138,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'This analytic caution matters. Over-attributing commercially available infrastructure to APT units weakens the signal and obscures the regulatory question: how to address gray-space providers whose technical architecture makes them DDoS platforms for hire, without needing to prove state sponsorship.',
-        et: 'See analüütiline ettevaatus on oluline. Kommertslikult kättesaadava taristu üleomistamine APT-üksustele nõrgestab signaali ja varjab regulatiivset küsimust: kuidas lahendada halli ruumi pakkujate küsimust, kelle tehniline arhitektuur muudab nad rentimiseks mõeldud DDoS-platvormideks, ilma et oleks vaja tõendada riiklikku toetust.',
+        et: 'See analüütiline ettevaatus on oluline. Kommertslikult kättesaadava taristu üleomistamine APT-üksustele nõrgestab signaali ja varjab regulatiivset küsimust: kuidas lahendada halli ala pakkujate küsimust, kelle tehniline arhitektuur muudab nad rentimiseks mõeldud DDoS-platvormideks, ilma et oleks vaja tõendada riiklikku toetust.',
       },
     ],
   },
@@ -158,7 +158,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'Engage with providers. No public reporting indicates complicity by the operators of UGB Hosting or Telia\'s Tallinn facility; the abuse appears tenant-level. Prompt reporting and direct engagement with Estonian CERT/CSIRT channels reduce the operational lifespan of gray-space infrastructure.',
-        et: 'Suhtle pakkujatega. Ükski avalik aruanne ei viita UGB Hostingu või Telia Tallinna keskuse operaatorite kaasosalusele; kuritarvitused on kliendi tasemel. Kiire teavitamine ja otsene suhtlus Eesti CERT/CSIRT kanalitega vähendab halli ruumi taristu operatiivset eluiga.',
+        et: 'Suhtle pakkujatega. Ükski avalik aruanne ei viita UGB Hostingu või Telia Tallinna keskuse operaatorite kaasosalusele; kuritarvitused on kliendi tasemel. Kiire teavitamine ja otsene suhtlus Eesti CERT/CSIRT kanalitega vähendab halli ala taristu operatiivset eluiga.',
       },
       {
         en: 'Distinguish cybercrime from state operations. The infrastructure supply chain for ransomware, DDoS, and espionage overlaps heavily in the gray zone. Calibrate defensive responses to observed behavior, not assumed sponsorship.',

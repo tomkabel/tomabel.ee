@@ -64,7 +64,7 @@ const sections: ReportSection[] = [
       },
       {
         en: 'For a few years the language barrier still held. The scams that worked were Russian-language phone fraud, and the vishing that did reach Estonian speakers came with detectable accents. The barrier was doing real work, and nobody had to pay to maintain it.',
-        et: 'Mõneks aastaks pidas keelebarjäär veel. Töötasid venekeelsed telefonipettused ja vishing, mis eestikeelsete inimesteni jõudis, tuli tuvastatava aktsendiga. Barjäär tegi tõelist tööd ja kellelgi ei tulnud selle ülalhoidmise eest maksta.',
+        et: 'Mõneks aastaks pidas keelebarjäär veel. Töötasid venekeelsed telefonipettused ja kõneõngitsus, mis eestikeelsete inimesteni jõudis, tuli tuvastatava aktsendiga. Barjäär tegi tõelist tööd ja kellelgi ei tulnud selle ülalhoidmise eest maksta.',
       },
     ],
   },
@@ -89,11 +89,11 @@ const sections: ReportSection[] = [
     ],
   },
   {
-    heading: { en: 'Vishing becomes the main vector', et: 'Vishingust saab peamine rünnakuvektor' },
+    heading: { en: 'Vishing becomes the main vector', et: 'Kõneõngitsusest saab peamine rünnakuvektor' },
     paragraphs: [
       {
         en: "Phone fraud overtook email phishing as the dominant vector during this period. SEB's Baltic analysis put vishing at nearly two-thirds of identified fraud damages across the region, and first in Estonia. RIA's 2026 yearbook describes the surge in phone scams and notes that people lose tens of thousands of euros a day to them.",
-        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Balti analüüs pani vishingu piirkonna tuvastatud pettusekahjudest ligi kahe kolmandiku peale ja Eestis esikohale. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
+        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Balti analüüs pani kõneõngitsuse piirkonna tuvastatud pettusekahjudest ligi kahe kolmandiku peale ja Eestis esikohale. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
       },
       {
         en: 'The methodology industrialized into a standard two-call sequence. The first call impersonates the Health Insurance Fund (Tervisekassa) with a hook: unused benefits, a refund, a cheaper specialist-visit rate if you "confirm your details." Confirming means entering a Smart-ID PIN1. The second call comes from someone posing as the European Central Bank, your own bank, or the police, claiming the first call was the scam and your money must be "rescued" immediately. The second call can last for hours and is engineered to extract PIN2, the code that authorizes payments and loans.',
@@ -181,7 +181,7 @@ const sections: ReportSection[] = [
       },
       {
         en: 'Vishing is the vector that matters. Email phishing is a mass-market lottery. Phone fraud is a two-hour interactive process that harvests both PINs and, in the courier cases, the physical card. It is higher-touch, higher-yield, and it is what the call centers are staffed for. Defenses that focus on email miss the part of the pipeline that is actually industrialized.',
-        et: 'Vishing on vektor, mis loeb. E-posti õngitsemine on massiturule suunatud loterii. Telefonipettus on kahetunnine vahetu protsess, mis kogub kokku mõlemad PIN-koodid ja kulleritega juhtumites ka füüsilise kaardi. See nõuab rohkem vahetut kontakti, annab rohkem tulu ja just selle jaoks on kõnekeskused mehitatud. Kaitsemeetmed, mis keskenduvad e-kirjale, jätavad vahele selle osa ahelast, mis on tegelikult tööstuslikuks muudetud.',
+        et: 'Kõneõngitsus on vektor, mis loeb. E-posti õngitsemine on massiturule suunatud loterii. Telefonipettus on kahetunnine vahetu protsess, mis kogub kokku mõlemad PIN-koodid ja kulleritega juhtumites ka füüsilise kaardi. See nõuab rohkem vahetut kontakti, annab rohkem tulu ja just selle jaoks on kõnekeskused mehitatud. Kaitsemeetmed, mis keskenduvad e-kirjale, jätavad vahele selle osa ahelast, mis on tegelikult tööstuslikuks muudetud.',
       },
       {
         en: "The next stage is already accounted for. AI voice synthesis in fluent Estonian is the obvious completion of the trajectory, Kotka's forecast, and nothing in the 2025 data argues against it. The defense that works against it is the same one that works against the current wave: make the approval step itself phishing-resistant, move verification off the phone call, and treat the user's PIN as a secret that no legitimate party ever asks for.",
