@@ -64,14 +64,15 @@ export default function SiteNav() {
           <button
             onClick={() => setLanguage(language === 'en' ? 'et' : 'en')}
             className="flex min-h-11 items-center gap-1.5 rounded-control px-2 text-sm font-medium text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-foreground"
-            aria-label={
-              language === 'en' ? 'Switch to Estonian' : 'Switch to English'
-            }
-            title={language === 'en' ? 'Switch to Estonian' : 'Switch to English'}
+            title={t.nav.switchLanguage}
           >
-            <Globe className="size-3.5" />
-            {/* Show the language the toggle switches TO, in its own tongue. */}
-            {language === 'en' ? 'Eesti' : 'English'}
+            <Globe aria-hidden className="size-3.5" />
+            {/* Show the language the toggle switches TO, in its own tongue and
+                marked as such. The hint keeps the visible label inside the
+                accessible name (WCAG 2.5.3) while explaining the action in the
+                current language. */}
+            <span lang={language === 'en' ? 'et' : 'en'}>{language === 'en' ? 'Eesti' : 'English'}</span>
+            <span className="sr-only">, {t.nav.switchLanguage}</span>
           </button>
 
           <button

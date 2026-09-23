@@ -279,7 +279,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -296,7 +296,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
+              id={sectionSlug(section.heading.en)}
               className="mt-16 max-w-measure scroll-mt-24"
             >
               <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>

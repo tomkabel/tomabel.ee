@@ -135,6 +135,22 @@ export type Disclosure = {
   href?: string;
 };
 
+// Articles whose body exists only in English. The router renders these inside
+// an English LanguageScope (so lang attributes and shared chrome match the
+// text), shows Estonian readers a notice, and the index marks them. When an
+// article gains an Estonian body, remove it here.
+export const englishOnlyArticles: ReadonlySet<string> = new Set([
+  '/disclosures/i-used-to-break-authentication',
+  '/disclosures/what-client-side-trust-is-actually-worth',
+  '/disclosures/the-kratt-problem',
+  '/disclosures/coordinated-disclosure-in-a-small-country',
+  '/disclosures/botguard-disassembled',
+  '/disclosures/smart-id-achilles-heel',
+  '/disclosures/zero-trust-octagon',
+  '/disclosures/pact-software-anchor-turn',
+  '/disclosures/chatgpt-is-not-a-phishing-scanner',
+]);
+
 export const disclosures: Disclosure[] = [
   {
     kind: 'teardown',

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n/LanguageContext';
+import { englishOnlyArticles } from '../../content/site';
 
 export type EntryRowProps = {
   title: { en: string; et: string };
@@ -24,7 +25,10 @@ export default function EntryRow({
   href,
   external,
 }: EntryRowProps) {
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
+  // The index lists every entry in the reader's language, but some articles
+  // only exist in English; say so before the click, not after.
+  const englishOnly = language !== 'en' && href != null && englishOnlyArticles.has(href);
 
   const arrow = external ? '↗' : '→';
 
@@ -33,9 +37,10 @@ export default function EntryRow({
       <div className="label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
         <span className="text-accent">{type[language]}</span>
         {meta ? (
-          <>
-            <span className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span>{meta[language]}</span>
-          </>
+          <span className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span>{meta[language]}</span>
+        ) : null}
+        {englishOnly ? (
+          <span className="whitespace-nowrap text-warning"><span aria-hidden className="mr-3 text-subtle">·</span>{t.app.englishOnly}</span>
         ) : null}
       </div>
 

@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../../i18n/LanguageContext';
 import { sectionSlug } from './section-slug';
 
-type RailSection = { heading: string };
+// `id` is the section's anchor. Bilingual articles pass one derived from the
+// English heading so a #fragment survives a language switch (and is not
+// mangled by the slug's ASCII-only filter); otherwise it is slugged from the
+// displayed heading.
+type RailSection = { heading: string; id?: string };
+const railId = (s: RailSection) => s.id ?? sectionSlug(s.heading);
 
 /**
  * A sticky reading rail: reading-progress meter, a live table of contents that
@@ -18,6 +24,7 @@ export default function ReaderRail({
   backHref: string;
   backLabel: string;
 }) {
+  const { t } = useTranslation();
   const [progress, setProgress] = useState(0);
   const [activeId, setActiveId] = useState<string>('');
   const rafRef = useRef<number | null>(null);
@@ -45,7 +52,7 @@ export default function ReaderRail({
   // Highlight the section currently in the reading band.
   useEffect(() => {
     const els = sections
-      .map((s) => document.getElementById(sectionSlug(s.heading)))
+      .map((s) => document.getElementById(railId(s)))
       .filter((el): el is HTMLElement => el != null);
     if (els.length === 0) return;
     const io = new IntersectionObserver(
@@ -64,7 +71,7 @@ export default function ReaderRail({
   const pct = Math.round(progress * 100);
 
   return (
-    <nav aria-label="Article contents" className="space-y-8 text-sm">
+    <nav aria-label={t.article.contents} className="space-y-8 text-sm">
       <Link
         to={backHref}
         className="hidden min-h-11 items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-accent lg:inline-flex"
@@ -76,7 +83,7 @@ export default function ReaderRail({
           second back link are dead weight. */}
       <div className="hidden lg:block">
         <div className="mb-2 flex items-baseline justify-between label text-muted-foreground">
-          <span>Progress</span>
+          <span>{t.article.progress}</span>
           <span className="text-accent">{pct}%</span>
         </div>
         <div className="h-1 w-full overflow-hidden rounded-full bg-border-strong" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
@@ -86,11 +93,11 @@ export default function ReaderRail({
 
       <div>
         <p className="mb-4 label font-bold text-muted-foreground">
-          Contents
+          {t.article.contentsHeading}
         </p>
         <ol className="space-y-1">
           {sections.map((s, i) => {
-            const id = sectionSlug(s.heading);
+            const id = railId(s);
             const active = id === activeId;
             return (
               <li key={id}>

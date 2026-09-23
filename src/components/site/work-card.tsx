@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { FeaturedWork } from '../../content/site';
+import { englishOnlyArticles } from '../../content/site';
 import { useTranslation } from '../../i18n/LanguageContext';
 
 export default function WorkCard({ item, className = '' }: { item: FeaturedWork; className?: string }) {
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
   const title = item.title[language];
   const blurb = item.blurb[language];
   const cta = item.cta[language];
@@ -16,7 +17,12 @@ export default function WorkCard({ item, className = '' }: { item: FeaturedWork;
       to={item.href}
       className={`group grid grid-rows-[auto_auto_1fr_auto] gap-y-4 rounded-card border border-border-strong bg-surface p-8 shadow-elevated transition-[background-color,border-color,box-shadow] duration-base hover:border-accent/40 hover:bg-surface-2 hover:shadow-elevated-accent ${className}`}
     >
-      <p className="label mb-6 text-accent">{item.impact[language]}</p>
+      <p className="label mb-6 text-accent">
+        {item.impact[language]}
+        {language !== 'en' && englishOnlyArticles.has(item.href) ? (
+          <span className="text-warning"> · {t.app.englishOnly}</span>
+        ) : null}
+      </p>
       <h3 className="font-display text-3xl leading-tight text-foreground">
         <span className="link-draw">{title}</span>
       </h3>

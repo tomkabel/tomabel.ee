@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../i18n/LanguageContext';
 import WorkCard from '../components/site/work-card';
-import { featuredWork, site, disclosures } from '../content/site';
+import { featuredWork, site, disclosures, englishOnlyArticles } from '../content/site';
 
 // The homepage essay teaser pulls from the same unified disclosures source,
 // filtered to the essay kind — no parallel essays array to drift.
@@ -121,6 +121,7 @@ function HomeEssayRowContent({
   essay: (typeof essays)[number];
   language: 'en' | 'et';
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <h3 className="font-display text-2xl text-foreground">
@@ -132,7 +133,12 @@ function HomeEssayRowContent({
         ) : null}
       </h3>
       {/* Metadata sits directly under the title, not pinned across a void. */}
-      <span className="label text-muted-foreground">{essay.meta?.[language]}</span>
+      <span className="label text-muted-foreground">
+        {essay.meta?.[language]}
+        {language !== 'en' && essay.href && englishOnlyArticles.has(essay.href) ? (
+          <span className="text-warning"> · {t.app.englishOnly}</span>
+        ) : null}
+      </span>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
-import { LanguageProvider, useTranslation } from './i18n';
+import { LanguageProvider, LanguageScope, useTranslation } from './i18n';
+import { englishOnlyArticles } from './content/site';
 import SiteNav from './components/site/nav';
 import SiteFooter from './components/site/footer';
 import HomePage from './pages/HomePage';
@@ -66,8 +67,9 @@ function Lazy({ children }: { children: React.ReactNode }) {
 }
 
 function PageLoader() {
+  const { t } = useTranslation();
   return (
-    <div className="grid min-h-[60vh] place-items-center" role="status" aria-label="Loading">
+    <div className="grid min-h-[60vh] place-items-center" role="status" aria-label={t.app.loading}>
       <div className="h-px w-24 overflow-hidden bg-border-strong">
         <div className="h-full w-2/5 animate-scan bg-accent" />
       </div>
@@ -96,13 +98,32 @@ function SkipLink() {
   );
 }
 
+// English-only articles render inside an English scope whatever the reader's
+// preference, so the page's lang, its reader rail and its proof panel all
+// agree with the text. Estonian readers get told why before the article starts.
+function EnglishOnly({ children }: { children: React.ReactNode }) {
+  const { language, t } = useTranslation();
+  return (
+    <>
+      {language !== 'en' ? (
+        <p role="note" className="border-b border-border bg-surface px-6 py-3 text-sm text-warning">
+          <span className="mx-auto block max-w-4xl">{t.app.englishOnlyNotice}</span>
+        </p>
+      ) : null}
+      <LanguageScope lang="en">{children}</LanguageScope>
+    </>
+  );
+}
+
 function Layout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  const page = <Lazy>{children}</Lazy>;
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Seo />
       <SiteNav />
       <main id="main-content" className="flex-1 focus:outline-none">
-        <Lazy>{children}</Lazy>
+        {englishOnlyArticles.has(pathname.replace(/\/+$/, '')) ? <EnglishOnly>{page}</EnglishOnly> : page}
       </main>
       <SiteFooter />
     </div>
