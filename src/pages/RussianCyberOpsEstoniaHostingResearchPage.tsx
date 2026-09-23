@@ -169,20 +169,20 @@ const sections: EssaySection[] = [
 ];
 
 const sources: Source[] = [
-  { label: 'Qurium', note: 'Fineproxy DDoS investigation (Azerbaijan case), upstream ASN mapping, RIPE geolocation manipulation reports' },
-  { label: 'Reuters', note: 'Trusov Wyoming shell companies, proxy service abuse, 2017 intrusion tracing (Dec 2023)' },
-  { label: 'Flexi-News', note: 'Trusov corporate structuring and proxy operations (2023)' },
-  { label: 'LinkedIn', note: 'Trusov self-reported professional background (note: self-reported)' },
-  { label: 'WaysCloud', note: 'Abuse report data for Kingservers / AS14576 (Aug 2022–Dec 2025)' },
-  { label: 'Rappler / Qurium', note: 'October 2023 DDoS campaign against Rappler' },
+  { label: 'Qurium', url: 'https://www.qurium.org/ddos/fineproxy-used-to-launch-ddos-attack-against-site-critical-of-azerbaijani-state-oil-companys-leader', note: 'Fineproxy DDoS investigation (Azerbaijan case), upstream ASN mapping, RIPE geolocation manipulation reports' },
+  { label: 'Reuters', url: 'https://www.reuters.com/technology/cybersecurity/how-cybercriminals-are-using-wyoming-shell-companies-global-hacks-2023-12-12/', note: 'Trusov Wyoming shell companies, proxy service abuse, 2017 intrusion tracing (Dec 2023)' },
+  { label: 'Flexi-News', url: 'https://www.flexi-news.com/post/wyoming-s-llcs-a-haven-for-cyber-outlaws-in-the-digital-wild-west', note: 'Trusov corporate structuring and proxy operations (2023)' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/ilia-trusov-a75a842b5', note: 'Trusov self-reported professional background (note: self-reported)' },
+  { label: 'WaysCloud', url: 'https://ip.wayscloud.services/asn-intelligence/14576', note: 'Abuse report data for Kingservers / AS14576 (Aug 2022–Dec 2025)' },
+  { label: 'Rappler / Qurium', url: 'https://www.qurium.org/weaponizing-proxy-and-vpn-providers/fineproxy-rayobyte', note: 'October 2023 DDoS campaign against Rappler' },
   { label: 'Ransomware EDP', url: 'https://ransomwareedp.github.io', note: 'Vault Dweller OÜ bulletproof hosting profile "BPH-02"' },
-  { label: 'IPinfo', note: 'Technical data for AS203834 (Vault Dweller OÜ)' },
-  { label: 'MITRE ATT&CK', note: 'APT28 profile, infrastructure procurement TTPs' },
+  { label: 'IPinfo', url: 'https://ipinfo.io/AS203834', note: 'Technical data for AS203834 (Vault Dweller OÜ)' },
+  { label: 'MITRE ATT&CK', url: 'https://attack.mitre.org/groups/G0007/', note: 'APT28 profile, infrastructure procurement TTPs' },
   { label: 'e-Äriregister', url: 'https://ariregister.rik.ee', note: 'Vault Dweller OÜ corporate registration (registry code 14752442)' },
-  { label: 'FairyHosting / RJ Network OÜ', note: 'Estonian hosting provider' },
-  { label: 'Sawia Digital', note: 'DreamHost-based shared hosting in Narva' },
-  { label: 'EDIS Global', note: 'VPS hosting in Telia Tallinn data center' },
-  { label: 'DOJ', note: 'Grichishkin bulletproof hosting prosecution' },
+  { label: 'FairyHosting / RJ Network OÜ', url: 'https://fairyhosting.com', note: 'Estonian hosting provider' },
+  { label: 'Sawia Digital', url: 'https://sawiadigital.com', note: 'DreamHost-based shared hosting in Narva' },
+  { label: 'EDIS Global', url: 'https://edisglobal.com', note: 'VPS hosting in Telia Tallinn data center' },
+  { label: 'DOJ', url: 'https://www.justice.gov/opa/pr/two-individuals-sentenced-providing-bulletproof-hosting-cybercriminals', note: 'Grichishkin bulletproof hosting prosecution' },
 ];
 
 function DisclosurePage() {

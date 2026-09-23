@@ -5,7 +5,7 @@ Exits non-zero if any check fails. Checks, per route and viewport:
   - no horizontal overflow
   - no rendered text under 12px
   - interactive targets >= 44x44 (WCAG 2.5.5; inline links inside running prose exempt)
-  - first Tab on home lands on the skip link, not inside <main>
+  - first Tab on home lands on the skip link
 """
 import sys
 from playwright.sync_api import sync_playwright
@@ -21,7 +21,7 @@ PROBE = """() => {
   const small = [...document.querySelectorAll('body *')].filter(e => vis(e) &&
     [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()) &&
     parseFloat(getComputedStyle(e).fontSize) < 12).map(e => e.tagName + ':' + e.textContent.trim().slice(0, 30));
-  const inProse = e => !!e.closest('p, li p, td, dd, blockquote, figcaption') || (e.closest('li') && e.closest('li').textContent.trim() !== e.textContent.trim());
+  const inProse = e => !!e.closest('p, td, dd, blockquote, figcaption');
   const targets = [...document.querySelectorAll('a[href], button')].filter(e => vis(e) && !inProse(e))
     .map(e => { const r = e.getBoundingClientRect(); return [e, Math.round(r.width), Math.round(r.height)]; })
     .filter(([, w, h]) => w < 44 || h < 44).map(([e, w, h]) => `${e.tagName}:${e.textContent.trim().slice(0, 24)} ${w}x${h}`);
@@ -53,10 +53,10 @@ with sync_playwright() as p:
     page.goto(base + "/", wait_until="networkidle")
     page.keyboard.press("Tab")
     first = page.evaluate("document.activeElement.textContent.trim().slice(0, 40)")
-    in_main = page.evaluate("!!document.activeElement.closest('main')")
-    if in_main:
+    on_skip = page.evaluate("document.activeElement === document.querySelector('a[href=\"#main-content\"]')")
+    if not on_skip:
         failures += 1
-        print(f"FAIL first Tab lands inside <main>: {first!r}")
+        print(f"FAIL first Tab is not the skip link: {first!r}")
     else:
         print(f"ok   first Tab -> {first!r}")
     browser.close()

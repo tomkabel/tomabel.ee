@@ -29,8 +29,9 @@ export default function ArticleProof({
   const [computed, setComputed] = useState<string | null>(null);
   // Signing is a manual, offline step. Until the detached signature is actually
   // published, claiming one exists would be the dishonest half of an honesty
-  // widget — so probe for it and only then print the gpg instructions.
-  const [signed, setSigned] = useState(false);
+  // widget — so probe for the file and only then print the gpg instructions.
+  // Presence is all this proves; validity and key match are for gpg to check.
+  const [hasSignatureFile, setHasSignatureFile] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -53,7 +54,7 @@ export default function ArticleProof({
       const body = await fetch(`/verification/${slug}.txt.asc`)
         .then((res) => (res.ok ? res.text() : null))
         .catch(() => null);
-      if (!cancelled) setSigned(Boolean(body?.startsWith('-----BEGIN PGP SIGNATURE-----')));
+      if (!cancelled) setHasSignatureFile(Boolean(body?.startsWith('-----BEGIN PGP SIGNATURE-----')));
     })();
     return () => {
       cancelled = true;
@@ -89,7 +90,7 @@ export default function ArticleProof({
         </dl>
 
         <div className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted">
-          {signed ? (
+          {hasSignatureFile ? (
             <>
               <p>
                 {p.signedBefore} <span className="text-foreground">{pgpKey.fingerprint}</span>

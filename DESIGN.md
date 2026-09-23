@@ -47,7 +47,8 @@ marks what needs care (disclosed, 404, the Kratt aside). `fault` red is used onl
 mismatches.
 
 **Surface ladder.** Six steps from `sunken` to `overlay`. Lightness rises *and* hue drifts from
-cold blue (258°) toward the phosphor (225°), so higher surfaces read as closer to the signal.
+cold blue (258° at `sunken`) to 225° at `overlay`, i.e. toward the `signal` phosphor green (163°)
+without reaching it, so higher surfaces read as closer to the signal.
 Use one step up for hover or raised, and `sunken` for wells and bands. Never use pure black or
 pure white.
 

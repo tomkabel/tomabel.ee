@@ -86,5 +86,5 @@ genre, which is the brand's chosen register, not a template default.
 
 ## Verdict
 
-All automated checks pass on every route and viewport. The rubric's Sev-5 tells and 18 of the
+All automated checks pass on the eight selected routes at all three viewports. The rubric's Sev-5 tells and 18 of the
 24 audited pattern IDs are cleared. The 6 remaining are documented as deliberate, with reasons.

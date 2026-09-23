@@ -160,8 +160,8 @@ const sections: EssaySection[] = [
         et: 'Kui argumenti lõpuni järgida, viib see ebamugavasse kohta. Kui tõenäosuslik tuvastus nõrgeneb võimekuse jaotuse tipu vastu, jäävad alles riistvaraga ankurdatud kaitsed ja need nõuavad platvormitasandi usaldusjuurt. Täna on selleks Apple, Google ja Microsoft. Kolm ettevõtet otsustavad, millised kliendid loetakse seaduslikeks, millise määraga ja milliste saitide jaoks — ja igaüks neist peab reklaamiäri, mille huvid ei pruugi kattuda atesteerimistõendit tarbiva saidi huvidega.',
       },
       {
-        en: 'The 2026 PACT proposal tries a different anchor: instead of device hardware, an issuer vouches for a user based on account standing, a subscription, or a first-party relationship. That widens the issuer set. It does not remove the Sybil problem, it relocates it — scarcity becomes a credentialed account, and bulk registration, credential stuffing and cheap subscriptions are automatable upstream of the protocol. As announced, PACT has no issuer accreditation model, no public issuer directory, no revocation lists and no audit requirement. The cryptography is settled. The governance is absent.',
-        et: '2026. aasta PACT-i ettepanek on tööstuse katse proovida teistsugust ankrut: seadme riistvara asemel käendab väljastaja kasutajat konto seisundi, tellimuse või esmapoolse suhte alusel. See laiendab väljastajate ringi. See ei kõrvalda Sybili probleemi, vaid tõstab selle ümber — nappuse ühikuks saab mandaadiga konto ning masskonto loomine, mandaadi toppimine ja odavad tellimused on kõik protokollist ülalpool automatiseeritavad. Sellisena, nagu PACT välja kuulutati, puudub sellel väljastajate akrediteerimise mudel, avalik väljastajate register, tühistusnimekirjad ja auditinõue. Krüptograafia on paigas. Juhtimine puudub.',
+        en: 'The 2026 PACT proposal tries a different anchor: instead of device hardware, an issuer vouches for a user based on account standing, a subscription, or a first-party relationship. That widens the issuer set. It does not remove the Sybil problem, it relocates it — scarcity becomes a credentialed account, and bulk registration, credential stuffing and cheap subscriptions are automatable upstream of the protocol. As announced, PACT has no issuer accreditation model, no public issuer directory, no revocation lists and no audit requirement. PACT builds on established cryptographic foundations, but its protocol design and governance are still under development.',
+        et: '2026. aasta PACT-i ettepanek on tööstuse katse proovida teistsugust ankrut: seadme riistvara asemel käendab väljastaja kasutajat konto seisundi, tellimuse või esmapoolse suhte alusel. See laiendab väljastajate ringi. See ei kõrvalda Sybili probleemi, vaid tõstab selle ümber — nappuse ühikuks saab mandaadiga konto ning masskonto loomine, mandaadi toppimine ja odavad tellimused on kõik protokollist ülalpool automatiseeritavad. Sellisena, nagu PACT välja kuulutati, puudub sellel väljastajate akrediteerimise mudel, avalik väljastajate register, tühistusnimekirjad ja auditinõue. PACT tugineb väljakujunenud krüptograafilistele alustele, kuid selle protokolli ülesehitus ja juhtimismudel on alles väljatöötamisel.',
       },
       {
         en: 'There is a ratchet in this that nobody has to decide on. Tokens start as optional friction reducers. Tokened traffic passes cleanly, untokened traffic is challenged harder, thresholds recalibrate, and a class of legitimate traffic with no issuer relationship — measurement systems, archival crawlers, RSS readers, Tor users, alternative browsers — becomes structurally suspect. No single actor made tokens mandatory. They became mandatory anyway.',
@@ -236,7 +236,7 @@ function VlmAntiFraudResearchPage() {
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <li>
-                <Link to="/disclosures/botguard-disassembled" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/botguard-disassembled" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'BotGuard disassembled' : 'BotGuard lahti võetud'}
                 </Link>
                 {' — '}
@@ -245,7 +245,7 @@ function VlmAntiFraudResearchPage() {
                   : 'opkoodi tasemel lahtivõtmine mehhanismist, mida see artikkel kirjeldab väljastpoolt.'}
               </li>
               <li>
-                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'What client-side trust is actually worth' : 'Mida kliendipoolne usaldus tegelikult väärt on'}
                 </Link>
                 {' — '}
@@ -254,14 +254,14 @@ function VlmAntiFraudResearchPage() {
                   : 'struktuurne argument, et iga kontroll, mis töötab masinas, mida sa ei kontrolli, on läbiräägitav.'}
               </li>
               <li>
-                <Link to="/disclosures/zero-trust-octagon" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/zero-trust-octagon" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'The Zero-Trust Octagon' : 'Zero-Trust Octagon'}
                 </Link>
                 {' — '}
                 {isEn ? 'the wider framework these disclosures sit inside.' : 'laiem raamistik, mille sees need avalikustused asuvad.'}
               </li>
               <li>
-                <a href="https://github.com/tomkabel/google-botguard-security-research" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <a href="https://github.com/tomkabel/google-botguard-security-research" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   google-botguard-security-research
                 </a>
                 {' — '}

@@ -272,7 +272,7 @@ export default function ZeroTrustOctagonResearchPage() {
               <li>
                 <Link
                   to="/disclosures/nine-dimensions-of-zero-trust"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   Nine dimensions of zero trust
                 </Link>{' '}
@@ -281,7 +281,7 @@ export default function ZeroTrustOctagonResearchPage() {
               <li>
                 <Link
                   to="/disclosures/the-fortune-500-illusion-of-control"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   The Fortune 500 illusion of control
                 </Link>{' '}
@@ -290,7 +290,7 @@ export default function ZeroTrustOctagonResearchPage() {
               <li>
                 <Link
                   to="/disclosures/identity-is-the-root-proof-is-the-gate"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   Identity is the root, proof is the gate
                 </Link>{' '}

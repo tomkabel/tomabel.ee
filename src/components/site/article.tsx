@@ -88,11 +88,28 @@ export function PullQuote({ children, cite }: { children: ReactNode; cite?: stri
   );
 }
 
-// Split a line into a code part and a trailing comment part (; // #).
-function splitComment(line: string): [string, string | null] {
-  const m = line.match(/(\s*(?:;|\/\/|#).*)$/);
-  if (!m || m.index == null) return [line, null];
-  return [line.slice(0, m.index), line.slice(m.index)];
+// Comment markers per block language; `;` only means a comment in assembly.
+const ASM_LANGS = new Set(['asm', 'disasm', 'nasm']);
+
+// Split a line into a code part and a trailing comment part. A marker counts
+// only outside string literals and at the start of the line or after whitespace,
+// so `a; b`, "http://x" and URLs keep their text.
+function splitComment(line: string, lang?: string): [string, string | null] {
+  const markers = ASM_LANGS.has(lang ?? '') ? [';'] : ['//', '#'];
+  let quote: string | null = null;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (quote) {
+      if (ch === '\\') i++;
+      else if (ch === quote) quote = null;
+    } else if (ch === '"' || ch === "'" || ch === '`') {
+      quote = ch;
+    } else if ((i === 0 || /\s/.test(line.charAt(i - 1))) && markers.some((m) => line.startsWith(m, i))) {
+      const start = line.slice(0, i).search(/\s*$/);
+      return [line.slice(0, start), line.slice(start)];
+    }
+  }
+  return [line, null];
 }
 
 // A monospace code / telemetry block with a header and dimmed comments.
@@ -116,7 +133,7 @@ export function CodeBlock({
       <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
         <code className="font-mono">
           {lines.map((line, i) => {
-            const [code, comment] = splitComment(line);
+            const [code, comment] = splitComment(line, lang);
             return (
               <span key={i} className="grid grid-cols-[2rem_1fr] gap-3">
                 <span className="select-none text-right text-subtle">{i + 1}</span>

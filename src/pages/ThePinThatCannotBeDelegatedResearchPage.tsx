@@ -128,12 +128,12 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token that is limited in scope, audience, and lifetime, and can be revoked without rotating the underlying credential. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
-        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab tõendi, mille ulatus, adressaat ja eluiga on piiratud ning mille saab kehtetuks tunnistada ilma aluseks olevat mandaati vahetamata. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
+        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token limited in scope instead of the credential itself. Short lifetime, audience restriction and revocation are not guarantees of OAuth as such: RFC 6749 only recommends that the server return expires_in, audience restriction comes from separate mechanisms such as resource indicators (RFC 8707) or the aud claim of JWT access tokens (RFC 9068), and revocation from RFC 7009. They are properties of a deployment profile that the issuer and the service must choose and enforce. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
+        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab mandaadi asemel piiratud ulatusega tõendi. Lühike eluiga, adressaadi piiramine ja kehtetuks tunnistamine ei ole OAuthi enda tagatised: RFC 6749 üksnes soovitab, et server tagastaks väärtuse expires_in, adressaadi piiramine tuleb eraldi mehhanismidest, nagu ressursiindikaatorid (RFC 8707) või JWT-juurdepääsutõendi aud-väide (RFC 9068), ja kehtetuks tunnistamine RFC 7009-st. Need on juurutusprofiili omadused, mille väljastaja ja teenus peavad valima ja jõustama. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
       },
       {
-        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped, short-lived, audience-bound token representing the user’s authorisation for a defined task set, bound to the agent where possible (sender constraint, client certificate or equivalent), never the user’s Smart-ID credential; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
-        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega, lühiajalise ja kindla adressaadiga seotud juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks ja on võimaluse korral agendiga seotud (saatja sidumine, kliendisertifikaat või samaväärne), mitte kunagi kasutaja Smart-ID mandaati; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
+        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped token representing the user’s authorisation for a defined task set, never the user’s Smart-ID credential. The recommended profile makes that token short-lived, audience-restricted and bound to the agent where possible (sender constraint, client certificate or equivalent); these are settings the issuer and the service must configure and enforce, not defaults; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
+        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks, mitte kunagi kasutaja Smart-ID mandaati. Soovitatav profiil teeb tõendi lühiajaliseks, piirab selle adressaati ja seob selle võimaluse korral agendiga (saatja sidumine, kliendisertifikaat või samaväärne); need on seaded, mille väljastaja ja teenus peavad seadistama ja jõustama, mitte vaikeväärtused; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
       },
       {
         en: 'The last step is where the design lives or dies. The PIN is entered only into the Smart-ID application itself. Agent software never captures, relays, or stores it, and the user approves only what the Smart-ID app renders for the transaction the relying party initiated. Any prompt rendered by the agent is a replay of the signing-relay class that this site’s Smart-ID research describes.',
@@ -225,6 +225,27 @@ const sources: Source[] = [
       et: 'RFC 8693, "OAuth 2.0 Token Exchange"',
     },
     url: 'https://www.rfc-editor.org/rfc/rfc8693',
+  },
+  {
+    label: {
+      en: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+      et: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc7009',
+  },
+  {
+    label: {
+      en: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+      et: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc8707',
+  },
+  {
+    label: {
+      en: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+      et: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc9068',
   },
   {
     label: {
@@ -342,7 +363,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               <li>
                 <Link
                   to="/disclosures/smart-id-achilles-heel"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? "The Achilles' heel of Estonia's e-state"
@@ -355,7 +376,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               <li>
                 <Link
                   to="/disclosures/identity-is-the-root-proof-is-the-gate"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? 'Identity is the root, proof is the gate'

@@ -180,7 +180,7 @@ export default function AuthenticationEssayPage() {
               <li>
                 <Link
                   to="/disclosures/what-client-side-trust-is-actually-worth"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   What client-side trust is actually worth
                 </Link>{' '}
@@ -189,7 +189,7 @@ export default function AuthenticationEssayPage() {
               <li>
                 <Link
                   to="/disclosures/smart-id-achilles-heel"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   The Achilles' heel of Estonia's e-state
                 </Link>{' '}

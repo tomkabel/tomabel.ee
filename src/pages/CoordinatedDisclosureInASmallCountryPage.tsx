@@ -31,10 +31,10 @@ const sections: EssaySection[] = [
   {
     heading: 'The law is closer than people think',
     paragraphs: [
-      "Estonian law criminalizes unauthorized access to computer systems. Section 217 of the Penal Code covers access gained by defeating a system's protection measures, with penalties up to three years. Research on live national infrastructure sits next to that line, on purpose.",
+      "Estonian law criminalizes unauthorized access to computer systems. Section 217 of the Penal Code covers access gained by defeating a system's protection measures. The basic offence in §217(1) carries up to three years; §217(2) raises the maximum to five years for specified cases, including access to the system of a vital service provider. Research on live national infrastructure sits next to that line, on purpose.",
       'That shapes everything about how disclosure has to be done here.',
-      'The line between research and crime is not drawn by the law alone. It is drawn by the paper trail around the work. Scope. Authorization. Timestamps. What you did before you told anyone. The prosecutor\'s question is never whether the research is interesting. It is what you did, in what order, and who knew.',
-      'That is why the discipline is procedural rather than heroic. You document the scope before you touch the system. You stay inside it. You tell the owner first. You can show the whole sequence. The writeup is a technical document, and it is also the evidence that the work was research.',
+      'Authorization is what separates research from crime, and the law decides whether you had it. The paper trail does not grant it. What the paper trail does is document the conduct: scope, authorization, timestamps. What you did before you told anyone. The prosecutor\'s question is never whether the research is interesting. It is what you did, in what order, and who knew.',
+      'That is why the discipline is procedural rather than heroic. You document the scope before you touch the system. You stay inside it. You tell the owner first. You can show the whole sequence. The writeup is a technical document, and it is also the record of what the work was. It does not authorize access you did not have.',
       'None of this is a guarantee. Legal exposure in this field never fully goes away, and anyone who tells you otherwise is selling something. The procedure is what makes the exposure survivable, and it is the only part you fully control.',
     ],
   },
@@ -64,7 +64,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       'A digital state runs on trust in software that almost nobody fully understands. That trust is maintained, in practice, by a small number of people willing to look at the seams and name what they find.',
       'In a big country, that work happens at a distance. Reports go to a portal. Fixes happen on a vendor calendar. The researcher never meets the people affected. In a small country the distance collapses. The person who triages your report is your colleague. The people affected are your neighbors.',
-      'The closeness is the mechanism, not a side effect. When the disclosure is public, the sequence is documented, and the name is yours, the story is a simple one: a researcher found a flaw and told the right people, in the right order. That story is what keeps the work legal, and it is what makes the next report possible. I intend to keep writing them.',
+      'The closeness is the mechanism, not a side effect. When the disclosure is public, the sequence is documented, and the name is yours, the story is a simple one: a researcher found a flaw and told the right people, in the right order. That story does not make the work legal; only authorized access does. But it is the record of what happened, and it is what makes the next report possible. I intend to keep writing them.',
     ],
   },
 ];
@@ -91,7 +91,7 @@ export default function CoordinatedDisclosureInASmallCountryPage() {
               Thesis
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              In a small country, disclosure is a relationship before a procedure. The paper trail makes the work legal; owning your story in public is the protection that scales.
+              In a small country, disclosure is a relationship before a procedure. The paper trail documents the work but does not make it legal; owning your story in public is the protection that scales.
             </p>
           </div>
         </aside>

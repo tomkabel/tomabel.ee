@@ -217,19 +217,19 @@ export default function NineDimensionsZeroTrustPage() {
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <li>
-                <Link to="/disclosures/zero-trust-octagon" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/zero-trust-octagon" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'The Zero Trust Octagon' : 'Null-usalduse oktagon'}
                 </Link>
                 {isEn ? ' — the eight axioms the matrix is validated against.' : ' — kaheksa aksioomi, mille vastu maatriksit valideeritakse.'}
               </li>
               <li>
-                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'What client-side trust is actually worth' : 'Mida kliendipoolne usaldus tegelikult väärt on'}
                 </Link>
                 {isEn ? ' — D4 attestation seen from the browser.' : ' — D4 atesteerimine brauseri vaatest.'}
               </li>
               <li>
-                <Link to="/disclosures/i-used-to-break-authentication" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/i-used-to-break-authentication" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'I used to break authentication' : 'Ma murdsin varem autentimist'}
                 </Link>
                 {isEn ? ' — where single-source attestation fails in practice.' : ' — kus üheallikaline atesteerimine praktikas läbi kukub.'}
@@ -237,7 +237,7 @@ export default function NineDimensionsZeroTrustPage() {
               <li>
                 <a
                   href="https://github.com/tomkabel/zero-trust-octagon"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   zero-trust-octagon
                 </a>

@@ -260,7 +260,7 @@ export default function SmartIdAchillesHeelResearchPage() {
               <li>
                 <Link
                   to="/disclosures/the-fix-that-doesnt-need-sk"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   The fix that doesn't need SK
                 </Link>{' '}
@@ -269,7 +269,7 @@ export default function SmartIdAchillesHeelResearchPage() {
               <li>
                 <Link
                   to="/disclosures/identity-is-the-root-proof-is-the-gate"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   Identity is the root, proof is the gate
                 </Link>{' '}

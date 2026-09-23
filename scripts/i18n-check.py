@@ -11,12 +11,13 @@ Fails (exit 1) if, for any route and either stored language:
 """
 import re
 import sys
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 base = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:4173"
-routes = ["/", "/disclosures", "/systems", "/about", "/my-story", "/privacy", "/disclosure", "/nope",
-          "/disclosures/smart-id-achilles-heel", "/disclosures/the-kratt-problem",
-          "/disclosures/the-fortune-500-illusion-of-control", "/disclosures/the-pin-that-cannot-be-delegated"]
+# Every page route in App.tsx; redirects (<Navigate>, :slug) land on pages already listed.
+APP = (Path(__file__).resolve().parent.parent / "src/App.tsx").read_text()
+routes = [m for m, el in re.findall(r'<Route path="(/[^"*:]*)" element=\{<(\w+)', APP) if el != "Navigate"] + ["/nope"]
 BILINGUAL_ARTICLE = "/disclosures/the-fortune-500-illusion-of-control"
 ENGLISH_CHROME = ["Progress", "Contents", "Integrity · SHA-256", "Verifying", "Switch to Estonian", "Canonical text unavailable"]
 
