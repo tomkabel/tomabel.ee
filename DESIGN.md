@@ -1,227 +1,120 @@
 ---
-name: Tom Kristian Abel — Terminal Brutalism
-description: Personal portfolio and research hub for a security researcher and systems architect.
-colors:
-  accent: "#22C55E"
-  accent-glow: "rgba(34, 197, 94, 0.35)"
-  accent-selection: "rgba(34, 197, 94, 0.3)"
-  warning: "#F59E0B"
-  background: "#0A0A0B"
-  surface: "#111114"
-  surface-hover: "rgba(255, 255, 255, 0.02)"
-  foreground: "#F1F5F9"
-  muted: "#94A3B8"
-  muted-foreground: "#64748B"
-  subtle: "#475569"
-  border: "rgba(255, 255, 255, 0.05)"
-  border-strong: "rgba(255, 255, 255, 0.10)"
+name: Tom Kristian Abel — Technical Editorial
+description: Personal research hub and portfolio for a security researcher and systems architect.
+source-of-truth: src/index.css (:root tokens), mapped to utilities in tailwind.config.js
+colors:  # OKLCH "L C H"; utilities use oklch(var(--x) / <alpha-value>)
+  sunken: "0.125 0.008 258"   # code wells, mastheads, interlude band, scrims
+  canvas: "0.15 0.009 255"    # page background (#090B0F, also theme-color)
+  surface-1: "0.182 0.011 248"
+  surface-2: "0.212 0.013 240"
+  surface-3: "0.245 0.015 232"
+  overlay: "0.28 0.016 225"
+  ink: "0.955 0.006 250"        # 17.3:1 on canvas
+  ink-muted: "0.775 0.018 252"  # 9.7:1
+  ink-soft: "0.7 0.02 252"      # 7.4:1
+  ink-faint: "0.64 0.022 252"   # 5.9:1 — the lowest text step
+  signal: "0.795 0.15 163"      # P1 phosphor green
+  signal-strong: "0.865 0.13 165"
+  signal-ink: "0.21 0.04 163"
+  caution: "0.83 0.135 75"      # P3 phosphor amber
+  fault: "0.715 0.165 22"
 typography:
-  display:
-    fontFamily: '"Space Grotesk", Inter, system-ui, sans-serif'
-    fontWeight: 700
-  body:
-    fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
-    fontWeight: 400
-    lineHeight: 1.5
-  mono:
-    fontFamily: '"JetBrains Mono", monospace'
-    fontWeight: 400
-spacing:
-  section: "5rem"
-  container: "1.5rem"
-  element: "1rem"
-components:
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.background}"
-    fontWeight: 600
-    padding: "0.75rem 1.5rem"
-    height: "min 48px"
-  chip:
-    backgroundColor: "rgba(255, 255, 255, 0.05)"
-    textColor: "{colors.muted-foreground}"
-    fontSize: "0.625rem"
-  card-work:
-    borderColor: "{colors.border-strong}"
-    borderWidth: 1
-    padding: "2rem"
-    hover: "-translate-y-0.5 border-accent/60"
-  card-project:
-    borderColor: "{colors.border-strong}"
-    borderWidth: 1
-    padding: "2rem"
-    hover: "border-accent/50"
-  nav-link:
-    textColor: "{colors.muted-foreground}"
-    fontWeight: 500
-    textTransform: "uppercase"
-    letterSpacing: "0.1em"
-    fontSize: "0.75rem"
-  nav-link-active:
-    textColor: "{colors.foreground}"
-  nav-link-hover:
-    textColor: "{colors.accent}"
+  display: Newsreader Variable (opsz axis), weight 540, tracking -0.018em
+  body: Geist Variable
+  mono: Commit Mono (labels, data, code)
+  scale: --step--1 (12px floor) … --step-8; steps 2-8 are clamp() between 375px and 1440px
+radii: { hair: 2px, figure: 4px, control: 6px, card: 12px, full: dots only }
+motion: { ease-out: "cubic-bezier(0.2,0.7,0.2,1)", fast: 120ms, base: 200ms, slow: 360ms }
+spacing: { section: "clamp(4rem, 2.6rem + 6vw, 7.5rem)", section-tight: "clamp(3rem, 2.3rem + 3vw, 5rem)" }
 ---
 
-# Design System: Tom Kristian Abel — Terminal Brutalism
+# Design System: Technical Editorial
 
-## 1. Overview
+Audit trail for this system: `docs/design-audit/01…05`.
 
-**Creative North Star: Terminal Brutalism**
+## 1. North star
 
-A dark, utilitarian interface that reads like a security researcher's terminal. The near-black background (#0A0A0B) is the void; green accent (#22C55E) is the live signal. Every element earns its place — no decoration without purpose. The aesthetic is raw, technical, and honest: a direct reflection of the person behind it.
+A research publication for instruments. The site reads like a journal of record written by
+someone who takes machines apart: serif authority for titles, a quiet grotesk for reading,
+monospace for anything that is data. Dark because it is a screen room, not because dark mode is a
+toggle. There is no light mode.
 
-The system rejects template-driven portfolio clichés: no cards-with-icons repeated endlessly, no hero-metric templates, no glassmorphism, no gradients. The layout is sparse and structured — systematic spacing, clear typographic hierarchy, and subtle hover states that reward attention without demanding it.
+## 2. Colour
 
-**Key Characteristics:**
-- **Dark, not dark mode.** The background is atmospheric near-black, not a UI toggle. There is no light mode.
-- **Three-voice typography.** Space Grotesk for authority (headings), Inter for readability (body), JetBrains Mono for precision (codes, labels, metadata).
-- **Green as signal.** Accent (#22C55E) appears on interactive elements, section labels, hover states, and focus indicators — never decoratively. Green is <10% of any screen.
-- **Borders over shadows.** Flat surfaces separated by fine borders (rgba white at 5–10% opacity). No shadows anywhere.
-- **Mono metadata.** All codes, types, labels, and metadata use JetBrains Mono at 10px uppercase with wide tracking.
+Taken from the subject matter, not from a stock palette. The two accents are the classic CRT
+phosphors: **P1 green** (`signal`) marks what is live or interactive, **P3 amber** (`caution`)
+marks what needs care (disclosed, 404, the Kratt aside). `fault` red is used only for integrity
+mismatches.
 
-## 2. Colors
+**Surface ladder.** Six steps from `sunken` to `overlay`. Lightness rises *and* hue drifts from
+cold blue (258°) toward the phosphor (225°), so higher surfaces read as closer to the signal.
+Use one step up for hover or raised, and `sunken` for wells and bands. Never use pure black or
+pure white.
 
-The palette is restrained: tinted neutrals on near-black with one accent (green) at approximately 5–10% coverage and a secondary accent (amber) at less than 1%.
-
-### Primary
-- **Signal Green** (#22C55E): Live signals. Appears on the pulsing nav dot, section index labels, hover states, focus rings, and the hero's glowing text line. Its high-chroma against black creates the terminal-instrument feel. Never decorative.
-
-### Secondary
-- **Amber Beacon** (#F59E0B): Warnings, points of interest. Used only for the "Kratt" sidebar border on the About page and legal emphasis. Never competes with green.
-
-### Neutral
-- **Void** (#0A0A0B): Primary background. Near-black with slight warmth.
-- **Surface** (#111114): One step above void. Card and container backgrounds.
-- **Ice White** (#F1F5F9): Primary text. High contrast on black.
-- **Steel Gray** (#94A3B8): Secondary text, body copy.
-- **Zinc Dim** (#64748B): Muted labels, placeholder text.
-- **Dim** (#475569): Subtle anchors, footer text.
-- **Border** (rgba(255,255,255,0.05)): Section dividers, card borders.
-- **Border Strong** (rgba(255,255,255,0.10)): Interactive card borders.
-
-### Named Rules
-**The Signal Rule.** Green (#22C55E) is used on <10% of any given screen. Its rarity is the point — when green appears, the user knows something is interactive or alive.
-
-**The No-Decoration Rule.** No element uses green or amber purely for decoration. Every colored element signals something: interactivity, focus, warning, or data.
-
-**The Beacon Rule.** Amber (#F59E0B) is reserved for the Kratt metaphor and legal emphasis. It should never compete with green for visual priority.
+**Rules.**
+- Signal colour covers well under 10% of any screen. It goes on labels, links, focus and live
+  status, never on headings or large fills. The one exception is `.btn-primary`.
+- Colour sits on the label, not on the container. No coloured side stripes on cards, asides or quotes.
+- Every text step passes WCAG AA on every surface. The lowest is `ink-faint` at 5.9:1.
 
 ## 3. Typography
 
-**Display Font:** Space Grotesk (fallback: Inter, system-ui)
-**Body Font:** Inter (fallback: system-ui, -apple-system)
-**Label/Mono Font:** JetBrains Mono
+- **Display (Newsreader, optical size).** h1–h3, card titles, pull quotes, long serif bio
+  passages (`font-serif`, which skips the display tracking). Weight 540 and `text-wrap: balance`
+  come from `.font-display`.
+- **Body (Geist).** UI and reading text. Long-form prose is capped at `max-w-measure` (65ch).
+  Large serif passages use `max-w-measure-display` (34ch).
+- **Mono (Commit Mono).** The `.label` component: 12px, uppercase, 0.14em tracking. It is the
+  site's single metadata voice. Don't invent other tracking values. Tags, captions, back
+  links and nav stay in sentence case.
+- Never go below 12px. Never add breakpoint type jumps (`text-4xl md:text-6xl`); the scale is
+  already fluid.
 
-**Character:** Authority (display), readability (body), precision (mono). Space Grotesk's geometric structure at display sizes communicates confidence; Inter's humanist warmth at body sizes keeps long-form readable; JetBrains Mono is for data where every character matters.
+## 4. Layout & rhythm
 
-### Hierarchy
-- **Display** (700, 3rem/3.5rem, leading-[1.05]): Hero headline only. Usage is rare.
-- **Heading** (700, 2.25rem/2.5rem, leading-tight): Section titles.
-- **Title** (700, 1.5rem, leading-snug): Card titles, entry headings.
-- **Body** (400, 0.875rem–1rem, 1.5): Descriptions, paragraphs. Capped at 65ch max-width.
-- **Body Large** (400, 1.25rem, leading-relaxed): Bio text, intro strip. Uses Space Grotesk for personality.
-- **Label** (500, 0.75rem, normal tracking): Tags, metadata, legal.
-- **Mono Label** (400, 0.625rem, uppercase, tracking-widest): Codes, types, section labels, navigation.
-
-### Named Rules
-**The Three-Voice Rule.** Never use one font for everything. Display always gets Space Grotesk, body always gets Inter, data/labels always get JetBrains Mono. Cross-contamination erodes the hierarchy.
-
-## 4. Layout & Spacing
-
-- **Container:** `max-w-6xl` (72rem / 1152px), `px-6` (1.5rem) horizontal padding.
-- **Section padding:** `py-20`, `py-24` for major sections. `pb-20 pt-24` for page headers with border-bottom.
-- **Grid:** `md:grid-cols-2` for featured work and projects. `md:grid-cols-3` for footer. `lg:grid-cols-12` for split layouts.
-- **Vertical rhythm:** 4px/8px incremental spacing system via Tailwind defaults.
-
-### Named Rules
-**The Flat First Rule.** Flat surfaces are the default. Borders, not shadows, create separation. Every border should be removable without breaking layout comprehension.
-
-**The No-Shadow Rule.** No box-shadows are used anywhere in the system. Depth comes from tonal layering (background → surface → border) and hover state transitions.
+- Container: `max-w-6xl` with `px-6` **outside** it, so nav, content and footer share one edge.
+- Page structure uses CSS Grid (12 columns at `lg`, always with an explicit column template at
+  every breakpoint). Flex is only for inline runs such as tag lists, datelines and button rows.
+- Deliberate asymmetry: the hero intro is offset (`lg:col-start-6`); featured work alternates
+  7/5 then 5/7; flagship systems span two columns on `surface-2`.
+- Sections use `py-section`; interludes and mastheads use `section-tight`.
+- Don't use `grid-flow-dense`: visual order must match tab order.
 
 ## 5. Components
 
-### Navigation
-- **Style:** Sticky top bar with `bg-background/80 backdrop-blur-md`. 1px border-bottom.
-- **Logo:** Green pulsing dot + "tomabel.ee" in Space Grotesk bold.
-- **Links:** Mono uppercase, tracking-widest. Active: text-foreground. Inactive: text-muted-foreground. Hover: text-accent + `/` prefix reveals.
-- **Language Toggle:** Globe icon + ET/EN code. aria-label describes action.
-- **Mobile:** Hamburger → slide-down overlay with full link list. role="dialog".
+- **Link cards** (`WorkCard`, `CrossNav`): `rounded-card`, `surface-1` + `shadow-elevated`.
+  On hover: `surface-2`, a signal-tinted top edge, the title underline draws in (`.link-draw`),
+  and the arrow shifts. The box never translates or scales.
+- **Non-link cards** (Systems project) have no hover state. Only their links react.
+- **Figures** (code, tables, asides, PGP, article proof): `rounded-figure`, and `sunken` for code wells.
+- **Tags/chips:** `rounded-hair`, a hairline border, mono sentence case.
+- **Button:** `.btn-primary`. It has a lit top edge and a shaded bottom edge, settles 1px when
+  pressed, and is at least 44px tall. Use it only for the one primary action on a screen.
+- **Article masthead:** `ArticleHeader` (`components/site/article.tsx`). It is a `sunken` band
+  with the serif title and a ruled dateline, and it is the only article header. Don't hand-roll
+  a new one.
+- **Nav:** opaque, no blur. Sentence-case links whose underline draws in on hover and stays in
+  signal colour for the current page. Icon buttons are 44×44.
+- **Loader:** a hairline indeterminate scan bar with `role="status"`. No pulsing dots.
 
-### Work Cards (Homepage)
-- 2×2 grid. Border card with hover lift (-translate-y-0.5).
-- Corner brackets appear on hover (top-left + bottom-right border in green).
-- Top: code label + status dot. Content: title in display font, blurb in body. Bottom: tag list + CTA with arrow-shift.
-- Links to internal routes (/research, /projects).
+## 6. Motion
 
-### Entry Rows (Research)
-- Full-width article. Left accent bar (0.5px) scales from 0 to full height on hover.
-- 12-col grid: 2-col code + type, 10-col title + blurb.
-- Hover: left bar reveals green, title turns green, arrow slides in from right.
-- Mono metadata: keywords, types.
+One easing, three durations. Transitions name the properties they animate; never use
+`transition-all`. The only entrance animation is the hero `rise-in`. `prefers-reduced-motion`
+reduces all of it to ~0.
 
-### Project Cards (Projects)
-- 2×2 grid. Border card. Stack label in green mono, blurb in body, external GitHub link.
-- Simple dot indicator changes from subtle to green on hover.
+## 7. Don't
 
-### Section Headers
-- Pattern: `[index] label` in mono green → h1 display title → optional intro paragraph.
-- Used consistently across all 4 main pages.
+Gradient text or fills, glassmorphism or backdrop blur, glow shadows, pill badges, icon-in-tile
+features, pulsing "live" dots, hover lift or scale, uniform radius, eyebrow rules
+(`h-px w-8 accent`), emoji as icons, em dashes in UI chrome, text under 12px, targets under 44px,
+hard-coded colours or arbitrary `text-[…]`, `rounded-[…]` or `tracking-[…]`. The radius and
+type scales replace Tailwind's defaults, so those default classes no longer exist.
 
-### Legal Pages
-- Standard page layout with green section headings, surface-colored info boxes, list-disc content.
+## 8. Verification
 
-### 404 / Error
-- Green "404" heading. Return-home button: bg-accent text-accent-foreground rounded-xl. Min 48px touch target.
-
-## 6. Animation
-
-- **Micro-interactions:** 150–300ms transitions on hover (colors, transforms, opacity).
-- **Hero entrance:** `rise-in` stagger (0.6s cubic-bezier). Eyebrow → h1 (80ms delay) → intro (180ms) → CTAs (260ms).
-- **Caret blink:** Steps(1) animation, 1.1s infinite on hero green text.
-- **Pulse dot:** Tailwind `animate-pulse` on nav logo and page loader.
-- **Arrow shift:** 0.25s transform on parent hover (translateX 4px).
-- **Corner brackets:** Opacity 0→1 on work card hover.
-- **Accent bar:** scale-y 0→1 on entry row hover.
-- **Reduced motion:** All animations/transitions killed at `prefers-reduced-motion: reduce`.
-
-## 7. Do's and Don'ts
-
-### Do:
-- **Do** use green (#22C55E) as the only accent for interactive elements, focus indicators, and section metadata.
-- **Do** use amber (#F59E0B) sparingly — only the Kratt sidebar and legal emphasis.
-- **Do** use the three-typeface system: Space Grotesk for display, Inter for body, JetBrains Mono for data/labels.
-- **Do** use borders (not shadows) for visual separation.
-- **Do** respect prefers-reduced-motion.
-- **Do** keep green at <10% screen coverage.
-- **Do** use JetBrains Mono at 10px uppercase tracking-widest for all codes, types, and metadata.
-- **Do** use consistent section header patterns across all pages.
-
-### Don't:
-- **Don't** use gradient text. Solid colors only.
-- **Don't** use glassmorphism or heavy backdrop-blur (nav's subtle blur is the only exception).
-- **Don't** use box-shadows. Flat with borders is the rule.
-- **Don't** use rounded corners on containers or cards (square is the default). Buttons and code blocks may use subtle rounding.
-- **Don't** use emojis as icons. SVG (Lucide) only.
-- **Don't** use pure black (#000) or pure white (#fff). Tint all neutrals.
-- **Don't** mix filled and outline icon styles.
-- **Don't** use green for decoration. Every green element must signal interactivity or importance.
-
-## 8. Implementation Notes
-
-- **Framework:** React 18 + TypeScript + Tailwind CSS 3.4 + Vite 5 + React Router 7
-- **Font loading:** preconnect + preload with `media="print"` swap technique for non-blocking loading.
-- **Code splitting:** Route-based via React.lazy(). Manual vendor/ui chunk splitting in Vite config.
-- **Build output:** `pub/` directory (not `dist`).
-- **Security headers:** Strict CSP, HSTS preload, X-Frame-Options DENY.
-- **Accessibility:** Skip-to-content link, aria-current on nav, visible focus rings (2px green), semantic HTML, reduced-motion support.
-- **i18n:** Bilingual EN/ET via React Context + localStorage persistence. Dynamic `document.documentElement.lang`.
-
-## 9. Roadmap / Known Gaps
-
-- **Research entries not linked:** EntryRow has hover effects suggesting interactivity but renders as `<article>`, not `<Link>`. Individual research detail pages don't exist as routes. This is intentional for now — the entries link to publications hosted elsewhere.
-- **Essays not linked:** Same pattern as research entries. WritingPage shows essay titles with hover effects but no links. Essays are planned/seed pieces, not yet published.
-- **Contact form:** Translations exist (t.cta.form) but no React component. Contact is via mailto links only — this is intentional for the current scope.
-- **RSS feed:** `/writing.xml` referenced in footer but not yet generated.
-- **Theme-color meta:** Set to #0A0A0B for dark browser chrome on mobile.
-- **PGP fingerprint:** Displayed on Disclosure page. Note: appears to be 41 chars instead of expected 40.
+- `pnpm typecheck && pnpm lint && pnpm build`
+- `pnpm canonical`: article text is pinned by SHA-256 proofs, so styling changes must leave
+  `public/verification/` unchanged.
+- `python3 docs/design-audit/qa_checks.py` against `pnpm preview`: overflow, <12px text, <44px
+  targets and first-Tab order across 8 routes × 3 viewports.

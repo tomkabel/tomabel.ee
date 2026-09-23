@@ -2,39 +2,35 @@ import { Link } from 'react-router-dom';
 import type { FeaturedWork } from '../../content/site';
 import { useTranslation } from '../../i18n/LanguageContext';
 
-export default function WorkCard({ item }: { item: FeaturedWork }) {
+export default function WorkCard({ item, className = '' }: { item: FeaturedWork; className?: string }) {
   const { language } = useTranslation();
   const title = item.title[language];
   const blurb = item.blurb[language];
   const cta = item.cta[language];
 
-  // The entire card is the interactive target (Fitts's Law), with tangible
-  // elevation: a resting surface that lifts and gains a specular edge on hover.
+  // The entire card is the interactive target (Fitts's Law). Hover answers with
+  // a tonal step up, a signal-tinted top edge, a drawn title underline and the
+  // arrow moving; nothing jumps or scales.
   return (
     <Link
       to={item.href}
-      className="group relative flex flex-col rounded-lg border border-border-strong bg-surface p-8 shadow-elevated transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-surface-2 hover:shadow-elevated-accent"
+      className={`group grid grid-rows-[auto_auto_1fr_auto] gap-y-4 rounded-card border border-border-strong bg-surface p-8 shadow-elevated transition-[background-color,border-color,box-shadow] duration-base hover:border-accent/40 hover:bg-surface-2 hover:shadow-elevated-accent ${className}`}
     >
-      <span className="mb-10 inline-flex w-fit items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.07] px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-widest text-accent">
-        {item.impact[language]}
-      </span>
-      <h3 className="mb-4 font-display text-2xl font-bold leading-snug text-foreground transition-colors group-hover:text-accent">
-        {title}
+      <p className="label mb-6 text-accent">{item.impact[language]}</p>
+      <h3 className="font-display text-3xl leading-tight text-foreground">
+        <span className="link-draw">{title}</span>
       </h3>
-      <p className="prose-measure mb-8 text-muted">{blurb}</p>
-      <div className="mt-auto flex items-end justify-between gap-6">
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
+      <p className="prose-measure text-muted">{blurb}</p>
+      <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end sm:gap-6">
+        <ul className="flex flex-wrap gap-x-4 gap-y-2">
           {item.tags.map((t) => (
-            <span
-              key={t}
-              className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground"
-            >
+            <li key={t} className="label text-muted-foreground">
               {t}
-            </span>
+            </li>
           ))}
-        </div>
-        <span className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
-          {cta} <span className="arrow-shift inline-block">→</span>
+        </ul>
+        <span className="label font-medium text-accent">
+          {cta} <span className="arrow-shift">→</span>
         </span>
       </div>
     </Link>

@@ -63,7 +63,7 @@ export default function SystemsPage() {
 
   return (
     <>
-      <section className="border-b border-border px-6 pb-8 pt-24">
+      <section className="border-b border-border px-6 pb-8 pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
             label={isEn ? 'Systems' : 'Süsteemid'}
@@ -72,15 +72,15 @@ export default function SystemsPage() {
               ? "Research is one thing; getting it to hold up under real traffic is another. These are the tools, security prototypes, and backend services I've built and deployed."
               : 'Uuring on üks asi; selle vastupidavus päris liikluse all on teine. Need on tööriistad, turvaprototüübid ja backend-teenused, mille olen ehitanud ja juurutanud.'}
           />
-          <p className="mt-8 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <p className="label mt-8 text-muted-foreground">
             {projects.length} {isEn ? 'projects · public repositories & live deployments' : 'projekti · avalikud repod ja live-juurutused'}
           </p>
         </div>
       </section>
 
-      <div className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl px-6">
-          <div role="group" aria-label={isEn ? 'Filter systems' : 'Filtreeri süsteeme'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
+      <div className="sticky top-[calc(theme(spacing.16)+1px)] z-30 border-b border-border bg-background px-6">
+        <div className="mx-auto max-w-6xl">
+          <div role="group" aria-label={isEn ? 'Filter systems' : 'Filtreeri süsteeme'} className="-mx-3 flex gap-1 overflow-x-auto py-2 md:flex-wrap">
             <FilterTab active={filter === 'all'} onClick={() => setFilter('all')}>
               {isEn ? 'All' : 'Kõik'}
             </FilterTab>
@@ -95,8 +95,9 @@ export default function SystemsPage() {
 
       <section className="px-6 py-16" aria-label={isEn ? 'Systems' : 'Süsteemid'}>
         <div className="mx-auto max-w-6xl">
-          {/* One universal card, one uniform grid — no competing archetypes. */}
-          <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {/* One card shape; flagship work takes two columns and one surface step
+              up. No grid-flow-dense: visual order must match tab order (WCAG 2.4.3). */}
+          <ul className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
             {shown.map((p) => (
               <ProjectCard key={p.name} project={p} isEn={isEn} language={language} />
             ))}
@@ -121,8 +122,8 @@ function FilterTab({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      className={`font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
-        active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
+      className={`label min-h-11 shrink-0 whitespace-nowrap rounded-control px-3 transition-colors duration-fast ${
+        active ? 'bg-surface-2 text-accent' : 'text-muted-foreground hover:bg-surface hover:text-foreground active:bg-surface-3'
       }`}
     >
       {children}
@@ -132,7 +133,7 @@ function FilterTab({
 
 function StarMetric({ stars }: { stars: number }) {
   return (
-    <span className="inline-flex shrink-0 items-baseline gap-1 rounded border border-border-strong bg-white/[0.04] px-2 py-0.5 font-mono text-xs font-bold text-foreground">
+    <span className="inline-flex shrink-0 items-baseline gap-1 rounded-hair border border-border-strong bg-surface-2 px-2 py-0.5 font-mono text-xs font-bold text-foreground">
       <span className="text-accent" aria-hidden="true">★</span>
       {stars}
     </span>
@@ -145,7 +146,7 @@ function TechTags({ tags }: { tags: string[] }) {
       {tags.map((t) => (
         <span
           key={t}
-          className="rounded border border-border px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground"
+          className="rounded-hair border border-border px-2 py-0.5 font-mono text-xs text-muted-foreground"
         >
           {t}
         </span>
@@ -163,7 +164,7 @@ function ProjectLinks({ links }: { links: ProjectLink[] }) {
           href={l.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-widest text-foreground transition-colors hover:text-accent"
+          className="label inline-flex min-h-11 items-center gap-1.5 font-bold text-foreground transition-colors hover:text-accent"
         >
           {l.label} <span aria-hidden>↗</span>
         </a>
@@ -175,7 +176,8 @@ function ProjectLinks({ links }: { links: ProjectLink[] }) {
 // The single universal project card. Every project — flagship, product, or
 // utility script — renders in this exact shape with fixed metadata slots:
 // TYPE + STATUS bar, title (+ stars), blurb, tag bar, action row. Flagship work
-// gets an accent left rail for weight, never a different footprint.
+// spans two columns on a raised surface. The card itself is not a link, so it
+// has no hover state; its links do.
 function ProjectCard({
   project: p,
   isEn,
@@ -191,16 +193,14 @@ function ProjectCard({
 
   return (
     <li
-      className={`group flex flex-col rounded-lg border bg-surface p-6 shadow-elevated transition-all duration-300 hover:-translate-y-0.5 hover:bg-surface-2 hover:shadow-elevated-accent ${
-        p.featured
-          ? 'border-border-strong border-l-2 border-l-accent/60 hover:border-l-accent'
-          : 'border-border-strong hover:border-accent/50'
+      className={`grid grid-rows-[auto_auto_1fr_auto] rounded-card border border-border-strong p-6 shadow-elevated ${
+        p.featured ? 'bg-surface-2 md:col-span-2' : 'bg-surface'
       }`}
     >
-      <div className="mb-5 flex items-center justify-between gap-3 font-mono text-[10px] font-medium uppercase tracking-widest">
+      <div className="label mb-5 grid grid-cols-[1fr_auto] items-center gap-3">
         <span className="text-muted-foreground">{type}</span>
         <span className="flex items-center gap-3">
-          {p.featured ? <span className="text-accent">{isEn ? 'Flagship' : 'Lipulaev'}</span> : null}
+          {p.featured ? <><span className="text-accent">{isEn ? 'Flagship' : 'Lipulaev'}</span><span aria-hidden className="text-subtle">·</span></> : null}
           <span className={`inline-flex items-center gap-1.5 ${status.tone}`}>
             {status.live ? <span aria-hidden className="size-1.5 rounded-full bg-accent" /> : null}
             {status.label}
@@ -208,17 +208,18 @@ function ProjectCard({
         </span>
       </div>
 
-      <div className="mb-3 flex items-start justify-between gap-3">
-        <h2 className="break-words font-display text-xl font-bold leading-tight text-foreground">{p.name}</h2>
+      <div className="mb-3 grid grid-cols-[1fr_auto] items-start gap-3">
+        <h2 className="break-words font-display text-2xl leading-tight text-foreground">{p.name}</h2>
         {p.stars ? <StarMetric stars={p.stars} /> : null}
       </div>
 
-      <p className="mb-6 text-sm leading-relaxed text-muted">{p.blurb[language]}</p>
-
-      {p.tags && p.tags.length > 0 ? <div className="mb-6">{<TechTags tags={p.tags} />}</div> : null}
+      <div className="mb-6">
+        <p className="prose-measure text-sm leading-relaxed text-muted">{p.blurb[language]}</p>
+        {p.tags && p.tags.length > 0 ? <div className="mt-6"><TechTags tags={p.tags} /></div> : null}
+      </div>
 
       {links.length > 0 ? (
-        <div className="mt-auto border-t border-border pt-4">
+        <div className="border-t border-border pt-2">
           <ProjectLinks links={links} />
         </div>
       ) : null}

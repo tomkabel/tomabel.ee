@@ -44,10 +44,14 @@ function LegacyDisclosureRedirect() {
 
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const lastPath = React.useRef(pathname);
   React.useEffect(() => {
     window.scrollTo(0, 0);
     // SPA route change: move focus to the content landmark so keyboard and
-    // screen-reader users start the new view (WCAG 2.4.3).
+    // screen-reader users start the new view (WCAG 2.4.3). Not on first load,
+    // where the first Tab must still reach the skip link and the nav.
+    if (lastPath.current === pathname) return;
+    lastPath.current = pathname;
     const main = document.getElementById('main-content');
     if (main) {
       main.setAttribute('tabindex', '-1');
@@ -63,8 +67,10 @@ function Lazy({ children }: { children: React.ReactNode }) {
 
 function PageLoader() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="size-2.5 animate-pulse rounded-full bg-accent" />
+    <div className="grid min-h-[60vh] place-items-center" role="status" aria-label="Loading">
+      <div className="h-px w-24 overflow-hidden bg-border-strong">
+        <div className="h-full w-2/5 animate-scan bg-accent" />
+      </div>
     </div>
   );
 }
@@ -83,7 +89,7 @@ function SkipLink() {
     <a
       href="#main-content"
       onClick={handleClick}
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-md"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-control focus:font-medium"
     >
       {t.app.skipToContent}
     </a>

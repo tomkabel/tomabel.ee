@@ -1,18 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// Stable anchor id for a section heading, shared by the rail's TOC links and the
-// section elements the article renders.
-export function sectionSlug(heading: string): string {
-  return (
-    'sec-' +
-    heading
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .slice(0, 60)
-  );
-}
+import { sectionSlug } from './section-slug';
 
 type RailSection = { heading: string };
 
@@ -79,23 +67,25 @@ export default function ReaderRail({
     <nav aria-label="Article contents" className="space-y-8 text-sm">
       <Link
         to={backHref}
-        className="inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+        className="hidden min-h-11 items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-accent lg:inline-flex"
       >
         <span aria-hidden>←</span> {backLabel}
       </Link>
 
-      <div>
-        <div className="mb-2 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+      {/* Below lg the rail stacks above the article, where a scroll meter and a
+          second back link are dead weight. */}
+      <div className="hidden lg:block">
+        <div className="mb-2 flex items-baseline justify-between label text-muted-foreground">
           <span>Progress</span>
           <span className="text-accent">{pct}%</span>
         </div>
         <div className="h-1 w-full overflow-hidden rounded-full bg-border-strong" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
-          <div className="h-full rounded-full bg-accent transition-[width] duration-150 ease-out" style={{ width: `${pct}%` }} />
+          <div className="h-full rounded-full bg-accent transition-[width] duration-fast ease-out" style={{ width: `${pct}%` }} />
         </div>
       </div>
 
       <div>
-        <p className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+        <p className="mb-4 label font-bold text-muted-foreground">
           Contents
         </p>
         <ol className="space-y-1">
@@ -107,13 +97,13 @@ export default function ReaderRail({
                 <a
                   href={`#${id}`}
                   aria-current={active ? 'location' : undefined}
-                  className={`group flex gap-3 border-l-2 py-1.5 pl-3 leading-snug transition-colors ${
+                  className={`group flex min-h-11 items-center gap-3 border-l-2 py-1.5 pl-3 leading-snug transition-colors ${
                     active
                       ? 'border-accent text-foreground'
                       : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground'
                   }`}
                 >
-                  <span className={`font-mono text-[11px] ${active ? 'text-accent' : 'text-subtle'}`}>
+                  <span className={`font-mono text-xs ${active ? 'text-accent' : 'text-subtle'}`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <span>{s.heading}</span>

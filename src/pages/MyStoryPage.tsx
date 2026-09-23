@@ -121,7 +121,7 @@ export default function MyStoryPage() {
 
   return (
     <>
-      <section className="border-b border-border px-6 pb-20 pt-24">
+      <section className="border-b border-border px-6 pb-section-tight pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
             label={l === 'en' ? 'Context' : 'Kontekst'}
@@ -135,14 +135,14 @@ export default function MyStoryPage() {
         </div>
       </section>
 
-      <article className="px-6 py-20">
-        <div className="mx-auto max-w-3xl">
+      <article className="px-6 py-section-tight">
+        <div className="mx-auto max-w-measure">
           {acts.map((act) => (
             <section key={act.heading.en} className="mb-16">
-              <h2 className="mb-6 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              <h2 className="mb-6 label text-accent">
                 {act.heading[l]}
               </h2>
-              <div className="space-y-6 font-display text-xl leading-relaxed text-foreground md:text-[1.35rem]">
+              <div className="space-y-6 font-serif text-xl leading-relaxed text-foreground">
                 {act.paragraphs.map((p) => (
                   <p key={p.en}>{p[l]}</p>
                 ))}
@@ -151,23 +151,23 @@ export default function MyStoryPage() {
           ))}
 
           <section className="mb-16">
-            <h2 className="mb-6 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+            <h2 className="mb-6 label text-accent">
               {l === 'en' ? 'Act III. The work' : 'III vaatus. Töö'}
             </h2>
-            <div className="space-y-6 font-display text-xl leading-relaxed text-foreground md:text-[1.35rem]">
+            <div className="space-y-6 font-serif text-xl leading-relaxed text-foreground">
               {actThree.map((p) => (
                 <p key={p.en}>{p[l]}</p>
               ))}
             </div>
-            <ul className="my-10 space-y-6 border-l-2 border-accent/60 pl-6">
+            <ul className="my-10 space-y-6 rounded-figure bg-surface-2 p-6 ring-1 ring-inset ring-border">
               {work.map((w) => (
                 <li key={w.name}>
                   {w.href.startsWith('http') ? (
-                    <a href={w.href} target="_blank" rel="noopener noreferrer" className="font-display text-lg font-bold text-foreground hover:text-accent">
+                    <a href={w.href} target="_blank" rel="noopener noreferrer" className="font-display text-lg text-foreground hover:text-accent">
                       {w.name}
                     </a>
                   ) : (
-                    <Link to={w.href} className="font-display text-lg font-bold text-foreground hover:text-accent">
+                    <Link to={w.href} className="font-display text-lg text-foreground hover:text-accent">
                       {w.name}
                     </Link>
                   )}
@@ -175,7 +175,7 @@ export default function MyStoryPage() {
                 </li>
               ))}
             </ul>
-            <div className="space-y-6 font-display text-xl leading-relaxed text-foreground md:text-[1.35rem]">
+            <div className="space-y-6 font-serif text-xl leading-relaxed text-foreground">
               {actThreeAfter.map((p) => (
                 <p key={p.en}>{p[l]}</p>
               ))}
@@ -183,7 +183,7 @@ export default function MyStoryPage() {
           </section>
 
           <section className="border-t border-border pt-10">
-            <p className="font-display text-xl leading-relaxed text-foreground md:text-[1.35rem]">
+            <p className="font-serif text-xl leading-relaxed text-foreground">
               {closing[l]}
             </p>
             <p className="mt-8 text-base leading-relaxed text-muted">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { pgpKey } from './pgp-card';
+import { pgpKey } from './pgp-key';
 
 type Status = 'checking' | 'match' | 'mismatch' | 'error';
 
@@ -69,12 +69,12 @@ export default function ArticleProof({
       aria-label="Cryptographic integrity proof"
       className="mx-auto max-w-4xl px-6 pb-16"
     >
-      <div className="rounded-lg border border-border-strong bg-surface p-6 font-mono text-sm shadow-elevated">
+      <div className="rounded-figure border border-border-strong bg-surface p-6 font-mono text-sm shadow-elevated">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="text-xs font-bold uppercase tracking-label text-muted-foreground">
             Integrity · SHA-256
           </p>
-          <span className={`text-xs font-bold uppercase tracking-widest ${verdict.tone}`}>
+          <span className={`label font-bold ${verdict.tone}`}>
             {verdict.text}
           </span>
         </div>
@@ -100,7 +100,7 @@ export default function ArticleProof({
                 <span className="text-foreground">{pgpKey.fingerprint}</span>. Verify the
                 detached signature yourself:
               </p>
-              <pre className="mt-2 overflow-x-auto rounded border border-border bg-background/60 p-3 text-foreground">
+              <pre className="mt-2 overflow-x-auto rounded-figure border border-border bg-sunken p-3 text-foreground">
 {`curl -O https://tomabel.ee/public-key.asc
 curl -O https://tomabel.ee/verification/${slug}.txt
 curl -O https://tomabel.ee/verification/${slug}.txt.asc

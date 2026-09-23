@@ -17,22 +17,22 @@ export default function SiteNav() {
   const [telemetryOpen, setTelemetryOpen] = React.useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link to="/" className="group flex items-center gap-2.5">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
+        <Link to="/" className="group flex min-h-11 items-center gap-2.5">
           <span
             aria-hidden
-            className="grid size-5 place-items-center rounded-[3px] border border-border-strong bg-surface font-mono text-[11px] font-bold leading-none text-accent transition-colors group-hover:border-accent/50"
+            className="grid size-6 place-items-center rounded-hair border border-border-strong bg-surface font-mono text-xs font-bold leading-none text-accent transition-colors duration-fast group-hover:border-accent/50 group-hover:bg-surface-2"
           >
             /
           </span>
-          <span className="font-display font-bold tracking-tight text-foreground">
+          <span className="font-display tracking-tight text-foreground">
             tomabel.ee
           </span>
         </Link>
 
-        <div className="flex items-center gap-6">
-          <div className="hidden gap-8 text-xs font-medium uppercase tracking-widest text-muted-foreground md:flex">
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="hidden gap-7 text-sm font-medium text-muted-foreground md:flex">
             {links.map((l) => {
               const isActive = location.pathname === l.to;
               return (
@@ -40,13 +40,12 @@ export default function SiteNav() {
                   key={l.to}
                   to={l.to}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`group relative transition-colors hover:text-accent ${
-                    isActive ? 'text-foreground' : ''
+                  className={`relative inline-flex min-h-11 min-w-11 items-center justify-center transition-colors duration-fast after:absolute after:inset-x-0 after:bottom-2.5 after:h-px after:origin-left after:transition-transform after:duration-slow hover:text-foreground ${
+                    isActive
+                      ? 'text-foreground after:bg-accent'
+                      : 'after:scale-x-0 after:bg-foreground/40 hover:after:scale-x-100'
                   }`}
                 >
-                  <span aria-hidden className="mr-1 text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                    /
-                  </span>
                   {localize(l.label, language)}
                 </Link>
               );
@@ -55,7 +54,7 @@ export default function SiteNav() {
 
           <button
             onClick={() => setTelemetryOpen(true)}
-            className="text-muted-foreground transition-colors hover:text-accent"
+            className="grid size-11 place-items-center rounded-control text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-accent"
             aria-label={t.telemetry.open}
             title={t.telemetry.open}
           >
@@ -64,7 +63,7 @@ export default function SiteNav() {
 
           <button
             onClick={() => setLanguage(language === 'en' ? 'et' : 'en')}
-            className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+            className="flex min-h-11 items-center gap-1.5 rounded-control px-2 text-sm font-medium text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-foreground"
             aria-label={
               language === 'en' ? 'Switch to Estonian' : 'Switch to English'
             }
@@ -77,7 +76,7 @@ export default function SiteNav() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-muted-foreground hover:text-foreground md:hidden"
+            className="grid size-11 place-items-center rounded-control text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-foreground md:hidden"
             aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -98,7 +97,7 @@ export default function SiteNav() {
           id="mobile-menu"
           className="border-t border-border bg-background md:hidden"
         >
-          <div className="flex flex-col px-6 py-4 gap-3">
+          <div className="grid px-6 py-2">
             {links.map((l) => {
               const isActive = location.pathname === l.to;
               return (
@@ -107,7 +106,7 @@ export default function SiteNav() {
                   to={l.to}
                   onClick={() => setIsOpen(false)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`text-sm font-medium uppercase tracking-widest transition-colors hover:text-accent ${
+                  className={`flex min-h-12 items-center border-b border-border text-base font-medium transition-colors last:border-0 hover:text-accent ${
                     isActive ? 'text-foreground' : 'text-muted-foreground'
                   }`}
                 >
