@@ -1,6 +1,6 @@
 # Plan: locale URLs, hreflang and prerendering for tomabel.ee
 
-Status: proposed · Author: Claude Code with Tom Kristian Abel · 2026-09-23
+Status: decisions confirmed 2026-09-23, ready for Phase 0 · Author: Claude Code with Tom Kristian Abel
 Depends on: PR #43 (`englishOnlyArticles`, English-derived section ids, `LanguageScope`).
 
 ## Why
@@ -34,19 +34,18 @@ files only, no server, no headers, no real 301s.
 | Per-page head | Self-referencing canonical, reciprocal `hreflang` (`en`, `et`, `x-default` → en), `og:locale` / `og:locale:alternate`, per-language JSON-LD with `inLanguage`. |
 | Codes | `hreflang="et"`, `og:locale="et_EE"`, `<html lang="et">`. **Never `ee`**: that is Ewe, not Estonian, and it's the most common mistake on `.ee` sites. |
 
-## Decisions to confirm before Phase 1
+## Decisions (confirmed 2026-09-23)
 
-1. English at the root and Estonian under `/et/`. The alternative is Estonian at the root, which
-   moves every indexed URL. GitHub Pages can't do real redirects, so that would lose search ranking.
-2. Slugs stay English under `/et/`.
-3. Who writes and reviews the Estonian titles, descriptions and JSON-LD headlines: about 19
-   bilingual routes plus the index pages, 2–3 strings each. Draft them with the estonian-mcp
-   checks, then a human reviews.
-4. English-only articles get no toggle, only the banner. The alternative is a toggle to
-   `/et/disclosures/`.
-5. PR packaging: **PR-1** = Phase 1 (no behaviour change, merges on its own). **PR-2** = Phases 2+3
-   (must ship together, because an `/et/` URL with no static page falls back to the English
-   `404.html`). **PR-3** = Phase 5.
+Each decision was scored against fit, reversibility and precedent, then Tom picked. All five
+went to the recommended option.
+
+| # | Decision | Chosen | Runner-up, and why it lost |
+|---|---|---|---|
+| 1 | URL scheme | **English at the root, Estonian under `/et/`** | Estonian at the root would suit the `.ee` domain, but every indexed English URL would move, and GitHub Pages can't do real 301s. |
+| 2 | Slugs | **Same English slugs under `/et/`** | Translated slugs would look native, but need a slug map per route. They can be added later without changing anything else. |
+| 3 | Estonian metadata copy | **Claude drafts (estonian-mcp checks: spelling, compounds, bureaucratic style), Tom reviews every string in PR-1** | Tom writing all of it keeps his voice but costs more of his time. Machine translation with no review was excluded: PRODUCT.md requires bilingual precision. |
+| 4 | Toggle on English-only articles | **No toggle. A banner links back to `/et/disclosures/`** | A toggle to `/et/disclosures/` stays visible but silently changes pages. This first came out too close to call; checking precedent settled it (the DWP design system shows its toggle only where a page exists in both languages). |
+| 5 | PR packaging | **PR-1 metadata · PR-2 language URLs + static pages · PR-3 prerender** | One big PR would mix a framework migration into the i18n review and can't be partly rolled back. One PR per phase was excluded: `/et/` URLs without static pages break direct loads. |
 
 ---
 
