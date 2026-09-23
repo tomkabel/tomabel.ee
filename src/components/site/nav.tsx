@@ -5,7 +5,7 @@ import { Globe, Activity } from 'lucide-react';
 import Telemetry from './telemetry';
 
 const links = [
-  { to: '/disclosures', label: { en: 'Disclosures', et: 'Avalikustatud' } },
+  { to: '/disclosures', label: { en: 'Disclosures', et: 'Avalikustamised' } },
   { to: '/systems', label: { en: 'Systems', et: 'Süsteemid' } },
   { to: '/about', label: { en: 'About', et: 'Minust' } },
 ] as const;
