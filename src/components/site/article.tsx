@@ -1,23 +1,58 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
- * Editorial building blocks for long-form reader pages: callouts, pull quotes,
- * monospace code/telemetry blocks, and protocol tables. Dependency-free — the
- * "syntax highlighting" is a small comment-dimming pass, not a tokenizer.
+ * Editorial building blocks for long-form reader pages: the masthead, callouts,
+ * pull quotes, monospace code/telemetry blocks, and protocol tables.
+ * Dependency-free — the "syntax highlighting" is a small comment-dimming pass,
+ * not a tokenizer.
  */
+
+// The masthead every disclosure opens with: a sunken band one step below the
+// canvas, the title in the display serif, and a ruled dateline instead of chips.
+export function ArticleHeader({
+  backTo,
+  back,
+  kicker,
+  title,
+  standfirst,
+  meta,
+}: {
+  backTo: string;
+  back: ReactNode;
+  kicker: ReactNode;
+  title: ReactNode;
+  standfirst: ReactNode;
+  meta: ReactNode[];
+}) {
+  return (
+    <header className="border-b border-border bg-sunken px-6 pb-section-tight pt-section-tight">
+      <div className="mx-auto max-w-4xl">
+        <Link to={backTo} className="group mb-10 inline-flex min-h-11 font-mono text-sm items-center gap-2 text-muted-foreground transition-colors hover:text-accent">
+          <span className="link-draw">{back}</span>
+        </Link>
+        <p className="label mb-5 font-bold text-accent">{kicker}</p>
+        <h1 className="font-display text-5xl text-foreground">{title}</h1>
+        <p className="prose-measure mt-8 text-lg text-muted">{standfirst}</p>
+        <ul className="label mt-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-border pt-5 text-muted-foreground">
+          {meta.map((m, i) => (
+            <li key={i}>{m}</li>
+          ))}
+        </ul>
+      </div>
+    </header>
+  );
+}
 
 type Tone = 'accent' | 'warning';
 
-const toneRing: Record<Tone, string> = {
-  accent: 'border-l-accent/70',
-  warning: 'border-l-warning/70',
-};
 const toneText: Record<Tone, string> = {
   accent: 'text-accent',
   warning: 'text-warning',
 };
 
-// A bordered aside for axioms, notes, and key takeaways.
+// A tonal aside for axioms, notes, and key takeaways. It sits one step up the
+// surface ladder; only the label carries the tone colour, no side stripe.
 export function Callout({
   label,
   tone = 'accent',
@@ -28,8 +63,8 @@ export function Callout({
   children: ReactNode;
 }) {
   return (
-    <aside className={`my-8 rounded-lg border border-l-2 border-border-strong ${toneRing[tone]} bg-surface/70 p-6`}>
-      <p className={`mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.25em] ${toneText[tone]}`}>
+    <aside className="my-8 rounded-figure bg-surface-2 p-6 ring-1 ring-inset ring-border">
+      <p className={`label mb-3 font-bold ${toneText[tone]}`}>
         {label}
       </p>
       <div className="space-y-3 text-base leading-relaxed text-muted">{children}</div>
@@ -40,12 +75,12 @@ export function Callout({
 // A large editorial pull quote to break up dense prose.
 export function PullQuote({ children, cite }: { children: ReactNode; cite?: string }) {
   return (
-    <figure className="my-12 border-l-2 border-accent/60 pl-6 md:pl-8">
-      <blockquote className="font-serif text-2xl font-medium leading-snug text-foreground md:text-3xl">
+    <figure className="my-12 border-t border-border-strong pt-8">
+      <blockquote className="font-serif text-3xl font-medium leading-snug text-foreground">
         {children}
       </blockquote>
       {cite ? (
-        <figcaption className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+        <figcaption className="label mt-4 text-muted-foreground">
           {cite}
         </figcaption>
       ) : null}
@@ -53,11 +88,28 @@ export function PullQuote({ children, cite }: { children: ReactNode; cite?: stri
   );
 }
 
-// Split a line into a code part and a trailing comment part (; // #).
-function splitComment(line: string): [string, string | null] {
-  const m = line.match(/(\s*(?:;|\/\/|#).*)$/);
-  if (!m || m.index == null) return [line, null];
-  return [line.slice(0, m.index), line.slice(m.index)];
+// Comment markers per block language; `;` only means a comment in assembly.
+const ASM_LANGS = new Set(['asm', 'disasm', 'nasm']);
+
+// Split a line into a code part and a trailing comment part. A marker counts
+// only outside string literals and at the start of the line or after whitespace,
+// so `a; b`, "http://x" and URLs keep their text.
+function splitComment(line: string, lang?: string): [string, string | null] {
+  const markers = ASM_LANGS.has(lang ?? '') ? [';'] : ['//', '#'];
+  let quote: string | null = null;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (quote) {
+      if (ch === '\\') i++;
+      else if (ch === quote) quote = null;
+    } else if (ch === '"' || ch === "'" || ch === '`') {
+      quote = ch;
+    } else if ((i === 0 || /\s/.test(line.charAt(i - 1))) && markers.some((m) => line.startsWith(m, i))) {
+      const start = line.slice(0, i).search(/\s*$/);
+      return [line.slice(0, start), line.slice(start)];
+    }
+  }
+  return [line, null];
 }
 
 // A monospace code / telemetry block with a header and dimmed comments.
@@ -71,17 +123,17 @@ export function CodeBlock({
   lines: string[];
 }) {
   return (
-    <figure className="my-8 overflow-hidden rounded-lg border border-border-strong bg-[#0b0d12]">
+    <figure className="my-8 overflow-hidden rounded-figure border border-border-strong bg-sunken">
       {(title || lang) && (
-        <figcaption className="flex items-center justify-between border-b border-border px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        <figcaption className="flex items-center justify-between border-b border-border px-4 py-2 label text-muted-foreground">
           <span>{title}</span>
           {lang ? <span className="text-accent">{lang}</span> : null}
         </figcaption>
       )}
-      <pre className="overflow-x-auto p-4 text-[13px] leading-relaxed">
+      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
         <code className="font-mono">
           {lines.map((line, i) => {
-            const [code, comment] = splitComment(line);
+            const [code, comment] = splitComment(line, lang);
             return (
               <span key={i} className="grid grid-cols-[2rem_1fr] gap-3">
                 <span className="select-none text-right text-subtle">{i + 1}</span>
@@ -110,14 +162,14 @@ export function ProtocolTable({
 }) {
   return (
     <figure className="my-8">
-      <div className="overflow-x-auto rounded-lg border border-border-strong">
+      <div className="overflow-x-auto rounded-figure border border-border-strong">
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr>
               {columns.map((c) => (
                 <th
                   key={c}
-                  className="border-b border-border-strong px-4 py-3 text-left font-mono text-[10px] font-bold uppercase tracking-widest text-accent"
+                  className="border-b border-border-strong px-4 py-3 text-left label font-bold text-accent"
                 >
                   {c}
                 </th>
@@ -138,7 +190,7 @@ export function ProtocolTable({
         </table>
       </div>
       {caption ? (
-        <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
           {caption}
         </figcaption>
       ) : null}

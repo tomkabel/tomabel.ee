@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { pgpKey } from './pgp-card';
+import { useTranslation } from '../../i18n/LanguageContext';
+import { pgpKey } from './pgp-key';
 
 type Status = 'checking' | 'match' | 'mismatch' | 'error';
 
@@ -22,12 +23,15 @@ export default function ArticleProof({
   slug: string;
   expectedSha256: string;
 }) {
+  const { t } = useTranslation();
+  const p = t.article.proof;
   const [status, setStatus] = useState<Status>('checking');
   const [computed, setComputed] = useState<string | null>(null);
   // Signing is a manual, offline step. Until the detached signature is actually
   // published, claiming one exists would be the dishonest half of an honesty
-  // widget — so probe for it and only then print the gpg instructions.
-  const [signed, setSigned] = useState(false);
+  // widget — so probe for the file and only then print the gpg instructions.
+  // Presence is all this proves; validity and key match are for gpg to check.
+  const [hasSignatureFile, setHasSignatureFile] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -50,7 +54,7 @@ export default function ArticleProof({
       const body = await fetch(`/verification/${slug}.txt.asc`)
         .then((res) => (res.ok ? res.text() : null))
         .catch(() => null);
-      if (!cancelled) setSigned(Boolean(body?.startsWith('-----BEGIN PGP SIGNATURE-----')));
+      if (!cancelled) setHasSignatureFile(Boolean(body?.startsWith('-----BEGIN PGP SIGNATURE-----')));
     })();
     return () => {
       cancelled = true;
@@ -58,34 +62,27 @@ export default function ArticleProof({
   }, [slug, expectedSha256]);
 
   const verdict = {
-    checking: { text: 'Verifying…', tone: 'text-muted-foreground' },
-    match: { text: 'MATCH ✓', tone: 'text-accent' },
-    mismatch: { text: 'MISMATCH ✗', tone: 'text-danger' },
-    error: { text: 'Canonical text unavailable', tone: 'text-muted-foreground' },
+    checking: { text: p.checking, tone: 'text-muted-foreground' },
+    match: { text: p.match, tone: 'text-accent' },
+    mismatch: { text: p.mismatch, tone: 'text-danger' },
+    error: { text: p.error, tone: 'text-muted-foreground' },
   }[status];
 
   return (
-    <section
-      aria-label="Cryptographic integrity proof"
-      className="mx-auto max-w-4xl px-6 pb-16"
-    >
-      <div className="rounded-lg border border-border-strong bg-surface p-6 font-mono text-sm shadow-elevated">
+    <section aria-label={p.region} className="mx-auto max-w-4xl px-6 pb-16">
+      <div className="rounded-figure border border-border-strong bg-surface p-6 font-mono text-sm shadow-elevated">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-            Integrity · SHA-256
-          </p>
-          <span className={`text-xs font-bold uppercase tracking-widest ${verdict.tone}`}>
-            {verdict.text}
-          </span>
+          <p className="label font-bold text-muted-foreground">{p.heading}</p>
+          <span className={`label font-bold ${verdict.tone}`}>{verdict.text}</span>
         </div>
 
         <dl className="mt-4 space-y-2 text-muted">
           <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
-            <dt className="shrink-0 text-subtle">expected</dt>
+            <dt className="shrink-0 text-subtle">{p.expected}</dt>
             <dd className="break-all text-foreground">{expectedSha256}</dd>
           </div>
           <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
-            <dt className="shrink-0 text-subtle">computed</dt>
+            <dt className="shrink-0 text-subtle">{p.computed}</dt>
             <dd className={`break-all ${status === 'mismatch' ? 'text-danger' : 'text-foreground'}`}>
               {computed ?? '—'}
             </dd>
@@ -93,14 +90,13 @@ export default function ArticleProof({
         </dl>
 
         <div className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted">
-          {signed ? (
+          {hasSignatureFile ? (
             <>
               <p>
-                The canonical text is signed with PGP key{' '}
-                <span className="text-foreground">{pgpKey.fingerprint}</span>. Verify the
-                detached signature yourself:
+                {p.signedBefore} <span className="text-foreground">{pgpKey.fingerprint}</span>
+                {p.signedAfter}
               </p>
-              <pre className="mt-2 overflow-x-auto rounded border border-border bg-background/60 p-3 text-foreground">
+              <pre className="mt-2 overflow-x-auto rounded-figure border border-border bg-sunken p-3 text-foreground">
 {`curl -O https://tomabel.ee/public-key.asc
 curl -O https://tomabel.ee/verification/${slug}.txt
 curl -O https://tomabel.ee/verification/${slug}.txt.asc
@@ -109,20 +105,16 @@ gpg --verify ${slug}.txt.asc ${slug}.txt`}
               </pre>
               <p className="mt-3">
                 <a href="/public-key.asc" className="text-accent hover:underline">
-                  Download public key
+                  {t.disclosure.pgp.download}
                 </a>
               </p>
             </>
           ) : (
             <p>
-              This article&rsquo;s detached PGP signature is not published yet. The hash above
-              proves the served text matches the digest committed to source; it does not yet
-              prove authorship. Signing key{' '}
-              <span className="text-foreground">{pgpKey.fingerprint}</span> &mdash;{' '}
+              {p.unsigned} <span className="text-foreground">{pgpKey.fingerprint}</span>.{' '}
               <a href="/public-key.asc" className="text-accent hover:underline">
-                download public key
+                {t.disclosure.pgp.download}
               </a>
-              .
             </p>
           )}
         </div>

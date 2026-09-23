@@ -72,3 +72,6 @@ phase5*.md
 phase5-source/
 phase*-handoff-prompt.md
 identity-rebrand-plan.md
+
+# Design-audit screenshots (26MB, regenerate with docs/design-audit/shoot.py)
+docs/design-audit/screens/

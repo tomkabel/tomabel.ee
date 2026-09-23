@@ -14,16 +14,9 @@ export default function SectionHeader({
 }) {
   return (
     <div className="mb-12 max-w-3xl">
-      <p className="mb-4 flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-        <span aria-hidden className="h-px w-8 bg-accent/60" />
-        <span>{label}</span>
-      </p>
-      <h1 className="font-display text-4xl font-bold leading-[1.1] text-foreground md:text-5xl">
-        {title}
-      </h1>
-      {intro ? (
-        <p className="prose-measure mt-6 text-lg text-muted">{intro}</p>
-      ) : null}
+      <p className="label mb-4 text-muted-foreground">{label}</p>
+      <h1 className="font-display text-5xl text-foreground">{title}</h1>
+      {intro ? <p className="prose-measure mt-6 text-lg text-muted">{intro}</p> : null}
     </div>
   );
 }

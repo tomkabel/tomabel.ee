@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -126,12 +128,12 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token that is limited in scope, audience, and lifetime, and can be revoked without rotating the underlying credential. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
-        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab tõendi, mille ulatus, adressaat ja eluiga on piiratud ning mille saab kehtetuks tunnistada ilma aluseks olevat mandaati vahetamata. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
+        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token limited in scope instead of the credential itself. Short lifetime, audience restriction and revocation are not guarantees of OAuth as such: RFC 6749 only recommends that the server return expires_in, audience restriction comes from separate mechanisms such as resource indicators (RFC 8707) or the aud claim of JWT access tokens (RFC 9068), and revocation from RFC 7009. They are properties of a deployment profile that the issuer and the service must choose and enforce. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
+        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab mandaadi asemel piiratud ulatusega tõendi. Lühike eluiga, adressaadi piiramine ja kehtetuks tunnistamine ei ole OAuthi enda tagatised: RFC 6749 üksnes soovitab, et server tagastaks väärtuse expires_in, adressaadi piiramine tuleb eraldi mehhanismidest, nagu ressursiindikaatorid (RFC 8707) või JWT-juurdepääsutõendi aud-väide (RFC 9068), ja kehtetuks tunnistamine RFC 7009-st. Need on juurutusprofiili omadused, mille väljastaja ja teenus peavad valima ja jõustama. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
       },
       {
-        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped, short-lived, audience-bound token representing the user’s authorisation for a defined task set, bound to the agent where possible (sender constraint, client certificate or equivalent), never the user’s Smart-ID credential; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
-        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega, lühiajalise ja kindla adressaadiga seotud juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks ja on võimaluse korral agendiga seotud (saatja sidumine, kliendisertifikaat või samaväärne), mitte kunagi kasutaja Smart-ID mandaati; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
+        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped token representing the user’s authorisation for a defined task set, never the user’s Smart-ID credential. The recommended profile makes that token short-lived, audience-restricted and bound to the agent where possible (sender constraint, client certificate or equivalent); these are settings the issuer and the service must configure and enforce, not defaults; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
+        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks, mitte kunagi kasutaja Smart-ID mandaati. Soovitatav profiil teeb tõendi lühiajaliseks, piirab selle adressaati ja seob selle võimaluse korral agendiga (saatja sidumine, kliendisertifikaat või samaväärne); need on seaded, mille väljastaja ja teenus peavad seadistama ja jõustama, mitte vaikeväärtused; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
       },
       {
         en: 'The last step is where the design lives or dies. The PIN is entered only into the Smart-ID application itself. Agent software never captures, relays, or stores it, and the user approves only what the Smart-ID app renders for the transaction the relying party initiated. Any prompt rendered by the agent is a replay of the signing-relay class that this site’s Smart-ID research describes.',
@@ -226,6 +228,27 @@ const sources: Source[] = [
   },
   {
     label: {
+      en: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+      et: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc7009',
+  },
+  {
+    label: {
+      en: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+      et: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc8707',
+  },
+  {
+    label: {
+      en: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+      et: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc9068',
+  },
+  {
+    label: {
       en: 'RFC 9345, "Delegated Credentials for TLS and DTLS"',
       et: 'RFC 9345, "Delegated Credentials for TLS and DTLS"',
     },
@@ -256,47 +279,30 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Research · Analysis · Smart-ID / eIDAS' : 'Uuring · Analüüs · Smart-ID / eIDAS'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Research · Analysis · Smart-ID / eIDAS' : 'Uuring · Analüüs · Smart-ID / eIDAS'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 8, 2026' : 'Avaldatud · 8. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '11 min read' : '11 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
           </div>
-          <div hidden className="border border-border bg-white/[0.02] p-5">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+          <div hidden className="border border-border bg-surface p-5">
+            <p className="label font-bold text-accent">
               {isEn ? 'Thesis' : 'Teesid'}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">{thesis[language]}</p>
@@ -304,7 +310,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -313,11 +319,11 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -328,8 +334,8 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Sources' : 'Allikad'}
             </h2>
             <div className="mt-6 space-y-4">
@@ -349,15 +355,15 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemine'}
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <li>
                 <Link
                   to="/disclosures/smart-id-achilles-heel"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? "The Achilles' heel of Estonia's e-state"
@@ -370,7 +376,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               <li>
                 <Link
                   to="/disclosures/identity-is-the-root-proof-is-the-gate"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? 'Identity is the root, proof is the gate'
@@ -383,8 +389,8 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </ul>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

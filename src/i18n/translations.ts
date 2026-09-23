@@ -2,10 +2,38 @@ export const translations = {
   en: {
     app: {
       skipToContent: 'Skip to main content',
+      loading: 'Loading',
+      englishOnly: 'English only',
+      englishOnlyNotice: 'This article is available in English only.',
+      error: {
+        label: 'Runtime fault',
+        title: 'Something went wrong',
+        body: 'An unexpected error occurred. Please refresh the page to continue.',
+        refresh: 'Refresh page',
+      },
     },
     nav: {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
+      switchLanguage: 'Switch to Estonian',
+    },
+    article: {
+      contents: 'Article contents',
+      contentsHeading: 'Contents',
+      progress: 'Progress',
+      proof: {
+        region: 'Cryptographic integrity proof',
+        heading: 'Integrity · SHA-256',
+        checking: 'Verifying…',
+        match: 'MATCH ✓',
+        mismatch: 'MISMATCH ✗',
+        error: 'Canonical text unavailable',
+        expected: 'expected',
+        computed: 'computed',
+        signedBefore: 'A detached PGP signature file is published for this text. This page does not verify it; only gpg can confirm it is valid and was made with key',
+        signedAfter: '. Verify it yourself:',
+        unsigned: 'This article’s detached PGP signature is not published yet. The hash above proves the served text matches the digest committed to source; it does not yet prove authorship. Signing key',
+      },
     },
     telemetry: {
       open: 'Connection',
@@ -312,10 +340,38 @@ export const translations = {
   et: {
     app: {
       skipToContent: 'Liigu sisu juurde',
+      loading: 'Laadimine',
+      englishOnly: 'Ainult inglise keeles',
+      englishOnlyNotice: 'See artikkel on saadaval ainult inglise keeles.',
+      error: {
+        label: 'Viga',
+        title: 'Midagi läks valesti',
+        body: 'Tekkis ootamatu viga. Jätkamiseks värskenda lehte.',
+        refresh: 'Värskenda lehte',
+      },
     },
     nav: {
       openMenu: 'Ava menüü',
       closeMenu: 'Sulge menüü',
+      switchLanguage: 'Lülitu inglise keelele',
+    },
+    article: {
+      contents: 'Artikli sisukord',
+      contentsHeading: 'Sisukord',
+      progress: 'Loetud',
+      proof: {
+        region: 'Krüptograafiline terviklikkuse tõend',
+        heading: 'Terviklikkus · SHA-256',
+        checking: 'Kontrollin…',
+        match: 'KATTUB ✓',
+        mismatch: 'EI KATTU ✗',
+        error: 'Kanooniline tekst pole saadaval',
+        expected: 'oodatud',
+        computed: 'arvutatud',
+        signedBefore: 'Selle teksti kohta on avaldatud eraldiseisev PGP-allkirja fail. See leht seda ei kontrolli; ainult gpg saab kinnitada, et allkiri kehtib ja on antud võtmega',
+        signedAfter: '. Kontrolli seda ise:',
+        unsigned: 'Selle artikli eraldiseisvat PGP-allkirja pole veel avaldatud. Ülalolev räsi tõendab, et serveeritud tekst vastab lähtekoodi lisatud räsile, kuid autorsust see veel ei tõenda. Allkirjavõti',
+      },
     },
     telemetry: {
       open: 'Ühendus',

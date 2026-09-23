@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
-import { LanguageProvider, useTranslation } from './i18n';
+import { LanguageProvider, LanguageScope, useTranslation } from './i18n';
+import { englishOnlyArticles } from './content/site';
 import SiteNav from './components/site/nav';
 import SiteFooter from './components/site/footer';
 import HomePage from './pages/HomePage';
@@ -44,10 +45,14 @@ function LegacyDisclosureRedirect() {
 
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const lastPath = React.useRef(pathname);
   React.useEffect(() => {
     window.scrollTo(0, 0);
     // SPA route change: move focus to the content landmark so keyboard and
-    // screen-reader users start the new view (WCAG 2.4.3).
+    // screen-reader users start the new view (WCAG 2.4.3). Not on first load,
+    // where the first Tab must still reach the skip link and the nav.
+    if (lastPath.current === pathname) return;
+    lastPath.current = pathname;
     const main = document.getElementById('main-content');
     if (main) {
       main.setAttribute('tabindex', '-1');
@@ -62,9 +67,12 @@ function Lazy({ children }: { children: React.ReactNode }) {
 }
 
 function PageLoader() {
+  const { t } = useTranslation();
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="size-2.5 animate-pulse rounded-full bg-accent" />
+    <div className="grid min-h-[60vh] place-items-center" role="status" aria-label={t.app.loading}>
+      <div className="h-px w-24 overflow-hidden bg-border-strong">
+        <div className="h-full w-2/5 animate-scan bg-accent" />
+      </div>
     </div>
   );
 }
@@ -83,20 +91,39 @@ function SkipLink() {
     <a
       href="#main-content"
       onClick={handleClick}
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-md"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-control focus:font-medium"
     >
       {t.app.skipToContent}
     </a>
   );
 }
 
+// English-only articles render inside an English scope whatever the reader's
+// preference, so the page's lang, its reader rail and its proof panel all
+// agree with the text. Estonian readers get told why before the article starts.
+function EnglishOnly({ children }: { children: React.ReactNode }) {
+  const { language, t } = useTranslation();
+  return (
+    <>
+      {language !== 'en' ? (
+        <p role="note" className="border-b border-border bg-surface px-6 py-3 text-sm text-warning">
+          <span className="mx-auto block max-w-4xl">{t.app.englishOnlyNotice}</span>
+        </p>
+      ) : null}
+      <LanguageScope lang="en">{children}</LanguageScope>
+    </>
+  );
+}
+
 function Layout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  const page = <Lazy>{children}</Lazy>;
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Seo />
       <SiteNav />
       <main id="main-content" className="flex-1 focus:outline-none">
-        <Lazy>{children}</Lazy>
+        {englishOnlyArticles.has(pathname.replace(/\/+$/, '')) ? <EnglishOnly>{page}</EnglishOnly> : page}
       </main>
       <SiteFooter />
     </div>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n/LanguageContext';
+import { englishOnlyArticles } from '../../content/site';
 
 export type EntryRowProps = {
   title: { en: string; et: string };
@@ -24,26 +25,29 @@ export default function EntryRow({
   href,
   external,
 }: EntryRowProps) {
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
+  // The index lists every entry in the reader's language, but some articles
+  // only exist in English; say so before the click, not after.
+  const englishOnly = language !== 'en' && href != null && englishOnlyArticles.has(href);
 
   const arrow = external ? '↗' : '→';
 
   const content = (
     <>
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        <span className="text-accent transition-colors">{type[language]}</span>
+      <div className="label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
+        <span className="text-accent">{type[language]}</span>
         {meta ? (
-          <>
-            <span aria-hidden className="text-subtle">·</span>
-            <span>{meta[language]}</span>
-          </>
+          <span className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span>{meta[language]}</span>
+        ) : null}
+        {englishOnly ? (
+          <span className="whitespace-nowrap text-warning"><span aria-hidden className="mr-3 text-subtle">·</span>{t.app.englishOnly}</span>
         ) : null}
       </div>
 
-      <h3 className="mt-3 font-display text-2xl font-bold leading-snug text-foreground transition-colors group-hover:text-accent">
-        {title[language]}
+      <h3 className="mt-3 font-display text-3xl leading-tight text-foreground">
+        <span className="link-draw">{title[language]}</span>
         {href ? (
-          <span className="ml-2 inline-block font-mono text-base text-subtle opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+          <span className="ml-2 inline-block font-mono text-base text-subtle opacity-0 transition-[opacity,transform] duration-base group-hover:translate-x-1 group-hover:opacity-100">
             {arrow}
           </span>
         ) : null}
@@ -56,7 +60,7 @@ export default function EntryRow({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="rounded border border-border px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground"
+              className="rounded-hair border border-border px-2 py-0.5 font-mono text-xs text-muted-foreground"
             >
               {tag}
             </span>
@@ -81,12 +85,9 @@ export default function EntryRow({
   );
 
   return (
-    <article className="group relative border-b border-border py-8 transition-colors hover:bg-white/[0.02]">
-      <span
-        aria-hidden
-        className="absolute left-0 top-0 h-full w-0.5 origin-top scale-y-0 bg-accent transition-transform duration-300 group-hover:scale-y-100"
-      />
-      <div className="mx-auto max-w-6xl px-6">{inner}</div>
+    <article className={`group relative border-b border-border px-6 py-8 ${href ? 'transition-colors duration-fast hover:bg-surface' : ''}`}>
+      {href ? <span aria-hidden className="absolute left-0 top-0 h-full w-0.5 origin-top scale-y-0 bg-accent transition-transform duration-base group-hover:scale-y-100" /> : null}
+      <div className="mx-auto max-w-6xl">{inner}</div>
     </article>
   );
 }

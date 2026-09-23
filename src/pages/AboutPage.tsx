@@ -8,7 +8,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="border-b border-border px-6 pb-20 pt-24">
+      <section className="border-b border-border px-6 pb-section-tight pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
             index="04"
@@ -18,17 +18,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-3xl">
+      <section className="px-6 py-section-tight">
+        <div className="mx-auto max-w-measure">
           <h2 className="sr-only">{language === 'en' ? 'Bio' : 'Biograafia'}</h2>
-          <div className="space-y-8 font-display text-xl leading-relaxed text-foreground md:text-[1.35rem]">
+          <div className="space-y-8 font-serif text-xl leading-relaxed text-foreground">
             {bio.paragraphs.map((p, i) => (
               <p key={i}>{p[language]}</p>
             ))}
           </div>
 
-          <div className="mt-16 border-l-2 border-warning/60 pl-6">
-            <h2 className="font-mono text-[10px] uppercase tracking-[0.25em] text-warning">
+          <div className="mt-16 rounded-figure bg-surface-2 p-6 ring-1 ring-inset ring-border">
+            <h2 className="label text-warning">
               {language === 'en' ? 'Kratt' : 'Kratti'}
             </h2>
             <p className="mt-3 text-lg leading-relaxed text-muted">
@@ -37,23 +37,23 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-16 border-t border-border pt-8">
-            <h2 className="mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+            <h2 className="mb-4 label text-accent">
               {language === 'en' ? 'Find me' : 'Leia mind'}
             </h2>
-            <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm">
-              <a href={site.contact.github} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-accent">
+            <div className="flex flex-wrap gap-x-8 font-mono text-sm">
+              <a href={site.contact.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent">
                 GitHub
               </a>
-              <a href={site.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-accent">
+              <a href={site.contact.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent">
                 LinkedIn
               </a>
-              <a href={site.contact.email} className="text-foreground hover:text-accent">
+              <a href={site.contact.email} className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent">
                 Email
               </a>
             </div>
 
             <div className="mt-8">
-              <h3 className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">PGP</h3>
+              <h3 className="mb-3 label text-accent">PGP</h3>
               <PgpCard />
             </div>
           </div>

@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -168,20 +169,20 @@ const sections: EssaySection[] = [
 ];
 
 const sources: Source[] = [
-  { label: 'Qurium', note: 'Fineproxy DDoS investigation (Azerbaijan case), upstream ASN mapping, RIPE geolocation manipulation reports' },
-  { label: 'Reuters', note: 'Trusov Wyoming shell companies, proxy service abuse, 2017 intrusion tracing (Dec 2023)' },
-  { label: 'Flexi-News', note: 'Trusov corporate structuring and proxy operations (2023)' },
-  { label: 'LinkedIn', note: 'Trusov self-reported professional background (note: self-reported)' },
-  { label: 'WaysCloud', note: 'Abuse report data for Kingservers / AS14576 (Aug 2022–Dec 2025)' },
-  { label: 'Rappler / Qurium', note: 'October 2023 DDoS campaign against Rappler' },
+  { label: 'Qurium', url: 'https://www.qurium.org/ddos/fineproxy-used-to-launch-ddos-attack-against-site-critical-of-azerbaijani-state-oil-companys-leader', note: 'Fineproxy DDoS investigation (Azerbaijan case), upstream ASN mapping, RIPE geolocation manipulation reports' },
+  { label: 'Reuters', url: 'https://www.reuters.com/technology/cybersecurity/how-cybercriminals-are-using-wyoming-shell-companies-global-hacks-2023-12-12/', note: 'Trusov Wyoming shell companies, proxy service abuse, 2017 intrusion tracing (Dec 2023)' },
+  { label: 'Flexi-News', url: 'https://www.flexi-news.com/post/wyoming-s-llcs-a-haven-for-cyber-outlaws-in-the-digital-wild-west', note: 'Trusov corporate structuring and proxy operations (2023)' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/ilia-trusov-a75a842b5', note: 'Trusov self-reported professional background (note: self-reported)' },
+  { label: 'WaysCloud', url: 'https://ip.wayscloud.services/asn-intelligence/14576', note: 'Abuse report data for Kingservers / AS14576 (Aug 2022–Dec 2025)' },
+  { label: 'Rappler / Qurium', url: 'https://www.qurium.org/weaponizing-proxy-and-vpn-providers/fineproxy-rayobyte', note: 'October 2023 DDoS campaign against Rappler' },
   { label: 'Ransomware EDP', url: 'https://ransomwareedp.github.io', note: 'Vault Dweller OÜ bulletproof hosting profile "BPH-02"' },
-  { label: 'IPinfo', note: 'Technical data for AS203834 (Vault Dweller OÜ)' },
-  { label: 'MITRE ATT&CK', note: 'APT28 profile, infrastructure procurement TTPs' },
+  { label: 'IPinfo', url: 'https://ipinfo.io/AS203834', note: 'Technical data for AS203834 (Vault Dweller OÜ)' },
+  { label: 'MITRE ATT&CK', url: 'https://attack.mitre.org/groups/G0007/', note: 'APT28 profile, infrastructure procurement TTPs' },
   { label: 'e-Äriregister', url: 'https://ariregister.rik.ee', note: 'Vault Dweller OÜ corporate registration (registry code 14752442)' },
-  { label: 'FairyHosting / RJ Network OÜ', note: 'Estonian hosting provider' },
-  { label: 'Sawia Digital', note: 'DreamHost-based shared hosting in Narva' },
-  { label: 'EDIS Global', note: 'VPS hosting in Telia Tallinn data center' },
-  { label: 'DOJ', note: 'Grichishkin bulletproof hosting prosecution' },
+  { label: 'FairyHosting / RJ Network OÜ', url: 'https://fairyhosting.com', note: 'Estonian hosting provider' },
+  { label: 'Sawia Digital', url: 'https://sawiadigital.com', note: 'DreamHost-based shared hosting in Narva' },
+  { label: 'EDIS Global', url: 'https://edisglobal.com', note: 'VPS hosting in Telia Tallinn data center' },
+  { label: 'DOJ', url: 'https://www.justice.gov/opa/pr/two-individuals-sentenced-providing-bulletproof-hosting-cybercriminals', note: 'Grichishkin bulletproof hosting prosecution' },
 ];
 
 function DisclosurePage() {
@@ -190,41 +191,24 @@ function DisclosurePage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Reference Paper · OSINT · Estonia' : 'Viitetöö · OSINT · Eesti'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Reference Paper · OSINT · Estonia' : 'Viitetöö · OSINT · Eesti'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 14, 2026' : 'Avaldatud · 14. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '8 min read' : '8 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -232,7 +216,7 @@ function DisclosurePage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -241,11 +225,11 @@ function DisclosurePage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -256,8 +240,8 @@ function DisclosurePage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Sources' : 'Allikad'}
             </h2>
             <div className="mt-6 overflow-x-auto">
@@ -286,8 +270,8 @@ function DisclosurePage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Disclosure status' : 'Avalikustamise staatus'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
