@@ -12,7 +12,7 @@ type Filter = 'all' | DisclosureKind;
 // Filter tabs, in display order. `all` first, then the four kinds.
 const FILTERS: { id: Filter; label: { en: string; et: string } }[] = [
   { id: 'all', label: { en: 'All', et: 'Kõik' } },
-  { id: 'disclosure', label: { en: 'Disclosures', et: 'Avalikustatud' } },
+  { id: 'disclosure', label: { en: 'Disclosures', et: 'Avalikustamised' } },
   { id: 'teardown', label: { en: 'Teardowns', et: 'Analüüsid' } },
   { id: 'essay', label: { en: 'Essays', et: 'Esseed' } },
   { id: 'framework', label: { en: 'Frameworks', et: 'Raamistikud' } },
@@ -33,7 +33,7 @@ export default function DisclosuresPage() {
       <section className="border-b border-border px-6 pb-8 pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
-            label={language === 'en' ? 'Disclosures' : 'Avalikustatud'}
+            label={language === 'en' ? 'Disclosures' : 'Avalikustamised'}
             title={language === 'en' ? 'Research, teardowns, and arguments.' : 'Uuringud, analüüsid ja argumendid.'}
             intro={language === 'en'
               ? 'One surface for the technical work and the writing that connects it: disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and the shorter, more opinionated essays. Where research touches live systems, it was disclosed responsibly before publication.'
@@ -144,7 +144,7 @@ export default function DisclosuresPage() {
         label={language === 'en' ? 'What I build' : 'Mida ma ehitan'}
         blurb={language === 'en'
           ? 'The disclosures are the research and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
-          : 'Avalikustatud on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvatooted ja tootmises töötavad backend-teenused.'}
+          : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvatooted ja tootmises töötavad backend-teenused.'}
         cta={language === 'en' ? 'Browse systems' : 'Sirvi süsteeme'}
       />
     </>
