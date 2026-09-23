@@ -109,7 +109,7 @@ export const featuredWork: FeaturedWork[] = [
     },
     blurb: {
       en: 'A zero-trust architecture framework built from first principles — 8 axioms, a 9-dimension morphological matrix, archetypal breach analysis.',
-      et: 'Null-usalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
+      et: 'Nullusalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
     },
     tags: ['Architecture', 'Zero Trust'],
     href: '/disclosures/zero-trust-octagon',
@@ -179,7 +179,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to the vendor before publication. Names the gaps; proposes the fixes.",
-      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
+      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise vahendusrünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
     },
     tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     keywords: 'Smart-ID, eID, phishing, vishing, signing relay, BITB, Estonia, eIDAS',
@@ -198,7 +198,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "Most \"zero trust\" is a vendor checklist. This is the opposite: 8 axioms, a 9-dimension morphological matrix for reasoning about any architecture, and archetypal breach walkthroughs that show where designs actually fail. Written to be argued with.",
-      et: "Enamik \"null-usaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
+      et: "Enamik \"nullusaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
     },
     tags: ['Architecture', 'Zero Trust', 'NIST 800-207'],
     meta: {
@@ -212,11 +212,11 @@ export const disclosures: Disclosure[] = [
     kind: 'essay',
     title: {
       en: 'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS',
-      et: 'PIN, mida ei saa delegeerida — Smart-ID, AI-agendid ja eIDAS',
+      et: 'PIN, mida ei saa delegeerida — Smart-ID, TI-agendid ja eIDAS',
     },
     blurb: {
       en: "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why \"delegated credentials\" do not change it, and the OAuth-style pattern that actually works.",
-      et: 'Miks ei saa AI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse praktika avaldus ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
+      et: 'Miks ei saa TI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse tavadokument ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
     },
     tags: ['Smart-ID', 'eIDAS', 'AI Agents'],
     keywords: 'Smart-ID, eIDAS, AI agents, delegated credentials, sole control, qualified electronic signature, PIN automation',
@@ -269,7 +269,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here’s a sixth: a session-continuity check a bank’s own edge can run today, scoped honestly to the cross-device relay case, not the vishing case Smart-ID+ already closes.",
-      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise relay-rünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator esimesena liiguks. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese relay-juhtumiga, mitte vishinguga, mille Smart-ID+ juba sulgeb.',
+      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator teeks esimese sammu. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese vahendusründe juhtumiga, mitte kõneõngitsusega, mille Smart-ID+ juba sulgeb.',
     },
     tags: ['Smart-ID', 'Fraud Prevention', 'Session Continuity'],
     keywords: 'Smart-ID, signing relay, session continuity, fraud prevention, network fingerprinting',
@@ -341,7 +341,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "How Estonia’s small language held the fraud industry at arm’s length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB’s Baltic victim statistics, and the ERR/Äripäev investigation.",
-      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
+      et: 'Kuidas väike eesti keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud kõneõngitsuskeskused, kullerivõrgustikud ja tehisintellekti süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
     },
     tags: ['Phishing', 'Vishing', 'AI Fraud', 'Estonia'],
     keywords:
@@ -361,7 +361,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "A fact check of the advice to paste a suspicious link into ChatGPT. What ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
-      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele AI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
+      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele TI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
     },
     tags: ['Phishing', 'LLMs', 'Cloaking'],
     keywords:
@@ -377,11 +377,11 @@ export const disclosures: Disclosure[] = [
     kind: 'essay',
     title: {
       en: 'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
-      et: 'Hall ruum: Venemaa küberoperatsioonid ja Eesti hostingutaristu',
+      et: 'Hall ala: Venemaa küberoperatsioonid ja Eesti majutustaristu',
     },
     blurb: {
       en: "An OSINT assessment of Estonia’s dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers. Maps Ilia Trusov’s infrastructure network, RIPE geolocation manipulation, and documented DDoS operations against Rappler and Azerbaijan-critical targets. Distinguishes gray-space infrastructure from proven APT attribution.",
-      et: 'OSINT-hinnang Eesti kahesele rollile Venemaa küberökosüsteemis: tavahostinguteenuse pakkujad, bulletproof-üksused nagu Vault Dweller OÜ ja halli ruumi proxy-võrgud (Fineproxy, Quality Network OÜ), mis on ankrus Eesti andmekeskustes. Kaardistab Ilia Trusovi taristuvõrgustiku, RIPE geolokatsiooni võltsimise ja dokumenteeritud DDoS-operatsioonid Rappleri ja Aserbaidžaani-kriitiliste sihtmärkide vastu. Eristab halli ruumi taristut tõestatud APT omistusest.',
+      et: 'OSINT-hinnang Eesti kahesele rollile Venemaa küberökosüsteemis: tavapärased majutusteenuse pakkujad, kuulikindla majutuse pakkujad nagu Vault Dweller OÜ ja halli ala proksivõrgud (Fineproxy, Quality Network OÜ), mis on ankrus Eesti andmekeskustes. Kaardistab Ilia Trusovi taristuvõrgustiku, RIPE geolokatsiooni võltsimise ja dokumenteeritud DDoS-operatsioonid Rappleri ja Aserbaidžaani-kriitiliste sihtmärkide vastu. Eristab halli ala taristut tõestatud APT omistusest.',
     },
     tags: ['OSINT', 'Estonia', 'Cyber Operations', 'Infrastructure', 'DDoS'],
     keywords:
@@ -408,7 +408,7 @@ export const disclosures: Disclosure[] = [
   },
   {
     kind: 'framework',
-    title: { en: 'The Nine Dimensions of Zero Trust', et: 'Null-usalduse üheksa mõõdet' },
+    title: { en: 'The Nine Dimensions of Zero Trust', et: 'Nullusalduse üheksa mõõdet' },
     blurb: {
       en: 'The nine-dimension morphological matrix laid out dimension by dimension — what each axis actually decides, the realistic range of positions, and why most architectures cluster in a narrow corner of the space.',
       et: 'Üheksamõõtmeline morfoloogiline maatriks mõõde mõõtme haaval: mida iga telg tegelikult otsustab, millised asukohad on realistlikud ja miks enamik arhitektuure koondub ruumi kitsasse nurka.',
@@ -450,7 +450,7 @@ export const disclosures: Disclosure[] = [
     title: { en: 'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D', et: 'SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg' },
     blurb: {
       en: 'The small team running on a dozen SaaS products is the most common architecture and the one written about most condescendingly. This is the full breach trace: MFA fatigue, a stolen session the proxy never sees, and what one person can actually fix in an afternoon.',
-      et: 'Tosinal SaaS-tootel toimiv väike meeskond on kõige levinum arhitektuur ja see, millest kirjutatakse kõige üleolevamalt. Siin on täielik rünnakujälg: MFA-väsitamine, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene suudab ühe pärastlõunaga päriselt parandada.',
+      et: 'Tosinal SaaS-tootel toimiv väike meeskond on kõige levinum arhitektuur ja see, millest kirjutatakse kõige üleolevamalt. Siin on täielik rünnakujälg: MFA väsitusrünne, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene suudab ühe pärastlõunaga päriselt parandada.',
     },
     tags: ['Zero Trust', 'SaaS', 'MFA Fatigue', 'Identity'],
     keywords: 'MFA fatigue, push bombing, SaaS blind spot, identity-aware proxy, OAuth grant audit, FIDO2, phishing-resistant MFA, zero trust, small team security, Archetype D',
@@ -463,7 +463,7 @@ export const disclosures: Disclosure[] = [
     title: { en: 'Identity Is the Root. Proof Is the Gate.', et: 'Identiteet on juur. Tõend on värav.' },
     blurb: {
       en: 'Every other control in a zero-trust architecture consumes an identity claim it did not produce. This is why the quality of the proof at the gate sets the ceiling — and why phishing-resistant credentials still fail at the approval layer.',
-      et: 'Iga teine kontroll usaldusvabas arhitektuuris tarbib identiteediväidet, mida ta ise ei tooda. Seepärast määrab väravas võetava tõendi kvaliteet lae — ja seepärast nurjuvad andmepüügikindlad mandaadid endiselt heakskiidukihis.',
+      et: 'Iga teine kontroll nullusaldusarhitektuuris tarbib identiteediväidet, mida ta ise ei tooda. Seepärast määrab väravas võetava tõendi kvaliteet lae — ja seepärast nurjuvad andmepüügikindlad mandaadid endiselt heakskiidukihis.',
     },
     tags: ['Zero Trust', 'Authentication', 'Identity', 'eID'],
     keywords: 'zero trust, identity is the root of trust, continuous authentication, proof before action, phishing-resistant authentication, WebAuthn, FIDO2, transaction binding, Smart-ID, Estonian eID, sender-constrained tokens, authorization architecture',
@@ -500,7 +500,7 @@ export type Project = {
 export const projectCategories: { id: ProjectCategory; label: { en: string; et: string } }[] = [
   { id: 'offensive', label: { en: 'Offensive & Reverse Engineering', et: 'Rünne ja pöördprojekteerimine' } },
   { id: 'products', label: { en: 'Applied Security Products', et: 'Rakenduslikud turvatooted' } },
-  { id: 'ai-ml', label: { en: 'AI & Retrieval Systems', et: 'AI- ja hankesüsteemid' } },
+  { id: 'ai-ml', label: { en: 'AI & Retrieval Systems', et: 'TI- ja hankesüsteemid' } },
   { id: 'systems', label: { en: 'Systems & Infrastructure', et: 'Süsteemid ja taristu' } },
   { id: 'research', label: { en: 'Research & Frameworks', et: 'Uuringud ja raamistikud' } },
   { id: 'foundations', label: { en: 'Foundations', et: 'Alused' } },
@@ -645,7 +645,7 @@ export const projects: Project[] = [
     tags: ['LLM', 'Writing', 'On-device'],
     blurb: {
       en: 'An in-browser editor that catches the mechanical patterns of AI writing: filler transitions, structural symmetry, passive constructions. It runs on-device, with no external API calls.',
-      et: 'Brauserisisene toimetaja, mis püüab AI-kirjutamise mehaanilised mustrid: täiteüleminekud, struktuurne sümmeetria, umbisikulised konstruktsioonid. Töötab seadmes, ilma väliste API-kutseteta.',
+      et: 'Brauserisisene toimetaja, mis püüab TI-kirjutamise mehaanilised mustrid: täiteüleminekud, struktuurne sümmeetria, umbisikulised konstruktsioonid. Töötab seadmes, ilma väliste API-kutseteta.',
     },
     href: 'https://ai.tomabel.ee',
     live: 'https://ai.tomabel.ee',
@@ -710,7 +710,7 @@ export const projects: Project[] = [
     featured: true,
     blurb: {
       en: 'An architectural reference that breaks Zero Trust into 8 structural axioms and a 9-dimension evaluation matrix, focused on concrete breach failure modes rather than vendor compliance checklists.',
-      et: 'Arhitektuuriline teatmematerjal, mis jaotab null-usalduse 8 struktuurseks aksioomiks ja 9-dimensiooniliseks hindamismaatriksiks, keskendudes konkreetsetele rikkumiste tõrkerežiimidele, mitte tarnijate vastavuskontroll-nimekirjadele.',
+      et: 'Arhitektuuriline teatmematerjal, mis jaotab nullusalduse 8 struktuurseks aksioomiks ja 9-dimensiooniliseks hindamismaatriksiks, keskendudes konkreetsetele rikkumiste tõrkerežiimidele, mitte tarnijate vastavuskontroll-nimekirjadele.',
     },
     href: 'https://github.com/tomkabel/zero-trust-octagon',
     repo: 'https://github.com/tomkabel/zero-trust-octagon',
@@ -745,7 +745,7 @@ export const bio = {
     },
     {
       en: "These days I’m Lead Systems Architect and CTO at MatX, where I build production platforms under the threat models I write — zero-trust architecture, phishing-resistant authentication, and GDPR/NIS2 compliance treated as engineering, not paperwork. I work in English and Estonian, and most of my research orbits Estonia’s authentication and anti-fraud landscape, because it’s one of the most digitized in the world and therefore one of the most interesting to defend.",
-      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MatX-is, kus ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — null-usalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
+      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MatX-is, kus ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — nullusalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
     },
   ],
   kratt: {

@@ -537,7 +537,7 @@ export const translations = {
           title: 'Kes seda veel näeb',
           text: 'Me ei müü sinu andmeid. Punkt. Jagame neid ainult:',
           items: [
-            'Oma hostingu- ja taristupakkujatega (nagu Cloudflare). Nad on GDPR-iga kooskõlas.',
+            'Oma majutus- ja taristupakkujatega (nagu Cloudflare). Nad on GDPR-iga kooskõlas.',
             'Õiguskaitseorganitega, aga ainult siis, kui nad ilmuvad kohale kehtiva määrusega.',
           ],
           transfers: 'Kõik andmed, mis liiguvad EList välja, käideldakse rangelt vastavalt GDPR-i V peatükile.',

@@ -77,7 +77,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'The second factor is mobile push approval, and that is the part that gives. Late at night the attacker sends repeated prompts to the target’s phone for over an hour. MFA fatigue is not a cryptographic break but an interface attack on a tired person: approving is the only thing that stops the buzzing. At a quarter to two, half asleep, the target taps accept.',
-        et: 'Teine tegur on mobiilse tõukega kinnitus ja just see annab järele. Hilisõhtul saadab ründaja sihtmärgi telefoni korduvaid teateid üle tunni aja. MFA-väsitamine ei ole krüptograafiline murdmine, vaid liidesele suunatud rünnak väsinud inimese vastu: kinnitamine on ainus, mis põrina lõpetab. Kell kolmveerand kaks vajutab poolunes sihtmärk nõustumise nuppu.',
+        et: 'Teine tegur on mobiilse tõukega kinnitus ja just see annab järele. Hilisõhtul saadab ründaja sihtmärgi telefoni korduvaid teateid üle tunni aja. MFA väsitusrünne ei ole krüptograafiline murdmine, vaid liidesele suunatud rünnak väsinud inimese vastu: kinnitamine on ainus, mis põrina lõpetab. Kell kolmveerand kaks vajutab poolunes sihtmärk nõustumise nuppu.',
       },
       {
         en: 'The attacker now holds a valid session whose lifetime is twelve to twenty-four hours, because that is the default. They try the finance dashboard behind the identity-aware proxy. The session checks out, but the proxy also requires the device to carry the company management profile. The attacker is on a virtual machine in a hosting centre, so the check fails and access is denied. The cheap control beat the expensive attack, and the trace does not end here.',

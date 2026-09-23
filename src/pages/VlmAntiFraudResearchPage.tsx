@@ -18,7 +18,7 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: 'Fifteen years of bot detection rests on one premise: an automated client has to fake something a real browser produces naturally. A vision-language model driving a stock browser fakes nothing. This is a plain-language walkthrough of my systematization of the field — the five defensive paradigms, which of them survive that shift, and why the interesting question is no longer detection but who controls the root of trust.',
-  et: 'Viisteist aastat botituvastust tugineb ühel eeldusel: automaatne klient peab võltsima midagi, mida päris brauser toodab loomulikult. Visuaal-keelemudel, mis juhib muutmata brauserit, ei võltsi midagi. See on lihtsas keeles ülevaade minu valdkonna süstemaatilisest ülevaatest — viis kaitseparadigmat, millised neist selle nihke üle elavad ja miks huvitav küsimus ei ole enam tuvastamine, vaid see, kes kontrollib usalduse juurt.',
+  et: 'Viisteist aastat robotituvastust tugineb ühel eeldusel: automaatne klient peab matkima midagi, mida päris brauser tekitab loomulikult. Visuaal-keelemudel, mis juhib muutmata brauserit, ei võltsi midagi. See on lihtsas keeles ülevaade minu valdkonna süstemaatilisest ülevaatest — viis kaitseparadigmat, millised neist selle nihke üle elavad ja miks huvitav küsimus ei ole enam tuvastamine, vaid see, kes kontrollib usalduse juurt.',
 };
 
 const openingParagraphs: Bi[] = [

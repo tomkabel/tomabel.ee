@@ -18,13 +18,13 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: 'Every control in a zero-trust architecture is downstream of identity. That makes the quality of the proof taken at the gate the ceiling on everything built above it — and most architectures still take that proof once, at login, and treat it as a durable fact for the rest of the day.',
-  et: 'Iga kontroll usaldusvabas arhitektuuris asub identiteedist allavoolu. Seetõttu määrab väravas võetava tõendi kvaliteet lae kõigele, mis selle peale ehitatakse — ja enamik arhitektuure võtab selle tõendi ikka veel üks kord, sisselogimisel, ning kohtleb seda ülejäänud päeva kestva faktina.',
+  et: 'Iga kontroll nullusaldusarhitektuuris asub identiteedist allavoolu. Seetõttu määrab väravas võetava tõendi kvaliteet lae kõigele, mis selle peale ehitatakse — ja enamik arhitektuure võtab selle tõendi ikka veel üks kord, sisselogimisel, ning kohtleb seda ülejäänud päeva kestva faktina.',
 };
 
 const openingParagraphs: Bi[] = [
   {
     en: 'This is where my zero-trust work meets authentication, which is what I actually spend my time on. The two are not separate subjects. A zero-trust architecture is a set of decisions about who may do what, and every one of those decisions consumes an identity claim produced somewhere else.',
-    et: 'Siin kohtub minu usaldusvaba arhitektuuri töö autentimisega, millega ma tegelikult tegelen. Need kaks ei ole eraldi teemad. Usaldusvaba arhitektuur on hulk otsuseid selle kohta, kes mida tohib teha, ja iga selline otsus tarbib identiteediväidet, mille on tootnud mõni mujal asuv süsteem.',
+    et: 'Siin kohtub minu nullusaldusarhitektuuri töö autentimisega, millega ma tegelikult tegelen. Need kaks ei ole eraldi teemad. Nullusaldusarhitektuur on hulk otsuseid selle kohta, kes mida tohib teha, ja iga selline otsus tarbib identiteediväidet, mille on tootnud mõni mujal asuv süsteem.',
   },
 ];
 
@@ -37,7 +37,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Identity is the root of trust in a zero-trust architecture because every other control is downstream of it. Segmentation decides which identities may reach which services. Least privilege decides which identities may perform which operations. Audit records which identity did what. Anomaly detection compares behaviour against a baseline attached to an identity. None of these mechanisms produce identity; all of them consume it.',
-        et: 'Identiteet on usalduse juur usaldusvabas arhitektuuris, sest kõik ülejäänud kontrollid asuvad sellest allavoolu. Segmenteerimine otsustab, millised identiteedid millistele teenustele ligi pääsevad. Vähima õiguse põhimõte otsustab, millised identiteedid milliseid toiminguid teha tohivad. Audit salvestab, milline identiteet mida tegi. Anomaaliatuvastus võrdleb käitumist identiteediga seotud lähtejoonega. Ükski neist mehhanismidest identiteeti ei tooda; kõik nad tarbivad seda.',
+        et: 'Identiteet on usalduse juur nullusaldusarhitektuuris, sest kõik ülejäänud kontrollid asuvad sellest allavoolu. Segmenteerimine otsustab, millised identiteedid millistele teenustele ligi pääsevad. Vähima õiguse põhimõte otsustab, millised identiteedid milliseid toiminguid teha tohivad. Audit salvestab, milline identiteet mida tegi. Anomaaliatuvastus võrdleb käitumist identiteediga seotud lähtejoonega. Ükski neist mehhanismidest identiteeti ei tooda; kõik nad tarbivad seda.',
       },
       {
         en: 'The proof collected at the gate is therefore a hard ceiling on everything above it. If it establishes only that somebody held a password an hour ago, a policy engine evaluating a thousand attributes is still deciding on the authority of that password. Sophistication above the gate does not compensate for weakness at it; it makes the weakness harder to see.',
@@ -57,7 +57,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'What follows is not a decision but a drift. Access control has to rest on something, and the only thing left that travels with the request is the identity claim. Organisations that never held a zero-trust workshop end up identity-centric anyway — with the same dependency as the deliberate version and none of the scrutiny.',
-        et: 'Järgnev ei ole otsus, vaid triiv. Juurdepääsukontroll peab millelegi toetuma ja ainus asi, mis päringuga kaasa liigub, on identiteediväide. Organisatsioonid, kes pole kunagi usaldusvaba arhitektuuri töötuba pidanud, jõuavad identiteedikeskse lahenduseni niikuinii — sama sõltuvusega mis kavatsetud versioonil ja ilma igasuguse kontrollita.',
+        et: 'Järgnev ei ole otsus, vaid triiv. Juurdepääsukontroll peab millelegi toetuma ja ainus asi, mis päringuga kaasa liigub, on identiteediväide. Organisatsioonid, kes pole kunagi nullusaldusarhitektuuri töötuba pidanud, jõuavad identiteedikeskse lahenduseni niikuinii — sama sõltuvusega mis kavatsetud versioonil ja ilma igasuguse kontrollita.',
       },
     ],
   },
@@ -204,7 +204,7 @@ function IdentityRootProofGateResearchPage() {
       <ArticleHeader
         backTo="/disclosures"
         back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
-        kicker={isEn ? 'Essay · Zero Trust · Authentication' : 'Essee · Usaldusvaba arhitektuur · Autentimine'}
+        kicker={isEn ? 'Essay · Zero Trust · Authentication' : 'Essee · Nullusaldusarhitektuur · Autentimine'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
