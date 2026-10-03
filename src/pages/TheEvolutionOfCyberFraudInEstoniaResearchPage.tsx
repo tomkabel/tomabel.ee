@@ -13,23 +13,23 @@ type ReportSection = {
 };
 
 const title: Bi = {
-  en: 'The evolution of cyber fraud in Estonia, 2010–2026',
-  et: 'Küberpettuste areng Eestis, 2010–2026',
+  en: 'The evolution of cyber fraud in Estonia, 2017–2026',
+  et: 'Küberpettuste areng Eestis, 2017–2026',
 };
 
 const standfirst: Bi = {
-  en: "Estonia's small language was its cheapest security control. For years it did more work than any firewall: scammers who could not speak fluent Estonian could not reach the market. This report traces how that barrier held, how it collapsed, and what replaced it. The collapse happened in two stages. First, organized crime recruited native speakers and built a professional supply chain across the border. Then AI removed the costs of entry that remained: flawless Estonian text at zero marginal cost, and video that put the president's face on a fake investment platform. Fluent voice is the last barrier, and it is next. Losses went from a stable five to ten million euros a year to 29 million in 2025, and the victim statistics show the barrier was doing more work than anyone admitted.",
-  et: 'Eesti väike keel oli riigi odavaim turvameede. Aastaid tegi see rohkem tööd kui ükski tulemüür: petturid, kes soravat eesti keelt ei rääkinud, turule ei pääsenud. See raport jälgib, kuidas barjäär pidas, kuidas see kokku varises ja mis selle asemele tuli. Kokkuvarisemine toimus kahes etapis. Esmalt värbas organiseeritud kuritegevus emakeelekõnelejaid ja ehitas üle piiri professionaalse tarneahela. Seejärel kaotas tehisintellekt allesjäänud sisenemiskulud: veatu eestikeelne tekst, mille piirkulu on null, ja video, mis pani presidendi näo võltsitud investeerimisplatvormile. Sorav kõne on viimane barjäär ja see tuleb järgmisena. Kahjud kasvasid stabiilselt viielt kuni kümnelt miljonilt eurolt aastas 29 miljonini 2025. aastal ja ohvristatistika näitab, et barjäär tegi rohkem tööd, kui keegi tunnistas.',
+  en: "Estonia's small language was its cheapest security control. For years it kept out scammers who could not speak fluent Estonian. This report traces how that barrier held, how it collapsed, and what replaced it. The collapse came in two stages. First, organized crime recruited native speakers into call centers abroad; police date mass Estonian-language calls to late 2024. Then AI cut the remaining costs of entry: flawless Estonian text at almost no cost, and video that put the president's face on a fake investment platform. Fluent synthetic voice is the barrier still standing, and police cannot yet say how often it is used in live calls. Police-reported losses rose from about 8 million euros in 2023 to 16 million in 2024 and 29 million in 2025, with another 13.2 million in the first half of 2026.",
+  et: 'Eesti väike keel oli riigi odavaim turvameede. Aastaid hoidis see eemal petturid, kes soravat eesti keelt ei rääkinud. See raport jälgib, kuidas barjäär pidas, kuidas see kokku varises ja mis selle asemele tuli. Kokkuvarisemine toimus kahes etapis. Esmalt värbas organiseeritud kuritegevus emakeelekõnelejaid välismaistesse kõnekeskustesse; politsei sõnul algasid massilised eestikeelsed kõned 2024. aasta lõpus. Seejärel kahandas tehisintellekt allesjäänud sisenemiskulusid: veatu eestikeelne tekst peaaegu tasuta ja video, mis pani presidendi näo võltsitud investeerimisplatvormile. Sorav tehishääl on barjäär, mis veel püsib, ja politsei ei oska veel öelda, kui sageli seda päris kõnedes kasutatakse. Politseile teatatud kahju kasvas umbes kaheksalt miljonilt eurolt 2023. aastal 16 miljonini 2024. aastal ja 29 miljonini 2025. aastal; 2026. aasta esimesel poolaastal lisandus 13,2 miljonit.',
 };
 
 const openingParagraphs: Bi[] = [
   {
-    en: "This report is a synthesis of public reporting on fraud in Estonia from 2010 to early 2026. The spine is the Estonian Information System Authority's Cyber Security in Estonia yearbook and its accompanying articles (RIA, January-February 2026), the Police and Border Guard Board's public statements, SEB's Baltic fraud statistics for the first half of 2024, and the investigative work by ERR and Äripäev, including the Pealtnägija undercover recruitment experiment published in February 2026. It builds on an earlier research file compiled from these and other Estonian sources, and every figure below was re-checked against the primary source during writing.",
-    et: 'See raport on kokkuvõte avalikust teabest Eesti pettuste kohta aastatel 2010 kuni 2026. aasta alguseni. Selgroog on Riigi Infosüsteemi Ameti aastaraamat "Küberturvalisus Eestis" ja selle juurde kuuluvad artiklid (RIA, jaanuar-veebruar 2026), Politsei- ja Piirivalveameti avalikud teated, SEB Balti pettusestatistika 2024. aasta esimese poolaasta kohta ning ERRi ja Äripäeva uurivad lood, sealhulgas Pealtnägija variidentiteedi all tehtud värbamiskatse, mis avaldati 2026. aasta veebruaris. Raport tugineb varasemale uurimismaterjalile, mis on koostatud nendest ja teistest Eesti allikatest, ja iga alljärgnev arv on kirjutamise käigus algallika vastu üle kontrollitud.',
+    en: "This report is a synthesis of public reporting on fraud in Estonia from 2017, when Smart-ID arrived, to mid-2026. The spine is the Estonian Information System Authority's Cyber Security in Estonia yearbook and its accompanying articles (RIA, January-February 2026), the Police and Border Guard Board's public statements, SEB's Baltic fraud statistics for the first half of 2024, and the investigative work by ERR and Äripäev, including the Pealtnägija undercover recruitment experiment published in February 2026. It builds on an earlier research file compiled from these and other Estonian sources. Each figure is attributed to the publisher that released it; where a figure appears only in a news report, the report is named.",
+    et: 'See raport on kokkuvõte avalikust teabest Eesti pettuste kohta alates 2017. aastast, mil turule jõudis Smart-ID, kuni 2026. aasta keskpaigani. Selgroog on Riigi Infosüsteemi Ameti aastaraamat "Küberturvalisus Eestis" ja selle juurde kuuluvad artiklid (RIA, jaanuar-veebruar 2026), Politsei- ja Piirivalveameti avalikud teated, SEB Balti pettusestatistika 2024. aasta esimese poolaasta kohta ning ERRi ja Äripäeva uurivad lood, sealhulgas Pealtnägija variidentiteedi all tehtud värbamiskatse, mis avaldati 2026. aasta veebruaris. Raport tugineb varasemale uurimismaterjalile, mis on koostatud nendest ja teistest Eesti allikatest. Iga arv on omistatud selle avaldajale; kui arv pärineb ainult uudisloost, on see uudislugu nimetatud.',
   },
   {
-    en: 'Two limits apply. Estonian fraud statistics are published by several authorities that count different things, and the headline numbers do not always agree. Where sources conflict I say so explicitly instead of picking one. And this report describes public cases and statistics only. It discloses no vulnerability, describes no live system under test, and names no victim beyond what the sources already published. The analysis reflects the public record as of August 2026.',
-    et: 'Kehtib kaks piirangut. Eesti pettusestatistikat avaldavad mitu asutust, kes loevad eri asju, ja pealkirjadesse jõudvad arvud ei lange alati kokku. Kus allikad on vastuolus, ütlen seda otse, selle asemel et üks neist välja valida. Ja see raport kirjeldab ainult avalikke juhtumeid ja statistikat. See ei avalikusta ühtegi turvaauku, ei kirjelda ühtegi testitavat töötavat süsteemi ega nimeta ühtegi ohvrit rohkem, kui allikad on juba avaldanud. Analüüs kajastab avalikku teavet 2026. aasta augusti seisuga.',
+    en: 'Two limits apply. Estonian fraud statistics are published by several authorities that count different things, and the headline numbers do not always agree. Where sources conflict I say so explicitly instead of picking one. And this report describes public cases and statistics only. It discloses no vulnerability, describes no live system under test, and names no victim beyond what the sources already published. This version was updated on 4 October 2026. It covers police figures through June 2026 and news reports through August 2026.',
+    et: 'Kehtib kaks piirangut. Eesti pettusestatistikat avaldavad mitu asutust, kes loevad eri asju, ja pealkirjadesse jõudvad arvud ei lange alati kokku. Kus allikad on vastuolus, ütlen seda otse, selle asemel et üks neist välja valida. Ja see raport kirjeldab ainult avalikke juhtumeid ja statistikat. See ei avalikusta ühtegi turvaauku, ei kirjelda ühtegi testitavat töötavat süsteemi ega nimeta ühtegi ohvrit rohkem, kui allikad on juba avaldanud. Seda versiooni uuendati 4. oktoobril 2026. See hõlmab politsei arve 2026. aasta juuni lõpuni ja uudiseid 2026. aasta augustini.',
   },
 ];
 
@@ -38,16 +38,16 @@ const sections: ReportSection[] = [
     heading: { en: 'The numbers, and why they disagree', et: 'Arvud ja miks need lahku lähevad' },
     paragraphs: [
       {
-        en: 'The baseline is stable. ERR, citing official police figures, describes the period before the surge as one where annual fraud losses "ranged between five and ten million euros." The Police and Border Guard Board recorded nearly eight million euros lost to scams in 2023, roughly 22,000 euros a day. Through the early 2020s, fraud in Estonia was a chronic nuisance, not a national story.',
-        et: 'Lähtejoon on stabiilne. ERR, viidates ametlikule politseistatistikale, kirjeldab tõusule eelnenud perioodi ajana, mil aastane pettusekahju "jäi viie ja kümne miljoni euro vahele". Politsei- ja Piirivalveamet registreeris 2023. aastal ligi kaheksa miljoni euro suuruse kelmustega tekitatud kahju, ligikaudu 22 000 eurot päevas. 2020. aastate alguses oli pettus Eestis krooniline tüütus, mitte üleriigiline lugu.',
+        en: 'ERR describes the years before the surge as ones in which annual fraud losses "ranged between five and ten million euros," without giving a source for the range. The Police and Border Guard Board (PPA) recorded nearly eight million euros lost to scams in 2023, roughly 22,000 euros a day, and 16 million euros in 2024. By the police count, the surge began in 2024.',
+        et: 'ERR kirjeldab tõusule eelnenud aastaid ajana, mil aastane pettusekahju "jäi viie ja kümne miljoni euro vahele", kuid ei nimeta selle vahemiku allikat. Politsei- ja Piirivalveamet (PPA) registreeris 2023. aastal kelmustega tekitatud kahju ligi kaheksa miljoni euro ulatuses, ligikaudu 22 000 eurot päevas, ja 2024. aastal 16 miljoni euro ulatuses. Politsei arvestuse järgi algas tõus 2024. aastal.',
       },
       {
-        en: "2025 changed that. RIA's Cyber Security in Estonia 2026 yearbook states that people in Estonia lost 29 million euros to fraudsters in 2025, three times more than the year before. The Police and Border Guard Board's own figure for 2024 was 16 million euros, and it described 2025 as nearly doubling. The two official framings disagree on the multiplier: RIA's baseline for \"the year before\" is lower than the police's 16 million. This is not a contradiction in the underlying events. The authorities count different things, and the likely mechanism is that RIA's figure draws on a broader incident base, including business fraud, while the police count crime cases; the sources do not spell this out. Eesti Pank, which tracks bank-reported payment fraud separately, put 2024 at 13.5 million euros. Anyone quoting a single \"Estonian fraud number\" should say which authority they mean.",
-        et: '2025 muutis seda. RIA aastaraamat "Küberturvalisus Eestis 2026" ütleb, et Eesti inimesed kaotasid 2025. aastal petturitele 29 miljonit eurot, kolm korda rohkem kui aasta varem. Politsei- ja Piirivalveameti enda arv 2024. aasta kohta oli 16 miljonit eurot ja amet kirjeldas 2025. aastat kui ligi kahekordistumist. Kaks ametlikku raamistust on kordaja osas eri meelt: RIA lähtejoon "aasta varem" kohta on madalam kui politsei 16 miljonit. See ei ole vastuolu aluseks olevates sündmustes. Asutused loevad eri asju ja tõenäoline mehhanism on, et RIA arv tugineb laiemale juhtumite hulgale, sealhulgas äripettustele, samal ajal kui politsei loeb kriminaalasju; allikad seda otse välja ei ütle. Eesti Pank, kes jälgib pankade teatatud maksepettusi eraldi, hindas 2024. aasta kahjuks 13,5 miljonit eurot. Igaüks, kes tsiteerib üht "Eesti pettuse numbrit", peaks ütlema, millist asutust ta silmas peab.',
+        en: "In 2025 losses reached 29 million euros. RIA's Cyber Security in Estonia 2026 yearbook calls that \"three times more than the year before\"; PPA calls it nearly double its 2024 figure of 16 million. Both 29-million figures are the same PPA number: RIA's yearbook says its fraud cases are drawn from reports by the Police and Border Guard Board and RIA, and PPA's total already includes fraud aimed at businesses. They differ only on the baseline. RIA's \"three times\" implies about 9.7 million euros for 2024, while PPA's own 2024 figure is 16 million, and neither source explains the gap. Eesti Pank, which tracks bank-reported payment fraud separately, put 2024 at 13.5 million euros. Anyone quoting a single \"Estonian fraud number\" should say which authority they mean.",
+        et: '2025. aastal ulatus kahju 29 miljoni euroni. RIA aastaraamat "Küberturvalisus Eestis 2026" nimetab seda kolm korda suuremaks kui aasta varem; PPA nimetab seda oma 2024. aasta 16 miljoni euro peaaegu kahekordistumiseks. Mõlemad 29 miljoni suurused arvud on sama PPA arv: RIA aastaraamatu järgi pärinevad selle pettusejuhtumid Politsei- ja Piirivalveameti ning RIA teadetest ja PPA kogusumma sisaldab juba ka ettevõtetele suunatud pettusi. Erinevus on ainult lähtejoones. RIA kolmekordne kasv eeldab 2024. aasta kahjuks umbes 9,7 miljonit eurot, PPA enda 2024. aasta arv on aga 16 miljonit ja kumbki allikas seda vahet ei selgita. Eesti Pank, kes jälgib pankade teatatud maksepettusi eraldi, hindas 2024. aasta kahjuks 13,5 miljonit eurot. Igaüks, kes tsiteerib üht "Eesti pettuse numbrit", peaks ütlema, millist asutust ta silmas peab.',
       },
       {
-        en: 'What every source agrees on: the direction is a step change, not a trend. Phone scams account for the majority of the 2025 total. The other consistent note is that individuals are the most frequent victims while businesses carry the largest individual losses.',
-        et: 'Milles kõik allikad on ühel meelel: suund on astmeline muutus, mitte trend. Telefonipettused moodustavad enamiku 2025. aasta kogusummast. Teine püsiv tähelepanek on see, et kõige sagedamini langevad ohvriks eraisikud, kuid ühe juhtumi kohta kannavad kõige suuremat kahju ettevõtted.',
+        en: "PPA's 2025 breakdown counts 3,685 victims. Phone scams were the largest category, about 11.5 million euros of the 29 million (PPA, 19 January 2026), followed by investment fraud (6.3 million), fraud aimed at businesses (2.7 million) and sales fraud (1.7 million). Individuals are the most frequent victims; businesses take the largest single losses.",
+        et: 'PPA 2025. aasta jaotuses on 3685 ohvrit. Suurim kategooria olid petukõned, umbes 11,5 miljonit eurot 29 miljonist (PPA, 19. jaanuar 2026), järgnesid investeerimispettused (6,3 miljonit), ettevõtetele suunatud pettused (2,7 miljonit) ja müügipettused (1,7 miljonit). Kõige sagedamini langevad ohvriks eraisikud, suurimad kahjud ühe juhtumi kohta kannavad ettevõtted.',
       },
     ],
   },
@@ -55,8 +55,8 @@ const sections: ReportSection[] = [
     heading: { en: 'The language barrier, and how it held', et: 'Keelebarjäär ja kuidas see pidas' },
     paragraphs: [
       {
-        en: "Estonian is spoken by roughly a million people. For the first decade of this story that smallness was the market's best defense. Early phishing was Russian-language, aimed at the Russian-speaking minority, and the Estonian that appeared in scam material was visibly translated: wrong cases, wrong word order, tells a native speaker caught instantly. Banks reported that Russian-speaking clients faced disproportionately more fraud exposure, which was the barrier doing its work.",
-        et: 'Eesti keelt räägib umbes miljon inimest. Selle loo esimesel kümnendil oli väiksus turu parim kaitse. Varane õngitsemine oli venekeelne ja suunatud venekeelsele vähemusele ning eesti keel, mis pettusematerjalides esines, oli nähtavalt tõlgitud: valed käänded, vale sõnajärg, vihjed, mille emakeelekõneleja tabas hetkega. Pangad teatasid, et venekeelsed kliendid puutusid pettustega ebaproportsionaalselt rohkem kokku, ja see oligi barjäär oma tööd tegemas.',
+        en: "Estonian is the mother tongue of about 900,000 people, 67 percent of the population at the 2021 census. For years that smallness was the market's best defense. Phishing aimed at Estonia was mostly Russian-language, and the Estonian that appeared in scam material was visibly translated: wrong cases, wrong word order, tells a native speaker caught instantly.",
+        et: 'Eesti keel on emakeeleks umbes 900 000 inimesele, 2021. aasta rahvaloenduse järgi 67 protsendile elanikkonnast. Aastaid oli see väiksus turu parim kaitse. Eestile suunatud õngitsemine oli enamasti venekeelne ja eesti keel, mis pettusematerjalides esines, oli nähtavalt tõlgitud: valed käänded, vale sõnajärg, vihjed, mille emakeelekõneleja tabas hetkega.',
       },
       {
         en: "The picture changed in 2017 with the arrival of Smart-ID as a mass authentication method. Large-scale phishing in Estonia began in 2019, when banks phased out password cards and moved customers to Smart-ID, and security researcher Arnis Paršovs of the University of Tartu has argued that the change traded one problem for another: a password card is clunky, but a scammer on the phone had to explicitly ask a victim for the password, which raised suspicion. With Smart-ID, the scammer only needs to talk the victim into approving something. The authentication rail itself was not the weakness. The consent step became the attack surface, and the full technical analysis is in my separate report on Smart-ID.",
@@ -70,8 +70,8 @@ const sections: ReportSection[] = [
   },
   {
     heading: {
-      en: 'The pivot: the victim statistics that ended the argument',
-      et: 'Pöördepunkt: ohvristatistika, mis vaidluse lõpetas',
+      en: '2024: the barrier holds, then breaks',
+      et: '2024: barjäär peab, siis murdub',
     },
     paragraphs: [
       {
@@ -79,12 +79,16 @@ const sections: ReportSection[] = [
         et: 'SEB Balti pettusestatistika 2024. aasta esimese poolaasta kohta on selle loo kõige selgem dokument. Eestis moodustasid eestikeelsed kliendid 65 protsenti pettusejuhtumitest. Venekeelseid oli üle 30 protsendi. Ligi pool kogu kahjust langes eestikeelsete klientide kanda ja venekeelsete klientide osa oli sama suur.',
       },
       {
-        en: "This looks like a targeting choice, and it is not. The conventional read was that bilingual Estonians were being reached through Russian-language campaigns. SEB's security chief Katlin Kukk stated the actual finding: contrary to the belief that non-native speakers are the easier targets, most victims are native speakers of their own language while also being capable of conversing in Russian. The data does not show scammers choosing Estonians. It shows the supply chain finally producing people who could run Estonian-language scams. The barrier collapsed before the public noticed, and the statistics only looked like a demographic shift.",
-        et: 'See näeb välja nagu sihtimisvalik, aga ei ole. Tavapärane tõlgendus oli, et kakskeelsete eestlasteni jõuti venekeelsete kampaaniate kaudu. SEB turvajuht Katlin Kukk sõnastas tegeliku leiu: vastupidiselt arusaamale, et mitte-emakeelekõnelejad on kergem sihtmärk, on enamik ohvreid oma keele emakeelekõnelejad, kes oskavad samal ajal ka vene keeles vestelda. Andmed ei näita, et petturid eestlasi valiksid. Need näitavad, et tarneahel hakkas lõpuks tootma inimesi, kes suutsid eestikeelseid pettusi läbi viia. Barjäär varises enne, kui avalikkus seda märkas, ja statistika nägi vaid välja nagu demograafiline nihe.',
+        en: "In early 2024 the barrier was still working. SEB found that phone fraud in the Baltics was \"mainly conducted in Russian\" and that a significant part of the population in Estonia and Latvia speaks Russian as a native language or at a conversational level. SEB's security chief Katlin Kukk put it this way: contrary to the belief that non-native speakers are the easier targets, most victims are native speakers of their own language who can also converse in Russian. Lithuania, where fewer people speak Russian, had the lowest phone-fraud losses. Estonian-speaking victims were being reached in Russian.",
+        et: '2024. aasta alguses barjäär veel töötas. SEB leidis, et Baltikumis tehakse telefonipettusi peamiselt vene keeles ja et märkimisväärne osa Eesti ja Läti elanikest räägib vene keelt emakeelena või suhtlemiseks piisaval tasemel. SEB turvajuht Katlin Kukk sõnastas selle nii: vastupidiselt arusaamale, et kergem sihtmärk on teise emakeelega inimesed, on enamik ohvreid oma keele emakeelekõnelejad, kes oskavad ka vene keeles vestelda. Leedus, kus vene keelt räägitakse vähem, olid telefonipettuste kahjud kõige väiksemad. Eestikeelseteni jõuti vene keeles.',
       },
       {
-        en: 'The same data set shows who the victims are. Most fraud cases fall in the 36-50 age group, the 51-64 group carries the highest financial losses at over 30 percent of the identified total, most victims are women, and men lose more money, 53 percent of total losses. The average loss per victim across the Baltics was about 3,000 euros. These are not the demographics of gullibility. They are the demographics of the working population that owns bank accounts and answers unknown calls.',
-        et: 'Sama andmestik näitab, kes ohvrid on. Enamik pettusejuhtumeid jääb vanuserühma 36–50, vanuserühm 51–64 kannab suurimat rahalist kahju, üle 30 protsendi tuvastatud kogusummast, enamik ohvreid on naised ja mehed kaotavad rohkem raha, 53 protsenti kogukahjust. Keskmine kahju ohvri kohta oli Baltikumis umbes 3000 eurot. Need ei ole kergeusklikkuse demograafia. Need on tööealise elanikkonna demograafia, kellel on pangakonto ja kes vastab tundmatutele kõnedele.',
+        en: "The break came at the end of that year. Hannes Kelt, head of the North Prefecture's cyber and economic crime unit, told ERR in April 2026 that from late 2024 the calls were being made on a mass scale in Estonian as well, which meant that people who speak Estonian had started working in call centers in Ukraine and other countries. PPA's Jaagup Toompuu gave the same reason for the 2025 jump: the calls are no longer made only in Russian, because Estonian speakers have been recruited to target the whole population.",
+        et: 'Murdumine tuli sama aasta lõpus. Põhja prefektuuri küber- ja majanduskuritegude talituse juht Hannes Kelt ütles ERR-ile 2026. aasta aprillis, et alates 2024. aasta lõpust hakati neid kõnesid tegema massilisel skaalal ka eesti keeles, mis tähendab, et Ukraina ja muude riikide kõnekeskustesse on tööle asunud eesti keelt oskavad inimesed. PPA Jaagup Toompuu tõi 2025. aasta hüppe ühe põhjusena välja sama: petukõnesid ei tehta enam ainult vene keeles, vaid kõnekeskustesse on värvatud eesti keelt kõnelevaid inimesi, et sihtida kogu riigi elanikkonda.',
+      },
+      {
+        en: 'The SEB data set also shows who the victims are. Most fraud cases fall in the 36-50 age group, the 51-64 group carries the highest financial losses at over 30 percent of the identified total, most victims are women, and men lose more money, 53 percent of total losses. The average loss per victim across the Baltics was about 3,000 euros. That is the working population: people with bank accounts who answer unknown calls.',
+        et: 'SEB andmestik näitab ka, kes ohvrid on. Enamik pettusejuhtumeid jääb vanuserühma 36–50, vanuserühm 51–64 kannab suurimat rahalist kahju, üle 30 protsendi tuvastatud kogusummast, enamik ohvreid on naised ja mehed kaotavad rohkem raha, 53 protsenti kogukahjust. Keskmine kahju ohvri kohta oli Baltikumis umbes 3000 eurot. See on tööealine elanikkond: inimesed, kellel on pangakonto ja kes vastavad tundmatutele kõnedele.',
       },
     ],
   },
@@ -92,16 +96,16 @@ const sections: ReportSection[] = [
     heading: { en: 'Vishing becomes the main vector', et: 'Vishingust saab peamine rünnakuvektor' },
     paragraphs: [
       {
-        en: "Phone fraud overtook email phishing as the dominant vector during this period. SEB's Baltic analysis put vishing at nearly two-thirds of identified fraud damages across the region, and first in Estonia. RIA's 2026 yearbook describes the surge in phone scams and notes that people lose tens of thousands of euros a day to them.",
-        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Balti analüüs pani vishingu piirkonna tuvastatud pettusekahjudest ligi kahe kolmandiku peale ja Eestis esikohale. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
+        en: "Phone fraud overtook email phishing as the dominant vector during this period. SEB Latvia put vishing at nearly two-thirds of identified fraud damages in Latvia, and first in Estonia. RIA's 2026 yearbook describes the surge in phone scams and notes that people lose tens of thousands of euros a day to them.",
+        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Läti hinnangul moodustas vishing Lätis tuvastatud pettusekahjudest ligi kaks kolmandikku ja Eestis oli see esikohal. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
       },
       {
         en: 'The methodology industrialized into a standard two-call sequence. The first call impersonates the Health Insurance Fund (Tervisekassa) with a hook: unused benefits, a refund, a cheaper specialist-visit rate if you "confirm your details." Confirming means entering a Smart-ID PIN1. The second call comes from someone posing as the European Central Bank, your own bank, or the police, claiming the first call was the scam and your money must be "rescued" immediately. The second call can last for hours and is engineered to extract PIN2, the code that authorizes payments and loans.',
         et: 'Metoodika on tööstuslikuks muutunud ja järgib kahe kõne standardset jada. Esimene kõne esineb Tervisekassana ja tuleb konksuga: kasutamata hüvitised, tagasimakse või soodsam eriarsti visiiditasu, kui "kinnitate oma andmed". Kinnitamine tähendab Smart-ID PIN1 sisestamist. Teine kõne tuleb kelleltki, kes esineb Euroopa Keskpanga, teie enda panga või politseina ja väidab, et esimene kõne oligi pettus ning teie raha tuleb kohe "päästa". Teine kõne võib kesta tunde ja on üles ehitatud PIN2 väljameelitamiseks, koodi, mis annab loa maksete ja laenude jaoks.',
       },
       {
-        en: 'The sequence is well documented because it keeps working. RIA describes a non-profit that lost over 120,000 euros to a three-call variant built on a fake electricity switchboard appointment: the victim confirmed the appointment with Smart-ID PIN1, then followed instructions from callers posing as police and bank staff, entering PIN1 and PIN2 repeatedly. North Prefecture serious crime unit head Elari Haugas describes the same pattern in the largest phone-scam criminal case in recent years, the same case whose courier network is described below: 59 victims defrauded of a combined 600,000 euros over about six months from late 2024, with losses per victim from a few hundred euros to 117,000.',
-        et: 'Jada on hästi dokumenteeritud, sest see töötab järjepidevalt. RIA kirjeldab mittetulundusühingut, mis kaotas üle 120 000 euro kolme kõne variandile, mis oli üles ehitatud võltsitud elektrikilbi paigaldusaja ümber: ohver kinnitas aja Smart-ID PIN1-ga ja järgis seejärel politsei ning pangatöötajatena esinevate helistajate juhiseid, sisestades korduvalt PIN1 ja PIN2. Põhja prefektuuri raskete kuritegude talituse juht Elari Haugas kirjeldab sama mustrit viimaste aastate suurimas telefonipettuse kriminaalasjas, samas asjas, mille kullerivõrku allpool kirjeldatakse: 59 ohvrit peteti kokku 600 000 euro võrra umbes kuue kuu jooksul alates 2024. aasta lõpust, kahjud ohvri kohta ulatusid mõnesajast eurost 117 000 euroni.',
+        en: 'The sequence is well documented because it keeps working. RIA describes a non-profit that lost over 120,000 euros to a three-call variant built on a fake electricity switchboard appointment: the victim confirmed the appointment with Smart-ID PIN1, then followed instructions from callers posing as police and bank staff, entering PIN1 and PIN2 repeatedly. ERR reports the same pattern in the largest phone-scam criminal case in recent years, the same case whose courier network is described below: 59 victims defrauded of a combined 600,000 euros over about six months from late 2024, with losses per victim from a few hundred euros to 117,000. Elari Haugas, head of the North Prefecture serious crime unit, spoke to ERR about the recruitment and the sentences in that case.',
+        et: 'Jada on hästi dokumenteeritud, sest see töötab järjepidevalt. RIA kirjeldab mittetulundusühingut, mis kaotas üle 120 000 euro kolme kõne variandile, mis oli üles ehitatud võltsitud elektrikilbi paigaldusaja ümber: ohver kinnitas aja Smart-ID PIN1-ga ja järgis seejärel politsei ning pangatöötajatena esinevate helistajate juhiseid, sisestades korduvalt PIN1 ja PIN2. ERR kirjeldab sama mustrit viimaste aastate suurimas telefonipettuse kriminaalasjas, samas asjas, mille kullerivõrku allpool kirjeldatakse: 59 ohvrit peteti kokku 600 000 euro võrra umbes kuue kuu jooksul alates 2024. aasta lõpust, kahjud ohvri kohta ulatusid mõnesajast eurost 117 000 euroni. Põhja prefektuuri raskete kuritegude talituse juht Elari Haugas rääkis ERR-ile selle asja värbamisest ja karistustest.',
       },
     ],
   },
@@ -109,16 +113,16 @@ const sections: ReportSection[] = [
     heading: { en: 'The professional supply chain', et: 'Professionaalne tarneahel' },
     paragraphs: [
       {
-        en: 'The sophistication is organizational, not technical. ERR and Äripäev, working with the Pealtnägija investigation program, ran an undercover recruitment experiment in early 2026 that documents the industry in detail.',
-        et: 'Keerukus on organisatsiooniline, mitte tehniline. ERR ja Äripäev viisid koos saatega "Pealtnägija" 2026. aasta alguses läbi variidentiteedi all värbamiskatse, mis dokumenteerib selle tööstuse üksikasjalikult.',
+        en: 'The sophistication is mostly organizational. ERR and Äripäev, working with the Pealtnägija investigation program, ran an undercover recruitment experiment in early 2026 that documents the industry in detail.',
+        et: 'Keerukus on peamiselt organisatsiooniline. ERR ja Äripäev viisid koos saatega "Pealtnägija" 2026. aasta alguses läbi variidentiteedi all värbamiskatse, mis dokumenteerib selle tööstuse üksikasjalikult.',
       },
       {
         en: 'The jobs are advertised openly on Telegram, in Russian. A position in Uzhhorod, western Ukraine, a city about the size of Tartu, offers Estonian or Lithuanian speakers free flights, free housing, free meals, and a salary of 1,600 euros plus 10 percent of each transaction. The ad copy claims salaries can reach 5,000 euros a week. The recruiter in the undercover calls confirmed the terms directly: no contract, weekly settlements, "the conditions are the same for everyone." If you speak Estonian or Lithuanian the job is in Uzhhorod; if you speak German, Odesa. Applicants\' Estonian is verified at B2 level. The recruiter claimed seven Estonian-speaking employees already worked there.',
         et: 'Töökuulutused on avalikult Telegramis, vene keeles. Koht Ukraina lääneosas Užhorodis, linnas, mis on umbes Tartu suurune, pakub eesti või leedu keele oskajatele tasuta lennupileteid, tasuta majutust, tasuta toitlustust ja 1600 euro suurust palka pluss 10 protsenti igast tehingust. Kuulutuse tekst lubab, et palk võib ulatuda 5000 euroni nädalas. Värbaja kinnitas variidentiteediga tehtud kõnedes tingimusi otse: lepingut ei ole, arveldatakse nädalas, "tingimused on kõigile ühesugused". Kui räägid eesti või leedu keelt, on töökoht Užhorodis; kui räägid saksa keelt, siis Odessas. Kandidaatide eesti keelt kontrollitakse B2-tasemel. Värbaja väitis, et seal töötab juba seitse eesti keelt kõnelevat inimest.',
       },
       {
-        en: "The domestic end is a courier economy. A court case covered by ERR involved five young Russian-speaking Estonians, barely twenty years old, who collected bank cards from victims across the country, from Pärnu to Narva. Coordination ran over Telegram with disappearing messages. Couriers kept 5 to 10 percent of each withdrawal. One courier, Darja, described the largest single transfer at around 150,000 euros; the court record caps individual victim losses at 117,000, and the two figures have not been reconciled. The group received suspended sentences and was ordered to repay the full 600,000 euros, a sum the couriers themselves do not expect to ever be recovered in full. The organizers were never identified.",
-        et: 'Kodumaine ots on kulleriäri. ERRi kajastatud kohtuasjas oli viis noort venekeelset Eesti elanikku, vaevu kahekümneaastased, kes kogusid ohvritelt üle riigi pangakaarte, Pärnust Narvani. Koordineerimine käis Telegramis kaduvate sõnumitega. Kullerid jätsid endale 5 kuni 10 protsenti igast väljavõetud summast. Üks kulleritest, Darja, kirjeldas suurimat ühekordset ülekannet umbes 150 000 euro suurusena; kohtutoimik piirab üksiku ohvri kahju 117 000 euroga ja neid kaht arvu ei ole kokku viidud. Rühm sai tingimisi karistused ja kohustuse maksta tagasi kogu 600 000 eurot, summa, mille täielikku laekumist kullerid ise ei usu. Korraldajaid ei tuvastatud kunagi.',
+        en: "The domestic end is a courier economy. A court case covered by ERR involved five Tallinn-based native Russian speakers, barely twenty years old, who collected bank cards from victims across the country, from Pärnu to Narva. Coordination ran over Telegram with disappearing messages. Couriers kept 5 to 10 percent of each withdrawal. One courier, Darja, described the largest single transfer at around 150,000 euros; the court record caps individual victim losses at 117,000, and the two figures have not been reconciled. The group received suspended sentences and was ordered to repay the full 600,000 euros, a sum the couriers themselves do not expect to ever be recovered in full. The organizers in that case were not identified.",
+        et: 'Kodumaine ots on kulleriäri. ERRi kajastatud kohtuasjas oli viis Tallinnas elavat vene emakeelega noort, vaevu kahekümneaastased, kes kogusid ohvritelt üle riigi pangakaarte, Pärnust Narvani. Koordineerimine käis Telegramis kaduvate sõnumitega. Kullerid jätsid endale 5 kuni 10 protsenti igast väljavõetud summast. Üks kulleritest, Darja, kirjeldas suurimat ühekordset ülekannet umbes 150 000 euro suurusena; kohtutoimik piirab üksiku ohvri kahju 117 000 euroga ja neid kaht arvu ei ole kokku viidud. Rühm sai tingimisi karistused ja kohustuse maksta tagasi kogu 600 000 eurot, summa, mille täielikku laekumist kullerid ise ei usu. Selles asjas korraldajaid ei tuvastatud.',
       },
       {
         en: 'The infrastructure layer is international. In mid-October 2025, an international police operation dismantled a network that sold phone numbers registered in various countries and provided anonymous accounts to fraud perpetrators. Latvian police arrested five suspects including the alleged leader and seized 40,000 active SIM cards. The network enabled losses exceeding 5 million euros across at least 3,200 victims in Estonia, Latvia, and Austria. This is the SIM box problem made visible at scale: local-looking numbers, no local presence.',
@@ -127,24 +131,31 @@ const sections: ReportSection[] = [
     ],
   },
   {
-    heading: { en: 'Business fraud is where the money is', et: 'Äripettustes on suur raha' },
+    heading: {
+      en: 'Business fraud: fewer cases, the biggest single hits',
+      et: 'Äripettus: vähem juhtumeid, suurimad kahjud juhtumi kohta',
+    },
     paragraphs: [
       {
-        en: "Phone scams hit individuals most often. The largest losses come from business fraud. RIA's yearbook is explicit: business fraud causes the most significant financial damage per incident.",
-        et: 'Telefonipettused tabavad kõige sagedamini eraisikuid. Suurimad kahjud tulevad äripettustest. RIA aastaraamat ütleb seda otse: äripettus tekitab juhtumi kohta kõige suuremat rahalist kahju.',
+        en: "Phone scams hit individuals most often. RIA's yearbook says that \"by loss amount, business-related fraud causes the most significant financial damage.\" In aggregate the police count looks different: PPA puts fraud aimed at businesses at 2.7 million euros in 2025, against 11.5 million for phone scams and 6.3 million for investment fraud. Business cases are rarer, and single cases are the largest.",
+        et: 'Telefonipettused tabavad kõige sagedamini eraisikuid. RIA aastaraamatu järgi tekitavad kahjusumma poolest kõige suuremat rahalist kahju ettevõtetega seotud pettused. Politsei kogusummades on pilt teine: PPA hindab ettevõtetele suunatud pettuste kahjuks 2025. aastal 2,7 miljonit eurot, petukõnede kahjuks 11,5 miljonit ja investeerimispettuste kahjuks 6,3 miljonit eurot. Ettevõtteid tabab pettus harvem, kuid ühe juhtumi kahju on suurim.',
       },
       {
-        en: 'The case RIA leads with is Hekotek, a machinery manufacturer. In August 2025 it became public that the company lost 1.6 million euros in a single attack: a call to the chief financial officer posing as the Health Insurance Fund, a new Smart-ID account created in the CFO\'s name with information from that call, further calls posing as bank staff and police, remote access to the CFO\'s computer via AnyDesk, and 52 transfers authorized from the company account within two hours. Part of the money was recovered; final losses still exceed one million euros, and the company is now in litigation with its former CFO over responsibility.',
-        et: 'Juhtum, millega RIA alustab, on masinaehitaja Hekotek. 2025. aasta augustis sai avalikuks, et ettevõte kaotas ühe rünnakuga 1,6 miljonit eurot: kõne finantsjuhile Tervisekassana esinedes, sellest kõnest saadud andmetega finantsjuhi nimele loodud uus Smart-ID konto, edasised kõned pangatöötajate ja politseinikena esinedes, AnyDeski kaudu saadud kaugligipääs finantsjuhi arvutile ja 52 ülekannet, mis ettevõtte kontolt kahe tunni jooksul kinnitati. Osa rahast saadi tagasi; lõplik kahju ületab endiselt miljonit eurot ja ettevõte on vastutuse üle kohtuvaidluses oma endise finantsjuhiga.',
+        en: "The case RIA leads with is Hekotek, a machinery manufacturer. In August 2025 it became public that fraudsters had moved 1.6 million euros out of the company in 52 transfers within two hours. The chain: a call to the chief financial officer posing as the Health Insurance Fund, a new Smart-ID account created in the CFO's name with information from that call, further calls posing as bank staff and police, and remote access to the CFO's computer via AnyDesk. Part of the money was recovered; final losses still exceed one million euros, and the company is in litigation with its former CFO over responsibility.",
+        et: 'Juhtum, millega RIA alustab, on masinaehitaja Hekotek. 2025. aasta augustis sai avalikuks, et petturid viisid ettevõttest kahe tunni jooksul 52 ülekandega välja 1,6 miljonit eurot. Ahel: kõne finantsjuhile Tervisekassana esinedes, sellest kõnest saadud andmetega finantsjuhi nimele loodud uus Smart-ID konto, edasised kõned pangatöötajate ja politseinikena esinedes ning AnyDeski kaudu saadud kaugligipääs finantsjuhi arvutile. Osa rahast saadi tagasi; lõplik kahju ületab endiselt miljonit eurot ja ettevõte on vastutuse üle kohtuvaidluses oma endise finantsjuhiga.',
       },
       {
         en: "The rest of the yearbook's case list reads like a taxonomy of preventable failure. An invoice scam in November 2025: a company received an email from a long-standing supplier stating its bank details had changed, paid an approximately 50,000-euro invoice, and the money was gone. A CEO-fraud case from 2022 at the Estonian Traditional Music Centre, which organizes the Viljandi folk festival, became public in November 2025: three transfers totaling over 53,000 euros to foreign accounts before discovery. A gift-card variant cost one company about 550 euros. The countermeasures RIA recommends are mundane and mostly free: two-person approval rules, SPF/DKIM/DMARC, verifying changed bank details by calling a known number.",
         et: 'Ülejäänud aastaraamatu juhtumiloend loeb nagu ennetatavate ebaõnnestumiste taksonoomia. Arvepettus 2025. aasta novembris: ettevõte sai pikaajaliselt tarnijalt e-kirja, milles teatati pangaandmete muutumisest, maksis ligikaudu 50 000 euro suuruse arve ja raha oli läinud. 2022. aastal ettevõtte juhi nimel tehtud kelmus Eesti Pärimusmuusika Keskuses, mis korraldab Viljandi pärimusmuusika festivali, sai avalikuks 2025. aasta novembris: kolm ülekannet kokku üle 53 000 euro välismaistele kontodele, enne kui asi avastati. Kinkekaardi variant maksis ühele ettevõttele umbes 550 eurot. Vastumeetmed, mida RIA soovitab, on argised ja enamasti tasuta: kahe inimese kinnitusreegel, SPF, DKIM ja DMARC ning muudetud pangaandmete kontrollimine teadaoleval numbril helistades.',
       },
+      {
+        en: "A large 2026 case followed the Hekotek script. In May 2026 the Estonian Artists' Association lost about 700,000 euros, mostly Ministry of Culture funding earmarked for artists' salaries. Police said the fraudsters first contacted the association's chief accountant on 7 May, posing as an employee of Omniva's delivery center with a registered letter to hand over. Smart-ID PINs and calls from people posing as officials followed. Police later detained two suspects.",
+        et: 'Üks suur 2026. aasta juhtum järgis Hekoteki stsenaariumi. 2026. aasta mais kaotas Eesti Kunstnike Liit umbes 700 000 eurot, peamiselt Kultuuriministeeriumi sihtotstarbelist raha kunstnike palkadeks. Politsei sõnul võtsid petturid 7. mail ühendust liidu pearaamatupidajaga, esinedes Omniva kättetoimetamiskeskuse töötajana, kellel on üle anda tähitud kiri. Järgnesid Smart-ID PIN-koodid ja kõned ametnikena esinevatelt inimestelt. Hiljem pidas politsei kinni kaks kahtlusalust.',
+      },
     ],
   },
   {
-    heading: { en: 'AI removes the last barrier', et: 'Tehisintellekt eemaldab viimase barjääri' },
+    heading: { en: 'AI is coming for the last barrier', et: 'Tehisintellekt läheneb viimasele barjäärile' },
     paragraphs: [
       {
         en: 'The final stage is the one the headlines reach for first, and the chronology matters. As of June 2025, the native-level Estonian calls were being made by real people. Taavi Kotka, former Estonian government CTO, told ERR in June 2025 that he had received a native-fluency Tervisekassa call himself, filmed it, and concluded the caller was definitely a real Estonian: "I haven\'t yet seen AI making calls in such good Estonian as yet." His forecast was that AI would close the gap "in the not too distant future," and that the economics already favor the scammers: "You can make and send hundreds of thousands of such calls to us in a few hours."',
@@ -155,8 +166,25 @@ const sections: ReportSection[] = [
         et: 'Kus tehisintellekt juba töötab, on tekst ja video. 2026. aasta aastaraamat kirjeldab 2025. aastal levinud süvavõltsitud videot president Alar Karisest, mis reklaamis võltsitud riiklikku investeerimisplatvormi, lubas 870 eurot nädalas ja kasutas usaldusväärsuse loomiseks presidendi autoriteeti. Investeerimispettus oli teine kasvuliin: RIA teatel kaotasid Eesti inimesed ainuüksi 2025. aastal investeerimiskelmustele ligi kuus miljonit eurot. Aastaraamatu üksikjuhtumite hulgas on 57-aastane mees, kes kandis poole aasta jooksul nõustaja juhendamisel oma ettevõtte kontodelt võltsitud kauplemisplatvormile 504 400 eurot, ja 68-aastane naine, kes kaotas ligi 15 000 eurot maaklerile, kes tema sissemaksetega kadus.',
       },
       {
-        en: "The pattern across these cases: AI did not create the fraud economy. It removed the last barrier that still had a price. RIA's yearbook already describes fluent-Estonian scams as the norm, and 2025 produced a deepfake of the president; voice is the one input still made by humans, and Kotka's forecast is that this will not last.",
-        et: 'Nende juhtumite läbiv muster: tehisintellekt ei loonud pettusemajandust. See eemaldas viimase barjääri, millel oli veel hind. RIA aastaraamat kirjeldab soravat eesti keelt kasutavaid pettusi juba normina ja 2025. aasta tõi presidendi süvavõltsingu; hääl on ainus sisend, mille teevad veel inimesed, ja Kotka prognoos on, et see ei kesta.',
+        en: "Across these cases, AI lowered the cost of the parts of the fraud economy that were still expensive. RIA's yearbook already describes fluent-Estonian scams as the norm, and 2025 produced a deepfake of the president. Voice is the input still made by humans. In May 2026 police told ERR it is still difficult to confirm how often AI voices are used in scam calls, and TalTech's Tanel Alumäe said synthetic Estonian voices are not yet as convincing as English ones. Both expect that to change; Kotka's forecast is the same.",
+        et: 'Nendes juhtumites alandas tehisintellekt pettusemajanduse nende osade hinda, mis olid veel kallid. RIA aastaraamat kirjeldab soravat eesti keelt kasutavaid pettusi juba normina ja 2025. aasta tõi presidendi süvavõltsingu. Hääl on sisend, mida teevad veel inimesed. 2026. aasta mais ütles politsei ERR-ile, et endiselt on raske kindlaks teha, kui sageli petukõnedes tehishääli kasutatakse, ning TalTechi Tanel Alumäe sõnul ei ole sünteetilised eestikeelsed hääled veel nii veenvad kui ingliskeelsed. Mõlemad ootavad, et see muutub; sama on Kotka prognoos.',
+      },
+    ],
+  },
+  {
+    heading: { en: '2026 so far', et: '2026. aasta seni' },
+    paragraphs: [
+      {
+        en: 'ERR, citing the Police and Border Guard Board, reported on 13 August 2026 that police received 1,816 reports of phone and internet fraud in the first six months of 2026, and that people in Estonia lost 13.2 million euros. This is a news report citing PPA, not a PPA release. According to PPA\'s Jaagup Toompuu, more than half of the cases were multi-stage phone scams: a call from a supposed service provider hands the victim on to a fake bank security department, and then to someone posing as a police officer. Investment fraud now runs on fake news pages featuring well-known Estonians, among them Arvo Pärt and Ott Tänak.',
+        et: 'ERR teatas 13. augustil 2026 Politsei- ja Piirivalveametile viidates, et politsei sai 2026. aasta esimese kuue kuuga 1816 teadet telefoni- ja internetikelmuste kohta ning Eesti elanikud kaotasid 13,2 miljonit eurot. Tegu on PPA-le viitava uudislooga, mitte PPA enda teatega. PPA Jaagup Toompuu sõnul olid enam kui pooled juhtumid mitmeastmelised kõnekelmused: väidetava teenusepakkuja kõne järel helistab ohvrile panga turvaosakonnana esinev kelm ja seejärel politseinikuna esinev kelm. Investeerimiskelmused kasutavad nüüd libauudiseid tuntud eestlaste nägudega, nende seas Arvo Pärt ja Ott Tänak.',
+      },
+      {
+        en: 'The banks have started to change the approval step. SK ID Solutions made Smart-ID+ available to integrators on 26 June 2025. With it, the user starts the login by scanning a QR code shown on the screen, so a caller can no longer simply trigger a request for the victim to approve. Bigbank became the first Estonian bank to go live with it on 11 June 2026, LHV followed from 16 June, and SEB and Swedbank say they will introduce it later in 2026. Smart-ID+ makes this kind of vishing much harder. It does not rule it out: LHV said in January 2026 that QR flows stay vulnerable when the fraudster is in live contact with the victim.',
+        et: 'Pangad on hakanud kinnitussammu muutma. SK ID Solutions tegi Smart-ID+ liidestajatele kättesaadavaks 26. juunil 2025. Selle puhul alustab kasutaja sisselogimist ise, skannides ekraanil kuvatud QR-koodi, nii et helistaja ei saa enam lihtsalt algatada päringut, mille ohver kinnitab. Bigbank võttis selle Eesti pankadest esimesena kasutusele 11. juunil 2026, LHV alates 16. juunist ning SEB ja Swedbank lubavad selle kasutusele võtta 2026. aasta jooksul. Smart-ID+ muudab sellise vishingu palju raskemaks, kuid ei välista seda: LHV ütles 2026. aasta jaanuaris, et QR-koodiga lahendused jäävad haavatavaks, kui pettur on ohvriga samal ajal ühenduses.',
+      },
+      {
+        en: 'Enforcement has also reached an organizer. In April 2026 Harju County Court convicted Artur Yermolayev, the Ukrainian leader of a criminal organization specializing in phone fraud, under a plea bargain. He received a five-year sentence, most of it suspended, a deportation order and a ten-year Schengen entry ban; the court took into account his agreement to pay 8.5 million euros to the Estonian state. Telecom operators work earlier in the chain: Telia blocked about 24 million scam calls in 2025, and the three large operators about 35 million together (Eesti Pank seminar, March 2026).',
+        et: 'Õiguskaitse on jõudnud ka korraldajani. 2026. aasta aprillis mõistis Harju maakohus kokkuleppemenetluses süüdi telefonipettustele spetsialiseerunud kuritegeliku ühenduse Ukraina päritolu juhi Artur Jermolajevi. Ta sai viieaastase vangistuse, millest suurem osa on tingimisi, väljasaatmise ja kümneaastase Schengeni ala sissesõidukeelu; karistuse määramisel arvestati, et ta oli nõus maksma Eesti riigile 8,5 miljonit eurot. Telekomioperaatorid tegutsevad ahelas varem: Telia blokeeris 2025. aastal umbes 24 miljonit petukõnet ja kolm suurt operaatorit kokku umbes 35 miljonit (Eesti Panga seminar, märts 2026).',
       },
     ],
   },
@@ -164,28 +192,28 @@ const sections: ReportSection[] = [
     heading: { en: 'What the pattern means', et: 'Mida muster tähendab' },
     paragraphs: [
       {
-        en: 'Five findings survive contact with the source material.',
-        et: 'Viis järeldust peavad allikmaterjaliga kokkupuutele vastu.',
+        en: 'Five conclusions follow from the sources.',
+        et: 'Allikatest järeldub viis asja.',
       },
       {
         en: 'The language barrier was a security control. Estonia was protected for years by the fact that fluent Estonian was scarce. That protection was real, invisible, and free, and its collapse is the single most important event in this story. Everything else is a consequence.',
         et: 'Keelebarjäär oli turvameede. Eestit kaitses aastaid see, et sorav eesti keel oli haruldane. Kaitse oli tõeline, nähtamatu ja tasuta ning selle kokkuvarisemine on selle loo kõige olulisem sündmus. Kõik ülejäänu on tagajärg.',
       },
       {
-        en: 'The collapse was structural, not behavioral. The change in the victim statistics was not caused by Estonians becoming more gullible. The supply chain changed: recruited native speakers, then AI. Campaigns and warnings ran for the entire year of 2025, as RIA notes, and losses still tripled by their count. Awareness is not a substitute for a barrier that was removed.',
-        et: 'Kokkuvarisemine oli struktuurne, mitte käitumuslik. Ohvristatistika muutust ei põhjustanud see, et eestlased muutusid kergeusklikumaks. Muutus tarneahel: esmalt värvatud emakeelekõnelejad, seejärel tehisintellekt. Kampaaniad ja hoiatused käisid, nagu RIA märgib, terve 2025. aasta ja kahjud kolmekordistusid nende arvestuses ikkagi. Teadlikkus ei asenda barjääri, mis on eemaldatud.',
+        en: 'The collapse was structural. Nothing in the sources suggests Estonians became more gullible; the supply chain changed, first with recruited native speakers, then with AI. Campaigns and warnings ran for the entire year of 2025, as RIA notes, and losses still rose to 29 million euros, nearly double by PPA\'s count. Awareness campaigns cannot replace a barrier that has gone.',
+        et: 'Kokkuvarisemine oli struktuurne. Miski allikates ei viita sellele, et eestlased oleksid muutunud kergeusklikumaks; muutus tarneahel, esmalt värvatud emakeelekõnelejatega, seejärel tehisintellektiga. Kampaaniad ja hoiatused käisid, nagu RIA märgib, terve 2025. aasta ja kahju kasvas ikkagi 29 miljoni euroni, PPA arvestuse järgi peaaegu kahekordseks. Teavituskampaaniad ei asenda barjääri, mida enam ei ole.',
       },
       {
-        en: "The banking system chose the attack surface. Paršovs's argument, which the statistics support, is that the technical options for protecting Smart-ID approval flows have far outpaced deployment. The consent step is the bottleneck, the fixes exist, and deployment lags for institutional reasons. That analysis is in my Smart-ID report; the fraud data is its cost column.",
-        et: 'Pangandussüsteem valis rünnakupinna. Paršovsi argument, mida statistika toetab, on see, et tehnilised võimalused Smart-ID kinnitusprotsessi kaitsmiseks on juurutamisest kaugele ette jõudnud. Pudelikael on nõusolekusamm, lahendused on olemas ja juurutamine jääb institutsionaalsetel põhjustel maha. See analüüs on minu Smart-ID raportis; pettusestatistika on selle kulurida.',
+        en: "The banking system chose the attack surface. Paršovs argued in January 2026 that the technical options for protecting Smart-ID approval flows had far outpaced deployment. For six years the fixes existed and banks did not deploy them. Smart-ID+, which makes the user start the operation by scanning a QR code, finally went live at Bigbank and LHV in June 2026, with SEB and Swedbank promising it later in the year. The protocol analysis is in my Smart-ID report; the fraud data up to mid-2026 is its cost column.",
+        et: 'Pangandussüsteem valis rünnakupinna. Paršovs väitis 2026. aasta jaanuaris, et tehnilised võimalused Smart-ID kinnitusprotsessi kaitsmiseks on juurutamisest kaugele ette jõudnud. Kuus aastat olid lahendused olemas ja pangad neid ei juurutanud. Smart-ID+, mille puhul kasutaja alustab toimingut ise QR-koodi skannides, jõudis Bigbanki ja LHV-sse lõpuks 2026. aasta juunis ning SEB ja Swedbank lubavad selle samal aastal hiljem. Protokolli analüüs on minu Smart-ID raportis; pettusestatistika kuni 2026. aasta keskpaigani on selle kulurida.',
       },
       {
         en: 'Vishing is the vector that matters. Email phishing is a mass-market lottery. Phone fraud is a two-hour interactive process that harvests both PINs and, in the courier cases, the physical card. It is higher-touch, higher-yield, and it is what the call centers are staffed for. Defenses that focus on email miss the part of the pipeline that is actually industrialized.',
         et: 'Vishing on vektor, mis loeb. E-posti õngitsemine on massiturule suunatud loterii. Telefonipettus on kahetunnine vahetu protsess, mis kogub kokku mõlemad PIN-koodid ja kulleritega juhtumites ka füüsilise kaardi. See nõuab rohkem vahetut kontakti, annab rohkem tulu ja just selle jaoks on kõnekeskused mehitatud. Kaitsemeetmed, mis keskenduvad e-kirjale, jätavad vahele selle osa ahelast, mis on tegelikult tööstuslikuks muudetud.',
       },
       {
-        en: "The next stage is already accounted for. AI voice synthesis in fluent Estonian is the obvious completion of the trajectory, Kotka's forecast, and nothing in the 2025 data argues against it. The defense that works against it is the same one that works against the current wave: make the approval step itself phishing-resistant, move verification off the phone call, and treat the user's PIN as a secret that no legitimate party ever asks for.",
-        et: 'Järgmine etapp on juba arvesse võetud. Soravat eesti keelt kõnelev tehishääl on selle trajektoori ilmne lõpp, Kotka prognoos, ja miski 2025. aasta andmetes ei räägi sellele vastu. Kaitse selle vastu on sama, mis töötab praeguse laine vastu: muuta kinnitussamm ise õngitsemiskindlaks, viia kontrollimine telefonikõnest välja ja kohelda kasutaja PIN-koodi saladusena, mida ükski seaduslik osapool kunagi ei küsi.',
+        en: "The next stage is predictable. AI voice synthesis in fluent Estonian is the obvious completion of the trajectory, Kotka's forecast, and nothing in the 2025 data argues against it. The defense that works against it is the same one that works against the current wave: make the approval step itself phishing-resistant, move verification off the phone call, and treat the user's PIN as a secret that no legitimate party ever asks for.",
+        et: 'Järgmine etapp on ette näha. Soravat eesti keelt kõnelev tehishääl on selle trajektoori ilmne lõpp, Kotka prognoos, ja miski 2025. aasta andmetes ei räägi sellele vastu. Kaitse selle vastu on sama, mis töötab praeguse laine vastu: muuta kinnitussamm ise õngitsemiskindlaks, viia kontrollimine telefonikõnest välja ja kohelda kasutaja PIN-koodi saladusena, mida ükski seaduslik osapool kunagi ei küsi.',
       },
     ],
   },
@@ -205,7 +233,7 @@ const sources = [
   {
     label: 'ERR News, "Investigation: How phone scammers hire Estonian-speaking recruits" (Taavi Eilat, 11.02.2026)',
     url: 'https://news.err.ee/1609938083/investigation-how-phone-scammers-hire-estonian-speaking-recruits',
-    note: 'Uzhhorod recruitment terms, B2 verification, courier case, 600,000-euro case, 5-10 million historical range, 29 million "official police figures", Elari Haugas quotes',
+    note: 'Uzhhorod recruitment terms, B2 verification, courier case, 600,000-euro case (ERR narration), ERR\'s own 5-10 million historical range, 29 million "official police figures", Elari Haugas quotes',
   },
   {
     label: 'ERR News, "Phone scammers now speaking in native-level Estonian" (09.06.2025)',
@@ -220,12 +248,62 @@ const sources = [
   {
     label: 'Baltic Times / LETA, "Fraud in the Baltics: Phishing targeting predominantly local language speakers" (30.07.2024)',
     url: 'https://www.baltictimes.com/fraud_in_the_baltics__phishing_targeting_predominantly_local_language_speakers/',
-    note: 'SEB Baltic fraud statistics H1 2024: 65% Estonian-speaking incidents, victim demographics, vishing share, Katlin Kukk quotes',
+    note: 'SEB Baltic fraud statistics H1 2024: 65% Estonian-speaking incidents, phone fraud "mainly conducted in Russian", victim demographics, SEB Latvia vishing share, Katlin Kukk quotes',
   },
   {
-    label: 'Police and Border Guard Board, "Kelmid petsid Eesti inimestelt välja 29 miljonit eurot"',
+    label: 'Police and Border Guard Board, "Kelmid petsid Eesti inimestelt välja 29 miljonit eurot" (19.01.2026)',
     url: 'https://www.politsei.ee/et/uudised/kelmid-petsid-eesti-inimestelt-vaelja-29-miljonit-eurot-13196',
-    note: '16 million euros lost in 2024, nearly doubled in 2025',
+    note: '16 million euros lost in 2024, nearly doubled in 2025; 3,685 victims; phone scams 11.5M, investment 6.3M, business-targeted 2.7M, sales 1.7M; Jaagup Toompuu on Estonian-speaking call-center recruits',
+  },
+  {
+    label: 'RIA, Cyber Security in Estonia 2026 (PDF, ENISA mirror)',
+    url: 'https://www.enisa.europa.eu/sites/default/files/ncss-map/strategies/additional-documents/Cyber-security-in-Estonia-2026.pdf',
+    note: 'fraud cases "drawn from reports by the Police and Border Guard Board and RIA"; business fraud and loss amount',
+  },
+  {
+    label: 'ERR, "ERR Ukrainas: sõda pakub petistele uusi võimalusi kuritegudeks" (05.04.2026)',
+    url: 'https://www.err.ee/1609987236/err-ukrainas-soda-pakub-petistele-uusi-voimalusi-kuritegudeks',
+    note: 'Hannes Kelt: mass Estonian-language calls from late 2024; phone scams 11.5 million euros in 2025',
+  },
+  {
+    label: 'ERR, "Kelmid petsid Eesti elanikelt poole aastaga välja 13,2 miljonit eurot" (13.08.2026)',
+    url: 'https://www.err.ee/1610109475/kelmid-petsid-eesti-elanikelt-poole-aastaga-valja-13-2-miljonit-eurot',
+    note: 'secondary report citing PPA: 1,816 reports and 13.2 million euros lost in H1 2026; multi-stage phone scams over half of cases',
+  },
+  {
+    label: 'ERR News, "Banks taking on scammers with new Smart-ID+ upgrade" (June 2026)',
+    url: 'https://news.err.ee/1610054356/banks-taking-on-scammers-with-new-smart-id-upgrade',
+    note: 'Smart-ID+ QR flow; Bigbank first, LHV next; SEB and Swedbank later in 2026',
+  },
+  {
+    label: 'ERR News, "Estonian Artists\' Association taken for €700,000 in massive scam" (19.05.2026)',
+    url: 'https://news.err.ee/1610027830/estonian-artists-association-taken-for-700-000-in-massive-scam',
+    note: 'Omniva pretext, about 700,000 euros lost',
+  },
+  {
+    label: 'ERR, "Politsei pidas kinni kunstnike liidu rahavarguse kaks kahtlusalust"',
+    url: 'https://www.err.ee/1610039407/politsei-pidas-kinni-kunstnike-liidu-rahavarguse-kaks-kahtlusalust',
+    note: 'two suspects detained in the Artists\' Association case',
+  },
+  {
+    label: 'ERR News, "Phone scammer handed suspended sentence in €8.5 million plea bargain" (30.04.2026)',
+    url: 'https://news.err.ee/1610011252/phone-scammer-handed-suspended-sentence-in-8-5-million-plea-bargain',
+    note: 'Artur Yermolayev plea bargain, sentence and 8.5 million euro payment',
+  },
+  {
+    label: 'ERR News, "Improved Estonian AI voice cloning making phone scams harder to spot" (21.05.2026)',
+    url: 'https://news.err.ee/1610029993/improved-estonian-ai-voice-cloning-making-phone-scams-harder-to-spot',
+    note: 'police on confirming AI voice use; Tanel Alumäe on Estonian speech synthesis',
+  },
+  {
+    label: 'Eesti Pank, payment-fraud seminar (05.03.2026)',
+    url: 'https://www.eestipank.ee/en/press/prevention-systematic-cooperation-and-increased-awareness-help-tackle-payment-fraud-05032026',
+    note: 'Telia blocked about 24 million scam calls in 2025; about 35 million across the three large operators',
+  },
+  {
+    label: 'Statistics Estonia, "Population census: 76% of Estonia\'s population speak a foreign language"',
+    url: 'https://www.stat.ee/en/news/population-census-76-estonias-population-speak-foreign-language',
+    note: '2021 census: Estonian is the mother tongue of 67% of the population',
   },
   {
     label: 'Baltic Times, "Number of impactful cyber incidents in Estonia nearly doubled on year"',
@@ -253,6 +331,14 @@ const disclosureParagraphs: Bi[] = [
     en: "Research conduct follows the site's ",
     et: 'Uurimistöö järgib saidi ',
   },
+  {
+    en: "Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. The conclusions also point to the author's own Smart-ID research.",
+    et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Järeldused viitavad ka autori enda Smart-ID uurimistööle.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: an earlier version read SEB\'s H1 2024 data as proof that the language barrier had already fallen; SEB said phone fraud was then mainly conducted in Russian, and the shift is now dated to late 2024 from police statements. I also removed an unsupported explanation of the RIA/PPA gap, corrected phone scams from "the majority" to the largest category (about 40 percent) of 2025 losses, attributed the five-to-ten-million range to ERR, limited SEB\'s two-thirds vishing share to Latvia, narrowed the period to 2017–2026, and added the 2026 police figures and the Smart-ID+ rollout.',
+    et: 'Parandused, 4. oktoober 2026: varasem versioon tõlgendas SEB 2024. aasta esimese poolaasta andmeid tõendina, et keelebarjäär oli juba langenud; SEB sõnul tehti telefonipettusi siis peamiselt vene keeles ja nihe on nüüd politsei ütluste põhjal dateeritud 2024. aasta lõppu. Lisaks eemaldasin RIA ja PPA arvude erinevuse põhjendamata selgituse, parandasin väite, et petukõned moodustasid 2025. aasta kahjust "enamiku" (tegelikult suurim kategooria, umbes 40 protsenti), omistasin viie kuni kümne miljoni vahemiku ERR-ile, piirasin SEB kahe kolmandiku suuruse vishingu osakaalu Lätiga, kitsendasin käsitletavat perioodi aastatele 2017–2026 ning lisasin 2026. aasta politseiandmed ja Smart-ID+ kasutuselevõtu.',
+  },
 ];
 const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
@@ -271,7 +357,9 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
         meta={[<>
               {isEn ? 'Published · August 26, 2026' : 'Avaldatud · 26. august 2026'}
             </>, <>
-              {isEn ? '12 min read' : '12 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '16 min read' : '16 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -370,6 +458,9 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
                 </a>
                 .
               </p>
+              {disclosureParagraphs.slice(2).map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
             </div>
           </section>
         </div>
@@ -377,7 +468,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
 
       <ArticleProof
         slug="the-evolution-of-cyber-fraud-in-estonia"
-        expectedSha256="06aadc70a0b9c5eeb0b2bf4d57adf0fb708051e7539290c79e71672e18fbfc37"
+        expectedSha256="8ce1f7d3cedf69d9a9f19e0ac0eb7364682ad9cb7b662a70b760da2f27598348"
       />
     </article>
   );

@@ -12,19 +12,19 @@ type EssaySection = {
 };
 
 const title: Bi = {
-  en: 'How client-side anti-fraud actually works, and why VLMs break it',
-  et: 'Kuidas kliendipoolne pettusetõrje tegelikult töötab ja miks visuaal-keelemudelid selle murravad',
+  en: 'How client-side anti-fraud actually works, and what VLM agents change',
+  et: 'Kuidas kliendipoolne pettusetõrje tegelikult töötab ja mida muudavad visuaal-keelemudelil põhinevad agendid',
 };
 
 const standfirst: Bi = {
-  en: 'Fifteen years of bot detection rests on one premise: an automated client has to fake something a real browser produces naturally. A vision-language model driving a stock browser fakes nothing. This is a plain-language walkthrough of my systematization of the field — the five defensive paradigms, which of them survive that shift, and why the interesting question is no longer detection but who controls the root of trust.',
-  et: 'Viisteist aastat botituvastust tugineb ühel eeldusel: automaatne klient peab võltsima midagi, mida päris brauser toodab loomulikult. Visuaal-keelemudel, mis juhib muutmata brauserit, ei võltsi midagi. See on lihtsas keeles ülevaade minu valdkonna süstemaatilisest ülevaatest — viis kaitseparadigmat, millised neist selle nihke üle elavad ja miks huvitav küsimus ei ole enam tuvastamine, vaid see, kes kontrollib usalduse juurt.',
+  en: 'Fifteen years of bot detection rests on one premise: an automated client has to fake something a real browser produces naturally. A vision-language model driving a stock browser through the operating system fakes nothing inside the browser. This is a plain-language walkthrough of my systematization of the field: the five defensive paradigms, how much of each survives that shift, what a small testbed measured, and why the harder question is now who controls the root of trust.',
+  et: 'Viisteist aastat botituvastust tugineb ühel eeldusel: automaatne klient peab võltsima midagi, mida päris brauser toodab loomulikult. Visuaal-keelemudel, mis juhib muutmata brauserit operatsioonisüsteemi kaudu, ei võltsi brauseri sees midagi. See on lihtsas keeles ülevaade minu valdkonna süstemaatilisest ülevaatest: viis kaitseparadigmat, kui palju igaühest selle nihke järel alles jääb, mida mõõtis väike katsekeskkond ja miks raskem küsimus on nüüd see, kes kontrollib usalduse juurt.',
 };
 
 const openingParagraphs: Bi[] = [
   {
-    en: 'I spent the last stretch of my research writing a systematization-of-knowledge paper on client-side anti-automation: what the industry built between roughly 2010 and 2024, why it worked, and what happens to it when the adversary is an AI agent that looks at the page and operates it. This page is the readable version of that argument. The full manuscript, with the citations and the tables, is on GitHub.',
-    et: 'Veetsin oma uurimistöö viimase etapi kliendipoolse automaatikatõrje süstemaatilise ülevaate kirjutamisel: mida tööstus ehitas umbes aastatel 2010–2024, miks see toimis ja mis sellest saab, kui vastane on tehisintellekti agent, kes vaatab lehte ja kasutab seda. See lehekülg on sama argumendi loetav versioon. Täielik käsikiri koos viidete ja tabelitega on GitHubis.',
+    en: 'I spent the last stretch of my research writing a systematization-of-knowledge paper on client-side anti-automation: what the industry built between roughly 2010 and 2024, why it worked, and what happens to it when the adversary is an AI agent that looks at the page and operates it. This page is the readable version of that argument, synced to the manuscript as of 24 September 2026 (commit f037d68), the revision that added measurements from a small self-hosted testbed. The full manuscript, with the citations, tables and measurement artifact, is on GitHub.',
+    et: 'Veetsin oma uurimistöö viimase etapi kliendipoolse automaatikatõrje süstemaatilise ülevaate kirjutamisel: mida tööstus ehitas umbes aastatel 2010–2024, miks see toimis ja mis sellest saab, kui vastane on tehisintellekti agent, kes vaatab lehte ja kasutab seda. See lehekülg on sama argumendi loetav versioon ja vastab käsikirja 24. septembri 2026 seisule (sissekanne f037d68). Selles redaktsioonis lisandusid väikese omamajutatud katsekeskkonna mõõtmised. Täielik käsikiri koos viidete, tabelite ja mõõtmisandmetega on GitHubis.',
   },
 ];
 
@@ -36,12 +36,12 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Every client-side anti-fraud system makes the same advertised claim: a human is present at the other end of this session. None of them verify that. They verify that the environment producing the request looks like one a human would be sitting in front of — a browser whose properties are internally consistent, whose timers behave like real hardware, whose mouse moves the way arms and wrists move.',
-        et: 'Iga kliendipoolne pettusetõrjesüsteem esitab sama väite: selle seansi teises otsas on inimene. Ükski neist seda ei kontrolli. Nad kontrollivad, et päringut tootev keskkond näeb välja selline, mille ees inimene istuks — brauser, mille omadused on omavahel kooskõlas, mille taimerid käituvad nagu päris riistvara ja mille hiir liigub nii, nagu liiguvad käed ja randmed.',
+        en: 'Most client-side anti-fraud is sold as evidence that a human is present at the other end of the session. What it actually checks is whether the environment producing the request is a coherent, real browser: properties that agree with each other, timers that behave like real hardware, a mouse that moves the way arms and wrists move.',
+        et: 'Enamikku kliendipoolsest pettusetõrjest müüakse tõendina, et seansi teises otsas on inimene. Tegelikult kontrollib see, kas päringut tootev keskkond on sidus ja päris brauser: omadused on omavahel kooskõlas, taimerid käituvad nagu päris riistvara ja hiir liigub nii, nagu liiguvad käed ja randmed.',
       },
       {
-        en: 'That gap is the whole story. The defence is not measuring humanity, it is measuring the cost of forgery. A bot is caught not because it is a bot but because faking a coherent environment is expensive, and cheap fakes are incoherent. Every paradigm below is a different way of raising that price.',
-        et: 'Kogu lugu peitub selles lõhes. Kaitse ei mõõda inimlikkust, vaid võltsimise hinda. Bott jääb vahele mitte seetõttu, et ta on bott, vaid seetõttu, et sidusa keskkonna võltsimine on kallis ja odavad võltsingud on ebajärjekindlad. Iga allolev paradigma on erinev viis seda hinda tõsta.',
+        en: 'That gap is the whole story. The defence measures the cost of forgery. A bot gets caught because faking a coherent environment is expensive and cheap fakes are incoherent. Every paradigm below is a different way of raising that price.',
+        et: 'Kogu lugu peitub selles lõhes. Kaitse mõõdab võltsimise hinda. Bott jääb vahele seetõttu, et sidusa keskkonna võltsimine on kallis ja odavad võltsingud on ebajärjekindlad. Iga allolev paradigma on erinev viis seda hinda tõsta.',
       },
     ],
   },
@@ -56,16 +56,20 @@ const sections: EssaySection[] = [
         et: 'Hetkeline virtuaalmasina-atesteerimine käivitab brauseris väikese omatehtud virtuaalmasina. See täidab hägustatud baitkoodi, mis uurib keskkonda, püüab silureid, kontrollib taimereid ja väljastab loa, mida server usub. Google BotGuard on kanooniline näide ja olen sellest avaldanud eraldi opkoodi tasemel lahtivõtmise.',
       },
       {
-        en: 'Stateful behavioural telemetry does the opposite: instead of one deep probe it accumulates a shallow profile over weeks. Cookies, storage, navigation cadence, dwell time. Its real weapon is latency. You cannot buy a three-month-old browsing history; you have to wait for one.',
-        et: 'Olekupõhine käitumistelemeetria teeb vastupidist: ühe sügava sondeerimise asemel kogub see nädalate jooksul pinnapealset profiili. Küpsised, salvestusruum, navigeerimise rütm, lehel viibimise aeg. Selle tegelik relv on ooteaeg. Kolme kuu vanust sirvimisajalugu ei saa osta, seda tuleb oodata.',
+        en: 'Stateful behavioural telemetry does the opposite: instead of one deep probe it accumulates a shallow profile over weeks. Cookies, storage, navigation cadence, dwell time. Its real weapon is latency: a three-month-old browsing history takes three months to grow, or has to be bought from someone who waited.',
+        et: 'Olekupõhine käitumistelemeetria teeb vastupidist: ühe sügava sondeerimise asemel kogub see nädalate jooksul pinnapealset profiili. Küpsised, salvestusruum, navigeerimise rütm, lehel viibimise aeg. Selle tegelik relv on ooteaeg: kolme kuu vanune sirvimisajalugu vajab kasvamiseks kolm kuud või tuleb osta kelleltki, kes ootas.',
       },
       {
-        en: 'Behavioural biometrics and sensor telemetry model the body: mouse velocity and acceleration curves, scroll physics, click timing, touch pressure, accelerometer noise. The cost floor here has historically been human labour — solving farms at roughly a dollar per thousand challenges.',
-        et: 'Käitumisbiomeetria ja andurite telemeetria modelleerivad keha: hiire kiiruse- ja kiirenduskõverad, kerimise füüsika, klikkide ajastus, puudutuse surve, kiirendusmõõdiku müra. Kulupõrand on siin ajalooliselt olnud inimtööjõud — lahendusteenused umbes dollari eest tuhande ülesande kohta.',
+        en: 'Behavioural biometrics and sensor telemetry model the body: mouse velocity and acceleration curves, scroll physics, click timing, touch pressure, accelerometer noise. The cost floor here has historically been human labour. Solving services charged roughly $0.50–$2 per thousand challenges in 2010 (Motoyama et al.), and 2Captcha still lists €0.50–€2.80 per thousand for the common challenge types.',
+        et: 'Käitumisbiomeetria ja andurite telemeetria modelleerivad keha: hiire kiiruse- ja kiirenduskõverad, kerimise füüsika, klikkide ajastus, puudutuse surve, kiirendusmõõdiku müra. Kulupõrand on siin ajalooliselt olnud inimtööjõud. Lahendusteenused küsisid 2010. aastal umbes 0,50–2 dollarit tuhande ülesande eest (Motoyama jt) ja 2Captcha hinnakirjas on levinumate ülesandetüüpide hind endiselt 0,50–2,80 eurot tuhande kohta.',
       },
       {
-        en: 'Platform-level anonymous attestation replaces inference with cryptography: Apple Private Access Tokens and Privacy Pass issue blind-signed tokens backed by a Secure Enclave or TPM, rate-limited per device. Hardware-anchored determinism — DBSC, FIDO2, passkeys — extends that from a one-off token to a session bound to a key the device cannot export.',
-        et: 'Platvormitasandi anonüümne atesteerimine asendab järeldamise krüptograafiaga. Apple Private Access Tokens ja Privacy Pass väljastavad pimesignatuuriga märke, mille taga on Secure Enclave või TPM ja mille väljastamine on seadme kohta piiratud. Riistvaraga ankurdatud determinism — DBSC, FIDO2 ja pääsuvõtmed — laiendab sama mõtet ühekordselt märgilt seansile või mandaadile, mis on seotud võtmega, mida seade ei saa välja anda.',
+        en: 'Platform-level anonymous attestation replaces inference with cryptography. In Apple\'s Private Access Tokens, Apple attests the device and account, and issuers such as Cloudflare and Fastly sign blind tokens that a site can redeem without learning who the user is. Per-device limits on issuance were specified in an IETF draft, but that draft has lapsed, and Apple publishes no limits of its own. Privacy Pass, the protocol underneath, is not hardware-backed by itself: its first deployment used a solved CAPTCHA as the attester.',
+        et: 'Platvormitasandi anonüümne atesteerimine asendab järeldamise krüptograafiaga. Apple\'i Private Access Tokensi puhul tõendab Apple seadet ja kontot ning väljastajad, nagu Cloudflare ja Fastly, allkirjastavad pimesignatuuriga märke, mida sait saab lunastada kasutaja isikut teadmata. Väljastamise piiramine seadme kohta kirjeldati IETF-i kavandis, kuid see kavand on aegunud ja Apple oma piiranguid ei avalda. Selle aluseks olev protokoll Privacy Pass ei ole iseenesest riistvaraga seotud: selle esimeses kasutuses oli tõendajaks lahendatud CAPTCHA.',
+      },
+      {
+        en: 'Hardware-anchored determinism — DBSC, FIDO2, passkeys — binds an enrolled session or credential to a key the device cannot export. It stops cookie theft and credential phishing, not anonymous automation: it applies only once someone has an account and an enrolled device.',
+        et: 'Riistvaraga ankurdatud determinism — DBSC, FIDO2 ja pääsuvõtmed — seob registreeritud seansi või mandaadi võtmega, mida seade ei saa välja anda. See peatab küpsiste varguse ja mandaatide õngitsemise, mitte anonüümse automaatika: see rakendub alles siis, kui kellelgi on konto ja registreeritud seade.',
       },
     ],
   },
@@ -80,8 +84,8 @@ const sections: EssaySection[] = [
         et: 'Kümme aastat oli võistlusel selge kuju. Kaitsja saatis välja hägustatud virtuaalmasina ja vahetas kompilatsiooni sageli. Ründaja lasi selle läbi sümboolse täitmise ja hägustuse eemaldamise tööriistade, et loogika taastada, ning võltsis seejärel vastused. Võidujooksu tingimus oli lihtsalt see, kas pöördprojekteerimise aeg püsis ehituse elueast lühem.',
       },
       {
-        en: 'That framing assumes the attacker inspects the defence. Every obfuscation budget in the industry was spent on that assumption. It no longer holds.',
-        et: 'See raamistik eeldab, et ründaja uurib kaitset. Sellele eeldusele kulutati tööstuses iga hägustuse eelarve. See enam ei kehti.',
+        en: 'That framing assumes the attacker inspects the defence. The paper calls this environmental forgery: the bot works inside the browser runtime and has to fake what the runtime reports. Most of the industry\'s obfuscation effort went into that assumption. It no longer describes every attacker.',
+        et: 'See raamistik eeldab, et ründaja uurib kaitset. Töö nimetab seda keskkonna võltsimiseks: bott töötab brauseri käituskeskkonna sees ja peab võltsima seda, mida käituskeskkond raporteerib. Suurem osa tööstuse hägustamisse tehtud investeeringutest lähtus sellest eeldusest. Kõiki ründajaid see enam ei kirjelda.',
       },
     ],
   },
@@ -92,16 +96,44 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'I call the new vector operator synthesis. A vision-language model screenshots a real, unmodified browser, decides where to click, and an orchestration layer turns that coordinate into an OS-level mouse event. Nothing is patched. The navigator object is real. The WebGL renderer is real. The timers are real, because they are.',
-        et: 'Nimetan uut ründevektorit operaatori sünteesiks. Visuaal-keelemudel teeb päris muutmata brauserist ekraanipildi, otsustab, kuhu klõpsata, ja orkestreerimiskiht muudab selle koordinaadi operatsioonisüsteemi tasandi hiiresündmuseks. Brauseris ei paranda keegi midagi. Objekt navigator on ehtne. WebGL-i renderdaja on ehtne. Taimerid on ehtsad, sest nad ongi.',
+        en: 'I call the new vector operator synthesis. A vision-language model screenshots a real, unmodified browser, decides where to click, and an orchestration layer turns that coordinate into an OS-level mouse event. Nothing is patched. The navigator object, the WebGL renderer and the timers are all genuine. OS-level input is old: xdotool and AutoHotkey long predate any of this. What the model adds is that nobody has to write a script for each site.',
+        et: 'Nimetan uut ründevektorit operaatori sünteesiks. Visuaal-keelemudel teeb päris muutmata brauserist ekraanipildi, otsustab, kuhu klõpsata, ja orkestreerimiskiht muudab selle koordinaadi operatsioonisüsteemi tasandi hiiresündmuseks. Brauseris ei paranda keegi midagi. Objekt navigator, WebGL-i renderdaja ja taimerid on kõik ehtsad. Operatsioonisüsteemi tasandi sisend ei ole uus: xdotool ja AutoHotkey on palju vanemad. Mudel lisab selle, et iga saidi jaoks ei pea enam eraldi skripti kirjutama.',
       },
       {
-        en: 'This does not solve the forgery problem, it walks around it. The VM still runs and still checks everything, and every check passes honestly. Reverse-engineering time at the bytecode level goes to roughly zero — not because the obfuscation broke, but because nobody looked at it.',
-        et: 'See ei lahenda võltsimisprobleemi. See läheb sellest mööda. Virtuaalmasin töötab endiselt, kontrollib endiselt kõike, mida varem, ja iga kontroll läbitakse ausalt. Pöördprojekteerimise aeg baitkoodi tasandil langeb ligikaudu nulli — mitte sellepärast, et hägustus murti, vaid sellepärast, et keegi ei vaadanudki seda.',
+        en: 'This walks around the forgery problem instead of solving it. The VM still runs and still checks everything, and every check passes. Reverse-engineering time at the bytecode level goes to roughly zero, because nobody needs to look at the bytecode.',
+        et: 'See läheb võltsimisprobleemist mööda, selle asemel et seda lahendada. Virtuaalmasin töötab endiselt, kontrollib endiselt kõike ja iga kontroll läbitakse. Pöördprojekteerimise aeg baitkoodi tasandil langeb ligikaudu nulli, sest kellelgi pole vaja baitkoodi vaadata.',
       },
       {
-        en: 'Two honest caveats. The model outputs a coordinate, not a trajectory: something else moves the cursor, and naive interpolation still looks like a machine. And industrial scale means containers, which leak — missing system fonts, a WebGL stack that does not match the declared operating system, odd TCP/IP fingerprints. The cognitive half of the problem is solved. The deployment half is not.',
-        et: 'Kaks ausat märkust. Mudel väljastab koordinaadi, mitte trajektoori: kursorit liigutab miski muu ja naiivne interpolatsioon näeb endiselt välja nagu masin. Ja tööstuslik maht tähendab konteinereid, mis lekivad — puuduvad süsteemifondid, WebGL-i virn, mis ei sobi kokku deklareeritud operatsioonisüsteemiga, veidrad TCP/IP sõrmejäljed. Ülesande tunnetuslik pool on lahendatud. Juurutamise pool ei ole.',
+        en: 'Two caveats. The model outputs a coordinate, not a trajectory: something else moves the cursor, and naive interpolation still looks like a machine. And industrial scale means containers, which leak — missing system fonts, a WebGL stack that does not match the declared operating system, odd TCP/IP fingerprints. The cognitive half of the problem is solved. The deployment half is not.',
+        et: 'Kaks märkust. Mudel väljastab koordinaadi, mitte trajektoori: kursorit liigutab miski muu ja naiivne interpolatsioon näeb endiselt välja nagu masin. Ja tööstuslik maht tähendab konteinereid, mis lekivad — puuduvad süsteemifondid, WebGL-i virn, mis ei sobi kokku deklareeritud operatsioonisüsteemiga, veidrad TCP/IP sõrmejäljed. Ülesande tunnetuslik pool on lahendatud. Juurutamise pool ei ole.',
+      },
+      {
+        en: 'One boundary on "AI agent". The commercial computer-use products are built to stop at CAPTCHAs: OpenAI trained Operator to hand control back to the user when it meets one, and Google lists bypassing CAPTCHAs among the high-risk actions that the safety controls of Gemini 2.5 Computer Use block. They do not always stop — in July 2025 ChatGPT agent was reported clicking through Cloudflare Turnstile\'s checkbox — but the adversary in this piece is a self-hosted open-weight model with no such policy, not the assistant a reader uses at work.',
+        et: 'Üks piir mõistele „tehisintellekti agent“. Kommertslikud agendid, mis juhivad kasutaja eest arvutit, on ehitatud CAPTCHA juures peatuma: OpenAI õpetas Operatori sellisel juhul juhtimist kasutajale tagasi andma ja Google loetleb CAPTCHA-st möödahiilimise nende kõrge riskiga tegevuste hulgas, mida Gemini 2.5 Computer Use\'i turvakontrollid blokeerivad. Alati nad ei peatu: 2025. aasta juulis teatati, et ChatGPT agent klõpsas läbi Cloudflare Turnstile\'i märkeruudu. Selle artikli vastane on aga omamajutatud avatud kaaludega mudel, millel sellist poliitikat pole, mitte assistent, mida lugeja tööl kasutab.',
+      },
+    ],
+  },
+  {
+    heading: {
+      en: 'What a small testbed showed',
+      et: 'Mida näitas väike katsekeskkond',
+    },
+    paragraphs: [
+      {
+        en: 'The September 2026 revision of the paper adds a first data point. On a localhost testbed of five simple form pages I ran Playwright, scripted OS-level input, a pure VLM agent, and a hybrid that calls the model only on unfamiliar pages, ten runs per configuration, with small open-weight models. It is a first data point, not a benchmark: synthetic forms, a small sample, one model provider, and vendor test keys that always pass, so no production detector was measured.',
+        et: 'Töö 2026. aasta septembri redaktsioon lisab esimese andmepunkti. Viiest lihtsast vormilehest koosnevas kohalikus katsekeskkonnas käitasin Playwrighti, skriptitud operatsioonisüsteemi tasandi sisendit, puhast visuaal-keelemudeli agenti ja hübriidi, mis kutsub mudelit ainult tundmatutel lehtedel. Iga konfiguratsiooni käivitasin kümme korda ja kasutasin väikesi avatud kaaludega mudeleid. See on esimene andmepunkt, mitte võrdlusalus: sünteetilised vormid, väike valim, üks mudelipakkuja ja tootjate testvõtmed, mis lasevad alati läbi, nii et ühtegi tootmises kasutatavat tuvastajat ei mõõdetud.',
+      },
+      {
+        en: 'Detection followed the injection point, not the model. The navigator.webdriver flag showed up in all twenty Playwright runs, and a hidden decoy button caught the ten that clicked by DOM reference. Neither fired in any of the fifty runs that used OS-level input, whether a script or a VLM chose the clicks. Two kinematic detectors fitted on public human mouse data behaved the same way. A straightness rule flagged every pointer jump from the scripted and the VLM agents alike and missed every textbook smoothed path; a learned classifier caught 35 per cent of the smoothed paths and none of the jumps. Each detected how the pointer was driven, never whether a model picked the target.',
+        et: 'Tuvastus järgis sisendi sisestamise kohta, mitte mudelit. Lipp navigator.webdriver ilmus kõigis kahekümnes Playwrighti käivituses ja peidetud peibutis tabas need kümme, mis klõpsasid DOM-viite järgi. Kumbki ei rakendunud üheski viiekümnest käivitusest, mis kasutas operatsioonisüsteemi tasandi sisendit, olenemata sellest, kas klõpsud valis skript või visuaal-keelemudel. Kaks avalike inimeste hiireandmete põhjal sobitatud kinemaatilist tuvastajat käitusid samamoodi. Sirgusreegel märgistas kõik skriptitud ja mudelipõhiste agentide kursorihüpped, kuid mitte ühtegi õpikupäraselt silutud trajektoori. Õpitud klassifikaator tabas 35 protsenti silutud trajektooridest ja mitte ühtegi hüpet. Kumbki tuvastas, kuidas kursorit liigutati, mitte seda, kas sihtmärgi valis mudel.',
+      },
+      {
+        en: 'What the agent added was generalisation. On nine unseen variants of the form — new labels, some in German, new ids, moved buttons, different input widgets — scripts written for the base form passed at most 18 of 54 runs. The unchanged VLM agent passed 50 of 54. A text-only model given the accessibility tree instead of a screenshot passed all 54, so on labelled forms the generalisation comes from language reasoning, not from vision. Vision matters for where input enters: the text-only agent acts through the browser automation protocol and carries its traces inside the runtime, while the screenshot agent never touches the runtime at all.',
+        et: 'Agendi tegelik lisandus oli üldistusvõime. Vormi üheksal tundmatul variandil — uued sildid, osa saksa keeles, uued id-d, teise kohta viidud nupud, teistsugused vormielemendid — läbisid algvormi jaoks kirjutatud skriptid kõige rohkem 18 käivitust 54-st. Muutmata visuaal-keelemudeli agent läbis neist 50. Ainult teksti lugev mudel, mis sai ekraanipildi asemel ligipääsetavuspuu, läbis kõik 54, nii et siltidega vormidel tuleb üldistusvõime keelelisest arutlusest, mitte nägemisest. Nägemine on oluline selle jaoks, kus sisend siseneb: teksti lugev agent tegutseb brauseri automatiseerimisprotokolli kaudu ja jätab käituskeskkonda selle jäljed, ekraanipilti kasutav agent aga ei puutu käituskeskkonda üldse.',
+      },
+      {
+        en: 'The small models were also fast and cheap. Median latency per model call was 0.8–1.5 seconds, and a whole pure-agent run took 26–44 seconds. The cheaper model completed the five-field flow for €0.0019 per success, or €0.0010 as a hybrid, which is within what a human solving service charges for a single CAPTCHA.',
+        et: 'Väikesed mudelid olid ka kiired ja odavad. Mudelikutse mediaanviivitus oli 0,8–1,5 sekundit ja terve puhta agendi käivitus kestis 26–44 sekundit. Odavam mudel läbis viieväljalise voo eduka käivituse kohta 0,0019 euroga, hübriidina 0,0010 euroga, mis jääb sellesse vahemikku, mida inimestega lahendusteenus küsib ühe CAPTCHA eest.',
       },
     ],
   },
@@ -112,20 +144,28 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'VM attestation degrades but does not vanish. The environmental probe still catches container artefacts, and the timing layer gets a new target: a human finishes a challenge in two to five seconds, a model needs five to fifteen per inference cycle. Microsecond instrumentation detection closes; second-scale latency profiling opens.',
-        et: 'Virtuaalmasina-atesteerimine nõrgeneb, kuid ei kao. Keskkonna sondeerimine tabab endiselt konteineri jälgi ja ajastuskiht saab uue sihtmärgi: inimene lõpetab ülesande kahe kuni viie sekundiga, mudel vajab järeldustsükli kohta viis kuni viisteist. Mikrosekundiline instrumenteerimise tuvastus sulgub, sekundiskaalas viivituse profileerimine avaneb.',
+        en: 'The paper sorts the five paradigms into three tiers by how much of their pre-VLM cost survives. Two degrade, one is replaced by a cost the attacker can buy, and two do not care who or what supplies the input.',
+        et: 'Töö jagab viis paradigmat kolme astmesse selle järgi, kui suur osa nende varasemast kulust alles jääb. Kaks nõrgenevad, ühe asendab kulu, mida ründaja saab osta, ja kahe jaoks pole vahet, kes või mis sisendi annab.',
       },
       {
-        en: 'Stateful telemetry loses its best property outright. The model inherits a real browser profile, so profile ageing — the one cost that could not be paid for, only waited out — stops being a barrier. What replaces it is operational: isolating thousands of cookie jars without cross-contamination is real infrastructure work. But infrastructure can be bought, and latency cannot.',
-        et: 'Olekupõhine telemeetria kaotab oma parima omaduse täielikult. Mudel pärib päris brauseriprofiili, nii et profiili vanandamine — ainus kulu, mida ei saanud maksta, vaid pidi välja ootama — lakkab olemast takistus. Selle asemele tuleb operatiivne kulu: tuhandete küpsisehoidlate isoleerimine ilma ristsaastumiseta on tõeline taristutöö. Kuid taristut saab osta, ooteaega mitte.',
+        en: 'VM attestation degrades but does not vanish. Its forgery checks mostly stop costing the attacker anything, but the environmental probe still catches container artefacts, and IP reputation remains the main constraint. Timing is a weaker lever than I first assumed. Small open-weight models in my testbed took 0.7–3 seconds per action, which is in the range of human per-field times, so latency offers at most a regularity signal over a multi-step flow, and I have no human baseline to show even that. Microsecond instrumentation detection closes. Slow, reasoning-heavy frontier models remain unmeasured.',
+        et: 'Virtuaalmasina-atesteerimine nõrgeneb, kuid ei kao. Selle võltsimiskontrollid ei maksa ründajale enam peaaegu midagi, kuid keskkonna sondeerimine tabab endiselt konteineri jälgi ja peamiseks piiranguks jääb IP-aadressi maine. Ajastus on nõrgem hoob, kui ma algul eeldasin. Väikesed avatud kaaludega mudelid kulutasid minu katsekeskkonnas tegevuse kohta 0,7–3 sekundit, mis jääb inimese ühe välja täitmise aja piiridesse. Seega annab viivitus mitmesammulise voo puhul parimal juhul regulaarsussignaali ja ka selle näitamiseks puuduvad mul inimeste võrdlusandmed. Mikrosekundiline instrumenteerimise tuvastus sulgub. Aeglasi ja pikalt arutlevaid tipptasemel mudeleid ei ole mõõdetud.',
       },
       {
-        en: 'Behavioural biometrics degrade partially rather than fully. Target selection is genuinely solved by the model; kinematics are not, because the model never produces them. Against a sloppy orchestration layer biometrics still work; against a careful one they do not. Narrower than the pre-VLM literature assumed, but not zero.',
-        et: 'Käitumisbiomeetria nõrgeneb osaliselt, mitte täielikult. Sihtmärgi valiku lahendab mudel tõepoolest ära. Kinemaatikat mitte, sest mudel seda kunagi ei tooda. Lohaka orkestreerimiskihi vastu biomeetria endiselt toimib. Hoolika vastu mitte. See on kitsam pind, kui varasem kirjandus eeldas, kuid see ei ole olematu.',
+        en: 'Stateful telemetry turns from a wait into a purchase. The model does not create profile age. What it does is operate bought aged profiles, accounts or real long-lived devices without the instrumentation that used to give them away, so ageing becomes a market price rather than a wait. Isolating thousands of cookie jars without cross-contamination is real infrastructure work, but that work can also be bought.',
+        et: 'Olekupõhine telemeetria muutub ootamisest ostuks. Mudel ei loo profiilile vanust. Küll aga saab see kasutada ostetud vanu profiile, kontosid või päris pikaealisi seadmeid ilma instrumenteerimiseta, mis need varem reetis, nii et vanus muutub turuhinnaks, mitte ooteajaks. Tuhandete küpsisehoidlate isoleerimine ilma ristsaastumiseta on tõeline taristutöö, kuid ka seda saab osta.',
       },
       {
-        en: 'Hardware-anchored attestation and session binding survive structurally, because the cryptography does not care who moves the mouse. Their ceiling is elsewhere: device compromise, and increasingly the SDK-based residential proxy market, where users consent to apps that route traffic through their own devices. A valid attestation from a consented device an attacker is renting leaves the defender nothing at the attestation layer, and he falls back to server-side signals — ASN reputation, IP-to-account cardinality, velocity. Those unglamorous controls are the complement, not the legacy.',
-        et: 'Riistvaraga ankurdatud atesteerimine ja seansi sidumine riistvaraga jäävad struktuurselt püsima, sest krüptograafiat ei huvita, kes hiirt liigutab. Nende lagi on mujal: seadme ülevõtmine ja üha enam SDK-põhine kodukasutajate prokside turg, kus kasutajad nõustuvad rakendustega, mis suunavad liiklust läbi nende endi seadmete. Kehtiv atesteerimistõend nõusoleku andnud seadmest, mida ründaja rendib, ei jäta kaitsjale atesteerimiskihis midagi ja ta taandub serveripoolsetele signaalidele — ASN-i maine, IP ja konto suhtarv, kiirus. Need tagasihoidlikud meetmed on täiendus, mitte pärand.',
+        en: 'Behavioural biometrics degrade partially. Target selection is solved by the model; kinematics are not, because the model never produces them. In my testbed a straightness rule caught every pointer jump, scripted or VLM-driven, and missed every smoothed path, so against naive detectors the gap is cheap to close. Learned detectors in production remain untested. The surface is narrower than the pre-VLM literature assumed, but not zero.',
+        et: 'Käitumisbiomeetria nõrgeneb osaliselt. Sihtmärgi valiku lahendab mudel. Kinemaatikat mitte, sest mudel seda ei tooda. Minu katsekeskkonnas tabas sirgusreegel iga kursorihüppe, olgu see skriptitud või mudeli juhitud, kuid ei tabanud ühtegi silutud trajektoori, nii et naiivsete tuvastajate vastu on see lõhe odav sulgeda. Tootmises kasutatavaid õpitud tuvastajaid pole testitud. See on kitsam pind, kui varasem kirjandus eeldas, kuid see ei ole olematu.',
+      },
+      {
+        en: 'Hardware-anchored anonymous attestation survives structurally, because the cryptography does not care who moves the mouse. A model driving a real attested device gets valid tokens, so this is not resistance to VLMs: it moves the attacker\'s cost to acquiring real devices and accounts, bounded by however many tokens the attester issues per device. The cheapest bypass is a farm of real devices, or relaying challenges to genuine ones; compromising devices is a costlier route. SDK-based residential proxy networks do not help here, because they rent out IP reputation, not attestation. A farmed or relayed token is valid and indistinguishable at the attestation layer, so the defender falls back to server-side signals: ASN reputation, IP-to-account cardinality, velocity, cross-session patterns. Software-anchored variants such as PACT do not get this verdict, because the scarce unit becomes a credentialed account (see below).',
+        et: 'Riistvaraga ankurdatud anonüümne atesteerimine jääb struktuurselt püsima, sest krüptograafiat ei huvita, kes hiirt liigutab. Päris atesteeritud seadet juhtiv mudel saab kehtivad märgid, nii et see ei ole vastupanu visuaal-keelemudelitele: ründaja kulu liigub päris seadmete ja kontode hankimisse ning seda piirab see, mitu märki tõendaja seadme kohta väljastab. Odavaim viis sellest mööda pääseda on päris seadmete farm või ülesannete edastamine ehtsatele seadmetele. Seadmete ülevõtmine on kallim tee. SDK-põhised kodukasutajate prokside võrgud siin ei aita, sest need rendivad välja IP-aadressi mainet, mitte atesteerimist. Farmist pärit või edastatud märk on atesteerimiskihis kehtiv ja eristamatu, nii et kaitsja taandub serveripoolsetele signaalidele: ASN-i maine, IP ja konto suhtarv, kiirus, seanssideülesed mustrid. Tarkvaraga ankurdatud variandid, nagu PACT, seda hinnangut ei saa, sest napiks ühikuks muutub mandaadiga konto (vt allpool).',
+      },
+      {
+        en: 'Hardware-anchored determinism also survives, but it answers a different question. DBSC binds a session cookie to a device key and counters cookie theft; Google made it generally available in Chrome on Windows for Workspace customers in May 2026. Passkeys stop credential phishing. A model driving the enrolled device passes both, and neither says anything about whether a fresh anonymous session is driven by a person or a model. Their ceiling is the device that holds the key: malware or an agent running on it inherits the bound session.',
+        et: 'Ka riistvaraga ankurdatud determinism jääb püsima, kuid see vastab teisele küsimusele. DBSC seob seansiküpsise seadme võtmega ja tõrjub küpsiste vargust. Google tegi selle 2026. aasta mais Workspace\'i klientidele Windowsi Chrome\'is üldiselt kättesaadavaks. Pääsuvõtmed peatavad mandaatide õngitsemise. Registreeritud seadet juhtiv mudel läbib mõlemad ja kumbki ei ütle midagi selle kohta, kas uut anonüümset seanssi juhib inimene või mudel. Nende lagi on võtit hoidev seade: selles töötav pahavara või agent pärib seotud seansi.',
       },
     ],
   },
@@ -136,16 +176,16 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Three costs, roughly. Inference: on Q1 2026 frontier pricing one screen capture plus one action selection costs a quarter of a cent to a cent, so a ten-interaction flow runs two to ten cents per token obtained, and failure rates multiply that — a sixty per cent success rate is a 1.67x multiplier, forty per cent is 2.5x. Proxies: session continuity pushes the attacker off the commodity tier onto less elastic premium supply. State orchestration: containers, isolated profiles, rotation infrastructure.',
-        et: 'Ligikaudu kolm kulu. Järeldamine: 2026. aasta esimese kvartali tipptasemel hindadega maksab üks ekraanipilt koos ühe tegevusvalikuga umbes veerand senti kuni sent, nii et kümne suhtlusega voog maksab saadud märgi kohta kaks kuni kümme senti. Ebaõnnestumise määr korrutab seda — kuuekümneprotsendiline õnnestumismäär tähendab kordajat 1,67, neljakümneprotsendiline kordajat 2,5. Proksid: seansi järjepidevus surub ründaja ühe kuni kuue dollari suuruselt gigabaidihinnaga tavatasemelt vähem elastsele kallimale pakkumisele. Oleku orkestreerimine: konteinerid, isoleeritud profiilid, rotatsioonitaristu, mis asendab tuvastusvastase brauseri litsentsi.',
+        en: 'Three costs, roughly. Inference: at September 2026 frontier list prices one screen capture plus one action selection costs about 0.4 to 1.5 cents, so a ten-step flow runs four to fifteen cents per attempt. The small open-weight models in my testbed were 7 to 320 times cheaper per success, and a rational attacker uses them, or scripts the routine steps and calls the model only where it needs to see. Failure rates multiply the cost: a sixty per cent success rate is a 1.67x multiplier, forty per cent is 2.5x. Proxies: session continuity pushes the attacker off the commodity tier ($2.50–$8 per gigabyte) onto less elastic premium supply. State orchestration: containers, isolated profiles and rotation infrastructure, which replace the anti-detect browser licence.',
+        et: 'Ligikaudu kolm kulu. Järeldamine: 2026. aasta septembri tipptasemel hinnakirjahindadega maksab üks ekraanipilt koos ühe tegevusvalikuga umbes 0,4–1,5 senti, nii et kümnesammuline voog maksab katse kohta neli kuni viisteist senti. Minu katsekeskkonna väikesed avatud kaaludega mudelid olid eduka katse kohta 7–320 korda odavamad ja ratsionaalne ründaja kasutab neid või skriptib rutiinsed sammud ning kutsub mudelit ainult seal, kus on vaja näha. Ebaõnnestumised korrutavad kulu: kuuekümneprotsendiline õnnestumismäär tähendab kordajat 1,67, neljakümneprotsendiline kordajat 2,5. Proksid: seansi järjepidevus surub ründaja 2,5–8-dollarise gigabaidihinnaga tavatasemelt vähem elastsele kallimale pakkumisele. Oleku orkestreerimine: konteinerid, isoleeritud profiilid ja rotatsioonitaristu, mis asendavad tuvastusvastase brauseri litsentsi.',
       },
       {
-        en: 'The important asymmetry is direction. Proxy prices and human labour rates are roughly floor-stable. Inference prices fall, historically by a factor of two to five per model generation. A defence priced against today\'s inference cost is priced against a number that only moves one way.',
-        et: 'Oluline asümmeetria on suund. Proksihinnad ja inimtööjõu määrad on üsna paigal. Järeldamise hinnad langevad, ajalooliselt kaks kuni viis korda mudelipõlvkonna kohta. Kaitse, mille hind on seatud tänase järeldamiskulu vastu, on seatud numbri vastu, mis liigub ainult ühes suunas.',
+        en: 'The important asymmetry is direction. Proxy prices and human labour rates are roughly floor-stable. VLM list prices have fallen repeatedly since 2023; GPT-5 launched at half GPT-4o\'s input price. A defence priced against today\'s inference cost is priced against a number that has so far moved only one way.',
+        et: 'Oluline asümmeetria on suund. Proksihinnad ja inimtööjõu määrad on üsna paigal. Visuaal-keelemudelite hinnakirjahinnad on alates 2023. aastast korduvalt langenud: GPT-5 tuli turule sisendi hinnaga, mis oli pool GPT-4o omast. Kaitse, mille hind on seatud tänase järeldamiskulu vastu, on seatud arvu vastu, mis on seni liikunud ainult ühes suunas.',
       },
       {
-        en: 'Be precise about the status of these numbers. This is an accounting exercise, not an economic model: it tallies costs, it does not derive equilibria or predict behaviour. There are no published measurements of agent-driven attack throughput at scale, no reliable data on proxy supply elasticity under this demand, no longitudinal study of inference deflation. The paper is analytical, and that gap is the first item on its own research agenda.',
-        et: 'Nende arvude staatuse osas tuleb olla täpne. Tegemist on kuluarvestusega, mitte majandusmudeliga: see loeb kulud kokku, kuid ei tuleta tasakaalupunkte ega ennusta käitumist. Puuduvad avaldatud mõõtmised agendipõhise ründe läbilaskevõimest suures mahus, usaldusväärsed andmed proksipakkumise elastsuse kohta sellise nõudluse juures ning pikaajaline uuring järeldamise hinnalangusest. Töö on analüütiline ja see lünk on tema enda uurimiskava esimene punkt.',
+        en: 'Be precise about the status of these numbers. This is an accounting exercise, not an economic model: it tallies costs, it does not derive equilibria or predict behaviour. There are no published measurements of agent-driven attack throughput at scale. Machine-learning CAPTCHA solvers are well documented — Plesner, Vontobel and Wattenhofer solved 100 per cent of reCAPTCHA v2 image challenges in 2024 — but they solve one challenge, not a whole flow. My own testbed (September 2026, ten runs per configuration) is a first data point, not a benchmark. There is still no reliable data on proxy supply elasticity under this demand and no longitudinal study of inference deflation; closing that gap is the first item on the paper\'s research agenda.',
+        et: 'Nende arvude staatuse osas tuleb olla täpne. Tegemist on kuluarvestusega, mitte majandusmudeliga: see loeb kulud kokku, kuid ei tuleta tasakaalupunkte ega ennusta käitumist. Agendipõhise ründe läbilaskevõime kohta suures mahus avaldatud mõõtmised puuduvad. Masinõppel põhinevad CAPTCHA lahendajad on hästi dokumenteeritud — Plesner, Vontobel ja Wattenhofer lahendasid 2024. aastal 100 protsenti reCAPTCHA v2 pildiülesannetest —, kuid need lahendavad üksiku ülesande, mitte terve voo. Minu enda katsekeskkond (september 2026, kümme käivitust konfiguratsiooni kohta) on esimene andmepunkt, mitte võrdlusalus. Endiselt puuduvad usaldusväärsed andmed proksipakkumise elastsuse kohta sellise nõudluse juures ja pikaajaline uuring järeldamise hinnalangusest. Selle lünga sulgemine on töö uurimiskava esimene punkt.',
       },
     ],
   },
@@ -156,22 +196,115 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Follow the argument to its end and it points somewhere uncomfortable. If probabilistic detection degrades against the top of the capability distribution, the defences that remain are hardware-anchored, and those require a platform-level root of trust. Today that is Apple, Google and Microsoft. Three companies decide which clients count as legitimate, at what rate, and for which origins — and each runs an advertising business whose incentives need not match the site consuming the attestation.',
-        et: 'Kui argumenti lõpuni järgida, viib see ebamugavasse kohta. Kui tõenäosuslik tuvastus nõrgeneb võimekuse jaotuse tipu vastu, jäävad alles riistvaraga ankurdatud kaitsed ja need nõuavad platvormitasandi usaldusjuurt. Täna on selleks Apple, Google ja Microsoft. Kolm ettevõtet otsustavad, millised kliendid loetakse seaduslikeks, millise määraga ja milliste saitide jaoks — ja igaüks neist peab reklaamiäri, mille huvid ei pruugi kattuda atesteerimistõendit tarbiva saidi huvidega.',
+        en: 'Follow the argument to its end and it points somewhere uncomfortable. If probabilistic detection degrades against the top of the capability distribution, the defences that still impose cost on anonymous traffic are hardware-anchored tokens, and those require a platform-level root of trust. For anonymous web tokens today that is effectively Apple, the only deployed Private Access Token attester; I found none for Android or Windows. Google holds adjacent roots, Play Integrity for apps and the gate on which issuers Chrome accepts for Private State Tokens, after dropping its Web Environment Integrity proposal for the web in 2023. The passkey-sync providers hold another. A handful of companies decide which clients count as legitimate, at what rate and for which origins, and their incentives need not match those of the site consuming the attestation.',
+        et: 'Kui argumenti lõpuni järgida, viib see ebamugavasse kohta. Kui tõenäosuslik tuvastus nõrgeneb võimekuse jaotuse tipu vastu, on anonüümsele liiklusele endiselt kulu tekitavad kaitsed riistvaraga ankurdatud märgid ja need nõuavad platvormitasandi usaldusjuurt. Anonüümsete veebimärkide puhul on selleks täna sisuliselt Apple, ainus kasutusel olev Private Access Tokensi tõendaja. Androidi ega Windowsi jaoks ma sellist ei leidnud. Google hoiab kõrvalasuvaid juuri — rakenduste jaoks Play Integrity ning otsust, milliseid Private State Tokensi väljastajaid Chrome aktsepteerib —, olles 2023. aastal loobunud veebi jaoks mõeldud ettepanekust Web Environment Integrity. Pääsuvõtmete sünkroonimise pakkujad hoiavad veel üht. Käputäis ettevõtteid otsustab, millised kliendid loetakse legitiimseks, millise määraga ja milliste saitide jaoks, ning nende huvid ei pruugi kattuda atesteerimistõendit tarbiva saidi huvidega.',
       },
       {
-        en: 'The 2026 PACT proposal tries a different anchor: instead of device hardware, an issuer vouches for a user based on account standing, a subscription, or a first-party relationship. That widens the issuer set. It does not remove the Sybil problem, it relocates it — scarcity becomes a credentialed account, and bulk registration, credential stuffing and cheap subscriptions are automatable upstream of the protocol. As announced, PACT has no issuer accreditation model, no public issuer directory, no revocation lists and no audit requirement. PACT builds on established cryptographic foundations, but its protocol design and governance are still under development.',
-        et: '2026. aasta PACT-i ettepanek on tööstuse katse proovida teistsugust ankrut: seadme riistvara asemel käendab väljastaja kasutajat konto seisundi, tellimuse või esmapoolse suhte alusel. See laiendab väljastajate ringi. See ei kõrvalda Sybili probleemi, vaid tõstab selle ümber — nappuse ühikuks saab mandaadiga konto ning masskonto loomine, mandaadi toppimine ja odavad tellimused on kõik protokollist ülalpool automatiseeritavad. Sellisena, nagu PACT välja kuulutati, puudub sellel väljastajate akrediteerimise mudel, avalik väljastajate register, tühistusnimekirjad ja auditinõue. PACT tugineb väljakujunenud krüptograafilistele alustele, kuid selle protokolli ülesehitus ja juhtimismudel on alles väljatöötamisel.',
+        en: 'PACT, which Cloudflare announced on 22 June 2026 with Mozilla, Google, Microsoft and Shopify, tries a different anchor: instead of device hardware, an issuer vouches for a user based on account standing, a subscription or a first-party relationship. That widens the issuer set, and the Sybil problem moves with it. Scarcity becomes a credentialed account, and bulk registration, credential stuffing and cheap subscriptions are automatable upstream of the protocol. PACT is a proposal with no deployment timeline. Its current IETF draft specifies no accreditation or audit for the parties that vouch, and their feedback mechanism is still marked TODO.',
+        et: 'PACT, mille Cloudflare kuulutas 22. juunil 2026 välja koos Mozilla, Google\'i, Microsofti ja Shopifyga, proovib teistsugust ankrut: seadme riistvara asemel käendab väljastaja kasutajat konto seisundi, tellimuse või esmapoolse suhte alusel. See laiendab väljastajate ringi ja Sybili probleem liigub kaasa. Nappuse ühikuks saab mandaadiga konto ning masskontode loomine, mandaatide toppimine ja odavad tellimused on kõik protokollist ülalpool automatiseeritavad. PACT on ettepanek, millel puudub kasutuselevõtu ajakava. Selle praegune IETF-i kavand ei näe käendajatele ette akrediteerimist ega auditit ja nende tagasiside mehhanism on endiselt märgitud kui TODO.',
       },
       {
-        en: 'There is a ratchet in this that nobody has to decide on. Tokens start as optional friction reducers. Tokened traffic passes cleanly, untokened traffic is challenged harder, thresholds recalibrate, and a class of legitimate traffic with no issuer relationship — measurement systems, archival crawlers, RSS readers, Tor users, alternative browsers — becomes structurally suspect. No single actor made tokens mandatory. They became mandatory anyway.',
-        et: 'Selles on ühesuunaline mehhanism, mille kohta ei pea keegi otsust tegema. Märgid algavad valikulise hõõrdumise vähendajana. Märgiga liiklus pääseb puhtalt läbi, märgita liiklust kontrollitakse rangemalt, lävendid kalibreeritakse ümber ja struktuurselt kahtlaseks muutub terve klass seaduslikku liiklust, millel puudub suhe väljastajaga — mõõtmissüsteemid, arhiiviroomajad, RSS-lugejad, Tori kasutajad, alternatiivsed brauserid. Ükski üksik osaleja ei muutnud märke kohustuslikuks. Need muutusid kohustuslikuks niikuinii.',
+        en: 'Bob Rudis has described the ratchet in this that nobody has to decide on. Tokens start as optional friction reducers. Tokened traffic passes cleanly, untokened traffic is challenged harder, thresholds recalibrate, and a class of legitimate traffic with no issuer relationship — scanners, archival crawlers, RSS readers, Tor users, alternative browsers — becomes structurally suspect. PACT\'s designers intend today\'s challenges as the fallback, but tokens can become mandatory without any single actor deciding it.',
+        et: 'Bob Rudis on kirjeldanud selles peituvat ühesuunalist mehhanismi, mille kohta ei pea keegi otsust tegema. Märgid algavad valikulise hõõrdumise vähendajana. Märgiga liiklus pääseb puhtalt läbi, märgita liiklust kontrollitakse rangemalt, lävendid kalibreeritakse ümber ja struktuurselt kahtlaseks muutub terve klass seaduslikku liiklust, millel puudub suhe väljastajaga — skannerid, arhiiviroomajad, RSS-lugejad, Tori kasutajad, alternatiivsed brauserid. PACT-i autorid näevad varulahendusena ette tänaseid kontrollülesandeid, kuid märgid võivad muutuda kohustuslikuks, ilma et ükski osaleja seda otsustaks.',
       },
       {
-        en: 'That is why I consider this the defining open question rather than detection. The anonymous authentication gap has been technically narrowed. What replaced it is a centralization gap, and it is a governance problem wearing a cryptography costume.',
-        et: 'Seetõttu pean seda määravaks lahtiseks küsimuseks, mitte tuvastamist. Anonüümse autentimise lõhe on tehniliselt ahenenud. Selle asemele tuli tsentraliseerimise lõhe ja see on juhtimisprobleem krüptograafia kostüümis.',
+        en: 'The opposite direction is already being built for agents that want to be recognised. Cloudflare\'s Web Bot Auth (May 2025) and its signed-agents programme (August 2025, with ChatGPT agent and Browserbase in the first cohort) let a well-behaved agent sign its requests, and the IETF has chartered a Web Bot Auth working group. That helps sites admit good bots. It does nothing about agents that choose not to sign, and it adds one more party deciding which automation counts as legitimate.',
+        et: 'Vastassuunas ehitatakse juba lahendusi agentidele, kes tahavad end tuvastatavaks teha. Cloudflare\'i Web Bot Auth (mai 2025) ja selle allkirjastatud agentide programm (august 2025, esimeses rühmas ChatGPT agent ja Browserbase) lasevad heausksel agendil oma päringud allkirjastada ning IETF on Web Bot Authi jaoks loonud töörühma. See aitab saitidel häid botte sisse lasta. Agentidega, kes otsustavad mitte allkirjastada, ei tee see midagi ja lisab veel ühe osapoole, kes otsustab, milline automaatika on legitiimne.',
+      },
+      {
+        en: 'That is why I consider this the defining open question rather than detection. The anonymous authentication gap has been technically narrowed. What replaced it is a centralization gap: who gets to vouch, and who decides that, is a governance question the cryptography does not answer.',
+        et: 'Seetõttu pean seda määravaks lahtiseks küsimuseks, mitte tuvastamist. Anonüümse autentimise lõhe on tehniliselt ahenenud. Selle asemele tuli tsentraliseerimise lõhe: kes tohib käendada ja kes selle üle otsustab, on juhtimisküsimus, millele krüptograafia vastust ei anna.',
       },
     ],
+  },
+];
+
+const sources = [
+  {
+    label: 'Tom Kristian Abel, "SoK: Where Input Enters — Client-Side Anti-Automation When AI Agents Drive Unmodified Browsers", commit f037d68',
+    url: 'https://github.com/tomkabel/google-botguard-security-research/blob/f037d68254323547c50f88e038a8bf5cb98363e9/paper.md',
+    note: 'manuscript as of 24 September 2026; tiers in §4.2, testbed measurements in §5.7, centralization in §6',
+  },
+  {
+    label: 'OpenAI, "Introducing Operator" (23 January 2025)',
+    url: 'https://openai.com/index/introducing-operator/',
+    note: 'trained to ask the user to take over when solving CAPTCHAs',
+  },
+  {
+    label: 'Google, Gemini 2.5 Computer Use model announcement (October 2025)',
+    url: 'https://blog.google/technology/google-deepmind/gemini-computer-use-model/',
+    note: 'bypassing CAPTCHAs listed among high-risk actions the safety controls block',
+  },
+  {
+    label: 'mezha, report on ChatGPT agent and the Turnstile checkbox (29 July 2025)',
+    url: 'https://mezha.ua/en/news/chatgpt-agent-clicks-not-a-robot-verification-303662/',
+    note: 'ChatGPT agent reported passing the Cloudflare Turnstile checkbox',
+  },
+  {
+    label: 'Plesner, Vontobel and Wattenhofer, "Breaking reCAPTCHAv2" (arXiv, September 2024)',
+    url: 'https://arxiv.org/abs/2409.08831',
+    note: 'machine-learning solver for reCAPTCHA v2 image challenges',
+  },
+  {
+    label: 'Motoyama et al., "Re: CAPTCHAs — Understanding CAPTCHA-Solving Services in an Economic Context", USENIX Security 2010',
+    url: 'https://www.usenix.org/legacy/event/sec10/tech/full_papers/Motoyama.pdf',
+    note: 'human solving prices of roughly $0.50–$2 per thousand',
+  },
+  {
+    label: '2Captcha, pricing',
+    url: 'https://2captcha.com/pricing',
+    note: 'current list prices per thousand solves, checked 4 October 2026',
+  },
+  {
+    label: 'Cloudflare, "Eliminating CAPTCHAs on iPhones and Macs using new standard" (8 June 2022)',
+    url: 'https://blog.cloudflare.com/eliminating-captchas-on-iphones-and-macs-using-new-standard/',
+    note: 'Private Access Tokens: Apple as attester, Cloudflare and Fastly as issuers',
+  },
+  {
+    label: 'IETF, draft-ietf-privacypass-rate-limit-tokens-06 (expired)',
+    url: 'https://datatracker.ietf.org/doc/draft-ietf-privacypass-rate-limit-tokens/',
+    note: 'rate-limited token issuance; the draft has lapsed',
+  },
+  {
+    label: '9to5Google, report on Google dropping Web Environment Integrity (2 November 2023)',
+    url: 'https://9to5google.com/2023/11/02/google-chrome-web-integrity-api/',
+    note: 'WEI no longer being considered by the Chrome team',
+  },
+  {
+    label: 'Google Workspace Updates, DBSC generally available in Chrome for Windows (28 May 2026)',
+    url: 'https://workspaceupdates.googleblog.com/2026/05/prevent-account-takeovers-with-DBSC-now-generally-available-in-the-Chrome-browser-for-Windows.html',
+    note: 'DBSC as an account-takeover and cookie-theft control',
+  },
+  {
+    label: 'Cloudflare, press release announcing PACT (22 June 2026)',
+    url: 'https://www.cloudflare.com/press/press-releases/2026/cloudflare-collaborates-with-leading-browsers-to-develop-a-privacy-first-protocol-for-the-global-internet/',
+    note: 'primary announcement of Private Access Control Tokens',
+  },
+  {
+    label: 'Bob Rudis, "PACT: The Open Web Doesn\'t Need Another Trust Oligopoly" (23 June 2026)',
+    url: 'https://ai.rud.is/posts/2026-06-23-pact-the-open-web-doesnt-need-another-trust-oligopoly/',
+    note: 'source of the argument that tokens become mandatory without anyone deciding it',
+  },
+  {
+    label: 'Cloudflare blog, signed agents (28 August 2025)',
+    url: 'https://blog.cloudflare.com/signed-agents/',
+    note: 'signed agents and Web Bot Auth',
+  },
+  {
+    label: 'IETF Web Bot Auth (webbotauth) working group',
+    url: 'https://datatracker.ietf.org/wg/webbotauth/about/',
+    note: 'standards work on cryptographic identification of agents',
+  },
+];
+
+const disclosureParagraphs: Bi[] = [
+  {
+    en: 'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
+    et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: the page now follows the September 2026 revision of the paper, whose measurements (0.7–3 s per action, €0.001–€0.014 per successful flow for small open-weight models) replace the assumed 5–15 s and the statement that no measurements existed. It also corrects the attestation descriptions: DBSC and passkeys bind sessions rather than screen anonymous bots, Apple is the only deployed Private Access Token attester, the rate-limit draft has lapsed, aged profiles can be bought, and residential proxy networks supply IP reputation, not attestation.',
+    et: 'Parandused, 4. oktoober 2026: lehekülg järgib nüüd töö 2026. aasta septembri redaktsiooni, mille mõõtmised (väikeste avatud kaaludega mudelitel 0,7–3 sekundit tegevuse kohta ja 0,001–0,014 eurot eduka voo kohta) asendavad eeldatud 5–15 sekundit ja väite, et mõõtmisi pole. Samuti on parandatud atesteerimise kirjeldusi: DBSC ja pääsuvõtmed seovad seansse, mitte ei sõela anonüümseid botte, Apple on ainus kasutusel olev Private Access Tokensi tõendaja, väljastamise piiramise kavand on aegunud, vanu profiile saab osta ja kodukasutajate prokside võrgud pakuvad IP-aadressi mainet, mitte atesteerimist.',
   },
 ];
 
@@ -190,7 +323,9 @@ function VlmAntiFraudResearchPage() {
         meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
             </>, <>
-              {isEn ? '8 min read' : '8 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '15 min read' : '15 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -232,6 +367,36 @@ function VlmAntiFraudResearchPage() {
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Sources' : 'Allikad'}
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a
+                    href={source.url}
+                    className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  >
+                    {source.label}
+                  </a>
+                  <span className="text-muted-foreground"> — {source.note}</span>
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Disclosure and corrections' : 'Huvide avalikustamine ja parandused'}
+            </h2>
+            <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemist'}
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -266,8 +431,8 @@ function VlmAntiFraudResearchPage() {
                 </a>
                 {' — '}
                 {isEn
-                  ? 'the full SoK manuscript, with the citations, tables and cost equations summarized here.'
-                  : 'täielik SoK käsikiri koos viidete, tabelite ja kuluvalemitega, mida siin kokku võetakse.'}
+                  ? 'the full SoK manuscript, with the citations, tables, cost equations and testbed artifact summarized here.'
+                  : 'täielik SoK käsikiri koos viidete, tabelite, kuluvalemite ja katsekeskkonna andmetega, mida siin kokku võetakse.'}
               </li>
             </ul>
           </section>

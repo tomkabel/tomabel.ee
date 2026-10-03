@@ -6,6 +6,8 @@ import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
+type Source = { label: Bi; url: string; note?: Bi };
+
 type EssaySection = {
   heading: Bi;
   paragraphs: Bi[];
@@ -40,8 +42,8 @@ const sections: EssaySection[] = [
         et: 'Identiteet on usalduse juur usaldusvabas arhitektuuris, sest kõik ülejäänud kontrollid asuvad sellest allavoolu. Segmenteerimine otsustab, millised identiteedid millistele teenustele ligi pääsevad. Vähima õiguse põhimõte otsustab, millised identiteedid milliseid toiminguid teha tohivad. Audit salvestab, milline identiteet mida tegi. Anomaaliatuvastus võrdleb käitumist identiteediga seotud lähtejoonega. Ükski neist mehhanismidest identiteeti ei tooda; kõik nad tarbivad seda.',
       },
       {
-        en: 'The proof collected at the gate is therefore a hard ceiling on everything above it. If it establishes only that somebody held a password an hour ago, a policy engine evaluating a thousand attributes is still deciding on the authority of that password. Sophistication above the gate does not compensate for weakness at it; it makes the weakness harder to see.',
-        et: 'Väravas kogutud tõend on seega kõva lagi kõigele, mis selle kohal asub. Kui see kinnitab üksnes seda, et keegi teadis tund aega tagasi parooli, otsustab tuhandet atribuuti hindav poliitikamootor ikkagi selle parooli volitusel. Keerukus värava kohal ei korva nõrkust väravas, vaid muudab selle raskemini nähtavaks.',
+        en: 'The proof collected at the gate is therefore a hard ceiling on everything above it. If it establishes only that somebody held a password an hour ago, a policy engine evaluating a thousand attributes is still deciding on the authority of that password.',
+        et: 'Väravas kogutud tõend on seega kõva lagi kõigele, mis selle kohal asub. Kui see kinnitab üksnes seda, et keegi teadis tund aega tagasi parooli, otsustab tuhandet atribuuti hindav poliitikamootor ikkagi selle parooli volitusel.',
       },
     ],
   },
@@ -104,12 +106,12 @@ const sections: EssaySection[] = [
         et: 'Et tegu on õige inimesega. Biomeetria vastas registreeritud mallile. See on täpselt nii hea kui registreerimine, mis on tavaliselt süsteemi kõige vähem kontrollitud protsess.',
       },
       {
-        en: 'That the human understood what they approved. Nothing in a signature establishes this. Whether the screen described the transaction being signed is a property of the interface, not the cryptography.',
-        et: 'Et inimene mõistis, mida ta heaks kiitis. Allkiri ei kinnita sellest midagi. See, kas ekraan kirjeldas allkirjastatavat tehingut, on liidese, mitte krüptograafia omadus.',
+        en: 'That the human understood what they approved. Nothing in a signature establishes this. Whether the screen described the transaction being signed is a property of the interface, not the cryptography. Strictly, this is not an authentication claim at all, and that is the point: the architecture above treats it as one.',
+        et: 'Et inimene mõistis, mida ta heaks kiitis. Allkiri ei kinnita sellest midagi. See, kas ekraan kirjeldas allkirjastatavat tehingut, on liidese, mitte krüptograafia omadus. Rangelt võttes ei ole see üldse autentimise väide ja just selles ongi asi: selle kohal olev arhitektuur kohtleb seda nii, nagu oleks.',
       },
       {
-        en: 'That the approval is bound to the specific transaction. The signature covers the actual amount, recipient and operation, and cannot be replayed against another. Systems that get the first five right and this one wrong fail catastrophically, because every layer above assumes the binding holds.',
-        et: 'Et heakskiit on seotud konkreetse tehinguga. Allkiri katab tegeliku summa, saaja ja toimingu ning seda ei saa teise vastu taasesitada. Süsteemid, mis saavad esimesed viis õigesti ja selle valesti, nurjuvad katastroofiliselt, sest iga kõrgem kiht eeldab seose kehtivust.',
+        en: 'That the approval is bound to the specific transaction. The signature covers the actual amount, recipient and operation, and cannot be replayed against another. Systems that get the first five right and this one wrong fail catastrophically, because every layer above assumes the binding holds. None of this is new: PSD2\'s strong customer authentication rules require dynamic linking of the authentication code to the amount and payee (Article 5 of the RTS), and the W3C\'s Secure Payment Confirmation does the same for WebAuthn.',
+        et: 'Et heakskiit on seotud konkreetse tehinguga. Allkiri katab tegeliku summa, saaja ja toimingu ning seda ei saa teise vastu taasesitada. Süsteemid, mis saavad esimesed viis õigesti ja selle valesti, nurjuvad katastroofiliselt, sest iga kõrgem kiht eeldab seose kehtivust. See ei ole uus mõte: PSD2 tugeva kliendi autentimise reeglid nõuavad autentimiskoodi dünaamilist sidumist summa ja saajaga (regulatiivse tehnilise standardi artikkel 5) ja W3C Secure Payment Confirmation teeb sama WebAuthni jaoks.',
       },
     ],
   },
@@ -120,12 +122,12 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Origin-bound authentication — WebAuthn and FIDO2 credentials that refuse to sign for a domain they were not registered against — removes relay and credential replay structurally rather than by detection. Any architecture that can adopt it should.',
-        et: 'Päritoluga seotud autentimine — WebAuthni ja FIDO2 mandaadid, mis keelduvad allkirjastamast domeeni jaoks, mille vastu neid ei registreeritud — kõrvaldab vahendus- ja kordusründed struktuurselt, mitte tuvastamise teel. Iga arhitektuur, mis suudab selle kasutusele võtta, peaks seda tegema.',
+        en: 'NIST SP 800-63B-4 (2025) defines phishing resistance precisely: the authenticator must stop the secret from reaching an impostor verifier without relying on the vigilance of the claimant, and only channel binding or verifier-name binding qualify. It also requires AAL2 verifiers to offer at least one phishing-resistant option. Origin-bound authentication, WebAuthn and FIDO2 credentials that refuse to sign for a domain they were not registered against, is verifier-name binding. It removes credential phishing and real-time relay of the login ceremony structurally rather than by detection. It does not protect the session token issued afterwards, a compromised client, or a misissued certificate for the real domain. Any architecture that can adopt it should.',
+        et: 'NIST SP 800-63B-4 (2025) määratleb andmepüügikindluse täpselt: autentija peab takistama saladuse jõudmist petturist kontrollijani ilma kasutaja valvsusele toetumata ja selleks sobivad ainult kanaliga sidumine või kontrollija nimega sidumine. Samuti nõuab see, et AAL2 kontrollijad pakuksid vähemalt ühte andmepüügikindlat võimalust. Päritoluga seotud autentimine, WebAuthni ja FIDO2 mandaadid, mis keelduvad allkirjastamast domeeni jaoks, mille vastu neid ei registreeritud, on kontrollija nimega sidumine. See kõrvaldab mandaadi õngitsemise ja sisselogimise reaalajas vahendamise struktuurselt, mitte tuvastamise teel. See ei kaitse pärast sisselogimist väljastatud seansiluba, kompromiteeritud klienti ega tegeliku domeeni jaoks valesti väljastatud sertifikaati. Iga arhitektuur, mis suudab selle kasutusele võtta, peaks seda tegema.',
       },
       {
-        en: 'Origin binding solves relay. It does not solve a user approving the wrong thing in the right interface. If an attacker persuades the legitimate user to initiate a plausible transfer on the genuine site with the genuine key, every check passes, because each was built to answer a different question. Origin binding says nothing about comprehension or transaction binding — which is where losses occur.',
-        et: 'Päritolu sidumine lahendab vahendusrünnaku. See ei lahenda olukorda, kus kasutaja kiidab õiges liideses heaks vale asja. Kui ründaja veenab õigustatud kasutajat algatama ehtsal saidil ehtsa võtmega usutava ülekande, läbivad kõik kontrollid, sest igaüks neist oli loodud vastama teisele küsimusele. Päritolu sidumine ei ütle midagi arusaamise ega tehinguga sidumise kohta — just seal tekivad kahjud.',
+        en: 'Origin binding solves relay of the login. It does not solve a user approving the wrong thing in the right interface. If an attacker persuades the legitimate user to initiate a plausible transfer on the genuine site with the genuine key, every check passes, because each was built to answer a different question. Origin binding says nothing about comprehension or transaction binding, and that is where the social-engineering losses described below occur.',
+        et: 'Päritolu sidumine lahendab sisselogimise vahendamise. See ei lahenda olukorda, kus kasutaja kiidab õiges liideses heaks vale asja. Kui ründaja veenab õigustatud kasutajat algatama ehtsal saidil ehtsa võtmega usutava ülekande, läbivad kõik kontrollid, sest igaüks neist oli loodud vastama teisele küsimusele. Päritolu sidumine ei ütle midagi arusaamise ega tehinguga sidumise kohta ja just seal tekivad allpool kirjeldatud sotsiaalse manipuleerimise kahjud.',
       },
     ],
   },
@@ -136,16 +138,16 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Estonia is a good place to test the argument, because the cryptographic layer here is genuinely strong. Smart-ID and mobile-ID use hardware-backed or split private keys, the protocols are published, and the national PKI is competently run. If cryptography were the weak point, eID fraud here would look different.',
-        et: 'Eesti on hea koht seda argumenti katsetada, sest krüptograafiline kiht on siin tõepoolest tugev. Smart-ID ja mobiil-ID kasutavad riistvaraga tagatud või jagatud privaatvõtmeid, protokollid on avaldatud ja riiklikku PKI-d hallatakse pädevalt. Kui nõrk koht oleks krüptograafia, näeks eID-pettus siin teistsugune välja.',
+        en: 'Estonia is a useful test case. Since the 2017 ROCA flaw was fixed by reissuing the affected ID-card keys, nobody has shown a practical break of the eID cryptography. Smart-ID splits its private key between the app and SK\'s server, Mobile-ID keeps its key on the SIM, SK publishes the relying-party API documentation, and the national PKI is competently run. Yet the Information System Authority (RIA) counted €29 million in fraud losses in 2025.',
+        et: 'Eesti on kasulik näide. Pärast seda, kui 2017. aasta ROCA viga parandati mõjutatud ID-kaartide võtmete uuesti väljastamisega, pole keegi näidanud eID krüptograafia praktilist murdmist. Smart-ID jagab privaatvõtme rakenduse ja SK serveri vahel, mobiil-ID hoiab võtit SIM-kaardil, SK avaldab tugineva osapoole API dokumentatsiooni ja riiklikku PKI-d hallatakse pädevalt. Ometi loendas Riigi Infosüsteemi Amet (RIA) 2025. aastal pettustega tekitatud kahju 29 miljoni euro ulatuses.',
       },
       {
-        en: 'It does not. The failures cluster in the approval layer. My Smart-ID analysis looks at what the verification code and confirmation screen establish for the person tapping the button, as opposed to what the protocol establishes for the relying party. Those are not the same claim, and the gap is where the fraud lives.',
-        et: 'Nii see ei ole. Nurjumised koonduvad heakskiidukihti. Minu Smart-ID analüüs vaatab, mida kontrollkood ja kinnituse ekraan kinnitavad nupule vajutava inimese jaoks — vastandina sellele, mida protokoll kinnitab tugineva osapoole jaoks. Need ei ole sama väide ja pettus elab selles lõhes.',
+        en: 'RIA\'s 2025 review describes victims "entering PIN codes when they should not have" while on the phone with fraudsters, and fraudsters opening new Smart-ID accounts in a victim\'s name: failures at the approval and enrolment layers, not the cryptographic one. One caveat keeps this honest. The classic Smart-ID flow, a notification plus a verification code the user is meant to compare, is not phishing-resistant in NIST\'s sense, because the comparison is exactly the vigilance the definition excludes. So Estonia does not show phishing-resistant credentials failing. It shows strong cryptography failing at the approval layer. Origin or channel binding would close the relay; SK\'s Smart-ID+, available to integrators since June 2025 and live at Bigbank from 12 June 2026 and LHV from 16 June 2026, makes vishing much harder, and on the same device it is, in the assessment of the researcher Arnis Paršovs, fully phishing-resistant. It does not close the gap where a fraudster in live contact talks the victim through a QR flow, as LHV itself has said. Nothing in the protocol fixes the comprehension gap. My Smart-ID analysis looks at what the verification code and confirmation screen establish for the person tapping the button, as opposed to what the protocol establishes for the relying party.',
+        et: 'RIA 2025. aasta ülevaade kirjeldab ohvreid, kes sisestasid petturitega telefonis rääkides PIN-koode, kui nad poleks tohtinud, ja pettureid, kes avasid ohvri nimele uusi Smart-ID kontosid: nurjumised heakskiidu- ja registreerimiskihis, mitte krüptograafilises kihis. Üks reservatsioon hoiab selle ausana. Klassikaline Smart-ID voog, teavitus koos kontrollkoodiga, mida kasutaja peaks võrdlema, ei ole NIST-i mõttes andmepüügikindel, sest võrdlemine on täpselt see valvsus, mille määratlus välistab. Seega ei näita Eesti andmepüügikindlate mandaatide nurjumist. See näitab tugeva krüptograafia nurjumist heakskiidukihis. Päritolu või kanaliga sidumine sulgeks vahendamise; SK Smart-ID+, mis on integraatoritele saadaval alates 2025. aasta juunist ning kasutusel Bigbankis alates 12. juunist 2026 ja LHV-s alates 16. juunist 2026, teeb telefonipettuse palju raskemaks ja samas seadmes on see teadlase Arnis Paršovsi hinnangul täielikult andmepüügikindel. See ei sulge lõhet, kus reaalajas ühenduses olev pettur juhendab ohvrit QR-voos, nagu LHV ise on öelnud. Arusaamise lõhet ei paranda protokollis miski. Minu Smart-ID analüüs vaatab, mida kontrollkood ja kinnituse ekraan kinnitavad nupule vajutava inimese jaoks, vastandina sellele, mida protokoll kinnitab tugineva osapoole jaoks.',
       },
       {
-        en: 'The PIN work makes the same point from the other side. A PIN cannot be delegated, and the design assumes it will not be. Every case where someone hands a PIN to a family member, an employer or a caller claiming to be the bank is a case where the cryptography operates perfectly and the claim it produces is false. In any system with a competent cryptographic layer, the approval layer holds the remaining risk, because it is the only layer whose correctness depends on a human parsing a sentence under time pressure.',
-        et: 'PIN-koodi käsitlev töö teeb sama tähelepaneku teiselt poolt. PIN-koodi ei saa delegeerida ja kujundus eeldab, et seda ei delegeerita. Iga juhtum, kus keegi annab PIN-koodi pereliikmele, tööandjale või pangaks esinevale helistajale, on juhtum, kus krüptograafia töötab laitmatult ja tema toodetud väide on väär. Igas pädeva krüptograafilise kihiga süsteemis asub järelejäänud risk heakskiidukihis, sest see on ainus kiht, mille õigsus sõltub inimesest, kes ajasurve all lauset loeb.',
+        en: 'The PIN analysis shows the same thing from the contract side: the design assumes the PIN never leaves the subscriber. Whenever it does, to a caller claiming to be the bank or to software acting for the user, the cryptography operates perfectly and the claim it produces is false. In any system with a competent cryptographic layer, the approval layer holds the remaining risk, because it is the only layer whose correctness depends on a human parsing a sentence under time pressure.',
+        et: 'PIN-koodi analüüs näitab sama asja lepingu poolelt: kujundus eeldab, et PIN-kood ei lahku kunagi kasutaja käest. Iga kord, kui see lahkub, olgu pangaks esinevale helistajale või kasutaja nimel tegutsevale tarkvarale, töötab krüptograafia laitmatult ja tema toodetud väide on väär. Igas pädeva krüptograafilise kihiga süsteemis asub järelejäänud risk heakskiidukihis, sest see on ainus kiht, mille õigsus sõltub inimesest, kes ajasurve all lauset loeb.',
       },
     ],
   },
@@ -160,8 +162,8 @@ const sections: EssaySection[] = [
         et: 'Identiteedikesksust tõlgendatakse sageli kui „pane identiteet kõikjale", mis annab halvema süsteemi kui see, mille ta asendab. Töötlemata identiteet igas päringus on jälgimisvõimalus ja võltsimise sihtmärk. API-lüüs ei pea teadma, kes sa oled, vaid ainult seda, kas see väljakutse on lubatud.',
       },
       {
-        en: 'The useful construction converts identity and context into scoped, short-lived, verifiable proof. Identity is the root: who or what is acting, including device health and workload identity. Proof is the gate: an authorization server weighs identity, posture and risk together and issues a token carrying an issuer, audience, scope and expiry. Runtime signals decide whether the gate stays open, feeding back into the issuer rather than to enforcement points directly — otherwise the token says allow, the signal says deny, and the enforcement point chooses arbitrarily.',
-        et: 'Kasulik konstruktsioon muudab identiteedi ja konteksti piiritletud, lühiajaliseks ja kontrollitavaks tõendiks. Identiteet on juur: kes või mis toimib, kaasa arvatud seadme seisund ja koormuse identiteet. Tõend on värav: volitusserver kaalub identiteeti, seisundit ja riski koos ning väljastab loa, mis kannab väljaandjat, sihtrühma, ulatust ja aegumist. Käitusaja signaalid otsustavad, kas värav jääb avatuks, andes tagasisidet väljaandjale, mitte otse jõustamispunktidele — vastasel juhul ütleb luba „lubatud", signaal ütleb „keelatud" ja jõustamispunkt valib meelevaldselt.',
+        en: 'The useful construction converts identity and context into scoped, short-lived, verifiable proof. Identity is the root: who or what is acting, including device health and workload identity. Proof is the gate: an authorization server weighs identity, posture and risk together and issues a token carrying an issuer, audience, scope and expiry. Runtime signals decide whether the gate stays open. I prefer feeding them back into the issuer. The OpenID Shared Signals Framework and CAEP (final since September 2025) let enforcement points act on signals directly, which is a legitimate design, but then each one needs a defined precedence rule, or the token and the signal will disagree.',
+        et: 'Kasulik konstruktsioon muudab identiteedi ja konteksti piiritletud, lühiajaliseks ja kontrollitavaks tõendiks. Identiteet on juur: kes või mis toimib, kaasa arvatud seadme seisund ja koormuse identiteet. Tõend on värav: volitusserver kaalub identiteeti, seisundit ja riski koos ning väljastab loa, mis kannab väljaandjat, sihtrühma, ulatust ja aegumist. Käitusaja signaalid otsustavad, kas värav jääb avatuks. Eelistan suunata need tagasi väljaandjale. OpenID Shared Signals Framework ja CAEP (lõplikud alates 2025. aasta septembrist) lasevad jõustamispunktidel signaalide põhjal otse tegutseda, mis on õigustatud lahendus, kuid siis vajab iga jõustamispunkt kindlat eelisjärjekorra reeglit, muidu luba ja signaal lähevad lahku.',
       },
       {
         en: 'The distinction is between a passport and a boarding pass. A passport says who you are. A boarding pass says what you may do next: this flight, this time, this gate. Enforcement points should be reading boarding passes.',
@@ -176,8 +178,8 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Bind authorization to a re-evaluated context rather than a past event: short token lifetimes with re-evaluation on refresh instead of silent extension, sender-constrained tokens bound to the presenter so a stolen token is not a usable one, and a fresh-proof requirement for state-changing operations while cheap reads run on a cached verdict.',
-        et: 'Siduge volitus uuesti hinnatava kontekstiga, mitte möödunud sündmusega: lühikesed loa eluead koos uuesti hindamisega värskendamisel, mitte vaikiva pikendamisega; saatjaga seotud load, nii et varastatud luba ei ole kasutatav; ning värske tõendi nõue olekut muutvatele toimingutele, samal ajal kui odavad lugemised töötavad vahemällu salvestatud otsusega.',
+        en: 'Bind authorization to a re-evaluated context rather than a past event: short token lifetimes with re-evaluation on refresh instead of silent extension, sender-constrained tokens bound to the presenter (DPoP, RFC 9449, or mutual TLS, RFC 8705) so a stolen token is not a usable one, rich authorization requests (RFC 9396) that state exactly what is allowed, and a fresh-proof requirement for state-changing operations while cheap reads run on a cached verdict.',
+        et: 'Siduge volitus uuesti hinnatava kontekstiga, mitte möödunud sündmusega: lühikesed loa eluead koos uuesti hindamisega värskendamisel, mitte vaikiva pikendamisega; saatjaga seotud load (DPoP, RFC 9449, või vastastikune TLS, RFC 8705), nii et varastatud luba ei ole kasutatav; täpsustatud volituspäringud (RFC 9396), mis ütlevad täpselt, mis on lubatud; ning värske tõendi nõue olekut muutvatele toimingutele, samal ajal kui odavad lugemised töötavad vahemällu salvestatud otsusega.',
       },
       {
         en: 'Treat recovery and delegation as part of the authentication surface. Account recovery, PIN reset, device re-enrolment, power of attorney and support-desk impersonation all mint an identity claim, and are almost always weaker than the path they bypass. A hardware-backed primary factor with a call-centre recovery flow behind it sets your real assurance level at the call centre.',
@@ -188,10 +190,79 @@ const sections: EssaySection[] = [
         et: 'Kujundage kinnituse ekraan turvakontrollina, sest see on turvakontroll. Esitage tegelik toiming, vastaspool ja summa kasutaja emakeeles seal, kus võtit kasutatakse. Kui liides ei suuda väljendada, mida allkirjastatakse, ei tähenda allkiri seda, mida selle kohal olev arhitektuur eeldab.',
       },
       {
-        en: 'None of this is finished work. Hardware-attested identity, scoped proof tokens, continuous evaluation and shared security signals all exist, but integrating them across trust domains under real latency budgets is open engineering. The direction is clear where the implementation is not. Traffic should not say: this is who I am. It should say: here is proof that I may do exactly this.',
-        et: 'Miski sellest ei ole lõpetatud töö. Riistvaraga kinnitatud identiteet, piiritletud tõendiload, pidev hindamine ja jagatud turvasignaalid on kõik olemas, kuid nende ühendamine usaldusdomeenide üleselt reaalsete viiteaja piirangute tingimustes on lahtine inseneritöö. Suund on selge ka seal, kus teostus ei ole. Liiklus ei peaks ütlema: see on see, kes ma olen. See peaks ütlema: siin on tõend, et ma tohin teha täpselt seda.',
+        en: 'None of this is finished work. Hardware-attested identity, scoped proof tokens, continuous evaluation and shared security signals all exist, but integrating them across trust domains under real latency budgets is open engineering. Traffic should not say: this is who I am. It should say: here is proof that I may do exactly this.',
+        et: 'Miski sellest ei ole lõpetatud töö. Riistvaraga kinnitatud identiteet, piiritletud tõendiload, pidev hindamine ja jagatud turvasignaalid on kõik olemas, kuid nende ühendamine usaldusdomeenide üleselt reaalsete viiteaja piirangute tingimustes on lahtine inseneritöö. Liiklus ei peaks ütlema: see on see, kes ma olen. See peaks ütlema: siin on tõend, et ma tohin teha täpselt seda.',
       },
     ],
+  },
+];
+
+const sources: Source[] = [
+  {
+    label: { en: 'NIST SP 800-63B-4, Digital Identity Guidelines: Authentication and Authenticator Management (2025)', et: 'NIST SP 800-63B-4, digitaalse identiteedi juhised: autentimine ja autentijate haldus (2025)' },
+    url: 'https://pages.nist.gov/800-63-4/sp800-63b.html',
+    note: { en: 'section 3.2.5, phishing resistance', et: 'jaotis 3.2.5, andmepüügikindlus' },
+  },
+  {
+    label: { en: 'NIST SP 800-207, Zero Trust Architecture (2020)', et: 'NIST SP 800-207, null-usalduse arhitektuur (2020)' },
+    url: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf',
+  },
+  {
+    label: { en: 'RIA, Cyberspace in 2025: a year of fraud (February 2026)', et: 'RIA, küberruum 2025. aastal: pettuste aasta (veebruar 2026)' },
+    url: 'https://www.ria.ee/en/cyberspace-2025-year-fraud',
+  },
+  {
+    label: { en: 'RIA, A surge in scams costs Estonian people 29 million euros', et: 'RIA, pettuste kasv läks Eesti inimestele maksma 29 miljonit eurot' },
+    url: 'https://ria.ee/en/surge-scams-costs-estonian-people-29-million-euros',
+  },
+  {
+    label: { en: 'Computing, Estonian authorities block national ID cards due to ROCA flaw (2017)', et: 'Computing, Eesti ametiasutused peatavad ROCA vea tõttu ID-kaartide sertifikaadid (2017)' },
+    url: 'https://www.computing.co.uk/news/3020473/estonion-authorities-block-national-id-cards-due-to-flaw',
+  },
+  {
+    label: { en: 'SK ID Solutions, rQSCD Service Practice Statement v1.0', et: 'SK ID Solutions, rQSCD teenuse praktika kirjeldus v1.0' },
+    url: 'https://www.skidsolutions.eu/wp-content/uploads/2026/03/SK_ID_Solutions_AS_rQSCD_Service_Practice_Statement_v.1.0_20260501.pdf',
+    note: { en: 'Smart-ID split-key components', et: 'Smart-ID jagatud võtme osad' },
+  },
+  {
+    label: { en: 'Smart-ID security research corpus', et: 'Smart-ID turvauuringute korpus' },
+    url: 'https://tomkabel.github.io/smart-id-security-research/',
+  },
+  {
+    label: { en: 'Biometric Update, OpenID approves SSF, CAEP and RISC as final (September 2025)', et: 'Biometric Update, OpenID kinnitab SSF-i, CAEP-i ja RISC-i lõplikena (september 2025)' },
+    url: 'https://biometricupdate.com/202509/openid-approves-3-standards-for-sharing-real-time-digital-identity-security-signals',
+  },
+  {
+    label: { en: 'RFC 9449, OAuth 2.0 Demonstrating Proof of Possession (DPoP)', et: 'RFC 9449, OAuth 2.0 valdamise tõendamine (DPoP)' },
+    url: 'https://www.rfc-editor.org/rfc/rfc9449',
+  },
+  {
+    label: { en: 'RFC 8705, OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens', et: 'RFC 8705, OAuth 2.0 vastastikuse TLS-iga kliendi autentimine ja sertifikaadiga seotud juurdepääsuload' },
+    url: 'https://www.rfc-editor.org/rfc/rfc8705',
+  },
+  {
+    label: { en: 'RFC 9396, OAuth 2.0 Rich Authorization Requests', et: 'RFC 9396, OAuth 2.0 täpsustatud volituspäringud' },
+    url: 'https://www.rfc-editor.org/rfc/rfc9396',
+  },
+  {
+    label: { en: 'Commission Delegated Regulation (EU) 2018/389, PSD2 RTS on strong customer authentication', et: 'Komisjoni delegeeritud määrus (EL) 2018/389, PSD2 tugeva kliendi autentimise regulatiivne tehniline standard' },
+    url: 'https://eur-lex.europa.eu/eli/reg_del/2018/389/oj',
+    note: { en: 'Article 5, dynamic linking', et: 'artikkel 5, dünaamiline sidumine' },
+  },
+  {
+    label: { en: 'W3C, Secure Payment Confirmation', et: 'W3C, Secure Payment Confirmation' },
+    url: 'https://www.w3.org/TR/secure-payment-confirmation/',
+  },
+];
+
+const disclosureParagraphs: Bi[] = [
+  {
+    en: 'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
+    et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: the classic Smart-ID flow is no longer presented as phishing-resistant (under NIST SP 800-63B-4 it is not), so the Estonian evidence now supports "strong cryptography fails at the approval layer" rather than "phishing-resistant credentials fail"; the section now cites RIA\'s 2025 figures, the 2017 ROCA episode and the Smart-ID+ rollout, and the description of the PIN analysis and of origin binding\'s limits was corrected.',
+    et: 'Parandused, 4. oktoober 2026: klassikalist Smart-ID voogu ei esitata enam andmepüügikindlana (NIST SP 800-63B-4 järgi see seda ei ole), nii et Eesti näide toetab nüüd väidet „tugev krüptograafia nurjub heakskiidukihis", mitte „andmepüügikindlad mandaadid nurjuvad"; jaotis viitab nüüd RIA 2025. aasta arvudele, 2017. aasta ROCA juhtumile ja Smart-ID+ kasutuselevõtule ning PIN-koodi analüüsi ja päritolu sidumise piiride kirjeldust on parandatud.',
   },
 ];
 
@@ -210,7 +281,9 @@ function IdentityRootProofGateResearchPage() {
         meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
             </>, <>
-              {isEn ? '7 min read' : '7 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '10 min read' : '10 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -252,6 +325,22 @@ function IdentityRootProofGateResearchPage() {
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Sources' : 'Allikad'}
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a href={source.url} className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                    {source.label[language]}
+                  </a>
+                  {source.note ? <span className="text-muted-foreground"> — {source.note[language]}</span> : null}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemist'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -280,8 +369,8 @@ function IdentityRootProofGateResearchPage() {
                   {isEn ? 'The PIN That Cannot Be Delegated' : 'PIN-kood, mida ei saa delegeerida'}
                 </Link>{' '}
                 {isEn
-                  ? '— why a perfectly executed signature can still carry a false claim.'
-                  : '— miks laitmatult teostatud allkiri võib siiski kanda väära väidet.'}
+                  ? '— the contract side: the design assumes the PIN never leaves the subscriber.'
+                  : '— lepingu pool: kujundus eeldab, et PIN-kood ei lahku kunagi kasutaja käest.'}
               </p>
               <p>
                 <Link to="/disclosures/i-used-to-break-authentication" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
@@ -291,6 +380,17 @@ function IdentityRootProofGateResearchPage() {
                   ? '— where the habit of asking what a proof actually establishes comes from.'
                   : '— kust pärineb harjumus küsida, mida tõend tegelikult kinnitab.'}
               </p>
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
+            </h2>
+            <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
             </div>
           </section>
         </div>
