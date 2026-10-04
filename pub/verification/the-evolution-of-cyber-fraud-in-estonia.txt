@@ -101,7 +101,7 @@ The next stage is predictable. AI voice synthesis in fluent Estonian is the obvi
 
 This report is a synthesis of public reporting and statistics. It describes no live system under test, discloses no vulnerability, and contains no private or client material. All cases cited were already public in Estonian and English media before this report. Figures are attributed to the authority that published them; where authorities disagree, both figures are given with their sources.
 
-Research conduct follows the site's 
+Research conduct follows the site's security research policy.
 
 Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. The conclusions also point to the author's own Smart-ID research.
 
@@ -205,7 +205,7 @@ Järgmine etapp on ette näha. Soravat eesti keelt kõnelev tehishääl on selle
 
 See raport on kokkuvõte avalikest teadetest ja statistikast. See ei kirjelda ühtegi testitavat töötavat süsteemi, ei avalikusta ühtegi turvaauku ega sisalda ühtegi privaatset ega kliendimaterjali. Kõik viidatud juhtumid olid enne selle raporti valmimist juba avalikud Eesti ja ingliskeelses meedias. Arvud on omistatud asutusele, kes need avaldas; kus asutused on eri meelt, on mõlemad arvud koos allikatega esitatud.
 
-Uurimistöö järgib saidi 
+Uurimistöö järgib saidi turvauuringute põhimõtteid.
 
 Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Järeldused viitavad ka autori enda Smart-ID uurimistööle.
 

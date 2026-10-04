@@ -97,7 +97,7 @@ Those memoranda mean I am a party to an open regulatory dispute with SK. Read th
 
 Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product.
 
-This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site’s 
+This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site’s security research policy.
 
 Corrections, 4 October 2026: the earlier version said only one bank had deployed Smart-ID+ and that SK "shipped" it in June 2025; SK made it available to integrators then, and Bigbank and LHV went live in June 2026. This version also drops the statement that the PoC was "authorized by Arnis Paršovs", which did not say what was authorized or by whose right; replaces the vague disclosure note with the dated record above; credits the loss rule to PSD2 Art. 74(2) rather than card schemes; and fixes the dead link to the research corpus.
 
