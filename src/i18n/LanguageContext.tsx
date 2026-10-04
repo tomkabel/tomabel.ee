@@ -37,10 +37,15 @@ function preferredBrowserLanguage(): Language {
   return 'en';
 }
 
+// The prerendered HTML is English (rendered with no window), so main.tsx only
+// hydrates it when this returns 'en'.
+// eslint-disable-next-line react-refresh/only-export-components
+export function initialLanguage(): Language {
+  return typeof window === 'undefined' ? 'en' : (readStoredLanguage() ?? preferredBrowserLanguage());
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() =>
-    typeof window === 'undefined' ? 'en' : (readStoredLanguage() ?? preferredBrowserLanguage()),
-  );
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
