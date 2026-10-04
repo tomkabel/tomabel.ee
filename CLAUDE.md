@@ -69,10 +69,10 @@ Translations in `src/i18n/translations.ts`, organized by component section. Swit
 
 ### Build & Deploy
 
-- Output dir: `pub/`
-- `postbuild` copies `pub/index.html` → `pub/404.html` for SPA fallback on Vercel
-- `vercel.json` configures security headers (CSP, HSTS, X-Frame-Options) and immutable caching
-- Build is pure static — no SSR, no API routes
+- Output dir: `pub/` (tracked). Origin is **GitHub Pages** (`.github/workflows/static.yml` on push to `main`), proxied by **Cloudflare** (free plan).
+- `build` also builds `src/entry-server.tsx` to `dist-ssr/`; `postbuild` (`scripts/spa-routes.mjs`) writes one prerendered `index.html` per route (article text in the HTML for non-JS crawlers/agents) plus a noindex empty `404.html`. `main.tsx` hydrates when the reader's language is English, else re-renders.
+- Response headers (CSP, HSTS, etc.) live in a Cloudflare Response Header Transform Rule, not in the repo. GitHub Pages ignores `_headers`/`_redirects`/`vercel.json`.
+- `worker/` — Cloudflare Worker on `tomabel.ee/*`: `Accept: text/markdown` → Markdown (Workers AI `toMarkdown`), plus `Link`/`Content-Signal` headers on HTML. Deploy with `npx wrangler deploy -c worker/wrangler.jsonc`. See `docs/agent-readiness-plan.md`.
 
 ### Styling
 

@@ -1,0 +1,10 @@
+// Deploy: npx wrangler deploy -c worker/wrangler.jsonc
+{
+  "name": "tomabel-agents",
+  "main": "index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "ai": { "binding": "AI" },
+  "routes": [{ "pattern": "tomabel.ee/*", "zone_name": "tomabel.ee" }],
+  "observability": { "enabled": true }
+}
