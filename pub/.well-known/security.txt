@@ -1,0 +1,6 @@
+Canonical: https://proksiabel.ee/.well-known/security.txt
+Policy: https://proksiabel.ee/disclosure.html
+Contact: mailto:security@proksiabel.ee
+Encryption: https://proksiabel.ee/public-key.asc
+Expires: 2027-03-28T00:00:00.000Z
+Preferred-Languages: en, et
