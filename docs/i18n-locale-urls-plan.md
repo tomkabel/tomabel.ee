@@ -137,7 +137,12 @@ at it. The client legacy `<Navigate>` routes stay, permanently (Rollback, PR-3).
 - `needs: build-and-deploy`, so it runs only after Pages deployed, for `push` and
   `workflow_dispatch` alike. `if: github.ref == 'refs/heads/main' && vars.WORKER_DEPLOY_FROZEN != '1'`.
 - Own job: fresh checkout, `pnpm install --frozen-lockfile`,
-  `pnpm exec wrangler deploy -c worker/wrangler.jsonc`; `permissions: contents: read`.
+  `pnpm exec wrangler deploy -c worker/wrangler.jsonc`.
+- Permissions move from workflow level to jobs, or zizmor (the Workflow lint step) fails and
+  blocks both deploys: workflow `permissions: {}`; `build-and-deploy` gets `contents: read`,
+  `pages: write`, `id-token: write`; `worker` gets `contents: read` only. The `worker` checkout
+  uses `persist-credentials: false`, like the existing one. Run `pipx run zizmor .github/workflows/`
+  locally before pushing.
   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` live in their own `cloudflare` environment,
   step-scoped `env`; the Pages job never sees them.
 - Token: Account · Workers Scripts:Edit (this account) and Zone · Workers Routes:Edit
@@ -425,8 +430,10 @@ one line per `bilingualPaths()` entry, `- [<routeMeta[p].et.title>](<pageUrl(p, 
 - `<html lang>` equals the page's locale. `404.html` is excluded: it keeps the English head and
   is also served for unknown `/et/` paths, where the client renders Estonian.
 - An `et` entry means a translated body: for every path in `bilingualPaths()`, at least 50 % of
-  the words (lowercased, ≥ 3 letters) in the `/et/` prerender's `#main-content` do not occur in
-  the English one. A stub with a translated heading over English text fails. This gate is an
+  the prose words (lowercased, ≥ 3 letters; text inside `pre`, `code` and `table` excluded) in the
+  `/et/` prerender's `#main-content` do not occur in the English one. Before enabling the gate,
+  measure that ratio on every current bilingual page and set the threshold at least 15 points
+  below the lowest one; record the measured values in the PR. A stub with a translated heading over English text fails. This gate is an
   addition: `englishOnlyArticles` and its route-meta test stay (5.1).
 - Sitemap `<loc>` set equals the set of emitted indexable pages.
 - No `//` in `new URL(u).pathname` of any emitted internal URL (the `https://` scheme is not a
