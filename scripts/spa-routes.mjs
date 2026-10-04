@@ -11,6 +11,8 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 // Node 22.18+ loads .ts directly (type stripping), so the build and the app
 // share one metadata module with no copy to drift.
 import { jsonLdFor, metaFor, pageUrl, routeMeta } from '../src/content/route-meta.ts';
+// Built by `vite build --ssr src/entry-server.tsx` (see package.json "build").
+import { render } from '../dist-ssr/entry-server.js';
 
 // Values are stamped into HTML attributes and a <script> block: escape them
 // for that context, and use function replacers so a `$` in copy is literal.
@@ -23,12 +25,37 @@ const routes = Object.keys(routeMeta)
   .filter((path) => path !== '/')
   .map((path) => path.slice(1));
 
+// The empty shell, read once: index.html itself gets the home page body below,
+// and 404.html must stay empty so the client renders NotFound.
+const shellTemplate = readFileSync('pub/index.html', 'utf-8');
+
+// Routes that only <Navigate> elsewhere render nothing; leave their #root empty.
+const redirectRoutes = new Set(['/cookies']);
+
+// Put the prerendered page into #root, so crawlers and agents that do not run
+// JS get the text. Gate: a real page with almost no text means the render
+// broke (an empty lazy page, a thrown boundary) — fail rather than ship it.
+async function withBody(html, path) {
+  if (redirectRoutes.has(path)) return html;
+  const body = await render(path);
+  const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (text.length < 500) {
+    console.error(`FAIL: prerender of ${path} has only ${text.length} chars of text`);
+    process.exit(1);
+  }
+  if (!html.includes('<div id="root"></div>')) {
+    console.error('FAIL: index.html has no empty <div id="root"></div>');
+    process.exit(1);
+  }
+  return html.replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
+}
+
 for (const route of routes) {
   const url = pageUrl(`/${route}`);
   const meta = metaFor(`/${route}`, 'en');
   const jsonLd = jsonLdFor(`/${route}`, 'en');
   mkdirSync(`pub/${route}`, { recursive: true });
-  let html = readFileSync('pub/index.html', 'utf-8');
+  let html = shellTemplate;
 
   // Stamp per-route meta into the static HTML.
   const tags = [
@@ -59,7 +86,7 @@ for (const route of routes) {
     html = html.replace('</head>', () => `<script type="application/ld+json">${json}</script>\n    </head>`);
   }
 
-  writeFileSync(`pub/${route}/index.html`, html);
+  writeFileSync(`pub/${route}/index.html`, await withBody(html, `/${route}`));
 }
 
 // Build-time gate: every route shell must carry exactly ONE canonical pointing
@@ -89,11 +116,13 @@ if (
   process.exit(1);
 }
 
-console.log(`spa-routes: emitted ${routes.length} route shells with per-route meta`);
+writeFileSync('pub/index.html', await withBody(shellTemplate, '/'));
+
+console.log(`spa-routes: emitted ${routes.length + 1} prerendered route shells with per-route meta`);
 
 // GH Pages fallback for unknown paths: serve a noindex copy of the shell.
 // HTTP 404 + noindex keeps unknown URLs out of the index.
-const notFound = readFileSync('pub/index.html', 'utf-8').replace(
+const notFound = shellTemplate.replace(
   '</head>',
   '    <meta name="robots" content="noindex" />\n  </head>',
 );

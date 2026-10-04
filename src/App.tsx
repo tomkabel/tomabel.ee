@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { LanguageProvider, LanguageScope, useTranslation } from './i18n';
 import { englishOnlyArticles } from './content/site';
 import SiteNav from './components/site/nav';
@@ -130,10 +130,9 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function App() {
-  return (
-    <LanguageProvider>
-      <BrowserRouter>
+// `location` is set only by the build-time prerender (src/entry-server.tsx).
+function App({ location }: { location?: string }) {
+  const routes = (
         <div className="min-h-screen bg-background">
           <ScrollToTop />
           <SkipLink />
@@ -177,7 +176,10 @@ function App() {
             <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
         </div>
-      </BrowserRouter>
+  );
+  return (
+    <LanguageProvider>
+      {location === undefined ? <BrowserRouter>{routes}</BrowserRouter> : <StaticRouter location={location}>{routes}</StaticRouter>}
     </LanguageProvider>
   );
 }
