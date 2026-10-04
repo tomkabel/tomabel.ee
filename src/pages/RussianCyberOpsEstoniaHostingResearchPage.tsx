@@ -275,6 +275,7 @@ const sources: Source[] = [
   { label: 'Recorded Future (Nov 2025)', url: 'https://assets.recordedfuture.com/insikt-report-pdfs/2025/cta-2025-1106.pdf', note: 'NoName057(16) DDoSia infrastructure, AS62005 Blue VPS OÜ' },
   { label: 'Estonian Ministry of Foreign Affairs', url: 'https://www.vm.ee/en/news/estonia-names-russias-military-intelligence-first-ever-attribution-cyberattacks', note: 'First public attribution, to GRU unit 29155 (5 Sep 2024)' },
   { label: 'Europol (16 Jul 2025)', url: 'https://www.europol.europa.eu/media-press/newsroom/news/global-operation-targets-noname05716-pro-russian-cybercrime-network', note: 'Operation Eastwood against NoName057(16), 14–17 Jul 2025; Estonia among supporting countries' },
+  { label: 'RIA', url: 'https://www.ria.ee/en/news/cyber-security-estonia-new-records-old-mistakes', note: 'Record 756 DDoS attacks on Estonia in 2025' },
   { label: 'RIA cyber security yearbook 2026', url: 'https://ria.ee/ummistusrunded-eesti-votsid-sihikule-uued-ruhmitused', note: 'Record 756 DDoS attacks on Estonia in 2025, 95 with impact (in Estonian)' },
   { label: 'KAPO yearbook 2025–2026', url: 'https://kapo.ee/sites/default/files/content_page_attachments/aastaraamat-2025-2026.pdf', note: 'Estonian-registered shell companies used for Russian military procurement' },
   { label: 'MITRE ATT&CK G0007', url: 'https://attack.mitre.org/groups/G0007/', note: 'APT28: GRU 85th GTsSS, military unit 26165' },

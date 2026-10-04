@@ -75,7 +75,7 @@ function ScrollToTop() {
       if (main && routeChanged) focusWithoutScroll(main);
     };
     const seek = () => {
-      if (window.scrollY !== startY) return; // the reader scrolled; leave them there
+      if (window.scrollY !== startY) return focusMain(); // the reader scrolled; leave them there
       const target = id ? document.getElementById(id) : null;
       if (target) {
         target.scrollIntoView();
