@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { LanguageProvider, LanguageScope, useTranslation } from './i18n';
 import { englishOnlyArticles } from './content/site';
 import SiteNav from './components/site/nav';
@@ -131,63 +131,56 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Router-agnostic tree: the browser wraps it in BrowserRouter (App below), the
-// build-time prerender (src/entry-server.tsx) in a StaticRouter, so both
-// render the same markup and the client hydrates it.
-export function AppRoutes() {
-  return (
-    <div className="min-h-screen bg-background">
-      <ScrollToTop />
-      <SkipLink />
-      <Routes>
-        <Route path="/" element={<Layout><HomePage /></Layout>} />
-        <Route path="/disclosures" element={<Layout><Lazy><DisclosuresPage /></Lazy></Layout>} />
-        <Route path="/systems" element={<Layout><Lazy><SystemsPage /></Lazy></Layout>} />
-        <Route path="/disclosures/i-used-to-break-authentication" element={<Layout><Lazy><AuthenticationEssayPage /></Lazy></Layout>} />
-        <Route path="/disclosures/what-client-side-trust-is-actually-worth" element={<Layout><Lazy><WhatClientSideTrustIsActuallyWorthPage /></Lazy></Layout>} />
-        <Route path="/disclosures/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
-        <Route path="/disclosures/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
-        <Route path="/disclosures/the-fix-that-doesnt-need-sk" element={<Layout><Lazy><TheFixThatDoesntNeedSkPage /></Lazy></Layout>} />
-        <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/pact-software-anchor-turn" element={<Layout><Lazy><PactSoftwareAnchorTurnResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/chatgpt-is-not-a-phishing-scanner" element={<Layout><Lazy><ChatgptIsNotAPhishingScannerResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/the-evolution-of-cyber-fraud-in-estonia" element={<Layout><Lazy><TheEvolutionOfCyberFraudInEstoniaResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/the-pin-that-cannot-be-delegated" element={<Layout><Lazy><ThePinThatCannotBeDelegatedResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/russian-cyber-ops-estonia-hosting" element={<Layout><Lazy><RussianCyberOpsEstoniaHostingResearchPage /></Lazy></Layout>} />
-        <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
-        <Route path="/my-story" element={<Layout><Lazy><MyStoryPage /></Lazy></Layout>} />
-        <Route path="/disclosures/why-vlms-break-client-side-anti-fraud" element={<Layout><Lazy><VlmAntiFraudResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/nine-dimensions-of-zero-trust" element={<Layout><Lazy><NineDimensionsZeroTrustPage /></Lazy></Layout>} />
-        <Route path="/disclosures/the-fortune-500-illusion-of-control" element={<Layout><Lazy><Fortune500IllusionResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/move-fast-fix-it-in-prod" element={<Layout><Lazy><MoveFastFixItInProdResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/saas-glued-lean-defense" element={<Layout><Lazy><SaasGluedLeanDefenseResearchPage /></Lazy></Layout>} />
-        <Route path="/disclosures/identity-is-the-root-proof-is-the-gate" element={<Layout><Lazy><IdentityRootProofGateResearchPage /></Lazy></Layout>} />
+// `location` is set only by the build-time prerender (src/entry-server.tsx).
+function App({ location }: { location?: string }) {
+  const routes = (
+        <div className="min-h-screen bg-background">
+          <ScrollToTop />
+          <SkipLink />
+          <Routes>
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/disclosures" element={<Layout><Lazy><DisclosuresPage /></Lazy></Layout>} />
+            <Route path="/systems" element={<Layout><Lazy><SystemsPage /></Lazy></Layout>} />
+            <Route path="/disclosures/i-used-to-break-authentication" element={<Layout><Lazy><AuthenticationEssayPage /></Lazy></Layout>} />
+            <Route path="/disclosures/what-client-side-trust-is-actually-worth" element={<Layout><Lazy><WhatClientSideTrustIsActuallyWorthPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-kratt-problem" element={<Layout><Lazy><KrattProblemPage /></Lazy></Layout>} />
+            <Route path="/disclosures/coordinated-disclosure-in-a-small-country" element={<Layout><Lazy><CoordinatedDisclosureInASmallCountryPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-fix-that-doesnt-need-sk" element={<Layout><Lazy><TheFixThatDoesntNeedSkPage /></Lazy></Layout>} />
+            <Route path="/disclosures/botguard-disassembled" element={<Layout><Lazy><BotGuardDisassembledResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/smart-id-achilles-heel" element={<Layout><Lazy><SmartIdAchillesHeelResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/zero-trust-octagon" element={<Layout><Lazy><ZeroTrustOctagonResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/pact-software-anchor-turn" element={<Layout><Lazy><PactSoftwareAnchorTurnResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/chatgpt-is-not-a-phishing-scanner" element={<Layout><Lazy><ChatgptIsNotAPhishingScannerResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-evolution-of-cyber-fraud-in-estonia" element={<Layout><Lazy><TheEvolutionOfCyberFraudInEstoniaResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-pin-that-cannot-be-delegated" element={<Layout><Lazy><ThePinThatCannotBeDelegatedResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/russian-cyber-ops-estonia-hosting" element={<Layout><Lazy><RussianCyberOpsEstoniaHostingResearchPage /></Lazy></Layout>} />
+            <Route path="/about" element={<Layout><Lazy><AboutPage /></Lazy></Layout>} />
+            <Route path="/my-story" element={<Layout><Lazy><MyStoryPage /></Lazy></Layout>} />
+            <Route path="/disclosures/why-vlms-break-client-side-anti-fraud" element={<Layout><Lazy><VlmAntiFraudResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/nine-dimensions-of-zero-trust" element={<Layout><Lazy><NineDimensionsZeroTrustPage /></Lazy></Layout>} />
+            <Route path="/disclosures/the-fortune-500-illusion-of-control" element={<Layout><Lazy><Fortune500IllusionResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/move-fast-fix-it-in-prod" element={<Layout><Lazy><MoveFastFixItInProdResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/saas-glued-lean-defense" element={<Layout><Lazy><SaasGluedLeanDefenseResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/identity-is-the-root-proof-is-the-gate" element={<Layout><Lazy><IdentityRootProofGateResearchPage /></Lazy></Layout>} />
 
-        {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
-            301s live in public/_redirects for hosts that honor it. */}
-        <Route path="/research" element={<Navigate to="/disclosures" replace />} />
-        <Route path="/writing" element={<Navigate to="/disclosures" replace />} />
-        <Route path="/projects" element={<Navigate to="/systems" replace />} />
-        <Route path="/research/:slug" element={<LegacyDisclosureRedirect />} />
-        <Route path="/writing/:slug" element={<LegacyDisclosureRedirect />} />
-        <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
-        <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />
-        <Route path="/disclosure" element={<Layout><Disclosure /></Layout>} />
-        <Route path="/cookies" element={<Cookies />} />
-        <Route path="*" element={<Layout><NotFound /></Layout>} />
-      </Routes>
-    </div>
+            {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
+                301s live in public/_redirects for hosts that honor it. */}
+            <Route path="/research" element={<Navigate to="/disclosures" replace />} />
+            <Route path="/writing" element={<Navigate to="/disclosures" replace />} />
+            <Route path="/projects" element={<Navigate to="/systems" replace />} />
+            <Route path="/research/:slug" element={<LegacyDisclosureRedirect />} />
+            <Route path="/writing/:slug" element={<LegacyDisclosureRedirect />} />
+            <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
+            <Route path="/terms" element={<Layout><TermsOfService /></Layout>} />
+            <Route path="/disclosure" element={<Layout><Disclosure /></Layout>} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
+          </Routes>
+        </div>
   );
-}
-
-function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      {location === undefined ? <BrowserRouter>{routes}</BrowserRouter> : <StaticRouter location={location}>{routes}</StaticRouter>}
     </LanguageProvider>
   );
 }

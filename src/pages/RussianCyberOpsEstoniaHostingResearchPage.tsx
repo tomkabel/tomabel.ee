@@ -25,7 +25,7 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: "In September 2026 QualityNetwork OÜ, one of the two companies fineproxy.org names as its operators, became a RIPE Local Internet Registry and was allocated IP prefixes that Qurium's 2019 report listed under Ilia Trusov's Region40 network. This OSINT reference traces that network from Kaluga to the 2026 allocation, sets out what the public record does and does not show about a second Estonian-registered network, and separates commercial gray-space infrastructure from Russian state operations.",
-  et: 'Eesti ettevõte QualityNetwork OÜ, mille fineproxy.org nimetab ühena oma kahest käitajast, sai 2026. aasta septembris RIPE kohalikuks internetiregistriks (LIR) ja sellele eraldati IP-plokid, mille Qurium oli 2019. aasta raportis loetlenud Ilja Trusovi Region40 võrgu all. See OSINT-ülevaade jälgib võrgu teed Kalugast 2026. aasta eralduseni, kirjeldab, mida avalikud andmed teise Eestis registreeritud võrgu kohta näitavad ja mida mitte, ning eristab kommertslikku halli ruumi taristut Venemaa riiklikest operatsioonidest.',
+  et: 'Eesti ettevõte QualityNetwork OÜ, mille fineproxy.org nimetab ühena oma kahest käitajast, sai 2026. aasta septembris RIPE kohalikuks internetiregistriks (LIR) ja sellele eraldati IP-plokid, mille Qurium oli 2019. aasta raportis loetlenud Ilja Trusovi Region40 võrgu all. See OSINT-ülevaade jälgib võrgu teed Kalugast 2026. aasta eralduseni, kirjeldab, mida avalikud andmed teise Eestis registreeritud võrgu kohta näitavad ja mida mitte, ning eristab kommertslikku halli ala taristut Venemaa riiklikest operatsioonidest.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -244,7 +244,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'Report abuse to the network\'s abuse contact and to CERT-EE. Prompt reports shorten the operational life of gray-space infrastructure.',
-        et: 'Teata kuritarvitustest võrgu kuritarvitusteadete kontaktile (abuse contact) ja CERT-EE-le. Kiire teavitamine lühendab halli ruumi taristu eluiga.',
+        et: 'Teata kuritarvitustest võrgu kuritarvitusteadete kontaktile (abuse contact) ja CERT-EE-le. Kiire teavitamine lühendab halli ala taristu eluiga.',
       },
       {
         en: 'Separate cybercrime from state operations. The supply chain for DDoS, malware and espionage infrastructure overlaps in the gray zone. Calibrate the response to observed behavior, not assumed sponsorship.',

@@ -64,7 +64,7 @@ const sections: ReportSection[] = [
       },
       {
         en: 'For a few years the language barrier still held. The scams that worked were Russian-language phone fraud, and the vishing that did reach Estonian speakers came with detectable accents. The barrier was doing real work, and nobody had to pay to maintain it.',
-        et: 'Mõneks aastaks pidas keelebarjäär veel. Töötasid venekeelsed telefonipettused ja vishing, mis eestikeelsete inimesteni jõudis, tuli tuvastatava aktsendiga. Barjäär tegi tõelist tööd ja kellelgi ei tulnud selle ülalhoidmise eest maksta.',
+        et: 'Mõneks aastaks pidas keelebarjäär veel. Töötasid venekeelsed telefonipettused ja kõneõngitsus, mis eestikeelsete inimesteni jõudis, tuli tuvastatava aktsendiga. Barjäär tegi tõelist tööd ja kellelgi ei tulnud selle ülalhoidmise eest maksta.',
       },
     ],
   },
@@ -93,11 +93,11 @@ const sections: ReportSection[] = [
     ],
   },
   {
-    heading: { en: 'Vishing becomes the main vector', et: 'Vishingust saab peamine rünnakuvektor' },
+    heading: { en: 'Vishing becomes the main vector', et: 'Kõneõngitsusest saab peamine rünnakuvektor' },
     paragraphs: [
       {
         en: "Phone fraud overtook email phishing as the dominant vector during this period. SEB Latvia put vishing at nearly two-thirds of identified fraud damages in Latvia, and first in Estonia. RIA's 2026 yearbook describes the surge in phone scams and notes that people lose tens of thousands of euros a day to them.",
-        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Läti hinnangul moodustas vishing Lätis tuvastatud pettusekahjudest ligi kaks kolmandikku ja Eestis oli see esikohal. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
+        et: 'Telefonipettus möödus sel perioodil valdava vektorina e-posti õngitsemisest. SEB Läti hinnangul moodustas kõneõngitsus Lätis tuvastatud pettusekahjudest ligi kaks kolmandikku ja Eestis oli see esikohal. RIA 2026. aasta aastaraamat kirjeldab telefonipettuste hüppelist kasvu ja märgib, et inimesed kaotavad nendega kümneid tuhandeid eurosid päevas.',
       },
       {
         en: 'The methodology industrialized into a standard two-call sequence. The first call impersonates the Health Insurance Fund (Tervisekassa) with a hook: unused benefits, a refund, a cheaper specialist-visit rate if you "confirm your details." Confirming means entering a Smart-ID PIN1. The second call comes from someone posing as the European Central Bank, your own bank, or the police, claiming the first call was the scam and your money must be "rescued" immediately. The second call can last for hours and is engineered to extract PIN2, the code that authorizes payments and loans.',
@@ -180,7 +180,7 @@ const sections: ReportSection[] = [
       },
       {
         en: 'The banks have started to change the approval step. SK ID Solutions made Smart-ID+ available to integrators on 26 June 2025. With it, the user starts the login by scanning a QR code shown on the screen, so a caller can no longer simply trigger a request for the victim to approve. Bigbank became the first Estonian bank to go live with it on 11 June 2026, LHV followed from 16 June, and SEB and Swedbank say they will introduce it later in 2026. Smart-ID+ makes this kind of vishing much harder. It does not rule it out: LHV said in January 2026 that QR flows stay vulnerable when the fraudster is in live contact with the victim.',
-        et: 'Pangad on hakanud kinnitussammu muutma. SK ID Solutions tegi Smart-ID+ liidestajatele kättesaadavaks 26. juunil 2025. Selle puhul alustab kasutaja sisselogimist ise, skannides ekraanil kuvatud QR-koodi, nii et helistaja ei saa enam lihtsalt algatada päringut, mille ohver kinnitab. Bigbank võttis selle Eesti pankadest esimesena kasutusele 11. juunil 2026, LHV alates 16. juunist ning SEB ja Swedbank lubavad selle kasutusele võtta 2026. aasta jooksul. Smart-ID+ muudab sellise vishingu palju raskemaks, kuid ei välista seda: LHV ütles 2026. aasta jaanuaris, et QR-koodiga lahendused jäävad haavatavaks, kui pettur on ohvriga samal ajal ühenduses.',
+        et: 'Pangad on hakanud kinnitussammu muutma. SK ID Solutions tegi Smart-ID+ liidestajatele kättesaadavaks 26. juunil 2025. Selle puhul alustab kasutaja sisselogimist ise, skannides ekraanil kuvatud QR-koodi, nii et helistaja ei saa enam lihtsalt algatada päringut, mille ohver kinnitab. Bigbank võttis selle Eesti pankadest esimesena kasutusele 11. juunil 2026, LHV alates 16. juunist ning SEB ja Swedbank lubavad selle kasutusele võtta 2026. aasta jooksul. Smart-ID+ muudab sellise kõneõngitsuse palju raskemaks, kuid ei välista seda: LHV ütles 2026. aasta jaanuaris, et QR-koodiga lahendused jäävad haavatavaks, kui pettur on ohvriga samal ajal ühenduses.',
       },
       {
         en: 'Enforcement has also reached an organizer. In April 2026 Harju County Court convicted Artur Yermolayev, the Ukrainian leader of a criminal organization specializing in phone fraud, under a plea bargain. He received a five-year sentence, most of it suspended, a deportation order and a ten-year Schengen entry ban; the court took into account his agreement to pay 8.5 million euros to the Estonian state. Telecom operators work earlier in the chain: Telia blocked about 24 million scam calls in 2025, and the three large operators about 35 million together (Eesti Pank seminar, March 2026).',
@@ -209,7 +209,7 @@ const sections: ReportSection[] = [
       },
       {
         en: 'Vishing is the vector that matters. Email phishing is a mass-market lottery. Phone fraud is a two-hour interactive process that harvests both PINs and, in the courier cases, the physical card. It is higher-touch, higher-yield, and it is what the call centers are staffed for. Defenses that focus on email miss the part of the pipeline that is actually industrialized.',
-        et: 'Vishing on vektor, mis loeb. E-posti õngitsemine on massiturule suunatud loterii. Telefonipettus on kahetunnine vahetu protsess, mis kogub kokku mõlemad PIN-koodid ja kulleritega juhtumites ka füüsilise kaardi. See nõuab rohkem vahetut kontakti, annab rohkem tulu ja just selle jaoks on kõnekeskused mehitatud. Kaitsemeetmed, mis keskenduvad e-kirjale, jätavad vahele selle osa ahelast, mis on tegelikult tööstuslikuks muudetud.',
+        et: 'Kõneõngitsus on vektor, mis loeb. E-posti õngitsemine on massiturule suunatud loterii. Telefonipettus on kahetunnine vahetu protsess, mis kogub kokku mõlemad PIN-koodid ja kulleritega juhtumites ka füüsilise kaardi. See nõuab rohkem vahetut kontakti, annab rohkem tulu ja just selle jaoks on kõnekeskused mehitatud. Kaitsemeetmed, mis keskenduvad e-kirjale, jätavad vahele selle osa ahelast, mis on tegelikult tööstuslikuks muudetud.',
       },
       {
         en: "The next stage is predictable. AI voice synthesis in fluent Estonian is the obvious completion of the trajectory, Kotka's forecast, and nothing in the 2025 data argues against it. The defense that works against it is the same one that works against the current wave: make the approval step itself phishing-resistant, move verification off the phone call, and treat the user's PIN as a secret that no legitimate party ever asks for.",
@@ -337,7 +337,7 @@ const disclosureParagraphs: Bi[] = [
   },
   {
     en: 'Corrections, 4 October 2026: an earlier version read SEB\'s H1 2024 data as proof that the language barrier had already fallen; SEB said phone fraud was then mainly conducted in Russian, and the shift is now dated to late 2024 from police statements. I also removed an unsupported explanation of the RIA/PPA gap, corrected phone scams from "the majority" to the largest category (about 40 percent) of 2025 losses, attributed the five-to-ten-million range to ERR, limited SEB\'s two-thirds vishing share to Latvia, narrowed the period to 2017–2026, and added the 2026 police figures and the Smart-ID+ rollout.',
-    et: 'Parandused, 4. oktoober 2026: varasem versioon tõlgendas SEB 2024. aasta esimese poolaasta andmeid tõendina, et keelebarjäär oli juba langenud; SEB sõnul tehti telefonipettusi siis peamiselt vene keeles ja nihe on nüüd politsei ütluste põhjal dateeritud 2024. aasta lõppu. Lisaks eemaldasin RIA ja PPA arvude erinevuse põhjendamata selgituse, parandasin väite, et petukõned moodustasid 2025. aasta kahjust "enamiku" (tegelikult suurim kategooria, umbes 40 protsenti), omistasin viie kuni kümne miljoni vahemiku ERR-ile, piirasin SEB kahe kolmandiku suuruse vishingu osakaalu Lätiga, kitsendasin käsitletavat perioodi aastatele 2017–2026 ning lisasin 2026. aasta politseiandmed ja Smart-ID+ kasutuselevõtu.',
+    et: 'Parandused, 4. oktoober 2026: varasem versioon tõlgendas SEB 2024. aasta esimese poolaasta andmeid tõendina, et keelebarjäär oli juba langenud; SEB sõnul tehti telefonipettusi siis peamiselt vene keeles ja nihe on nüüd politsei ütluste põhjal dateeritud 2024. aasta lõppu. Lisaks eemaldasin RIA ja PPA arvude erinevuse põhjendamata selgituse, parandasin väite, et petukõned moodustasid 2025. aasta kahjust "enamiku" (tegelikult suurim kategooria, umbes 40 protsenti), omistasin viie kuni kümne miljoni vahemiku ERR-ile, piirasin SEB kahe kolmandiku suuruse kõneõngitsuse osakaalu Lätiga, kitsendasin käsitletavat perioodi aastatele 2017–2026 ning lisasin 2026. aasta politseiandmed ja Smart-ID+ kasutuselevõtu.',
   },
 ];
 const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';

@@ -92,7 +92,7 @@ export default function DisclosuresPage() {
                   </Link>
                   , ja täpsemalt Proksimity, on see lause tootena: kontrolli seansi konteksti
                   võrguserva peal, sest kliendi enda aruanne ei ole piisav. Sama väite akadeemiline
-                  versioon, laiendatuna AI-agentidele, mis juhivad päris brausereid, on
+                  versioon, laiendatuna TI-agentidele, mis juhivad päris brausereid, on
                   avalikustatud SoK-uuringus{' '}
                   <a href="https://github.com/tomkabel/google-botguard-security-research" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                     "Client-Side Anti-Automation Under VLM-Based Attack"
@@ -150,7 +150,7 @@ export default function DisclosuresPage() {
         label={language === 'en' ? 'Systems' : 'Süsteemid'}
         blurb={language === 'en'
           ? 'The disclosures are the research and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
-          : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvatooted ja tootmises töötavad backend-teenused.'}
+          : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvalahendused ja tootmises töötavad taustateenused.'}
         cta={language === 'en' ? 'Browse systems' : 'Sirvi süsteeme'}
       />
     </>

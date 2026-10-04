@@ -11,7 +11,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 // Node 22.18+ loads .ts directly (type stripping), so the build and the app
 // share one metadata module with no copy to drift.
 import { jsonLdFor, metaFor, pageUrl, routeMeta } from '../src/content/route-meta.ts';
-// SSR bundle from the second half of `pnpm build` (src/entry-server.tsx).
+// Built by `vite build --ssr src/entry-server.tsx` (see package.json "build").
 import { render } from '../dist-ssr/entry-server.js';
 
 // Values are stamped into HTML attributes and a <script> block: escape them
@@ -20,39 +20,44 @@ const attr = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const setTag = (html, pattern, tag) => html.replace(pattern, () => tag);
 
-// Every shell starts from the client build's empty index.html, read once
-// before '/' itself is overwritten with its prerendered copy below.
-const emptyShell = readFileSync('pub/index.html', 'utf-8');
-
-// Prerender a route into the shell's root, so the page is readable before (or
-// without) JavaScript; main.tsx hydrates it.
-const ROOT = '<div id="root"></div>';
-const prerendered = async (html, path) => {
-  if (!html.includes(ROOT)) {
-    console.error(`FAIL: shell for ${path} has no empty ${ROOT}`);
-    process.exit(1);
-  }
-  const body = await render(path);
-  // data-route lets main.tsx refuse to hydrate a shell served for another URL
-  // (a host's SPA fallback), which would otherwise mismatch.
-  return html.replace(ROOT, () => `<div id="root" data-route="${attr(path)}">${body}</div>`);
-};
-
-// Routes whose component is only a client <Navigate> (src/components/Cookies.tsx).
-// There is nothing to prerender; a no-JS reader gets a meta refresh instead.
-const clientRedirects = { '/cookies': '/privacy' };
-
 // The static shells are the English originals; '/' is index.html itself.
 const routes = Object.keys(routeMeta)
   .filter((path) => path !== '/')
   .map((path) => path.slice(1));
+
+// The empty shell, read once: index.html itself gets the home page body below,
+// and 404.html must stay empty so the client renders NotFound.
+const shellTemplate = readFileSync('pub/index.html', 'utf-8');
+
+// Routes that only <Navigate> elsewhere render nothing; leave their #root empty
+// and give no-JS readers a meta refresh to the target instead.
+const redirectRoutes = { '/cookies': '/privacy' };
+
+// Put the prerendered page into #root, so crawlers and agents that do not run
+// JS get the text. Gate: a real page with almost no text means the render
+// broke (an empty lazy page, a thrown boundary) — fail rather than ship it.
+async function withBody(html, path) {
+  const target = redirectRoutes[path];
+  if (target) return html.replace('</head>', () => `<noscript><meta http-equiv="refresh" content="0; url=${target}" /></noscript>\n    </head>`);
+  const body = await render(path);
+  const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (text.length < 500) {
+    console.error(`FAIL: prerender of ${path} has only ${text.length} chars of text`);
+    process.exit(1);
+  }
+  if (!html.includes('<div id="root"></div>')) {
+    console.error('FAIL: index.html has no empty <div id="root"></div>');
+    process.exit(1);
+  }
+  return html.replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
+}
 
 for (const route of routes) {
   const url = pageUrl(`/${route}`);
   const meta = metaFor(`/${route}`, 'en');
   const jsonLd = jsonLdFor(`/${route}`, 'en');
   mkdirSync(`pub/${route}`, { recursive: true });
-  let html = emptyShell;
+  let html = shellTemplate;
 
   // Stamp per-route meta into the static HTML.
   const tags = [
@@ -83,13 +88,8 @@ for (const route of routes) {
     html = html.replace('</head>', () => `<script type="application/ld+json">${json}</script>\n    </head>`);
   }
 
-  const target = clientRedirects[`/${route}`];
-  if (target) {
-    html = html.replace('</head>', () => `<noscript><meta http-equiv="refresh" content="0; url=${target}" /></noscript>\n    </head>`);
-  }
-  writeFileSync(`pub/${route}/index.html`, target ? html : await prerendered(html, `/${route}`));
+  writeFileSync(`pub/${route}/index.html`, await withBody(html, `/${route}`));
 }
-writeFileSync('pub/index.html', await prerendered(emptyShell, '/'));
 
 // Build-time gate: every route shell must carry exactly ONE canonical pointing
 // at itself. A dual-canonical or homepage-canonical regression fails the build.
@@ -118,12 +118,13 @@ if (
   process.exit(1);
 }
 
-console.log(`spa-routes: emitted ${routes.length + 1} route shells with per-route meta, prerendered except client redirects`);
+writeFileSync('pub/index.html', await withBody(shellTemplate, '/'));
+
+console.log(`spa-routes: emitted ${routes.length + 1} prerendered route shells with per-route meta`);
 
 // GH Pages fallback for unknown paths: serve a noindex copy of the shell.
-// HTTP 404 + noindex keeps unknown URLs out of the index. It stays empty: it
-// answers for every unknown URL (and legacy redirects), so the client renders.
-const notFound = emptyShell.replace(
+// HTTP 404 + noindex keeps unknown URLs out of the index.
+const notFound = shellTemplate.replace(
   '</head>',
   '    <meta name="robots" content="noindex" />\n  </head>',
 );

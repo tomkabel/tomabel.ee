@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.tsx';
 import ErrorBoundary from './components/ErrorBoundary.tsx';
+import { initialLanguage } from './i18n/LanguageContext.tsx';
 import '@fontsource-variable/geist';
 import '@fontsource/commit-mono/400.css';
 import '@fontsource/commit-mono/500.css';
@@ -9,6 +10,7 @@ import '@fontsource/commit-mono/700.css';
 import '@fontsource-variable/newsreader/opsz.css';
 import './index.css';
 
+const root = document.getElementById('root')!;
 const app = (
   <StrictMode>
     <ErrorBoundary>
@@ -17,14 +19,9 @@ const app = (
   </StrictMode>
 );
 
-// Built pages arrive prerendered (scripts/spa-routes.mjs): hydrate them. The
-// dev server and the 404 shell ship an empty root, and a host's SPA fallback
-// may serve another route's markup: render those from scratch.
-const root = document.getElementById('root')!;
-const path = window.location.pathname.replace(/(.)\/+$/, '$1');
-if (root.dataset.route === path) {
-  hydrateRoot(root, app);
-} else {
-  root.replaceChildren();
-  createRoot(root).render(app);
-}
+// Route shells carry English prerendered markup (scripts/spa-routes.mjs).
+// Hydrate it when the reader gets English; otherwise it would mismatch, so
+// render from scratch. ponytail: Estonian readers see the English text, then
+// the loader, then the page; per-locale shells would remove that.
+if (root.hasChildNodes() && initialLanguage() === 'en') hydrateRoot(root, app);
+else createRoot(root).render(app);

@@ -66,7 +66,7 @@ const work: { name: string; href: string; text: L }[] = [
     href: '/disclosures/zero-trust-octagon',
     text: {
       en: "A zero-trust architecture framework built from eight axioms rather than from vendor slides, with a morphological matrix and breach walkthroughs. It's a textbook, not a product.",
-      et: 'Null-usalduse arhitektuuri raamistik, mis on ehitatud kaheksast aksioomist, mitte müüjate slaididest, koos morfoloogilise maatriksi ja rünnakute läbimängudega. See on õpik, mitte toode.',
+      et: 'Nullusalduse arhitektuuri raamistik, mis on ehitatud kaheksast aksioomist, mitte müüjate slaididest, koos morfoloogilise maatriksi ja rünnakute läbimängudega. See on õpik, mitte toode.',
     },
   },
   {

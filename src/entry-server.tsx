@@ -1,30 +1,20 @@
-// Build-time prerender entry. scripts/spa-routes.mjs renders every route to
-// static HTML so the page reads without JavaScript (NoScript, Tor Browser's
-// Safest mode, text crawlers); main.tsx then hydrates that markup.
 import { StrictMode } from 'react';
+import { renderToString } from 'react-dom/server';
 import { prerender } from 'react-dom/static';
-import { StaticRouter } from 'react-router-dom';
-import { AppRoutes } from './App';
-import ErrorBoundary from './components/ErrorBoundary';
-import { LanguageProvider } from './i18n';
+import App from './App.tsx';
 
-// `prerender` (not renderToString) waits for every React.lazy page, so the
-// output holds the page itself rather than its loading fallback. An unbounded
-// progressiveChunkSize keeps every boundary inline: by default React outlines
-// large ones behind an inline swap script, which no-JS readers (and the CSP)
-// never run, leaving only the loader visible.
-export async function render(url: string): Promise<string> {
-  const { prelude } = await prerender(
+// Build-time only: scripts/spa-routes.mjs renders every route to HTML so
+// crawlers and agents that do not run JS get the article text, not an empty
+// #root.
+export async function render(path: string): Promise<string> {
+  const app = (
     <StrictMode>
-      <ErrorBoundary>
-        <LanguageProvider>
-          <StaticRouter location={url}>
-            <AppRoutes />
-          </StaticRouter>
-        </LanguageProvider>
-      </ErrorBoundary>
-    </StrictMode>,
-    { progressiveChunkSize: Infinity },
+      <App location={path} />
+    </StrictMode>
   );
-  return new Response(prelude).text();
+  // First pass only resolves the React.lazy pages. Its output streams Suspense
+  // boundaries as fallback + inline swap scripts, which the CSP would block.
+  // The second pass finds every lazy module resolved and emits plain markup.
+  await new Response((await prerender(app)).prelude).arrayBuffer();
+  return renderToString(app);
 }

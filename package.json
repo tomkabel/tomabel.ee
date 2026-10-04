@@ -15,7 +15,7 @@
     "sbom:gen": "pnpm sbom --sbom-format cyclonedx --lockfile-only > pub/sbom.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
-    "test": "node --experimental-strip-types --test 'src/**/*.test.ts'",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
     "preview": "vite preview"
   },
   "dependencies": {
