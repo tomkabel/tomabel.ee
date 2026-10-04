@@ -23,6 +23,10 @@ function projectLinks(p: Project, isEn: boolean): ProjectLink[] {
   return links;
 }
 
+// Stable anchor for a project card, so other pages can deep-link one entry
+// (/systems#fingerprintproxy) instead of the whole index.
+const projectAnchor = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
 // Short type label per category — the fixed top-left slot of every card, and
 // the filter-tab labels.
 const TYPE_LABEL: Record<ProjectCategory, { en: string; et: string }> = {
@@ -57,7 +61,6 @@ export default function SystemsPage() {
   const { language } = useTranslation();
   const isEn = language === 'en';
   const [filter, setFilter] = useState<Filter>('all');
-
   const available = FILTER_ORDER.filter((c) => projects.some((p) => p.category === c));
   const shown = filter === 'all' ? projects : projects.filter((p) => p.category === filter);
 
@@ -193,7 +196,8 @@ function ProjectCard({
 
   return (
     <li
-      className={`grid grid-rows-[auto_auto_1fr_auto] rounded-card border border-border-strong p-6 shadow-elevated ${
+      id={projectAnchor(p.name)}
+      className={`grid scroll-mt-36 grid-rows-[auto_auto_1fr_auto] rounded-card border border-border-strong p-6 ${
         p.featured ? 'bg-surface-2 md:col-span-2' : 'bg-surface'
       }`}
     >

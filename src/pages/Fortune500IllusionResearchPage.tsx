@@ -6,6 +6,8 @@ import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
+type Source = { label: Bi; url: string; note?: Bi };
+
 type EssaySection = {
   heading: Bi;
   paragraphs: Bi[];
@@ -37,8 +39,8 @@ const sections: EssaySection[] = [
         et: 'Identiteet tugineb tarkvaralisele sertifitseerimiskeskusele, mis lubasid allkirjastab. Ligipääsuotsused on atribuudipõhised: roll, aeg, asukoht, õiguste tase. Jõustamine toimub võrgu perimeetril, kinnitusel on üks allikas ja reageerimismehhanism on karm keeld — lukusta, blokeeri, isoleeri. SIEM on tõe allikas. Identiteedi-, võrgu- ja turbeoperatsioonide meeskonnad on eraldi ning SOC töötab ööpäev läbi.',
       },
       {
-        en: 'On paper this is comprehensive. Audits measure the presence of controls, not the conditions under which they hold, so the blind spot appears on no artefact. Every control here assumes that authentication and access are the same moment, and that the network boundary separates trusted from untrusted. Neither assumption survives a session cookie lifted off an unmanaged home laptop.',
-        et: 'Paberil on see põhjalik. Auditid mõõdavad kontrollide olemasolu, mitte tingimusi, mille korral need püsivad, nii et pimenurk ei ilmu üheski dokumendis. Iga kontroll siin eeldab, et autentimine ja ligipääs on sama hetk ning et võrgu piir eraldab usaldatava mitteusaldatavast. Kumbki eeldus ei pea vastu seansiküpsisele, mis varastati haldamata koduarvutist.',
+        en: 'On paper this is comprehensive. In my view, audits mostly measure whether controls are present, not the conditions under which they hold, so the blind spot appears on no artefact. Every control here assumes that authentication and access are the same moment, and that the network boundary separates trusted from untrusted. Neither assumption survives a session cookie lifted off an unmanaged home laptop, and nothing at sign-in asks whether the device is managed at all.',
+        et: 'Paberil on see põhjalik. Minu hinnangul mõõdavad auditid peamiselt seda, kas kontrollid on olemas, mitte tingimusi, mille korral need püsivad, nii et pimenurk ei ilmu üheski dokumendis. Iga kontroll siin eeldab, et autentimine ja ligipääs on sama hetk ning et võrgu piir eraldab usaldatava mitteusaldatavast. Kumbki eeldus ei pea vastu seansiküpsisele, mis varastati haldamata koduarvutist, ja sisselogimisel ei küsi miski, kas seade on üldse hallatud.',
       },
     ],
   },
@@ -46,12 +48,12 @@ const sections: EssaySection[] = [
     heading: { en: 'On paper and in practice', et: 'Paberil ja praktikas' },
     paragraphs: [
       {
-        en: 'The Octagon states eight axioms an architecture must satisfy structurally, not nominally. Archetype B satisfies two: real cryptographic identity, and real operational redundancy with someone genuinely watching. Those two are why the breach is detected at all.',
-        et: 'Octagon esitab kaheksa aksioomi, mida arhitektuur peab täitma struktuurselt, mitte nimeliselt. Arhetüüp B täidab kaks: tõeline krüptograafiline identiteet ja tõeline operatiivne varu, kus keegi tõepoolest jälgib. Just need kaks on põhjus, miks rünne üldse avastatakse.',
+        en: 'The Octagon states eight axioms an architecture must satisfy structurally, not nominally, and scores each one pass, partial or fail. Scored against the eight, Archetype B fails all of them: six outright and two partially, the same verdict as the overview\'s violation matrix. What it does have, a real PKI and a staffed 24/7 SOC, is why the breach is detected at all.',
+        et: 'Octagon esitab kaheksa aksioomi, mida arhitektuur peab täitma struktuurselt, mitte nimeliselt, ja hindab igaüht kui täidetud, osaliselt täidetud või rikutud. Kaheksa aksioomi järgi ei täida arhetüüp B ühtegi: kuut rikub täielikult ja kahte täidab osaliselt, nagu ülevaate rikkumiste maatriksiski. See, mis tal on, tõeline PKI ja ööpäev läbi töötav SOC, on põhjus, miks rünne üldse avastatakse.',
       },
       {
-        en: 'Six it violates. Freedom from intrinsic trust holds in name only: the database trusts anything from the DevOps subnet. Policy is not verifiable, because the decision point is a vendor black box no auditor can replay. Mediation is bypassable, happening at the perimeter and nowhere after. Verification is not continuous, happening at login and then not again. Epistemic integrity is absent, because the only evidence pipeline is one the attacker can reach. Byzantine fault tolerance is absent, because the response can do more damage than the attack.',
-        et: 'Kuut aksioomi rikub. Sisemise usalduse puudumine kehtib ainult nimeliselt: andmebaas usaldab kõike, mis tuleb DevOps-alamvõrgust. Poliitika ei ole kontrollitav, sest otsustuspunkt on tarnija must kast, mida ükski audiitor korrata ei saa. Vahendamisest saab mööda, sest see toimub perimeetril ja mitte kusagil pärast seda. Kontroll ei ole pidev, sest see toimub sisselogimisel ja seejärel mitte enam. Episteemiline terviklikkus puudub, sest ainus tõendiahel on seesama, milleni ründaja ulatub. Bütsantsi vigade talumine puudub, sest reaktsioon suudab teha rohkem kahju kui rünne.',
+        en: 'Six it violates outright. No intrinsic trust (Axiom 1) holds in name only: the database trusts anything from the DevOps subnet. Policy is not verifiable (Axiom 2), because the decision point is a vendor black box no auditor can replay. Mediation is bypassable (Axiom 3), happening at the perimeter and nowhere after. Verification is not continuous (Axiom 4), happening at login and then not again. Byzantine fault tolerance is absent (Axiom 6), because the response can do more damage than the attack. Epistemic integrity is absent (Axiom 7), because the only evidence pipeline is one the attacker can reach. Two it meets only partially. Bounded authority (Axiom 5): attribute-based grants are scoped, but nobody can calculate them, and the stolen session is able to create a new service account. Bilateral symmetry (Axiom 8): PKI-issued client certificates give mutual TLS at the VPN, which is the minimum form and nothing more.',
+        et: 'Kuut aksioomi rikub täielikult. Sisemise usalduse puudumine (1. aksioom) kehtib ainult nimeliselt: andmebaas usaldab kõike, mis tuleb DevOps-alamvõrgust. Poliitika ei ole kontrollitav (2. aksioom), sest otsustuspunkt on tarnija must kast, mida ükski audiitor korrata ei saa. Vahendamisest saab mööda (3. aksioom), sest see toimub perimeetril ja mitte kusagil pärast seda. Kontroll ei ole pidev (4. aksioom), sest see toimub sisselogimisel ja seejärel mitte enam. Bütsantsi vigade talumine puudub (6. aksioom), sest reaktsioon suudab teha rohkem kahju kui rünne. Episteemiline terviklikkus puudub (7. aksioom), sest ainus tõendiahel on seesama, milleni ründaja ulatub. Kahte täidab ainult osaliselt. Piiratud volitus (5. aksioom): atribuudipõhised õigused on piiritletud, kuid keegi ei oska neid välja arvutada ja varastatud seanss suudab luua uue teenusekonto. Kahepoolne sümmeetria (8. aksioom): PKI väljastatud kliendisertifikaadid annavad VPN-is vastastikuse TLS-i, mis on selle miinimumvorm ja mitte enamat.',
       },
     ],
   },
@@ -59,12 +61,12 @@ const sections: EssaySection[] = [
     heading: { en: 'The breach, step by step', et: 'Rünne samm-sammult' },
     paragraphs: [
       {
-        en: 'It begins outside the perimeter. A senior DevOps engineer\'s personal laptop picks up commodity infostealer malware, which harvests browser-stored cookies, passwords and live OIDC tokens. Among the haul is a corporate session cookie, still inside its twelve-hour lifetime.',
-        et: 'Kõik algab väljaspool perimeetrit. Vanem DevOps-inseneri isiklik sülearvuti nakatub levinud infovarga pahavaraga, mis kogub brauserisse salvestatud küpsised, paroolid ja kehtivad OIDC-load. Saagi hulgas on ettevõtte seansiküpsis, mis on veel oma kaheteisttunnise eluea sees.',
+        en: 'Timings are illustrative and compressed to keep the chain legible. For scale, CrowdStrike\'s 2026 Global Threat Report puts average breakout time at 29 minutes, and Mandiant\'s M-Trends 2026 puts global median dwell time at 14 days. It begins outside the perimeter. A senior DevOps engineer\'s personal laptop picks up commodity infostealer malware, which harvests browser-stored cookies, passwords and live OIDC tokens. Among the haul is a corporate session cookie, still inside the twelve-hour lifetime the enterprise configured. This is the shape of real incidents: in CircleCI\'s January 2023 breach, malware on an engineer\'s laptop stole a 2FA-backed SSO session that was then used from elsewhere, and in the 2024 Snowflake campaign, credentials harvested by infostealers led to bulk data theft from about 165 customers.',
+        et: 'Ajamärgid on illustreerivad ja kokku surutud, et ahel oleks loetav. Võrdluseks: CrowdStrike\'i 2026. aasta ohuaruande järgi on keskmine aeg sissetungist külgliikumiseni 29 minutit ja Mandianti M-Trends 2026 järgi on ründaja avastamata viibimise mediaan 14 päeva. Kõik algab väljaspool perimeetrit. Vanem DevOps-inseneri isiklik sülearvuti nakatub levinud infovarga pahavaraga, mis kogub brauserisse salvestatud küpsised, paroolid ja kehtivad OIDC-load. Saagi hulgas on ettevõtte seansiküpsis, mis on veel ettevõtte seadistatud kaheteisttunnise eluea sees. Just sellised on tegelikud intsidendid: CircleCI 2023. aasta jaanuari rünnakus varastas pahavara inseneri sülearvutist kahefaktorilise SSO-seansi, mida kasutati seejärel mujalt, ja 2024. aasta Snowflake\'i kampaanias viisid infovaraste kogutud mandaadid umbes 165 kliendi andmete massilise varguseni.',
       },
       {
-        en: 'At T+0 the attacker replays the token through the corporate VPN. The signature checks out and the token has not expired. Because attestation has a single source, nothing else is asked: not whether this is the device that authenticated, not hardware attestation, not the behavioural baseline. The token is valid, therefore the user is present.',
-        et: 'Hetkel T+0 esitab ründaja loa ettevõtte VPN-i kaudu uuesti. Allkiri klapib ja luba ei ole aegunud. Kuna kinnitusel on üks allikas, ei küsita midagi muud: ei seda, kas tegu on sama seadmega, mis autentis, ei riistvaralist kinnitust ega käitumise võrdlusalust. Luba kehtib, järelikult on kasutaja kohal.',
+        en: 'The VPN federates its login to the identity provider through browser SSO. At T+0 the attacker uses the stolen IdP session to complete that login. The signature checks out and the token has not expired. Because attestation has a single source, nothing else is asked: not whether this is the device that authenticated, not hardware attestation, not the behavioural baseline. The token is valid, therefore the user is present.',
+        et: 'VPN suunab sisselogimise brauseripõhise SSO kaudu identiteedipakkujale. Hetkel T+0 kasutab ründaja varastatud identiteedipakkuja seanssi, et see sisselogimine lõpule viia. Allkiri klapib ja luba ei ole aegunud. Kuna kinnitusel on üks allikas, ei küsita midagi muud: ei seda, kas tegu on sama seadmega, mis autentis, ei riistvaralist kinnitust ega käitumise võrdlusalust. Luba kehtib, järelikult on kasutaja kohal.',
       },
       {
         en: 'At T+3 minutes the attacker requests the production database. The policy engine checks role, hours, clearance and source network. All four match, because all four describe the engineer, and the attacker is wearing the engineer. No auditor can replay that decision, because the decision point does not export its reasoning.',
@@ -80,8 +82,8 @@ const sections: EssaySection[] = [
     heading: { en: 'What fired and what did not', et: 'Mis käivitus ja mis mitte' },
     paragraphs: [
       {
-        en: 'The export generates very large logs, shipped to the SIEM by an agent on the database host the attacker now controls. At T+8 minutes the attacker pauses that agent. The SIEM registers a drop in log volume from one host, which happens routinely during maintenance windows, so it is not a priority-one event. Silence is read as normality.',
-        et: 'Väljavõte tekitab väga suuri logisid, mis saadetakse SIEM-i agendiga andmebaasiserverist, mida ründaja nüüd kontrollib. Hetkel T+8 minutit peatab ründaja selle agendi. SIEM registreerib logimahu languse ühest masinast, mis juhtub rutiinselt hooldusakende ajal, seega ei ole see esimese prioriteedi sündmus. Vaikust loetakse normaalsuseks.',
+        en: 'The export generates very large logs, shipped to the SIEM by an agent on the database host the attacker now controls. At T+8 minutes the attacker pauses that agent. The SIEM registers a drop in log volume from one host, which happens routinely during maintenance windows, so it is not a priority-one event. The drop is filed as maintenance.',
+        et: 'Väljavõte tekitab väga suuri logisid, mis saadetakse SIEM-i agendiga andmebaasiserverist, mida ründaja nüüd kontrollib. Hetkel T+8 minutit peatab ründaja selle agendi. SIEM registreerib logimahu languse ühest masinast, mis juhtub rutiinselt hooldusakende ajal, seega ei ole see esimese prioriteedi sündmus. Langus kirjutatakse hoolduse arvele.',
       },
       {
         en: 'What eventually fires is not part of the zero-trust programme. At T+20 minutes the attacker attempts SSH into a legacy server carrying a hardcoded rule against SSH from an unrecognised ASN. The rule predates the vendor suite and is the one control that never assumed a valid token meant a legitimate user. The gap is twenty minutes to the tripwire and twenty-two to the moment the organisation knows it has an incident — long enough for full exfiltration.',
@@ -114,8 +116,8 @@ const sections: EssaySection[] = [
         et: 'Hetkel T+22 minutit kutsutakse tõeline insener kell kolm öösel välja ja ta leiab oma konto lukust. Jaotatud organisatsioon töötleb üht intsidenti kolme sidumata piletina: lukustus, mida peetakse unustatud parooliks, blokeeritud aadress, mis suletakse kui ootuspärane, ja häire, mida uuritakse teadmata, et need kolm on üks sündmus. Reageerijad on reageerimise tõttu ise välja lukustatud ja lukustus ei tühista teenusekontot, mille ründaja lõi enne häire käivitumist.',
       },
       {
-        en: 'The recurring story of a CISO removed six months after a lockout cascade takes down a critical business function is not a personnel failure. A defensive response that harms the business more than the attacker did is itself a Byzantine fault.',
-        et: 'Korduv lugu infoturbejuhist, kes vabastatakse ametist kuus kuud pärast lukustuste ahelreaktsiooni, mis võttis maha kriitilise äriprotsessi, ei ole personaliviga. Kaitsereaktsioon, mis kahjustab äri rohkem kui ründaja, on ise Bütsantsi viga.',
+        en: 'In the author\'s experience, a lockout cascade that takes down a critical function costs the programme, and sometimes the CISO, more than the breach did. That is an architectural failure, not a personnel one: a defensive response that harms the business more than the attacker did is what Axiom 6 rules out.',
+        et: 'Autori kogemuses läheb lukustuste ahelreaktsioon, mis võtab maha kriitilise äriprotsessi, programmile ja mõnikord ka infoturbejuhile maksma rohkem kui rünne ise. See on arhitektuuri, mitte personali viga: kaitsereaktsioon, mis kahjustab äri rohkem kui ründaja, on just see, mida 6. aksioom välistab.',
       },
     ],
   },
@@ -123,12 +125,12 @@ const sections: EssaySection[] = [
     heading: { en: 'Prevention versus shortening', et: 'Ennetamine versus lühendamine' },
     paragraphs: [
       {
-        en: 'Two controls would have prevented the breach rather than trimmed it. Device-bound credentials break the chain at T+0: a copied cookie is worthless on hardware the engineer does not physically hold. Identity-aware mediation at the workload breaks it at T+5: the database asks who is calling instead of where from, and network position stops being a credential.',
-        et: 'Kaks kontrolli oleksid rünnet ennetanud, mitte lühendanud. Seadmega seotud mandaadid katkestavad ahela hetkel T+0: kopeeritud küpsis on väärtusetu riistvaral, mida insener füüsiliselt ei hoia. Identiteeditundlik vahendamine töökoormuse juures katkestab ahela hetkel T+5: andmebaas küsib, kes helistab, mitte kust, ja asukoht võrgus lakkab olemast mandaat.',
+        en: 'Three controls would have prevented the breach rather than trimmed it. The cheapest is device posture at sign-in: if the identity provider only issues corporate sessions to managed devices, the cookie never exists on the personal laptop. Device-bound sessions (DBSC, generally available in Chrome on Windows for Google accounts since May 2026; other sites must implement it themselves) break the chain at T+0: a copied cookie cannot be refreshed off the device whose key it is bound to. They do not stop malware using the session on the infected device itself. Identity-aware mediation at the workload breaks it at T+5: the database asks who is calling instead of where from, and network position stops being a credential.',
+        et: 'Kolm kontrolli oleksid rünnet ennetanud, mitte lühendanud. Kõige odavam on seadme seisundi kontroll sisselogimisel: kui identiteedipakkuja väljastab ettevõtte seansse ainult hallatud seadmetele, ei teki küpsist isiklikku sülearvutisse üldse. Seadmega seotud seansid (DBSC, mis on Google\'i kontode jaoks Windowsi Chrome\'is üldiselt saadaval alates 2026. aasta maist; teised saidid peavad selle ise rakendama) katkestavad ahela hetkel T+0: kopeeritud küpsist ei saa värskendada väljaspool seadet, mille võtmega see on seotud. Need ei takista pahavaral seanssi nakatunud seadmes endas kasutamast. Identiteeditundlik vahendamine töökoormuse juures katkestab ahela hetkel T+5: andmebaas küsib, kes helistab, mitte kust, ja asukoht võrgus lakkab olemast mandaat.',
       },
       {
-        en: 'Other controls only shorten the incident. Independent telemetry that alarms when a logging agent goes silent turns the T+8 blind spot into a detection, after exfiltration has started. Behavioural re-verification catches the shift to bulk extraction, after data has moved. A replayable policy engine makes the T+3 decision auditable, which matters afterwards and not during.',
-        et: 'Muud kontrollid üksnes lühendavad intsidenti. Sõltumatu telemeetria, mis annab häire, kui logimisagent vaikib, muudab T+8 pimenurga avastuseks, kuid alles pärast väljaveo algust. Käitumise korduskontroll tabab ülemineku massiliseks väljaveoks, kuid pärast andmete liikumist. Korratav poliitikamootor muudab T+3 otsuse auditeeritavaks, mis loeb hiljem ja mitte rünnaku ajal.',
+        en: 'Other controls only shorten the incident. Independent telemetry that alarms when a logging agent goes silent turns the T+8 blind spot into a detection, after exfiltration has started. Behavioural re-verification catches the shift to bulk extraction, after data has moved. A replayable policy engine makes the T+3 decision auditable, which matters afterwards and not during. Shared session signals (the OpenID Shared Signals Framework and CAEP, final since September 2025) let the identity provider revoke a live session when risk changes, which is the standard route to the continuous verification this archetype lacks.',
+        et: 'Muud kontrollid üksnes lühendavad intsidenti. Sõltumatu telemeetria, mis annab häire, kui logimisagent vaikib, muudab T+8 pimenurga avastuseks, kuid alles pärast väljaveo algust. Käitumise korduskontroll tabab ülemineku massiliseks väljaveoks, kuid pärast andmete liikumist. Korratav poliitikamootor muudab T+3 otsuse auditeeritavaks, mis loeb hiljem ja mitte rünnaku ajal. Jagatud seansisignaalid (OpenID Shared Signals Framework ja CAEP, lõplikud alates 2025. aasta septembrist) lasevad identiteedipakkujal kehtiva seansi riski muutudes tühistada; see on standardne tee pideva kontrollini, mis sellel arhetüübil puudub.',
       },
       {
         en: 'There is an ordering constraint most programmes get backwards. Replacing hard deny with graduated friction — step-up verification, rate limiting, read-only degradation — must come before improving detection. Better detection with hard deny produces more outages, not more safety, and each outage ratchets the organisation away from zero trust through exceptions.',
@@ -140,14 +142,64 @@ const sections: EssaySection[] = [
     heading: { en: 'If you recognise your own organisation', et: 'Kui tunned ära oma organisatsiooni' },
     paragraphs: [
       {
-        en: 'Archetype B does not describe incompetence. Procurement bought an integrated suite because integration reduces deployment risk, Identity ran a clean PKI, Network enforced at the boundary it owned. The failure lives in the joints between those decisions, and no team owns a joint. One weakness in a shared management plane reaches every layer at once: the suite is a single trust anchor, not zero trust.',
-        et: 'Arhetüüp B ei kirjelda saamatust. Hankemeeskond ostis integreeritud paketi, sest integratsioon vähendab juurutamise riski, identiteedimeeskond haldas puhast PKI-d, võrgumeeskond jõustas piiril, mis oli tema oma. Tõrge peitub nende otsuste liidestes ja ükski üksik meeskond liidest ei oma. Üks nõrkus jagatud haldustasandil ulatub korraga igasse kihti: pakett on üksainus usalduse ankur, mitte zero trust.',
+        en: 'Archetype B does not describe incompetence. Procurement bought an integrated suite because integration reduces deployment risk, Identity ran a clean PKI, Network enforced at the boundary it owned. The failure sits between those decisions, where no team has ownership. One weakness in a shared management plane reaches every layer at once: the suite is a single trust anchor, not zero trust.',
+        et: 'Arhetüüp B ei kirjelda saamatust. Hankemeeskond ostis integreeritud paketi, sest integratsioon vähendab juurutamise riski, identiteedimeeskond haldas puhast PKI-d, võrgumeeskond jõustas piiril, mis oli tema oma. Tõrge asub nende otsuste vahel, kus ühelgi meeskonnal pole vastutust. Üks nõrkus jagatud haldustasandil ulatub korraga igasse kihti: pakett on üksainus usalduse ankur, mitte zero trust.',
       },
       {
         en: 'The practical test is short. Pick one production system and ask three questions. If a valid session token for it were copied to an unknown machine now, what would refuse it? If someone reached it from an approved internal subnet, what would ask who they are? If its telemetry went quiet, what independent signal would tell you? An architecture that cannot answer all three has this shape.',
         et: 'Praktiline kontroll on lühike. Vali üks tootmissüsteem ja esita kolm küsimust. Kui selle kehtiv seansiluba kopeeritaks praegu tundmatusse masinasse, mis selle tagasi lükkaks? Kui keegi jõuaks selleni lubatud sisevõrgust, mis küsiks, kes ta on? Kui selle telemeetria vaikiks, milline sõltumatu signaal sellest teataks? Arhitektuur, mis ei suuda kõigile kolmele vastata, on selle kujuga.',
       },
     ],
+  },
+];
+
+const sources: Source[] = [
+  {
+    label: { en: 'Zero-Trust Octagon overview and violation matrix', et: 'Zero-Trust Octagoni ülevaade ja rikkumiste maatriks' },
+    url: 'https://tomabel.ee/disclosures/zero-trust-octagon',
+  },
+  {
+    label: { en: 'CircleCI, incident report for January 4, 2023 security incident', et: 'CircleCI, 4. jaanuari 2023 turvaintsidendi aruanne' },
+    url: 'https://circleci.com/blog/jan-4-2023-incident-report/',
+    note: { en: 'stolen 2FA-backed SSO session from an engineer\'s laptop', et: 'inseneri sülearvutist varastatud kahefaktoriline SSO-seanss' },
+  },
+  {
+    label: { en: 'Mandiant, UNC5537 targets Snowflake customer instances (2024)', et: 'Mandiant, UNC5537 ründab Snowflake\'i klientide keskkondi (2024)' },
+    url: 'https://cloud.google.com/blog/topics/threat-intelligence/unc5537-snowflake-data-theft-extortion',
+    note: { en: 'infostealer credentials, about 165 organisations', et: 'infovaraste mandaadid, umbes 165 organisatsiooni' },
+  },
+  {
+    label: { en: 'CrowdStrike 2026 Global Threat Report (February 2026)', et: 'CrowdStrike 2026 Global Threat Report (veebruar 2026)' },
+    url: 'https://www.crowdstrike.com/en-us/press-releases/2026-crowdstrike-global-threat-report/',
+    note: { en: 'average breakout time 29 minutes', et: 'keskmine aeg külgliikumiseni 29 minutit' },
+  },
+  {
+    label: { en: 'Mandiant M-Trends 2026 (March 2026)', et: 'Mandiant M-Trends 2026 (märts 2026)' },
+    url: 'https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026',
+    note: { en: 'global median dwell time 14 days', et: 'avastamata viibimise mediaan 14 päeva' },
+  },
+  {
+    label: { en: 'Chrome for Developers, DBSC available on Windows', et: 'Chrome for Developers, DBSC Windowsis saadaval' },
+    url: 'https://developer.chrome.com/blog/dbsc-windows-announcement',
+  },
+  {
+    label: { en: 'Google Workspace Updates, DBSC generally available (May 2026)', et: 'Google Workspace Updates, DBSC üldiselt saadaval (mai 2026)' },
+    url: 'https://workspaceupdates.googleblog.com/2026/05/prevent-account-takeovers-with-DBSC-now-generally-available-in-the-Chrome-browser-for-Windows.html',
+  },
+  {
+    label: { en: 'Biometric Update, OpenID approves SSF, CAEP and RISC as final (September 2025)', et: 'Biometric Update, OpenID kinnitab SSF-i, CAEP-i ja RISC-i lõplikena (september 2025)' },
+    url: 'https://biometricupdate.com/202509/openid-approves-3-standards-for-sharing-real-time-digital-identity-security-signals',
+  },
+];
+
+const disclosureParagraphs: Bi[] = [
+  {
+    en: 'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
+    et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: the axiom scoring now matches the overview (B fails six axioms outright and two partially, named by number), the VPN step now describes an IdP session completing a browser-based SSO login, and the device-binding remedy now states what DBSC has shipped and what it does not cover.',
+    et: 'Parandused, 4. oktoober 2026: aksioomide hindamine vastab nüüd ülevaatele (B rikub kuut aksioomi täielikult ja täidab kahte osaliselt, numbritega nimetatud), VPN-i samm kirjeldab nüüd identiteedipakkuja seanssi, mis viib lõpule brauseripõhise SSO-sisselogimise, ja seadmega sidumise abinõu ütleb nüüd, mida DBSC on tegelikult pakkuma hakanud ja mida see ei kata.',
   },
 ];
 
@@ -159,14 +211,16 @@ function Fortune500IllusionResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
-        kicker={isEn ? 'Framework Analysis · Zero-Trust Octagon · Archetype B' : 'Raamistiku analüüs · Zero-Trust Octagon · Arhetüüp B'}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
+        kicker={isEn ? 'Breach Trace · Zero-Trust Octagon · Archetype B' : 'Rünnaku jälg · Zero-Trust Octagon · Arhetüüp B'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
             </>, <>
-              {isEn ? '6 min read' : '6 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '8 min read' : '8 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -223,6 +277,22 @@ function Fortune500IllusionResearchPage() {
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Sources' : 'Allikad'}
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a href={source.url} className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                    {source.label[language]}
+                  </a>
+                  {source.note ? <span className="text-muted-foreground"> — {source.note[language]}</span> : null}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemine'}
             </h2>
             <ul className="mt-6 space-y-3 text-lg leading-relaxed text-muted">
@@ -260,9 +330,12 @@ function Fortune500IllusionResearchPage() {
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 {isEn
-                  ? 'Archetype B is an analytical composite from the author\'s own framework. It is not a real organisation, not a disclosed breach, and no company, product, vulnerability or financial figure named or implied here should be read as a factual incident report. The timings are the model\'s, chosen to make the causal chain legible.'
-                  : 'Arhetüüp B on autori enda raamistiku analüütiline üldistus. See ei ole tegelik organisatsioon ega avalikustatud turvaintsident ning ükski siin nimetatud või vihjatud ettevõte, toode, haavatavus või rahaline näitaja ei ole faktiline intsidendiaruanne. Ajamärgid pärinevad mudelist ja on valitud selleks, et põhjuslik ahel oleks loetav.'}
+                  ? 'Archetype B is an analytical composite from the author\'s own framework. It is not a real organisation, not a disclosed breach, and no company, product, vulnerability or financial figure named or implied here should be read as a factual incident report.'
+                  : 'Arhetüüp B on autori enda raamistiku analüütiline üldistus. See ei ole tegelik organisatsioon ega avalikustatud turvaintsident ning ükski siin nimetatud või vihjatud ettevõte, toode, haavatavus või rahaline näitaja ei ole faktiline intsidendiaruanne.'}
               </p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
               <p>
                 <strong className="text-foreground">{isEn ? 'Author.' : 'Autor.'}</strong>{' '}
                 {isEn

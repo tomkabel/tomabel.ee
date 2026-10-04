@@ -29,14 +29,24 @@ const routes = Object.keys(routeMeta)
 // and 404.html must stay empty so the client renders NotFound.
 const shellTemplate = readFileSync('pub/index.html', 'utf-8');
 
-// Routes that only <Navigate> elsewhere render nothing; leave their #root empty.
-const redirectRoutes = new Set(['/cookies']);
+// Routes that only <Navigate> elsewhere render nothing; leave their #root empty
+// and give no-JS readers a meta refresh to the target instead.
+const redirectRoutes = { '/cookies': '/privacy' };
 
 // Put the prerendered page into #root, so crawlers and agents that do not run
 // JS get the text. Gate: a real page with almost no text means the render
 // broke (an empty lazy page, a thrown boundary) — fail rather than ship it.
 async function withBody(html, path) {
-  if (redirectRoutes.has(path)) return html;
+  const target = redirectRoutes[path];
+  if (target) {
+    if (!html.includes('</head>')) {
+      console.error(`FAIL: shell for ${path} has no </head>`);
+      process.exit(1);
+    }
+    // noindex keeps the redirect stub out of search; the refresh lands on the canonical URL.
+    const tags = `<meta name="robots" content="noindex" />\n    <noscript><meta http-equiv="refresh" content="0; url=${attr(pageUrl(target))}" /></noscript>`;
+    return html.replace('</head>', () => `${tags}\n    </head>`);
+  }
   const body = await render(path);
   const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   if (text.length < 500) {
@@ -51,7 +61,8 @@ async function withBody(html, path) {
 }
 
 for (const route of routes) {
-  const url = pageUrl(`/${route}`);
+  // A redirect stub canonicalizes to its target, not to itself.
+  const url = pageUrl(redirectRoutes[`/${route}`] ?? `/${route}`);
   const meta = metaFor(`/${route}`, 'en');
   const jsonLd = jsonLdFor(`/${route}`, 'en');
   mkdirSync(`pub/${route}`, { recursive: true });
@@ -95,7 +106,7 @@ const offenders = routes
   .map((route) => {
     const html = readFileSync(`pub/${route}/index.html`, 'utf-8');
     const canonicals = [...html.matchAll(/rel="canonical"/g)].length;
-    const pointsAtSelf = html.includes(`<link rel="canonical" href="${pageUrl(`/${route}`)}" />`);
+    const pointsAtSelf = html.includes(`<link rel="canonical" href="${pageUrl(redirectRoutes[`/${route}`] ?? `/${route}`)}" />`);
     return { route, canonicals, pointsAtSelf };
   })
   .filter((r) => r.canonicals !== 1 || !r.pointsAtSelf);

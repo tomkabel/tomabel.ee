@@ -36,11 +36,13 @@ export default function EntryRow({
     <>
       <div className="label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
         <span className="text-accent">{type[language]}</span>
-        {meta ? (
-          <span className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span>{meta[language]}</span>
-        ) : null}
+        {/* Each "·" part ("Published …", "Updated …", "N min read") wraps as a
+            unit; the whole line as one nowrap run overflowed narrow screens. */}
+        {meta?.[language]?.split(/\s+·\s+/).map((part, i) => (
+          <span key={i} className="whitespace-nowrap"><span className="sr-only"> </span><span aria-hidden className="mr-3 text-subtle">·</span>{part}</span>
+        ))}
         {englishOnly ? (
-          <span className="whitespace-nowrap text-warning"><span aria-hidden className="mr-3 text-subtle">·</span>{t.app.englishOnly}</span>
+          <span className="whitespace-nowrap text-warning"><span className="sr-only"> </span><span aria-hidden className="mr-3 text-subtle">·</span>{t.app.englishOnly}</span>
         ) : null}
       </div>
 

@@ -10,11 +10,11 @@ type EssaySection = {
 
 const title = 'What client-side trust is actually worth';
 const standfirst =
-  "BotGuard is Google's VM-based anti-fraud system. Taking it apart is the cleanest demonstration I know of a structural truth: any defense that runs on a machine you do not control is a claim about that machine, made by that machine. Here is what that claim is worth, and what to do with it.";
+  "BotGuard is Google's VM-based anti-fraud system. Reading it closely — building on Cypa's and LuanRT's reverse engineering — is the cleanest illustration I know of a structural truth: any defense that runs on a machine you do not control is a claim about that machine, made by that machine. Here is what that claim is worth, and what to do with it.";
 
 const openingParagraphs = [
   'Every vendor in the fraud business eventually ships the same product. A JavaScript bundle looks at the browser, decides whether the browser can be trusted, and issues a verdict the server checks before letting a request through.',
-  'BotGuard is the most interesting version of that product I have taken apart. Google deploys it as part of its anti-abuse stack, and it is genuinely well built. It took real effort to crack. That is exactly why it is the right case study for the point I want to make: a defense that runs on a machine you do not control is negotiable. Not because it is weak. Because it is a claim, and the server that accepts it has no way to check the claim against the machine.',
+  'BotGuard is the most sophisticated version of that product I have studied. Google deploys it as part of its anti-abuse stack, and it is genuinely well built — the foundational reverse engineering, by Cypa and LuanRT, took real effort. That is exactly why it is the right case study for the point I want to make: a defense that runs on a machine you do not control is negotiable. The problem isn’t weakness; it is that the output is a claim, and the server that accepts it has no way to check the claim against the machine that made it.',
 ];
 
 const sections: EssaySection[] = [
@@ -23,43 +23,57 @@ const sections: EssaySection[] = [
     paragraphs: [
       'The first thing the teardown shows is that BotGuard is not really JavaScript. The bundle the page loads contains a custom bytecode program, executed by a virtual machine written in JavaScript. The obfuscated code you can read in DevTools is the interpreter. The actual logic is the bytecode it runs.',
       "That design choice is the core of BotGuard's strength. Static analysis of the bundle tells you almost nothing, because the program is data, and the data is only meaningful inside the VM. The VM is register-based. It reads its own bytecode string out of the bundle, derives a key from a prefix of that string, and uses the key to find its initialization routine. Byte reads go through a decoder that re-seeds itself as it goes, so the same position in the stream can decrypt to different values depending on execution history.",
-      "I did not get to all of this on my own. Cypa's botguard-reverse repository did the foundational VM analysis, and LuanRT's work on PO tokens mapped how the system is used in production. My teardown builds on both. That is normal for this kind of work, and worth saying plainly: reverse engineering is cumulative, and anyone who implies they reversed a system like this alone in a weekend is not being honest about it.",
+      "I did not get to all of this on my own. Cypa's botguard-reverse repository did the foundational VM analysis — days of hard work, by their own account — and LuanRT's work on PO tokens mapped how the system is used in production. My reading builds on both. That is normal for this kind of work, and worth saying plainly: reverse engineering is cumulative, and the interesting results here are theirs as much as anyone's.",
       'The point of describing the VM is not to impress you with its cleverness. The point is that all of this engineering protects a single assumption: that the machine running the VM is a real browser, operated by a real person. The entire defense is a mechanism for getting that machine to testify about itself.',
     ],
   },
   {
     heading: 'What the token actually proves',
     paragraphs: [
-      'The output of the whole exercise is a token. BotGuard mints it after the VM runs its checks, and the server verifies it alongside the request. On YouTube these are called PO tokens, short for proof of origin. The web player mints a fresh one for each video request, binds it to the video ID, and reuses the minting session for as long as the page is open.',
+      'The output of the whole exercise is a token. BotGuard mints it after the VM runs its checks, and the server verifies it alongside the request. On YouTube these are called PO tokens, short for proof of origin. For web GVS and player tokens, the player mints a fresh one for each video request, binds it to the video ID, and reuses the minting session for as long as the page is open.',
       'Here is the structural problem. The server verifies the token, but the client produces it. The server is not checking the browser. It is checking a claim about the browser, written by the browser. If the two disagree, the claim wins by default, because the server never sees the browser at all.',
-      "Everything BotGuard does, every layer of the VM, every anti-debugging trick, every obfuscation pass, exists to make one thing harder: getting a machine that is not a real browser to produce a token that looks like one. The history of this exact system shows how that arms race ends. LuanRT's BgUtils generates PO tokens and runs attestation challenges with no browser involved, based on the same reverse engineering this essay draws on. The yt-dlp project documents PO token handling as a routine part of keeping a downloader working. What the vendor treats as a root of trust is, to the people who took it apart, a function with known inputs and outputs.",
+      "Everything BotGuard does, every layer of the VM, every anti-debugging trick, every obfuscation pass, exists to make one thing harder: getting a machine that is not a real browser to produce a token that looks like one. The history of this exact system shows how that arms race ends. LuanRT's BgUtils generates PO tokens outside YouTube's player, in an emulated environment (running under Node or Deno with jsdom) that still has to pass BotGuard's checks — so it does not bypass BotGuard so much as satisfy it elsewhere. The yt-dlp project documents PO token handling as a routine part of keeping a downloader working. What the vendor treats as a root of trust is, to the people who took it apart, a function with known inputs and outputs.",
     ],
   },
   {
     heading: 'A token is a ticket',
     paragraphs: [
-      'My teardown of BotGuard identified a token portability weakness. Once minted, the token carries weight beyond the environment that produced it. It can be moved from one context to another and still be accepted, because the server validates the token, not the conditions of its creation.',
+      'In a 2021 test, not reproduced since, I found BotGuard tokens could be minted in one context and presented from another — the same token-harvesting pattern CAPTCHA farms have long used (a packaged, pip-installable technique by 2020). It is worth being precise about the binding that does exist: reCAPTCHA tokens are short-lived (about two minutes), single-use, and tied to a site; most PO tokens are bound to the video ID. What none of these reach is the machine, which is the gap that makes the token movable at all.',
       'The defense starts as a check on the client. It ends as a check on a bearer artifact, no different in kind from a session cookie. The moment the output of a client-side check becomes a standalone object that can be relocated, the check has stopped being about the client. It has become a ticket. And tickets are stolen, shared, and re-issued by design.',
-      'This is not a flaw unique to BotGuard. It is the natural endpoint of every client-side attestation scheme. The server wants to know something about a machine it cannot see. The only evidence it can receive is a report from that machine. No amount of engineering on the reporting side changes the fact that the report is a self-report.',
+      'This is the natural endpoint of every software-only attestation scheme — schemes whose only secret lives in code the client runs. The server wants to know something about a machine it cannot see. The only evidence it can receive is a report from that machine, and no amount of engineering on the reporting side changes the fact that the report is a self-report. The exception, which the next section takes up, is hardware-anchored attestation, where the token is bound to a key the client cannot export.',
+    ],
+  },
+  {
+    heading: 'Where the ticket stops being a ticket',
+    paragraphs: [
+      'There is a class of schemes this critique does not fully reach, and the fair version of the argument has to name it. When the token is bound to a key the client cannot export, relocating it stops working. Device-bound session credentials (DBSC, which Google made generally available and on by default for Workspace users on Chrome for Windows in May 2026) tie a session to a non-exportable key held by the browser. Passkeys do the same for authentication, and Apple’s Private Access Tokens rest on device attestation. (PACT, the proposal Cloudflare announced in June 2026, is not in this class: its credentials are anchored in software and account standing, not a hardware key.) My own SoK paper puts hardware-anchored attestation in a separate class for exactly this reason: a stolen token is useless without the key, and the key does not leave the device.',
+      'This is not free. Binding to hardware moves the trust problem rather than dissolving it: it concentrates power in whoever issues and vouches for the keys, and who gets to be a trusted issuer, and who decides, stays an open question. The companion piece on what VLM agents change for client-side anti-fraud covers that centralisation cost. The point for this essay is narrower: the "it is just a ticket" critique applies to software-only attestation, and the schemes that escape it do so by moving the secret into hardware, not by engineering the self-report harder.',
+      'The server side is not a free lunch either. The alternatives this essay recommends have their own failure modes: IP and ASN reputation is defeated by residential and mobile proxy pools; velocity and anomaly limits produce false positives and can be paced under; session-continuity signals can be farmed. None of these is a verdict on their own. The argument is not "client bad, server good" — it is that server-controlled state is at least state the server can actually observe and revoke.',
     ],
   },
   {
     heading: 'What client-side trust is worth',
     paragraphs: [
       'None of this means client-side defenses are worthless. They are worth exactly what any deterrent is worth: they make the cheap attack expensive, they filter out the unbothered, and at scale they change the economics of abuse.',
-      "BotGuard does raise the cost of automated abuse against Google's properties. It is a real obstacle. It has pushed attackers toward instrumenting real browsers over the Chrome DevTools Protocol and paying for real devices, which is more expensive and easier to detect than pure scripted requests. That is a genuine win, and dismissing it would be dishonest.",
-      'The failure mode is not the control. The failure mode is the belief that the control is a verdict rather than a signal. A fraud engine that treats client attestation as proof that a user is legitimate is trusting an attacker-controlled input. A fraud engine that treats it as one feature among many, weighted against server-side evidence, is using it correctly.',
-      'The same logic applies to device fingerprinting, browser integrity checks, behavioral analysis, and every other client-side control in the catalog. They are all reports from a machine you do not control. Use them to rank and filter. Never use them as the ground truth of a decision that matters.',
+      "BotGuard does raise the cost of automated abuse against Google's properties. It is a real obstacle. In my experience it pushes attackers toward instrumenting real browsers over the Chrome DevTools Protocol and paying for real devices, which is more expensive and easier to detect than pure scripted requests. That is a genuine win, and dismissing it would be a mistake.",
+      'What goes wrong is not the control but the reading of it. Treat a client attestation as proof that a user is legitimate and you are trusting an attacker-controlled input; treat it as one weighted feature among many, scored against server-side evidence, and you are using it for what it is. (The companion teardown makes the same point from the mechanics; readers of both will recognise it.)',
+      'That reading extends to device fingerprinting, browser integrity checks, behavioural analysis, and the rest of the client-side catalogue: all of them are reports from a machine you do not control. They belong in the ranking and filtering layer, never as the deciding evidence for anything that matters.',
     ],
   },
   {
     heading: 'The question to ask',
     paragraphs: [
-      'The next time you review a product that sells client-side trust, ask one question: what happens to the verdict after the client produces it? If it becomes a token, a fingerprint, or any other portable object that the server accepts at face value, the vendor has built a ticket dispenser. It will work until someone learns to mint tickets. Someone always does.',
-      'The better version of the same product does not try to make the client honest. It assumes the client is lying and designs the system so the lie is expensive to maintain. That is where the engineering budget should go: server-side verification, rate limiting, anomaly detection that does not depend on the client\'s account of itself, and defenses that bind decisions to state only the server controls.',
-      'Client-side trust is real. It is just not what the vendors sell it as. It raises the cost of abuse and proves nothing about the user. Treat it as a cost raiser, and design the parts of the system that matter so they do not depend on it.',
+      'The next time you review a product that sells client-side trust, ask one question: what happens to the verdict after the client produces it? If it becomes a portable object that is not bound to a key the client cannot export, the vendor has built a ticket dispenser, and it will work only until someone learns to mint tickets.',
+      'The better version of the same product does not try to make the client honest. It assumes the client is lying and designs the system so the lie is expensive to maintain. That is where the engineering budget should go: server-side verification, rate limiting, anomaly detection that does not depend on the client\'s account of itself, and — where it fits — hardware-anchored binding so the token is tied to state the client cannot forge.',
+      'Client-side trust is real, and it raises the cost of abuse. It just does not prove what a verdict would. Treat it as a cost raiser, and design the parts of the system that matter so they do not depend on it.',
     ],
   },
+];
+
+const disclosureParagraphs = [
+  'Methods and scope: this is an essay, not a disclosure. The technical claims rest on public reverse engineering — Cypa’s botguard-reverse and LuanRT’s BgUtils — plus the yt-dlp documentation and Google’s own reCAPTCHA docs. The only first-person element is a token-replay test I ran privately in 2021; it has not been independently reproduced, it is not a disclosed vulnerability, and it belongs to a token-harvesting class that was already public tooling by 2020. No live Google system was tested for this essay.',
+  'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. The prescription here — move the engineering budget to server-side verification, rate limiting and anomaly detection — falls squarely in that category.',
+  'Corrections, 4 October 2026: the first-person “I took it apart / it took effort to crack” framing is toned down to match the evidence, with the foundational reverse engineering credited to Cypa and LuanRT; the 2021 portability claim is dated, caveated and placed in the known token-harvesting class; the description of BgUtils is corrected (it runs in an emulated environment that still passes BotGuard’s checks, rather than “with no browser involved”); and a section on hardware-anchored counterexamples (DBSC, passkeys, PATs, PACT) and the weaknesses of server-side alternatives has been added.',
 ];
 
 export default function WhatClientSideTrustIsActuallyWorthPage() {
@@ -67,11 +81,16 @@ export default function WhatClientSideTrustIsActuallyWorthPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Reverse Engineering · Client-Side Security</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · August 11, 2026</>, <>6 min read</>, <>Tom Kristian Abel</>]}
+        meta={[
+          <>Published · August 11, 2026</>,
+          <>Updated · October 4, 2026</>,
+          <>9 min read</>,
+          <>Tom Kristian Abel</>,
+        ]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
@@ -109,6 +128,17 @@ export default function WhatClientSideTrustIsActuallyWorthPage() {
               </div>
             </section>
           ))}
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              Disclosure &amp; methods
+            </h2>
+            <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">

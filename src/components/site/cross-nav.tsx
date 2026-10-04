@@ -19,7 +19,7 @@ export default function CrossNav({
       <div className="mx-auto max-w-6xl">
         <Link
           to={to}
-          className="group grid gap-4 rounded-card border border-border-strong bg-surface p-8 shadow-elevated transition-[background-color,border-color,box-shadow] duration-base hover:border-accent/40 hover:bg-surface-2 hover:shadow-elevated-accent md:grid-cols-[1fr_auto] md:items-center md:gap-10"
+          className="group grid gap-4 rounded-card border border-border-strong bg-surface p-8 transition-[background-color,border-color] duration-base hover:border-accent/40 hover:bg-surface-2 md:grid-cols-[1fr_auto] md:items-center md:gap-10"
         >
           <div className="max-w-2xl">
             <p className="label mb-2 text-muted-foreground">
