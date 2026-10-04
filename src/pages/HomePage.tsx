@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="border-b border-border px-6 pb-section pt-section">
+      <header className="px-6 pb-section pt-section">
         <div className="mx-auto grid max-w-6xl gap-y-10 lg:grid-cols-12">
           <p className="label animate-rise-in text-muted-foreground lg:col-span-12">
             {site.hero.eyebrow[language]}
@@ -27,42 +27,49 @@ export default function HomePage() {
             <span className="block text-muted-foreground">{site.hero.line1[language]}</span>
             <span className="block">{site.hero.line2[language]}</span>
           </h1>
-          <div className="animate-rise-in lg:col-span-7 lg:col-start-6" style={{ animationDelay: '180ms' }}>
+          {/* Column 4 is the page's one interior reading edge: the intro, the
+              fault-line quote and the essay list all start on it. */}
+          <div className="animate-rise-in lg:col-span-7 lg:col-start-4" style={{ animationDelay: '180ms' }}>
             <p className="text-xl leading-relaxed text-muted">{site.hero.intro[language]}</p>
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 font-mono text-sm">
-              <Link to="/disclosures" className="group inline-flex min-h-11 items-center gap-2 text-accent">
-                <span className="link-draw">{language === 'en' ? 'Read the research' : 'Loe uuringuid'}</span>
-                <span className="arrow-shift">→</span>
+            {/* One filled primary, one text secondary: the weight difference is
+                the hierarchy. */}
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Link to="/disclosures" className="btn-primary group">
+                {language === 'en' ? 'Read the research' : 'Loe uuringuid'}
+                <span aria-hidden className="arrow-shift">→</span>
               </Link>
-              <Link to="/systems" className="group inline-flex min-h-11 items-center gap-2 text-foreground transition-colors hover:text-accent">
-                <span className="link-draw">{language === 'en' ? 'What I build' : 'Mida ma ehitan'}</span>
-                <span className="arrow-shift">→</span>
+              <Link to="/systems" className="group inline-flex min-h-11 items-center gap-2 font-mono text-sm text-foreground transition-colors hover:text-accent">
+                <span className="link-draw">{language === 'en' ? 'View systems' : 'Vaata süsteeme'}</span>
+                <span aria-hidden className="arrow-shift">→</span>
               </Link>
             </div>
           </div>
         </div>
       </header>
 
-      <section className="border-b border-border bg-sunken px-6 py-section-tight" aria-label="Introduction">
+      <section className="bg-sunken px-6 py-section" aria-label={language === 'en' ? 'Introduction' : 'Sissejuhatus'}>
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-12">
           <p className="label text-muted-foreground lg:col-span-3 lg:pt-2">
             {language === 'en' ? 'The fault line' : 'Murdejoon'}
           </p>
-          <blockquote className="lg:col-span-9">
-            <p className="max-w-measure-display font-serif text-3xl leading-snug text-foreground">
-              {site.introStrip[language]}
-            </p>
-          </blockquote>
+          <div className="lg:col-span-9">
+            <blockquote>
+              <p className="max-w-measure font-serif text-2xl leading-normal text-foreground">
+                {site.introStrip.quote[language]}
+              </p>
+            </blockquote>
+            <p className="prose-measure mt-6 text-muted">{site.introStrip.body[language]}</p>
+          </div>
         </div>
       </section>
 
-      <section className="border-b border-border px-6 py-section">
+      <section className="px-6 py-section">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12">
             <p className="label mb-3 text-muted-foreground">
               {language === 'en' ? 'Featured work' : 'Esiletõstetud tööd'}
             </p>
-            <h2 className="font-display text-3xl text-foreground">
+            <h2 className="font-display text-4xl text-foreground">
               {language === 'en' ? 'Selected research and shipped systems' : 'Valitud uuringud ja tarnitud süsteemid'}
             </h2>
           </div>
@@ -75,39 +82,44 @@ export default function HomePage() {
       </section>
 
       <section className="px-6 py-section">
-        <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+        <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-10 lg:grid-cols-12">
+          <div className="lg:col-span-3">
             <p className="label mb-6 text-muted-foreground">
               {language === 'en' ? 'Writing' : 'Kirjutised'}
             </p>
             <h2 className="mb-6 font-display text-4xl text-foreground">
               {language === 'en' ? 'Essays and arguments' : 'Esseed ja argumendid'}
             </h2>
-            <p className="mb-8 text-muted">
+            <p className="text-muted">
               {language === 'en'
                 ? "The through-lines that connect the research, and arguments I want to make in public."
                 : 'Läbivad jooned, mis seovad uuringuid, ja argumendid, mida tahan avalikult esitada.'}
             </p>
-            <Link to="/disclosures" className="group inline-flex min-h-11 items-center gap-2 font-mono text-sm text-accent">
-              <span className="link-draw">{language === 'en' ? 'Browse disclosures' : 'Sirvi avalikustatut'}</span>
-              <span className="arrow-shift">→</span>
+          </div>
+          <div className="lg:col-span-9">
+            <ul className="border-t border-border">
+              {essays.slice(0, 3).map((e) => (
+                <li key={e.title.en} className="border-b border-border transition-colors duration-fast hover:bg-surface">
+                  {e.href ? (
+                    <Link to={e.href} className="group grid gap-1.5 p-6">
+                      <HomeEssayRowContent essay={e} language={language} />
+                    </Link>
+                  ) : (
+                    <div className="grid gap-1.5 p-6">
+                      <HomeEssayRowContent essay={e} language={language} />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+            {/* The way out sits where the eye ends: directly under the list. */}
+            <Link to="/disclosures?kind=essay" className="group mt-6 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-accent">
+              <span className="link-draw">
+                {language === 'en' ? `All ${essays.length} essays` : `Kõik ${essays.length} esseed`}
+              </span>
+              <span aria-hidden className="arrow-shift">→</span>
             </Link>
           </div>
-          <ul className="border-t border-border lg:col-span-8">
-            {essays.slice(0, 3).map((e) => (
-              <li key={e.title.en} className="border-b border-border transition-colors duration-fast hover:bg-surface">
-                {e.href ? (
-                  <Link to={e.href} className="group grid gap-1.5 p-6">
-                    <HomeEssayRowContent essay={e} language={language} />
-                  </Link>
-                ) : (
-                  <div className="grid gap-1.5 p-6">
-                    <HomeEssayRowContent essay={e} language={language} />
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </>

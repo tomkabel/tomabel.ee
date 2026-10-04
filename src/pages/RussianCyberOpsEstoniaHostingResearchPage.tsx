@@ -16,73 +16,115 @@ type Source = {
   note: string;
 };
 
+type DisclosureParagraph = Bi & { label?: Bi };
+
 const title: Bi = {
-  en: 'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
-  et: 'Hall ala: Venemaa küberoperatsioonid ja Eesti majutustaristu',
+  en: 'The Gray Space: Russian-Linked Proxy and Hosting Infrastructure in Estonia',
+  et: 'Hall ala: Venemaaga seotud proksi- ja majutustaristu Eestis',
 };
 
 const standfirst: Bi = {
-  en: "Estonia's hosting infrastructure sits at the intersection of legitimate EU-based cloud services, bulletproof providers catering to ransomware networks, and gray-space proxy platforms that enable politically motivated DDoS operations. This assessment maps the ecosystem from mainstream data centers to geopolitically weaponized proxy networks, anchored in Estonian corporate registrations and RIPE-manipulated IP space.",
-  et: 'Eesti serverimajutuse ökosüsteem asub seaduslike ELi pilveplatvormide, ransomware võrgustikke teenindavate kuulikindla majutuse pakkujate ja poliitiliselt motiveeritud DDoS-operatsioone võimaldavate halli ala proksiplatvormide ristumiskohas. See hinnang kaardistab ökosüsteemi alates tavapärastest andmekeskustest kuni geopoliitiliselt relvastatud proksivõrkudeni, mis on ankrus Eesti äriregistris ja RIPE-i manipuleeritud IP-ruumis.',
+  en: "In September 2026 QualityNetwork OÜ, one of the two companies fineproxy.org names as its operators, became a RIPE Local Internet Registry and was allocated IP prefixes that Qurium's 2019 report listed under Ilia Trusov's Region40 network. This OSINT reference traces that network from Kaluga to the 2026 allocation, sets out what the public record does and does not show about a second Estonian-registered network, and separates commercial gray-space infrastructure from Russian state operations.",
+  et: 'Eesti ettevõte QualityNetwork OÜ, mille fineproxy.org nimetab ühena oma kahest käitajast, sai 2026. aasta septembris RIPE kohalikuks internetiregistriks (LIR) ja sellele eraldati IP-plokid, mille Qurium oli 2019. aasta raportis loetlenud Ilja Trusovi Region40 võrgu all. See OSINT-ülevaade jälgib võrgu teed Kalugast 2026. aasta eralduseni, kirjeldab, mida avalikud andmed teise Eestis registreeritud võrgu kohta näitavad ja mida mitte, ning eristab kommertslikku halli ala taristut Venemaa riiklikest operatsioonidest.',
 };
 
 const openingParagraphs: Bi[] = [
   {
-    en: 'Between mainstream EU-registered hosting providers and overtly criminal bulletproof hosts sits a gray zone of proxy networks, RIPE metadata manipulation, and commercially operated DDoS infrastructure anchored in Estonian data centers and corporate registrations. Estonia itself remains a recurring cyber target in the wider Russia-West contest.',
-    et: 'Tavaliste ELis registreeritud majutusteenuse pakkujate ja ilmselgelt kriminaalsete kuulikindla majutuse pakkujate vahel on hall tsoon: proksivõrgud, RIPE metaandmete võltsimine ja kommertslikult käitatav DDoS-taristu, mis on ankrus Eesti andmekeskustes ja äriregistris. Eesti ise on korduv küberrünnete sihtmärk laiemas Vene-Lääne konfliktis.',
+    en: "On 15 September 2026 the RIPE NCC allocated 185.46.84.0/22, 91.200.164.0/22, 91.198.127.0/24, 91.216.3.0/24 and 2a01:81a0::/32 to QualityNetwork OÜ, whose RIPE organisation object (ORG-QO13-RIPE) was created on 1 September 2026 when the company became a Local Internet Registry. On 3 October 2026 RIPEstat showed 185.46.84.0/22 (netname EE-QUALITYNETWORK-20140129) announced by AS35624, SILVERSTAR-AS Fast Servers (Pty) Ltd. Qurium's 2023 report lists AS35624, then under the name Silverstar Invest Limited, as a Fineproxy \"Partner and IP Provider\". 185.46.84.0 and 91.216.3.0 appear in Qurium's 2019 list of prefixes announced by AS200557, Region40. fineproxy.org states that it is operated by Quality Network US LLC (Wyoming) and QualityNetwork OU (Tallinn).",
+    et: 'RIPE NCC eraldas 15. septembril 2026 ettevõttele QualityNetwork OÜ plokid 185.46.84.0/22, 91.200.164.0/22, 91.198.127.0/24, 91.216.3.0/24 ja 2a01:81a0::/32. Ettevõtte RIPE organisatsiooni objekt (ORG-QO13-RIPE) loodi 1. septembril 2026, kui ettevõttest sai kohalik internetiregister. RIPEstati andmetel kuulutas 3. oktoobril 2026 plokki 185.46.84.0/22 (võrgunimi EE-QUALITYNETWORK-20140129) välja AS35624, SILVERSTAR-AS Fast Servers (Pty) Ltd. Quriumi 2023. aasta raport loetleb AS35624 (toona nime all Silverstar Invest Limited) Fineproxy rolliga „Partner and IP Provider“. Aadressid 185.46.84.0 ja 91.216.3.0 on Quriumi 2019. aasta loetelus Region40 autonoomse süsteemi AS200557 välja kuulutatud plokkide seas. fineproxy.org märgib oma käitajateks Quality Network US LLC (Wyoming) ja QualityNetwork OU (Tallinn).',
+  },
+  {
+    en: 'Becoming an LIR is lawful, and this paper makes no claim about how the new allocation is used. It records the change because it is the most recent public step in a network that Qurium has documented since 2018: the company that Qurium tied to Fineproxy in its 2018 report now holds this address space in its own name.',
+    et: 'LIR-iks saamine on seaduslik ja see töö ei väida midagi selle kohta, kuidas uut eraldust kasutatakse. Muudatus on kirja pandud, sest see on viimane avalik samm võrgus, mida Qurium on dokumenteerinud alates 2018. aastast: ettevõte, mille Qurium 2018. aasta raportis Fineproxyga sidus, hoiab nüüd seda aadressiruumi enda nimel.',
+  },
+  {
+    en: 'This is an OSINT reference paper, not a vulnerability disclosure. The operations documented in public reporting are DDoS attacks on media in Azerbaijan (2018 and 2019) and the Philippines (2023), and command servers for commodity remote-access trojans and stealers. None of the sources reviewed links them to a Russian state unit. Estonia is a target of such units: in September 2024 it publicly attributed the 2020 hacks of its ministries to GRU unit 29155, its first public attribution, and RIA recorded a record 756 DDoS attacks on Estonia in 2025.',
+    et: 'See on OSINT-viitetöö, mitte haavatavuse avalikustamine. Avalikes allikates dokumenteeritud operatsioonid on DDoS-rünnakud meediaväljaannete vastu Aserbaidžaanis (2018 ja 2019) ja Filipiinidel (2023) ning tavaliste kaugjuurdepääsu troojalaste ja andmeid varastava pahavara juhtserverid. Ükski läbivaadatud allikas ei seo neid Venemaa riikliku üksusega. Selliste üksuste sihtmärk on Eesti küll: 2024. aasta septembris omistas Eesti esimest korda avalikult 2020. aasta rünnakud oma ministeeriumide vastu GRU üksusele 29155 ja RIA registreeris 2025. aastal Eesti vastu rekordilised 756 DDoS-rünnakut.',
+  },
+  {
+    en: 'Method. Registry, routing and threat-feed data were checked on 3–4 October 2026 in RIPEstat, the RIPE Database, e-Äriregister, the Wyoming Secretary of State business search and ThreatFox. Claims from third-party reports are attributed to the report that makes them; where a claim could not be checked, the text says so. The present tense describes the position on 4 October 2026, and older facts are dated.',
+    et: 'Meetod. Registri-, marsruudi- ja ohuandmeid kontrolliti 3.–4. oktoobril 2026 RIPEstatis, RIPE andmebaasis, e-äriregistris, Wyomingi osariigi äriregistris ja ThreatFoxis. Kolmandate osapoolte raportite väited on omistatud raportile, kust need pärinevad; kui väidet ei õnnestunud kontrollida, on see tekstis öeldud. Olevik kirjeldab olukorda 4. oktoobri 2026 seisuga, varasemad faktid on dateeritud.',
   },
 ];
 
 const sections: EssaySection[] = [
   {
     heading: {
-      en: 'The hosting stack',
-      et: 'Hostingu kihid',
+      en: 'Timeline',
+      et: 'Ajajoon',
     },
     paragraphs: [
       {
-        en: 'Estonian hosting infrastructure relevant to Russian cyber operations breaks into three tiers.',
-        et: 'Venemaa küberoperatsioonide seisukohast oluline Eesti serverimajutuse taristu jaguneb kolmeks kihiks.',
+        en: '2011: Fineproxy starts operating through Region40 LLC in Kaluga, Russia (per Qurium, 2023).',
+        et: '2011: Fineproxy alustab tegevust Region40 LLC kaudu Kalugas Venemaal (Quriumi 2023. aasta raporti järgi).',
       },
       {
-        en: 'Mainstream providers. EDIS Global offers KVM VPS in Telia\'s Sõpruse pst data center in Tallinn. FairyHosting (RJ Network OÜ) provides VPS, dedicated servers, and shared hosting from the same Telia Tier III facility. Sawia Digital sells DreamHost-based shared hosting in Narva. All three respond to abuse complaints and experience opportunistic abuse, as most large shared hosting environments do.',
-        et: 'Tavapakkujad. EDIS Global pakub KVM VPS-i Telia Sõpruse pst andmekeskuses Tallinnas. FairyHosting (RJ Network OÜ) pakub VPS-i, dedicated servereid ja jagatud veebimajutust samast Telia III taseme keskusest. Sawia Digital müüb DreamHostil põhinevat jagatud veebimajutust Narvas. Kõik kolm reageerivad kaebustele ja nende teenuseid kasutatakse opportunistlikult ära, nagu iga suure jagatud veebimajutuse keskkonna puhul.',
+        en: '15 September 2016: QualityNetwork OÜ is registered in Estonia, with Ilia Trusov on its management board (e-Äriregister).',
+        et: '15. september 2016: QualityNetwork OÜ registreeritakse Eestis, juhatuses Ilja Trusov (e-äriregister).',
       },
       {
-        en: 'Bulletproof entities like Vault Dweller OÜ, registered in Tallinn with NACE code 63.10 ("data processing, hosting and related activities"). Its ASN (AS203834, created 2022) is cataloged by the bulletproof-hosting research profile "BPH-02 / Estonia Reg / No Sanctions" as serving Russia/CIS-linked ransomware networks, with 307 IOCs on ThreatFox. The infrastructure is physically hosted in Bulgaria. IPinfo notes no active IPv4 or IPv6 allocations as of the latest scan, so the operational status may be partially stale or obfuscated. Services are advertised on the Carder.su underground forum.',
-        et: 'Kuulikindla majutuse pakkujad nagu Vault Dweller OÜ, registreeritud Tallinnas NACE koodiga 63.10 ("andmetöötlus, veebimajutus ja sellega seotud tegevused"). Selle ASN (AS203834, loodud 2022) on kataloogitud kuulikindla majutuse profiilis "BPH-02 / Estonia Reg / No Sanctions" kui Venemaa/ SRÜ-ga seotud ransomware võrgustikke teenindav, 307 IoC-ga ThreatFoxi andmebaasis. Füüsiline taristu asub Bulgaarias. IPinfo märgib aktiivseid IPv4/IPv6 eraldusi mitte, seega võib operatiivne staatus olla osaliselt aegunud või varjatud. Teenuseid reklaamitakse Carder.su põrandaaluses foorumis.',
+        en: 'August 2018 and August 2019: Qurium traces DDoS attacks on Azerbaijani media and a human-rights site to Fineproxy (section 04).',
+        et: 'August 2018 ja august 2019: Qurium jälitab DDoS-rünnakud Aserbaidžaani meediaväljaannete ja inimõiguste veebisaidi vastu Fineproxyni (4. osa).',
       },
       {
-        en: 'Gray-space proxy networks like Fineproxy and Rayobyte present themselves as web-scraping and SEO automation platforms, but their IP space shows up repeatedly in politically motivated DDoS campaigns. Fineproxy is registered through Quality Network OÜ in Estonia, owned by Russian IT entrepreneur Ilia Trusov. Its physical servers are concentrated in a small number of European data centers (including UGB Hosting in Estonia), while its RIPE objects claim multi-country presence through systematically falsified geolocation metadata. Rayobyte (Sprious LLC, US-based) is included because its infrastructure is co-identified in the same DDoS campaigns.',
-        et: 'Halli ruumi proksivõrgud nagu Fineproxy ja Rayobyte esitlevad end veebi skraapimise ja SEO automatiseerimise platvormidena, kuid nende IP-ruum ilmub korduvalt poliitiliselt motiveeritud DDoS-kampaaniates. Fineproxy on registreeritud Quality Network OÜ kaudu Eestis, mille omanik on Venemaa IT-ettevõtja Ilja Trusov. Selle füüsilised serverid on koondunud väikesesse arvu Euroopa andmekeskustesse (sealhulgas UGB Hosting Eestis), samal ajal kui RIPE kirjed väidavad mitme riigi kohalolekut süstemaatiliselt võltsitud geolokatsiooni metaandmete kaudu. Rayobyte (Sprious LLC, USAs) on kaasatud, sest selle taristu on tuvastatud samades DDoS-kampaaniates.',
+        en: '2019: Trusov registers two Wyoming LLCs, Security Servers and Traffictransitsolution (Reuters). Both have since been dissolved; the Wyoming register shows Traffictransitsolution administratively dissolved in 2022.',
+        et: '2019: Trusov registreerib Wyomingis kaks LLC-d, Security Servers ja Traffictransitsolution (Reuters). Mõlemad on praeguseks lõpetatud; Wyomingi registri järgi lõpetati Traffictransitsolution 2022. aastal halduskorras.',
       },
       {
-        en: 'Bulletproof hosting, the highest-risk tier, refers to providers that advertise tolerance of abuse in underground forums, actively resist takedowns, and supply infrastructure to botnet C2, ransomware, and malware operations. The DOJ prosecution of Aleksandr Grichishkin and associates (2009–2015) is a documented exemplar.',
-        et: 'Kuulikindel majutus, kõrgeima riskiga kiht, viitab pakkujatele, kes reklaamivad kuritarvituste talumist põrandaalustes foorumites, osutavad aktiivselt vastupanu sulgemistele ja varustavad taristuga botnet C2, ransomware ja malware operatsioone. USA justiitsministeeriumi süüdistus Aleksandr Grišikini ja kaaslaste vastu (2009–2015) on dokumenteeritud näide.',
+        en: 'Early February 2022: per Qurium, the operation at UGB Hosting in Narva "was abruptly canceled" and the networks moved to other providers, including King Servers B.V.',
+        et: '2022. aasta veebruari algus: Quriumi andmetel lõpetati tegevus UGB Hostingus Narvas järsult ja võrgud viidi teiste pakkujate juurde, sealhulgas King Servers B.V.-sse.',
+      },
+      {
+        en: '30 October 2023: DDoS attack on Rappler; Qurium traces the data-center share of the traffic to Fineproxy and Rayobyte infrastructure. December 2023: Reuters publishes its interview-based report on Trusov.',
+        et: '30. oktoober 2023: DDoS-rünnak Rappleri vastu; Qurium jälitab andmekeskustest tulnud osa liiklusest Fineproxy ja Rayobyte taristuni. Detsember 2023: Reuters avaldab Trusovi intervjuul põhineva artikli.',
+      },
+      {
+        en: '11 March 2024: UGB Hosting OÜ is liquidated (e-Äriregister).',
+        et: '11. märts 2024: UGB Hosting OÜ likvideeritakse (e-äriregister).',
+      },
+      {
+        en: 'September 2026: QualityNetwork OÜ becomes a RIPE LIR and is allocated the prefixes listed above.',
+        et: 'September 2026: QualityNetwork OÜ saab RIPE LIR-iks ja talle eraldatakse eespool loetletud plokid.',
       },
     ],
   },
   {
     heading: {
-      en: 'Ilia Trusov and the Fineproxy network',
-      et: 'Ilja Trusov ja Fineproxy võrgustik',
+      en: 'Two kinds of infrastructure',
+      et: 'Kahte liiki taristu',
     },
     paragraphs: [
       {
-        en: 'Ilia Trusov is a Russian IT entrepreneur whose corporate network spans Region40 LLC in Kaluga, Russia; Quality Network OÜ in Narva and Tallinn, Estonia; and shell companies in Wyoming, United States (Security Servers LLC, Traffictransitsolution LLC, both registered around 2019 and subsequently dissolved per Reuters reporting). His LinkedIn profile (self-reported) lists him as CEO of QualityNetwork US since August 2023 and of QualityNetwork OU since September 2016, with a Master of Science in radio-electronic engineering from Bauman Moscow State Technical University.',
-        et: 'Ilja Trusov on Venemaa IT-ettevõtja, kelle ettevõtete võrgustik hõlmab Region40 LLC-d Kalugas, Venemaal; Quality Network OÜ-d Narvas ja Tallinnas, Eestis; ja varifirmasid Wyomingis, USA-s (Security Servers LLC, Traffictransitsolution LLC, mõlemad registreeritud umbes 2019 ja hiljem Reutersi andmetel likvideeritud). Tema LinkedIni profiil (ise teatatud) loetleb teda QualityNetwork US tegevjuhina alates augustist 2023 ja QualityNetwork OU tegevjuhina alates septembrist 2016, magistrikraadiga raadio-elektroonika inseneriteaduses Baumani Moskva Riiklikust Tehnikaülikoolist.',
+        en: 'This paper covers two kinds of Estonian-registered network infrastructure. The first is a commercial proxy service: Fineproxy sells access to large pools of proxy IP addresses, which Qurium has repeatedly found in DDoS traffic. The second is hosting advertised as "bulletproof", meaning a provider that promises in underground forums to ignore abuse complaints and resist takedowns.',
+        et: 'See töö käsitleb kahte liiki Eestis registreeritud võrgutaristut. Esimene on kommertslik proksiteenus: Fineproxy müüb juurdepääsu suurtele proksi-IP-aadresside kogumitele, mida Qurium on korduvalt DDoS-liikluses leidnud. Teine on nn kuulikindel majutus (bulletproof hosting), kus pakkuja lubab põrandaalustes foorumites kuritarvitusteateid eirata ja sulgemisele vastu seista.',
       },
       {
-        en: 'Fineproxy sells access to thousands of proxy IPs. Qurium characterizes the platform as enabling SEO click-fraud, automated scraping, social-media account management, and bot operations at scale. The infrastructure aggregates IP prefixes leased or owned across multiple autonomous systems: Silverstar Invest Limited, BTT Group Finance, Oy Crea Nova Hosting Solution Ltd, PureVoltage, and Kingservers\' HOSTING-SOLUTIONS ASN (AS14576). That ASN alone has 90 unique malicious IP addresses with 3,778 abuse reports recorded between August 2022 and December 2025 per WaysCloud, though WaysCloud rates the overall threat activity as "minimal" and most reports originate from the Netherlands, the United States, and Russia.',
-        et: 'Fineproxy müüb juurdepääsu tuhandetele proksi-IP-dele. Qurium iseloomustab platvormi kui SEO klikipettuse, automaatse skraapimise, sotsiaalmeedia kontode haldamise ja bottide operatsioonide võimaldajat. Taristu koondab renditud või omatud IP-prefikseid mitmest autonoomset süsteemist: Silverstar Invest Limited, BTT Group Finance, Oy Crea Nova Hosting Solution Ltd, PureVoltage ja Kingserversi HOSTING-SOLUTIONS ASN (AS14576). Sellel ASN-il üksi on 90 ainulaadset pahatahtlikku IP-aadressi 3 778 kuritarvitusteatega (august 2022–detsember 2025) WaysCloudi andmetel, kuigi WaysCloud hindab üldist ohutegevust "minimaalseks" ja enamik teateid pärineb Hollandist, USAst ja Venemaalt.',
+        en: 'A documented example of the second kind is the 2009–2015 bulletproof hosting scheme run by Aleksandr Grichishkin and others, which included an Estonian defendant, Pavel Stassi (sentenced in the United States in 2021).',
+        et: 'Teise liigi dokumenteeritud näide on Aleksandr Grišikini ja teiste aastatel 2009–2015 käitatud kuulikindla majutuse skeem, mille kohtualuste seas oli ka Eestist pärit Pavel Stassi (mõisteti USA-s süüdi 2021. aastal).',
       },
       {
-        en: 'The key operational technique is RIPE geolocation manipulation. Trusov\'s team creates RIPE registry objects claiming IP presence in dozens of countries, ingested by MaxMind and other geolocation databases, while the actual physical servers are concentrated in a few facilities, principally UGB Hosting in Estonia. This defeats simple geo-IP filtering during DDoS campaigns.',
-        et: "Peamine operatiivtehnika on RIPE geolokatsiooni võltsimine. Trusovi meeskond loob RIPE'i kirjeid, mis väidavad IP-de kohalolekut kümnetes riikides, mida MaxMind ja muud geolokatsiooni andmebaasid omastavad, samal ajal kui tegelikud füüsilised serverid on koondunud mõnesse asukohta, peamiselt UGB Hosting Eestis. See muudab lihtsa geo-IP filtreerimise DDoS-kampaaniate ajal ebaefektiivseks.",
+        en: 'Rayobyte, a US proxy provider, appears below only because Qurium traced part of the Rappler attack traffic to it. It has no Estonian link.',
+        et: 'USA proksipakkuja Rayobyte on allpool mainitud ainult seetõttu, et Qurium jälitas osa Rappleri vastu suunatud ründeliiklusest selle taristuni. Eestiga pole Rayobytel seost.',
+      },
+    ],
+  },
+  {
+    heading: {
+      en: 'Ilia Trusov and Fineproxy',
+      et: 'Ilja Trusov ja Fineproxy',
+    },
+    paragraphs: [
+      {
+        en: 'Reuters describes Ilia Trusov as a Russian IT entrepreneur. Per Qurium, Fineproxy began in 2011 under Region40 LLC in Kaluga and later traded through QualityNetwork OÜ, registered in Estonia in 2016 with Trusov on its board. fineproxy.org now names Quality Network US LLC in Wyoming and QualityNetwork OU in Tallinn as its operators.',
+        et: 'Reuters kirjeldab Ilja Trusovit kui Venemaa IT-ettevõtjat. Quriumi andmetel alustas Fineproxy 2011. aastal Kalugas Region40 LLC all ja tegutses hiljem QualityNetwork OÜ kaudu, mis registreeriti Eestis 2016. aastal ja mille juhatuses on Trusov. fineproxy.org nimetab nüüd oma käitajateks Wyomingis asuva Quality Network US LLC ja Tallinnas asuva QualityNetwork OU.',
       },
       {
-        en: 'Trusov acknowledged in interviews with Reuters and Flexi-News that he set up Wyoming shell companies to make his clients\' web traffic appear American and to handle legal requests through a U.S. front. In the same interviews, he denied tolerating cybercrime and claimed he often collaborated with law enforcement. The Wyoming LLCs were later dissolved, though Trusov subsequently incorporated QualityNetwork US.',
-        et: 'Trusov tunnistas Reutersi ja Flexi-Newsiga vesteldes, et ta asutas Wyomingi varifirmad, et muuta klientide veebiliiklus Ameerika päritoluks ja menetleda õiguslikke taotlusi USA esinduse kaudu. Samades intervjuudes eitas ta küberkuritegevuse talumist ja väitis, et tegi sageli koostööd õiguskaitseorganitega. Wyomingi LLC-d hiljem likvideeriti, kuigi Trusov asutas seejärel QualityNetwork US.',
+        en: 'According to Reuters, Trusov said he set up the Wyoming companies to make his clients\' web traffic appear American and to help with "fielding legal requests". He denied tolerating cybercrime and said he "often worked with police agencies". Reuters reported that researchers had traced waves of intrusions and spam to his proxy service in 2017 and that, "despite the public exposure", he registered two Wyoming LLCs, Security Servers and Traffictransitsolution, in 2019; both have since been dissolved. Quality Network US LLC uses the same registered-agent address.',
+        et: 'Reutersi andmetel ütles Trusov, et asutas Wyomingi ettevõtted, et klientide veebiliiklus paistaks Ameerika oma ja et neist oleks abi õiguslike päringutega tegelemisel („fielding legal requests“). Ta eitas, et sallib küberkuritegevust, ja ütles, et tegi „sageli politseiasutustega koostööd“. Reuters kirjutas, et teadlased jälitasid 2017. aastal sissetungide ja rämpsposti lained tema proksiteenuseni ning et „vaatamata avalikule tähelepanule“ registreeris ta 2019. aastal Wyomingis kaks LLC-d, Security Servers ja Traffictransitsolution; mõlemad on praeguseks lõpetatud. Quality Network US LLC kasutab sama registreeritud esindaja aadressi.',
+      },
+      {
+        en: 'Qurium\'s reports describe what made the network useful: RIPE objects that Qurium found declared countries the prefixes were not routed from. Geolocation databases such as MaxMind trusted those entries, so, in Qurium\'s words, "Fineproxy sold proxies from dozens of countries while all the traffic was sourced from Narva, Estonia." That Narva operation, at UGB Hosting, ended in February 2022 per Qurium, and the networks moved to providers including King Servers B.V.; AS14576, which Qurium\'s 2023 table lists as "HOSTING-SOLUTIONS (EE) | Kingservers", is registered with ARIN to Hosting Solution Ltd. (Anguilla). UGB Hosting OÜ was liquidated in March 2024.',
+        et: 'Quriumi raportid kirjeldavad, mis tegi võrgu kasulikuks: RIPE objektid, milles Quriumi leitud andmetel oli plokkide riigiks märgitud riik, kust neid tegelikult ei marsruuditud. Geolokatsiooni andmebaasid nagu MaxMind usaldasid neid kirjeid ja nii müüs Fineproxy Quriumi sõnul proksisid kümnetest riikidest, kuigi kogu liiklus tuli Narvast. Quriumi andmetel lõppes see Narva tegevus UGB Hostingus 2022. aasta veebruaris ja võrgud viidi teiste pakkujate juurde, sealhulgas King Servers B.V.-sse. AS14576, mille Quriumi 2023. aasta tabel märgib kui „HOSTING-SOLUTIONS (EE) | Kingservers“, on ARIN-is registreeritud ettevõttele Hosting Solution Ltd. (Anguilla). UGB Hosting OÜ likvideeriti 2024. aasta märtsis.',
       },
     ],
   },
@@ -93,32 +135,76 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Qurium documented a DDoS attack (c. 2018–2020) against a website critical of the leader of Azerbaijan\'s state oil company. The attack infrastructure was provided through Quality Network OÜ in Estonia. Fineproxy\'s proxy pools flooded the target with what appeared to be geographically diverse human traffic. Trusov\'s Region40 LLC prefixes (AS200557) were routed through Russian backbones Rostelecom and Megafon while claiming foreign locations in RIPE registries. The ultimate sponsor is unknown and is not attributed by Qurium to any specific state actor.',
-        et: 'Qurium dokumenteeris DDoS-rünnaku (umbes 2018–2020) veebisaidile, mis kritiseeris Aserbaidžaani riikliku naftafirma juhti. Ründe taristut pakuti Quality Network OÜ kaudu Eestis. Fineproxy proksipaneelid ujutasid sihtmärgi üle liiklusega, mis näis olevat geograafiliselt mitmekesine inimese liiklus. Trusovi Region40 LLC prefiksid (AS200557) suunati läbi Venemaa selgrooühenduste Rostelecom ja Megafon, väites samal ajal RIPE registrites välisriikide asukohti. Ründe tellija pole teada ja Qurium ei omista seda ühelegi konkreetsele riiklikule osalejale.',
+        en: 'Azerbaijan, 4 August 2018. Qurium\'s report of 6 August 2018 describes DDoS attacks on the Azerbaijani outlets gununsesi.info and azadliq.info and says the attack was "traced back… to a Proxy Service known as fineproxy.org, registered in the name of QualityNetwork OÜ in Estonia". Qurium found that the prefixes of AS200557 (Region40 LLC) were routed by Rostelecom (AS12389) or AS50896; that passage calls AS50896 Megafon, while elsewhere the same report attributes AS50896 to Trusov. Prefixes announced from UGB Hosting (AS206485) via Telia carried foreign countries such as France in RIPE, while latency placed them in Estonia. Qurium wrote that it is "difficult to know who might be paying" for the attacks, and noted that test queries came from Azerbaijan and that attack traffic came from a network hosting Azerbaijani government institutions.',
+        et: 'Aserbaidžaan, 4. august 2018. Quriumi 6. augusti 2018. aasta raport kirjeldab DDoS-rünnakuid Aserbaidžaani väljaannete gununsesi.info ja azadliq.info vastu ning ütleb, et rünnak jälitati proksiteenuseni fineproxy.org, mis oli registreeritud QualityNetwork OÜ nimele Eestis. Quriumi andmetel marsruuditi AS200557 (Region40 LLC) plokke Rostelecomi (AS12389) või AS50896 kaudu; selles lõigus nimetatakse AS50896 Megafoniks, kuid mujal samas raportis omistatakse see Trusovile. UGB Hostingu (AS206485) kaudu Telia vahendusel välja kuulutatud plokkidele oli RIPE-s märgitud välisriik, näiteks Prantsusmaa, kuigi latentsus näitas, et need asusid Eestis. Qurium kirjutas, et on raske teada, kes rünnakute eest maksab, ning märkis, et testpäringud tulid Aserbaidžaanist ja ründeliiklus tuli võrgust, kus asuvad Aserbaidžaani riigiasutused.',
       },
       {
-        en: 'A DDoS campaign against the Philippine news outlet Rappler in October 2023 involved at least 10% of the proxy IPs observed in the attack traced to Fineproxy and Rayobyte. Qurium identified multiple data centers connected to both services. Qurium has tracked "dozens of denial of service attacks sourced from Rayobyte infrastructure" over several years, and began observing attacks from Fineproxy\'s infrastructure around 2018.',
-        et: 'DDoS-kampaania Filipiinide uudisteväljaande Rappleri vastu oktoobris 2023 hõlmas vähemalt 10% ründes jälgitud proksi-IP-dest, mis olid seostatavad Fineproxy ja Rayobytega. Qurium tuvastas mitu andmekeskust, mis on ühendatud mõlema teenusega. Qurium on jälginud "kümneid teenusetõkestusrünnakuid Rayobyte taristust" mitme aasta jooksul ja hakkas jälgima rünnakuid Fineproxy taristust umbes 2018. aastal.',
+        en: 'Azerbaijan, from 18 August 2019. Qurium\'s report of 30 October 2019 describes a DDoS attack on Humanrightsclub.net after it published an article on companies linked to the president of SOCAR, Azerbaijan\'s state oil company. Per Qurium, the attacks lasted hours over several days, with millions of requests proxied through more than 1,000 Fineproxy IP addresses.',
+        et: 'Aserbaidžaan, alates 18. augustist 2019. Quriumi 30. oktoobri 2019. aasta raport kirjeldab DDoS-rünnakut veebisaidi Humanrightsclub.net vastu pärast seda, kui sait avaldas artikli Aserbaidžaani riikliku naftaettevõtte SOCAR presidendiga seotud firmadest. Quriumi andmetel kestsid rünnakud mitme päeva jooksul tunde ja miljonid päringud suunati läbi enam kui 1000 Fineproxy IP-aadressi.',
       },
       {
-        en: 'Reuters and Flexi-News report that cybersecurity researchers traced waves of digital intrusions and spam campaigns to Trusov\'s proxy service in 2017. Trusov\'s response was not to shutter the service but to register Wyoming LLCs to improve the appearance of geographic distribution.',
-        et: 'Reuters ja Flexi-News teatavad, et küberjulgeoleku teadlased jälgisid 2017. aastal digitaalsete sissetungide ja rämpspostikampaaniate laineid Trusovi proksiteenuseni. Trusovi vastus ei olnud teenuse sulgemine, vaid Wyomingi LLC-de registreerimine, et parandada geograafilise jaotuse muljet.',
+        en: 'Philippines, 30 October 2023. Qurium analysed a DDoS attack on the news outlet Rappler. Most requests came from residential or mobile connections, but "we could identify 10% of the IP addresses originated from data centers", and Qurium traced that data-center traffic to the infrastructure of two proxy providers, Fineproxy and Rayobyte. For Fineproxy, its table lists AS35624 Silverstar Invest Limited and AS35830 BTT Group Finance as "Partner and IP Provider", and AS51765 Oy Crea Nova Hosting Solution Ltd, AS26548 PureVoltage and AS14576 HOSTING-SOLUTIONS (EE) as "Hosting Provider". In 2023 Qurium named Sprious LLC as Rayobyte\'s operator; Rayobyte\'s site now gives Rayobyte, LLC, of Lincoln, Nebraska.',
+        et: 'Filipiinid, 30. oktoober 2023. Qurium analüüsis DDoS-rünnakut uudisteväljaande Rappler vastu. Enamik päringuid tuli kodu- või mobiilühendustest, kuid Quriumi sõnul tuli 10% IP-aadressidest andmekeskustest ja Qurium jälitas andmekeskustest tulnud liikluse kahe proksipakkuja, Fineproxy ja Rayobyte taristuni. Fineproxy puhul märgib raporti tabel AS35624 Silverstar Invest Limitedi ja AS35830 BTT Group Finance’i rolliks „Partner and IP Provider“ ning AS51765 Oy Crea Nova Hosting Solution Ltd, AS26548 PureVoltage’i ja AS14576 HOSTING-SOLUTIONS (EE) rolliks „Hosting Provider“. 2023. aastal nimetas Qurium Rayobyte käitajaks Sprious LLC; Rayobyte veebisait märgib nüüd ettevõtteks Rayobyte, LLC, Lincoln, Nebraska.',
+      },
+      {
+        en: 'The same report says Qurium "has since 2018 mitigated and documented dozens of denial of service attacks launched from FineProxy\'s infrastructure". Qurium\'s May 2026 report on residential proxies still lists Fine Proxy among attack sources.',
+        et: 'Samas raportis ütleb Qurium, et on alates 2018. aastast tõrjunud ja dokumenteerinud kümneid FineProxy taristust lähtunud teenusetõkestusrünnakuid. Quriumi 2026. aasta mai raport koduühenduste proksidest loetleb Fine Proxy endiselt ründeallikate seas.',
       },
     ],
   },
   {
     heading: {
-      en: 'Broader ecosystem: Kingservers and Vault Dweller',
-      et: 'Laiem ökosüsteem: Kingservers ja Vault Dweller',
+      en: 'Vault Dweller OÜ and AS203834',
+      et: 'Vault Dweller OÜ ja AS203834',
     },
     paragraphs: [
       {
-        en: 'Kingservers / HOSTING-SOLUTIONS (AS14576): classified by Qurium as an Eastern European hosting provider with a flagged Estonian nexus. Integrated into Fineproxy\'s upstream network. Per WaysCloud, 90 malicious IPs and 3,778 abuse reports (Aug 2022–Dec 2025), though the same source rates overall threat activity as "minimal" and the majority of abuse originates from NL, US, and RU. Kingservers sits between mainstream and fully adversarial: a legitimate host whose services are disproportionately used in high-risk operations.',
-        et: 'Kingservers / HOSTING-SOLUTIONS (AS14576): Quriumi poolt klassifitseeritud Ida-Euroopa majutusteenuse pakkujaks, kellel on märgitud Eesti seos. Integreeritud Fineproxy ülesvooluvõrku. WaysCloudi andmetel 90 pahatahtlikku IP-d ja 3 778 kuritarvitusteadet (august 2022–detsember 2025), kuigi sama allikas hindab üldist ohutegevust "minimaalseks" ja enamik kuritarvitusi pärineb Hollandist, USAst ja Venemaalt. Kingservers asub tavapärase ja täielikult vaenuliku vahel: seaduslik host, kelle teenuseid kasutatakse ebaproportsionaalselt palju kõrge riskiga operatsioonides.',
+        en: 'Vault Dweller OÜ was registered in Tallinn on 1 July 2019 with €2,500 share capital and the activity code EMTAK 63102 (data processing). It held AS203834, created on 19 July 2022. An anonymous, self-published profile by the Reno Project lists a service called DEDBROPRO under the label "BPH-02 / Estonia Reg / No Sanctions" and connects it to that ASN. The profile itself says that no named individual was identified and that no major security vendor has published an assessment.',
+        et: 'Vault Dweller OÜ registreeriti Tallinnas 1. juulil 2019 osakapitaliga 2500 eurot ja tegevusalaga EMTAK 63102 (andmetöötlus). Ettevõttele kuulus 19. juulil 2022 loodud AS203834. Reno Projecti anonüümne, ise avaldatud profiil loetleb teenuse nimega DEDBROPRO tähise „BPH-02 / Estonia Reg / No Sanctions“ all ja seob selle selle autonoomse süsteemiga. Profiil ise ütleb, et ühtegi nimelist isikut ei tuvastatud ja et ükski suurem turvaettevõte pole hinnangut avaldanud.',
       },
       {
-        en: 'Vault Dweller OÜ (AS203834): registered in Tallinn in 2019 with €2,500 capital. Cataloged under the bulletproof-hosting profile "BPH-02 / Estonia Reg / No Sanctions," with 307 IoCs on ThreatFox and advertisement on Carder.su as of 2026. Beneficial owner is Yehor Minin. Physical infrastructure in Bulgaria; IPinfo shows no active IPv4/IPv6 allocations. These entities demonstrate a recurring pattern: Russian-language cyber operators exploit the gap between Estonian corporate registration and actual physical hosting.',
-        et: 'Vault Dweller OÜ (AS203834): registreeritud Tallinnas 2019. aastal kapitaliga 2500 eurot. Kataloogitud kuulikindla majutuse profiilis "BPH-02 / Estonia Reg / No Sanctions", 307 IoC-ga ThreatFoxis ja reklaamiga Carder.su-s 2026. aasta seisuga. Kasusaaja on Yehor Minin. Füüsiline taristu Bulgaarias; IPinfo näitab aktiivseid IPv4/IPv6 eraldusi mitte. Need üksused näitavad korduvat mustrit: venekeelsed küberoperaatorid kasutavad ära lõhet Eesti ettevõtte registreerimise ja tegeliku füüsilise hostimise vahel.',
+        en: 'The malware documented for the ASN is remote-access trojans and stealers (Remcos, SectopRAT, DCRat, Rhadamanthys, Lumma), not ransomware. ThreatFox shows 307 observed IOCs for AS203834; its 23 tagged sightings run from 16 October 2024 to 30 May 2025, with none in the past twelve months. The Reno profile gives the upstream as Belcloud (AS44901, Bulgaria) and says the specific facility is unconfirmed. It also reports a forum advertisement in March 2026, which could not be checked because the forum requires a login.',
+        et: 'Selle autonoomse süsteemiga seoses dokumenteeritud pahavara on kaugjuurdepääsu troojalased ja andmeid varastav pahavara (Remcos, SectopRAT, DCRat, Rhadamanthys, Lumma), mitte lunavara. ThreatFox näitab AS203834 kohta 307 ohuindikaatorit (IOC); 23 sildistatud tähelepanekut jäävad vahemikku 16. oktoober 2024 – 30. mai 2025 ja viimase kaheteist kuu jooksul pole ühtegi. Reno profiil märgib transiidipakkujaks Belcloudi (AS44901, Bulgaaria) ja ütleb, et konkreetne andmekeskus pole kinnitatud. Profiil mainib ka 2026. aasta märtsi foorumireklaami, mida ei õnnestunud kontrollida, sest foorum nõuab sisselogimist.',
+      },
+      {
+        en: 'As of 3 October 2026, AS203834 has been withdrawn: the RIPE Database has no aut-num object for it and RIPEstat shows no holder. e-Äriregister shows that a notice on the deletion of Vault Dweller OÜ has been published in Ametlikud Teadaanded. No source reviewed links the company\'s registered owner to the advertised service, so the owner is not named here.',
+        et: '3. oktoobri 2026 seisuga on AS203834 tagasi võetud: RIPE andmebaasis pole selle kohta aut-num-objekti ja RIPEstat ei näita valdajat. E-äriregistri järgi on väljaandes Ametlikud Teadaanded avaldatud teade Vault Dweller OÜ kustutamise kohta. Ükski läbivaadatud allikas ei seo ettevõtte registreeritud omanikku reklaamitud teenusega, seetõttu omanikku siin ei nimetata.',
+      },
+    ],
+  },
+  {
+    heading: {
+      en: 'Why Estonia?',
+      et: 'Miks Eesti?',
+    },
+    paragraphs: [
+      {
+        en: 'These two cases illustrate a pattern: the company is registered in Estonia, while the routing, hardware or people are elsewhere. Estonia makes the first step easy. A company can be founded and run remotely, including through e-Residency, and an Estonian company can join the RIPE NCC and receive IP addresses in its own name. Narva, on the Russian border, hosted the UGB operation until 2022.',
+        et: 'Need kaks juhtumit näitavad mustrit: ettevõte on registreeritud Eestis, kuid marsruutimine, riistvara või inimesed on mujal. Eesti teeb esimese sammu lihtsaks. Ettevõtte saab asutada ja seda juhtida eemalt, ka e-residentsuse kaudu, ning Eesti ettevõte saab liituda RIPE NCC-ga ja saada IP-aadresse enda nimele. Venemaa piiril asuvas Narvas tegutses UGB kuni 2022. aastani.',
+      },
+      {
+        en: 'The state\'s tools are limited. The business register can delete a company, the stage Vault Dweller OÜ has reached, but it does not check what a company\'s network is used for. CERT-EE, part of RIA, handles incident reports, and NIS2 obligations depend on a provider\'s sector and size, so a small hosting or proxy company may fall outside them. The Internal Security Service (KAPO) described the same shell pattern in another field in its 2025–2026 yearbook: Estonian-registered companies that do not actually operate here, used for Russian military procurement.',
+        et: 'Riigi tööriistad on piiratud. Äriregister saab ettevõtte registrist kustutada (selles etapis on Vault Dweller OÜ), kuid ei kontrolli, milleks ettevõtte võrku kasutatakse. RIA koosseisu kuuluv CERT-EE võtab vastu teateid küberintsidentidest ning NIS2 kohustused sõltuvad pakkuja sektorist ja suurusest, nii et väike majutus- või proksiettevõte võib neist välja jääda. Kaitsepolitseiamet kirjeldas sama varifirmade mustrit teises valdkonnas oma 2025.–2026. aasta aastaraamatus: Eestis registreeritud, kuid siin tegelikult mitte tegutsevad ettevõtted, mida kasutatakse Venemaa sõjaliste hangete jaoks.',
+      },
+      {
+        en: 'Searches for this paper found no 2024–2026 sanctions or enforcement action against Trusov, QualityNetwork OÜ, Kingservers or Vault Dweller OÜ, and no change to RIPE policy on geolocation data or geofeeds.',
+        et: 'Selle töö jaoks tehtud otsingud ei leidnud aastatest 2024–2026 sanktsioone ega õiguskaitsemeetmeid Trusovi, QualityNetwork OÜ, Kingserversi ega Vault Dweller OÜ vastu ega muudatusi RIPE geolokatsiooniandmete või geovoogude (geofeed) poliitikas.',
+      },
+    ],
+  },
+  {
+    heading: {
+      en: 'Sanctions and enforcement, 2024–2026',
+      et: 'Sanktsioonid ja õiguskaitse 2024–2026',
+    },
+    paragraphs: [
+      {
+        en: 'Bulletproof hosting is now a sanctions target. The EU listed Stark Industries on 20 May 2025; per Recorded Future, the company moved its assets before the listing took effect. On 13 July 2026 the EU listed Media Land, ML.Cloud and Volosovik. The US, UK and Australia sanctioned Zservers (February 2025), Aeza (July 2025) and Media Land (November 2025).',
+        et: 'Kuulikindlad majutajad on nüüd sanktsioonide sihtmärk. EL kandis Stark Industriesi sanktsiooninimekirja 20. mail 2025; Recorded Future’i andmetel viis ettevõte oma varad ära enne, kui meede jõustus. 13. juulil 2026 kandis EL nimekirja Media Landi, ML.Cloudi ja Volosoviki. USA, Ühendkuningriik ja Austraalia kehtestasid sanktsioonid Zserversile (veebruar 2025), Aezale (juuli 2025) ja Media Landile (november 2025).',
+      },
+      {
+        en: 'Estonian-registered hosting also appears in recent DDoS reporting: per Recorded Future (November 2025), AS62005, Blue VPS OÜ, hosted about 3% of the top-tier command-server IP space of NoName057(16)\'s DDoSia project.',
+        et: 'Eestis registreeritud majutus esineb ka hiljutistes DDoS-raportites: Recorded Future’i andmetel (november 2025) asus AS62005, Blue VPS OÜ võrgus umbes 3% NoName057(16) DDoSia projekti kõrgeima taseme juhtserverite IP-ruumist.',
       },
     ],
   },
@@ -129,16 +215,16 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Russian APT groups (APT28, APT29, Turla, Sandworm) rely on globally distributed proxy, VPS, and bulletproof hosting to mask operational origin. APT28, attributed to Russia\'s GRU 85th Main Special Service Center, has been active since at least 2004, employing multi-layer proxy chains, compromised servers, and rented VPS.',
-        et: 'Vene APT rühmad (APT28, APT29, Turla, Sandworm) tuginevad üle maailma jaotatud proksidele, VPS-ile ja kuulikindlale majutusele, et varjata oma tegevuse päritolu. APT28, omistatud Venemaa GRU 85. Peaspetsiaalse Teenistuse Keskusele, on tegutsenud vähemalt aastast 2004, kasutades mitmekihilisi proksiahelaid, ohtu sattunud servereid ja renditud VPS-i.',
+        en: 'Russian state groups use rented and proxied infrastructure to hide where they operate from. APT28, attributed to the GRU\'s 85th Main Special Service Center (military unit 26165), has been active since at least 2004 (MITRE ATT&CK G0007). Joint advisory AA25-141A (May 2025), co-signed by Estonia\'s Foreign Intelligence Service and NCSC-EE, documents unit 26165 proxying "via devices with geolocation in proximity to the target". Microsoft reported in January 2024 that Midnight Blizzard (APT29) used residential proxy networks.',
+        et: 'Venemaa riiklikud rühmitused kasutavad renditud taristut ja proksisid, et varjata, kust nad tegutsevad. APT28, mis on omistatud GRU 85. peaeriteenistuse keskusele (väeosa 26165), on tegutsenud vähemalt 2004. aastast (MITRE ATT&CK G0007). Ühisnõuanne AA25-141A (mai 2025), millele kirjutasid alla ka Eesti välisluureamet ja NCSC-EE, dokumenteerib, kuidas väeosa 26165 suunas liikluse läbi seadmete, mille geolokatsioon on sihtmärgi lähedal. Microsoft teatas 2024. aasta jaanuaris, et Midnight Blizzard (APT29) kasutas koduühenduste proksivõrke.',
       },
       {
-        en: 'The infrastructure patterns associated with gray-space providers like Fineproxy are consistent with the procurement patterns described in public APT reporting. However, none of the sources reviewed establishes a direct, high-confidence link between Trusov or his businesses and named Russian state APT campaigns. The known operations are DDoS and spam — politically motivated in some cases, but not formally attributed to GRU or SVR units.',
-        et: 'Halli ruumi pakkujatega nagu Fineproxy seostatud taristumustrid on kooskõlas APT aruannetes kirjeldatud hankemustritega. Siiski ei tuvasta ükski läbi vaadatud allikas otsest, kõrge usaldusväärsusega seost Trusovi või tema ettevõtete ja nimetatud Vene riiklike APT-kampaaniate vahel. Tuntud operatsioonid on DDoS ja rämpspost — mõnel juhul poliitiliselt motiveeritud, kuid mitte formaalselt omistatud GRU või SVR-i üksustele.',
+        en: 'None of the sources reviewed links Trusov, his companies or Vault Dweller OÜ to a named Russian state campaign. The documented operations are DDoS and spam, politically targeted in some cases, and command servers for commodity malware.',
+        et: 'Ükski läbivaadatud allikas ei seo Trusovit, tema ettevõtteid ega Vault Dweller OÜ-d ühegi nimetatud Venemaa riikliku kampaaniaga. Dokumenteeritud operatsioonid on DDoS ja rämpspost, mõnel juhul poliitilise sihtmärgiga, ning tavalise pahavara juhtserverid.',
       },
       {
-        en: 'This analytic caution matters. Over-attributing commercially available infrastructure to APT units weakens the signal and obscures the regulatory question: how to address gray-space providers whose technical architecture makes them DDoS platforms for hire, without needing to prove state sponsorship.',
-        et: 'See analüütiline ettevaatus on oluline. Kommertslikult kättesaadava taristu üleomistamine APT-üksustele nõrgestab signaali ja varjab regulatiivset küsimust: kuidas lahendada halli ala pakkujate küsimust, kelle tehniline arhitektuur muudab nad rentimiseks mõeldud DDoS-platvormideks, ilma et oleks vaja tõendada riiklikku toetust.',
+        en: 'Over-attributing commercial infrastructure to state units weakens the signal and hides the regulatory question: how to deal with providers whose services are used as DDoS platforms for hire, without having to prove state sponsorship.',
+        et: 'Kommertsliku taristu liigne omistamine riiklikele üksustele nõrgestab signaali ja varjab regulatiivset küsimust: kuidas tegeleda pakkujatega, kelle teenuseid kasutatakse renditavate DDoS-platvormidena, ilma et peaks tõendama riiklikku toetust.',
       },
     ],
   },
@@ -149,40 +235,75 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Monitor, don\'t just block. Quality Network OÜ, Vault Dweller OÜ, and Kingservers\' AS14576 merit watchlisting but not blanket blocking. Differentiate between compromised mainstream hosts and adversarial infrastructure leased from high-risk providers.',
-        et: 'Jälgi, ära lihtsalt blokeeri. Quality Network OÜ, Vault Dweller OÜ ja Kingserversi AS14576 väärivad jälgimist, kuid mitte blanketblokeerimist. Erista ohtu sattunud tavapäraseid hoste kõrge riskiga pakkujatelt renditud vaenulikust taristust.',
+        en: 'Use dated indicators, not company names. As of 3 October 2026: 185.46.84.0/22 was first seen in routing in March 2014 and is announced by AS35624, with a RIPE route object for that origin dating from April 2021. AS203834 is no longer announced, and its ThreatFox sightings end in May 2025. AS200557, Region40\'s ASN in Qurium\'s 2018 and 2019 reports, has been reassigned to an unrelated Australian holder; a block list that still names it will hit the wrong network.',
+        et: 'Kasuta dateeritud indikaatoreid, mitte ettevõtete nimesid. 3. oktoobri 2026 seisuga: plokk 185.46.84.0/22 ilmus marsruutimisse esimest korda 2014. aasta märtsis ja seda kuulutab välja AS35624, kelle kohta on RIPE-s 2021. aasta aprillist pärit marsruudiobjekt. AS203834 pole enam välja kuulutatud ja selle ThreatFoxi tähelepanekud lõpevad 2025. aasta mais. AS200557, mis oli Quriumi 2018. ja 2019. aasta raportites Region40 autonoomne süsteem, on antud üle mitteseotud Austraalia valdajale; blokeerimisnimekiri, kus see endiselt on, tabab vale võrku.',
       },
       {
-        en: 'Validate geolocation metadata. RIPE objects claiming implausibly broad geographic distribution — especially prefixes routed through Russian backbones while claiming foreign locations — should trigger automated scrutiny.',
-        et: 'Valideeri geolokatsiooni metaandmeid. RIPE kirjed, mis väidavad ebausutavalt laia geograafilist jaotust — eriti prefiksid, mis on suunatud läbi Venemaa selgrooühenduste, väites samal ajal välisriikide asukohti — peaksid käivitama automatiseeritud kontrolli.',
+        en: 'Check declared locations against measurements. Compare the country in RIPE objects or geofeeds with round-trip times measured from probes near the claimed location and with the upstream AS path. This is how Qurium showed that "French" prefixes were in Estonia. Prefixes whose declared country cannot be reconciled with latency or routing should trigger automated scrutiny.',
+        et: 'Kontrolli deklareeritud asukohta mõõtmistega. Võrdle RIPE objektides või geovoogudes märgitud riiki väidetava asukoha lähedalt mõõdetud edasi-tagasi viivitusega ja transiidipakkujate AS-teega. Nii näitas Qurium, et „Prantsuse“ plokid asusid Eestis. Plokid, mille deklareeritud riik ei klapi latentsuse või marsruutimisega, peaksid käivitama automaatse kontrolli.',
       },
       {
-        en: 'Engage with providers. No public reporting indicates complicity by the operators of UGB Hosting or Telia\'s Tallinn facility; the abuse appears tenant-level. Prompt reporting and direct engagement with Estonian CERT/CSIRT channels reduce the operational lifespan of gray-space infrastructure.',
-        et: 'Suhtle pakkujatega. Ükski avalik aruanne ei viita UGB Hostingu või Telia Tallinna keskuse operaatorite kaasosalusele; kuritarvitused on kliendi tasemel. Kiire teavitamine ja otsene suhtlus Eesti CERT/CSIRT kanalitega vähendab halli ala taristu operatiivset eluiga.',
+        en: 'Report abuse to the network\'s abuse contact and to CERT-EE. Prompt reports shorten the operational life of gray-space infrastructure.',
+        et: 'Teata kuritarvitustest võrgu kuritarvitusteadete kontaktile (abuse contact) ja CERT-EE-le. Kiire teavitamine lühendab halli ala taristu eluiga.',
       },
       {
-        en: 'Distinguish cybercrime from state operations. The infrastructure supply chain for ransomware, DDoS, and espionage overlaps heavily in the gray zone. Calibrate defensive responses to observed behavior, not assumed sponsorship.',
-        et: 'Erista küberkuritegevust riiklikest operatsioonidest. Ransomware, DDoS-i ja luure taristu tarneahel kattub hallis tsoonis tugevalt. Kohanda kaitsereaktsioone jälgitud käitumise, mitte oletatava toetuse järgi.',
+        en: 'Separate cybercrime from state operations. The supply chain for DDoS, malware and espionage infrastructure overlaps in the gray zone. Calibrate the response to observed behavior, not assumed sponsorship.',
+        et: 'Erista küberkuritegevust riiklikest operatsioonidest. DDoS-i, pahavara ja luure taristu tarneahel kattub hallis tsoonis. Kohanda reaktsiooni nähtud käitumise, mitte oletatava toetaja järgi.',
       },
     ],
   },
 ];
 
 const sources: Source[] = [
-  { label: 'Qurium', url: 'https://www.qurium.org/ddos/fineproxy-used-to-launch-ddos-attack-against-site-critical-of-azerbaijani-state-oil-companys-leader', note: 'Fineproxy DDoS investigation (Azerbaijan case), upstream ASN mapping, RIPE geolocation manipulation reports' },
-  { label: 'Reuters', url: 'https://www.reuters.com/technology/cybersecurity/how-cybercriminals-are-using-wyoming-shell-companies-global-hacks-2023-12-12/', note: 'Trusov Wyoming shell companies, proxy service abuse, 2017 intrusion tracing (Dec 2023)' },
-  { label: 'Flexi-News', url: 'https://www.flexi-news.com/post/wyoming-s-llcs-a-haven-for-cyber-outlaws-in-the-digital-wild-west', note: 'Trusov corporate structuring and proxy operations (2023)' },
-  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/ilia-trusov-a75a842b5', note: 'Trusov self-reported professional background (note: self-reported)' },
-  { label: 'WaysCloud', url: 'https://ip.wayscloud.services/asn-intelligence/14576', note: 'Abuse report data for Kingservers / AS14576 (Aug 2022–Dec 2025)' },
-  { label: 'Rappler / Qurium', url: 'https://www.qurium.org/weaponizing-proxy-and-vpn-providers/fineproxy-rayobyte', note: 'October 2023 DDoS campaign against Rappler' },
-  { label: 'Ransomware EDP', url: 'https://ransomwareedp.github.io', note: 'Vault Dweller OÜ bulletproof hosting profile "BPH-02"' },
-  { label: 'IPinfo', url: 'https://ipinfo.io/AS203834', note: 'Technical data for AS203834 (Vault Dweller OÜ)' },
-  { label: 'MITRE ATT&CK', url: 'https://attack.mitre.org/groups/G0007/', note: 'APT28 profile, infrastructure procurement TTPs' },
-  { label: 'e-Äriregister', url: 'https://ariregister.rik.ee', note: 'Vault Dweller OÜ corporate registration (registry code 14752442)' },
-  { label: 'FairyHosting / RJ Network OÜ', url: 'https://fairyhosting.com', note: 'Estonian hosting provider' },
-  { label: 'Sawia Digital', url: 'https://sawiadigital.com', note: 'DreamHost-based shared hosting in Narva' },
-  { label: 'EDIS Global', url: 'https://edisglobal.com', note: 'VPS hosting in Telia Tallinn data center' },
-  { label: 'DOJ', url: 'https://www.justice.gov/opa/pr/two-individuals-sentenced-providing-bulletproof-hosting-cybercriminals', note: 'Grichishkin bulletproof hosting prosecution' },
+  { label: 'RIPEstat: 185.46.84.0/22', url: 'https://stat.ripe.net/data/whois/data.json?resource=185.46.84.0/22', note: 'QualityNetwork OÜ allocation (created 15 Sep 2026), route object for AS35624; routing status checked 3 Oct 2026' },
+  { label: 'RIPEstat: AS200557', url: 'https://stat.ripe.net/data/as-overview/data.json?resource=AS200557', note: 'Current holder of the former Region40 ASN (checked 3 Oct 2026)' },
+  { label: 'RIPEstat: AS203834', url: 'https://stat.ripe.net/data/as-overview/data.json?resource=AS203834', note: 'Withdrawn ASN, no holder, not announced (checked 3 Oct 2026)' },
+  { label: 'fineproxy.org', url: 'https://fineproxy.org', note: 'Operator statement: Quality Network US LLC (Wyoming) and QualityNetwork OU (Tallinn)' },
+  { label: 'Qurium (6 Aug 2018)', url: 'https://www.qurium.org/alerts/azerbaijan/azerbaijan-and-the-region40-ddos-service/', note: 'DDoS on gununsesi.info and azadliq.info, AS200557 routing, RIPE country fields, UGB Hosting' },
+  { label: 'Qurium (30 Oct 2019)', url: 'https://www.qurium.org/ddos/fineproxy-used-to-launch-ddos-attack-against-site-critical-of-azerbaijani-state-oil-companys-leader', note: 'DDoS on Humanrightsclub.net from 18 Aug 2019; Region40 prefix list' },
+  { label: 'Qurium (2023): Fineproxy and Rayobyte', url: 'https://www.qurium.org/weaponizing-proxy-and-vpn-providers/fineproxy-rayobyte/', note: 'Rappler DDoS of 30 Oct 2023, ASN roles table, Narva shutdown in Feb 2022' },
+  { label: 'Qurium (May 2026)', url: 'https://www.qurium.org/forensics/the-future-of-residential-proxies/', note: 'Residential proxies; Fine Proxy still listed among attack sources' },
+  { label: 'Reuters (12 Dec 2023)', url: 'https://www.reuters.com/technology/cybersecurity/how-cybercriminals-are-using-wyoming-shell-companies-global-hacks-2023-12-12/', note: 'Trusov interview, Wyoming LLCs, 2017 intrusion tracing' },
+  { label: 'Wyoming Secretary of State', url: 'https://wyobiz.wyo.gov/Business/FilingSearch.aspx', note: 'Business filing search: Traffictransitsolution LLC (administratively dissolved, 2022), Quality Network US LLC' },
+  { label: 'e-Äriregister: Vault Dweller OÜ', url: 'https://ariregister.rik.ee/est/company/14752442', note: 'Registry code 14752442; deletion notice published in Ametlikud Teadaanded' },
+  { label: 'e-Äriregister: UGB Hosting OÜ', url: 'https://ariregister.rik.ee/est/company/14290421', note: 'Registry code 14290421; liquidated 11 Mar 2024' },
+  { label: 'Reno Project: DEDBROPRO', url: 'https://research.therenoproject.org/bphs/dedbropro', note: 'Anonymous, self-published bulletproof-hosting profile ("BPH-02 / Estonia Reg / No Sanctions")' },
+  { label: 'ThreatFox: AS203834', url: 'https://threatfox.abuse.ch/asn/203834/', note: '307 observed IOCs; tagged sightings 16 Oct 2024 to 30 May 2025' },
+  { label: 'US DOJ', url: 'https://www.justice.gov/opa/pr/two-individuals-sentenced-providing-bulletproof-hosting-cybercriminals', note: 'Stassi and Skorodumov sentenced (2021) for the Grichishkin bulletproof hosting scheme' },
+  { label: 'Council of the EU (13 Jul 2026)', url: 'https://www.consilium.europa.eu/en/press/press-releases/2026/07/13/russian-cyber-attacks-and-destabilising-activities-council-sanctions-nine-individuals-and-four-entities/', note: 'Sanctions on Media Land, ML.Cloud and Volosovik' },
+  { label: 'Recorded Future: Stark Industries', url: 'https://www.recordedfuture.com/research/one-step-ahead-stark-industries-solutions-preempts-eu-sanctions', note: 'Asset moves ahead of the May 2025 EU listing' },
+  { label: 'Recorded Future (Nov 2025)', url: 'https://assets.recordedfuture.com/insikt-report-pdfs/2025/cta-2025-1106.pdf', note: 'NoName057(16) DDoSia infrastructure, AS62005 Blue VPS OÜ' },
+  { label: 'Estonian Ministry of Foreign Affairs', url: 'https://www.vm.ee/en/news/estonia-names-russias-military-intelligence-first-ever-attribution-cyberattacks', note: 'First public attribution, to GRU unit 29155 (5 Sep 2024)' },
+  { label: 'RIA', url: 'https://www.ria.ee/en/news/cyber-security-estonia-new-records-old-mistakes', note: 'Record 756 DDoS attacks on Estonia in 2025' },
+  { label: 'KAPO yearbook 2025–2026', url: 'https://kapo.ee/sites/default/files/content_page_attachments/aastaraamat-2025-2026.pdf', note: 'Estonian-registered shell companies used for Russian military procurement' },
+  { label: 'MITRE ATT&CK G0007', url: 'https://attack.mitre.org/groups/G0007/', note: 'APT28: GRU 85th GTsSS, military unit 26165' },
+  { label: 'CISA AA25-141A', url: 'https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-141a', note: 'GRU unit 26165 proxying; co-signed by Estonian agencies (May 2025)' },
+  { label: 'Microsoft (25 Jan 2024)', url: 'https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/', note: 'Midnight Blizzard (APT29) use of residential proxy networks' },
+];
+
+const disclosureParagraphs: DisclosureParagraph[] = [
+  {
+    en: 'This is an OSINT reference paper, not a vulnerability disclosure. It is based on published reporting, public registry and routing records, and the author\'s own lookups of public RIPE, e-Äriregister and ThreatFox data on 3–4 October 2026. It uses no non-public data.',
+    et: 'See on OSINT-viitetöö, mitte haavatavuse avalikustamine. See põhineb avaldatud raportitel, avalikel registri- ja marsruutimisandmetel ning autori enda päringutel avalikest RIPE, e-äriregistri ja ThreatFoxi andmetest 3.–4. oktoobril 2026. Mitteavalikke andmeid pole kasutatud.',
+  },
+  {
+    en: 'Individuals are named only where they appear in their own public statements or in major published reporting. Descriptions of companies are attributed to the source that makes them, and nothing here alleges wrongdoing beyond what those sources report. Named companies and individuals may respond at research@proksiabel.ee; any response will be added to this page.',
+    et: 'Isikuid nimetatakse ainult siis, kui nad esinevad oma avalikes avaldustes või suuremates avaldatud raportites. Ettevõtete kirjeldused on omistatud allikale, kust need pärinevad, ja see töö ei väida rikkumisi peale nende, millest need allikad teatavad. Nimetatud ettevõtted ja isikud saavad vastata aadressil research@proksiabel.ee; iga vastus lisatakse sellele lehele.',
+  },
+  {
+    label: { en: 'Conflicts of interest.', et: 'Huvide konflikt.' },
+    en: 'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category. No financial, contractual or personal relationships exist between ProksiAbel OÜ and any of the named entities or individuals.',
+    et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse. ProksiAbel OÜ ja nimetatud üksuste või isikute vahel puuduvad rahalised, lepingulised ja isiklikud suhted.',
+  },
+  {
+    label: { en: 'Author.', et: 'Autor.' },
+    en: 'Tom Kristian Abel, ProksiAbel OÜ. Corrections: research@proksiabel.ee.',
+    et: 'Tom Kristian Abel, ProksiAbel OÜ. Parandused: research@proksiabel.ee.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: this version removes a "mainstream hosting" tier that had no supporting evidence, including a firm wrongly described as a Narva host, and the name of a private individual; it separates the 2018 and 2019 Qurium reports, corrects quotations from Qurium\'s 2023 Rappler report (the 10% figure refers to data-center IP addresses, and the "dozens" of attacks to Fineproxy, not Rayobyte) and removes Flexi-News, which rewrote Reuters. It also updates stale facts on AS200557, AS203834, UGB Hosting, Rayobyte\'s operator and the malware seen on AS203834 (RATs and stealers, not ransomware), and adds QualityNetwork OÜ\'s September 2026 RIPE allocation.',
+    et: 'Parandused, 4. oktoober 2026: sellest versioonist on eemaldatud tõenditeta „tavamajutajate“ kiht, sealhulgas ekslikult Narva majutajaks nimetatud ettevõte, ning eraisiku nimi; Quriumi 2018. ja 2019. aasta raportid on lahutatud, Quriumi 2023. aasta Rappleri raporti tsitaadid parandatud (10% käib andmekeskuste IP-aadresside kohta ja „kümned“ rünnakud Fineproxy, mitte Rayobyte kohta) ning eemaldatud on Flexi-News, mis oli Reutersi ümberkirjutus. Samuti on ajakohastatud AS200557, AS203834, UGB Hostingu, Rayobyte käitaja ja AS203834 pahavara (RAT-id ja andmeid varastav pahavara, mitte lunavara) kohta käivad vananenud faktid ning lisatud QualityNetwork OÜ 2026. aasta septembri RIPE eraldus.',
+  },
 ];
 
 function DisclosurePage() {
@@ -193,14 +314,16 @@ function DisclosurePage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Reference Paper · OSINT · Estonia' : 'Viitetöö · OSINT · Eesti'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
               {isEn ? 'Published · September 14, 2026' : 'Avaldatud · 14. september 2026'}
             </>, <>
-              {isEn ? '8 min read' : '8 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '13 min read' : '13 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -275,28 +398,14 @@ function DisclosurePage() {
               {isEn ? 'Disclosure status' : 'Avalikustamise staatus'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-              <p>
-                {isEn
-                  ? 'This report is based on previously published open-source intelligence, investigative journalism, public registry records, and self-reported biographical data. It adds no non-public indicators; all technical detail was previously published by the cited sources.'
-                  : 'See raport põhineb varem avaldatud avatud lähtekoodi luureandmetel, uurival ajakirjandusel, avalikel registriandmetel ja ise teatatud biograafilisel teabel. See ei lisa mitteavalikke indikaatoreid; kogu tehniline üksikasjand oli varem avaldatud tsiteeritud allikate poolt.'}
-              </p>
-              <p>
-                {isEn
-                  ? 'Every company or individual named was previously named in the cited public reporting or registries. All claims attributed to them are sourced from their own public statements or from pre-existing public reporting. The publisher welcomes corrections at research@proksiabel.ee.'
-                  : 'Iga ettevõte või isik, keda nimetatakse, oli varem nimetatud tsiteeritud avalikes aruannetes või registrites. Kõik neile omistatud väited pärinevad nende endi avalikest avaldustest või olemasolevatest avalikest aruannetest. Kirjastaja võtab parandusi vastu aadressil research@proksiabel.ee.'}
-              </p>
-              <p>
-                <strong className="text-foreground">{isEn ? 'Conflicts of interest.' : 'Huvide konfliktid.'}</strong>{' '}
-                {isEn
-                  ? 'The author is the founder of ProksiAbel OÜ, an Estonian private limited company providing security consulting services. This assessment discusses Estonian-registered entities. No financial, contractual, or personal relationships exist between ProksiAbel OÜ and any of the named entities or individuals.'
-                  : 'Autor on ProksiAbel OÜ asutaja, Eesti eraettevõte, mis pakub turvakonsultatsiooniteenuseid. See hinnang käsitleb Eestis registreeritud üksusi. ProksiAbel OÜ ja nimetatud üksuste või isikute vahel puuduvad rahalised, lepingulised ega isiklikud suhted.'}
-              </p>
-              <p>
-                <strong className="text-foreground">{isEn ? 'Author.' : 'Autor.'}</strong>{' '}
-                {isEn
-                  ? 'Tom Kristian Abel, ProksiAbel OÜ. Corrections: research@proksiabel.ee.'
-                  : 'Tom Kristian Abel, ProksiAbel OÜ. Parandused: research@proksiabel.ee.'}
-              </p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>
+                  {paragraph.label && (
+                    <><strong className="text-foreground">{paragraph.label[language]}</strong>{' '}</>
+                  )}
+                  {paragraph[language]}
+                </p>
+              ))}
             </div>
           </section>
         </div>

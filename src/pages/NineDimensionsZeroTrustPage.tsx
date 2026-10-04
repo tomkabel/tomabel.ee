@@ -11,20 +11,22 @@ type EssaySection = {
   paragraphs: Bi[];
 };
 
+type Source = { label: Bi; url: string; note?: Bi };
+
 const title: Bi = {
   en: 'The Nine Dimensions of Zero Trust',
   et: 'Nullusalduse üheksa mõõdet',
 };
 
 const standfirst: Bi = {
-  en: 'Zero trust is usually sold as a ladder: traditional, advanced, optimal. That shape is wrong. A real deployment is a point in a nine-dimensional configuration space, and each axis is a separate architectural decision someone either made deliberately or inherited by accident.',
-  et: 'Nullusaldust müüakse tavaliselt küpsusredelina: tavapärane, edasijõudnud, optimaalne. See kuju on vale. Tegelik juurutus on punkt üheksamõõtmelises konfiguratsiooniruumis ja iga telg on eraldi arhitektuuriotsus, mille keegi kas tegi teadlikult või päris kogemata.',
+  en: 'Zero trust is usually sold as a ladder: traditional, initial, advanced, optimal. That shape hides what matters. A real deployment is a point in a nine-dimensional configuration space, and each axis is a separate architectural decision someone either made deliberately or inherited by accident.',
+  et: 'Nullusaldust müüakse tavaliselt redelina: tavapärane, algne, edasijõudnud, optimaalne. See kuju varjab olulist. Tegelik juurutus on punkt üheksamõõtmelises konfiguratsiooniruumis ja iga telg on eraldi arhitektuuriotsus, mille keegi kas tegi teadlikult või päris kogemata.',
 };
 
 const openingParagraphs: Bi[] = [
   {
-    en: '"Are we zero trust?" has no answer. It is a branding question, and vendors answer it for money. The morphological matrix replaces it with a question that does have an answer: where are we positioned on each of nine independent axes, and is that position deliberate?',
-    et: '"Kas meil on nullusaldus?" ei ole küsimus, millel oleks vastus. See on brändiküsimus ja müüjad vastavad sellele raha eest. Morfoloogiline maatriks asendab selle küsimusega, millel vastus on: kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?',
+    en: '"Are we zero trust?" has no answer. It is a branding question, and vendors answer it for money. The morphological matrix replaces it with a question that does have an answer: where are we positioned on each of nine coupled axes, and is that position deliberate?',
+    et: '"Kas meil on nullusaldus?" ei ole küsimus, millel oleks vastus. See on brändiküsimus ja müüjad vastavad sellele raha eest. Morfoloogiline maatriks asendab selle küsimusega, millel vastus on: kus me asume igal üheksal omavahel seotud teljel ja kas see asukoht on teadlik?',
   },
 ];
 
@@ -33,12 +35,16 @@ const sections: EssaySection[] = [
     heading: { en: 'A ladder is the wrong shape', et: 'Redel on vale kuju' },
     paragraphs: [
       {
-        en: 'Most zero-trust guidance, including CISA\'s maturity model, presents stages: traditional, advanced, optimal. Program managers like it because it produces a progress bar. Architecturally it is misleading, because it implies one correct destination and one road to it.',
-        et: 'Enamik nullusalduse juhendeid, sealhulgas CISA küpsusmudel, esitab etappe: tavapärane, edasijõudnud, optimaalne. Programmijuhtidele meeldib see, sest sellest saab edenemisriba. Arhitektuuriliselt on see eksitav, sest see eeldab üht õiget sihtkohta ja üht teed selleni.',
+        en: 'Most zero-trust guidance, including CISA\'s Zero Trust Maturity Model 2.0, presents stages: traditional, initial, advanced, optimal. Program managers like it because it produces a progress bar. To be fair to CISA, the model scores each of its five pillars separately, so an organization can sit at different stages per pillar. What the ladder cannot express is coupling between choices, and whether a stage fits the threat model at all. The NSA\'s Zero Trust Implementation Guidelines (January 2026) already step away from the single ladder: they are modular, and organizations pick the capabilities most relevant to them.',
+        et: 'Enamik nullusalduse juhendeid, sealhulgas CISA nullusalduse küpsusmudel 2.0, esitab etappe: tavapärane, algne, edasijõudnud, optimaalne. Programmijuhtidele meeldib see, sest sellest saab edenemisriba. CISA suhtes ausalt öeldes hindab mudel iga oma viit sammast eraldi, nii et organisatsioon võib eri sammastel olla eri etapil. Mida redel väljendada ei suuda, on valikute omavaheline seotus ja see, kas etapp üldse ohumudeliga sobib. NSA nullusalduse rakendamise juhised (jaanuar 2026) on ühest redelist juba eemaldunud: need on moodulipõhised ja organisatsioon valib endale kõige asjakohasemad võimekused.',
       },
       {
-        en: 'A solo operator running a remote company and a Fortune 500 with a nine-figure budget face different adversaries and inherit different legacies. A ladder cannot express that; a configuration space can. The matrix has nine dimensions, each with a range of realistic positions, and every deployment maps to exactly one value on each, whether or not anyone wrote it down.',
-        et: 'Üksikoperaator, kes juhib kaugtööettevõtet, ja Fortune 500 ettevõte üheksakohalise eelarvega seisavad vastamisi eri vastastega ja pärivad eri pärandi. Redel ei suuda seda väljendada, konfiguratsiooniruum suudab. Maatriksil on üheksa mõõdet, igaühel hulk realistlikke asukohti, ja iga juurutus vastab igal mõõtmel täpselt ühele väärtusele, olenemata sellest, kas keegi on selle kirja pannud.',
+        en: 'A solo operator running a remote company and a Fortune 500 with a nine-figure budget face different adversaries and inherit different legacies. A ladder cannot express that; a configuration space can. The matrix has nine dimensions, each with a range of realistic positions, and every deployment maps to one value on each, whether or not anyone wrote it down.',
+        et: 'Üksikoperaator, kes juhib kaugtööettevõtet, ja Fortune 500 ettevõte üheksakohalise eelarvega seisavad vastamisi eri vastastega ja pärivad eri pärandi. Redel ei suuda seda väljendada, konfiguratsiooniruum suudab. Maatriksil on üheksa mõõdet, igaühel hulk realistlikke asukohti, ja iga juurutus vastab igal mõõtmel ühele väärtusele, olenemata sellest, kas keegi on selle kirja pannud.',
+      },
+      {
+        en: 'None of this is new method. The morphological matrix is Fritz Zwicky\'s, from the 1940s, and Tom Ritchey\'s General Morphological Analysis added the cross-consistency step that finds which combinations can coexist. Zero trust itself goes back to John Kindervag\'s 2010 Forrester report and Google\'s BeyondCorp. What is new here is applying the method to zero-trust architecture, so that Forrester\'s ZTX pillars, CISA\'s five pillars and the DoD\'s seven become things the matrix cuts across rather than competes with.',
+        et: 'Meetod ise ei ole uus. Morfoloogiline maatriks pärineb Fritz Zwickylt 1940. aastatest ja Tom Ritchey üldine morfoloogiline analüüs lisas ristkooskõla sammu, mis leiab, millised kombinatsioonid saavad koos eksisteerida. Nullusaldus ise ulatub tagasi John Kindervagi 2010. aasta Forresteri raportini ja Google\'i BeyondCorpini. Uus on siin meetodi rakendamine nullusaldusarhitektuurile, nii et Forresteri ZTX-i sambad, CISA viis sammast ja DoD seitse sammast muutuvad millekski, mida maatriks läbib, mitte millega see võistleb.',
       },
     ],
   },
@@ -50,12 +56,12 @@ const sections: EssaySection[] = [
         et: 'D1 vastab ühele küsimusele: miks peaks ükski selle süsteemi osa midagi uskuma? Asukohad ulatuvad tarkvaralisest sertifitseerimiskeskusest läbi käitumusliku usalduse ja hübriidsete hierarhiate riistvaralise usaldusankruni ning hajusa mitmeosalise juureni, kus ükski asutus ei saa usaldust üksi käivitada.',
       },
       {
-        en: 'Most of the industry sits on the first position: Kubernetes has its cluster CA, Istio its mesh CA, every cloud IAM is PKI underneath. That stops man-in-the-middle attacks, not attestation forgery. A software CA will sign a certificate for a workload that passed no runtime integrity check, and anyone with CI/CD access can mint identities at will. Behavioural trust has the mirrored weakness: an attacker who holds a component long enough to establish a baseline is trusted by the mechanism built to catch them.',
-        et: 'Suurem osa tööstusest asub esimesel positsioonil: Kubernetesel on klastri sertifitseerimiskeskus, Istiol võrgustiku oma, iga pilve IAM on all PKI. See peatab vahendusründed, kuid mitte atesteerimise võltsimise. Tarkvaraline sertifitseerimiskeskus allkirjastab sertifikaadi töökoormusele, mis ei läbinud ühtegi käitusaegset terviklusekontrolli, ja igaüks, kel on ligipääs CI/CD-le, saab identiteete piiramatult luua. Käitumuslikul usaldusel on peegelpildis sama nõrkus: ründaja, kes hoiab komponenti piisavalt kaua tavapärase mustri kujundamiseks, saab usaldatud just selle mehhanismi poolt, mis ta pidi tabama.',
+        en: 'In the architectures I review, most sit on the first position: Kubernetes has its cluster CA, Istio its mesh CA, and most cloud workload identity ultimately rests on a key or CA held in software. That stops man-in-the-middle attacks, not attestation forgery. A software CA will sign a certificate for a workload that passed no runtime integrity check, and anyone with CI/CD access can mint identities at will. Behavioural trust has the mirrored weakness: an attacker who holds a component long enough to establish a baseline is trusted by the mechanism built to catch them.',
+        et: 'Arhitektuurides, mida ma üle vaatan, asub enamik esimesel positsioonil: Kubernetesel on klastri sertifitseerimiskeskus, Istiol võrgustiku oma ja enamik pilve töökoormuste identiteete toetub lõpuks tarkvaras hoitavale võtmele või sertifitseerimiskeskusele. See peatab vahendusründed, kuid mitte atesteerimise võltsimise. Tarkvaraline sertifitseerimiskeskus allkirjastab sertifikaadi töökoormusele, mis ei läbinud ühtegi käitusaegset terviklusekontrolli, ja igaüks, kel on ligipääs CI/CD-le, saab identiteete piiramatult luua. Käitumuslikul usaldusel on peegelpildis sama nõrkus: ründaja, kes hoiab komponenti piisavalt kaua tavapärase mustri kujundamiseks, saab usaldatud just selle mehhanismi poolt, mis ta pidi tabama.',
       },
       {
-        en: 'D2 runs from static just-in-time tokens, through attribute-based and delegated capability models, to zero standing privileges where no persistent account exists. It requires a bifurcation most deployments get wrong: human identity wants zero standing privileges and behavioural signals, while machine identity wants cryptographic workload attestation, where the identity is minted from a verified hash of the running code rather than a declared service account name. Swapping the two creates structural weakness.',
-        et: 'D2 ulatub staatilistest õigeaegsetest märkidest läbi atribuudipõhiste ja delegeeritud volitusmudelite nullini püsivate õigusteta, kus püsivaid kontosid ei eksisteeri. See nõuab hargnemist, mille enamik juurutusi teeb valesti: inimese identiteet tahab püsivate õiguste puudumist ja käitumissignaale, masina identiteet aga krüptograafilist töökoormuse atesteerimist, kus identiteet luuakse töötava koodi kontrollitud räsist, mitte deklareeritud teenusekonto nimest. Nende kahe vahetamine tekitab struktuurse nõrkuse.',
+        en: 'D2 runs from static just-in-time tokens (minted at login with a fixed lifetime of hours and trusted until they expire), through attribute-based access, delegated capabilities, trust that decays after authentication and probationary identity, to zero standing privileges where no persistent account exists. It requires a bifurcation most deployments get wrong: human identity wants zero standing privileges and behavioural signals, while machine identity wants cryptographic workload attestation, where the identity is minted from a verified hash of the running code rather than a declared service account name. Swapping the two creates structural weakness.',
+        et: 'D2 ulatub staatilistest õigeaegsetest märkidest (need luuakse sisselogimisel mitmetunnise kindla elueaga ja neid usaldatakse aegumiseni) läbi atribuudipõhise ligipääsu, delegeeritud volituste, pärast autentimist hääbuva usalduse ja katseajaga identiteedi nullini püsivate õigusteta, kus püsivaid kontosid ei eksisteeri. See nõuab hargnemist, mille enamik juurutusi teeb valesti: inimese identiteet tahab püsivate õiguste puudumist ja käitumissignaale, masina identiteet aga krüptograafilist töökoormuse atesteerimist, kus identiteet luuakse töötava koodi kontrollitud räsist, mitte deklareeritud teenusekonto nimest. Nende kahe vahetamine tekitab struktuurse nõrkuse.',
       },
     ],
   },
@@ -67,8 +73,8 @@ const sections: EssaySection[] = [
         et: 'D3 küsib, kus poliitikat tegelikult hinnatakse: võrgu perimeeter, teenusvõrgustiku kõrvalkonteiner, rakendus või API-lüüs, andmed ise, mis kannavad krüptograafiliselt seotud reegleid, räni või hüperviisor või kahepoolne vastastikune jõustamine, kus klient ja server hindavad poliitikat sõltumatult ja päring läheb läbi ainult siis, kui mõlemad lubavad. Iga asukoht eemaldab ühe möödahiilimise klassi, mitte ei asenda eelmist, ja viimane on koht, kus enamik ärilist nullusaldust vaikselt lõpeb: ühepoolne jõustamine, kus server otsustab ja klient kuuletub, on norm ja see ei ole nullusaldus.',
       },
       {
-        en: 'D4 is the evidence behind the verdict, running from none at all through single-source attestation and cascading attestation from silicon upward, to a heterogeneous triple where a kernel probe, a hypervisor monitor and hardware counters emit separately signed observations that no single vulnerability can forge together. Single-source attestation is the root cause of the stolen-token-equals-total-breach pattern: if the only evidence is that a token validates, whoever holds the token is the user.',
-        et: 'D4 on otsuse taga olev tõend ja ulatub täielikust puudumisest läbi üheallikalise atesteerimise ja räni juurest ülespoole kaskaadis kihilise atesteerimise kuni heterogeense kolmikuni, kus tuumasond, hüperviisori jälgija ja riistvaraloendurid annavad eraldi allkirjastatud vaatlusi, mida ükski üksik haavatavus ei suuda korraga võltsida. Üheallikaline atesteerimine on varastatud märgi ja täieliku sissemurdmise mustri algpõhjus: kui ainus tõend on see, et märk kehtib, siis on kasutaja see, kes märki hoiab.',
+        en: 'D4 is the evidence behind the verdict. It runs from none at all (the book calls this trust on first use: whatever the pipeline delivered is believed), through single-source, behavioural, cascading attestation from silicon upward and continuous attestation, to a heterogeneous triple where a kernel probe, a hypervisor monitor and hardware counters emit separately signed observations that no single vulnerability can forge together. Single-source attestation is the root cause of the stolen-token-equals-total-breach pattern: if the only evidence is that a token validates, whoever holds the token is the user.',
+        et: 'D4 on otsuse taga olev tõend. See ulatub täielikust puudumisest (raamat nimetab seda esmakasutusel usaldamiseks: uskuma jäädakse kõike, mille konveier kohale tõi) läbi üheallikalise, käitumusliku, räni juurest ülespoole kaskaadis kihilise ja pideva atesteerimise kuni heterogeense kolmikuni, kus tuumasond, hüperviisori jälgija ja riistvaraloendurid annavad eraldi allkirjastatud vaatlusi, mida ükski üksik haavatavus ei suuda korraga võltsida. Üheallikaline atesteerimine on varastatud märgi ja täieliku sissemurdmise mustri algpõhjus: kui ainus tõend on see, et märk kehtib, siis on kasutaja see, kes märki hoiab.',
       },
     ],
   },
@@ -76,16 +82,16 @@ const sections: EssaySection[] = [
     heading: { en: 'D5 and D6: response and the speed of policy', et: 'D5 ja D6: reageerimine ja poliitika kiirus' },
     paragraphs: [
       {
-        en: 'D5 is the highest-leverage dimension in the matrix, because it determines whether a detection produces business damage or intelligence. Its positions are hard deny, graceful degradation, micro-friction, auto-escalation to a human, a static honeypot, and trickle-truth, where the attacker is served convincing synthetic data through an environment that keeps working normally and never signals that they were caught.',
-        et: 'D5 on maatriksi suurima võimendusega mõõde, sest see määrab, kas tuvastus toodab ärikahju või luureandmeid. Asukohad on kõva keeld, sujuv teenuse halvendamine, mikrohõõrdumine, automaatne eskaleerimine inimesele, staatiline peibutis ja tilkuv tõde, kus ründajale serveeritakse veenvaid sünteetilisi andmeid keskkonnas, mis töötab edasi normaalselt ega anna kunagi märku, et ta vahele jäi.',
+        en: 'D5 is the highest-leverage dimension in the matrix, because it determines whether a detection produces business damage or intelligence. Its positions are hard deny, graceful degradation, micro-friction, auto-escalation to a human, a static honeypot, and trickle-truth, where the attacker is served convincing synthetic data through an environment that keeps working normally and never signals that they were caught. The book calls that environment the garden.',
+        et: 'D5 on maatriksi suurima võimendusega mõõde, sest see määrab, kas tuvastus toodab ärikahju või luureandmeid. Asukohad on kõva keeld, sujuv teenuse halvendamine, mikrohõõrdumine, automaatne eskaleerimine inimesele, staatiline peibutis ja tilkuv tõde, kus ründajale serveeritakse veenvaid sünteetilisi andmeid keskkonnas, mis töötab edasi normaalselt ega anna kunagi märku, et ta vahele jäi. Raamat nimetab seda keskkonda aiaks.',
       },
       {
-        en: 'Hard deny is the default everywhere and a worse choice than its popularity suggests. By the time it fires, the real data has usually already left, the attacker knows they were detected, and the lockout produces an outage for legitimate users. The response itself becomes a fault that cascades: the defender pays and the attacker does not.',
-        et: 'Kõva keeld on kõikjal vaikevalik ja halvem valik, kui selle populaarsus viitab. Selleks ajaks, kui keeld rakendub, on tegelikud andmed enamasti juba lahkunud, ründaja teab, et ta tuvastati, ja lukustus tekitab seaduslikele kasutajatele katkestuse. Reageering ise muutub tõrkeks, mis levib edasi: maksab kaitsja, mitte ründaja.',
+        en: 'Hard deny is the default in most products I have reviewed and a worse choice than its popularity suggests. By the time it fires, the real data has usually already left, the attacker knows they were detected, and the lockout produces an outage for legitimate users. The response itself becomes a fault that cascades: the defender pays and the attacker does not.',
+        et: 'Kõva keeld on enamikus toodetes, mida olen üle vaadanud, vaikevalik ja halvem valik, kui selle populaarsus viitab. Selleks ajaks, kui keeld rakendub, on tegelikud andmed enamasti juba lahkunud, ründaja teab, et ta tuvastati, ja lukustus tekitab seaduslikele kasutajatele katkestuse. Reageering ise muutub tõrkeks, mis levib edasi: maksab kaitsja, mitte ründaja.',
       },
       {
-        en: 'D6 looks administrative and is not. It runs from GitOps sync measured in minutes, through scheduled push and just-in-time pull, to event-streamed distribution reaching global subscribers in milliseconds. D5 and D6 are coupled: deception only works if the instruction to move a session into the garden reaches every enforcement point before the attacker notices.',
-        et: 'D6 näib haldusliku asjana ja ei ole seda. See ulatub minutites mõõdetavast GitOpsi sünkroonimisest läbi ajastatud tõuke ja õigeaegse tõmbamise sündmusvoopõhise levitamiseni, mis jõuab üleilmsete tellijateni millisekunditega. D5 ja D6 on seotud: petmine toimib ainult siis, kui käsk suunata seanss aeda jõuab igasse jõustamispunkti enne, kui ründaja seda märkab.',
+        en: 'D6 looks administrative and is not. It runs from scheduled push from a central control plane, through just-in-time pull, GitOps sync (slow, but replayable from Git history), policy embedded in the data it protects and bilateral consensus on the policy version, to event-streamed distribution reaching global subscribers in milliseconds. D5 and D6 are coupled: deception only works if the instruction to move a session into the garden reaches every enforcement point before the attacker notices.',
+        et: 'D6 näib haldusliku asjana ja ei ole seda. See ulatub keskse juhtserveri ajastatud tõukest läbi õigeaegse tõmbamise, GitOpsi sünkroonimise (aeglane, kuid Giti ajaloost korratav), kaitstavatesse andmetesse põimitud poliitika ja poliitika versioonis kahepoolse kokkuleppe sündmusvoopõhise levitamiseni, mis jõuab üleilmsete tellijateni millisekunditega. D5 ja D6 on seotud: petmine toimib ainult siis, kui käsk suunata seanss aeda jõuab igasse jõustamispunkti enne, kui ründaja seda märkab.',
       },
     ],
   },
@@ -93,16 +99,37 @@ const sections: EssaySection[] = [
     heading: { en: 'D7 to D9: telemetry, org chart, and the person on call', et: 'D7 kuni D9: telemeetria, organisatsiooniskeem ja valves olev inimene' },
     paragraphs: [
       {
-        en: 'D7 asks whether the monitoring pipeline is itself trustworthy, and almost every architecture fails here. The standard position is implicit trust: the SIEM and the agent logs are believed because they are ours. An attacker who pauses a logging agent produces silence, and silence reads as normal. Above it sit sequence-verified ingestion, a silent air-gapped second pipeline, and Merkle-attested telemetry where altering any observation breaks the chain.',
-        et: 'D7 küsib, kas seirekonveier ise on usaldusväärne. Peaaegu iga arhitektuur kukub siin läbi. Tavaline asukoht on kaudne usaldus: SIEM-i ja agendi logisid usutakse, sest need on meie omad. Ründaja, kes peatab logimisagendi, tekitab vaikuse ja vaikus loetakse normaalseks. Kõrgemal on järjekorranumbriga kontrollitud vastuvõtt, vaikne õhkvahega teine konveier ja Merkle-puuga atesteeritud telemeetria, kus ühegi vaatluse muutmine katkestab ahela.',
+        en: 'D7 asks whether the monitoring pipeline is itself trustworthy, and every non-aspirational archetype in the book fails here. The standard position is implicit trust: the SIEM and the agent logs are believed because they are ours. An attacker who pauses a logging agent produces silence, and silence reads as normal. Above it sit sequence-verified ingestion, a silent air-gapped second pipeline, Merkle-attested telemetry where altering any observation breaks the chain, and at the top heterogeneous observer consensus, where kernel, hypervisor and hardware observers must agree before an observation is accepted.',
+        et: 'D7 küsib, kas seirekonveier ise on usaldusväärne, ja raamatu iga mitte-ideaalne arhetüüp kukub siin läbi. Tavaline asukoht on kaudne usaldus: SIEM-i ja agendi logisid usutakse, sest need on meie omad. Ründaja, kes peatab logimisagendi, tekitab vaikuse ja vaikus loetakse normaalseks. Kõrgemal on järjekorranumbriga kontrollitud vastuvõtt, vaikne õhkvahega teine konveier, Merkle-puuga atesteeritud telemeetria, kus ühegi vaatluse muutmine katkestab ahela, ja kõige kõrgemal heterogeensete vaatlejate konsensus, kus tuuma, hüperviisori ja riistvara vaatlejad peavad enne vaatluse aktsepteerimist kokku leppima.',
       },
       {
-        en: 'D8 is organizational posture, the only dimension whose upgrade costs nothing. It runs from siloed, where the handoff seams between SecOps, IT and procurement are the attack surface, through fused, where the same people share incident response and blast radius, to governance that treats every architectural decision as provisional. Moving from siloed to fused requires no hardware, no software and no vendor.',
-        et: 'D8 on organisatsiooni hoiak ja ainus mõõde, mille parandamine ei maksa midagi. See ulatub killustatusest, kus turvaoperatsioonide, IT ja hangete vahelised üleandmiskohad on ründepind, läbi sulandumise, kus samad inimesed jagavad intsidendile reageerimist ja tagajärgede ulatust, valitsemiseni, mis peab iga arhitektuuriotsust ajutiseks. Killustatusest sulandumiseni liikumine ei nõua riistvara, tarkvara ega müüjat.',
+        en: 'D8 is organizational posture, the only dimension whose first upgrade costs nothing. It runs from siloed, where the handoff seams between SecOps, IT and procurement are the attack surface, through fused, where the same people share incident response and blast radius, economic-contract, where security spend is sized against attacker tiers and recovery costs rather than checklists, and presumptively wrong, where every architectural decision is treated as provisional, to dojo-trained, where teams train together against live red teams. Moving from siloed to fused requires no hardware, no software and no vendor.',
+        et: 'D8 on organisatsiooni hoiak ja ainus mõõde, mille esimene parandus ei maksa midagi. See ulatub killustatusest, kus turvaoperatsioonide, IT ja hangete vahelised üleandmiskohad on ründepind, läbi sulandumise, kus samad inimesed jagavad intsidendile reageerimist ja tagajärgede ulatust, majandusliku lepingu, kus turbekulutusi mõõdetakse ründajate tasemete ja taastamiskulude, mitte kontrollnimekirjade järgi, ja eelduslikult eksliku hoiaku, mis peab iga arhitektuuriotsust ajutiseks, kuni harjutusväljakul karastatud hoiakuni, kus meeskonnad harjutavad koos päris punaste meeskondade vastu. Killustatusest sulandumiseni liikumine ei nõua riistvara, tarkvara ega müüjat.',
       },
       {
-        en: 'D9, human continuity, was not in the original framework. Its positions are a single point of failure, a rotation of two or three, real shift coverage, and full automation. A deployment whose response is auto-escalation to a human, with one person on call, has a bimodal response time: minutes when that person is at their desk, half an hour or more when they are asleep. Averaging the two describes no incident that ever happened. Human availability is an architectural parameter.',
-        et: 'D9 ehk inimeste järjepidevus ei kuulunud algsesse raamistikku; see tuli välja üksikoperaatori juhtumi kaardistamisel. Asukohad on üksik tõrkepunkt, kahe või kolme inimese rotatsioon, tõeline vahetuste kate ja täielik automatiseerimine. Juurutusel, mille reageerimine on automaatne eskaleerimine inimesele ja kus valves on üks inimene, on kahetipuline reageerimisaeg: minutid, kui see inimene on laua taga, ja pool tundi või rohkem, kui ta magab. Nende kahe keskmine ei kirjelda ühtegi tegelikku intsidenti. Inimeste kättesaadavus on arhitektuuriparameeter.',
+        en: 'D9, human continuity, was not in the original framework; it surfaced when the solo-operator case was mapped. Its positions are a single point of failure, a rotation of two or three, real shift coverage, and full automation. A deployment whose response is auto-escalation to a human, with one person on call, has a bimodal response time: about three minutes when that person is at their desk, 25 minutes or more when they are asleep. The slow peak is the one that sets the loss. Human availability is an architectural parameter.',
+        et: 'D9 ehk inimeste järjepidevus ei kuulunud algsesse raamistikku; see tuli välja üksikoperaatori juhtumi kaardistamisel. Asukohad on üksik tõrkepunkt, kahe või kolme inimese rotatsioon, tõeline vahetuste kate ja täielik automatiseerimine. Juurutusel, mille reageerimine on automaatne eskaleerimine inimesele ja kus valves on üks inimene, on kahetipuline reageerimisaeg: umbes kolm minutit, kui see inimene on laua taga, ja 25 minutit või rohkem, kui ta magab. Kahju määrab aeglane tipp. Inimeste kättesaadavus on arhitektuuriparameeter.',
+      },
+    ],
+  },
+  {
+    heading: { en: 'All nine at a glance', et: 'Kõik üheksa ühe pilguga' },
+    paragraphs: [
+      {
+        en: 'The canonical values, ordered from least to most mature, are the same ones the Octagon overview and the archetype traces use. D1 trust anchor: software CA, behavioural, hybrid hierarchical, silicon root of trust, distributed multi-party. D2 identity model: static just-in-time tokens, attribute-based, delegated capabilities, trust decay, probationary identity, zero standing privileges. D3 enforcement layer: network perimeter, service mesh, application or gateway, data, silicon or hypervisor, bilateral.',
+        et: 'Kanoonilised väärtused vähim küpsest kõige küpsemani on samad, mida kasutavad oktagoni ülevaade ja arhetüüpide jäljed. D1 usaldusankur: tarkvaraline sertifitseerimiskeskus, käitumuslik, hübriidne hierarhia, riistvaraline usaldusankur, hajus mitmeosaline juur. D2 identiteedimudel: staatilised õigeaegsed märgid, atribuudipõhine, delegeeritud volitused, hääbuv usaldus, katseajaga identiteet, null püsivat õigust. D3 jõustamiskiht: võrgu perimeeter, teenusvõrgustik, rakendus või lüüs, andmed, räni või hüperviisor, kahepoolne.',
+      },
+      {
+        en: 'D4 attestation: none (trust on first use), single source, behavioural, cascading, continuous, heterogeneous triple. D5 violation response: hard deny, graceful degradation, micro-friction, auto-escalation to a human, static honeypot, trickle-truth. D6 policy distribution: scheduled push, just-in-time pull, GitOps sync, embedded in the data, bilateral consensus, event-streamed.',
+        et: 'D4 atesteerimine: puudub (esmakasutusel usaldamine), üheallikaline, käitumuslik, kaskaadis kihiline, pidev, heterogeenne kolmik. D5 reageerimine rikkumisele: kõva keeld, sujuv halvendamine, mikrohõõrdumine, automaatne eskaleerimine inimesele, staatiline peibutis, tilkuv tõde. D6 poliitika levitamine: ajastatud tõuge, õigeaegne tõmbamine, GitOpsi sünkroonimine, andmetesse põimitud, kahepoolne kokkulepe, sündmusvoopõhine.',
+      },
+      {
+        en: 'D7 observability trust: implicit, sequence-verified ingestion, dual pipeline, Merkle-attested telemetry, heterogeneous observer consensus. D8 organizational posture: siloed, fused, economic-contract, presumptively wrong, dojo-trained. D9 human continuity: single point of failure, small rotation, 24/7 SOC, fully automated.',
+        et: 'D7 seire usaldus: kaudne, järjekorranumbriga kontrollitud vastuvõtt, kaks konveierit, Merkle-puuga atesteeritud telemeetria, heterogeensete vaatlejate konsensus. D8 organisatsiooni hoiak: killustatud, sulandunud, majanduslik leping, eelduslikult ekslik, harjutusväljakul karastatud. D9 inimeste järjepidevus: üksik tõrkepunkt, väike rotatsioon, ööpäevaringne turbekeskus, täielik automatiseerimine.',
+      },
+      {
+        en: 'The matrix also maps onto assessments you may already have. CISA\'s Identity pillar lands mainly on D2, Devices on D1, D4 and D7, Networks on D3, Applications and Workloads on D2 and D4, and Data on D3\'s cryptographic position. Under NIS2, the access-control, asset-management and multi-factor authentication measures of Article 21 and Implementing Regulation (EU) 2024/2690 fall mostly on D2, D3 and D4, so an existing NIS2 evidence pack is a reasonable first draft of a reading.',
+        et: 'Maatriksi saab siduda ka hindamistega, mis sul ehk juba olemas on. CISA identiteedisammas langeb peamiselt D2-le, seadmete sammas D1-le, D4-le ja D7-le, võrkude sammas D3-le, rakenduste ja töökoormuste sammas D2-le ja D4-le ning andmete sammas D3 krüptograafilisele asukohale. NIS2 puhul langevad artikli 21 ja rakendusmääruse (EL) 2024/2690 ligipääsukontrolli, varahalduse ja mitmikautentimise meetmed peamiselt D2-le, D3-le ja D4-le, nii et olemasolev NIS2 tõendipakett on lugemise mõistlik esimene mustand.',
       },
     ],
   },
@@ -114,8 +141,8 @@ const sections: EssaySection[] = [
         et: 'Maatriks on kasulik ainult siis, kui kirja pandud asukoht on see, mida tegelikult hõivatakse, ja aus vastus on tavaliselt aste madalam kui esitlusslaidil. Iga mõõtme puhul on kontrolliks artefakt, mitte arvamus. D1 puhul nimeta võti ja ütle, kus seda hoitakse. D9 puhul helista varureageerijale kell kolm öösel.',
       },
       {
-        en: 'A completed reading is one string and a precise architectural fingerprint: software CA, static just-in-time identity, an API gateway, single-source attestation, auto-escalation to a human, push distribution, implicit trust in vendor logs, a fused organization, one responder. It describes what the architecture does; it is not a claim that it is secure. A dimension nobody can characterize is one the vendor default decided for you.',
-        et: 'Valmis lugemine on üks sõne ja täpne arhitektuuriline sõrmejälg: tarkvaraline sertifitseerimiskeskus, staatiline õigeaegne identiteet, API-lüüs, üheallikaline atesteerimine, automaatne eskaleerimine inimesele, tõukepõhine levitamine, kaudne usaldus müüja logide vastu, sulandunud organisatsioon, üks reageerija. See kirjeldab, mida arhitektuur teeb, mitte ei väida, et see on turvaline. Mõõde, mida keegi ei oska kirjeldada, on mõõde, mille otsustas müüja vaikeseade.',
+        en: 'A completed reading is one string and a precise architectural fingerprint. The book\'s Archetype D, the SaaS-glued lean defense, reads: software CA, static just-in-time identity, an API gateway, single-source attestation, auto-escalation to a human, push distribution, implicit trust in vendor logs, a fused organization, one responder. It describes what the architecture does; it is not a claim that it is secure. A dimension nobody can characterize is one the vendor default decided for you.',
+        et: 'Valmis lugemine on üks sõne ja täpne arhitektuuriline sõrmejälg. Raamatu arhetüüp D, SaaS-i külge liimitud lahja kaitse, loeb nii: tarkvaraline sertifitseerimiskeskus, staatiline õigeaegne identiteet, API-lüüs, üheallikaline atesteerimine, automaatne eskaleerimine inimesele, tõukepõhine levitamine, kaudne usaldus müüja logide vastu, sulandunud organisatsioon, üks reageerija. See kirjeldab, mida arhitektuur teeb, mitte ei väida, et see on turvaline. Mõõde, mida keegi ei oska kirjeldada, on mõõde, mille otsustas müüja vaikeseade.',
       },
     ],
   },
@@ -123,8 +150,8 @@ const sections: EssaySection[] = [
     heading: { en: 'Why deployments cluster', et: 'Miks juurutused koonduvad' },
     paragraphs: [
       {
-        en: 'The most common mistake in using the matrix is treating the nine dimensions as independent choices. Values co-vary, and the space contains two dominant clusters. The low-maturity cluster is software PKI, single-source attestation, push distribution, hard deny, implicit observability and a siloed organization. Those six hold each other down. Upgrade attestation alone and you detect more, more accurately, and feed the better detections into a response that produces outages. The high-maturity cluster is the mirror image, each value enabling the next. This is why single-dimension upgrades disappoint and why attestation and response must move together. Posture moves first in practice, because it is free.',
-        et: 'Kõige levinum viga maatriksi kasutamisel on üheksa mõõtme käsitlemine sõltumatute valikutena. Väärtused varieeruvad koos ja ruum sisaldab kahte valitsevat kobarat. Madala küpsuse kobar on tarkvaraline PKI, üheallikaline atesteerimine, tõukepõhine levitamine, kõva keeld, kaudne jälgitavus ja killustatud organisatsioon. Need kuus hoiavad üksteist all. Paranda ainult atesteerimist ja sa tuvastad rohkem ja täpsemini ja suunad paremad tuvastused reageerimisse, mis tekitab katkestusi. Kõrge küpsuse kobar on peegelpilt, kus iga väärtus võimaldab järgmist. Just seetõttu valmistavad ühe mõõtme parandused pettumuse ja seetõttu peavad atesteerimine ja reageerimine liikuma koos. Praktikas liigub hoiak esimesena, sest see on tasuta.',
+        en: 'The values above give nearly 3.9 million combinations, and most of them cannot stand up. The most common mistake in using the matrix is treating the nine dimensions as independent choices. Values co-vary, and the space contains two dominant clusters, with most deployments in the low one. The low-maturity cluster is software PKI, single-source attestation, push distribution, hard deny, implicit observability and a siloed organization. Those six hold each other down. Upgrade attestation alone and you detect more, more accurately, and feed the better detections into a response that produces outages. The high-maturity cluster is the mirror image: silicon anchor, heterogeneous attestation, event-streamed policy, trickle-truth, heterogeneous observer consensus and a presumptively-wrong organization, each value enabling the next. This is why single-dimension upgrades disappoint and why attestation and response must move together. Posture moves first in practice, because it is free.',
+        et: 'Ülaltoodud väärtused annavad ligi 3,9 miljonit kombinatsiooni ja enamik neist ei pea püsti. Kõige levinum viga maatriksi kasutamisel on üheksa mõõtme käsitlemine sõltumatute valikutena. Väärtused varieeruvad koos ja ruum sisaldab kahte valitsevat kobarat, kusjuures enamik juurutusi asub madalamas. Madala küpsuse kobar on tarkvaraline PKI, üheallikaline atesteerimine, tõukepõhine levitamine, kõva keeld, kaudne jälgitavus ja killustatud organisatsioon. Need kuus hoiavad üksteist all. Paranda ainult atesteerimist ja sa tuvastad rohkem ja täpsemini ja suunad paremad tuvastused reageerimisse, mis tekitab katkestusi. Kõrge küpsuse kobar on peegelpilt: riistvaraline ankur, heterogeenne atesteerimine, sündmusvoopõhine poliitika, tilkuv tõde, heterogeensete vaatlejate konsensus ja eelduslikult ekslik organisatsioon, kus iga väärtus võimaldab järgmist. Just seetõttu valmistavad ühe mõõtme parandused pettumuse ja seetõttu peavad atesteerimine ja reageerimine liikuma koos. Praktikas liigub hoiak esimesena, sest see on tasuta.',
       },
     ],
   },
@@ -136,14 +163,73 @@ const sections: EssaySection[] = [
         et: 'Maatriks kirjeldab konfiguratsiooni. See ei hinda turvalisust. Puuduvad kogusumma ja värvikoodiga hinne ning ühe lisamine tooks tagasi just selle küpsusmudeli mõtlemise, mille asendamiseks maatriks olemas on. Igal mõõtmel kõrge asukoht on kallis ja võib olla ohumudeli jaoks vale; mitmel mõõtmel madal asukoht võib tagasihoidliku vastase vastu olla täiesti kaitstav.',
       },
       {
-        en: 'It also does not replace the axioms. A configuration can be coherent, deliberate, well documented and still fail, because a defensible position does not survive a violated axiom. Unilateral enforcement fails bilateral symmetry however good the attestation feeding it. A single responder paired with human-escalation response fails Byzantine fault tolerance. The matrix tells you where you are; the axioms tell you whether that position can hold.',
-        et: 'Samuti ei asenda see aksioome. Konfiguratsioon võib olla sidus, teadlik, hästi dokumenteeritud ja ikkagi läbi kukkuda, sest kaitstav asukoht ei pea rikutud aksioomile vastu. Ühepoolne jõustamine rikub kahepoolset sümmeetriat olenemata sellest, kui hea on seda toitev atesteerimine. Üks reageerija koos inimesele eskaleeriva reageerimisega rikub Bütsantsi tõrketaluvust. Maatriks ütleb, kus sa oled; aksioomid ütlevad, kas seal saab püsida.',
+        en: 'It also does not replace the axioms. A configuration can be coherent, deliberate, well documented and still fail, because a defensible position does not survive a violated axiom. Unilateral enforcement fails bilateral symmetry however good the attestation feeding it. A single responder paired with human-escalation response fails Byzantine fault tolerance. The matrix tells you where you are; the axioms, scored pass, partial or fail in the Octagon\'s audit, tell you whether that position can hold.',
+        et: 'Samuti ei asenda see aksioome. Konfiguratsioon võib olla sidus, teadlik, hästi dokumenteeritud ja ikkagi läbi kukkuda, sest kaitstav asukoht ei pea rikutud aksioomile vastu. Ühepoolne jõustamine rikub kahepoolset sümmeetriat olenemata sellest, kui hea on seda toitev atesteerimine. Üks reageerija koos inimesele eskaleeriva reageerimisega rikub Bütsantsi tõrketaluvust. Maatriks ütleb, kus sa oled; aksioomid, mida oktagoni auditis hinnatakse kui täidetud, osaliselt täidetud või rikutud, ütlevad, kas seal saab püsida.',
       },
       {
-        en: 'That is the point. "Are we zero trust?" is unanswerable and useless. "Where are we positioned on each of nine independent axes, and is that position deliberate?" is answerable, uncomfortable, and produces a document that survives contact with an auditor, an incident, and a vendor renewal.',
-        et: 'Selles ongi mõte. "Kas meil on nullusaldus?" on vastuseta ja seega kasutu. "Kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?" on vastatav, ebamugav ja annab dokumendi, mis peab vastu kohtumisele audiitori, intsidendi ja müüjalepingu pikendamisega.',
+        en: 'That is the point. "Are we zero trust?" is unanswerable. "Where are we positioned on each of nine coupled axes, and is that position deliberate?" is answerable, uncomfortable, and produces a document you can defend to an auditor and use during an incident.',
+        et: 'Selles ongi mõte. "Kas meil on nullusaldus?" on vastuseta. "Kus me asume igal üheksal omavahel seotud teljel ja kas see asukoht on teadlik?" on vastatav, ebamugav ja annab dokumendi, mida saab audiitori ees kaitsta ja intsidendi ajal kasutada.',
       },
     ],
+  },
+];
+
+const sources: Source[] = [
+  {
+    label: { en: 'Zero-Trust Octagon, the book (source repository)', et: 'Zero-Trust Octagon, raamat (lähtekoodi hoidla)' },
+    url: 'https://github.com/tomkabel/zero-trust-octagon',
+    note: { en: 'chapters 4 to 7 define the dimensions and their values', et: 'peatükid 4–7 määratlevad mõõtmed ja nende väärtused' },
+  },
+  {
+    label: { en: 'CISA Zero Trust Maturity Model Version 2.0 (April 2023)', et: 'CISA nullusalduse küpsusmudel, versioon 2.0 (aprill 2023)' },
+    url: 'https://www.cisa.gov/zero-trust-maturity-model',
+    note: { en: 'five pillars, four stages, scored per pillar', et: 'viis sammast, neli etappi, hinnatakse samba kaupa' },
+  },
+  {
+    label: { en: 'NSA, Zero Trust Implementation Guidelines: Primer and Discovery Phase (January 2026)', et: 'NSA, nullusalduse rakendamise juhised: sissejuhatus ja avastamisfaas (jaanuar 2026)' },
+    url: 'https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4378980/',
+  },
+  {
+    label: { en: 'NIST SP 1800-35, Implementing a Zero Trust Architecture (final, June 2025)', et: 'NIST SP 1800-35, nullusaldusarhitektuuri rakendamine (lõplik, juuni 2025)' },
+    url: 'https://csrc.nist.gov/pubs/sp/1800/35/final',
+    note: { en: '19 example builds', et: '19 näidislahendust' },
+  },
+  {
+    label: { en: 'CISA, Microsegmentation in Zero Trust, Part One (July 2025)', et: 'CISA, mikrosegmenteerimine nullusalduses, 1. osa (juuli 2025)' },
+    url: 'https://www.cisa.gov/news-events/alerts/2025/07/29/cisa-releases-part-one-zero-trust-microsegmentation-guidance',
+    note: { en: 'relevant to D3', et: 'seotud D3-ga' },
+  },
+  {
+    label: { en: 'ENISA, NIS2 Technical Implementation Guidance (June 2025)', et: 'ENISA, NIS2 tehnilise rakendamise juhend (juuni 2025)' },
+    url: 'https://www.enisa.europa.eu/publications/NIS2-technical-implementation-guidance',
+  },
+  {
+    label: { en: 'Morphological analysis (Zwicky; Ritchey)', et: 'Morfoloogiline analüüs (Zwicky; Ritchey)' },
+    url: 'https://en.wikipedia.org/wiki/Morphological_analysis_(problem-solving)',
+  },
+  {
+    label: { en: 'Tom Ritchey, General Morphological Analysis: A general method for non-quantified modelling', et: 'Tom Ritchey, General Morphological Analysis: A general method for non-quantified modelling' },
+    url: 'https://ia600207.us.archive.org/27/items/ritchey_swemorph_Gma/gma.pdf',
+    note: { en: 'the cross-consistency step', et: 'ristkooskõla samm' },
+  },
+  {
+    label: { en: 'John Kindervag, "No More Chewy Centers", Forrester (September 2010)', et: 'John Kindervag, "No More Chewy Centers", Forrester (september 2010)' },
+    url: 'https://media.paloaltonetworks.com/documents/Forrester-No-More-Chewy-Centers.pdf',
+  },
+  {
+    label: { en: 'Ward and Beyer, "BeyondCorp: A New Approach to Enterprise Security" (2014)', et: 'Ward ja Beyer, "BeyondCorp: A New Approach to Enterprise Security" (2014)' },
+    url: 'https://research.google/pubs/beyondcorp-a-new-approach-to-enterprise-security/',
+  },
+];
+
+const disclosureParagraphs: Bi[] = [
+  {
+    en: 'This is a framework description. It describes no live system under test and discloses no vulnerability. Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
+    et: 'See on raamistiku kirjeldus. See ei kirjelda ühtegi testitavat töötavat süsteemi ega avalikusta ühtegi haavatavust. Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
+  },
+  {
+    en: 'Corrections, 4 October 2026: CISA\'s model has four stages, not three; the dimensions are coupled, not independent; the D2, D4, D6, D7 and D8 value lists and the single-responder response time (about three minutes awake, 25 minutes or more asleep) now match the Octagon overview; and "every cloud IAM is PKI underneath" was corrected.',
+    et: 'Parandused, 4. oktoober 2026: CISA mudelil on neli etappi, mitte kolm; mõõtmed on omavahel seotud, mitte sõltumatud; D2, D4, D6, D7 ja D8 väärtuste loendid ning ühe reageerija reageerimisaeg (ärkvel umbes kolm minutit, magades 25 minutit või rohkem) vastavad nüüd oktagoni ülevaatele; ja väide, et iga pilve IAM on all PKI, parandati.',
   },
 ];
 
@@ -155,14 +241,16 @@ export default function NineDimensionsZeroTrustPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Framework Analysis · Zero Trust' : 'Raamistiku analüüs · Nullusaldus'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
             </>, <>
-              {isEn ? '9 min read' : '9 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '14 min read' : '14 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -213,6 +301,27 @@ export default function NineDimensionsZeroTrustPage() {
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Sources' : 'Allikad'}
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a
+                    href={source.url}
+                    className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  >
+                    {source.label[language]}
+                  </a>
+                  {source.note ? (
+                    <span className="text-muted-foreground"> — {source.note[language]}</span>
+                  ) : null}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemine'}
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -246,6 +355,17 @@ export default function NineDimensionsZeroTrustPage() {
                   : ' — täielik raamat koos mõõtmepõhiste peatükkidega, mida see lehekülg kokku võtab.'}
               </li>
             </ul>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
+            </h2>
+            <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
+            </div>
           </section>
         </div>
       </div>

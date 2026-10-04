@@ -6,6 +6,8 @@ import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
+type Source = { label: Bi; url: string; note?: Bi };
+
 type EssaySection = {
   heading: Bi;
   paragraphs: Bi[];
@@ -17,8 +19,8 @@ const title: Bi = {
 };
 
 const standfirst: Bi = {
-  en: 'A composite analytical archetype from the Zero Trust Octagon framework, traced end to end: a typosquatted dependency enters through a pull request, passes the only verification gate the architecture has, and arrives in production holding a cryptographically valid identity. The detection was fast. The prevention did not exist.',
-  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: trükiveapüügiga sõltuvus siseneb pull requesti kaudu, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
+  en: 'A composite analytical archetype from the Zero Trust Octagon framework, traced end to end: a malicious dependency enters through a pull request, robs the pipeline of its secrets on the way through, passes the only verification gate the architecture has, and arrives in production holding a cryptographically valid identity. The detection was fast. The prevention did not exist.',
+  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: pahatahtlik sõltuvus siseneb pull requesti kaudu, röövib teel konveieri saladused, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -44,6 +46,10 @@ const sections: EssaySection[] = [
         en: 'The cost is stated plainly in the architecture. Trust is established once, on first use: code that passes CI/CD is trusted at runtime indefinitely. Dashboards are treated as ground truth. Availability wins every tie. None of these choices is stupid; each is correct for the failure mode the team was worried about, which was downtime.',
         et: 'Hind on arhitektuuris otse välja öeldud. Usaldus luuakse ühe korra, esmakasutusel: koodi, mis läbib CI/CD, usaldatakse käitusajal tähtajatult. Seirepaneele käsitletakse tõe allikana. Kättesaadavus võidab iga vaidluse. Ükski neist valikutest ei ole rumal. Iga valik on õige selle ohu jaoks, mille pärast meeskond muretses, ja see oli seisak.',
       },
+      {
+        en: 'Scored against the Octagon\'s eight axioms (pass, partial or fail), Archetype C passes one: verifiable policy (Axiom 2), because GitOps makes every policy change replayable from Git history. It fails five outright: no intrinsic trust (1), continuous verification (4), bounded authority (5), Byzantine fault tolerance (6) and epistemic integrity (7). It meets two only partially: mediation (3), because the gateway mediates but nothing does pod to pod, and bilateral symmetry (8), because cluster-CA TLS is the minimum form. That is the same score as the overview\'s violation matrix.',
+        et: 'Octagoni kaheksa aksioomi järgi (täidetud, osaliselt täidetud või rikutud) täidab arhetüüp C ühe: kontrollitava poliitika (2. aksioom), sest GitOps teeb iga poliitikamuudatuse Giti ajaloost korratavaks. Viit rikub täielikult: sisemise usalduse puudumist (1), pidevat kontrolli (4), piiratud volitust (5), Bütsantsi tõrketaluvust (6) ja episteemilist terviklust (7). Kahte täidab ainult osaliselt: vahendamist (3), sest lüüs vahendab, kuid podide vahel ei vahenda miski, ja kahepoolset sümmeetriat (8), sest klastri sertifitseerimiskeskuse TLS on selle miinimumvorm. See on sama hinnang mis ülevaate rikkumiste maatriksis.',
+      },
     ],
   },
   {
@@ -54,8 +60,8 @@ const sections: EssaySection[] = [
         et: 'Loetle, mida konveier endas hoiab. Toodangu saladused: andmebaasiparoolid, API-võtmed, allkirjastamismaterjal. Võime muuta Terraformi olekut, Kubernetese manifeste ja IAM-poliitikat. Võrguligipääs toodangusse. Võime koodi rohelise ehituse peal ilma inimese ülevaatuseta liita. Selle kompromiteerimine on võrdne kogu taristu kompromiteerimisega.',
       },
       {
-        en: 'Now list the scrutiny it gets. Production is monitored, alerted on and reviewed. The pipeline is internal tooling, configured once and then left alone because it works. That asymmetry is not an oversight: every control placed on the pipeline is friction on the metric the company runs on. The result is Trust on First Use — exactly one verification gate, at build time, with nothing downstream re-checking it. Whoever gets past it is inside with the authority of whatever they replaced.',
-        et: 'Nüüd loetle, kui palju tähelepanu see saab. Toodangut seiratakse, sellest teavitatakse ja see vaadatakse üle. Konveier on sisemine töövahend, mis seadistatakse ühe korra ja jäetakse siis rahule, sest see töötab. See ebasümmeetria ei ole tähelepanematus: iga konveierile pandud kontroll on hõõrdumine just selle mõõdiku peal, mille järgi ettevõte elab. Tulemus on esmakasutusel usaldamine — täpselt üks kontrollpunkt, ehitusajal, ja miski sellest allpool ei kontrolli otsust uuesti. See, kes sellest mööda saab, on sees selle volitusega, mille ta asendas.',
+        en: 'Now list the scrutiny it gets. Production is monitored, alerted on and reviewed. The pipeline is internal tooling, configured once and then left alone because it works. That asymmetry is not an oversight: every control placed on the pipeline is friction on the metric the company runs on. The result is verify-once: exactly one verification gate, at build time, with nothing downstream re-checking it. Whoever gets past it is inside with the authority of whatever they replaced.',
+        et: 'Nüüd loetle, kui palju tähelepanu see saab. Toodangut seiratakse, sellest teavitatakse ja see vaadatakse üle. Konveier on sisemine töövahend, mis seadistatakse ühe korra ja jäetakse siis rahule, sest see töötab. See ebasümmeetria ei ole tähelepanematus: iga konveierile pandud kontroll on hõõrdumine just selle mõõdiku peal, mille järgi ettevõte elab. Tulemus on ühekordne kontroll: täpselt üks kontrollpunkt, ehitusajal, ja miski sellest allpool ei kontrolli otsust uuesti. See, kes sellest mööda saab, on sees selle volitusega, mille ta asendas.',
       },
     ],
   },
@@ -63,16 +69,16 @@ const sections: EssaySection[] = [
     heading: { en: 'The compromise, step by step', et: 'Kompromiteerimine samm-sammult' },
     paragraphs: [
       {
-        en: 'A developer needs a small utility library and installs one whose name differs from a well-known package by a single character — a typosquat, fictional here. Plausible documentation, believable version history, a few hundred downloads, and a post-install script that does nothing on installation. It waits.',
-        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra — trükiveapüük, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist ja paigaldusjärgne skript, mis paigaldamise ajal midagi ei tee. See ootab.',
+        en: 'A developer needs a small utility library and installs one whose name differs from a well-known package by a single character, a typosquat, fictional here. Plausible documentation, believable version history, a few hundred downloads. The more common 2025 route is worse: a hijacked maintainer account pushes a malicious version of a package the team already trusts, as in the Shai-Hulud npm worm. Either way the package carries two payloads. Its install hook runs at install time, on the developer\'s laptop and again on the CI runner. The library code itself does nothing under test and activates only when it sees production configuration.',
+        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra: kirjaveale lootev võltspakk, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist. 2025. aasta levinum tee on veel hullem: ülevõetud hooldaja konto avaldab pahatahtliku versiooni pakist, mida meeskond juba usaldab, nagu npm-i uss Shai-Hulud. Igal juhul kannab pakk kahte koormat. Selle paigaldusskript käivitub paigaldamisel, arendaja sülearvutis ja uuesti CI-agendis. Teegi kood ise on testides tegevusetu ja aktiveerub alles siis, kui näeb toodangu seadistust.',
       },
       {
-        en: 'The pull request opens, the test suite passes because the code is inert under test, and the merge lands. The GitOps controller deploys the new containers with no attestation at admission: the only verification that ever happened is that CI built it, and CI was not what was subverted. The provenance record is accurate and useless.',
-        et: 'Pull request avatakse, testikomplekt läbitakse, sest kood on testides tegevusetu, ja liitmine läheb läbi. GitOps-kontroller juurutab uued konteinerid ilma vastuvõtul päritolu kontrollimata: ainus kontroll, mis üldse toimus, on see, et CI need ehitas, ja CI ei olnud see, mida õõnestati. Päritolukirje on täpne ja kasutu.',
+        en: 'The pull request opens and CI installs dependencies. The install hook reads the runner\'s environment and sends out what the pipeline holds: the registry publishing token and the cloud deploy key. Nothing alarms, because the build is green. This is the step real attacks made the main event in 2025: the compromise of tj-actions/changed-files, an action used by more than 23,000 repositories, dumped CI secrets into workflow logs, and Shai-Hulud used an install hook to steal tokens and republish itself. The test suite passes because the library code is inert under test, and the merge lands. The GitOps controller deploys the new containers with no attestation at admission: the only verification that ever happened is that CI built it, and CI was not what was subverted. The provenance record is accurate and useless.',
+        et: 'Pull request avatakse ja CI paigaldab sõltuvused. Paigaldusskript loeb agendi keskkonda ja saadab välja selle, mida konveier hoiab: registrisse avaldamise märgise ja pilve juurutusvõtme. Midagi ei häiri, sest ehitus on roheline. Just selle sammu tegid tegelikud rünnakud 2025. aastal peamiseks: enam kui 23 000 hoidlas kasutatud tj-actions/changed-files kompromiteerimine paiskas CI saladused töövoo logidesse ja Shai-Hulud kasutas paigaldusskripti märgiste varastamiseks ja enda uuesti avaldamiseks. Testikomplekt läbitakse, sest teegi kood on testides tegevusetu, ja liitmine läheb läbi. GitOps-kontroller juurutab uued konteinerid ilma vastuvõtul päritolu kontrollimata: ainus kontroll, mis üldse toimus, on see, et CI need ehitas, ja CI ei olnud see, mida õõnestati. Päritolukirje on täpne ja kasutu.',
       },
       {
-        en: 'The pod boots and requests an identity. The certificate authority issues a valid ServiceAccount token with a one-hour lifetime. There is no workload attestation and no code-hash check, so nothing in the issuing path can tell this pod from the legitimate one. It claims to be the billing service and gets exactly the billing service permissions, because authority was scoped to the service, not to the code.',
-        et: 'Pod käivitub ja küsib identiteeti. Sertifitseerimiskeskus väljastab kehtiva ServiceAccounti märgise ühetunnise elueaga. Töökoormuse atesteerimist ega koodi räsi kontrolli ei toimu, nii et miski väljastusteel ei erista seda podi õigest. Ta väidab end olevat arveldusteenus ja saab täpselt arveldusteenuse õigused, sest volitus oli seotud teenuse, mitte koodiga.',
+        en: 'The pod boots and requests an identity. The API server issues a valid bound ServiceAccount token, nominally one hour (and often extended for legacy compatibility). There is no workload attestation and no code-hash check, so nothing in the issuing path can tell this pod from the legitimate one. It claims to be the billing service and gets exactly the billing service permissions, because authority was scoped to the service, not to the code.',
+        et: 'Pod käivitub ja küsib identiteeti. API-server väljastab kehtiva seotud ServiceAccounti märgise, nimiväärtusena üheks tunniks (vanema tarkvara ühilduvuse huvides sageli pikendatult). Töökoormuse atesteerimist ega koodi räsi kontrolli ei toimu, nii et miski väljastusteel ei erista seda podi õigest. Ta väidab end olevat arveldusteenus ja saab täpselt arveldusteenuse õigused, sest volitus oli seotud teenuse, mitte koodiga.',
       },
       {
         en: 'The code activates and scrapes the internal user database over thousands of API calls. The gateway checks the token on each one: valid, unexpired, passed. Past the gateway there is no pod-to-pod mediation, so the same identity is good for lateral movement. Nothing here is a bypass.',
@@ -88,8 +94,8 @@ const sections: EssaySection[] = [
         et: 'Mehhanism ei ole see, et kiirus teeks inimesed hooletuks. Asi on selles, et commitist toodanguni viib üksainus automatiseeritud kanal, millel ei ole teist hindamispunkti, ja see kanal ei hooli sellest, mida ta kannab. Automatiseerimine võimendab riski sellega, et ta eemaldab vahepealsed olekud, kus oleks saanud teha teistsuguse otsuse.',
       },
       {
-        en: 'The properties form a loop. Velocity forbids friction at the build gate, which forces Trust on First Use, which is what makes supply-chain injection viable. Fused teams and GitOps then deliver excellent detection and recovery, both of which begin after an injection they cannot prevent.',
-        et: 'Omadused moodustavad ringi. Kiirus keelab ehitusväravas hõõrdumise, mis sunnib peale esmakasutusel usaldamise, mis teebki tarneahela süstimise võimalikuks. Kokku sulanud meeskonnad ja GitOps annavad seejärel suurepärase avastamise ja taastumise, mis mõlemad algavad pärast süstimist, mida nad ära hoida ei suuda.',
+        en: 'The properties form a loop. Velocity forbids friction at the build gate, which forces verify-once, which is what makes supply-chain injection viable. Fused teams and GitOps then deliver excellent detection and recovery, both of which begin after an injection they cannot prevent.',
+        et: 'Omadused moodustavad ringi. Kiirus keelab ehitusväravas hõõrdumise, mis sunnib peale ühekordse kontrolli, mis teebki tarneahela süstimise võimalikuks. Kokku sulanud meeskonnad ja GitOps annavad seejärel suurepärase avastamise ja taastumise, mis mõlemad algavad pärast süstimist, mida nad ära hoida ei suuda.',
       },
       {
         en: 'The degradation policy compounds it. When the burst trips the circuit breaker, the system rate-limits rather than terminating the pod, because terminating might affect a paying customer. Exfiltration continues at reduced rate for about eight minutes. Graceful degradation is right when the threat is load. When the threat is theft, slowing the attacker is a discount, not containment.',
@@ -122,16 +128,16 @@ const sections: EssaySection[] = [
         et: 'Alusta piirangust. Selles etapis olev meeskond ei võta kasutusele suurettevõtte kontrollide komplekti ja iga kontroll, mis lisab juurutusteele inimese kinnitusnõude, lülitab väljalaskesurve all olev inimene kvartali jooksul vaikselt välja. Küsimus on selles, millised kontrollid ostavad käitusaegse kontrolli, ostmata juurde juurutushõõrdumist.',
       },
       {
-        en: 'Three are cheap. Image signing at build time adds seconds and gives the cluster something to check at admission, turning one gate into two. Runtime anomaly detection as an eBPF DaemonSet needs no code changes and watches syscall and network behaviour independently of what the application reports. Network policy, in audit mode first, removes lateral movement without a cutover that breaks production.',
-        et: 'Kolm on odavad. Konteineripildi allkirjastamine ehitusajal lisab sekundeid ja annab klastrile vastuvõtul midagi kontrollida, muutes ühe värava kaheks. eBPF-DaemonSetina käiv käitusaegne anomaaliatuvastus ei nõua koodimuudatusi ja jälgib süsteemikutsete ja võrgu käitumist sõltumatult sellest, mida rakendus ise teatab. Võrgupoliitika, esmalt auditirežiimis, kaotab külgsuunas liikumise ilma üleminekuta, mis toodangu katki teeb.',
+        en: 'The missing gate has to sit on the dependency itself, and that part is cheap. Image signing stops images that never came through CI; it does not stop a malicious dependency CI built in, so on its own it would have passed this attack. What the dependency gate needs: a committed lockfile installed with npm ci, install scripts off by default (pnpm 10 does this, with an allowlist for packages that need them), a minimum release age before new versions are installable, and provenance or trusted-publisher checks where the registry offers them. In the pipeline, use GitHub Actions OIDC instead of stored cloud keys and pin third-party actions to a commit SHA, which is what the tj-actions victims lacked.',
+        et: 'Puuduv värav peab asuma sõltuvusel endal ja see osa on odav. Konteineripildi allkirjastamine peatab pildid, mis ei tulnud CI kaudu; see ei peata pahatahtlikku sõltuvust, mille CI sisse ehitas, nii et üksi oleks see selle rünnaku läbi lasknud. Sõltuvuse värav vajab järgmist: hoidlasse salvestatud lukufail, mis paigaldatakse käsuga npm ci, vaikimisi välja lülitatud paigaldusskriptid (pnpm 10 teeb seda, lubatud nimekirjaga pakkidele, mis neid vajavad), uute versioonide minimaalne vanus enne nende paigaldatavaks muutumist ning päritolu või usaldatud avaldaja kontroll seal, kus register seda pakub. Konveieris kasuta salvestatud pilvevõtmete asemel GitHub Actionsi OIDC-d ja kinnita kolmandate osapoolte toimingud commit-räsiga; just see puudus tj-actionsi ohvritel.',
       },
       {
-        en: 'One is structural. A pipeline runner that can publish packages, change IAM policy and deploy to production on one token is a single credential that owns the company. Split that authority by purpose and expire it in minutes. Cryptographic workload identity for the runner is the durable version, but it establishes who the runner is, not what the runner is running.',
-        et: 'Üks on struktuurne. Ehitusagent, kes suudab sama märgisega pakke avaldada, IAM-poliitikat muuta ja toodangusse juurutada, on üksainus mandaat, mis omab kogu ettevõtet. Jaga see volitus otstarbe järgi ja lase sellel minutitega aeguda. Krüptograafiline töökoormuse identiteet agendi jaoks on selle püsiv versioon, kuid see tuvastab, kes agent on, mitte selle, mida agent käitab.',
+        en: 'A second fix is structural. A pipeline runner that can publish packages, change IAM policy and deploy to production on one token is a single credential that owns the company. Split that authority by purpose and expire it in minutes, so the token the install hook steals is scoped and already dead. Cryptographic workload identity for the runner is the durable version, but it establishes who the runner is, not what the runner is running.',
+        et: 'Teine parandus on struktuurne. Ehitusagent, kes suudab sama märgisega pakke avaldada, IAM-poliitikat muuta ja toodangusse juurutada, on üksainus mandaat, mis omab kogu ettevõtet. Jaga see volitus otstarbe järgi ja lase sellel minutitega aeguda, nii et paigaldusskripti varastatud märgis on piiratud ja juba aegunud. Krüptograafiline töökoormuse identiteet agendi jaoks on selle püsiv versioon, kuid see tuvastab, kes agent on, mitte selle, mida agent käitab.',
       },
       {
-        en: 'Then add selective quarantine: when the independent sensor says a workload is outside its profile, kill the pod instead of rate-limiting it. GitOps reconciles the desired state anyway, so being wrong costs a restart.',
-        et: 'Lisa valikuline karantiin: kui sõltumatu andur ütleb, et töökoormus on väljaspool oma profiili, lõpeta pod, selle asemel et tema kiirust piirata. GitOps viib soovitud oleku niikuinii vastavusse, nii et eksimine maksab ühe taaskäivituse.',
+        en: 'Then add runtime verification and containment that actually removes the bad image. Runtime anomaly detection as an eBPF DaemonSet needs no code changes and watches syscall and network behaviour independently of what the application reports. When it says a workload is outside its profile, isolate the pod with a deny-all network-policy label, scale the deployment to zero and revert the image digest in Git; deleting the pod alone just lets the ReplicaSet start the same image again. Network policy, staged first (Cilium\'s policy audit mode or Calico\'s staged policies, since upstream Kubernetes NetworkPolicy has no audit mode), removes lateral movement without a cutover that breaks production. Finally, rotate every secret the pipeline held, because the install hook already has them.',
+        et: 'Seejärel lisa käitusaegne kontroll ja ohjeldamine, mis halva pildi päriselt eemaldab. eBPF-DaemonSetina käiv käitusaegne anomaaliatuvastus ei nõua koodimuudatusi ja jälgib süsteemikutsete ja võrgu käitumist sõltumatult sellest, mida rakendus ise teatab. Kui see ütleb, et töökoormus on väljaspool oma profiili, isoleeri pod kõike keelava võrgupoliitika sildiga, skaleeri juurutus nullini ja pööra pildi räsi Gitis tagasi; podi kustutamine üksi laseb ReplicaSetil sama pildi uuesti käivitada. Võrgupoliitika, esmalt etapiviisiliselt (Ciliumi poliitika auditirežiim või Calico etapiviisilised poliitikad, sest Kubernetese tavalisel NetworkPolicyl auditirežiimi pole), kaotab külgsuunas liikumise ilma üleminekuta, mis toodangu katki teeb. Lõpuks vaheta välja kõik konveieri hoitud saladused, sest paigaldusskriptil on need juba olemas.',
       },
     ],
   },
@@ -143,10 +149,51 @@ const sections: EssaySection[] = [
         et: 'Loe kokku kontrollpunktid selle vahel, kui arendaja kirjutab paki nime, ja selle vahel, kui see pakk täidetakse toodangu volitusega. Kui vastus on üks ja see asub ehitusajal, siis on sellest möödasaamise mõjuraadius kõik allpool olev: kogu toodang, kehtiva identiteediga, kuni keegi õiget graafikut vaatab.',
       },
       {
-        en: 'Fast detection and recovery begin after the injection has already succeeded. The fix is not slower deployments; it is a second verification at runtime, in a trust domain the deploying pipeline does not control. Verification that happens once produces trust that never expires, and trust that never expires is an asset an attacker can inherit. If an architecture cannot say when a given trust decision is re-evaluated, that decision is the attack surface.',
-        et: 'Kiire avastamine ja taastumine algavad pärast seda, kui süstimine on juba õnnestunud. Lahendus ei ole aeglasemad juurutused, vaid teine kontroll käitusajal, usaldusdomeenis, mida juurutav konveier ei juhi. Ühekordne kontroll toodab usalduse, mis kunagi ei aegu, ja usaldus, mis kunagi ei aegu, on vara, mille ründaja võib pärida. Kui arhitektuur ei oska öelda, millal mingit usaldusotsust uuesti hinnatakse, siis just see otsus ongi ründepind.',
+        en: 'Fast detection and recovery begin after the injection has already succeeded. The fix is not slower deployments; it is a second verification on the dependency and a third at runtime, in a trust domain the deploying pipeline does not control. If an architecture cannot say when a given trust decision is re-evaluated, that decision is the attack surface.',
+        et: 'Kiire avastamine ja taastumine algavad pärast seda, kui süstimine on juba õnnestunud. Lahendus ei ole aeglasemad juurutused, vaid teine kontroll sõltuvuse juures ja kolmas käitusajal, usaldusdomeenis, mida juurutav konveier ei juhi. Kui arhitektuur ei oska öelda, millal mingit usaldusotsust uuesti hinnatakse, siis just see otsus ongi ründepind.',
       },
     ],
+  },
+];
+
+const sources: Source[] = [
+  {
+    label: { en: 'Kubernetes documentation, Managing Service Accounts', et: 'Kubernetese dokumentatsioon, Managing Service Accounts' },
+    url: 'https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/',
+    note: { en: 'bound token lifetime and legacy extension', et: 'seotud märgise eluiga ja pikendamine ühilduvuse huvides' },
+  },
+  {
+    label: { en: 'Cilium documentation, policy creation and policy audit mode', et: 'Ciliumi dokumentatsioon, poliitikate loomine ja auditirežiim' },
+    url: 'https://docs.cilium.io/en/stable/security/policy-creation/',
+  },
+  {
+    label: { en: 'InfoWorld, GitHub suffers a cascading supply chain attack compromising CI/CD secrets (March 2025)', et: 'InfoWorld, GitHubi CI/CD saladusi ohustanud ahelrünnak (märts 2025)' },
+    url: 'https://www.infoworld.com/article/3849245/github-suffers-a-cascading-supply-chain-attack-compromising-ci-cd-secrets.html',
+    note: { en: 'tj-actions/changed-files, CVE-2025-30066', et: 'tj-actions/changed-files, CVE-2025-30066' },
+  },
+  {
+    label: { en: 'Check Point Research, Shai-Hulud 2.0 (November 2025)', et: 'Check Point Research, Shai-Hulud 2.0 (november 2025)' },
+    url: 'https://blog.checkpoint.com/research/shai-hulud-2-0-inside-the-second-coming-the-most-aggressive-npm-supply-chain-attack-of-2025/',
+  },
+  {
+    label: { en: 'SD Times, GitHub details npm security changes after Shai-Hulud (September 2025)', et: 'SD Times, GitHubi npm-i turvamuudatused pärast Shai-Huludi (september 2025)' },
+    url: 'https://sdtimes.com/security/github-details-upcoming-changes-to-improve-security-in-wake-of-shai-hulud-worm-in-npm-ecosystem/',
+  },
+  {
+    label: { en: 'pnpm 10.0.0 release notes', et: 'pnpm 10.0.0 väljalaskemärkmed' },
+    url: 'https://newreleases.io/project/npm/pnpm/release/10.0.0',
+    note: { en: 'dependency lifecycle scripts off by default', et: 'sõltuvuste elutsükliskriptid vaikimisi välja lülitatud' },
+  },
+  {
+    label: { en: 'SLSA v1.2 announcement (November 2025)', et: 'SLSA v1.2 teadaanne (november 2025)' },
+    url: 'https://slsa.dev/blog/2025/11/announce-slsa-v1.2',
+  },
+];
+
+const disclosureParagraphs: Bi[] = [
+  {
+    en: 'Corrections, 4 October 2026: image signing is no longer presented as a second gate against this attack (CI signs the malicious image too); containment now isolates the pod and reverts the image digest instead of deleting a pod the ReplicaSet recreates; ServiceAccount tokens are issued by the API server, not a CA; "audit mode" is attributed to Cilium and Calico; the install-hook mechanism is corrected and the pipeline-secret theft step added; and the axiom score now matches the overview.',
+    et: 'Parandused, 4. oktoober 2026: konteineripildi allkirjastamist ei esitata enam selle rünnaku vastu teise väravana (CI allkirjastab ka pahatahtliku pildi); ohjeldamine isoleerib nüüd podi ja pöörab pildi räsi tagasi, mitte ei kustuta podi, mille ReplicaSet uuesti loob; ServiceAccounti märgiseid väljastab API-server, mitte sertifitseerimiskeskus; „auditirežiim" omistatakse Ciliumile ja Calicole; paigaldusskripti mehhanism on parandatud ja lisatud konveieri saladuste varguse samm; ning aksioomide hinnang vastab nüüd ülevaatele.',
   },
 ];
 
@@ -158,14 +205,16 @@ export default function MoveFastFixItInProdResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
-        kicker={isEn ? 'Framework Analysis · Zero Trust Octagon · Archetype C' : 'Raamistiku analüüs · Zero Trust Octagon · Arhetüüp C'}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
+        kicker={isEn ? 'Breach Trace · Zero Trust Octagon · Archetype C' : 'Rünnaku jälg · Zero Trust Octagon · Arhetüüp C'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
             </>, <>
-              {isEn ? '8 min read' : '8 min lugemist'}
+              {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
+            </>, <>
+              {isEn ? '11 min read' : '11 min lugemist'}
             </>, <>Tom Kristian Abel</>]}
       />
 
@@ -207,6 +256,22 @@ export default function MoveFastFixItInProdResearchPage() {
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
+              {isEn ? 'Sources' : 'Allikad'}
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a href={source.url} className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                    {source.label[language]}
+                  </a>
+                  {source.note ? <span className="text-muted-foreground"> — {source.note[language]}</span> : null}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Further reading' : 'Edasine lugemine'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -244,9 +309,12 @@ export default function MoveFastFixItInProdResearchPage() {
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 {isEn
-                  ? 'Archetype C is a composite analytical model from the author\'s own framework. It is not a real named company, the breach traced here is not a real incident, and the package described is fictional. No vendor, victim, CVE or figure outside the source framework is asserted here.'
-                  : 'Arhetüüp C on koondanalüütiline mudel autori enda raamistikust. See ei ole päris ettevõte, siin jälgitud rünnak ei ole päris intsident ja kirjeldatud pakk on väljamõeldud. Siin ei väideta ühtki tarnijat, ohvrit, CVE-d ega arvnäitajat väljaspool lähteraamistikku.'}
+                  ? 'Archetype C is a composite analytical model from the author\'s own framework. It is not a real named company, the breach traced here is not a real incident, and the package described is fictional. The real incidents named (tj-actions/changed-files, Shai-Hulud, and the s1ngularity and TeamPCP campaigns) are analogues; the first two are sourced below, the last two in the overview.'
+                  : 'Arhetüüp C on koondanalüütiline mudel autori enda raamistikust. See ei ole päris ettevõte, siin jälgitud rünnak ei ole päris intsident ja kirjeldatud pakk on väljamõeldud. Nimetatud tegelikud intsidendid (tj-actions/changed-files, Shai-Hulud ning s1ngularity ja TeamPCP kampaaniad) on analoogid; kahe esimese allikad on allpool, kahe viimase omad ülevaates.'}
               </p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph[language]}</p>
+              ))}
               <p>
                 <strong className="text-foreground">{isEn ? 'Author.' : 'Autor.'}</strong>{' '}
                 {isEn

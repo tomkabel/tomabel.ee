@@ -8,7 +8,7 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-border px-6">
       <div className="mx-auto max-w-6xl py-16">
-        <div className="grid gap-12 md:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <p className="font-display text-lg text-foreground">
               {site.languages[language]}
@@ -17,7 +17,27 @@ export default function SiteFooter() {
               {site.disclaimer[language]}
             </p>
           </div>
+          {/* The personal pages get their own group, so My story is reachable
+              from every page without sitting in the contact list. */}
           <div>
+            <p className="mb-2 label font-bold text-muted-foreground">
+              {language === 'en' ? 'About' : 'Minust'}
+            </p>
+            <ul className="grid font-mono text-sm">
+              <li>
+                <Link className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent" to="/about">
+                  {language === 'en' ? 'About me' : 'Minust'}
+                </Link>
+              </li>
+              <li>
+                <Link className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent" to="/my-story">
+                  {language === 'en' ? 'My story' : 'Minu lugu'}
+                </Link>
+              </li>
+            </ul>
+          </div>
+          {/* The nav's "Contact" item targets this list from any page. */}
+          <div id="contact">
             <p className="mb-2 label font-bold text-muted-foreground">
               {language === 'en' ? 'Contact' : 'Kontakt'}
             </p>
@@ -41,11 +61,6 @@ export default function SiteFooter() {
                 <a className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent" href="/public-key.asc">
                   PGP
                 </a>
-              </li>
-              <li>
-                <Link className="inline-flex min-h-11 min-w-11 items-center text-muted-foreground transition-colors hover:text-accent" to="/my-story">
-                  {language === 'en' ? 'My story' : 'Minu lugu'}
-                </Link>
               </li>
             </ul>
           </div>

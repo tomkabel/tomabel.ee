@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
-import { ArticleHeader, Callout, PullQuote } from '../components/site/article';
+import { ArticleHeader, Callout } from '../components/site/article';
 
 type EssaySection = {
   heading: string;
@@ -11,88 +11,54 @@ type EssaySection = {
 };
 
 const title = "I used to break authentication. Here's what that taught me about building it.";
-const standfirst = 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.';
+const standfirst = 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, worked through one Smart-ID relay example.';
+
+const aboutLinkText = 'About page';
 
 const openingParagraphs = [
-  'For a while, I made money by understanding authentication better than the people deploying it.',
-  'That sentence is not branding. It is not a tease. It is the plainest summary of the part of my background that matters most to the rest of this site. I spent years learning where authentication systems actually fail: not in the diagrams, not in the product pages, not in the compliance checklists, but in the seam between what a system claims to verify and what it truly verifies under pressure.',
-  'That history led to consequences I take full responsibility for. What I kept from it was the way of seeing.',
-  'Once you have taken authentication apart for a living, you stop being impressed by the ceremony around it. You start noticing how many security programs confuse friction for assurance, how many teams mistake vendor language for threat models, and how often "strong authentication" means "strong under ordinary use, brittle under adversarial use." That difference is the whole game.',
-  'This is the thesis essay for everything else I write here. The shorter version is simple: credible defense requires offensive understanding. Not because every defender needs to become an attacker, and not because offense is glamorous, but because attackers are the people who force systems to answer the question they were designed to avoid: what, exactly, are you trusting here?',
+  'I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don’t hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
+  'That is the plainest summary of the background behind this site. What I kept from it is a way of seeing: authentication rarely fails in the diagrams or the compliance checklists. It fails in the seam between what a system claims to verify and what it actually verifies under pressure, and "strong authentication" often means strong under ordinary use and brittle under adversarial use.',
+  'The argument of this essay, and of the rest of the site, is that credible defense requires offensive understanding. Defenders do not need to become attackers. They need the question attackers force on every system: what, exactly, are you trusting here?',
 ];
 
 const sections: EssaySection[] = [
   {
     heading: 'Offense teaches you what the system is really verifying',
     paragraphs: [
-      'Authentication is often described at the wrong level of abstraction. People talk about passwords, OTPs, passkeys, device binding, biometrics, risk engines, browser signals, or identity proofing as if the presence of those components says much by itself. Usually it does not.',
-      'What matters is the verification claim hiding beneath the interface.',
-      'When a system says it has authenticated a user, what has it actually established?',
-      'Has it established that the right person is present? That the right device is present? That a cryptographic secret is present? That the browser has not been tampered with? That a session originated from a trustworthy context? That a human is making the decision? That the decision is informed? That the approval is bound to the transaction being approved?',
-      'Those are very different claims. They fail in different ways. They compose badly when the designer does not understand which claim each layer is making.',
-      'Offensive work forces precision here because attackers do not care what a control was supposed to mean. They care what they can relay, replay, proxy, emulate, downgrade, exhaust, socially route around, or make the user approve anyway.',
-      'That is why the offensive lens is so clarifying. It strips away intention and leaves only mechanics.',
-      'A login flow may look modern and still be structurally weak. A phishing-resistant method may still be embedded in a recovery flow that collapses back to email. A device fingerprint may look sophisticated and still amount to a negotiable client-side suggestion. An anti-fraud model may be expensive and still be fed attacker-controlled inputs from a machine the attacker owns.',
-      'Attackers are not impressed by layered defenses if the layers rest on the same broken assumption.',
+      'Passwords, OTPs, passkeys, device binding, biometrics, risk engines and browser signals get discussed as if their presence settled something. What matters is the verification claim underneath. When a system says it has authenticated a user, has it established that the right person is present? The right device? An untampered browser? An informed human decision? An approval bound to the transaction being approved? Those are different claims. They fail in different ways, and they compose badly when the designer does not know which claim each layer is making.',
+      'Attackers force precision here because they do not care what a control was supposed to mean. They care what they can relay, replay, proxy, emulate, downgrade, exhaust, or get the user to approve anyway. A phishing-resistant method can sit inside a recovery flow that falls back to email. A fraud model can be fed inputs from a machine the attacker owns. Layered defenses do not help when every layer rests on the same broken assumption.',
     ],
   },
   {
     heading: 'The attacker sees the whole route, not the isolated control',
     paragraphs: [
       'Defenders often evaluate controls one at a time. Attackers evaluate pathways.',
-      'That distinction matters more than most architecture diagrams admit.',
-      'An attacker does not ask whether your MFA is strong in isolation. They ask whether account recovery is weaker. They ask whether support channels can be manipulated. They ask whether session upgrade flows are less protected than initial login. They ask whether a high-assurance authentication event can be followed by low-assurance authorization changes. They ask whether a passkey can be defeated not cryptographically, but operationally, by steering the user into approving the wrong thing in the right interface.',
-      'This is the part many organizations miss when they talk about "bypassing MFA." In practice, authentication is rarely defeated as a single component. It is more often displaced. The attacker finds the cheaper adjacent route: the fallback flow, the handoff, the human escalation path, the mobile prompt without meaningful transaction context, the browser trust signal that can be copied, the recovery step everyone assumes "probably won\'t matter much."',
-      'The offensive mindset is useful because it thinks in terms of substitution, not confrontation.',
-      'Very few systems are broken head-on. Many are broken diagonally.',
+      'An attacker does not ask whether your MFA is strong in isolation. They ask whether account recovery is weaker, whether the support desk can be talked round, whether a session upgrade is less protected than the initial login, and whether a high-assurance login is followed by low-assurance changes to the account. A passkey is rarely defeated directly. The attacker downgrades to the SMS fallback, social-engineers the recovery desk, or steals the session the passkey created.',
+      'That is what "bypassing MFA" usually means in practice. Authentication is rarely defeated as a single component. It is displaced. The attacker takes the cheaper adjacent route: the fallback flow, the human escalation path, the mobile prompt with no meaningful transaction context, the browser signal that can be copied, the recovery step everyone assumes will not matter. Very few systems are broken head-on. Many are broken diagonally.',
     ],
-    after: (
-      <PullQuote cite="On substitution, not confrontation">
-        The offensive mindset thinks in terms of substitution, not confrontation. Very few systems
-        are broken head-on. Many are broken diagonally.
-      </PullQuote>
-    ),
   },
   {
     heading: 'Most authentication fails at the boundary, not the center',
     paragraphs: [
-      'There is a reason so much of my work orbits browser defenses, anti-fraud systems, identity protocols, and session trust. Those are boundary problems. They live where one trust domain must make claims about another.',
-      'The center of a cryptographic protocol can be elegant and sound. The boundary is where chaos enters.',
-      'A server must infer things about a client it does not control. A relying party must trust an upstream identity assertion it did not witness being created. A fraud engine must reason from signals gathered on attacker-owned devices. A helpdesk must decide whether the person asking for access is the person who ought to get it. A user must interpret a prompt correctly while under time pressure and partial information.',
-      'Every one of those is a translation problem. Most are lossy.',
-      'Offensive experience makes you skeptical in the right way. It teaches you that the interesting question is not whether the protocol is strong on paper. The interesting question is where the proof degrades when it crosses a boundary: from device to server, from cryptographic event to business decision, from identity event to session continuity, from technical fact to human judgment.',
-      'This is why "secure by design" is harder than it sounds. It is not just about choosing stronger primitives. It is about making sure your system\'s security claim survives contact with the interfaces around it.',
+      'Much of my work is on browser defenses, anti-fraud systems, identity protocols and session trust because those are boundary problems: places where one trust domain has to make claims about another.',
+      'A cryptographic protocol can be sound at its center. The boundary is where it degrades. A server infers things about a client it does not control. A helpdesk decides whether the caller is the person who should get access. A user interprets a prompt under time pressure. Each of those is a translation, and most translations lose something.',
+      'So the useful question is where the proof degrades as it crosses a boundary: from device to server, from cryptographic event to business decision, from login to session, from technical fact to human judgment. "Secure by design" is hard because the security claim has to survive contact with every interface around it.',
     ],
   },
   {
     heading: 'The arms race is asymmetrical, and that changes how defense must be built',
     paragraphs: [
-      'From the offensive side, the economics are obvious. The attacker only needs one route that is cheap, repeatable, and difficult to detect at scale. The defender needs the whole path to hold together, including the boring parts that nobody wants to present on stage.',
-      'That asymmetry is why authentication keeps becoming an arms race.',
-      'Defenders add more signals. Attackers learn to simulate them.',
-      'Defenders add browser integrity checks. Attackers instrument the browser, emulate the environment, or steal the post-check artifact instead of passing the check honestly.',
-      'Defenders add MFA. Attackers introduce real-time phishing proxies, consent fatigue, helpdesk pretexting, or malware that rides the user\'s legitimate session.',
-      'Defenders harden the login. Attackers move to session theft, recovery abuse, delegated access, or workflow manipulation after login.',
-      'Defenders deploy machine learning for fraud. Attackers learn the features, poison the signals, or change tempo until they fall beneath action thresholds.',
-      'None of this means defense is futile. It means static defense is futile.',
-      'The job is not to build an unbreakable authentication system. That is fantasy. The job is to build one whose security claims are explicit, whose failure modes are understood, whose compromise paths are expensive, and whose surrounding operations are designed to notice and contain what inevitably gets through.',
-      'In other words: not perfect authentication, but defensible authentication.',
+      'From the offensive side the economics are obvious. The attacker needs one route that is cheap, repeatable and hard to detect at scale. The defender needs the whole path to hold, including the boring parts nobody presents on stage. That asymmetry is why authentication keeps turning into an arms race.',
+      'Defenders add signals, and attackers learn to simulate them. Defenders add browser integrity checks, and attackers instrument the browser, emulate the environment, or steal the artifact issued after the check. Defenders add MFA, and attackers answer with real-time adversary-in-the-middle phishing proxies that capture the session after the second factor, MFA fatigue (repeated push prompts until the user accepts), helpdesk pretexting, or malware riding the user\'s legitimate session. Defenders harden the login, and attackers move to session theft, recovery abuse and workflow manipulation after login.',
+      'None of this makes defense futile. It makes static defense futile. Unbreakable authentication is a fantasy. The realistic goal is a system whose security claims are explicit, whose failure modes are understood, whose compromise paths are expensive, and whose operations notice and contain what gets through.',
     ],
   },
   {
     heading: "What credible defense looks like after you've seen the other side",
     paragraphs: [
-      'The most valuable thing offensive experience gave me was not a bag of tricks. It was a hierarchy of questions.',
-      'First: what is this control actually asserting?',
-      'Second: which part of that assertion is grounded in something cryptographic, which part in environment signals, and which part in human interpretation?',
-      'Third: which assumptions depend on the attacker behaving politely?',
-      'Fourth: where are the fallback paths, and are they held to the same security standard as the flagship flow?',
-      'Fifth: if this control fails, what prevents a local failure from becoming an account-level or platform-level compromise?',
-      'Teams that ask those questions early build very different systems.',
-      'They bind approvals to meaningful transaction context instead of vague prompts. They reduce fallback paths instead of endlessly decorating them. They treat recovery as a first-class security surface. They assume the client is negotiable. They separate identity proof, authentication, session continuity, and authorization instead of collapsing them into one fuzzy idea of "logged in." They instrument for abuse patterns, not just uptime. They treat support staff, user interfaces, and internal tooling as part of the authentication perimeter because that is what they are.',
-      'They also become less susceptible to security theater.',
-      'A mature defender is hard to impress with adjectives. "AI-powered." "Military-grade." "Passwordless." "Zero trust." Fine. What is the claim? What is the trust boundary? What fails open? What can be relayed? What can be replayed? What depends on a browser the adversary controls? What happens when the user is deceived but technically compliant?',
-      'Those are offensive questions. They are also the beginning of adult defense.',
+      'The most useful thing offensive work left me with is a short hierarchy of questions, set out below. Teams that ask them early build different systems.',
+      'They bind approvals to meaningful transaction context instead of vague prompts. They remove fallback paths instead of decorating them. They treat recovery as a first-class security surface, as NIST SP 800-63B-4 now does by handling account recovery as an authentication event in its own right. They assume the client is negotiable. They keep identity proofing, authentication, session continuity and authorization separate instead of collapsing them into a fuzzy "logged in". They instrument for abuse patterns, not just uptime. They treat support staff, user interfaces and internal tooling as part of the authentication perimeter, because they are.',
+      'They are also harder to sell adjectives to. "Passwordless" or "zero trust" says nothing until someone answers what can be relayed, what fails open, and what happens when the user is deceived but technically compliant. Those are offensive questions, and defenders should be asking them first.',
     ],
     after: (
       <Callout label="The hierarchy of questions">
@@ -107,32 +73,90 @@ const sections: EssaySection[] = [
     ),
   },
   {
+    heading: 'A worked example: the Smart-ID signing relay',
+    paragraphs: [
+      'Here are the five questions applied to the cross-device Smart-ID+ QR flow and the signing relay from this site\'s Achilles\' heel report. The relay was a proof of concept against SK\'s public demo portal, not a live bank, so this is an argument about the architecture.',
+      'What is the control asserting? When a user scans the QR code to log in and later confirms a transfer with PIN2 after matching a four-digit verification code, the bank reads that as "the account holder approved this transaction". What the flow establishes is narrower: someone holding the phone and the PIN approved a request whose code matched a code they saw on a screen.',
+      'Which part is cryptographic, which is environmental, and which is human? The signature is cryptographic and sound; Smart-ID splits the key, and the app\'s share never leaves the phone. Whether the screen showing the code is the bank\'s page is environmental. Whether the code on the phone matches that screen is a human comparison. The relay attacks the second part; the third still passes, because the codes really do match.',
+      'Which assumptions need the attacker to behave politely? The verification code assumes the user is looking at the bank\'s page. In the relay, the attacker serves a fake browser window that streams a real bank session from a container. The victim scans the genuine QR code inside it, the session lands in the attacker\'s browser, the attacker starts a transfer and mirrors the genuine code into the window the victim is watching. The codes match, so the victim approves.',
+      'Where are the fallback paths? Here the weaker path is a sibling of the strong one. Started on the same phone that holds the key, Smart-ID+ is, in Arnis Paršovs\'s words, fully phishing-resistant. Started from a QR code on another screen, it is only as good as that screen. Smart-ID+ went live at Bigbank and LHV in June 2026 and makes call-based fraud much harder, but it does not remove the cross-device path.',
+      'What stops a local failure from becoming an account-level one? One misled approval yields a transfer and a session the attacker can keep using. What limits the damage sits away from the prompt: transaction limits, delays on new payees, and server-side checks on where the session is actually being driven from.',
+    ],
+  },
+  {
     heading: 'Understanding offense is not optional if you want to defend reality',
     paragraphs: [
-      'There is a version of security discourse that treats offensive knowledge as somehow adjacent to real defense work, as if architecture can remain clean by keeping its distance from the mess. I think that view is backward.',
-      'If you are building authentication for real adversaries, offense is not extracurricular. It is part of the requirements gathering.',
-      'You do not need every defender to write exploits. But you do need defenders who understand how systems are actually bent until they say something they were never meant to say. You need people in the room who can look at a polished control and ask the impolite question: yes, but what happens when this is proxied, replayed, socially routed around, or embedded inside a workflow you did not model?',
-      'Without that perspective, defense drifts toward ceremony. With it, defense gets more concrete, more humble, and usually more effective.',
-      'That is the through-line of my work now.',
-      'I research identity systems, browser trust, anti-fraud mechanisms, and national authentication infrastructure because they sit at the fault line between claim and proof. I care about coordinated disclosure because public trust in digital systems depends on somebody being willing to name where the abstractions break. I care about production architecture because eventually theory has to cash out in systems that ordinary people can survive using.',
-      'I used to break authentication. The point is not that this makes me interesting. The point is that it permanently changed what I trust, what I question, and how I build.',
-      'If you have seen the system from the attacking side, you stop asking whether a control looks strong.',
-      'You start asking whether it still means what it claims to mean when somebody is actively trying to make it lie.',
-      'That is where credible defense begins.',
+      'Some security discourse treats offensive knowledge as adjacent to real defense work. I think that is backward: if you build authentication for real adversaries, offense is part of requirements gathering. Not every defender needs to write exploits, but someone in the room should ask what happens when a polished control is proxied, replayed, socially routed around, or embedded in a workflow nobody modeled. Without that, defense drifts toward ceremony.',
+      'That is the through-line of my work now. I research identity systems, browser trust, anti-fraud mechanisms and national authentication infrastructure because they sit on the fault line between claim and proof. I care about coordinated disclosure because public trust depends on someone naming where the abstractions break.',
+      'Seeing systems from the attacking side changed what I trust, what I question, and how I build. You stop asking whether a control looks strong, and start asking whether it still means what it claims when somebody is actively trying to make it lie.',
     ],
   },
 ];
+
+const sources = [
+  {
+    label: 'NIST SP 800-63-4 (2025), Volume B: SP 800-63B-4, Authentication and Authenticator Management',
+    url: 'https://pages.nist.gov/800-63-4/sp800-63b.html',
+    note: 'account recovery handled as an authentication event (Sec. 4.2)',
+  },
+  {
+    label: 'Microsoft Threat Intelligence, "From cookie theft to BEC: Attackers use AiTM phishing sites as entry point to further financial fraud", July 2022',
+    url: 'https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/',
+    note: 'adversary-in-the-middle proxies that steal the session after MFA',
+  },
+  {
+    label: 'MITRE ATT&CK, T1621: Multi-Factor Authentication Request Generation',
+    url: 'https://attack.mitre.org/techniques/T1621/',
+    note: 'MFA fatigue / push bombing',
+  },
+  {
+    label: 'CISA and FBI, Advisory AA23-320A: Scattered Spider',
+    url: 'https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a',
+    note: 'helpdesk pretexting, push bombing and SIM swapping in real intrusions',
+  },
+  {
+    label: 'Arnis Paršovs, "Banks fail to implement measures against Smart-ID phishing", ERR, January 2026',
+    url: 'https://news.err.ee/1609910821/arnis-parsovs-banks-fail-to-implement-measures-against-smart-id-phishing',
+    note: 'same-device Smart-ID+ as fully phishing-resistant',
+  },
+  {
+    label: 'ERR News, "Banks taking on scammers with new Smart-ID upgrade", June 2026',
+    url: 'https://news.err.ee/1610054356/banks-taking-on-scammers-with-new-smart-id-upgrade',
+    note: 'Smart-ID+ rollout at Bigbank and LHV',
+  },
+];
+
+const disclosureParagraphs = [
+  'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
+  'Corrections, 4 October 2026: the description of the author\'s past now uses the same wording as the About page, and the passkey example now names the routes attackers actually use (weaker fallbacks, recovery, session theft) instead of implying passkeys can be defeated inside their own interface.',
+];
+
+const linkClass = 'text-accent underline decoration-border underline-offset-4 hover:decoration-accent';
+
+function withAboutLink(text: string): ReactNode {
+  const at = text.indexOf(aboutLinkText);
+  if (at === -1) return text;
+  return (
+    <>
+      {text.slice(0, at)}
+      <Link to="/about" className={linkClass}>
+        {aboutLinkText}
+      </Link>
+      {text.slice(at + aboutLinkText.length)}
+    </>
+  );
+}
 
 export default function AuthenticationEssayPage() {
   return (
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Authentication · Offense / Defense</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · June 22, 2026</>, <>10 min read</>, <>Tom Kristian Abel</>]}
+        meta={[<>Published · June 22, 2026</>, <>Updated · October 4, 2026</>, <>8 min read</>, <>Tom Kristian Abel</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
@@ -153,7 +177,7 @@ export default function AuthenticationEssayPage() {
         <div className="lg:col-span-9">
           <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph}>{withAboutLink(paragraph)}</p>
             ))}
           </div>
 
@@ -171,6 +195,22 @@ export default function AuthenticationEssayPage() {
               {section.after}
             </section>
           ))}
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              Sources
+            </h2>
+            <div className="mt-6 space-y-4">
+              {sources.map((source) => (
+                <p key={source.url} className="text-lg leading-relaxed text-muted">
+                  <a href={source.url} className={linkClass}>
+                    {source.label}
+                  </a>
+                  <span className="text-muted-foreground"> — {source.note}</span>
+                </p>
+              ))}
+            </div>
+          </section>
 
           <section className="mt-16 max-w-measure">
             <h2 className="font-display text-3xl leading-tight text-foreground">
@@ -193,9 +233,20 @@ export default function AuthenticationEssayPage() {
                 >
                   The Achilles' heel of Estonia's e-state
                 </Link>{' '}
-                — applies it to a national-scale authentication and identity system.
+                — the full report behind the worked example above.
               </li>
             </ul>
+          </section>
+
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
+              Disclosure
+            </h2>
+            <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>{withAboutLink(paragraph)}</p>
+              ))}
+            </div>
           </section>
         </div>
       </div>
