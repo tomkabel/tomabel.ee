@@ -134,13 +134,12 @@ fail-open fallback, and so does the canonical gate's `redirectRoutes` exemption.
 at it. The client legacy `<Navigate>` routes stay, permanently (Rollback, PR-3).
 
 **1.4 Deploy the Worker from CI: job `worker` in `static.yml`.**
-- `needs: build-and-deploy`, so it runs only after Pages deployed, for `push` and
+- `needs: deploy`, so it runs only after Pages deployed, for `push` and
   `workflow_dispatch` alike. `if: github.ref == 'refs/heads/main' && vars.WORKER_DEPLOY_FROZEN != '1'`.
 - Own job: fresh checkout, `pnpm install --frozen-lockfile`,
   `pnpm exec wrangler deploy -c worker/wrangler.jsonc`.
-- Permissions move from workflow level to jobs, or zizmor (the Workflow lint step) fails and
-  blocks both deploys: workflow `permissions: {}`; `build-and-deploy` gets `contents: read`,
-  `pages: write`, `id-token: write`; `worker` gets `contents: read` only. The `worker` checkout
+- Per-job permissions: done in PR-A of `deferred-followups-plan.md` (workflow `permissions: {}`,
+  `build` and `deploy` jobs). `worker` gets `contents: read` only. The `worker` checkout
   uses `persist-credentials: false`, like the existing one. Run `pipx run zizmor .github/workflows/`
   locally before pushing.
   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` live in their own `cloudflare` environment,
