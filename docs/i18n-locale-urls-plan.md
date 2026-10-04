@@ -2,7 +2,7 @@
 
 Status: decisions confirmed 2026-09-23; rewritten 2026-10-04 against `main` (route-meta module,
 build-time prerender and the Cloudflare Worker already exist); round-2 review applied 2026-10-04
-against `fa49a91` (#51 merged) · Author: Claude Code with Tom Kristian Abel
+against `fa49a91` (#51 merged); round-3 review applied 2026-10-04 · Author: Claude Code with Tom Kristian Abel
 
 ## Why
 
@@ -54,7 +54,7 @@ the stamped per-route JSON-LD has no `id`, so `Seo.tsx` appends a second copy af
 | Toggle | A real `<a href>` to the same page in the other language. Not rendered where no alternate exists. |
 | First visit | No automatic redirect. A dismissible "Loe eesti keeles →" banner when the preference is Estonian and an `/et/` version exists. |
 | English-only articles | English URL only. `/et/<english-only>/` is a Worker **302** (`Cache-Control: no-store`) to the English URL, so translating it later isn't blocked by cached 301s. |
-| Redirect status | **301** only for permanent moves (legacy IA, `/cookies`, trailing slash). **302 + `no-store`** for anything that depends on translation state (any hop that drops `/et/`). |
+| Redirect status | **301** only for locale-independent permanent moves: legacy IA and `/cookies` requested at an English URL, and the trailing slash. **302 + `no-store`** for anything whose target depends on translation state: every other redirect of an `/et/` URL, and the rollback switch (3.4 rule 0). |
 | Per-page head | Self-referencing canonical; reciprocal `hreflang` `en`, `et`, `x-default` → English; `og:locale`, plus `og:locale:alternate` only when an alternate exists; `<html lang>`; JSON-LD in the page's language. |
 | Codes | `hreflang="et"`, `og:locale="et_EE"`, `<html lang="et">`. **Never `ee`** (Ewe). |
 
@@ -108,13 +108,21 @@ imported by `worker/index.js` and `worker/redirects.test.js` (add `worker/**/*.t
 - Legacy, **301**: `/research`, `/writing` → `/disclosures/`; `/projects` → `/systems/`;
   `/research/<slug>`, `/writing/<slug>` → `/disclosures/<slug>/`; `/cookies` → `/privacy/`.
 - Trailing slash, **301**: a known route (`routeMeta` key) without its slash → with it.
-- Rollback switch, **302 + `no-store`**: when `env.ET_DISABLED === '1'`, every `/et/…` →
-  its English URL. Off by default; tested now so it exists before PR-2 (see Rollback).
+- Rollback switch (3.4 rule 0, checked before every other rule): when `env.ET_DISABLED` is
+  `"302"` or `"301"`, every `/et/…` → its English target in one hop, with that status (`302`
+  adds `no-store`). Any other value or unset: off. Tested now so it exists before PR-2 (see
+  Rollback).
 - Anything else → `null`, the request goes to origin unchanged. Files are never matched.
 - Every `Location` is absolute (`https://tomabel.ee` + path) and keeps the query string.
 
-`index.js` calls it first, for every method, inside `try`; on any throw it logs and falls
-through to `fetch(request)` (fail open). Then the Markdown branch as now.
+Fail open, `index.js`: `fetch` calls `ctx.passThroughOnException()` as its first statement, so
+any uncaught exception (in `redirectFor` or later) sends the request to origin; it still shows
+in Worker observability. No `try` around `redirectFor`. Then `redirectFor`, for every method,
+then the Markdown branch as now. Module top level does no work that can throw: imports and
+constants only (`route-meta.ts`, `locale-path.ts` are data and pure functions).
+`redirects.test.js` imports `index.js` itself, so a top-level throw fails `pnpm test` before any
+deploy; Cloudflare also rejects an upload whose startup throws, and the live version keeps
+serving.
 
 **1.2 `/cookies`.** The Worker 301 replaces the client `<Navigate>` as the primary redirect.
 The #51 stub (`pub/cookies/index.html`, noindex + refresh + canonical → `/privacy/`) stays as the
@@ -125,20 +133,42 @@ fail-open fallback, and so does the canonical gate's `redirectRoutes` exemption.
 **1.3 Delete `public/_redirects`** (GitHub Pages ignores it). Fix the App.tsx comment that points
 at it. The client legacy `<Navigate>` routes stay, permanently (Rollback, PR-3).
 
-**1.4 Deploy the Worker from CI.** `static.yml`, after "Deploy to GitHub Pages", on `push` to
-`main` only: `pnpm exec wrangler deploy -c worker/wrangler.jsonc` with `CLOUDFLARE_API_TOKEN`
-and `CLOUDFLARE_ACCOUNT_ID` from the `github-pages` environment secrets, step-scoped `env`.
-`wrangler` becomes a pinned devDependency. Order: Pages first, then Worker, same job, so the
-Worker never describes a site that isn't live yet; the window between the two is minutes.
-Every transient state is safe because state-dependent rules are 302 and unknown paths fall
-through: worst case a just-retranslated `/et/` URL 302s to English or a just-removed one 404s
-until the Worker step finishes. A failed Worker step fails the run. Hand deploys stop.
+**1.4 Deploy the Worker from CI: job `worker` in `static.yml`.**
+- `needs: build-and-deploy`, so it runs only after Pages deployed, for `push` and
+  `workflow_dispatch` alike. `if: github.ref == 'refs/heads/main' && vars.WORKER_DEPLOY_FROZEN != '1'`.
+- Own job: fresh checkout, `pnpm install --frozen-lockfile`,
+  `pnpm exec wrangler deploy -c worker/wrangler.jsonc`; `permissions: contents: read`.
+  `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` live in their own `cloudflare` environment,
+  step-scoped `env`; the Pages job never sees them.
+- Token: Account · Workers Scripts:Edit (this account) and Zone · Workers Routes:Edit
+  (`tomabel.ee`, because `wrangler.jsonc` declares the route). Cloudflare can't scope a token to
+  one Worker script, so this is the floor.
+- `wrangler` becomes a pinned devDependency, and the same PR adds `workerd: true` (plus any other
+  build the install reports) to `pnpm-workspace.yaml` `allowBuilds`: pnpm 11.5.3 otherwise fails
+  the frozen install with `ERR_PNPM_IGNORED_BUILDS`.
+- A failed job fails the run and GitHub emails the pusher. That is the alert; nothing else.
+- Drift: between the Pages and Worker deploys (minutes), or after a failed Worker job until a
+  re-run, every state is safe: state-dependent rules are 302 and unknown paths fall through.
+  Worst case a just-retranslated `/et/` URL 302s to English or a just-removed one 404s.
+- First CI deploy: before merging PR-1, compare the live Worker (`wrangler deployments list`,
+  dashboard Settings: variables, bindings, routes, compatibility date) with `wrangler.jsonc`.
+  Anything set only in the dashboard goes into `wrangler.jsonc` or is dropped on purpose:
+  `wrangler deploy` replaces it. Hand deploys stop.
+
+**Worker rollback runbook** (any PR): set repo variable `WORKER_DEPLOY_FROZEN=1` →
+`pnpm exec wrangler rollback` → fix or revert on `main` (Pages still deploys) → delete the
+variable → re-run the workflow (`workflow_dispatch`) so the Worker matches `main`. Without the
+freeze, the next push to `main` would redeploy the bad Worker. A freeze variable, not a path
+filter: the bundle imports `src/` modules, so a path list is one more thing to keep in step,
+and a matching push would still undo the rollback.
 
 **1.5 Stamped JSON-LD gets `id="seo-jsonld"`** in `spa-routes.mjs`, so `Seo.tsx` replaces it
 instead of appending a duplicate.
 
 **1.6 Pure path helpers, `src/i18n/locale-path.ts` (new) + `locale-path.test.ts`.** Imports carry
-`.ts` extensions so Node, the build script and the Worker bundle can load it.
+`.ts` extensions and the code is erasable TypeScript only (no `enum`, `namespace`, parameter
+properties), so Node's type stripping, the build script and the Worker bundle can load it. Set
+`erasableSyntaxOnly: true` in both tsconfigs so `tsc` enforces that for every shared module.
 ```ts
 splitLocale('/et/disclosures/x/')     // → { locale: 'et', path: '/disclosures/x' }
 splitLocale('/et') , splitLocale('/et/') // → { locale: 'et', path: '/' }
@@ -163,20 +193,26 @@ bilingualPaths()                      // routeMeta keys with `et`, minus redirec
 - Unused by the app in PR-1. Merging it early keeps PR-2's diff to behaviour.
 
 **Rollback PR-1.** Triggers: any Worker exception or redirect loop in Worker observability, or a
-legacy URL not answering 301. Action: `npx wrangler rollback` (instant), then revert the repo
-commit. The client `<Navigate>` routes and the `/cookies` stub still cover everything.
+legacy URL not answering 301. Action: the runbook in 1.4 (freeze, `wrangler rollback`, revert
+PR-1, unfreeze). The client `<Navigate>` routes and the `/cookies` stub still cover everything.
+Reverting PR-1 is valid only **before PR-2 merges**: PR-2 builds on `redirectFor`,
+`locale-path.ts` and rule 0. After that, roll forward: freeze, `wrangler rollback` to the last
+good post-PR-2 version, fix on `main`, unfreeze.
 
 **Acceptance for PR-1**
 - `redirectFor` unit tests: every legacy form with/without slash and with a query string;
-  trailing-slash rule; unknown paths and files → `null`; `ET_DISABLED` on/off; absolute
-  `Location`.
+  trailing-slash rule; unknown paths and files → `null`; `ET_DISABLED` unset / `"302"` /
+  `"301"`, including `/et/research/x` → one hop to `/disclosures/x/`; absolute `Location`.
 - Locally: `pnpm build && pnpm preview`, then
   `pnpm exec wrangler dev -c worker/wrangler.jsonc --local-upstream localhost:4173`;
-  `curl -sI localhost:8787/research/botguard-disassembled?x=1` → `301`,
+  `curl -sI 'localhost:8787/research/botguard-disassembled?x=1'` → `301`,
   `location: https://tomabel.ee/disclosures/botguard-disassembled/?x=1`; `/cookies` → `301`
-  to `/privacy/`. A Worker forced to throw still serves the origin page.
-- After merge: the CI run shows both deploy steps green; the same `curl -sI` against
-  `https://tomabel.ee` answers the same.
+  to `/privacy/`.
+- Fail open, both paths: with a temporary `throw` inside `redirectFor`, `wrangler dev` still
+  serves the origin page (200); with a temporary top-level `throw` in `index.js`, `pnpm test`
+  fails.
+- After merge: the `worker` job is green after the Pages job; the same `curl -sI` against
+  `'https://tomabel.ee/…'` answers the same.
 - `pnpm typecheck`, `lint`, `test`, `build`, `canonical --check` pass.
 
 ---
@@ -198,9 +234,14 @@ and for ordering the work. Acceptance that needs per-locale shells sits under pa
     : <StaticRouter location={location}>{tree}</StaticRouter>;
   ```
 - Each page route is declared twice: `path={p}` and, if `p` is in `bilingualPaths()`,
-  `path={localizePath(p, 'et')}`. Generate both from one `[path, page, file]` list so they can't
-  drift (`file` feeds `lastmod`, 3.3). `route-meta.test.ts`'s App.tsx parser follows the new
-  shape.
+  `path={localizePath(p, 'et')}`. Generate both from one `[path, Page]` list in `App.tsx` so they
+  can't drift. `route-meta.test.ts`'s App.tsx parser follows the new shape.
+- The page file for `lastmod` (3.3) is a `file` field on each `routeMeta` entry, relative to
+  `src/` (`pages/DisclosuresPage.tsx`, `components/PrivacyPolicy.tsx`: the legal pages live in
+  `src/components/`). Not in `App.tsx`: `spa-routes.mjs` runs under Node type stripping and
+  can't import JSX. `route-meta.ts` is already JSX-free with explicit `.ts` imports, so no new
+  route module. `route-meta.test.ts` asserts `src/<file>` exists and `App.tsx` imports
+  `./<file without extension>`.
 - No client `/et/*` redirect route. Unknown `/et/*` paths are not redirected by the Worker
   either (3.4): origin serves `404.html` and the client renders `NotFound` in Estonian.
 
@@ -210,7 +251,8 @@ and for ordering the work. Acceptance that needs per-locale shells sits under pa
 - An effect records the preference: on any `/et/` URL, store `'et'`. English URLs **do not**
   overwrite it, so following an English-only link from `/et/` keeps the reader Estonian.
 - The toggle (2.5) is a link, so the provider no longer navigates. `setLanguage(l)` only stores
-  the preference.
+  the preference; the toggle calls it on click, so an explicit switch to English does overwrite
+  `'et'`.
 - `<html lang>` is still set in an effect; the shell already carries the right value (3.1).
 
 **2.3 `main.tsx` hydrate decision.**
@@ -233,12 +275,13 @@ shell, empty `#root`) served for an unknown `/et/` path.
 - object `to` (`{ pathname, search, hash }`): `pathname` only;
 - English-only targets resolve to the English URL (`alternateFor(p, 'et') === null`) and carry
   `state={{ fromLocale: 'et' }}` so the notice in 2.6 shows.
-- `raw` prop: pass `to` through untouched. Only the toggle uses it.
 
 Codemod: 28 files import `Link` from `react-router-dom` (66 `<Link` uses), plus `Navigate` in
 `App.tsx` and `Cookies.tsx`; 31 files import from `react-router-dom` in total (hooks such as
 `useLocation` stay). ESLint `no-restricted-imports` bans `Link`, `NavLink`, `Navigate`,
-`useNavigate` from `react-router-dom` outside `link.tsx`, `App.tsx` and `entry-server.tsx`.
+`useNavigate` from `react-router-dom` outside `link.tsx`, `App.tsx` and `entry-server.tsx`; the
+toggle's one `useNavigate` import in `nav.tsx` carries an
+`// eslint-disable-line no-restricted-imports -- toggle target is already localized`.
 
 Raw `<a href>` in content:
 - `href`s in `src/content/site.ts` (23 site-relative) stay unprefixed. Components that render
@@ -248,11 +291,15 @@ Raw `<a href>` in content:
 - Files stay as they are: `/public-key.asc`, `/verification/…`, `/llms.txt`, `/sitemap.xml`.
 - The link gate (3.6) catches anything missed.
 
-**2.5 Toggle, `src/components/site/nav.tsx`.** The `<button>` becomes
-`<Link raw to={alternateFor(path, other) + search + hash} hrefLang={other}>` with the existing
-`lang` span. `raw`, because the target is already localized: the wrapper would prefix it again
-(or strip it) for the current locale. Not rendered when `alternateFor` is `null`. Active-state
-checks compare `splitLocale(...).path`.
+**2.5 Toggle, `src/components/site/nav.tsx`.** The `<button>` becomes a plain
+`<a href={alternateFor(path, other)} hrefLang={other}>` with the existing `lang` span. Not the
+wrapper: the target is already localized and the wrapper would prefix or strip it again. The
+`href` is the alternate only, because the prerender has no search or hash; adding them at render
+would be a hydration attribute mismatch React doesn't patch. `onClick`: `setLanguage(other)`,
+then for an unmodified primary click `preventDefault()` and
+`navigate(alt + location.search + location.hash)`. Middle-click, modifier clicks and "open in new
+tab" go to the bare alternate and record no preference: accepted. Not rendered when
+`alternateFor` is `null`. Active-state checks compare `splitLocale(...).path`.
 
 **2.6 `LanguageHint` (one component, reads storage and `navigator` in `useEffect`, renders nothing
 until then, so prerender and first client render match).**
@@ -286,8 +333,11 @@ language now comes from the URL.
 `pageUrl(path)`; breadcrumb `item`s are checked the same way.
 
 **Acceptance for part A** (dev server, `scripts/i18n-check.py`):
-- Toggle `href` equals the alternate with the same hash, in trailing-slash form, never `/et/et/`.
+- Toggle `href` equals the alternate in trailing-slash form, never `/et/et/`; clicking it on
+  `/disclosures/x/?q=1#a` lands on `/et/disclosures/x/?q=1#a`.
 - Toggling on a scrolled page keeps the scroll position.
+- Toggle from `/et/…` to English: stored preference becomes `'en'`, and Case A doesn't show on
+  the next English page.
 - `et-EE` browser, empty storage, on `/disclosures/`: no redirect, Case A visible.
 - `en-US` browser, from `/et/disclosures/` click an English-only article: Case B visible, `lang="et"`.
 - Stored `'et'` from before the change, on `/`: Case A visible.
@@ -321,37 +371,44 @@ language now comes from the URL.
 `og:locale:alternate` (removed when there is no alternate), JSON-LD (already replaced by
 `#seo-jsonld`), and hreflang: remove every `link[rel="alternate"][hreflang]` first, then add.
 Both `Seo.tsx` and `stamp` build tag values from one function in `src/lib/head-tags.ts`, so they
-can't drift. Unknown path → canonical `/` (as now) and no hreflang.
+can't drift. `spa-routes.mjs` loads it under Node type stripping: explicit `.ts` imports,
+erasable TypeScript only (1.6). Unknown path → canonical `/` (as now) and no hreflang.
 
 **3.3 Generated sitemap.**
 - Delete `public/sitemap.xml`; `spa-routes.mjs` writes `pub/sitemap.xml` from `routeMeta`, minus
   `redirectRoutes`. Bilingual entries carry `<xhtml:link rel="alternate">` for `en`, `et`,
   `x-default`; declare `xmlns:xhtml`.
 - `lastmod` per URL = the later of two dates:
-  - Page file: `git log -1 --format=%cs -- <file>`. `<file>` comes from the route list (2.1),
-    resolved from the extensionless import (`./pages/X`) to `src/pages/X.tsx`, else `.ts`; neither
-    exists → fail.
+  - Page file: `git log -1 --format=%cs -- src/<routeMeta[p].file>` (2.1).
   - Metadata: `git log -1 --no-patch --format=%cs -L '/^  "<key>": {/,/^  },/:src/content/route-meta.ts'`
     with `/` and `.` in `<key>` escaped (`\/disclosures\/x`), because `-L` ends the regex at the
     first bare `/`. Checked on git 2.56: returns the last commit touching that entry's lines.
+    When the regex matches nothing, git exits 128 (`fatal: -L parameter … No match`): the
+    `execFileSync` call is wrapped in `try`/`catch` and treated like an empty result.
 - In CI (`CI=true`): **fail the build** when the checkout is shallow
-  (`git rev-parse --is-shallow-repository`) or either lookup is empty. `static.yml` sets
-  `fetch-depth: 0` on `actions/checkout`. Locally only, a file that is new or has uncommitted
-  changes gets today's date with a warning.
+  (`git rev-parse --is-shallow-repository`) or either lookup is empty or failed. `static.yml`
+  sets `fetch-depth: 0` on `actions/checkout`. Locally only, the same cases (new file, uncommitted
+  entry) get today's date with a warning.
 - Known ceiling: copy edits in `site.ts` / `translations.ts` don't bump `lastmod`.
 - `robots.txt` keeps `Sitemap: https://tomabel.ee/sitemap.xml`.
 
-**3.4 Worker: `/et/` rules in `redirectFor`.** Legacy first, then localize; one hop; query kept;
-absolute `Location`.
-1. Split: `{ locale, path } = splitLocale(pathname)`.
-2. `path` is a legacy or redirect route → `target` = its mapping. Locale stays `et` only if
-   `locale === 'et'` and `target` is bilingual. Status 301 when the locale is unchanged, 302 +
-   `no-store` when `/et/` is dropped. `/et/research/x` → `/et/disclosures/x/` (301) or
-   `/disclosures/x/` (302); `/et/cookies` → `/et/privacy/` (301).
-3. `locale === 'et'` and `path` is a **known English-only route** (a `routeMeta` key without
+**3.4 Worker: `/et/` rules in `redirectFor`.** First match wins; one hop; query kept; absolute
+`Location`. `{ locale, path } = splitLocale(pathname)`; `target` = the legacy / redirect-route
+mapping of `path`, else `path`.
+0. Rollback switch: `ET_DISABLED` is `"302"` or `"301"` and `locale === 'et'` → that status to
+   `localizePath(target, 'en')` (`302` adds `no-store`). Before every other rule, so legacy
+   `/et/` URLs also take one hop.
+1. `path` is a legacy or redirect route:
+   - English request → **301** to `localizePath(target, 'en')` (locale-independent move).
+   - `/et/` request → **302 + `no-store`** to `localizePath(target, 'et')` if `target` is
+     bilingual, else `localizePath(target, 'en')`: the target locale depends on translation
+     state. `/et/research/x` → `/et/disclosures/x/` or `/disclosures/x/`; `/et/cookies` →
+     `/et/privacy/`.
+2. `locale === 'et'` and `path` is a **known English-only route** (a `routeMeta` key without
    `et`, not a redirect route) → 302 + `no-store` to `localizePath(path, 'en')`.
-4. Known route without trailing slash → 301 to the slash form (both locales).
-5. Anything else, including unknown `/et/*` paths and files → `null`, origin answers.
+3. Known route without trailing slash → 301 to the slash form (both locales; rule 2 has already
+   taken English-only paths under `/et/`).
+4. Anything else, including unknown `/et/*` paths and files → `null`, origin answers.
 
 The Worker imports `locale-path.ts` + `route-meta.ts` (wrangler bundles them), so CI's deploy
 (1.4) keeps it in step with the site. No PR-template step.
@@ -367,28 +424,36 @@ one line per `bilingualPaths()` entry, `- [<routeMeta[p].et.title>](<pageUrl(p, 
   path outside `bilingualPaths()`.
 - `<html lang>` equals the page's locale. `404.html` is excluded: it keeps the English head and
   is also served for unknown `/et/` paths, where the client renders Estonian.
-- An `et` entry means a translated body: for every path in `bilingualPaths()`, the `/et/`
-  prerender's `#main-content` text differs from the English one. This replaces the
-  `englishOnlyArticles` half of the route-meta test if PR-3 ever drops that set.
+- An `et` entry means a translated body: for every path in `bilingualPaths()`, at least 50 % of
+  the words (lowercased, ≥ 3 letters) in the `/et/` prerender's `#main-content` do not occur in
+  the English one. A stub with a translated heading over English text fails. This gate is an
+  addition: `englishOnlyArticles` and its route-meta test stay (5.1).
 - Sitemap `<loc>` set equals the set of emitted indexable pages.
-- No `//` in any emitted internal URL; no `hreflang="ee"`; `og:locale` ∈ `{en_US, et_EE}`.
+- No `//` in `new URL(u).pathname` of any emitted internal URL (the `https://` scheme is not a
+  hit); no `hreflang="ee"`; `og:locale` ∈ `{en_US, et_EE}`.
 - **Link gate**: in every `/et/` page body, resolve each `href` against the page URL (covers
   relative, `/…`, `//tomabel.ee/…`, `http(s)://tomabel.ee/…`). Any `http://tomabel.ee` fails.
   Every same-host result is under `/et/`, an English-only article, or a file from 2.4. The legal
-  pages are bilingual, so links to them must be `/et/privacy/` etc.
+  pages are bilingual, so links to them must be `/et/privacy/` etc. Links carrying `hreflang`
+  (the toggle) are exempt.
 
 **3.7 Browser check, `scripts/i18n-check.py`.** Loads every route × locale from `pnpm preview`
-and fails on any console error containing `hydration` or `#418`.
+and fails on any console error containing `hydration` or `#418`. Not in CI (it needs a
+Playwright browser): a **manual pre-merge gate**, a checkbox in the PR-2 and PR-3 descriptions
+with the run's summary pasted in. No PR template exists; none is added for two PRs.
 
 **Acceptance for part B (and so for PR-2)**
-- `curl -s localhost:4173/et/disclosures/` (`pnpm preview`, no JS): Estonian title,
+- `curl -s 'localhost:4173/et/disclosures/'` (`pnpm preview`, no JS): Estonian title,
   description, canonical, hreflang **and body**; `<html lang="et">`.
 - `/et/<route>/` in the browser: hydrated, no `onRecoverableError` output (3.7).
 - `wrangler dev … --local-upstream localhost:4173` (as in PR-1):
   `/et/disclosures/smart-id-achilles-heel/` → `302`, `cache-control: no-store`, absolute
-  English `location`; `/et/research/botguard-disassembled?x=1` → one 302 to
-  `https://tomabel.ee/disclosures/botguard-disassembled/?x=1`; `/et/no-such-page/` → `404`
-  from origin. Same cases as `redirectFor` unit tests.
+  English `location`; `'/et/research/botguard-disassembled?x=1'` → one 302 to
+  `https://tomabel.ee/disclosures/botguard-disassembled/?x=1`. Same cases as `redirectFor`
+  unit tests, which also assert `/et/no-such-page/` → `null`.
+- The 404 itself is checked on production only: `vite preview` answers unknown paths with the
+  SPA fallback (200), not `404.html`. After deploy,
+  `curl -sI 'https://tomabel.ee/et/no-such-page/'` → `404`.
 - After deploy: LinkedIn Post Inspector shows Estonian previews for `/et/` URLs; a hreflang
   checker passes on the sitemap; Rich Results Test passes on one English and one Estonian
   article.
@@ -397,8 +462,10 @@ and fails on any console error containing `hydration` or `#418`.
 
 ## Phase 4: ship PR-2 and monitor (≈0.5 day + 6 weeks)
 
-**4.1** Gates: `typecheck`, `lint`, `test`, `build`, `canonical --check`, `i18n-check.py`,
-`qa_checks.py`. Merge; CI deploys Pages, then the Worker (1.4).
+**4.1** Gates: CI runs `typecheck`, `lint`, `test`, `build`, `canonical --check`; by hand
+before merge, `i18n-check.py` (3.7) and `qa_checks.py`. Check `wrangler.jsonc` has no
+`ET_DISABLED` (a re-land after a rollback must remove it in the same change). Merge; CI deploys
+Pages, then the Worker (1.4).
 
 **4.2** Search Console: resubmit `sitemap.xml`; URL Inspection plus request indexing on `/et/`,
 `/et/disclosures/` and two `/et/` articles.
@@ -413,7 +480,7 @@ and fails on any console error containing `hydration` or `#418`.
 | Not found (404) | no | missing shell or Worker rule; fix within a day | any URL |
 | Page with redirect | only English-only and legacy `/et/` URLs | fine; if a sitemap URL appears, the sitemap gate failed | any sitemap URL |
 | Excluded by 'noindex' | only `/cookies/` | bug | any other URL |
-| Server error (5xx) | no | Worker errors: `wrangler rollback`, then fix forward; origin errors: GitHub Pages status | any URL |
+| Server error (5xx) | no | Worker errors: the 1.4 runbook (freeze, `wrangler rollback`, fix forward); origin errors: GitHub Pages status | any URL |
 | English clicks on bilingual root URLs (Performance) | flat vs. control | see below | see below |
 
 English-clicks rule: compare weekly clicks on bilingual English URLs against (a) the same weeks
@@ -431,6 +498,10 @@ Also track `/et/` impressions from Estonia; the target is non-zero by week 4.
 Purpose: delete code that only existed because language lived in `localStorage`. No behaviour
 change for readers; nothing here adds features.
 
+**Starts only after the Phase 4 window (6 weeks) ends without a PR-2 rollback.** Once PR-3 is
+merged, PR-2 can only be reverted together with it, so PR-3 must not land while the 4.3
+rollback triggers are still live.
+
 **5.1 Delete.**
 - `LanguageScope`, `EnglishOnly` and the `englishOnlyArticles` lookup in `Layout`: English-only
   articles now exist only at English URLs, which are `lang="en"` already.
@@ -438,7 +509,7 @@ change for readers; nothing here adds features.
 - **Kept**: the client legacy routes (`/research`, `/writing`, `/projects`,
   `LegacyDisclosureRedirect`, `/cookies`). They cost nothing and are the fallback when the Worker
   fails open or is down. `englishOnlyArticles` and its route-meta test also stay (the markers in
-  2.9 use it); the body gate in 3.6 covers the guard independently.
+  2.9 use it); the body gate in 3.6 is an independent second check.
 
 **5.2 Render-time purity audit.** Grep render paths for `window`, `document`, `localStorage`,
 `navigator`, `crypto`. Known: `ErrorBoundary` reads `document` (it only runs on the client, so
@@ -454,7 +525,7 @@ which the current CSP blocks. GitHub Pages can't add per-response nonces, so a s
 **Rollback PR-3.** Triggers, all caused by PR-3's own diff: an English-only article losing
 `lang="en"` on its body or rendering differently from before; a new 3.7 hydration error on a
 route that was clean before PR-3. Action: revert PR-3. Legacy URL problems are not PR-3's (it no
-longer touches them): they go to the Worker (`wrangler rollback`). Once PR-3 is merged, PR-2 is
+longer touches them): they go to the Worker (1.4 runbook). Once PR-3 is merged, PR-2 is
 revertable only together with it.
 
 **Acceptance for PR-3**
@@ -467,9 +538,15 @@ revertable only together with it.
 
 | PR | Trigger | Action | Notes |
 |---|---|---|---|
-| PR-1 | Worker exceptions / loops; legacy URL not 301 | `wrangler rollback`, revert | client redirects and the `/cookies` stub still cover legacy URLs |
-| PR-2 | English-clicks rule (4.3); hydration errors on English pages; canonical-gate escape | revert PR-2 with `ET_DISABLED: "1"` set in `wrangler.jsonc` `vars`, one merge: CI deploys Pages without `/et/` and the Worker with the 302 rule | rule ships and is tested in PR-1, so the revert can't remove it; 302 + `no-store`, so `/et/` URLs can come back later; Worker 5xx → `wrangler rollback`, not a PR-2 revert |
+| PR-1 | Worker exceptions / loops; legacy URL not 301 | 1.4 runbook: freeze, `wrangler rollback`, revert, unfreeze | revert only before PR-2 merges, roll forward after; client redirects and the `/cookies` stub still cover legacy URLs |
+| PR-2 | English-clicks rule (4.3); hydration errors on English pages; canonical-gate escape | revert PR-2 with `ET_DISABLED: "302"` set in `wrangler.jsonc` `vars`, one merge (Worker deploy not frozen): CI deploys Pages without `/et/` and the Worker with rule 0 | rule 0 ships and is tested in PR-1, so the revert can't remove it; Worker 5xx → 1.4 runbook, not a PR-2 revert; re-landing PR-2 removes `ET_DISABLED` in the same change |
 | PR-3 | regression in its own diff (5.x) | revert PR-3 | after PR-3, PR-2 is only revertable together with PR-3 |
+
+**302 or 301 after a PR-2 rollback.** A 302 keeps the `/et/` URLs indexed (Google treats the
+source of a temporary redirect as the page), which is right if a relaunch follows within weeks;
+a 301 lets them drop out and consolidates on English, but cached 301s then send returning
+browsers to English after a relaunch. Rule: roll back with `"302"`. If no relaunch is scheduled
+4 weeks later, set `ET_DISABLED: "301"` (one-line change, CI deploys it).
 
 ## Summary
 
@@ -488,8 +565,9 @@ revertable only together with it.
 |---|---|
 | Google treats `/et/` pages as duplicates | Only bilingual routes get `/et/`; gates block `et` elsewhere; body gate (3.6); Phase 4 thresholds. |
 | Missed internal links send Estonian readers to English | Wrapper + ESLint ban + the link gate on prerendered `/et/` bodies (3.6). |
-| Worker and site drift | CI deploys the Worker right after Pages from the same commit (1.4); state-dependent redirects are 302; unknown paths fall through. |
-| Worker outage or bug | Fails open to origin; client legacy routes and the `/cookies` stub stay; `wrangler rollback`. |
+| Worker and site drift | `worker` job runs after the Pages job from the same commit, on push and `workflow_dispatch`; a failure fails the run and GitHub emails (1.4); state-dependent redirects are 302; unknown paths fall through. |
+| CI redeploys a rolled-back Worker | `WORKER_DEPLOY_FROZEN` set first in the 1.4 runbook. |
+| Worker outage or bug | Handler exceptions pass through to origin (`passThroughOnException`); a top-level throw fails `pnpm test` and is rejected on upload. Not fail-open: CPU-limit kills, Cloudflare incidents, wrong but non-throwing redirects; for those, the 1.4 runbook. Client legacy routes and the `/cookies` stub cover legacy URLs meanwhile. |
 | Cached 301 blocks a later translation | `/et/` → English hops are 302 + `no-store`; 301 only for permanent moves. |
 | Existing readers with stored `'et'` land on English | Case A banner from their stored preference (2.7). No forced redirect. |
 | `lastmod` wrong or missing | CI fails on shallow clones and empty lookups; local-only date fallback. |
