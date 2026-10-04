@@ -30,8 +30,8 @@ export const routeMeta = {
     et: { title: "Tom Kristian Abel — turvauurija ja süsteemiarhitekt", description: "Tom Kristian Abel, turvauurija ja süsteemiarhitekt. Pöördprojekteerin autentimise nurjumist ja ehitan süsteeme, mis leitud puudustele vastu peavad." },
   },
   "/disclosures": {
-    en: { title: "Disclosures — Tom Kristian Abel", description: "Vulnerability research, teardowns, architecture frameworks and essays. Work on live systems states its disclosure status." },
-    et: { title: "Avalikustamised — Tom Kristian Abel", description: "Turvanõrkuste uuringud, käsukooditasemel analüüsid, arhitektuuriraamistikud ja esseed. Elavaid süsteeme puudutavatel uuringutel on märgitud avalikustamise seis." },
+    en: { title: "Research — Tom Kristian Abel", description: "Vulnerability research, teardowns, architecture frameworks and essays. Work on live systems states its disclosure status." },
+    et: { title: "Uuringud — Tom Kristian Abel", description: "Turvanõrkuste uuringud, käsukooditasemel analüüsid, arhitektuuriraamistikud ja esseed. Elavaid süsteeme puudutavatel uuringutel on märgitud avalikustamise seis." },
   },
   "/systems": {
     en: { title: "Systems — Tom Kristian Abel", description: "Tools, security products, and backend services I have built and deployed — from a Go TLS-fingerprinting proxy to production identity platforms." },
@@ -284,8 +284,8 @@ export function metaFor(path: string, language: Language): PageMeta & { type: 'w
 }
 
 const CRUMBS: Record<Language, [string, string]> = {
-  en: ['Home', 'Disclosures'],
-  et: ['Avaleht', 'Avalikustamised'],
+  en: ['Home', 'Research'],
+  et: ['Avaleht', 'Uuringud'],
 };
 
 // Structured data for a route in one language, or null when it has none. A

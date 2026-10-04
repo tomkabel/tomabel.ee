@@ -76,26 +76,37 @@ pure white.
 - Container: `max-w-6xl` with `px-6` **outside** it, so nav, content and footer share one edge.
 - Page structure uses CSS Grid (12 columns at `lg`, always with an explicit column template at
   every breakpoint). Flex is only for inline runs such as tag lists, datelines and button rows.
-- Deliberate asymmetry: the hero intro is offset (`lg:col-start-6`); featured work alternates
+- Deliberate asymmetry: the homepage has one interior reading edge, column 4 (`lg:col-start-4`),
+  shared by the hero intro, the fault-line quote and the essay list; featured work alternates
   7/5 then 5/7; flagship systems span two columns on `surface-2`.
-- Sections use `py-section`; interludes and mastheads use `section-tight`.
+- Sections use `py-section` (including the homepage interlude band); mastheads use
+  `section-tight`. Padding and the `sunken` band separate homepage sections; no full-width rules.
+- Pages are prerendered to static HTML at build time (`src/entry-server.tsx`, run by
+  `scripts/spa-routes.mjs`) and hydrated in English. Render output must not depend on the
+  browser (no `window`, `Date.now()` or storage reads during render).
 - Don't use `grid-flow-dense`: visual order must match tab order.
 
 ## 5. Components
 
-- **Link cards** (`WorkCard`, `CrossNav`): `rounded-card`, `surface-1` + `shadow-elevated`.
-  On hover: `surface-2`, a signal-tinted top edge, the title underline draws in (`.link-draw`),
-  and the arrow shifts. The box never translates or scales.
+- **Link cards** (`WorkCard`, `CrossNav`): `rounded-card`, `surface-1` and a hairline border, no
+  shadow. On hover: `surface-2`, a signal-tinted border, the title underline draws in
+  (`.link-draw`), and the arrow shifts. The box never translates or scales. The category label
+  is `ink-soft`; only the action is signal-coloured. Every card links to its own entry
+  (`/systems#<project>` for systems).
 - **Non-link cards** (Systems project) have no hover state. Only their links react.
 - **Figures** (code, tables, asides, PGP, article proof): `rounded-figure`, and `sunken` for code wells.
 - **Tags/chips:** `rounded-hair`, a hairline border, mono sentence case.
 - **Button:** `.btn-primary`. It has a lit top edge and a shaded bottom edge, settles 1px when
-  pressed, and is at least 44px tall. Use it only for the one primary action on a screen.
+  pressed, and is at least 44px tall. Use it only for the one primary action on a screen (the
+  homepage hero's "Read the research"); the secondary next to it is a mono text link.
+- **Naming:** one label per destination. `/disclosures` is "Research", `/systems` is "Systems",
+  in the nav, CTAs, index headings and breadcrumbs alike.
 - **Article masthead:** `ArticleHeader` (`components/site/article.tsx`). It is a `sunken` band
   with the serif title and a ruled dateline, and it is the only article header. Don't hand-roll
   a new one.
 - **Nav:** opaque, no blur. Sentence-case links whose underline draws in on hover and stays in
-  signal colour for the current page. Icon buttons are 44×44.
+  signal colour for the current page; "Contact" jumps to the footer's `#contact` list. Icon
+  buttons are 44×44; the connection button shows its "Your connection" label at `lg+`.
 - **Loader:** a hairline indeterminate scan bar with `role="status"`. No pulsing dots.
 
 ## 6. Motion

@@ -4,11 +4,17 @@ import { useTranslation } from '../../i18n/LanguageContext';
 import { Globe, Activity } from 'lucide-react';
 import Telemetry from './telemetry';
 
+// One label per destination: /disclosures is "Research" everywhere, including
+// the hero CTA and the index heading.
 const links = [
-  { to: '/disclosures', label: { en: 'Disclosures', et: 'Avalikustamised' } },
+  { to: '/disclosures', label: { en: 'Research', et: 'Uuringud' } },
   { to: '/systems', label: { en: 'Systems', et: 'Süsteemid' } },
   { to: '/about', label: { en: 'About', et: 'Minust' } },
 ] as const;
+
+// Every page ends in the footer's contact list, so a fragment link reaches it
+// from anywhere without a route change.
+const contact = { href: '#contact', label: { en: 'Contact', et: 'Kontakt' } } as const;
 
 export default function SiteNav() {
   const location = useLocation();
@@ -50,15 +56,24 @@ export default function SiteNav() {
                 </Link>
               );
             })}
+            <a
+              href={contact.href}
+              className="relative inline-flex min-h-11 min-w-11 items-center justify-center transition-colors duration-fast after:absolute after:inset-x-0 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-foreground/40 after:transition-transform after:duration-slow hover:text-foreground hover:after:scale-x-100"
+            >
+              {localize(contact.label, language)}
+            </a>
           </div>
 
+          {/* The icon alone did not say what it opens; at lg+ the name is shown,
+              below that it stays in the accessible name and tooltip. */}
           <button
             onClick={() => setTelemetryOpen(true)}
-            className="grid size-11 place-items-center rounded-control text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-accent"
-            aria-label={t.telemetry.open}
-            title={t.telemetry.open}
+            className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-control px-2 text-sm font-medium text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-accent"
+            aria-label={t.telemetry.title}
+            title={t.telemetry.title}
           >
-            <Activity className="size-3.5" />
+            <Activity aria-hidden className="size-3.5" />
+            <span aria-hidden className="hidden lg:inline">{t.telemetry.title}</span>
           </button>
 
           <button
@@ -107,7 +122,7 @@ export default function SiteNav() {
                   to={l.to}
                   onClick={() => setIsOpen(false)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`flex min-h-12 items-center border-b border-border text-base font-medium transition-colors last:border-0 hover:text-accent ${
+                  className={`flex min-h-12 items-center border-b border-border text-base font-medium transition-colors hover:text-accent ${
                     isActive ? 'text-foreground' : 'text-muted-foreground'
                   }`}
                 >
@@ -115,6 +130,13 @@ export default function SiteNav() {
                 </Link>
               );
             })}
+            <a
+              href={contact.href}
+              onClick={() => setIsOpen(false)}
+              className="flex min-h-12 items-center text-base font-medium text-muted-foreground transition-colors hover:text-accent"
+            >
+              {localize(contact.label, language)}
+            </a>
           </div>
         </div>
       )}

@@ -11,12 +11,36 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 // Node 22.18+ loads .ts directly (type stripping), so the build and the app
 // share one metadata module with no copy to drift.
 import { jsonLdFor, metaFor, pageUrl, routeMeta } from '../src/content/route-meta.ts';
+// SSR bundle from the second half of `pnpm build` (src/entry-server.tsx).
+import { render } from '../dist-ssr/entry-server.js';
 
 // Values are stamped into HTML attributes and a <script> block: escape them
 // for that context, and use function replacers so a `$` in copy is literal.
 const attr = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const setTag = (html, pattern, tag) => html.replace(pattern, () => tag);
+
+// Every shell starts from the client build's empty index.html, read once
+// before '/' itself is overwritten with its prerendered copy below.
+const emptyShell = readFileSync('pub/index.html', 'utf-8');
+
+// Prerender a route into the shell's root, so the page is readable before (or
+// without) JavaScript; main.tsx hydrates it.
+const ROOT = '<div id="root"></div>';
+const prerendered = async (html, path) => {
+  if (!html.includes(ROOT)) {
+    console.error(`FAIL: shell for ${path} has no empty ${ROOT}`);
+    process.exit(1);
+  }
+  const body = await render(path);
+  // data-route lets main.tsx refuse to hydrate a shell served for another URL
+  // (a host's SPA fallback), which would otherwise mismatch.
+  return html.replace(ROOT, () => `<div id="root" data-route="${attr(path)}">${body}</div>`);
+};
+
+// Routes whose component is only a client <Navigate> (src/components/Cookies.tsx).
+// There is nothing to prerender; a no-JS reader gets a meta refresh instead.
+const clientRedirects = { '/cookies': '/privacy' };
 
 // The static shells are the English originals; '/' is index.html itself.
 const routes = Object.keys(routeMeta)
@@ -28,7 +52,7 @@ for (const route of routes) {
   const meta = metaFor(`/${route}`, 'en');
   const jsonLd = jsonLdFor(`/${route}`, 'en');
   mkdirSync(`pub/${route}`, { recursive: true });
-  let html = readFileSync('pub/index.html', 'utf-8');
+  let html = emptyShell;
 
   // Stamp per-route meta into the static HTML.
   const tags = [
@@ -59,8 +83,13 @@ for (const route of routes) {
     html = html.replace('</head>', () => `<script type="application/ld+json">${json}</script>\n    </head>`);
   }
 
-  writeFileSync(`pub/${route}/index.html`, html);
+  const target = clientRedirects[`/${route}`];
+  if (target) {
+    html = html.replace('</head>', () => `<noscript><meta http-equiv="refresh" content="0; url=${target}" /></noscript>\n    </head>`);
+  }
+  writeFileSync(`pub/${route}/index.html`, target ? html : await prerendered(html, `/${route}`));
 }
+writeFileSync('pub/index.html', await prerendered(emptyShell, '/'));
 
 // Build-time gate: every route shell must carry exactly ONE canonical pointing
 // at itself. A dual-canonical or homepage-canonical regression fails the build.
@@ -89,11 +118,12 @@ if (
   process.exit(1);
 }
 
-console.log(`spa-routes: emitted ${routes.length} route shells with per-route meta`);
+console.log(`spa-routes: emitted ${routes.length + 1} route shells with per-route meta, prerendered except client redirects`);
 
 // GH Pages fallback for unknown paths: serve a noindex copy of the shell.
-// HTTP 404 + noindex keeps unknown URLs out of the index.
-const notFound = readFileSync('pub/index.html', 'utf-8').replace(
+// HTTP 404 + noindex keeps unknown URLs out of the index. It stays empty: it
+// answers for every unknown URL (and legacy redirects), so the client renders.
+const notFound = emptyShell.replace(
   '</head>',
   '    <meta name="robots" content="noindex" />\n  </head>',
 );

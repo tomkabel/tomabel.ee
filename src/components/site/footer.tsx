@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { site } from '../../content/site';
 
@@ -17,7 +16,8 @@ export default function SiteFooter() {
               {site.disclaimer[language]}
             </p>
           </div>
-          <div>
+          {/* The nav's "Contact" item targets this list from any page. */}
+          <div id="contact">
             <p className="mb-2 label font-bold text-muted-foreground">
               {language === 'en' ? 'Contact' : 'Kontakt'}
             </p>
@@ -41,11 +41,6 @@ export default function SiteFooter() {
                 <a className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent" href="/public-key.asc">
                   PGP
                 </a>
-              </li>
-              <li>
-                <Link className="inline-flex min-h-11 min-w-11 items-center text-muted-foreground transition-colors hover:text-accent" to="/my-story">
-                  {language === 'en' ? 'My story' : 'Minu lugu'}
-                </Link>
               </li>
             </ul>
           </div>

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
 import EntryRow from '../components/site/entry-row';
@@ -18,9 +17,16 @@ const FILTERS: { id: Filter; label: { en: string; et: string } }[] = [
   { id: 'framework', label: { en: 'Frameworks', et: 'Raamistikud' } },
 ];
 
+const isFilter = (value: string | null): value is Filter => FILTERS.some((f) => f.id === value);
+
 export default function DisclosuresPage() {
   const { language } = useTranslation();
-  const [filter, setFilter] = useState<Filter>('all');
+  // The active tab lives in the URL (?kind=essay), so other pages can link
+  // straight to one kind and the choice survives reload and sharing.
+  const [params, setParams] = useSearchParams();
+  const kind = params.get('kind');
+  const filter: Filter = isFilter(kind) ? kind : 'all';
+  const setFilter = (f: Filter) => setParams(f === 'all' ? {} : { kind: f }, { replace: true });
 
   // Only offer tabs that actually have entries, so no tab lands on an empty list.
   const available = FILTERS.filter(
@@ -33,7 +39,7 @@ export default function DisclosuresPage() {
       <section className="border-b border-border px-6 pb-8 pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
-            label={language === 'en' ? 'Disclosures' : 'Avalikustamised'}
+            label={language === 'en' ? 'Research' : 'Uuringud'}
             title={language === 'en' ? 'Research, teardowns, and arguments.' : 'Uuringud, analüüsid ja argumendid.'}
             intro={language === 'en'
               ? 'One surface for the technical work and the writing that connects it: disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and the shorter, more opinionated essays. Where research touches live systems, each page states its disclosure status: who was told, when, and what they said.'
@@ -101,7 +107,7 @@ export default function DisclosuresPage() {
 
       <div className="sticky top-[calc(theme(spacing.16)+1px)] z-30 border-b border-border bg-background px-6">
         <div className="mx-auto max-w-6xl">
-          <div role="group" aria-label={language === 'en' ? 'Filter disclosures' : 'Filtreeri avalikustatud'} className="-mx-3 flex gap-1 overflow-x-auto py-2 md:flex-wrap">
+          <div role="group" aria-label={language === 'en' ? 'Filter research' : 'Filtreeri uuringuid'} className="-mx-3 flex gap-1 overflow-x-auto py-2 md:flex-wrap">
             {available.map((f) => {
               const active = filter === f.id;
               return (
@@ -141,7 +147,7 @@ export default function DisclosuresPage() {
 
       <CrossNav
         to="/systems"
-        label={language === 'en' ? 'What I build' : 'Mida ma ehitan'}
+        label={language === 'en' ? 'Systems' : 'Süsteemid'}
         blurb={language === 'en'
           ? 'The disclosures are the research and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
           : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvatooted ja tootmises töötavad backend-teenused.'}

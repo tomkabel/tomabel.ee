@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useSyncExternalStore } from 'react';
 import { translations, type Language } from './translations';
 
 interface LanguageContextType {
@@ -37,14 +37,26 @@ function preferredBrowserLanguage(): Language {
   return 'en';
 }
 
+// The reader's language is a tiny external store rather than component state,
+// so hydration can use getServerSnapshot: built pages are prerendered in
+// English (src/entry-server.tsx), React hydrates them as English, then
+// re-renders in the reader's language without discarding the markup.
+let current: Language | null = null;
+const listeners = new Set<() => void>();
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+};
+const getSnapshot = (): Language => (current ??= readStoredLanguage() ?? preferredBrowserLanguage());
+const getServerSnapshot = (): Language => 'en';
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() =>
-    typeof window === 'undefined' ? 'en' : (readStoredLanguage() ?? preferredBrowserLanguage()),
-  );
+  const language = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    if (typeof window === 'undefined') return;
+    current = lang;
+    listeners.forEach((listener) => listener());
     try {
       localStorage.setItem('language', lang);
     } catch {

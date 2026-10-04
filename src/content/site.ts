@@ -27,8 +27,8 @@ export const site = {
     },
   },
   introStrip: {
-    en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies. I’ve spent years on both sides of that gap — first exploiting it, now closing it. These days I research identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), reverse engineer anti-fraud systems at the opcode level, and ship production platforms built secure-by-design. I disclose what I find, in public, and I take responsibility for all of it.",
-    et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib. Olen aastaid veetnud mõlemal pool seda lõhet — algul seda ära kasutades, nüüd sulgedes. Tänapäeval uurin identiteediprotokolle (FIDO2 / WebAuthn, eIDAS, Smart-ID), pöördprojekteerin pettusevastaseid süsteeme opkoodi tasemel ja tarnin tootmisplatvorme, mis on turvalised disaini järgi, mitte lootuse peale. Avaldan oma leiud avalikult ja võtan kõige eest vastutuse.",
+    en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies. I spent years exploiting that gap. Now I close it, in public, and answer for all of it.",
+    et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib. Aastaid kasutasin seda lõhet ära. Nüüd sulgen selle, avalikult, ja võtan kõige eest vastutuse.",
   },
   contact: {
     github: 'https://github.com/tomkabel',
@@ -60,7 +60,7 @@ export type FeaturedWork = {
 
 export const featuredWork: FeaturedWork[] = [
   {
-    impact: { en: "Google’s anti-fraud VM", et: "Google’i pettusevastane VM" },
+    impact: { en: "Teardown · Google’s anti-fraud VM", et: "Analüüs · Google’i pettusevastane VM" },
     title: {
       en: 'BotGuard, disassembled',
       et: 'BotGuard, lahti võetud',
@@ -69,12 +69,12 @@ export const featuredWork: FeaturedWork[] = [
       en: "Opcode-level reverse engineering of Google’s VM-based anti-fraud system — anti-debug mechanisms, token portability, the works.",
       et: "Google’i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
     },
-    tags: ['Reverse Engineering', 'Anti-Fraud VM'],
+    tags: ['Reverse Engineering', 'Anti-Debug'],
     href: '/disclosures/botguard-disassembled',
     cta: { en: 'Read', et: 'Loe' },
   },
   {
-    impact: { en: 'Disclosed · RIA / CERT-EE', et: 'Avalikustatud · RIA / CERT-EE' },
+    impact: { en: 'Disclosure · RIA / CERT-EE', et: 'Avalikustamine · RIA / CERT-EE' },
     title: {
       en: 'Smart-ID / eID research',
       et: 'Smart-ID / eID uuringud',
@@ -88,7 +88,7 @@ export const featuredWork: FeaturedWork[] = [
     cta: { en: 'Read', et: 'Loe' },
   },
   {
-    impact: { en: 'Open source · Go', et: 'Avatud lähtekood · Go' },
+    impact: { en: 'System · Open source', et: 'Süsteem · Avatud lähtekood' },
     title: {
       en: 'fingerprintproxy',
       et: 'fingerprintproxy',
@@ -98,11 +98,11 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Tootmisvalmis Go TLS-sõrmejäljeproksi. 65+ brauseriprofiili, JA3/JA4, MITM tugi, puhas API.',
     },
     tags: ['Go', 'TLS / JA4'],
-    href: '/systems',
-    cta: { en: 'View systems', et: 'Vaata süsteeme' },
+    href: '/systems#fingerprintproxy',
+    cta: { en: 'Read', et: 'Loe' },
   },
   {
-    impact: { en: 'Open framework', et: 'Avatud raamistik' },
+    impact: { en: 'Framework · Open', et: 'Raamistik · Avatud' },
     title: {
       en: 'Zero-Trust Octagon',
       et: 'Zero-Trust Octagon',
@@ -111,7 +111,7 @@ export const featuredWork: FeaturedWork[] = [
       en: 'A zero-trust architecture framework built from first principles — 8 axioms, a 9-dimension morphological matrix, archetypal breach analysis.',
       et: 'Null-usalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
     },
-    tags: ['Architecture', 'Zero Trust'],
+    tags: ['Architecture', 'NIST 800-207'],
     href: '/disclosures/zero-trust-octagon',
     cta: { en: 'Read', et: 'Loe' },
   },

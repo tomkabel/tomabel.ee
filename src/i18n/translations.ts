@@ -36,7 +36,6 @@ export const translations = {
       },
     },
     telemetry: {
-      open: 'Connection',
       title: 'Your connection',
       subtitle: 'Read passively from your TLS handshake.',
       close: 'Close',
@@ -374,7 +373,6 @@ export const translations = {
       },
     },
     telemetry: {
-      open: 'Ühendus',
       title: 'Sinu ühendus',
       subtitle: 'Loetud passiivselt sinu TLS-käepigistusest.',
       close: 'Sulge',
