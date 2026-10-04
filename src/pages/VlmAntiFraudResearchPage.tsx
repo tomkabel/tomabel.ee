@@ -52,8 +52,8 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: 'Point-in-time VM attestation runs a small custom virtual machine inside the browser. It executes obfuscated bytecode that probes the environment, traps debuggers, checks timers, and emits a bearer token. Google BotGuard is the canonical example, and I have published a separate opcode-level teardown of it.',
-        et: 'Hetkeline virtuaalmasina-atesteerimine käivitab brauseris väikese omatehtud virtuaalmasina. See täidab hägustatud baitkoodi, mis uurib keskkonda, püüab silureid, kontrollib taimereid ja väljastab loa, mida server usub. Google BotGuard on kanooniline näide ja olen sellest avaldanud eraldi opkoodi tasemel lahtivõtmise.',
+        en: 'Point-in-time VM attestation runs a small custom virtual machine inside the browser. It executes obfuscated bytecode that probes the environment, traps debuggers, checks timers, and emits a bearer token. Google BotGuard is the canonical example, and I have published a separate teardown of it, built on public research.',
+        et: 'Hetkeline virtuaalmasina-atesteerimine käivitab brauseris väikese omatehtud virtuaalmasina. See täidab hägustatud baitkoodi, mis uurib keskkonda, püüab silureid, kontrollib taimereid ja väljastab loa, mida server usub. Google BotGuard on kanooniline näide ja olen sellest avaldanud eraldi lahtivõtmise, mis põhineb avalikel uuringutel.',
       },
       {
         en: 'Stateful behavioural telemetry does the opposite: instead of one deep probe it accumulates a shallow profile over weeks. Cookies, storage, navigation cadence, dwell time. Its real weapon is latency: a three-month-old browsing history takes three months to grow, or has to be bought from someone who waited.',
@@ -406,8 +406,8 @@ function VlmAntiFraudResearchPage() {
                 </Link>
                 {' — '}
                 {isEn
-                  ? 'the opcode-level teardown of the mechanism this article describes from the outside.'
-                  : 'opkoodi tasemel lahtivõtmine mehhanismist, mida see artikkel kirjeldab väljastpoolt.'}
+                  ? 'a teardown, from public research, of the mechanism this article describes from the outside.'
+                  : 'avalikel uuringutel põhinev lahtivõtmine mehhanismist, mida see artikkel kirjeldab väljastpoolt.'}
               </li>
               <li>
                 <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">

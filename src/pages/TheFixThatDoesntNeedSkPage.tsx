@@ -63,8 +63,8 @@ const sections: EssaySection[] = [
         et: 'Selle ulatus on kitsas. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda ohvri enda algatatud ülekannete kohta, kus raha liigutab ohvri enda tavapärane seanss ja võrrelda pole midagi ebatavalist. Kasulik on see ka klassikalise ründaja-seansi kõneõngitsuse vastu, kus ründaja logib sisse oma seadmest ja ohver vaid kinnitab PIN-koodid. Mõlema vastu toimib raporti enda teine parandus, samal seadmel Smart-ID+, paremini kui ükski järjepidevuse kontroll suudaks, sest sama seade eemaldab teise seansi, mida rünnak vajab.',
       },
       {
-        en: "So the sixth fix is not a replacement for the report's five. It is the tool for the years between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show has lasted more than a year so far.",
-        et: 'Nii et kuues parandus ei asenda raporti viit. See on tööriist aastate jaoks nende vahel: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mis raporti enda numbrite järgi on kestnud juba üle aasta.',
+        en: "So the sixth fix is not a replacement for the report's five. It is the tool for the gap between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show has lasted more than a year so far.",
+        et: 'Nii et kuues parandus ei asenda raporti viit. See on tööriist nendevahelise aja jaoks: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mis raporti enda numbrite järgi on kestnud juba üle aasta.',
       },
     ],
   },
@@ -187,7 +187,7 @@ export default function TheFixThatDoesntNeedSkPage() {
 
       <ArticleProof
         slug="the-fix-that-doesnt-need-sk"
-        expectedSha256="317b26607d83ed20fa3511c01a4d813a8a213b8cda81e9c3bc2fac815053ab87"
+        expectedSha256="23790b263933241f395d77c454ede86e00524ee937b975ae897725a3fbb665a4"
       />
     </article>
   );

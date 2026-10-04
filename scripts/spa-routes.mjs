@@ -61,7 +61,8 @@ async function withBody(html, path) {
 }
 
 for (const route of routes) {
-  const url = pageUrl(`/${route}`);
+  // A redirect stub canonicalizes to its target, not to itself.
+  const url = pageUrl(redirectRoutes[`/${route}`] ?? `/${route}`);
   const meta = metaFor(`/${route}`, 'en');
   const jsonLd = jsonLdFor(`/${route}`, 'en');
   mkdirSync(`pub/${route}`, { recursive: true });
@@ -105,7 +106,7 @@ const offenders = routes
   .map((route) => {
     const html = readFileSync(`pub/${route}/index.html`, 'utf-8');
     const canonicals = [...html.matchAll(/rel="canonical"/g)].length;
-    const pointsAtSelf = html.includes(`<link rel="canonical" href="${pageUrl(`/${route}`)}" />`);
+    const pointsAtSelf = html.includes(`<link rel="canonical" href="${pageUrl(redirectRoutes[`/${route}`] ?? `/${route}`)}" />`);
     return { route, canonicals, pointsAtSelf };
   })
   .filter((r) => r.canonicals !== 1 || !r.pointsAtSelf);

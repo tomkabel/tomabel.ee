@@ -222,7 +222,7 @@ const sources = [
   {
     label: 'Companion essay: Coordinated disclosure in a small country',
     url: 'https://tomabel.ee/disclosures/coordinated-disclosure-in-a-small-country/',
-    note: 'what national-infrastructure disclosure looks like in Estonia',
+    note: 'what disclosing a flaw in critical digital infrastructure looks like in Estonia',
   },
   {
     label: 'Companion essay: What client-side trust is actually worth',
@@ -377,7 +377,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="97542e03f667a578a6eae6ce8d993e3c83778f328fc8734f4df8fc81ce2e1aef"
+        expectedSha256="3828aa2d43c954ae6f4f3783f2b521a0dda113cf1a4ecdfd4830fda16f840e5f"
       />
     </article>
   );

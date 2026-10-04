@@ -85,12 +85,12 @@ export const routeMeta = {
     },
   },
   "/disclosures/botguard-disassembled": {
-    en: { title: "BotGuard, disassembled — Tom Kristian Abel", description: "An opcode-level teardown of Google's BotGuard VM, built on Cypa's and LuanRT's work: tokens bound to site, lifetime and content, but not to the machine." },
+    en: { title: "BotGuard, disassembled — Tom Kristian Abel", description: "A teardown of Google's BotGuard VM from public research, built on Cypa's and LuanRT's work: tokens bound to site, lifetime and content, but not to the machine." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-11",
       dateModified: "2026-10-04",
-      en: { headline: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM", abstract: "An opcode-level teardown of Google's BotGuard anti-fraud VM, built on Cypa's VM analysis and LuanRT's PO-token research: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the structural binding gap at the end of the chain — a token bound to site, lifetime and content, but not to the machine." },
+      en: { headline: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM", abstract: "A teardown of Google's BotGuard anti-fraud VM from public research, built on Cypa's VM analysis and LuanRT's PO-token research: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the structural binding gap at the end of the chain — a token bound to site, lifetime and content, but not to the machine." },
     },
   },
   "/disclosures/smart-id-achilles-heel": {
@@ -131,7 +131,7 @@ export const routeMeta = {
   },
   "/disclosures/the-pin-that-cannot-be-delegated": {
     en: { title: "The PIN that cannot be delegated — Tom Kristian Abel", description: "Why an AI agent cannot enter your Smart-ID PIN: SK's terms, the remote-QSCD practice statement, eIDAS Articles 26 and 32, and the OAuth-style pattern instead." },
-    et: { title: "PIN, mida ei saa delegeerida — Tom Kristian Abel", description: "Miks TI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK tingimused, kaug-QSCD praktika avaldus, eIDASe artiklid 26 ja 32 ning OAuthi-laadne muster." },
+    et: { title: "PIN, mida ei saa delegeerida — Tom Kristian Abel", description: "Miks TI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK tingimused, kaug-QSCD tavadokument, eIDASe artiklid 26 ja 32 ning OAuthi-laadne muster." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-08",

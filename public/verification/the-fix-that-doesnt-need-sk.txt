@@ -27,7 +27,7 @@ This is not a new idea. Paršovs listed exactly these heuristics in January 2026
 
 The scope is narrow. The sixth fix is a check for the cross-device, attacker-initiated case this report documents: a QR flow relayed through infrastructure the attacker controls. It has nothing to say about victim-initiated transfers, where the victim’s own usual session moves the money and there is nothing anomalous to compare it against. It is also useful against classic attacker-session vishing, where the attacker logs in from their own device and the victim only approves PINs. Against both, the report's own second fix, same-device Smart-ID+, does better than any continuity check could, because same-device removes the second session the attack needs.
 
-So the sixth fix is not a replacement for the report's five. It is the tool for the years between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show has lasted more than a year so far.
+So the sixth fix is not a replacement for the report's five. It is the tool for the gap between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show has lasted more than a year so far.
 
 ## Who can ship it, and what it is worth
 
@@ -63,7 +63,7 @@ See ei ole uus mõte. Paršovs loetles just need heuristikad üles 2026. aasta j
 
 Selle ulatus on kitsas. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda ohvri enda algatatud ülekannete kohta, kus raha liigutab ohvri enda tavapärane seanss ja võrrelda pole midagi ebatavalist. Kasulik on see ka klassikalise ründaja-seansi kõneõngitsuse vastu, kus ründaja logib sisse oma seadmest ja ohver vaid kinnitab PIN-koodid. Mõlema vastu toimib raporti enda teine parandus, samal seadmel Smart-ID+, paremini kui ükski järjepidevuse kontroll suudaks, sest sama seade eemaldab teise seansi, mida rünnak vajab.
 
-Nii et kuues parandus ei asenda raporti viit. See on tööriist aastate jaoks nende vahel: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mis raporti enda numbrite järgi on kestnud juba üle aasta.
+Nii et kuues parandus ei asenda raporti viit. See on tööriist nendevahelise aja jaoks: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mis raporti enda numbrite järgi on kestnud juba üle aasta.
 
 ## Kes saab selle tarnida ja mida see väärt on
 

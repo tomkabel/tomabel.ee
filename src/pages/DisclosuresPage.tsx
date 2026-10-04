@@ -42,8 +42,8 @@ export default function DisclosuresPage() {
             label={language === 'en' ? 'Research' : 'Uuringud'}
             title={language === 'en' ? 'Research, teardowns, and arguments.' : 'Uuringud, analüüsid ja argumendid.'}
             intro={language === 'en'
-              ? 'One surface for the technical work and the writing that connects it: disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and the shorter, more opinionated essays. Where research touches live systems, each page states its disclosure status: who was told, when, and what they said.'
-              : 'Üks pind tehnilisele tööle ja seda siduvale kirjutamisele: avalikustatud haavatavuste uuringud, opkooditasemel analüüsid, arhitektuuriraamistikud ja lühemad, arvamuslikumad esseed. Kus uuringud puudutavad elavaid süsteeme, on igal lehel kirjas avalikustamise seis: keda teavitati, millal ja mida vastati.'}
+              ? 'One surface for the technical work and the writing that connects it: disclosed vulnerability research, technical teardowns, architecture frameworks, and the shorter, more opinionated essays. Where research touches live systems, each page states its disclosure status: who was told, when, and what they said.'
+              : 'Üks pind tehnilisele tööle ja seda siduvale kirjutamisele: avalikustatud haavatavuste uuringud, tehnilised analüüsid, arhitektuuriraamistikud ja lühemad, arvamuslikumad esseed. Kus uuringud puudutavad elavaid süsteeme, on igal lehel kirjas avalikustamise seis: keda teavitati, millal ja mida vastati.'}
           />
           <div className="mt-10 max-w-measure">
             <Callout label={language === 'en' ? 'The thesis' : 'Tees'}>

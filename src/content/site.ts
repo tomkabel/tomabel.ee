@@ -167,8 +167,8 @@ export const disclosures: Disclosure[] = [
       et: "BotGuard, lahti võetud — Google’i pettusevastase VM-i pöördprojekteerimine",
     },
     blurb: {
-      en: "A deep, opcode-level teardown of Google’s BotGuard: the bytecode VM, its anti-debugging and obfuscation layers, and the structural binding gap at the end — a token the server verifies but cannot tie to the machine that made it. Builds on Cypa’s VM analysis and LuanRT’s PO-token research. If you’ve ever wondered what \"client-side trust\" is really worth, start here.",
-      et: "Põhjalik opkooditasemel analüüs Google’i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning struktuurne sidumislünk ahela lõpus — token, mida server kontrollib, kuid ei suuda siduda masinaga, mis selle lõi. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
+      en: "A teardown of Google’s BotGuard from public research: the bytecode VM, its anti-debugging and obfuscation layers, and the structural binding gap at the end — a token the server verifies but cannot tie to the machine that made it. Builds on Cypa’s VM analysis and LuanRT’s PO-token research. If you’ve ever wondered what \"client-side trust\" is really worth, start here.",
+      et: "Avalikel uuringutel põhinev analüüs Google’i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning struktuurne sidumislünk ahela lõpus — token, mida server kontrollib, kuid ei suuda siduda masinaga, mis selle lõi. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
     },
     tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
     keywords: 'browser automation, CDP, VM analysis, anti-fraud, client-side security',
