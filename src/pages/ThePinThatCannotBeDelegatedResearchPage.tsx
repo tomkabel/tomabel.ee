@@ -3,6 +3,7 @@ import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
+import { PolicyText } from '../components/site/policy-link';
 
 type Bi = { en: string; et: string };
 
@@ -316,15 +317,14 @@ const disclosureParagraphs: Bi[] = [
     et: 'Ühtegi haavatavust ei leitud, testitud ega ära kasutatud. Ühegi töötava süsteemiga ei võetud ühendust. See on dokumendianalüüsi raport, mis põhineb täielikult avalikult kättesaadaval materjalil, nii et enne avaldamist ei ole SK ID Solutionsi, CERT-EE ega ühegi usaldava osapoolega midagi kooskõlastada. Avalikustamise seis: midagi ei ole vaja. SK ID Solutions ei ole seda lugemist üle vaadanud ega heaks kiitnud.',
   },
   {
-    en: 'The author has published prior Smart-ID protocol research, which was disclosed to SK ID Solutions. Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Nothing in this report recommends it. Research conduct follows the site’s ',
-    et: 'Autor on varem avaldanud Smart-ID protokolliuuringuid, mis avalikustati SK ID Solutionsile. Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Miski selles raportis ei soovita seda toodet. Uurimistöös järgib autor saidi ',
+    en: 'The author has published prior Smart-ID protocol research, which was disclosed to SK ID Solutions. Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Nothing in this report recommends it. Research conduct follows the site’s security research policy.',
+    et: 'Autor on varem avaldanud Smart-ID protokolliuuringuid, mis avalikustati SK ID Solutionsile. Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Miski selles raportis ei soovita seda toodet. Uurimistöös järgib autor saidi turvauuringute põhimõtteid.',
   },
   {
     en: 'Corrections, 4 October 2026: the rQSCD SPS citations now separate §6.2.8, §6.2.8.1 and §6.2.9.1, and the quoted SAD clause keeps SK’s wording ("can [be] submitted"); the eIDAS clause is cited as Article 26(1)(c); the signing-moment reading is presented as the better reading, anchored in Article 32(1)(h) and Annex II(1)(d), rather than as settled; RFC 9345 is no longer described as server-only; and SK’s certificate policy, which no claim relied on, was removed from the scope statement.',
     et: 'Parandused, 4. oktoober 2026: rQSCD SPS viited eristavad nüüd punkte §6.2.8, §6.2.8.1 ja §6.2.9.1 ning SAD-i kohta käiv tsitaat säilitab SK sõnastuse („can [be] submitted“); eIDASe säte on viidatud kui artikli 26 lõike 1 punkt c; allkirjastamise hetke lugemine on esitatud parema lugemisena, mis tugineb artikli 32 lõike 1 punktile h ja II lisa punkti 1 alapunktile d, mitte lahendatud küsimusena; RFC 9345 ei ole enam kirjeldatud ainult serveripoolsena; ning ulatuse kirjeldusest eemaldati SK sertifitseerimispoliitika, millele ükski väide ei tuginenud.',
   },
 ];
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 const thesis: Bi = {
   en: 'The PIN is signature activation data: fresh per operation, never stored, and required to stay under the subscriber’s sole control. A scheme that hands it to an agent is a credential handover, not delegation; the compliant pattern is scoped tokens plus a human PIN step at signing time.',
@@ -454,18 +454,11 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]?.[language]}</p>
-              <p>
-                {disclosureParagraphs[1]?.[language]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  {isEn ? 'security research policy' : 'turvauuringute põhimõtteid'}
-                </a>
-                .
-              </p>
-              <p>{disclosureParagraphs[2]?.[language]}</p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>
+                  <PolicyText text={paragraph[language]} />
+                </p>
+              ))}
             </div>
           </section>
         </div>

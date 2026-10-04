@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader, ProtocolTable } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
@@ -247,13 +248,9 @@ const disclosureParagraphs = [
   'Disclosure record. 2025-11: I reported the QRLJacking and MITM relay vectors to SK ID Solutions, with technical details. 2025-12-05: SK replied: "See turvanõrkus oli meile arenduse käigus juba kohe teada... [kuid] teatud perioodiks oleme seda riski teadlikult aktsepteerinud" ("This security vulnerability was already known to us during development... [but] for a certain period we have consciously accepted this risk"). The reply was addressed to me as the reporter and is quoted because it states SK\u2019s position on the finding. 2025-12: a CVE was requested; SK disputes the finding, calling it an "architectural feature". 2026-04-08: I filed formal memoranda with RIA (a request for regulatory intervention), the Consumer Protection and Technical Regulatory Authority TTJA (a misleading-practices complaint) and the Data Protection Inspectorate AKI (GDPR Articles 25 and 32). 2026-04: the research corpus was published. The full timeline is in the corpus linked above.',
   'Those memoranda mean I am a party to an open regulatory dispute with SK. Read this report with that in mind.',
   'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product.',
-  'This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site\u2019s ',
+  'This report deliberately omits operational detail: no selectors, no message patterns, no automation steps. It describes the attack class and its implications. Research conduct follows the site\u2019s security research policy.',
   'Corrections, 4 October 2026: the earlier version said only one bank had deployed Smart-ID+ and that SK "shipped" it in June 2025; SK made it available to integrators then, and Bigbank and LHV went live in June 2026. This version also drops the statement that the PoC was "authorized by Arnis Paršovs", which did not say what was authorized or by whose right; replaces the vague disclosure note with the dated record above; credits the loss rule to PSD2 Art. 74(2) rather than card schemes; and fixes the dead link to the research corpus.',
 ];
-
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
-// The paragraph that ends in the policy link; the corrections note follows it.
-const POLICY_PARAGRAPH = disclosureParagraphs.length - 2;
 
 export default function SmartIdAchillesHeelResearchPage() {
   return (
@@ -354,22 +351,11 @@ export default function SmartIdAchillesHeelResearchPage() {
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              {disclosureParagraphs.map((paragraph, i) =>
-                i === POLICY_PARAGRAPH ? (
-                  <p key={paragraph}>
-                    {paragraph}
-                    <a
-                      href={disclosurePolicyUrl}
-                      className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                    >
-                      security research policy
-                    </a>
-                    .
-                  </p>
-                ) : (
-                  <p key={paragraph}>{paragraph}</p>
-                ),
-              )}
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <PolicyText text={paragraph} />
+                </p>
+              ))}
             </div>
           </section>
         </div>
@@ -377,7 +363,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="3828aa2d43c954ae6f4f3783f2b521a0dda113cf1a4ecdfd4830fda16f840e5f"
+        expectedSha256="700289dab2165d770264b3c8ef13dbbf95e2a3d582e99c2e0c8dab9c3c2a951a"
       />
     </article>
   );

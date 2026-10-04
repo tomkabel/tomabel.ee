@@ -143,6 +143,7 @@ await mkdir(tmpDir, { recursive: true });
 await mkdir(verificationDir, { recursive: true });
 
 const stale = [];
+const handled = new Set();
 for (const name of (await readdir(pagesDir)).filter((f) => f.endsWith('.tsx'))) {
   const file = join(pagesDir, name);
   const source = await readFile(file, 'utf8');
@@ -150,6 +151,7 @@ for (const name of (await readdir(pagesDir)).filter((f) => f.endsWith('.tsx'))) 
   if (!match) continue;
 
   const [, slug, committedHash] = match;
+  handled.add(`${slug}.txt`);
   const mod = await loadContent(file);
   const text = renderCanonical(mod, {
     slug,
@@ -176,7 +178,17 @@ for (const name of (await readdir(pagesDir)).filter((f) => f.endsWith('.tsx'))) 
 
 await rm(tmpDir, { recursive: true, force: true });
 
+// A .txt no page owns, or a signature with no .txt, still gets published and
+// attests text the site no longer shows. Reported, never deleted.
+const orphans = (await readdir(verificationDir)).filter((f) =>
+  f.endsWith('.txt') ? !handled.has(f) : f.endsWith('.txt.asc') && !handled.has(f.slice(0, -4)),
+);
+for (const f of orphans) console.error(`orphan public/verification/${f}`);
+if (check) stale.push(...orphans);
+
 if (stale.length) {
-  console.error(`\n${stale.length} canonical text(s) out of date. Run: node scripts/canonical-text.mjs`);
+  console.error(
+    `\n${stale.length} verification file(s) stale or orphaned. Run: node scripts/canonical-text.mjs, and delete orphans by hand.`,
+  );
   process.exit(1);
 }

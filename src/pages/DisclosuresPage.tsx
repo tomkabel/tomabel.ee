@@ -25,13 +25,14 @@ export default function DisclosuresPage() {
   // straight to one kind and the choice survives reload and sharing.
   const [params, setParams] = useSearchParams();
   const kind = params.get('kind');
-  const filter: Filter = isFilter(kind) ? kind : 'all';
-  const setFilter = (f: Filter) => setParams(f === 'all' ? {} : { kind: f }, { replace: true });
 
   // Only offer tabs that actually have entries, so no tab lands on an empty list.
   const available = FILTERS.filter(
     (f) => f.id === 'all' || disclosures.some((d) => d.kind === f.id),
   );
+  // An unknown or empty ?kind= shows everything rather than an empty list.
+  const filter: Filter = isFilter(kind) && available.some((f) => f.id === kind) ? kind : 'all';
+  const setFilter = (f: Filter) => setParams(f === 'all' ? {} : { kind: f }, { replace: true });
   const shown = filter === 'all' ? disclosures : disclosures.filter((d) => d.kind === filter);
 
   return (

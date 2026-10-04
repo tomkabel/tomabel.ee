@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
@@ -214,12 +215,10 @@ const sources = [
 
 const disclosureParagraphs = [
   'This report is an analysis of public record: press releases, a design post, IETF documents, a public design repository, and published commentary. It touches no live system, discloses no vulnerability, and contains no private or client material. PACT is not deployed as of October 2026, so there is no vendor to coordinate with and no disclosure obligation. Cloudflare, Mozilla, and the other browser vendors were not contacted for comment; this analysis stands on the public record alone.',
-  'Where the design changes, this analysis will need revisiting; the governance questions it raises will not. Research conduct follows the site’s ',
   'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. PACT addresses the same bot- and agent-trust problem by other means, and could complement or compete with it.',
+  'Where the design changes, this analysis will need revisiting; the governance questions it raises will not. Research conduct follows the site’s security research policy.',
   'Corrections, 4 October 2026: an earlier version described PACT as a blind-signature Privacy Pass scheme with attester and issuer roles, attributed that mechanism to the press release, and listed rate-limited issuance as a missing safeguard; the report now follows the designers’ own description (Anchors, Endorsements, Moderators and Credentials built on ACT and ARC anonymous credentials, with rate limiting as the core goal). It also corrected the attribution of the attack-scenario list (Gupta, not the PACT repository), separated Cloudflare’s device-posture checks from anti-bot Private Access Tokens, quoted Mozilla directly instead of through commentary, noted that the 57.5 percent bot share counts HTML requests only, and dropped an unverifiable SourceFeed citation.',
 ];
-
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 export default function PactSoftwareAnchorTurnResearchPage() {
   return (
@@ -304,19 +303,11 @@ export default function PactSoftwareAnchorTurnResearchPage() {
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]}</p>
-              <p>{disclosureParagraphs[2]}</p>
-              <p>
-                {disclosureParagraphs[1]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  security research policy
-                </a>
-                .
-              </p>
-              <p>{disclosureParagraphs[3]}</p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <PolicyText text={paragraph} />
+                </p>
+              ))}
             </div>
           </section>
         </div>
@@ -324,7 +315,7 @@ export default function PactSoftwareAnchorTurnResearchPage() {
 
       <ArticleProof
         slug="pact-software-anchor-turn"
-        expectedSha256="3560ae82f29aac80f41369c70c523965d4a894fc42baf960079d4cf4e85bbaf3"
+        expectedSha256="04897da9a945a2b55d028e53d897dce9215ff27f4143558180dfb63e8086575b"
       />
     </article>
   );

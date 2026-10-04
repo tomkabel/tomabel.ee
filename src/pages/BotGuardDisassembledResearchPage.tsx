@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader, Callout, CodeBlock } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
@@ -181,7 +182,7 @@ const sources = [
 
 const disclosureParagraphs = [
   "This report describes Google's production anti-fraud systems. The technical analysis is drawn from research that was already public before this report: Cypa's botguard-reverse (open source) and LuanRT's BgUtils (MIT). My own google-botguard-security-research repository is an analytical SoK paper and is cited for the client-side-trust argument, not as the source of the VM internals.",
-  'No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. The one first-person element is a token-replay test I ran privately in 2021; it has not been independently reproduced and belongs to a token-harvesting class that was already public tooling by 2020. Google was not notified of that 2021 test, through its Vulnerability Reward Program or any other channel; it is an unreproduced observation, not a disclosed vulnerability. Google updates BotGuard continuously, so this describes architecture, not a byte-exact snapshot, and operational detail is deliberately left out. Research conduct follows the site\u2019s ',
+  'No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. The one first-person element is a token-replay test I ran privately in 2021; it has not been independently reproduced and belongs to a token-harvesting class that was already public tooling by 2020. Google was not notified of that 2021 test, through its Vulnerability Reward Program or any other channel; it is an unreproduced observation, not a disclosed vulnerability. Google updates BotGuard continuously, so this describes architecture, not a byte-exact snapshot, and operational detail is deliberately left out. Research conduct follows the site\u2019s security research policy.',
   'Disclosure: the author runs ProksiAbel O\u00dc, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here \u2014 weighting attestation against server-side signals such as IP reputation and session history \u2014 fall in that category.',
   'Corrections, 4 October 2026: the VM internals are now attributed inline to Cypa (botguard-reverse) and the PO-token details to LuanRT (BgUtils) rather than to the author\u2019s repository; the 2021 portability claim is reframed as the author\u2019s own unreproduced note within the known token-harvesting class, with the \u201cweakness\u201d framing dropped; token-binding limits (site, lifetime, content, not machine) are stated accurately; the session-bound token is noted as no longer used by YouTube\u2019s web client; and the yt-dlp enforcement wording is quoted as written.',
 ];
@@ -192,8 +193,6 @@ const whatsNewItems = [
   'yt-dlp \u2014 production enforcement: HTTP 403 behaviour, content/session binding, and (since Nov 2025) the external JS-runtime requirement.',
   'This report \u2014 the synthesis and the client-side-trust argument built on top of that prior work, plus a private, unreproduced 2021 token-replay note flagged as such.',
 ];
-
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 export default function BotGuardDisassembledResearchPage() {
   return (
@@ -310,19 +309,11 @@ export default function BotGuardDisassembledResearchPage() {
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]}</p>
-              <p>
-                {disclosureParagraphs[1]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  security research policy
-                </a>
-                .
-              </p>
-              <p>{disclosureParagraphs[2]}</p>
-              <p>{disclosureParagraphs[3]}</p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <PolicyText text={paragraph} />
+                </p>
+              ))}
             </div>
           </section>
         </div>
@@ -330,7 +321,7 @@ export default function BotGuardDisassembledResearchPage() {
 
       <ArticleProof
         slug="botguard-disassembled"
-        expectedSha256="1914335c267b00f8ec999adea590ab1a1b5e5d314e5faaabb6b6216f851c3c76"
+        expectedSha256="473b9275e2363753f98428dff24d1dcfa7954fdfcf8d4f3307c010be3dd35372"
       />
     </article>
   );
