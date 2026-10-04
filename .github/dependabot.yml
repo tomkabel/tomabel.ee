@@ -7,7 +7,14 @@ updates:
     open-pull-requests-limit: 5
     # Note: dependabot.yml schema has no install-cooldown key; grouped weekly
     # updates + human review serve as the check here.
+    ignore:
+      # Runtime is Node 22 (CI, engines); newer majors type APIs that don't exist.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
+      # React throws on mismatched react/react-dom versions; bump them together.
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
       dev-deps:
         dependency-type: "development"
         update-types: ["minor", "patch"]
