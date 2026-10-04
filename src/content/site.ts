@@ -82,14 +82,14 @@ export const featuredWork: FeaturedWork[] = [
     cta: { en: 'Read', et: 'Loe' },
   },
   {
-    impact: { en: 'Disclosure · RIA / CERT-EE', et: 'Avalikustamine · RIA / CERT-EE' },
+    impact: { en: 'Disclosure · SK ID Solutions, RIA', et: 'Avalikustamine · SK ID Solutions, RIA' },
     title: {
       en: 'Smart-ID / eID research',
       et: 'Smart-ID / eID uuringud',
     },
     blurb: {
-      en: "Protocol vulnerability research on Estonia’s national authentication stack, with coordinated disclosure to RIA and CERT-EE.",
-      et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta, koordineeritud avalikustamisega RIA-le ja CERT-EE-le.',
+      en: "Protocol vulnerability research on Estonia’s national authentication stack, reported to SK ID Solutions first, then escalated to RIA and other regulators.",
+      et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta: kõigepealt teavitati SK ID Solutionsit, seejärel pöörduti RIA ja teiste järelevalveasutuste poole.',
     },
     tags: ['eIDAS', 'Coordinated Disclosure'],
     href: '/disclosures/smart-id-achilles-heel',
