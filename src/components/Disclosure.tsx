@@ -5,44 +5,44 @@ export default function Disclosure() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background pb-section pt-section">
+      <div className="mx-auto max-w-4xl px-6">
         <div className="bg-surface p-4 border border-border mb-6 text-sm text-muted">
           <strong>{t.disclosure.version}:</strong> 1.0 | <strong>{t.disclosure.published}:</strong> March 28, 2026
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{t.disclosure.title}</h1>
-        <p className="text-xl text-accent font-semibold mb-8">{t.disclosure.subtitle}</p>
+        <h1 className="font-display text-5xl text-foreground mb-2">{t.disclosure.title}</h1>
+        <p className="mb-12 text-xl text-muted">{t.disclosure.subtitle}</p>
         <p className="text-muted mb-8">
           {t.disclosure.intro}
         </p>
 
-        <div className="max-w-none text-muted">
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.purpose.title}</h2>
+        <div className="prose-measure text-muted">
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.purpose.title}</h2>
             <p className="text-muted leading-relaxed">
               {t.disclosure.purpose.text}
             </p>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.whyExists.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.whyExists.title}</h2>
             <p className="text-muted leading-relaxed mb-4">
               {t.disclosure.whyExists.text}
             </p>
-            <ul className="list-disc list-inside text-muted space-y-1">
+            <ul className="list-disc pl-5 text-muted space-y-1">
               {t.disclosure.whyExists.items.map((item: string, index: number) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.guidelines.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.guidelines.title}</h2>
             <p className="text-muted leading-relaxed mb-4">
               {t.disclosure.guidelines.text}
             </p>
-            <ul className="list-disc list-inside text-muted space-y-3">
+            <ul className="list-disc pl-5 text-muted space-y-3">
               <li>
                 <strong>{t.disclosure.guidelines.rateLimit}:</strong> {t.disclosure.guidelines.rateLimitDesc}
               </li>
@@ -62,7 +62,7 @@ export default function Disclosure() {
               </li>
               <li>
                 <strong>{t.disclosure.guidelines.optOut}:</strong> {t.disclosure.guidelines.optOutDesc}
-                <ul className="list-disc list-inside text-muted ml-6 mt-1">
+                <ul className="list-disc pl-5 text-muted ml-6 mt-1">
                   <li>{t.disclosure.guidelines.optOutItems[0]}</li>
                   <li><code className="bg-surface px-1 rounded">Disallow: /</code> to your <code className="bg-surface px-1 rounded">robots.txt</code></li>
                 </ul>
@@ -77,15 +77,15 @@ export default function Disclosure() {
             </ul>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.ifAccessed.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.ifAccessed.title}</h2>
             <p className="text-muted leading-relaxed">
               {t.disclosure.ifAccessed.text}
             </p>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.contact.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.contact.title}</h2>
             <p className="text-muted leading-relaxed mb-2">
               {t.disclosure.contact.text}
             </p>
@@ -95,8 +95,8 @@ export default function Disclosure() {
             </ul>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.company.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.company.title}</h2>
             <div className="bg-surface p-4 border border-border text-muted space-y-1">
               <p><strong className="text-accent">{t.disclosure.company.businessName}:</strong> ProksiAbel OÜ</p>
               <p><strong className="text-accent">{t.disclosure.company.registrationCode}:</strong> 17017826</p>
@@ -105,13 +105,13 @@ export default function Disclosure() {
             </div>
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.pgp.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.pgp.title}</h2>
             <PgpCard />
           </section>
 
-          <section className="mb-8">
-            <h2 className="text-xl text-accent font-semibold mb-4">{t.disclosure.acknowledgments.title}</h2>
+          <section className="mb-12">
+            <h2 className="font-display text-2xl text-foreground mb-4">{t.disclosure.acknowledgments.title}</h2>
             <p className="text-muted leading-relaxed">
               {t.disclosure.acknowledgments.text}
             </p>

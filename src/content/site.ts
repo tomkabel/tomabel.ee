@@ -10,24 +10,24 @@ export const site = {
   },
   hero: {
     eyebrow: {
-      en: 'Tom Kristian Abel — Estonia',
-      et: 'Tom Kristian Abel — Eesti',
+      en: 'Tom Kristian Abel · Estonia',
+      et: 'Tom Kristian Abel · Eesti',
     },
     line1: {
       en: 'I broke authentication for a living.',
       et: 'Elatise teenimiseks murdsin autentimist.',
     },
     line2: {
-      en: 'Now I build the kind that doesn\'t.',
+      en: 'Now I build the kind that doesn’t.',
       et: 'Nüüd ehitan sellist, mis ei murdu.',
     },
     intro: {
-      en: "I'm Tom Kristian Abel — systems architect and security researcher. I reverse engineer how authentication and browser defenses fail, then design the systems that survive what I find.",
-      et: 'Olen Tom Kristian Abel — süsteemiarhitekt ja turvauurija. Pöördprojekteerin, kuidas autentimine ja brauserikaitse ebaõnnestuvad, ning kavandan süsteemid, mis minu leitu üle elavad.',
+      en: "I’m Tom Kristian Abel, a systems architect and security researcher. I reverse engineer how authentication and browser defenses fail, then design the systems that survive what I find.",
+      et: 'Olen Tom Kristian Abel, süsteemiarhitekt ja turvauurija. Pöördprojekteerin, kuidas autentimine ja brauserikaitse ebaõnnestuvad, ning kavandan süsteemid, mis minu leitu üle elavad.',
     },
   },
   introStrip: {
-    en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies. I've spent years on both sides of that gap — first exploiting it, now closing it. These days I research identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), reverse engineer anti-fraud systems at the opcode level, and ship production platforms built secure-by-design. I disclose what I find, in public, and I take responsibility for all of it.",
+    en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies. I’ve spent years on both sides of that gap — first exploiting it, now closing it. These days I research identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), reverse engineer anti-fraud systems at the opcode level, and ship production platforms built secure-by-design. I disclose what I find, in public, and I take responsibility for all of it.",
     et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib. Olen aastaid veetnud mõlemal pool seda lõhet — algul seda ära kasutades, nüüd sulgedes. Tänapäeval uurin identiteediprotokolle (FIDO2 / WebAuthn, eIDAS, Smart-ID), pöördprojekteerin pettusevastaseid süsteeme opkoodi tasemel ja tarnin tootmisplatvorme, mis on turvalised disaini järgi, mitte lootuse peale. Avaldan oma leiud avalikult ja võtan kõige eest vastutuse.",
   },
   contact: {
@@ -60,14 +60,14 @@ export type FeaturedWork = {
 
 export const featuredWork: FeaturedWork[] = [
   {
-    impact: { en: "Google's anti-fraud VM", et: "Google'i pettusevastane VM" },
+    impact: { en: "Google’s anti-fraud VM", et: "Google’i pettusevastane VM" },
     title: {
       en: 'BotGuard, disassembled',
       et: 'BotGuard, lahti võetud',
     },
     blurb: {
-      en: "Opcode-level reverse engineering of Google's VM-based anti-fraud system — anti-debug mechanisms, token portability, the works.",
-      et: "Google'i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
+      en: "Opcode-level reverse engineering of Google’s VM-based anti-fraud system — anti-debug mechanisms, token portability, the works.",
+      et: "Google’i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
     },
     tags: ['Reverse Engineering', 'Anti-Fraud VM'],
     href: '/disclosures/botguard-disassembled',
@@ -80,7 +80,7 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Smart-ID / eID uuringud',
     },
     blurb: {
-      en: "Protocol vulnerability research on Estonia's national authentication stack, with coordinated disclosure to RIA and CERT-EE.",
+      en: "Protocol vulnerability research on Estonia’s national authentication stack, with coordinated disclosure to RIA and CERT-EE.",
       et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta, koordineeritud avalikustamisega RIA-le ja CERT-EE-le.',
     },
     tags: ['eIDAS', 'Coordinated Disclosure'],
@@ -109,7 +109,7 @@ export const featuredWork: FeaturedWork[] = [
     },
     blurb: {
       en: 'A zero-trust architecture framework built from first principles — 8 axioms, a 9-dimension morphological matrix, archetypal breach analysis.',
-      et: 'Null-usalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
+      et: 'Nullusalduse arhitektuuri raamistik, ehitatud esimestest põhimõtetest — 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks, arhetüüpne rikkumiste analüüs.',
     },
     tags: ['Architecture', 'Zero Trust'],
     href: '/disclosures/zero-trust-octagon',
@@ -135,16 +135,32 @@ export type Disclosure = {
   href?: string;
 };
 
+// Articles whose body exists only in English. The router renders these inside
+// an English LanguageScope (so lang attributes and shared chrome match the
+// text), shows Estonian readers a notice, and the index marks them. When an
+// article gains an Estonian body, remove it here.
+export const englishOnlyArticles: ReadonlySet<string> = new Set([
+  '/disclosures/i-used-to-break-authentication',
+  '/disclosures/what-client-side-trust-is-actually-worth',
+  '/disclosures/the-kratt-problem',
+  '/disclosures/coordinated-disclosure-in-a-small-country',
+  '/disclosures/botguard-disassembled',
+  '/disclosures/smart-id-achilles-heel',
+  '/disclosures/zero-trust-octagon',
+  '/disclosures/pact-software-anchor-turn',
+  '/disclosures/chatgpt-is-not-a-phishing-scanner',
+]);
+
 export const disclosures: Disclosure[] = [
   {
     kind: 'teardown',
     title: {
-      en: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM",
-      et: "BotGuard, lahti võetud — Google'i pettusevastase VM-i pöördprojekteerimine",
+      en: "BotGuard, disassembled — reverse engineering Google’s anti-fraud VM",
+      et: "BotGuard, lahti võetud — Google’i pettusevastase VM-i pöördprojekteerimine",
     },
     blurb: {
-      en: "A deep, opcode-level teardown of Google's BotGuard: the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness. Builds on Cypa's VM analysis and LuanRT's PO-token research. If you've ever wondered what \"client-side trust\" is really worth, start here.",
-      et: "Põhjalik opkooditasemel analüüs Google'i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
+      en: "A deep, opcode-level teardown of Google’s BotGuard: the bytecode VM, its anti-debugging and obfuscation layers, and a token-portability weakness. Builds on Cypa’s VM analysis and LuanRT’s PO-token research. If you’ve ever wondered what \"client-side trust\" is really worth, start here.",
+      et: "Põhjalik opkooditasemel analüüs Google’i BotGuardist: baitkoodi VM, selle anti-debug ja obfuskeerimiskihid ning tokenite ülekantavuse nõrkus. Ehitab Cypa VM-analüüsi ja LuanRT PO-tokeni uurimistöö peale. Kui oled kunagi mõelnud, mida \"kliendipoolne usaldus\" tegelikult väärt on, alusta siit.",
     },
     tags: ['Reverse Engineering', 'Anti-Fraud VM', 'BotGuard'],
     keywords: 'browser automation, CDP, VM analysis, anti-fraud, client-side security',
@@ -158,12 +174,12 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'disclosure',
     title: {
-      en: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research",
+      en: "The Achilles' heel of Estonia’s e-state — Smart-ID / eID research",
       et: 'Eesti e-riigi Achilleuse kand — Smart-ID / eID uuringud',
     },
     blurb: {
       en: "Protocol-level analysis of the authentication ecosystem that 1.4M+ Estonians, Latvians, and Lithuanians use every day. Covers the threat model, an interactive signing-relay class of attack, and the regulatory picture (eIDAS, GDPR, NIS2). Disclosed to the vendor before publication. Names the gaps; proposes the fixes.",
-      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise relay-rünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
+      et: 'Protokollitasemel analüüs autentimise ökosüsteemist, mida 1,4M+ eestlast, lätlast ja leedukat iga päev kasutavad. Hõlmab ohumudelit, interaktiivset allkirjastamise vahendusrünnete klassi ja regulatiivset pilti (eIDAS, GDPR, NIS2). Avalikustatud müüjale enne avaldamist. Nimetab lüngad; pakub parandused.',
     },
     tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     keywords: 'Smart-ID, eID, phishing, vishing, signing relay, BITB, Estonia, eIDAS',
@@ -182,7 +198,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "Most \"zero trust\" is a vendor checklist. This is the opposite: 8 axioms, a 9-dimension morphological matrix for reasoning about any architecture, and archetypal breach walkthroughs that show where designs actually fail. Written to be argued with.",
-      et: "Enamik \"null-usaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
+      et: "Enamik \"nullusaldusest\" on müüja kontrollnimekiri. See on vastupidine: 8 aksioomi, 9-dimensiooniline morfoloogiline maatriks mis tahes arhitektuuri üle arutlemiseks ja arhetüüpsed rikkumiste läbimängud, mis näitavad, kus kavandid tegelikult ebaõnnestuvad. Kirjutatud selleks, et selle üle vaieldaks.",
     },
     tags: ['Architecture', 'Zero Trust', 'NIST 800-207'],
     meta: {
@@ -196,11 +212,11 @@ export const disclosures: Disclosure[] = [
     kind: 'essay',
     title: {
       en: 'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS',
-      et: 'PIN, mida ei saa delegeerida — Smart-ID, AI-agendid ja eIDAS',
+      et: 'PIN, mida ei saa delegeerida — Smart-ID, TI-agendid ja eIDAS',
     },
     blurb: {
       en: "Why an AI agent cannot hold your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Article 26 read side by side. What sole control means at the moment of signing, why \"delegated credentials\" do not change it, and the OAuth-style pattern that actually works.",
-      et: 'Miks ei saa AI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse praktika avaldus ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
+      et: 'Miks ei saa TI-agent sinu Smart-ID PIN-koodi enda kätte võtta: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse tavadokument ja eIDASe artikkel 26 kõrvuti loetuna. Mis tähendab ainukontroll allkirja andmise hetkel, miks "delegeeritud mandaadid" seda ei muuda ja milline OAuthi-laadne muster tegelikult töötab.',
     },
     tags: ['Smart-ID', 'eIDAS', 'AI Agents'],
     keywords: 'Smart-ID, eIDAS, AI agents, delegated credentials, sole control, qualified electronic signature, PIN automation',
@@ -214,7 +230,7 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
-      en: "I used to break authentication. Here's what that taught me about building it.",
+      en: "I used to break authentication. Here’s what that taught me about building it.",
       et: 'Kunagi murdsin ma autentimist. Siin on see, mida see mulle selle ehitamise kohta õpetas.',
     },
     blurb: {
@@ -235,7 +251,7 @@ export const disclosures: Disclosure[] = [
       et: 'Mida kliendipoolne usaldus tegelikult väärt on',
     },
     blurb: {
-      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it.",
+      en: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don’t control is negotiable, and what to do about it.",
       et: 'BotGuard lahtivõtmine juhtumiuuringuna: struktuurne põhjus, miks iga kaitse, mis jookseb masinal, mida sa ei kontrolli, on läbiräägitav, ja mida sellega teha.',
     },
     type: { en: 'Essay', et: 'Essee' },
@@ -248,12 +264,12 @@ export const disclosures: Disclosure[] = [
   {
     kind: 'essay',
     title: {
-      en: "The fix that doesn't need SK",
+      en: "The fix that doesn’t need SK",
       et: 'Parandus, mis SK-d ei vaja',
     },
     blurb: {
-      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here's a sixth: a session-continuity check a bank's own edge can run today, scoped honestly to the cross-device relay case, not the vishing case Smart-ID+ already closes.",
-      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise relay-rünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator esimesena liiguks. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese relay-juhtumiga, mitte vishinguga, mille Smart-ID+ juba sulgeb.',
+      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here’s a sixth: a session-continuity check a bank’s own edge can run today, scoped honestly to the cross-device relay case, not the vishing case Smart-ID+ already closes.",
+      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator teeks esimese sammu. Siin on kuues: seansi järjepidevuse kontroll, mida panga enda serv saab käivitada juba täna, ausalt piiritletud seadmeülese vahendusründe juhtumiga, mitte kõneõngitsusega, mille Smart-ID+ juba sulgeb.',
     },
     tags: ['Smart-ID', 'Fraud Prevention', 'Session Continuity'],
     keywords: 'Smart-ID, signing relay, session continuity, fraud prevention, network fingerprinting',
@@ -271,7 +287,7 @@ export const disclosures: Disclosure[] = [
       et: 'Krati probleem',
     },
     blurb: {
-      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction.",
+      en: "On offensive capability as a folkloric kratt — tireless while it has direction, dangerous the moment it doesn’t. A short piece on ethics, idleness, and pointing tools in the right direction.",
       et: 'Ründevõimekusest kui rahvapärimuse kratist — väsimatu, kuni tal on suund, ohtlik hetkel, kui seda pole. Lühike lugu eetikast, jõudeolekust ja tööriistade õiges suunas juhtimisest.',
     },
     type: { en: 'Essay', et: 'Essee' },
@@ -288,7 +304,7 @@ export const disclosures: Disclosure[] = [
       et: 'Koordineeritud avalikustamine väikeses riigis',
     },
     blurb: {
-      en: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
+      en: "What it’s actually like to disclose a national-infrastructure flaw when everyone in the room knows each other — the legal exposure, the incentives, and why owning your own story is the only real protection.",
       et: 'Milline on tegelikult riikliku taristu vea avalikustamine, kui kõik ruumisviibijad tunnevad üksteist — õiguslikud riskid, stiimulid ja miks oma loo omamine on ainus tõeline kaitse.',
     },
     type: { en: 'Essay', et: 'Essee' },
@@ -305,8 +321,8 @@ export const disclosures: Disclosure[] = [
       et: 'PACT ja tarkvaralise ankru pööre — Private Access Control Tokenite kriitiline analüüs',
     },
     blurb: {
-      en: "A critical reading of Cloudflare's PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what the blind-signature mechanism actually proves, why the missing governance layer decides whether the web gets an open anti-bot layer or another trust oligopoly, and the concrete markers that would make the design defensible.",
-      et: "Kriitiline lugemine Cloudflare'i PACT-ettepanekust, mis tehti 2026. aasta juunis koos Firefoxi, Chrome'i, Edge'i ja Shopifyga: mida pimesignatuuri mehhanism tegelikult tõestab, miks puuduv juhtimiskiht otsustab, kas veeb saab avatud robotitõrje kihi või järjekordse usaldusoligopoli, ja millised konkreetsed märgid muudaksid kavandi kaitstavaks.",
+      en: "A critical reading of Cloudflare’s PACT proposal, announced with Firefox, Chrome, Edge, and Shopify in June 2026: what the blind-signature mechanism actually proves, why the missing governance layer decides whether the web gets an open anti-bot layer or another trust oligopoly, and the concrete markers that would make the design defensible.",
+      et: "Kriitiline lugemine Cloudflare’i PACT-ettepanekust, mis tehti 2026. aasta juunis koos Firefoxi, Chrome’i, Edge’i ja Shopifyga: mida pimesignatuuri mehhanism tegelikult tõestab, miks puuduv juhtimiskiht otsustab, kas veeb saab avatud robotitõrje kihi või järjekordse usaldusoligopoli, ja millised konkreetsed märgid muudaksid kavandi kaitstavaks.",
     },
     tags: ['PACT', 'Privacy Pass', 'Anti-Fraud'],
     keywords: 'PACT, Private Access Control Tokens, Privacy Pass, blind signatures, CAPTCHA, WEI, anti-bot, trust, governance',
@@ -324,8 +340,8 @@ export const disclosures: Disclosure[] = [
       et: 'Küberpettuste areng Eestis, 2010–2026',
     },
     blurb: {
-      en: "How Estonia's small language held the fraud industry at arm's length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB's Baltic victim statistics, and the ERR/Äripäev investigation.",
-      et: 'Kuidas Eesti väike keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja AI-süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
+      en: "How Estonia’s small language held the fraud industry at arm’s length for a decade, and what happened when the barrier fell: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes, with annual losses climbing from five to ten million euros to 29 million in 2025. A reference paper built from RIA yearbook data, SEB’s Baltic victim statistics, and the ERR/Äripäev investigation.",
+      et: 'Kuidas väike eesti keel hoidis pettuste tööstust eemal kümmekond aastat ja mis juhtus, kui barjäär langes: värvatud emakeelekõnelejad, tööstuslikud kõneõngitsuskeskused, kullerivõrgustikud ja tehisintellekti süvavõltsingud, aastakahjude kasvades viielt kuni kümnelt miljonilt eurolt 29 miljonini 2025. aastal. Viitetöö RIA aastaraamatu, SEB Baltikumi ohvristatistika ning ERRi ja Äripäeva uurimistöö põhjal.',
     },
     tags: ['Phishing', 'Vishing', 'AI Fraud', 'Estonia'],
     keywords:
@@ -345,7 +361,7 @@ export const disclosures: Disclosure[] = [
     },
     blurb: {
       en: "A fact check of the advice to paste a suspicious link into ChatGPT. What ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS cloaking can serve a single AI fetch a decoy page; and why VirusTotal and Google Safe Browsing remain the verdict layer.",
-      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele AI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
+      et: 'Faktikontroll nõuandest panna kahtlane link ChatGPT-sse. Mida ChatGPT, Claude ja Gemini linkide, domeeni vanuse ja avalike arvustuste kontrollimise kohta tegelikult dokumenteerivad; miks TDS-varjestus võib ühele TI-päringule näidata söödalehte; ning miks VirusTotal ja Google Safe Browsing jäävad õigeks hinnangukihiks.',
     },
     tags: ['Phishing', 'LLMs', 'Cloaking'],
     keywords:
@@ -361,11 +377,11 @@ export const disclosures: Disclosure[] = [
     kind: 'essay',
     title: {
       en: 'The Gray Space: Russian Cyber Operations and Estonian Hosting Infrastructure',
-      et: 'Hall ruum: Venemaa küberoperatsioonid ja Eesti hostingutaristu',
+      et: 'Hall ala: Venemaa küberoperatsioonid ja Eesti majutustaristu',
     },
     blurb: {
-      en: "An OSINT assessment of Estonia's dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers. Maps Ilia Trusov's infrastructure network, RIPE geolocation manipulation, and documented DDoS operations against Rappler and Azerbaijan-critical targets. Distinguishes gray-space infrastructure from proven APT attribution.",
-      et: 'OSINT-hinnang Eesti kahesele rollile Venemaa küberökosüsteemis: tavahostinguteenuse pakkujad, bulletproof-üksused nagu Vault Dweller OÜ ja halli ruumi proxy-võrgud (Fineproxy, Quality Network OÜ), mis on ankrus Eesti andmekeskustes. Kaardistab Ilia Trusovi taristuvõrgustiku, RIPE geolokatsiooni võltsimise ja dokumenteeritud DDoS-operatsioonid Rappleri ja Aserbaidžaani-kriitiliste sihtmärkide vastu. Eristab halli ruumi taristut tõestatud APT omistusest.',
+      en: "An OSINT assessment of Estonia’s dual role in the Russian cyber ecosystem: mainstream hosting providers, bulletproof entities like Vault Dweller OÜ, and gray-space proxy networks (Fineproxy, Quality Network OÜ) anchored in Estonian data centers. Maps Ilia Trusov’s infrastructure network, RIPE geolocation manipulation, and documented DDoS operations against Rappler and Azerbaijan-critical targets. Distinguishes gray-space infrastructure from proven APT attribution.",
+      et: 'OSINT-hinnang Eesti kahesele rollile Venemaa küberökosüsteemis: tavapärased majutusteenuse pakkujad, kuulikindla majutuse pakkujad nagu Vault Dweller OÜ ja halli ala proksivõrgud (Fineproxy, Quality Network OÜ), mis on ankrus Eesti andmekeskustes. Kaardistab Ilia Trusovi taristuvõrgustiku, RIPE geolokatsiooni võltsimise ja dokumenteeritud DDoS-operatsioonid Rappleri ja Aserbaidžaani-kriitiliste sihtmärkide vastu. Eristab halli ala taristut tõestatud APT omistusest.',
     },
     tags: ['OSINT', 'Estonia', 'Cyber Operations', 'Infrastructure', 'DDoS'],
     keywords:
@@ -392,7 +408,7 @@ export const disclosures: Disclosure[] = [
   },
   {
     kind: 'framework',
-    title: { en: 'The Nine Dimensions of Zero Trust', et: 'Null-usalduse üheksa mõõdet' },
+    title: { en: 'The Nine Dimensions of Zero Trust', et: 'Nullusalduse üheksa mõõdet' },
     blurb: {
       en: 'The nine-dimension morphological matrix laid out dimension by dimension — what each axis actually decides, the realistic range of positions, and why most architectures cluster in a narrow corner of the space.',
       et: 'Üheksamõõtmeline morfoloogiline maatriks mõõde mõõtme haaval: mida iga telg tegelikult otsustab, millised asukohad on realistlikud ja miks enamik arhitektuure koondub ruumi kitsasse nurka.',
@@ -434,7 +450,7 @@ export const disclosures: Disclosure[] = [
     title: { en: 'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D', et: 'SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg' },
     blurb: {
       en: 'The small team running on a dozen SaaS products is the most common architecture and the one written about most condescendingly. This is the full breach trace: MFA fatigue, a stolen session the proxy never sees, and what one person can actually fix in an afternoon.',
-      et: 'Tosinal SaaS-tootel toimiv väike meeskond on kõige levinum arhitektuur ja see, millest kirjutatakse kõige üleolevamalt. Siin on täielik rünnakujälg: MFA-väsitamine, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene suudab ühe pärastlõunaga päriselt parandada.',
+      et: 'Tosinal SaaS-tootel toimiv väike meeskond on kõige levinum arhitektuur ja see, millest kirjutatakse kõige üleolevamalt. Siin on täielik rünnakujälg: MFA väsitusrünne, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene suudab ühe pärastlõunaga päriselt parandada.',
     },
     tags: ['Zero Trust', 'SaaS', 'MFA Fatigue', 'Identity'],
     keywords: 'MFA fatigue, push bombing, SaaS blind spot, identity-aware proxy, OAuth grant audit, FIDO2, phishing-resistant MFA, zero trust, small team security, Archetype D',
@@ -447,7 +463,7 @@ export const disclosures: Disclosure[] = [
     title: { en: 'Identity Is the Root. Proof Is the Gate.', et: 'Identiteet on juur. Tõend on värav.' },
     blurb: {
       en: 'Every other control in a zero-trust architecture consumes an identity claim it did not produce. This is why the quality of the proof at the gate sets the ceiling — and why phishing-resistant credentials still fail at the approval layer.',
-      et: 'Iga teine kontroll usaldusvabas arhitektuuris tarbib identiteediväidet, mida ta ise ei tooda. Seepärast määrab väravas võetava tõendi kvaliteet lae — ja seepärast nurjuvad andmepüügikindlad mandaadid endiselt heakskiidukihis.',
+      et: 'Iga teine kontroll nullusaldusarhitektuuris tarbib identiteediväidet, mida ta ise ei tooda. Seepärast määrab väravas võetava tõendi kvaliteet lae — ja seepärast nurjuvad andmepüügikindlad mandaadid endiselt heakskiidukihis.',
     },
     tags: ['Zero Trust', 'Authentication', 'Identity', 'eID'],
     keywords: 'zero trust, identity is the root of trust, continuous authentication, proof before action, phishing-resistant authentication, WebAuthn, FIDO2, transaction binding, Smart-ID, Estonian eID, sender-constrained tokens, authorization architecture',
@@ -484,7 +500,7 @@ export type Project = {
 export const projectCategories: { id: ProjectCategory; label: { en: string; et: string } }[] = [
   { id: 'offensive', label: { en: 'Offensive & Reverse Engineering', et: 'Rünne ja pöördprojekteerimine' } },
   { id: 'products', label: { en: 'Applied Security Products', et: 'Rakenduslikud turvatooted' } },
-  { id: 'ai-ml', label: { en: 'AI & Retrieval Systems', et: 'AI- ja hankesüsteemid' } },
+  { id: 'ai-ml', label: { en: 'AI & Retrieval Systems', et: 'TI- ja hankesüsteemid' } },
   { id: 'systems', label: { en: 'Systems & Infrastructure', et: 'Süsteemid ja taristu' } },
   { id: 'research', label: { en: 'Research & Frameworks', et: 'Uuringud ja raamistikud' } },
   { id: 'foundations', label: { en: 'Foundations', et: 'Alused' } },
@@ -500,8 +516,8 @@ export const projects: Project[] = [
     stars: 105,
     featured: true,
     blurb: {
-      en: "An opcode-level breakdown of Google's VM-based BotGuard engine. It documents the bytecode interpreter, the anti-debugging tricks, the obfuscation layers, and a specific flaw in token portability.",
-      et: "Google'i VM-põhise BotGuardi mootori opkooditasemel lahtivõtmine. Dokumenteerib baitkoodi interpretaatori, anti-debug võtted, obfuskeerimiskihid ja konkreetse nõrkuse tokenite ülekantavuses.",
+      en: "An opcode-level breakdown of Google’s VM-based BotGuard engine. It documents the bytecode interpreter, the anti-debugging tricks, the obfuscation layers, and a specific flaw in token portability.",
+      et: "Google’i VM-põhise BotGuardi mootori opkooditasemel lahtivõtmine. Dokumenteerib baitkoodi interpretaatori, anti-debug võtted, obfuskeerimiskihid ja konkreetse nõrkuse tokenite ülekantavuses.",
     },
     href: 'https://github.com/tomkabel/google-botguard-security-research',
     repo: 'https://github.com/tomkabel/google-botguard-security-research',
@@ -525,7 +541,7 @@ export const projects: Project[] = [
     category: 'offensive',
     tags: ['Smart-ID', 'eIDAS', 'Coordinated Disclosure'],
     blurb: {
-      en: "Protocol analysis of Smart-ID's cross-device authentication, pinpointing where the trust boundaries break down during device handoffs. Published through coordinated disclosure.",
+      en: "Protocol analysis of Smart-ID’s cross-device authentication, pinpointing where the trust boundaries break down during device handoffs. Published through coordinated disclosure.",
       et: 'Smart-ID seadmeteülese autentimise protokollianalüüs, mis täpsustab, kus usalduspiirid seadmete üleandmisel murduvad. Avaldatud koordineeritud avalikustamise kaudu.',
     },
     href: 'https://github.com/tomkabel/skid-security-research',
@@ -629,7 +645,7 @@ export const projects: Project[] = [
     tags: ['LLM', 'Writing', 'On-device'],
     blurb: {
       en: 'An in-browser editor that catches the mechanical patterns of AI writing: filler transitions, structural symmetry, passive constructions. It runs on-device, with no external API calls.',
-      et: 'Brauserisisene toimetaja, mis püüab AI-kirjutamise mehaanilised mustrid: täiteüleminekud, struktuurne sümmeetria, umbisikulised konstruktsioonid. Töötab seadmes, ilma väliste API-kutseteta.',
+      et: 'Brauserisisene toimetaja, mis püüab TI-kirjutamise mehaanilised mustrid: täiteüleminekud, struktuurne sümmeetria, umbisikulised konstruktsioonid. Töötab seadmes, ilma väliste API-kutseteta.',
     },
     href: 'https://ai.tomabel.ee',
     live: 'https://ai.tomabel.ee',
@@ -640,7 +656,7 @@ export const projects: Project[] = [
     category: 'ai-ml',
     tags: ['JavaScript', 'Pricing', 'DevTool'],
     blurb: {
-      en: "A zero-dependency timezone tracker and cost calculator for DeepSeek's discounted off-peak pricing windows.",
+      en: "A zero-dependency timezone tracker and cost calculator for DeepSeek’s discounted off-peak pricing windows.",
       et: 'Sõltuvusteta ajavööndijälgija ja kulukalkulaator DeepSeeki tipuväliste soodushinnaperioodide jaoks.',
     },
     href: 'https://github.com/tomkabel/deepseek-offpeak',
@@ -678,8 +694,8 @@ export const projects: Project[] = [
     category: 'systems',
     tags: ['Bash', 'Server Setup', 'Ops'],
     blurb: {
-      en: "Tom's Awesome Scripts — a battle-worn collection of bash for server setup and management. The stuff you'd otherwise copy-paste at 2am, made idempotent and safe.",
-      et: "Tom's Awesome Scripts — lahingus karastunud bash-skriptide kogu serveri seadistamiseks ja haldamiseks. Skriptid, mida muidu kopeeriksid kell 2 öösel, tehtud idempotentseks ja turvaliseks.",
+      en: "Tom’s Awesome Scripts — a battle-worn collection of bash for server setup and management. The stuff you’d otherwise copy-paste at 2am, made idempotent and safe.",
+      et: "Tom’s Awesome Scripts — lahingus karastunud bash-skriptide kogu serveri seadistamiseks ja haldamiseks. Skriptid, mida muidu kopeeriksid kell 2 öösel, tehtud idempotentseks ja turvaliseks.",
     },
     href: 'https://github.com/tomkabel/scripts',
     repo: 'https://github.com/tomkabel/scripts',
@@ -694,7 +710,7 @@ export const projects: Project[] = [
     featured: true,
     blurb: {
       en: 'An architectural reference that breaks Zero Trust into 8 structural axioms and a 9-dimension evaluation matrix, focused on concrete breach failure modes rather than vendor compliance checklists.',
-      et: 'Arhitektuuriline teatmematerjal, mis jaotab null-usalduse 8 struktuurseks aksioomiks ja 9-dimensiooniliseks hindamismaatriksiks, keskendudes konkreetsetele rikkumiste tõrkerežiimidele, mitte tarnijate vastavuskontroll-nimekirjadele.',
+      et: 'Arhitektuuriline teatmematerjal, mis jaotab nullusalduse 8 struktuurseks aksioomiks ja 9-dimensiooniliseks hindamismaatriksiks, keskendudes konkreetsetele rikkumiste tõrkerežiimidele, mitte tarnijate vastavuskontroll-nimekirjadele.',
     },
     href: 'https://github.com/tomkabel/zero-trust-octagon',
     repo: 'https://github.com/tomkabel/zero-trust-octagon',
@@ -720,20 +736,20 @@ export const projects: Project[] = [
 export const bio = {
   paragraphs: [
     {
-      en: "I started on the wrong side of the authentication arms race. I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don't hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for.",
+      en: "I started on the wrong side of the authentication arms race. I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don’t hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for.",
       et: 'Alustasin autentimise võidurelvastumise valelt poolt. Pöördprojekteerisin brauseriturvalisust, TLS-i sõrmejäljetuvastust ja pettusevastaseid süsteeme — ja mõnda aega murdsin neid raha eest. Ma ei varja seda. See viis lõpuks 2024. aastal süüdimõistmiseni, mille tagajärgede eest võtan täieliku vastutuse.',
     },
     {
-      en: "What I kept was the way of seeing. Once you've taken authentication apart for a living, you can't un-see how fragile most of it is — and you get tired of watching the same systems get picked apart in the same ways. So now I point the same skills the other direction: I research how identity protocols and browser defenses fail (FIDO2 / WebAuthn, eIDAS, Smart-ID, anti-fraud VMs), disclose what I find responsibly, and design systems that are secure-by-design rather than secure-by-hope.",
+      en: "What I kept was the way of seeing. Once you’ve taken authentication apart for a living, you can’t un-see how fragile most of it is — and you get tired of watching the same systems get picked apart in the same ways. So now I point the same skills the other direction: I research how identity protocols and browser defenses fail (FIDO2 / WebAuthn, eIDAS, Smart-ID, anti-fraud VMs), disclose what I find responsibly, and design systems that are secure-by-design rather than secure-by-hope.",
       et: 'Mida ma alles jätsin, oli nägemisviis. Kui oled autentimise elatise teenimiseks lahti võtnud, ei saa sa enam mittenäha, kui habras suurem osa sellest on — ja sa tüdined vaatamast, kuidas samu süsteeme samadel viisidel lahti võetakse. Nii et nüüd suunan samad oskused teisele poole: uurin, kuidas identiteediprotokollid ja brauserikaitsed ebaõnnestuvad (FIDO2 / WebAuthn, eIDAS, Smart-ID, pettusevastased VM-id), avalikustan oma leiud vastutustundlikult ja kavandan süsteeme, mis on turvalised disaini järgi, mitte lootuse peale.',
     },
     {
-      en: "These days I'm Lead Systems Architect and CTO at MatX, where I build production platforms under the threat models I write — zero-trust architecture, phishing-resistant authentication, and GDPR/NIS2 compliance treated as engineering, not paperwork. I work in English and Estonian, and most of my research orbits Estonia's authentication and anti-fraud landscape, because it's one of the most digitized in the world and therefore one of the most interesting to defend.",
-      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MatX-is, kus ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — null-usalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
+      en: "These days I’m Lead Systems Architect and CTO at MatX, where I build production platforms under the threat models I write — zero-trust architecture, phishing-resistant authentication, and GDPR/NIS2 compliance treated as engineering, not paperwork. I work in English and Estonian, and most of my research orbits Estonia’s authentication and anti-fraud landscape, because it’s one of the most digitized in the world and therefore one of the most interesting to defend.",
+      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MatX-is, kus ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — nullusalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
     },
   ],
   kratt: {
-    en: "In Estonian folklore a kratt is a servant assembled from spare parts that works tirelessly for its maker — and turns on you the moment you leave it idle. That's offensive capability in one image. It's only useful pointed in the right direction, so I do that pointing in public, and I stand behind my work and my opinions personally.",
+    en: "In Estonian folklore a kratt is a servant assembled from spare parts that works tirelessly for its maker — and turns on you the moment you leave it idle. That’s offensive capability in one image. It’s only useful pointed in the right direction, so I do that pointing in public, and I stand behind my work and my opinions personally.",
     et: 'Eesti rahvapärimuses on kratt varuosadest kokku pandud teener, kes töötab väsimatult oma tegija heaks — ja pöördub su vastu hetkel, kui jätad ta jõude. See on ründevõimekus ühes pildis. See on kasulik ainult õiges suunas suunatuna, nii et teen seda suunamist avalikult ning seisan oma töö ja arvamuste taga isiklikult.',
   },
 };

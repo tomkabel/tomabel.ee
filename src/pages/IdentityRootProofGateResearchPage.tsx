@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -16,13 +18,13 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: 'Every control in a zero-trust architecture is downstream of identity. That makes the quality of the proof taken at the gate the ceiling on everything built above it — and most architectures still take that proof once, at login, and treat it as a durable fact for the rest of the day.',
-  et: 'Iga kontroll usaldusvabas arhitektuuris asub identiteedist allavoolu. Seetõttu määrab väravas võetava tõendi kvaliteet lae kõigele, mis selle peale ehitatakse — ja enamik arhitektuure võtab selle tõendi ikka veel üks kord, sisselogimisel, ning kohtleb seda ülejäänud päeva kestva faktina.',
+  et: 'Iga kontroll nullusaldusarhitektuuris asub identiteedist allavoolu. Seetõttu määrab väravas võetava tõendi kvaliteet lae kõigele, mis selle peale ehitatakse — ja enamik arhitektuure võtab selle tõendi ikka veel üks kord, sisselogimisel, ning kohtleb seda ülejäänud päeva kestva faktina.',
 };
 
 const openingParagraphs: Bi[] = [
   {
     en: 'This is where my zero-trust work meets authentication, which is what I actually spend my time on. The two are not separate subjects. A zero-trust architecture is a set of decisions about who may do what, and every one of those decisions consumes an identity claim produced somewhere else.',
-    et: 'Siin kohtub minu usaldusvaba arhitektuuri töö autentimisega, millega ma tegelikult tegelen. Need kaks ei ole eraldi teemad. Usaldusvaba arhitektuur on hulk otsuseid selle kohta, kes mida tohib teha, ja iga selline otsus tarbib identiteediväidet, mille on tootnud mõni mujal asuv süsteem.',
+    et: 'Siin kohtub minu nullusaldusarhitektuuri töö autentimisega, millega ma tegelikult tegelen. Need kaks ei ole eraldi teemad. Nullusaldusarhitektuur on hulk otsuseid selle kohta, kes mida tohib teha, ja iga selline otsus tarbib identiteediväidet, mille on tootnud mõni mujal asuv süsteem.',
   },
 ];
 
@@ -35,7 +37,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Identity is the root of trust in a zero-trust architecture because every other control is downstream of it. Segmentation decides which identities may reach which services. Least privilege decides which identities may perform which operations. Audit records which identity did what. Anomaly detection compares behaviour against a baseline attached to an identity. None of these mechanisms produce identity; all of them consume it.',
-        et: 'Identiteet on usalduse juur usaldusvabas arhitektuuris, sest kõik ülejäänud kontrollid asuvad sellest allavoolu. Segmenteerimine otsustab, millised identiteedid millistele teenustele ligi pääsevad. Vähima õiguse põhimõte otsustab, millised identiteedid milliseid toiminguid teha tohivad. Audit salvestab, milline identiteet mida tegi. Anomaaliatuvastus võrdleb käitumist identiteediga seotud lähtejoonega. Ükski neist mehhanismidest identiteeti ei tooda; kõik nad tarbivad seda.',
+        et: 'Identiteet on usalduse juur nullusaldusarhitektuuris, sest kõik ülejäänud kontrollid asuvad sellest allavoolu. Segmenteerimine otsustab, millised identiteedid millistele teenustele ligi pääsevad. Vähima õiguse põhimõte otsustab, millised identiteedid milliseid toiminguid teha tohivad. Audit salvestab, milline identiteet mida tegi. Anomaaliatuvastus võrdleb käitumist identiteediga seotud lähtejoonega. Ükski neist mehhanismidest identiteeti ei tooda; kõik nad tarbivad seda.',
       },
       {
         en: 'The proof collected at the gate is therefore a hard ceiling on everything above it. If it establishes only that somebody held a password an hour ago, a policy engine evaluating a thousand attributes is still deciding on the authority of that password. Sophistication above the gate does not compensate for weakness at it; it makes the weakness harder to see.',
@@ -55,7 +57,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'What follows is not a decision but a drift. Access control has to rest on something, and the only thing left that travels with the request is the identity claim. Organisations that never held a zero-trust workshop end up identity-centric anyway — with the same dependency as the deliberate version and none of the scrutiny.',
-        et: 'Järgnev ei ole otsus, vaid triiv. Juurdepääsukontroll peab millelegi toetuma ja ainus asi, mis päringuga kaasa liigub, on identiteediväide. Organisatsioonid, kes pole kunagi usaldusvaba arhitektuuri töötuba pidanud, jõuavad identiteedikeskse lahenduseni niikuinii — sama sõltuvusega mis kavatsetud versioonil ja ilma igasuguse kontrollita.',
+        et: 'Järgnev ei ole otsus, vaid triiv. Juurdepääsukontroll peab millelegi toetuma ja ainus asi, mis päringuga kaasa liigub, on identiteediväide. Organisatsioonid, kes pole kunagi nullusaldusarhitektuuri töötuba pidanud, jõuavad identiteedikeskse lahenduseni niikuinii — sama sõltuvusega mis kavatsetud versioonil ja ilma igasuguse kontrollita.',
       },
     ],
   },
@@ -199,41 +201,24 @@ function IdentityRootProofGateResearchPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Essay · Zero Trust · Authentication' : 'Essee · Usaldusvaba arhitektuur · Autentimine'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Essay · Zero Trust · Authentication' : 'Essee · Nullusaldusarhitektuur · Autentimine'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '7 min read' : '7 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -241,7 +226,7 @@ function IdentityRootProofGateResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -250,11 +235,11 @@ function IdentityRootProofGateResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -265,8 +250,8 @@ function IdentityRootProofGateResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemist'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">

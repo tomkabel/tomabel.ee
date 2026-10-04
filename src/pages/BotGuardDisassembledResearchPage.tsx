@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
-import { Callout, CodeBlock } from '../components/site/article';
+import { ArticleHeader, Callout, CodeBlock } from '../components/site/article';
 
 type ReportSection = {
   heading: string;
@@ -173,39 +174,22 @@ const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 export default function BotGuardDisassembledResearchPage() {
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← Back to disclosures
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Research · Technical Teardown · Anti-Fraud
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Published · August 11, 2026</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">13 min read</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← Back to disclosures</>}
+        kicker={<>Research · Technical Teardown · Anti-Fraud</>}
+        title={title}
+        standfirst={standfirst}
+        meta={[<>Published · August 11, 2026</>, <>13 min read</>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
-          <div hidden className="border border-border bg-white/[0.02] p-5">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+          <div hidden className="border border-border bg-surface p-5">
+            <p className="label font-bold text-accent">
               Thesis
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
@@ -215,16 +199,16 @@ export default function BotGuardDisassembledResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
           {sections.map((section, i) => (
-            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -236,8 +220,8 @@ export default function BotGuardDisassembledResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               Sources
             </h2>
             <div className="mt-6 space-y-4">
@@ -255,8 +239,8 @@ export default function BotGuardDisassembledResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               Related reading
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -282,8 +266,8 @@ export default function BotGuardDisassembledResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

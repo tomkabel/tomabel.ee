@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -16,7 +18,7 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: 'A composite analytical archetype from the Zero Trust Octagon framework, traced end to end: a typosquatted dependency enters through a pull request, passes the only verification gate the architecture has, and arrives in production holding a cryptographically valid identity. The detection was fast. The prevention did not exist.',
-  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: tüposquat-sõltuvus siseneb pull requesti kaudu, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
+  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: trükiveapüügiga sõltuvus siseneb pull requesti kaudu, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -62,7 +64,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'A developer needs a small utility library and installs one whose name differs from a well-known package by a single character — a typosquat, fictional here. Plausible documentation, believable version history, a few hundred downloads, and a post-install script that does nothing on installation. It waits.',
-        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra — tüposquat, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist ja paigaldusjärgne skript, mis paigaldamise ajal midagi ei tee. See ootab.',
+        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra — trükiveapüük, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist ja paigaldusjärgne skript, mis paigaldamise ajal midagi ei tee. See ootab.',
       },
       {
         en: 'The pull request opens, the test suite passes because the code is inert under test, and the merge lands. The GitOps controller deploys the new containers with no attestation at admission: the only verification that ever happened is that CI built it, and CI was not what was subverted. The provenance record is accurate and useless.',
@@ -154,41 +156,24 @@ export default function MoveFastFixItInProdResearchPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Framework Analysis · Zero Trust Octagon · Archetype C' : 'Raamistiku analüüs · Zero Trust Octagon · Arhetüüp C'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Framework Analysis · Zero Trust Octagon · Archetype C' : 'Raamistiku analüüs · Zero Trust Octagon · Arhetüüp C'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '8 min read' : '8 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -196,7 +181,7 @@ export default function MoveFastFixItInProdResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -205,11 +190,11 @@ export default function MoveFastFixItInProdResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -220,8 +205,8 @@ export default function MoveFastFixItInProdResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Further reading' : 'Edasine lugemine'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -252,8 +237,8 @@ export default function MoveFastFixItInProdResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Scope note' : 'Ulatuse märkus'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">

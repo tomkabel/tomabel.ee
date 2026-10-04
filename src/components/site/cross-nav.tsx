@@ -19,17 +19,16 @@ export default function CrossNav({
       <div className="mx-auto max-w-6xl">
         <Link
           to={to}
-          className="group flex flex-col gap-4 rounded-lg border border-border-strong bg-surface p-8 shadow-elevated transition-all duration-300 hover:-translate-y-0.5 hover:bg-surface-2 hover:shadow-elevated-accent md:flex-row md:items-center md:justify-between"
+          className="group grid gap-4 rounded-card border border-border-strong bg-surface p-8 shadow-elevated transition-[background-color,border-color,box-shadow] duration-base hover:border-accent/40 hover:bg-surface-2 hover:shadow-elevated-accent md:grid-cols-[1fr_auto] md:items-center md:gap-10"
         >
           <div className="max-w-2xl">
-            <p className="mb-2 flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-              <span aria-hidden className="h-px w-8 bg-accent/60" />
+            <p className="label mb-2 text-muted-foreground">
               {label}
             </p>
             <p className="text-muted">{blurb}</p>
           </div>
-          <span className="shrink-0 font-mono text-xs font-bold uppercase tracking-widest text-accent">
-            {cta} <span className="arrow-shift inline-block">→</span>
+          <span className="label font-bold text-accent">
+            {cta} <span className="arrow-shift">→</span>
           </span>
         </Link>
       </div>

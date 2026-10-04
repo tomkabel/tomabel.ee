@@ -12,7 +12,7 @@ type Filter = 'all' | DisclosureKind;
 // Filter tabs, in display order. `all` first, then the four kinds.
 const FILTERS: { id: Filter; label: { en: string; et: string } }[] = [
   { id: 'all', label: { en: 'All', et: 'Kõik' } },
-  { id: 'disclosure', label: { en: 'Disclosures', et: 'Avalikustatud' } },
+  { id: 'disclosure', label: { en: 'Disclosures', et: 'Avalikustamised' } },
   { id: 'teardown', label: { en: 'Teardowns', et: 'Analüüsid' } },
   { id: 'essay', label: { en: 'Essays', et: 'Esseed' } },
   { id: 'framework', label: { en: 'Frameworks', et: 'Raamistikud' } },
@@ -30,16 +30,16 @@ export default function DisclosuresPage() {
 
   return (
     <>
-      <section className="border-b border-border px-6 pb-8 pt-24">
+      <section className="border-b border-border px-6 pb-8 pt-section">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
-            label={language === 'en' ? 'Disclosures' : 'Avalikustatud'}
+            label={language === 'en' ? 'Disclosures' : 'Avalikustamised'}
             title={language === 'en' ? 'Research, teardowns, and arguments.' : 'Uuringud, analüüsid ja argumendid.'}
             intro={language === 'en'
               ? 'One surface for the technical work and the writing that connects it: disclosed vulnerability research, opcode-level teardowns, architecture frameworks, and the shorter, more opinionated essays. Where research touches live systems, it was disclosed responsibly before publication.'
               : 'Üks pind tehnilisele tööle ja seda siduvale kirjutamisele: avalikustatud haavatavuste uuringud, opkooditasemel analüüsid, arhitektuuriraamistikud ja lühemad, arvamuslikumad esseed. Seal, kus uuringud puudutavad elavaid süsteeme, on need enne avaldamist vastutustundlikult avalikustatud.'}
           />
-          <div className="mt-10 max-w-3xl">
+          <div className="mt-10 max-w-measure">
             <Callout label={language === 'en' ? 'The thesis' : 'Tees'}>
               {language === 'en' ? (
                 <p>
@@ -86,7 +86,7 @@ export default function DisclosuresPage() {
                   </Link>
                   , ja täpsemalt Proksimity, on see lause tootena: kontrolli seansi konteksti
                   võrguserva peal, sest kliendi enda aruanne ei ole piisav. Sama väite akadeemiline
-                  versioon, laiendatuna AI-agentidele, mis juhivad päris brausereid, on
+                  versioon, laiendatuna TI-agentidele, mis juhivad päris brausereid, on
                   avalikustatud SoK-uuringus{' '}
                   <a href="https://github.com/tomkabel/google-botguard-security-research" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                     "Client-Side Anti-Automation Under VLM-Based Attack"
@@ -99,9 +99,9 @@ export default function DisclosuresPage() {
         </div>
       </section>
 
-      <div className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl px-6">
-          <div role="group" aria-label={language === 'en' ? 'Filter disclosures' : 'Filtreeri avalikustatud'} className="flex flex-wrap gap-x-6 gap-y-2 py-4">
+      <div className="sticky top-[calc(theme(spacing.16)+1px)] z-30 border-b border-border bg-background px-6">
+        <div className="mx-auto max-w-6xl">
+          <div role="group" aria-label={language === 'en' ? 'Filter disclosures' : 'Filtreeri avalikustatud'} className="-mx-3 flex gap-1 overflow-x-auto py-2 md:flex-wrap">
             {available.map((f) => {
               const active = filter === f.id;
               return (
@@ -110,9 +110,9 @@ export default function DisclosuresPage() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => setFilter(f.id)}
-                  className={`font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
-                    active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`label min-h-11 shrink-0 whitespace-nowrap rounded-control px-3 transition-colors duration-fast ${
+                    active ? 'bg-surface-2 text-accent' : 'text-muted-foreground hover:bg-surface hover:text-foreground active:bg-surface-3'
+                    }`}
                 >
                   {f.label[language]}
                 </button>
@@ -144,7 +144,7 @@ export default function DisclosuresPage() {
         label={language === 'en' ? 'What I build' : 'Mida ma ehitan'}
         blurb={language === 'en'
           ? 'The disclosures are the research and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
-          : 'Avalikustatud on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvatooted ja tootmises töötavad backend-teenused.'}
+          : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvalahendused ja tootmises töötavad taustateenused.'}
         cta={language === 'en' ? 'Browse systems' : 'Sirvi süsteeme'}
       />
     </>

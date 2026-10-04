@@ -95,30 +95,30 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
   return (
     <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label={t.telemetry.title}>
       <div
-        className="absolute inset-0 bg-background/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-sunken/85"
         onClick={onClose}
         aria-hidden
       />
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col border-l border-border-strong bg-surface shadow-elevated outline-none"
+        className="absolute right-0 top-0 grid h-full w-full max-w-sm grid-rows-[auto_1fr_auto] border-l border-border-strong bg-overlay shadow-elevated outline-none"
       >
-        <div className="flex items-start justify-between border-b border-border px-6 py-5">
+        <div className="grid grid-cols-[1fr_auto] items-start gap-4 border-b border-border px-6 py-5">
           <div>
-            <h2 className="font-display text-lg font-bold text-foreground">{t.telemetry.title}</h2>
+            <h2 className="font-display text-lg text-foreground">{t.telemetry.title}</h2>
             <p className="mt-1 text-xs text-muted">{t.telemetry.subtitle}</p>
           </div>
           <button
             onClick={onClose}
             aria-label={t.telemetry.close}
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="-m-3 grid size-11 place-items-center rounded-control text-muted-foreground transition-colors duration-fast hover:bg-surface-2 hover:text-foreground"
           >
             <X className="size-5" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="overflow-y-auto px-6 py-6">
           {state.kind === 'loading' ? (
             <p className="font-mono text-sm text-muted-foreground">{t.telemetry.loading}</p>
           ) : state.kind === 'unavailable' ? (
@@ -128,7 +128,7 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
           )}
         </div>
 
-        <p className="border-t border-border px-6 py-4 text-[11px] leading-relaxed text-subtle">
+        <p className="border-t border-border px-6 py-4 text-xs leading-relaxed text-subtle">
           {t.telemetry.footer}
         </p>
       </div>
@@ -140,7 +140,7 @@ function Row({ label, value }: { label: string; value?: string | undefined }) {
   if (!value) return null;
   return (
     <div className="border-b border-border py-3">
-      <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{label}</dt>
+      <dt className="label text-muted-foreground">{label}</dt>
       <dd className="mt-1 break-all font-mono text-sm text-foreground">{value}</dd>
     </div>
   );

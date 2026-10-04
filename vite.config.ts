@@ -6,11 +6,13 @@ export default defineConfig({
   plugins: [
     react(),
     FontaineTransform.vite({
-      // Metric-matched local fallbacks: kills the font-swap CLS flash.
+      // Metric-matched local fallbacks: kills the font-swap CLS flash. The
+      // "<family> fallback" faces this generates are named explicitly in the
+      // --font-* stacks in src/index.css, because fontaine cannot see into var().
       fallbacks: {
-        'Inter Variable': ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial'],
-        'Space Grotesk Variable': ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial'],
-        'JetBrains Mono Variable': ['Courier New', 'monospace'],
+        'Geist Variable': ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial'],
+        'Newsreader Variable': ['Georgia', 'Times New Roman'],
+        'Commit Mono': ['Courier New'],
       },
     }),
   ],

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -155,41 +157,24 @@ function Fortune500IllusionResearchPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Framework Analysis · Zero-Trust Octagon · Archetype B' : 'Raamistiku analüüs · Zero-Trust Octagon · Arhetüüp B'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Framework Analysis · Zero-Trust Octagon · Archetype B' : 'Raamistiku analüüs · Zero-Trust Octagon · Arhetüüp B'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 22, 2026' : 'Avaldatud · 22. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '6 min read' : '6 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -197,7 +182,7 @@ function Fortune500IllusionResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -221,11 +206,11 @@ function Fortune500IllusionResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -236,31 +221,31 @@ function Fortune500IllusionResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemine'}
             </h2>
             <ul className="mt-6 space-y-3 text-lg leading-relaxed text-muted">
               <li>
-                <Link to="/disclosures/zero-trust-octagon" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/zero-trust-octagon" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'The Zero-Trust Octagon' : 'Zero-Trust Octagon'}
                 </Link>
                 {isEn ? ' — the eight axioms and the nine-dimension matrix this archetype is scored against.' : ' — kaheksa aksioomi ja üheksamõõtmeline maatriks, mille alusel seda arhetüüpi hinnatakse.'}
               </li>
               <li>
-                <Link to="/disclosures/the-pin-that-cannot-be-delegated" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/the-pin-that-cannot-be-delegated" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'The PIN that cannot be delegated' : 'PIN-kood, mida ei saa delegeerida'}
                 </Link>
                 {isEn ? ' — why a credential that outlives its context is an authorisation failure, not a key-management one.' : ' — miks mandaat, mis elab üle oma konteksti, on autoriseerimisviga, mitte võtmehalduse viga.'}
               </li>
               <li>
-                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/what-client-side-trust-is-actually-worth" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'What client-side trust is actually worth' : 'Mida kliendipoolne usaldus tegelikult väärt on'}
                 </Link>
                 {isEn ? ' — the same signature-check-is-not-authorisation problem, one layer down.' : ' — sama allkirjakontrolli ja autoriseerimise segiajamise probleem ühe kihi võrra allpool.'}
               </li>
               <li>
-                <Link to="/disclosures/i-used-to-break-authentication" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                <Link to="/disclosures/i-used-to-break-authentication" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                   {isEn ? 'I used to break authentication' : 'Ma murdsin varem autentimist'}
                 </Link>
                 {isEn ? ' — the offensive perspective on why perimeter enforcement fails after the first valid credential.' : ' — ründaja vaade sellele, miks perimeetri jõustamine esimese kehtiva mandaadi järel laguneb.'}
@@ -268,8 +253,8 @@ function Fortune500IllusionResearchPage() {
             </ul>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Note on the source' : 'Märkus allika kohta'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">

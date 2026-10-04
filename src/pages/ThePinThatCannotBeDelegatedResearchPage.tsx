@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ArticleHeader } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type Bi = { en: string; et: string };
 
@@ -17,18 +19,18 @@ type Source = {
 
 const title: Bi = {
   en: 'The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS',
-  et: 'PIN, mida ei saa delegeerida — Smart-ID, AI-agendid ja eIDAS',
+  et: 'PIN, mida ei saa delegeerida — Smart-ID, TI-agendid ja eIDAS',
 };
 
 const standfirst: Bi = {
   en: "Estonia's AI-agent builders keep asking the same question: why can't my agent hold the user's Smart-ID PIN and act for them? The short answer is that the PIN is the one thing the whole qualified-signature stack is built around not delegating. This report reads the documents that say so, and shows what delegation that actually works looks like.",
-  et: 'Eesti AI-agentide ehitajad küsivad ikka ja jälle sama küsimust: miks ei võiks minu agent hoida kasutaja Smart-ID PIN-koodi ja tema eest tegutseda? Lühike vastus on see, et PIN ongi ainus asi, mille delegeerimise välistamisele on kogu kvalifitseeritud e-allkirja taristu üles ehitatud. See raport loeb dokumente, mis seda ütlevad, ja näitab, milline näeb välja delegeerimine, mis tegelikult töötab.',
+  et: 'Eesti TI-agentide ehitajad küsivad ikka ja jälle sama küsimust: miks ei võiks minu agent hoida kasutaja Smart-ID PIN-koodi ja tema eest tegutseda? Lühike vastus on see, et PIN ongi ainus asi, mille delegeerimise välistamisele on kogu kvalifitseeritud e-allkirja taristu üles ehitatud. See raport loeb dokumente, mis seda ütlevad, ja näitab, milline näeb välja delegeerimine, mis tegelikult töötab.',
 };
 
 const openingParagraphs: Bi[] = [
   {
     en: "A read-only analysis of public documents: SK ID Solutions' terms and conditions for qualified Smart-ID certificates, its certificate policy and remote-QSCD service practice statement, the Smart-ID public FAQ, the eIDAS Regulation, and the OAuth family of RFCs. No code was written, no live system was touched, and no testing was performed against any service. Every factual claim traces to a cited document; where practice guidance is offered it is flagged as such, and quoted text was fetched on 8 September 2026. Out of scope: PSD2 strong customer authentication, the notified-eID mutual recognition regime, and the ETSI standards that implement these requirements. This is a technical reading of public documents, not legal advice.",
-    et: 'Analüüs, mis piirdub avalike dokumentide lugemisega: SK ID Solutionsi kvalifitseeritud Smart-ID sertifikaatide kasutustingimused, selle sertifitseerimispoliitika ja kaug-QSCD teenuse praktika avaldus, Smart-ID avalik KKK, eIDASe määrus ning OAuthi RFC-de pere. Koodi ei kirjutatud, elavaid süsteeme ei puudutatud ja ühegi teenuse vastu teste ei tehtud. Iga faktiväide viitab tsiteeritud dokumendile; kus antakse praktilist soovitust, on see eraldi märgitud, ja tsiteeritud tekstid on alla laaditud 8. septembril 2026. Käsitlusest jäävad välja PSD2 tugev kliendi autentimine, teavitatud e-identimise süsteemide vastastikuse tunnustamise kord ja ETSI standardid, mis neid nõudeid ellu viivad. See on avalike dokumentide tehniline lugemine, mitte õigusnõu.',
+    et: 'Analüüs, mis piirdub avalike dokumentide lugemisega: SK ID Solutionsi kvalifitseeritud Smart-ID sertifikaatide kasutustingimused, selle sertifitseerimispoliitika ja kaug-QSCD teenuse tavadokument, Smart-ID avalik KKK, eIDASe määrus ning OAuthi RFC-de pere. Koodi ei kirjutatud, elavaid süsteeme ei puudutatud ja ühegi teenuse vastu teste ei tehtud. Iga faktiväide viitab tsiteeritud dokumendile; kus antakse praktilist soovitust, on see eraldi märgitud, ja tsiteeritud tekstid on alla laaditud 8. septembril 2026. Käsitlusest jäävad välja PSD2 tugev kliendi autentimine, teavitatud e-identimise süsteemide vastastikuse tunnustamise kord ja ETSI standardid, mis neid nõudeid ellu viivad. See on avalike dokumentide tehniline lugemine, mitte õigusnõu.',
   },
 ];
 
@@ -42,7 +44,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'That division is spelled out in SK’s remote-QSCD service practice statement (rQSCD SPS). The app’s part of the private key is "protected by Subscriber’s PIN and Subscriber needs to enter the PIN to the [app] for each transaction". The PIN value is never stored by the app, the PIN and its derived AES key are deleted after a single key-pair operation, and the activation data (SAD) that lets the signature module act "is passed to SAM in the Signature Activation Protocol" in a way designed so it "can be submitted only under sole control of the Subscriber by means that are in the possession of the Subscriber" (rQSCD SPS §6.2.8). The public FAQ states the same in plainer language: PIN1 authenticates, PIN2 signs, and "PIN-codes are not stored anywhere" (Smart-ID FAQ, "PIN codes: what are they?").',
-        et: 'Selle jaotuse kirjutab lahti SK kaug-QSCD teenuse praktika avaldus (rQSCD SPS). Rakenduse osa privaatvõtmest on „kaitstud kasutaja PIN-koodiga ja kasutaja peab iga tehingu jaoks PIN-koodi rakendusse sisestama“. Rakendus ei salvesta PIN-koodi väärtust kunagi, PIN ja sellest tuletatud AES-võti kustutatakse pärast üht võtmepaari toimingut ning aktiveerimisandmed (SAD), mis lubavad allkirjastamismoodulil tegutseda, „edastatakse SAM-ile allkirja aktiveerimise protokollis“ viisil, mis on kavandatud nii, et neid „saab esitada üksnes kasutaja ainukontrolli all vahenditega, mis on kasutaja valduses“ (rQSCD SPS §6.2.8). Avalik KKK ütleb sama lihtsamas keeles: PIN1 autendib, PIN2 allkirjastab ja „PIN-koode ei salvestata kuhugi“ (Smart-ID KKK, „PIN-koodid: mis need on?“).',
+        et: 'Selle jaotuse kirjutab lahti SK kaug-QSCD teenuse tavadokument (rQSCD SPS). Rakenduse osa privaatvõtmest on „kaitstud kasutaja PIN-koodiga ja kasutaja peab iga tehingu jaoks PIN-koodi rakendusse sisestama“. Rakendus ei salvesta PIN-koodi väärtust kunagi, PIN ja sellest tuletatud AES-võti kustutatakse pärast üht võtmepaari toimingut ning aktiveerimisandmed (SAD), mis lubavad allkirjastamismoodulil tegutseda, „edastatakse SAM-ile allkirja aktiveerimise protokollis“ viisil, mis on kavandatud nii, et neid „saab esitada üksnes kasutaja ainukontrolli all vahenditega, mis on kasutaja valduses“ (rQSCD SPS §6.2.8). Avalik KKK ütleb sama lihtsamas keeles: PIN1 autendib, PIN2 allkirjastab ja „PIN-koode ei salvestata kuhugi“ (Smart-ID KKK, „PIN-koodid: mis need on?“).',
       },
       {
         en: 'Two PINs, two rules, one structure: each use of the key requires a fresh, human-supplied activation secret at the moment of use. There is no persistent unlocked state for an agent to steal or share.',
@@ -55,7 +57,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'The contract between SK and the subscriber is explicit about where that leaves automation and third-party use. The terms and conditions for qualified Smart-ID certificates prohibit, among other uses: enabling other parties to use the subscriber’s private key (TCU §3.1.3); enabling the certificate issued for electronic signing to be used in an automated way (TCU §3.1.4); and, in the rQSCD service practice statement, enabling the activation data to be used in an automated way (rQSCD SPS §1.4.2).',
-        et: 'SK ja kasutaja vaheline leping on selge selles, mida see automatiseerimise ja kolmandate isikute jaoks tähendab. Kvalifitseeritud Smart-ID sertifikaatide kasutustingimused keelavad muu hulgas: võimaldada teistel osapooltel kasutada kasutaja privaatvõtit (TCU §3.1.3); võimaldada elektroonilise allkirjastamise jaoks väljastatud sertifikaadi automatiseeritud kasutamist (TCU §3.1.4); ning kaug-QSCD teenuse praktika avalduse järgi võimaldada aktiveerimisandmete automatiseeritud kasutamist (rQSCD SPS §1.4.2).',
+        et: 'SK ja kasutaja vaheline leping on selge selles, mida see automatiseerimise ja kolmandate isikute jaoks tähendab. Kvalifitseeritud Smart-ID sertifikaatide kasutustingimused keelavad muu hulgas: võimaldada teistel osapooltel kasutada kasutaja privaatvõtit (TCU §3.1.3); võimaldada elektroonilise allkirjastamise jaoks väljastatud sertifikaadi automatiseeritud kasutamist (TCU §3.1.4); ning kaug-QSCD teenuse tavadokumendi järgi võimaldada aktiveerimisandmete automatiseeritud kasutamist (rQSCD SPS §1.4.2).',
       },
       {
         en: 'The subscriber-side duties run the same direction. The subscriber must ensure the private key "is used under his/her control" (TCU §5.2.8), must inform SK and revoke the certificates if the key may have been used without authorisation (TCU §5.2.11), and must revoke immediately if the private key or a PIN code "has gone out of his/her possession" (TCU §5.2.12). The Smart-ID security guidance tells users the same thing in non-contract language: do not share PIN1 or PIN2 "with anyone, not even family members or friends", and never enter a PIN for a transaction you did not initiate (Smart-ID FAQ, "How to keep your smart device and Smart-ID safe?").',
@@ -107,7 +109,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'Delegation of authority and delegation of a credential are different operations. The first means the user authorises the agent to act within a defined scope. The second means the agent can activate the user’s key or produce a qualified signature on its own. Nothing in the framework forbids the first. Everything in it forbids the second: eIDAS requires signature creation data to remain under the signatory’s sole control (Article 26(c)), and SK’s practice statement implements that by keeping the activation secret per-operation and inside the subscriber’s possession (rQSCD SPS §6.2.8).',
-        et: 'Volituse delegeerimine ja mandaadi delegeerimine on kaks eri toimingut. Esimene tähendab, et kasutaja volitab agenti tegutsema kindlaks määratud ulatuses. Teine tähendab, et agent saab kasutaja võtme ise aktiveerida või kvalifitseeritud allkirja anda. Miski raamistikus ei keela esimest. Kõik selles keelab teise: eIDAS nõuab, et e-allkirja andmise andmed jääksid allkirjastaja ainukontrolli alla (artikli 26 punkt c), ja SK praktika avaldus viib selle ellu nii, et aktiveerimisandmed on toimingupõhised ja püsivad kasutaja valduses (rQSCD SPS §6.2.8).',
+        et: 'Volituse delegeerimine ja mandaadi delegeerimine on kaks eri toimingut. Esimene tähendab, et kasutaja volitab agenti tegutsema kindlaks määratud ulatuses. Teine tähendab, et agent saab kasutaja võtme ise aktiveerida või kvalifitseeritud allkirja anda. Miski raamistikus ei keela esimest. Kõik selles keelab teise: eIDAS nõuab, et e-allkirja andmise andmed jääksid allkirjastaja ainukontrolli alla (artikli 26 punkt c), ja SK tavadokument viib selle ellu nii, et aktiveerimisandmed on toimingupõhised ja püsivad kasutaja valduses (rQSCD SPS §6.2.8).',
       },
       {
         en: 'A delegated credential that the agent can activate without the human is not a delegation in any sense the regulation recognises. It is a credential handover, and the documents above treat a credential handover as a revocation event, not a design option. A delegated credential that still requires the human to perform the PIN step at signing time is real delegation, but it is not new technology: it is the ordinary consent flow with extra machinery around it, and the PIN step is precisely the part the agent cannot absorb.',
@@ -126,16 +128,16 @@ const sections: EssaySection[] = [
     },
     paragraphs: [
       {
-        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token that is limited in scope, audience, and lifetime, and can be revoked without rotating the underlying credential. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
-        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab tõendi, mille ulatus, adressaat ja eluiga on piiratud ning mille saab kehtetuks tunnistada ilma aluseks olevat mandaati vahetamata. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
+        en: "The identity world solved this general problem years before agents existed. OAuth 2.0 (RFC 6749) was designed to give third parties scoped access without handing them the user’s credentials. It replaces credential sharing with access tokens: the user authenticates once, and the third party receives a token limited in scope instead of the credential itself. Short lifetime, audience restriction and revocation are not guarantees of OAuth as such: RFC 6749 only recommends that the server return expires_in, audience restriction comes from separate mechanisms such as resource indicators (RFC 8707) or the aud claim of JWT access tokens (RFC 9068), and revocation from RFC 7009. They are properties of a deployment profile that the issuer and the service must choose and enforce. RFC 8693 extends the model to token exchange with delegation or impersonation semantics.",
+        et: 'Identiteedimaailm lahendas selle üldise probleemi aastaid enne agentide olemasolu. OAuth 2.0 (RFC 6749) loodi selleks, et anda kolmandatele osapooltele piiratud ulatusega ligipääs ilma kasutaja mandaate välja andmata. See asendab mandaadi jagamise juurdepääsutõenditega: kasutaja autendib end üks kord ja kolmas osapool saab mandaadi asemel piiratud ulatusega tõendi. Lühike eluiga, adressaadi piiramine ja kehtetuks tunnistamine ei ole OAuthi enda tagatised: RFC 6749 üksnes soovitab, et server tagastaks väärtuse expires_in, adressaadi piiramine tuleb eraldi mehhanismidest, nagu ressursiindikaatorid (RFC 8707) või JWT-juurdepääsutõendi aud-väide (RFC 9068), ja kehtetuks tunnistamine RFC 7009-st. Need on juurutusprofiili omadused, mille väljastaja ja teenus peavad valima ja jõustama. RFC 8693 laiendab mudelit tõendite vahetamisele, kus semantika on kas delegeerimine või teisena esinemine.',
       },
       {
-        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped, short-lived, audience-bound token representing the user’s authorisation for a defined task set, bound to the agent where possible (sender constraint, client certificate or equivalent), never the user’s Smart-ID credential; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
-        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega, lühiajalise ja kindla adressaadiga seotud juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks ja on võimaluse korral agendiga seotud (saatja sidumine, kliendisertifikaat või samaväärne), mitte kunagi kasutaja Smart-ID mandaati; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
+        en: "Mapped onto Smart-ID, the compliant pattern is: (1) the user authenticates with Smart-ID (PIN1) to the service that owns the agent, as a human; (2) that service issues the agent a scoped token representing the user’s authorisation for a defined task set, never the user’s Smart-ID credential. The recommended profile makes that token short-lived, audience-restricted and bound to the agent where possible (sender constraint, client certificate or equivalent); these are settings the issuer and the service must configure and enforce, not defaults; (3) for anything that must be a qualified electronic signature, the flow stops and the user signs with Smart-ID (PIN2) themselves, on their own device, with the transaction details in front of them.",
+        et: 'Smart-ID peale asetatuna on nõuetele vastav muster järgmine: (1) kasutaja autendib end inimesena Smart-ID-ga (PIN1) teenusesse, mis agenti haldab; (2) see teenus väljastab agendile piiratud ulatusega juurdepääsutõendi, mis esindab kasutaja volitust kindlaks määratud ülesannete jaoks, mitte kunagi kasutaja Smart-ID mandaati. Soovitatav profiil teeb tõendi lühiajaliseks, piirab selle adressaati ja seob selle võimaluse korral agendiga (saatja sidumine, kliendisertifikaat või samaväärne); need on seaded, mille väljastaja ja teenus peavad seadistama ja jõustama, mitte vaikeväärtused; (3) kõige jaoks, mis peab olema kvalifitseeritud e-allkiri, voog peatub ning kasutaja allkirjastab Smart-ID-ga (PIN2) ise, oma seadmes, tehingu andmed enda ees.',
       },
       {
         en: 'The last step is where the design lives or dies. The PIN is entered only into the Smart-ID application itself. Agent software never captures, relays, or stores it, and the user approves only what the Smart-ID app renders for the transaction the relying party initiated. Any prompt rendered by the agent is a replay of the signing-relay class that this site’s Smart-ID research describes.',
-        et: 'Viimane samm on koht, kus lahendus elab või sureb. PIN sisestatakse ainult Smart-ID rakendusse endasse. Agendi tarkvara ei püüa, edasta ega salvesta seda kunagi ning kasutaja kiidab heaks ainult selle, mida Smart-ID rakendus kuvab tehingu kohta, mille usaldav osapool algatas. Iga PIN-koodi küsimine, mis toimub agendi enda kuvatud aknas, on kordus allkirjastamise relay klassist, mida selle saidi Smart-ID uuring kirjeldab.',
+        et: 'Viimane samm on koht, kus lahendus elab või sureb. PIN sisestatakse ainult Smart-ID rakendusse endasse. Agendi tarkvara ei püüa, edasta ega salvesta seda kunagi ning kasutaja kiidab heaks ainult selle, mida Smart-ID rakendus kuvab tehingu kohta, mille usaldav osapool algatas. Iga PIN-koodi küsimine, mis toimub agendi enda kuvatud aknas, on kordus allkirjastamise vahendusründe klassist, mida selle saidi Smart-ID uuring kirjeldab.',
       },
       {
         en: 'The agent gets authority. The user keeps the credential. Every document cited in this report is compatible with steps 1 and 3; the entire weight of them falls on anyone who tries to skip to a world where step 3 happens without the human.',
@@ -226,6 +228,27 @@ const sources: Source[] = [
   },
   {
     label: {
+      en: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+      et: 'RFC 7009, "OAuth 2.0 Token Revocation"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc7009',
+  },
+  {
+    label: {
+      en: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+      et: 'RFC 8707, "Resource Indicators for OAuth 2.0"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc8707',
+  },
+  {
+    label: {
+      en: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+      et: 'RFC 9068, "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens"',
+    },
+    url: 'https://www.rfc-editor.org/rfc/rfc9068',
+  },
+  {
+    label: {
       en: 'RFC 9345, "Delegated Credentials for TLS and DTLS"',
       et: 'RFC 9345, "Delegated Credentials for TLS and DTLS"',
     },
@@ -256,47 +279,30 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Research · Analysis · Smart-ID / eIDAS' : 'Uuring · Analüüs · Smart-ID / eIDAS'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Research · Analysis · Smart-ID / eIDAS' : 'Uuring · Analüüs · Smart-ID / eIDAS'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 8, 2026' : 'Avaldatud · 8. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '11 min read' : '11 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
           </div>
-          <div hidden className="border border-border bg-white/[0.02] p-5">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+          <div hidden className="border border-border bg-surface p-5">
+            <p className="label font-bold text-accent">
               {isEn ? 'Thesis' : 'Teesid'}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">{thesis[language]}</p>
@@ -304,7 +310,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -313,11 +319,11 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -328,8 +334,8 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Sources' : 'Allikad'}
             </h2>
             <div className="mt-6 space-y-4">
@@ -349,15 +355,15 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Related reading' : 'Seotud lugemine'}
             </h2>
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <li>
                 <Link
                   to="/disclosures/smart-id-achilles-heel"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? "The Achilles' heel of Estonia's e-state"
@@ -370,7 +376,7 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
               <li>
                 <Link
                   to="/disclosures/identity-is-the-root-proof-is-the-gate"
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
+                  className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   {isEn
                     ? 'Identity is the root, proof is the gate'
@@ -383,8 +389,8 @@ export default function ThePinThatCannotBeDelegatedResearchPage() {
             </ul>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Disclosure status' : 'Avalikustamise seis'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

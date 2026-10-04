@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
+import { ArticleHeader } from '../components/site/article';
 
 type ReportSection = {
   heading: string;
@@ -22,7 +23,7 @@ const sections: ReportSection[] = [
     heading: 'The claim under test',
     paragraphs: [
       "The reply's core claim has three parts: models do not look only at page content; they check the link, the domain's age, and publicly available reviews; and results depend on model and mode. The verdict is mixed, and the qualification inside the claim is the most important part of it.",
-      '"Results depend on model and mode" is accurate, and it carries more weight than the rest of the sentence. Web-enabled ChatGPT, Claude, and Gemini can search the web and fetch pages when the mode allows it. A base model with no tools cannot reach the network at all, which is the mode most people are actually in when they paste a link into a plain chat. "They check the link" is true in exactly those web-enabled modes, and Claude is the most explicit about it: its documentation says that with web search enabled it can retrieve content directly from a URL you provide.',
+      '"Results depend on model and mode" is accurate, and it carries more weight than the rest of the sentence. Web-enabled ChatGPT, Claude, and Gemini can search the web and fetch pages when the mode allows it. With web search turned off, or in a model or API configuration without tools, the assistant cannot reach the network at all and answers from the URL string and its training data. That is not the same as ordinary ChatGPT chat: where search is available, ChatGPT may search automatically when it judges a question needs current information, so a pasted link can trigger a lookup without the user asking for one. "They check the link" is true in exactly those web-enabled modes, and Claude is the most explicit about it: its documentation says that with web search enabled it can retrieve content directly from a URL you provide.',
       'The weak parts are domain age and public reviews. Nothing in the documentation of the three assistants describes automatic registration-data, domain-age, or reputation enrichment for a pasted link. That absence is not proof the behavior never happens; product behavior can exceed documentation, and a model asked directly may sometimes look these up by searching. What the documentation establishes is that no vendor ships this as a standing capability, which matters because the advice presents it as one. The accurate version of the claim is conditional: an assistant can check link-adjacent facts only when its web tools are on, the user asks for the specific lookup, and the information is reachable, and even then the result is a search finding, not a security verdict.',
     ],
   },
@@ -165,31 +166,14 @@ const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 export default function ChatgptIsNotAPhishingScannerResearchPage() {
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← Back to disclosures
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Research · Fact Check · Phishing
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Published · September 6, 2026</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">9 min read</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← Back to disclosures</>}
+        kicker={<>Research · Fact Check · Phishing</>}
+        title={title}
+        standfirst={standfirst}
+        meta={[<>Published · September 6, 2026</>, <>9 min read</>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
@@ -199,16 +183,16 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
           {sections.map((section, i) => (
-            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -219,8 +203,8 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               Sources
             </h2>
             <div className="mt-6 space-y-4">
@@ -238,8 +222,8 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
             </div>
           </section>
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -261,7 +245,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
       <ArticleProof
         slug="chatgpt-is-not-a-phishing-scanner"
-        expectedSha256="30b42922afbe0756d6a4bea9163fa16e8fa3dc7e7bdb9a9e08a90beecbd26965"
+        expectedSha256="c40a2b8455a783757941f968045a1f6f9fef08812d0522488ce4b759ed44ecf8"
       />
     </article>
   );

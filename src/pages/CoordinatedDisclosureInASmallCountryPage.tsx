@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import { ArticleHeader } from '../components/site/article';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 
 type EssaySection = {
   heading: string;
@@ -30,10 +31,10 @@ const sections: EssaySection[] = [
   {
     heading: 'The law is closer than people think',
     paragraphs: [
-      "Estonian law criminalizes unauthorized access to computer systems. Section 217 of the Penal Code covers access gained by defeating a system's protection measures, with penalties up to three years. Research on live national infrastructure sits next to that line, on purpose.",
+      "Estonian law criminalizes unauthorized access to computer systems. Section 217 of the Penal Code covers access gained by defeating a system's protection measures. The basic offence in §217(1) carries up to three years; §217(2) raises the maximum to five years for specified cases, including access to the system of a vital service provider. Research on live national infrastructure sits next to that line, on purpose.",
       'That shapes everything about how disclosure has to be done here.',
-      'The line between research and crime is not drawn by the law alone. It is drawn by the paper trail around the work. Scope. Authorization. Timestamps. What you did before you told anyone. The prosecutor\'s question is never whether the research is interesting. It is what you did, in what order, and who knew.',
-      'That is why the discipline is procedural rather than heroic. You document the scope before you touch the system. You stay inside it. You tell the owner first. You can show the whole sequence. The writeup is a technical document, and it is also the evidence that the work was research.',
+      'Authorization is what separates research from crime, and the law decides whether you had it. The paper trail does not grant it. What the paper trail does is document the conduct: scope, authorization, timestamps. What you did before you told anyone. The prosecutor\'s question is never whether the research is interesting. It is what you did, in what order, and who knew.',
+      'That is why the discipline is procedural rather than heroic. You document the scope before you touch the system. You stay inside it. You tell the owner first. You can show the whole sequence. The writeup is a technical document, and it is also the record of what the work was. It does not authorize access you did not have.',
       'None of this is a guarantee. Legal exposure in this field never fully goes away, and anyone who tells you otherwise is selling something. The procedure is what makes the exposure survivable, and it is the only part you fully control.',
     ],
   },
@@ -63,7 +64,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       'A digital state runs on trust in software that almost nobody fully understands. That trust is maintained, in practice, by a small number of people willing to look at the seams and name what they find.',
       'In a big country, that work happens at a distance. Reports go to a portal. Fixes happen on a vendor calendar. The researcher never meets the people affected. In a small country the distance collapses. The person who triages your report is your colleague. The people affected are your neighbors.',
-      'The closeness is the mechanism, not a side effect. When the disclosure is public, the sequence is documented, and the name is yours, the story is a simple one: a researcher found a flaw and told the right people, in the right order. That story is what keeps the work legal, and it is what makes the next report possible. I intend to keep writing them.',
+      'The closeness is the mechanism, not a side effect. When the disclosure is public, the sequence is documented, and the name is yours, the story is a simple one: a researcher found a flaw and told the right people, in the right order. That story does not make the work legal; only authorized access does. But it is the record of what happened, and it is what makes the next report possible. I intend to keep writing them.',
     ],
   },
 ];
@@ -71,58 +72,41 @@ const sections: EssaySection[] = [
 export default function CoordinatedDisclosureInASmallCountryPage() {
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← Back to disclosures
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Essay · Disclosure · Estonia
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Published · August 11, 2026</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">6 min read</span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← Back to disclosures</>}
+        kicker={<>Essay · Disclosure · Estonia</>}
+        title={title}
+        standfirst={standfirst}
+        meta={[<>Published · August 11, 2026</>, <>6 min read</>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
-          <div hidden className="border border-border bg-white/[0.02] p-5">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+          <div hidden className="border border-border bg-surface p-5">
+            <p className="label font-bold text-accent">
               Thesis
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              In a small country, disclosure is a relationship before a procedure. The paper trail makes the work legal; owning your story in public is the protection that scales.
+              In a small country, disclosure is a relationship before a procedure. The paper trail documents the work but does not make it legal; owning your story in public is the protection that scales.
             </p>
           </div>
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
           {sections.map((section, i) => (
-            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-3xl scroll-mt-24">
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+            <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">

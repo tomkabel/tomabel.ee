@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../i18n/LanguageContext';
-import ReaderRail, { sectionSlug } from '../components/site/reader-rail';
+import ReaderRail from '../components/site/reader-rail';
+import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
+import { ArticleHeader } from '../components/site/article';
 
 type Bi = { en: string; et: string };
 
@@ -17,7 +19,7 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: "The Achilles' heel report ends with five fixes for the Smart-ID signing relay, and every one of them needs SK ID Solutions to build something, a bank to adopt something, or a regulator to mandate something. Here is a sixth: a check a bank can run on its own edge, today, without waiting on any of the three.",
-  et: 'Raport "Eesti e-riigi Achilleuse kand" lõpeb viie parandusega Smart-ID allkirjastamise relay-rünnete vastu. Igaüks neist vajab, et SK ID Solutions midagi ehitaks, pank midagi kasutusele võtaks või regulaator midagi kohustuslikuks teeks. Siin on kuues: kontroll, mida pank saab käivitada oma servas juba täna, ootamata neist kolmest ühtegi.',
+  et: 'Raport "Eesti e-riigi Achilleuse kand" lõpeb viie parandusega Smart-ID allkirjastamise vahendusrünnete vastu. Igaüks neist vajab, et SK ID Solutions midagi ehitaks, pank midagi kasutusele võtaks või regulaator midagi kohustuslikuks teeks. Siin on kuues: kontroll, mida pank saab käivitada oma servas juba täna, ootamata neist kolmest ühtegi.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -37,11 +39,11 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: "The signing relay works because two live sessions exist where the victim believes there is one. The victim's browser holds a window relayed pixel by pixel from a container the attacker controls. The container holds the actual authenticated session with the bank. When the victim scans the QR code or reads out a verification code, the confirmation that reaches the bank travels through the attacker's session, not the victim's.",
-        et: 'Allkirjastamise relay töötab, sest kaks elavat seanssi eksisteerivad seal, kus ohver usub olevat üks. Ohvri brauser hoiab akent, mida edastatakse piksel-pikslilt konteinerist, mida ründaja kontrollib. Konteiner hoiab tegelikku autenditud seanssi pangaga. Kui ohver skannib QR-koodi või loeb ette kinnituskoodi, jõuab kinnitus pangani läbi ründaja seansi, mitte ohvri oma.',
+        et: 'Allkirjastamise vahendusrünne töötab, sest kaks elavat seanssi eksisteerivad seal, kus ohver usub olevat üks. Ohvri brauser hoiab akent, mida edastatakse piksel-pikslilt konteinerist, mida ründaja kontrollib. Konteiner hoiab tegelikku autenditud seanssi pangaga. Kui ohver skannib QR-koodi või loeb ette kinnituskoodi, jõuab kinnitus pangani läbi ründaja seansi, mitte ohvri oma.',
       },
       {
         en: "That gap is visible without touching the Smart-ID protocol at all, because it is not a property of the signature, it is a property of the session the bank is already terminating. Every session a bank's edge accepts carries network-layer characteristics the client cannot fully choose: TLS handshake shape, HTTP/2 or HTTP/3 frame timing, connection-level metadata. Comparing a session only to itself would not catch this relay: the container holds one continuous connection to the bank across both the QR issuance and the PIN2 confirmation, so it looks self-consistent the whole way through. The narrower question worth asking is whether that session matches what the bank already knows about this account's usual device and network from prior logins, not whether it was consistent with itself for the length of one transaction. A mismatch there is a risk signal a relay makes more likely, not proof a relay is present.",
-        et: 'See lõhe on nähtav ilma Smart-ID protokolli puudutamatagi, sest see ei ole allkirja omadus, vaid selle seansi omadus, mida pank juba lõpetab. Iga seanss, mille pank oma serva juures vastu võtab, kannab võrgutaseme tunnuseid, mida klient täielikult valida ei saa: TLS-käepigistuse kuju, HTTP/2 või HTTP/3 kaadrite ajastus, ühendustaseme metaandmed. Seansi võrdlemine ainult iseendaga sellist rünnakut ei tabaks: konteiner hoiab panga suunas üht katkematut ühendust nii QR-koodi väljastamise kui PIN2-kinnituse ajal, mistõttu see näib kogu aeg iseendaga kooskõlas olevat. Kitsam küsimus, mida tasub esitada, on see, kas see seanss vastab sellele, mida pank juba teab konto tavapärase seadme ja võrgu kohta varasematest sisselogimistest, mitte see, kas seanss oli iseendaga kooskõlas ühe tehingu jooksul. Sealne mittevastavus on riskisignaal, mille relay muudab tõenäolisemaks, mitte tõend selle kohta, et relay on kohal.',
+        et: 'See lõhe on nähtav ilma Smart-ID protokolli puudutamatagi, sest see ei ole allkirja omadus, vaid selle seansi omadus, mida pank juba lõpetab. Iga seanss, mille pank oma serva juures vastu võtab, kannab võrgutaseme tunnuseid, mida klient täielikult valida ei saa: TLS-käepigistuse kuju, HTTP/2 või HTTP/3 kaadrite ajastus, ühendustaseme metaandmed. Seansi võrdlemine ainult iseendaga sellist rünnakut ei tabaks: konteiner hoiab panga suunas üht katkematut ühendust nii QR-koodi väljastamise kui PIN2-kinnituse ajal, mistõttu see näib kogu aeg iseendaga kooskõlas olevat. Kitsam küsimus, mida tasub esitada, on see, kas see seanss vastab sellele, mida pank juba teab konto tavapärase seadme ja võrgu kohta varasematest sisselogimistest, mitte see, kas seanss oli iseendaga kooskõlas ühe tehingu jooksul. Sealne mittevastavus on riskisignaal, mille vahendusrünne muudab tõenäolisemaks, mitte tõend selle kohta, et vahendusrünne toimub.',
       },
       {
         en: "This is the sixth fix. It does not need SK to change the ACSP_V2 message, does not need a bank to change what its app shows the user, and does not need a regulator to write anything down. It needs a bank's own backend to keep a fingerprint of the session transacting right now and compare it against the fingerprint history already on file for that account.",
@@ -54,7 +56,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: "Scope this honestly. The sixth fix is a check for the cross-device, attacker-initiated case this report documents: a QR flow relayed through infrastructure the attacker controls. It has nothing to say about vishing carried out entirely on the phone the user already trusts, where there is only ever one session and nothing to compare it against. The report's own second fix, same-device Smart-ID+, already closes that case better than any continuity check could, precisely because same-device removes the second session a relay needs to exist.",
-        et: 'Ole selle ulatuse suhtes aus. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda vishingu kohta, mis toimub täielikult telefonis, mida kasutaja juba usaldab, kus on kogu aeg ainult üks seanss ja midagi, millega seda võrrelda, ei ole. Raporti enda teine parandus, samal seadmel Smart-ID+, sulgeb selle juhtumi juba paremini kui ükski järjepidevuse kontroll suudaks, just sellepärast, et sama seade eemaldab teise seansi, mida relay vajab, et üldse eksisteerida.',
+        et: 'Ole selle ulatuse suhtes aus. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda kõneõngitsuse kohta, mis toimub täielikult telefonis, mida kasutaja juba usaldab, kus on kogu aeg ainult üks seanss ja midagi, millega seda võrrelda, ei ole. Raporti enda teine parandus, samal seadmel Smart-ID+, sulgeb selle juhtumi juba paremini kui ükski järjepidevuse kontroll suudaks, just sellepärast, et sama seade eemaldab teise seansi, mida vahendusrünne vajab, et üldse eksisteerida.',
       },
       {
         en: "So the sixth fix is not a replacement for the report's five. It is the tool for the years between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show is measured in years, not months.",
@@ -87,41 +89,24 @@ export default function TheFixThatDoesntNeedSkPage() {
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-border px-6 pb-20 pt-24">
-        <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <Link
-            to="/disclosures"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-          >
-            ← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}
-          </Link>
-          <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {isEn ? 'Essay · Smart-ID · Fraud Prevention' : 'Essee · Smart-ID · Pettuste ennetamine'}
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-foreground md:text-6xl">
-            {title[language]}
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">
-            {standfirst[language]}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+      <ArticleHeader
+        backTo="/disclosures"
+        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        kicker={isEn ? 'Essay · Smart-ID · Fraud Prevention' : 'Essee · Smart-ID · Pettuste ennetamine'}
+        title={title[language]}
+        standfirst={standfirst[language]}
+        meta={[<>
               {isEn ? 'Published · September 6, 2026' : 'Avaldatud · 6. september 2026'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">
+            </>, <>
               {isEn ? '4 min read' : '4 min lugemist'}
-            </span>
-            <span className="border border-border bg-white/[0.03] px-3 py-2">Tom Kristian Abel</span>
-          </div>
-        </div>
-      </header>
+            </>, <>Tom Kristian Abel</>]}
+      />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
         <aside className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
-              sections={sections.map((s) => ({ heading: s.heading[language] }))}
+              sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
               backHref="/disclosures"
               backLabel={isEn ? 'All disclosures' : 'Kõik avalikustatud'}
             />
@@ -129,7 +114,7 @@ export default function TheFixThatDoesntNeedSkPage() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <div className="max-w-measure space-y-6 text-lg leading-relaxed text-muted">
             {openingParagraphs.map((paragraph) => (
               <p key={paragraph.en}>{paragraph[language]}</p>
             ))}
@@ -138,11 +123,11 @@ export default function TheFixThatDoesntNeedSkPage() {
           {sections.map((section, i) => (
             <section
               key={section.heading.en}
-              id={sectionSlug(section.heading[language])}
-              className="mt-16 max-w-3xl scroll-mt-24"
+              id={sectionSlug(section.heading.en)}
+              className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
@@ -153,8 +138,8 @@ export default function TheFixThatDoesntNeedSkPage() {
             </section>
           ))}
 
-          <section className="mt-16 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold leading-tight text-foreground">
+          <section className="mt-16 max-w-measure">
+            <h2 className="font-display text-3xl leading-tight text-foreground">
               {isEn ? 'Further reading' : 'Rohkem lugemist'}
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
@@ -177,7 +162,7 @@ export default function TheFixThatDoesntNeedSkPage() {
                     <Link to="/disclosures/smart-id-achilles-heel" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                       "Eesti e-riigi Achilleuse kand"
                     </Link>
-                    , mis dokumenteerib allkirjastamise relay täies mahus ja loetleb teised viis. Avalikustatud uuringukorpus mõlema taga,{' '}
+                    , mis dokumenteerib allkirjastamise vahendusründe täies mahus ja loetleb teised viis. Avalikustatud uuringukorpus mõlema taga,{' '}
                     <a href="https://tomkabel.github.io/skid-security-research/" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                       skid-security-research
                     </a>
