@@ -262,7 +262,7 @@ function DisclosurePage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Breach Trace · Zero Trust Octagon · Archetype D' : 'Rünnaku jälg · Zero Trust Octagon · Arhetüüp D'}
         title={title[language]}
         standfirst={standfirst[language]}

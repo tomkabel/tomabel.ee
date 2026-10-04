@@ -181,7 +181,7 @@ const sources = [
 
 const disclosureParagraphs = [
   "This report describes Google's production anti-fraud systems. The technical analysis is drawn from research that was already public before this report: Cypa's botguard-reverse (open source) and LuanRT's BgUtils (MIT). My own google-botguard-security-research repository is an analytical SoK paper and is cited for the client-side-trust argument, not as the source of the VM internals.",
-  'No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. The one first-person element is a token-replay test I ran privately in 2021; it has not been independently reproduced and belongs to a token-harvesting class that was already public tooling by 2020. As far as public records show, Google was not notified of that 2021 test through its Vulnerability Reward Program or any other channel, and there is no public VRP identifier or response to cite; the author would need to confirm any private contact. The index should describe this work by its disclosure status rather than implying a coordinated disclosure that is not on record. Google updates BotGuard continuously, so this describes architecture, not a byte-exact snapshot, and operational detail is deliberately left out. Research conduct follows the site\u2019s ',
+  'No live Google system was tested or probed for this report, and no new vulnerability is disclosed here. The one first-person element is a token-replay test I ran privately in 2021; it has not been independently reproduced and belongs to a token-harvesting class that was already public tooling by 2020. Google was not notified of that 2021 test, through its Vulnerability Reward Program or any other channel; it is an unreproduced observation, not a disclosed vulnerability. Google updates BotGuard continuously, so this describes architecture, not a byte-exact snapshot, and operational detail is deliberately left out. Research conduct follows the site\u2019s ',
   'Disclosure: the author runs ProksiAbel O\u00dc, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here \u2014 weighting attestation against server-side signals such as IP reputation and session history \u2014 fall in that category.',
   'Corrections, 4 October 2026: the VM internals are now attributed inline to Cypa (botguard-reverse) and the PO-token details to LuanRT (BgUtils) rather than to the author\u2019s repository; the 2021 portability claim is reframed as the author\u2019s own unreproduced note within the known token-harvesting class, with the \u201cweakness\u201d framing dropped; token-binding limits (site, lifetime, content, not machine) are stated accurately; the session-bound token is noted as no longer used by YouTube\u2019s web client; and the yt-dlp enforcement wording is quoted as written.',
 ];
@@ -200,7 +200,7 @@ export default function BotGuardDisassembledResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Research · Technical Teardown · Anti-Fraud</>}
         title={title}
         standfirst={standfirst}
@@ -298,7 +298,7 @@ export default function BotGuardDisassembledResearchPage() {
                   to="/disclosures/why-vlms-break-client-side-anti-fraud"
                   className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
-                  Why VLMs break client-side anti-fraud
+                  How client-side anti-fraud actually works, and what VLM agents change
                 </Link>{' '}
                 extends the same structural weakness to VLM-driven agents operating a real browser.
               </p>
@@ -330,7 +330,7 @@ export default function BotGuardDisassembledResearchPage() {
 
       <ArticleProof
         slug="botguard-disassembled"
-        expectedSha256="df9e53bc4a243f26bbef6e243247c4c476821e12dab42f2d92487ba406ae24d7"
+        expectedSha256="1914335c267b00f8ec999adea590ab1a1b5e5d314e5faaabb6b6216f851c3c76"
       />
     </article>
   );

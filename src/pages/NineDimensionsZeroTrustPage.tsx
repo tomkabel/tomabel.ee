@@ -181,21 +181,21 @@ const sources: Source[] = [
     note: { en: 'chapters 4 to 7 define the dimensions and their values', et: 'peatükid 4–7 määratlevad mõõtmed ja nende väärtused' },
   },
   {
-    label: { en: 'CISA Zero Trust Maturity Model Version 2.0 (April 2023)', et: 'CISA null-usalduse küpsusmudel, versioon 2.0 (aprill 2023)' },
+    label: { en: 'CISA Zero Trust Maturity Model Version 2.0 (April 2023)', et: 'CISA nullusalduse küpsusmudel, versioon 2.0 (aprill 2023)' },
     url: 'https://www.cisa.gov/zero-trust-maturity-model',
     note: { en: 'five pillars, four stages, scored per pillar', et: 'viis sammast, neli etappi, hinnatakse samba kaupa' },
   },
   {
-    label: { en: 'NSA, Zero Trust Implementation Guidelines: Primer and Discovery Phase (January 2026)', et: 'NSA, null-usalduse rakendamise juhised: sissejuhatus ja avastamisfaas (jaanuar 2026)' },
+    label: { en: 'NSA, Zero Trust Implementation Guidelines: Primer and Discovery Phase (January 2026)', et: 'NSA, nullusalduse rakendamise juhised: sissejuhatus ja avastamisfaas (jaanuar 2026)' },
     url: 'https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4378980/',
   },
   {
-    label: { en: 'NIST SP 1800-35, Implementing a Zero Trust Architecture (final, June 2025)', et: 'NIST SP 1800-35, null-usalduse arhitektuuri rakendamine (lõplik, juuni 2025)' },
+    label: { en: 'NIST SP 1800-35, Implementing a Zero Trust Architecture (final, June 2025)', et: 'NIST SP 1800-35, nullusaldusarhitektuuri rakendamine (lõplik, juuni 2025)' },
     url: 'https://csrc.nist.gov/pubs/sp/1800/35/final',
     note: { en: '19 example builds', et: '19 näidislahendust' },
   },
   {
-    label: { en: 'CISA, Microsegmentation in Zero Trust, Part One (July 2025)', et: 'CISA, mikrosegmenteerimine null-usalduses, 1. osa (juuli 2025)' },
+    label: { en: 'CISA, Microsegmentation in Zero Trust, Part One (July 2025)', et: 'CISA, mikrosegmenteerimine nullusalduses, 1. osa (juuli 2025)' },
     url: 'https://www.cisa.gov/news-events/alerts/2025/07/29/cisa-releases-part-one-zero-trust-microsegmentation-guidance',
     note: { en: 'relevant to D3', et: 'seotud D3-ga' },
   },
@@ -241,7 +241,7 @@ export default function NineDimensionsZeroTrustPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Framework Analysis · Zero Trust' : 'Raamistiku analüüs · Nullusaldus'}
         title={title[language]}
         standfirst={standfirst[language]}

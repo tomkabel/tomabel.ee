@@ -11,12 +11,12 @@ type EssaySection = {
 };
 
 const title = "I used to break authentication. Here's what that taught me about building it.";
-const standfirst = 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, and what the authentication arms race looks like from both sides.';
+const standfirst = 'The thesis essay for everything else on this site: why understanding offense is a prerequisite for credible defense, worked through one Smart-ID relay example.';
 
 const aboutLinkText = 'About page';
 
 const openingParagraphs = [
-  'For a while, I broke authentication and anti-fraud systems for money. It led to a criminal conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
+  'I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don’t hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
   'That is the plainest summary of the background behind this site. What I kept from it is a way of seeing: authentication rarely fails in the diagrams or the compliance checklists. It fails in the seam between what a system claims to verify and what it actually verifies under pressure, and "strong authentication" often means strong under ordinary use and brittle under adversarial use.',
   'The argument of this essay, and of the rest of the site, is that credible defense requires offensive understanding. Defenders do not need to become attackers. They need the question attackers force on every system: what, exactly, are you trusting here?',
 ];
@@ -77,7 +77,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       'Here are the five questions applied to the cross-device Smart-ID+ QR flow and the signing relay from this site\'s Achilles\' heel report. The relay was a proof of concept against SK\'s public demo portal, not a live bank, so this is an argument about the architecture.',
       'What is the control asserting? When a user scans the QR code to log in and later confirms a transfer with PIN2 after matching a four-digit verification code, the bank reads that as "the account holder approved this transaction". What the flow establishes is narrower: someone holding the phone and the PIN approved a request whose code matched a code they saw on a screen.',
-      'Which part is cryptographic, which is environmental, and which is human? The signature is cryptographic and sound; the key never leaves the phone. Whether the screen showing the code is the bank\'s page is environmental. Whether the code on the phone matches that screen is a human comparison. The relay attacks the second part; the third still passes, because the codes really do match.',
+      'Which part is cryptographic, which is environmental, and which is human? The signature is cryptographic and sound; Smart-ID splits the key, and the app\'s share never leaves the phone. Whether the screen showing the code is the bank\'s page is environmental. Whether the code on the phone matches that screen is a human comparison. The relay attacks the second part; the third still passes, because the codes really do match.',
       'Which assumptions need the attacker to behave politely? The verification code assumes the user is looking at the bank\'s page. In the relay, the attacker serves a fake browser window that streams a real bank session from a container. The victim scans the genuine QR code inside it, the session lands in the attacker\'s browser, the attacker starts a transfer and mirrors the genuine code into the window the victim is watching. The codes match, so the victim approves.',
       'Where are the fallback paths? Here the weaker path is a sibling of the strong one. Started on the same phone that holds the key, Smart-ID+ is, in Arnis Paršovs\'s words, fully phishing-resistant. Started from a QR code on another screen, it is only as good as that screen. Smart-ID+ went live at Bigbank and LHV in June 2026 and makes call-based fraud much harder, but it does not remove the cross-device path.',
       'What stops a local failure from becoming an account-level one? One misled approval yields a transfer and a session the attacker can keep using. What limits the damage sits away from the prompt: transaction limits, delays on new payees, and server-side checks on where the session is actually being driven from.',
@@ -152,7 +152,7 @@ export default function AuthenticationEssayPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Authentication · Offense / Defense</>}
         title={title}
         standfirst={standfirst}

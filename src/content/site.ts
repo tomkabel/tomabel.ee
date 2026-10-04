@@ -74,8 +74,8 @@ export const featuredWork: FeaturedWork[] = [
       et: 'BotGuard, lahti võetud',
     },
     blurb: {
-      en: "Opcode-level reverse engineering of Google’s VM-based anti-fraud system — anti-debug mechanisms, token portability, the works.",
-      et: "Google’i VM-põhise pettusevastase süsteemi opkooditasemel pöördprojekteerimine — anti-debug mehhanismid, tokenite ülekantavus, kõik.",
+      en: "A teardown of Google’s VM-based anti-fraud system from public research — the bytecode VM, the anti-debug mechanisms, and where token binding stops.",
+      et: "Google’i VM-põhise pettusevastase süsteemi lahtivõtmine avalike uuringute põhjal — baitkoodi VM, anti-debug mehhanismid ja see, kus tokeni sidumine lõpeb.",
     },
     tags: ['Reverse Engineering', 'Anti-Debug'],
     href: '/disclosures/botguard-disassembled',
@@ -88,8 +88,8 @@ export const featuredWork: FeaturedWork[] = [
       et: 'Smart-ID / eID uuringud',
     },
     blurb: {
-      en: "Protocol vulnerability research on Estonia’s national authentication stack, reported to SK ID Solutions first, then escalated to RIA and other regulators.",
-      et: 'Protokolli haavatavuste uuringud Eesti riikliku autentimise taristu kohta: kõigepealt teavitati SK ID Solutionsit, seejärel pöörduti RIA ja teiste järelevalveasutuste poole.',
+      en: "Research on the approval layer of Estonia’s national authentication stack, reported to SK ID Solutions first, then escalated to RIA and other regulators.",
+      et: 'Uuringud Eesti riikliku autentimise taristu kinnituskihi kohta: kõigepealt teavitati SK ID Solutionsit, seejärel pöörduti RIA ja teiste järelevalveasutuste poole.',
     },
     tags: ['eIDAS', 'Coordinated Disclosure'],
     href: '/disclosures/smart-id-achilles-heel',
@@ -258,8 +258,8 @@ export const disclosures: Disclosure[] = [
       et: 'Parandus, mis SK-d ei vaja',
     },
     blurb: {
-      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. Here’s a sixth, not new but under-used: a check of each session against the account’s device and network history that a bank can run today. Paršovs and LHV got there first, and PSD2 already requires this kind of monitoring. It is strongest against attacker-session vishing and the cross-device relay, and weakest against victim-initiated transfers.",
-      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu, millest igaüks vajab, et SK ID Solutions, pank või regulaator esimesena liiguks. Siin on kuues, mitte uus, kuid alakasutatud: iga seansi võrdlemine konto seadme- ja võrguajalooga, mida pank saab teha juba täna. Paršovs ja LHV jõudsid selleni varem ning PSD2 nõuab sellist jälgimist juba praegu. Kõige tugevam on see ründaja seansiga kõneõngitsuse ja seadmeülese vahendusründe vastu, kõige nõrgem ohvri enda algatatud ülekannete puhul.',
+      en: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing a regulator, the banks, or a legislature or court to move first. Here’s a sixth, not new but under-used: a check of each session against the account’s device and network history that a bank can run today. Paršovs and LHV got there first, and PSD2 already requires this kind of monitoring. It is strongest against attacker-session vishing and the cross-device relay, and weakest against victim-initiated transfers.",
+      et: 'Raport "Eesti e-riigi Achilleuse kand" loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu, millest igaüks vajab, et regulaator, pangad või seadusandja või kohus esimesena liiguks. Siin on kuues, mitte uus, kuid alakasutatud: iga seansi võrdlemine konto seadme- ja võrguajalooga, mida pank saab teha juba täna. Paršovs ja LHV jõudsid selleni varem ning PSD2 nõuab sellist jälgimist juba praegu. Kõige tugevam on see ründaja seansiga kõneõngitsuse ja seadmeülese vahendusründe vastu, kõige nõrgem ohvri enda algatatud ülekannete puhul.',
     },
     tags: ['Smart-ID', 'Fraud Prevention', 'Session Continuity'],
     keywords: 'Smart-ID, signing relay, session continuity, fraud prevention, network fingerprinting',
@@ -349,7 +349,7 @@ export const disclosures: Disclosure[] = [
     kind: 'essay',
     title: {
       en: 'The Gray Space: Russian-Linked Proxy and Hosting Infrastructure in Estonia',
-      et: 'Hall ruum: Venemaaga seotud proksi- ja majutustaristu Eestis',
+      et: 'Hall ala: Venemaaga seotud proksi- ja majutustaristu Eestis',
     },
     blurb: {
       en: "In September 2026 QualityNetwork OÜ, a named operator of the Fineproxy proxy service, became a RIPE LIR and was allocated former Region40 prefixes. An OSINT reference tracing that network through Qurium’s DDoS reports (Azerbaijan 2018–2019, Rappler 2023), what the record does and does not show about Vault Dweller OÜ’s withdrawn AS203834, and why none of it is proven Russian state activity.",
@@ -418,8 +418,8 @@ export const disclosures: Disclosure[] = [
     kind: 'framework',
     title: { en: 'SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D', et: 'SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg' },
     blurb: {
-      en: 'The small team running on a dozen SaaS products is the most common architecture and the one written about most condescendingly. This is a composite breach trace: MFA fatigue, a stolen session the proxy never sees, and what one person can start fixing in an afternoon.',
-      et: 'Tosinal SaaS-tootel toimiv väike meeskond on kõige levinum arhitektuur ja see, millest kirjutatakse kõige üleolevamalt. Siin on üldistatud rünnakujälg: MFA väsitusrünne, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene saab ühe pärastlõunaga parandama hakata.',
+      en: 'A small team running on a dozen SaaS products, traced as a composite breach: MFA fatigue, a stolen session the proxy never sees, and what one person can start fixing in an afternoon.',
+      et: 'Tosinal SaaS-tootel toimiv väike meeskond üldistatud rünnakujäljena: MFA väsitusrünne, varastatud seanss, mida proksi ei näe, ja see, mida üks inimene saab ühe pärastlõunaga parandama hakata.',
     },
     tags: ['Zero Trust', 'SaaS', 'MFA Fatigue', 'Identity'],
     keywords: 'MFA fatigue, push bombing, SaaS blind spot, identity-aware proxy, OAuth grant audit, FIDO2, phishing-resistant MFA, zero trust, small team security, Archetype D',
@@ -485,8 +485,8 @@ export const projects: Project[] = [
     stars: 105,
     featured: true,
     blurb: {
-      en: "An opcode-level breakdown of Google’s VM-based BotGuard engine. It documents the bytecode interpreter, the anti-debugging tricks, the obfuscation layers, and a specific flaw in token portability.",
-      et: "Google’i VM-põhise BotGuardi mootori opkooditasemel lahtivõtmine. Dokumenteerib baitkoodi interpretaatori, anti-debug võtted, obfuskeerimiskihid ja konkreetse nõrkuse tokenite ülekantavuses.",
+      en: "An analytical survey of Google’s VM-based BotGuard engine, built on public research. It covers the bytecode interpreter, the anti-debugging tricks and the obfuscation layers, plus an unreproduced 2021 note on token binding.",
+      et: "Avalikel uuringutel põhinev ülevaade Google’i VM-põhisest BotGuardi mootorist. Käsitleb baitkoodi interpretaatorit, anti-debug võtteid ja obfuskeerimiskihte ning 2021. aasta kordamata märget tokeni sidumise kohta.",
     },
     href: 'https://github.com/tomkabel/google-botguard-security-research',
     repo: 'https://github.com/tomkabel/google-botguard-security-research',

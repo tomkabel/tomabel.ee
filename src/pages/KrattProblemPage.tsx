@@ -37,7 +37,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       'In the stories, the danger isn\'t malice. The kratt has none. The danger is idleness: it is most dangerous exactly when it has nothing to do.',
       'I think that is right, and I think the cybersecurity industry mostly looks the other way. Its controls are aimed at the intent of people who can build things: export rules for intrusion software, bug-bounty terms, safe-harbor policies. Much less is said about what happens to capability when nobody has given it work. Idle skill doesn\'t stay idle. Its owner finds work for it, and unchosen work is rarely good work.',
-      'For a while, I broke authentication and anti-fraud systems for money. It led to a criminal conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
+      'I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don’t hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
     ],
   },
   {
@@ -114,7 +114,7 @@ export default function KrattProblemPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Ethics · Offensive Security</>}
         title={title}
         standfirst={standfirst}

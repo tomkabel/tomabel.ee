@@ -226,7 +226,7 @@ export default function PactSoftwareAnchorTurnResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Research · Critical Analysis · Anti-Fraud</>}
         title={title}
         standfirst={standfirst}

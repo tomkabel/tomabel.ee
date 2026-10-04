@@ -20,7 +20,7 @@ type DisclosureParagraph = Bi & { label?: Bi };
 
 const title: Bi = {
   en: 'The Gray Space: Russian-Linked Proxy and Hosting Infrastructure in Estonia',
-  et: 'Hall ruum: Venemaaga seotud proksi- ja majutustaristu Eestis',
+  et: 'Hall ala: Venemaaga seotud proksi- ja majutustaristu Eestis',
 };
 
 const standfirst: Bi = {
@@ -314,7 +314,7 @@ function DisclosurePage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Reference Paper · OSINT · Estonia' : 'Viitetöö · OSINT · Eesti'}
         title={title[language]}
         standfirst={standfirst[language]}

@@ -262,7 +262,7 @@ export default function ZeroTrustOctagonResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Research · Framework · Zero-Trust</>}
         title={title}
         standfirst={standfirst}

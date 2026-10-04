@@ -14,7 +14,7 @@ const standfirst =
 
 const openingParagraphs = [
   "The advice under test is a general tip, not one person's statement: when a link looks suspicious, paste it into ChatGPT and ask whether it is phishing. I have no single published source for it to cite, so this report checks the tip as it is commonly phrased rather than any one author's version of it.",
-  "The report started from a public exchange in June 2026. In a LinkedIn post I argued that \"paste the suspicious page into ChatGPT\" is not good advice, because professional phishing runs through traffic distribution systems that show decoys to the wrong visitors. A practitioner from the Estonian phishing-awareness training field pushed back. Writing in Estonian, they said that in their experience language models typically do not look only at the content of the page, but also at the link, the domain's age, and publicly available reviews, and that results can depend a lot on the model and the mode used for the analysis. They agreed VirusTotal is the more thorough tool and the better recommendation. The reply is paraphrased here in translation; the original Estonian is recorded in the working notes for this report. Both claims deserve a fair check.",
+  "The report started from a public exchange in June 2026. In a public post I argued that \"paste the suspicious page into ChatGPT\" is not good advice, because professional phishing runs through traffic distribution systems that show decoys to the wrong visitors. A security-awareness practitioner pushed back publicly. They said that in their experience language models typically do not look only at the content of the page, but also at the link, the domain's age, and publicly available reviews, and that results can depend a lot on the model and the mode used for the analysis. They agreed VirusTotal is the more thorough tool and the better recommendation. The reply is paraphrased here; the original is recorded in the working notes for this report. Both claims deserve a fair check.",
   'The exchange has one structural fact the reader should know up front: I wrote the original post under review, so this report adjudicates a dispute I am a party to. Both my claims and the reply are held to the same evidentiary standard, and where the reply is accurate, this report says so.',
   "I checked what the vendors actually document in June 2026, again in September 2026, and rechecked the vendor sections on 4 October 2026. For ChatGPT, Claude, and Gemini I read the official product and API documentation on search, web fetch, URL retrieval, and limitations. I checked ICANN's registration-data position, VirusTotal and Google Safe Browsing documentation, current threat research on traffic distribution systems and AI-targeted cloaking (FBI IC3, Infoblox and Confiant, Palo Alto Networks, SPLX, Netcraft), and three recent academic papers on LLM phishing detection. I did not probe any live suspicious URL, fetch any phishing page, or test any model interactively. Everything below is what the products document and what the public record shows. One caveat applies throughout: documentation is not behavior. A feature a vendor does not document may still exist, a documented feature may behave differently in production, and a model asked directly may sometimes look things up by searching.",
 ];
@@ -186,7 +186,7 @@ const sources = [
 ];
 
 const disclosureParagraphs = [
-  "This report examines a public claim made in a public discussion and checks it against vendor documentation and public threat research. The exchange took place publicly on LinkedIn in June 2026; the reply is paraphrased in translation. LinkedIn does not expose a stable public permalink to an individual reply without an account, so the thread is described rather than deep-linked. The original Estonian text is recorded in the author's working notes, which are available on request.",
+  "This report examines a public claim made in a public discussion and checks it against vendor documentation and public threat research. The exchange took place publicly in June 2026; the reply is paraphrased. The thread is described rather than linked, so that the respondent is not identified. The original text is recorded in the author's working notes, which are available on request.",
   'The author wrote the original post under review and adjudicates the dispute in this report; the reply\'s accurate parts are stated as such, and the author\'s own claims are held to the same standard. The respondent was not contacted before publication and is therefore not named. No private correspondence, client material, or non-public data was used, no live system was tested, no suspicious URL was fetched, and no vulnerability is disclosed. If any error is pointed out, the piece will be corrected. Research conduct follows the site\'s ',
   'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Its classification techniques overlap with those TDS operators use to decide which visitors to cloak.',
   "Corrections, 4 October 2026: the advice under test is now described as a general tip, since it has no single published source, and the respondent is no longer named. Claude's web search is no longer described as a toggle; the vendor section now covers OpenAI's January 2026 link-safety post and Gemini URL Context's \"unsafe\" moderation check; the claim that a consumer chat cannot call Safe Browsing or VirusTotal, and the unsourced claim that assistant fetches usually come from outside the target geography, were corrected; and the Safe Browsing, Claude and Gemini grounding links were updated.",
@@ -198,7 +198,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Research · Fact Check · Phishing</>}
         title={title}
         standfirst={standfirst}
@@ -278,7 +278,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
       <ArticleProof
         slug="chatgpt-is-not-a-phishing-scanner"
-        expectedSha256="d12d72744cdcfbdb295c94e3f93e95cca5c1a6ca5b417e74878b879576b41094"
+        expectedSha256="726789a2c0093da0dd2550213f62b3b21cd6de614e186a2992025e4cf98b4daf"
       />
     </article>
   );

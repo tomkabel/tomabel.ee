@@ -18,8 +18,8 @@ const title: Bi = {
 };
 
 const standfirst: Bi = {
-  en: "The Achilles' heel report ends with five fixes for the Smart-ID signing relay, and every one of them needs SK ID Solutions to build something, a bank to adopt something, or a regulator to mandate something. Here is a sixth: a check a bank can run on its own edge, today, without waiting on any of the three.",
-  et: 'Raport "Eesti e-riigi Achilleuse kand" lõpeb viie parandusega Smart-ID allkirjastamise vahendusrünnete vastu. Igaüks neist vajab, et SK ID Solutions midagi ehitaks, pank midagi kasutusele võtaks või regulaator midagi kohustuslikuks teeks. Siin on kuues: kontroll, mida pank saab käivitada oma servas juba täna, ootamata neist kolmest ühtegi.',
+  en: "The Achilles' heel report ends with five fixes for the Smart-ID signing relay, and every one of them needs someone else to move first: a regulator to mandate something, every bank to adopt something, or a legislature or court to shift the liability. Here is a sixth: a check a bank can run on its own edge, today, without waiting on anyone.",
+  et: 'Raport "Eesti e-riigi Achilleuse kand" lõpeb viie parandusega Smart-ID allkirjastamise vahendusrünnete vastu. Igaüks neist vajab, et keegi teine teeks esimese sammu: regulaator teeks midagi kohustuslikuks, iga pank võtaks midagi kasutusele või seadusandja või kohus nihutaks vastutust. Siin on kuues: kontroll, mida pank saab käivitada oma servas juba täna, kedagi ootamata.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -28,8 +28,8 @@ const openingParagraphs: Bi[] = [
     et: 'Avalikustamine kohe alguses: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Allpool kirjeldatud kuues parandus, seansi järjepidevuse hindamine panga võrgu servas, kuulub täpselt sellesse tootekategooriasse. Loe argumenti seda silmas pidades.',
   },
   {
-    en: 'Read the five fixes back to back and a pattern shows up. Make the verification code mandatory: a regulator has to require it. Make Smart-ID+ the default, same-device where possible: SK already shipped it in 2025, and each bank still has to roll it out. Bind the approval to the transaction: banks already can, and under PSD2\u2019s dynamic-linking rule must, send the amount and payee to the app. Shift the liability: a legislature or a court has to move it. Use the regulatory floor: NIS2 and eIDAS 2.0 have to be enforced. Five fixes, four kinds of actor \u2014 a regulator, SK, the banks, and a legislature or court \u2014 who all have to move before anything changes for the person holding the phone.',
-    et: 'Loe need viis parandust järjest läbi ja muster ilmneb. Tee kinnituskoodi kontroll kohustuslikuks: regulaator peab seda nõudma. Tee Smart-ID+ vaikimisi valikuks, samal seadmel kus võimalik: SK andis selle juba 2025. aastal välja ja iga pank peab selle veel kasutusele võtma. Seo kinnitus tehinguga: pangad juba saavad ja PSD2 dünaamilise sidumise reegli järgi peavad saatma rakendusse summa ja saaja. Nihuta vastutus: seadusandja või kohus peab selle ümber tõstma. Kasuta regulatiivset alusmiinimumi: NIS2 ja eIDAS 2.0 peavad olema jõustatud. Viis parandust, neli liiki osalist \u2014 regulaator, SK, pangad ning seadusandja või kohus \u2014 kes kõik peavad liikuma, enne kui midagi muutub inimese jaoks, kelle käes on telefon.',
+    en: 'Read the five fixes back to back and a pattern shows up. Make the verification code mandatory: a regulator has to require it. Make Smart-ID+ the default, same-device where possible: SK made it available in 2025, and each bank still has to roll it out. Bind the approval to the transaction: banks already can, and under PSD2\u2019s dynamic-linking rule must, send the amount and payee to the app. Shift the liability: a legislature or a court has to move it. Use the regulatory floor: NIS2 and eIDAS 2.0 have to be enforced. Five fixes, three kinds of actor \u2014 a regulator, the banks, and a legislature or court \u2014 who all have to move before anything changes for the person holding the phone.',
+    et: 'Loe need viis parandust järjest läbi ja muster ilmneb. Tee kinnituskoodi kontroll kohustuslikuks: regulaator peab seda nõudma. Tee Smart-ID+ vaikimisi valikuks, samal seadmel kus võimalik: SK tegi selle kättesaadavaks juba 2025. aastal ja iga pank peab selle veel kasutusele võtma. Seo kinnitus tehinguga: pangad juba saavad ja PSD2 dünaamilise sidumise reegli järgi peavad saatma rakendusse summa ja saaja. Nihuta vastutus: seadusandja või kohus peab selle ümber tõstma. Kasuta regulatiivset alusmiinimumi: NIS2 ja eIDAS 2.0 peavad olema jõustatud. Viis parandust, kolm liiki osalist \u2014 regulaator, pangad ning seadusandja või kohus \u2014 kes kõik peavad liikuma, enne kui midagi muutub inimese jaoks, kelle käes on telefon.',
   },
   {
     en: "The report already names why that wait is not a short one. SK ID Solutions is co-owned by Swedbank and SEB, two of the banks that would have to absorb the cost of hardening it. Waiting for that structure to volunteer a fix is not a plan, it is a bet against the owner's own incentives.",
@@ -59,12 +59,12 @@ const sections: EssaySection[] = [
     heading: { en: "What it doesn't fix", et: 'Mida see ei paranda' },
     paragraphs: [
       {
-        en: "Scope this honestly. The sixth fix is a check for the cross-device, attacker-initiated case this report documents: a QR flow relayed through infrastructure the attacker controls. It has nothing to say about victim-initiated transfers, where the victim\u2019s own usual session moves the money and there is nothing anomalous to compare it against. It is most useful against classic attacker-session vishing, where the attacker logs in from their own device and the victim only approves PINs. The report's own second fix, same-device Smart-ID+, already closes that case better than any continuity check could, precisely because same-device removes the second session a relay needs to exist.",
-        et: 'Ole selle ulatuse suhtes aus. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda ohvri enda algatatud ülekannete kohta, kus raha liigutab ohvri enda tavapärane seanss ja võrrelda pole midagi ebatavalist. Kõige kasulikum on see klassikalise ründaja-seansi kõneõngitsuse vastu, kus ründaja logib sisse oma seadmest ja ohver vaid kinnitab PIN-koodid. Raporti enda teine parandus, samal seadmel Smart-ID+, sulgeb selle juhtumi juba paremini kui ükski järjepidevuse kontroll suudaks, just sellepärast, et sama seade eemaldab teise seansi, mida vahendusrünne vajab, et üldse eksisteerida.',
+        en: "The scope is narrow. The sixth fix is a check for the cross-device, attacker-initiated case this report documents: a QR flow relayed through infrastructure the attacker controls. It has nothing to say about victim-initiated transfers, where the victim\u2019s own usual session moves the money and there is nothing anomalous to compare it against. It is also useful against classic attacker-session vishing, where the attacker logs in from their own device and the victim only approves PINs. Against both, the report's own second fix, same-device Smart-ID+, does better than any continuity check could, because same-device removes the second session the attack needs.",
+        et: 'Selle ulatus on kitsas. Kuues parandus on kontroll seadmeülese, ründaja algatatud juhtumi jaoks, mida see raport dokumenteerib: QR-vooga, mida edastatakse ründaja kontrollitava taristu kaudu. Sellel ei ole midagi öelda ohvri enda algatatud ülekannete kohta, kus raha liigutab ohvri enda tavapärane seanss ja võrrelda pole midagi ebatavalist. Kasulik on see ka klassikalise ründaja-seansi kõneõngitsuse vastu, kus ründaja logib sisse oma seadmest ja ohver vaid kinnitab PIN-koodid. Mõlema vastu toimib raporti enda teine parandus, samal seadmel Smart-ID+, paremini kui ükski järjepidevuse kontroll suudaks, sest sama seade eemaldab teise seansi, mida rünnak vajab.',
       },
       {
-        en: "So the sixth fix is not a replacement for the report's five. It is the tool for the years between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show is measured in years, not months.",
-        et: 'Nii et kuues parandus ei asenda raporti viit. See on tööriist aastate jaoks nende vahel: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mida raporti enda numbrid näitavad mõõdetuna aastates, mitte kuudes.',
+        en: "So the sixth fix is not a replacement for the report's five. It is the tool for the years between them: the gap between the phishing-resistant flow existing and the phishing-resistant flow being the default everywhere, which the report's own numbers show has lasted more than a year so far.",
+        et: 'Nii et kuues parandus ei asenda raporti viit. See on tööriist aastate jaoks nende vahel: lõhe selle vahel, et õngitsemiskindel voog eksisteerib, ja selle vahel, et õngitsemiskindel voog on vaikimisi valik kõikjal, mis raporti enda numbrite järgi on kestnud juba üle aasta.',
       },
     ],
   },
@@ -99,7 +99,7 @@ export default function TheFixThatDoesntNeedSkPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Essay · Smart-ID · Fraud Prevention' : 'Essee · Smart-ID · Pettuste ennetamine'}
         title={title[language]}
         standfirst={standfirst[language]}
@@ -172,7 +172,7 @@ export default function TheFixThatDoesntNeedSkPage() {
                     <Link to="/disclosures/smart-id-achilles-heel" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                       "Eesti e-riigi Achilleuse kand"
                     </Link>
-                    , mis dokumenteerib allkirjastamise relay täies mahus ja loetleb teised viis. Avalikustatud uuringukorpus mõlema taga,{' '}
+                    , mis dokumenteerib allkirjastamise vahendusrünnet täies mahus ja loetleb teised viis. Avalikustatud uuringukorpus mõlema taga,{' '}
                     <a href="https://tomkabel.github.io/smart-id-security-research/" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
                       smart-id-security-research
                     </a>
@@ -187,7 +187,7 @@ export default function TheFixThatDoesntNeedSkPage() {
 
       <ArticleProof
         slug="the-fix-that-doesnt-need-sk"
-        expectedSha256="9281c4648e8db82cb1471584c60013ccfa92784a6ce2bab0311e2a1f3c38a44d"
+        expectedSha256="317b26607d83ed20fa3511c01a4d813a8a213b8cda81e9c3bc2fac815053ab87"
       />
     </article>
   );

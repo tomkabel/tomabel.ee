@@ -149,8 +149,8 @@ export default function DisclosuresPage() {
         to="/systems"
         label={language === 'en' ? 'Systems' : 'Süsteemid'}
         blurb={language === 'en'
-          ? 'The disclosures are the research and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
-          : 'Avalikustamised on uuringud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvalahendused ja tootmises töötavad taustateenused.'}
+          ? 'The research is the findings and the arguments. The systems are what I ship under the threat models they describe — tools, security products, and backend services running in production.'
+          : 'Uuringud on leiud ja argumendid. Süsteemid on see, mida tarnin nende kirjeldatud ohumudelite all — tööriistad, turvalahendused ja tootmises töötavad taustateenused.'}
         cta={language === 'en' ? 'Browse systems' : 'Sirvi süsteeme'}
       />
     </>

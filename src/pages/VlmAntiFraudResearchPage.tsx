@@ -303,8 +303,8 @@ const disclosureParagraphs: Bi[] = [
     et: 'Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
   },
   {
-    en: 'Corrections, 4 October 2026: the page now follows the September 2026 revision of the paper, whose measurements (0.7–3 s per action, €0.001–€0.014 per successful flow for small open-weight models) replace the assumed 5–15 s and the statement that no measurements existed. It also corrects the attestation descriptions: DBSC and passkeys bind sessions rather than screen anonymous bots, Apple is the only deployed Private Access Token attester, the rate-limit draft has lapsed, aged profiles can be bought, and residential proxy networks supply IP reputation, not attestation.',
-    et: 'Parandused, 4. oktoober 2026: lehekülg järgib nüüd töö 2026. aasta septembri redaktsiooni, mille mõõtmised (väikeste avatud kaaludega mudelitel 0,7–3 sekundit tegevuse kohta ja 0,001–0,014 eurot eduka voo kohta) asendavad eeldatud 5–15 sekundit ja väite, et mõõtmisi pole. Samuti on parandatud atesteerimise kirjeldusi: DBSC ja pääsuvõtmed seovad seansse, mitte ei sõela anonüümseid botte, Apple on ainus kasutusel olev Private Access Tokensi tõendaja, väljastamise piiramise kavand on aegunud, vanu profiile saab osta ja kodukasutajate prokside võrgud pakuvad IP-aadressi mainet, mitte atesteerimist.',
+    en: 'Corrections, 4 October 2026: the page now follows the September 2026 revision of the paper, whose measurements (0.7–3 s per action, €0.001–€0.002 per successful flow for small open-weight models) replace the assumed 5–15 s and the statement that no measurements existed. It also corrects the attestation descriptions: DBSC and passkeys bind sessions rather than screen anonymous bots, Apple is the only deployed Private Access Token attester, the rate-limit draft has lapsed, aged profiles can be bought, and residential proxy networks supply IP reputation, not attestation.',
+    et: 'Parandused, 4. oktoober 2026: lehekülg järgib nüüd töö 2026. aasta septembri redaktsiooni, mille mõõtmised (väikeste avatud kaaludega mudelitel 0,7–3 sekundit tegevuse kohta ja 0,001–0,002 eurot eduka voo kohta) asendavad eeldatud 5–15 sekundit ja väite, et mõõtmisi pole. Samuti on parandatud atesteerimise kirjeldusi: DBSC ja pääsuvõtmed seovad seansse, mitte ei sõela anonüümseid botte, Apple on ainus kasutusel olev Private Access Tokensi tõendaja, väljastamise piiramise kavand on aegunud, vanu profiile saab osta ja kodukasutajate prokside võrgud pakuvad IP-aadressi mainet, mitte atesteerimist.',
   },
 ];
 
@@ -316,7 +316,7 @@ function VlmAntiFraudResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Threat Model · Anti-Automation · SoK' : 'Ohumudel · Automaatikatõrje · SoK'}
         title={title[language]}
         standfirst={standfirst[language]}

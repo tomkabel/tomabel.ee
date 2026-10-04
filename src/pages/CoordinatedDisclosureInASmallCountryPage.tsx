@@ -12,6 +12,8 @@ const title = 'Coordinated disclosure in a small country';
 const standfirst =
   'Estonia runs its state on software, and the security community that watches over it is small enough that everyone knows each other. That changes what coordinated disclosure is. It stops being a protocol you follow and becomes a relationship you maintain.';
 
+const aboutLinkText = 'About page';
+
 const openingParagraphs = [
   'Estonia runs its state on software. Tax returns, voting, prescriptions, company registration: nearly every public service can now be completed online (Estonia added online divorce in December 2024, closing the last gaps), and millions of people use the same identity tools every day. The state ID card is national infrastructure; Smart-ID, which many more people reach for, is a private product from SK ID Solutions with 3.7M+ unique users across the Baltics as of October 2025. When that software breaks, the failure is national, not personal.',
   "The community that finds these breaks before someone else does is small. Not thousands of people. A few hundred at most, doing this professionally in Estonia, plus the researchers who orbit them. After a few years you have met most of them. The analyst who triages your vulnerability report is the person you will see at the next conference. The person who owns the vulnerable system is two hops away on LinkedIn.",
@@ -55,9 +57,9 @@ const sections: EssaySection[] = [
     heading: 'Owning your story is the protection that scales',
     paragraphs: [
       'This is the part I care about most, and the reason this essay exists.',
-      'If you do not tell your story, someone else will tell it for you, and they will tell it worse. That is true for a vulnerability finding. It is also true for a career. For a while, I broke authentication and anti-fraud systems for money. It led to a criminal conviction in 2024, an outcome I take full responsibility for. My story page tells it in my own words.',
+      'If you do not tell your story, someone else will tell it for you, and they will tell it worse. That is true for a vulnerability finding. It is also true for a career. I reverse engineered browser security, TLS fingerprinting, and anti-fraud systems — and for a while, I broke them for money. I don’t hide that. It ultimately led to a conviction in 2024, an outcome I take full responsibility for. The full statement is on the About page.',
       'The only protection that scales is to own the narrative in public. Publish under your own name, with dates, so the sequence is checkable by anyone. Disclose to the people who can act first, then publish.',
-      'This is what I meant in the kratt essay when I wrote that pointing in public is a mechanism of control. Coordinated disclosure is that mechanism applied to research. The work is visible, and the name on it is mine.',
+      'The kratt essay argues that idle skill does not stay idle: its owner finds work for it. Coordinated disclosure is how I give mine work in public. The work is visible, and the name on it is mine.',
       'A public record with your name on it does not remove legal exposure. It does something more useful. It makes the story of the work yours, so that when the story gets told, it is the true one.',
     ],
   },
@@ -120,7 +122,7 @@ export default function CoordinatedDisclosureInASmallCountryPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Disclosure · Estonia</>}
         title={title}
         standfirst={standfirst}
@@ -156,9 +158,24 @@ export default function CoordinatedDisclosureInASmallCountryPage() {
                 {section.heading}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+                {section.paragraphs.map((paragraph) => {
+                  const at = paragraph.indexOf(aboutLinkText);
+                  return (
+                    <p key={paragraph}>
+                      {at === -1 ? (
+                        paragraph
+                      ) : (
+                        <>
+                          {paragraph.slice(0, at)}
+                          <Link to="/about" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
+                            {aboutLinkText}
+                          </Link>
+                          {paragraph.slice(at + aboutLinkText.length)}
+                        </>
+                      )}
+                    </p>
+                  );
+                })}
               </div>
             </section>
           ))}
@@ -182,7 +199,7 @@ export default function CoordinatedDisclosureInASmallCountryPage() {
                 >
                   The kratt problem
                 </Link>{' '}
-                — where I argue that pointing in public is a mechanism of control.
+                — on what happens to capability that nobody has given work.
               </li>
               <li>
                 <Link

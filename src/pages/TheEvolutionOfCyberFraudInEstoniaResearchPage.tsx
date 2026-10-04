@@ -204,8 +204,8 @@ const sections: ReportSection[] = [
         et: 'Kokkuvarisemine oli struktuurne. Miski allikates ei viita sellele, et eestlased oleksid muutunud kergeusklikumaks; muutus tarneahel, esmalt värvatud emakeelekõnelejatega, seejärel tehisintellektiga. Kampaaniad ja hoiatused käisid, nagu RIA märgib, terve 2025. aasta ja kahju kasvas ikkagi 29 miljoni euroni, PPA arvestuse järgi peaaegu kahekordseks. Teavituskampaaniad ei asenda barjääri, mida enam ei ole.',
       },
       {
-        en: "The banking system chose the attack surface. Paršovs argued in January 2026 that the technical options for protecting Smart-ID approval flows had far outpaced deployment. For six years the fixes existed and banks did not deploy them. Smart-ID+, which makes the user start the operation by scanning a QR code, finally went live at Bigbank and LHV in June 2026, with SEB and Swedbank promising it later in the year. The protocol analysis is in my Smart-ID report; the fraud data up to mid-2026 is its cost column.",
-        et: 'Pangandussüsteem valis rünnakupinna. Paršovs väitis 2026. aasta jaanuaris, et tehnilised võimalused Smart-ID kinnitusprotsessi kaitsmiseks on juurutamisest kaugele ette jõudnud. Kuus aastat olid lahendused olemas ja pangad neid ei juurutanud. Smart-ID+, mille puhul kasutaja alustab toimingut ise QR-koodi skannides, jõudis Bigbanki ja LHV-sse lõpuks 2026. aasta juunis ning SEB ja Swedbank lubavad selle samal aastal hiljem. Protokolli analüüs on minu Smart-ID raportis; pettusestatistika kuni 2026. aasta keskpaigani on selle kulurida.',
+        en: "The banking system chose the attack surface. Paršovs argued in January 2026 that the technical options for protecting Smart-ID approval flows had far outpaced deployment. The fixes existed long before banks deployed them. Smart-ID+, which makes the user start the operation by scanning a QR code, finally went live at Bigbank and LHV in June 2026, with SEB and Swedbank promising it later in the year. The protocol analysis is in my Smart-ID report; the fraud data up to mid-2026 is its cost column.",
+        et: 'Pangandussüsteem valis rünnakupinna. Paršovs väitis 2026. aasta jaanuaris, et tehnilised võimalused Smart-ID kinnitusprotsessi kaitsmiseks on juurutamisest kaugele ette jõudnud. Lahendused olid olemas ammu enne, kui pangad need kasutusele võtsid. Smart-ID+, mille puhul kasutaja alustab toimingut ise QR-koodi skannides, jõudis Bigbanki ja LHV-sse lõpuks 2026. aasta juunis ning SEB ja Swedbank lubavad selle samal aastal hiljem. Protokolli analüüs on minu Smart-ID raportis; pettusestatistika kuni 2026. aasta keskpaigani on selle kulurida.',
       },
       {
         en: 'Vishing is the vector that matters. Email phishing is a mass-market lottery. Phone fraud is a two-hour interactive process that harvests both PINs and, in the courier cases, the physical card. It is higher-touch, higher-yield, and it is what the call centers are staffed for. Defenses that focus on email miss the part of the pipeline that is actually industrialized.',
@@ -350,7 +350,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Research · Reference Paper · Anti-Fraud' : 'Uurimus · Viitetöö · Pettusevastane'}
         title={title[language]}
         standfirst={standfirst[language]}
@@ -468,7 +468,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
 
       <ArticleProof
         slug="the-evolution-of-cyber-fraud-in-estonia"
-        expectedSha256="8ce1f7d3cedf69d9a9f19e0ac0eb7364682ad9cb7b662a70b760da2f27598348"
+        expectedSha256="801904fadb49940a54fdf07fc99b22b27e95ad4f2fbbe2cf33c04f3c45df79d3"
       />
     </article>
   );

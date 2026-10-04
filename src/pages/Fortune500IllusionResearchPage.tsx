@@ -211,7 +211,7 @@ function Fortune500IllusionResearchPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
+        back={<>← {isEn ? 'Back to research' : 'Tagasi uuringute juurde'}</>}
         kicker={isEn ? 'Breach Trace · Zero-Trust Octagon · Archetype B' : 'Rünnaku jälg · Zero-Trust Octagon · Arhetüüp B'}
         title={title[language]}
         standfirst={standfirst[language]}

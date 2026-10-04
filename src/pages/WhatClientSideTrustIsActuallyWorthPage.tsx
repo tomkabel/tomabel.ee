@@ -46,8 +46,8 @@ const sections: EssaySection[] = [
   {
     heading: 'Where the ticket stops being a ticket',
     paragraphs: [
-      'There is a class of schemes this critique does not fully reach, and the fair version of the argument has to name it. When the token is bound to a key the client cannot export, relocating it stops working. Device-bound session credentials (DBSC, which Google made generally available and on by default for Workspace users on Chrome for Windows in May 2026) tie a session to a non-exportable key held by the browser. Passkeys do the same for authentication. Apple’s Private Access Tokens and the PACT standard announced by Cloudflare with Chrome, Edge, Firefox and Shopify in June 2026 push a similar design across the web. My own SoK paper puts hardware-anchored attestation in a separate class for exactly this reason: a stolen token is useless without the key, and the key does not leave the device.',
-      'This is not free. Binding to hardware moves the trust problem rather than dissolving it: it concentrates power in whoever issues and vouches for the keys, and PACT’s own authors note that who gets to be a trusted issuer, and who decides, remains unresolved. The companion piece on why VLMs break client-side anti-fraud covers that centralisation cost. The point for this essay is narrower: the "it is just a ticket" critique applies to software-only attestation, and the schemes that escape it do so by moving the secret into hardware, not by engineering the self-report harder.',
+      'There is a class of schemes this critique does not fully reach, and the fair version of the argument has to name it. When the token is bound to a key the client cannot export, relocating it stops working. Device-bound session credentials (DBSC, which Google made generally available and on by default for Workspace users on Chrome for Windows in May 2026) tie a session to a non-exportable key held by the browser. Passkeys do the same for authentication, and Apple’s Private Access Tokens rest on device attestation. (PACT, the proposal Cloudflare announced in June 2026, is not in this class: its credentials are anchored in software and account standing, not a hardware key.) My own SoK paper puts hardware-anchored attestation in a separate class for exactly this reason: a stolen token is useless without the key, and the key does not leave the device.',
+      'This is not free. Binding to hardware moves the trust problem rather than dissolving it: it concentrates power in whoever issues and vouches for the keys, and who gets to be a trusted issuer, and who decides, stays an open question. The companion piece on what VLM agents change for client-side anti-fraud covers that centralisation cost. The point for this essay is narrower: the "it is just a ticket" critique applies to software-only attestation, and the schemes that escape it do so by moving the secret into hardware, not by engineering the self-report harder.',
       'The server side is not a free lunch either. The alternatives this essay recommends have their own failure modes: IP and ASN reputation is defeated by residential and mobile proxy pools; velocity and anomaly limits produce false positives and can be paced under; session-continuity signals can be farmed. None of these is a verdict on their own. The argument is not "client bad, server good" — it is that server-controlled state is at least state the server can actually observe and revoke.',
     ],
   },
@@ -81,7 +81,7 @@ export default function WhatClientSideTrustIsActuallyWorthPage() {
     <article>
       <ArticleHeader
         backTo="/disclosures"
-        back={<>← Back to disclosures</>}
+        back={<>← Back to research</>}
         kicker={<>Essay · Reverse Engineering · Client-Side Security</>}
         title={title}
         standfirst={standfirst}

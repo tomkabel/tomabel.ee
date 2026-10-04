@@ -65,12 +65,12 @@ export const routeMeta = {
     },
   },
   "/disclosures/coordinated-disclosure-in-a-small-country": {
-    en: { title: "Coordinated disclosure in a small country — Tom Kristian Abel", description: "Disclosing a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and owning your own story." },
+    en: { title: "Coordinated disclosure in a small country — Tom Kristian Abel", description: "Disclosing a flaw in critical digital infrastructure when everyone in the room knows each other: the legal exposure, the incentives, and owning your own story." },
     ld: {
       type: "BlogPosting",
       datePublished: "2026-08-11",
       dateModified: "2026-10-04",
-      en: { headline: "Coordinated disclosure in a small country", abstract: "What it's actually like to disclose a national-infrastructure flaw when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection." },
+      en: { headline: "Coordinated disclosure in a small country", abstract: "What it's actually like to disclose a flaw in critical digital infrastructure when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection." },
     },
   },
   "/disclosures/the-fix-that-doesnt-need-sk": {
@@ -80,8 +80,8 @@ export const routeMeta = {
       type: "BlogPosting",
       datePublished: "2026-09-06",
       dateModified: "2026-10-04",
-      en: { headline: "The fix that doesn't need SK", abstract: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing SK ID Solutions, a bank, or a regulator to move first. A sixth, not new but under-used: checking each session against the account's device and network history, which a bank can run today and PSD2 RTS Art. 2 already requires. Strongest against attacker-session vishing and the cross-device relay; weakest against victim-initiated transfers." },
-      et: { headline: "Parandus, mis SK-d ei vaja", abstract: "Raport „Eesti e-riigi Achilleuse kand“ loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu ja igaüks neist vajab, et SK ID Solutions, pank või regulaator teeks esimese sammu. Kuues, mitte uus, kuid alakasutatud: iga seansi võrdlemine konto seadme- ja võrguajalooga, mida pank saab teha juba täna ja mida PSD2 RTS art 2 juba nõuab. Kõige tugevam ründaja seansiga vishingu ja seadmeülese vahendusründe vastu, kõige nõrgem ohvri enda algatatud ülekannete puhul." },
+      en: { headline: "The fix that doesn't need SK", abstract: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing a regulator, the banks, or a legislature or court to move first. A sixth, not new but under-used: checking each session against the account's device and network history, which a bank can run today and PSD2 RTS Art. 2 already requires. Strongest against attacker-session vishing and the cross-device relay; weakest against victim-initiated transfers." },
+      et: { headline: "Parandus, mis SK-d ei vaja", abstract: "Raport „Eesti e-riigi Achilleuse kand“ loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu ja igaüks neist vajab, et regulaator, pangad või seadusandja või kohus teeks esimese sammu. Kuues, mitte uus, kuid alakasutatud: iga seansi võrdlemine konto seadme- ja võrguajalooga, mida pank saab teha juba täna ja mida PSD2 RTS art 2 juba nõuab. Kõige tugevam ründaja seansiga kõneõngitsuse ja seadmeülese vahendusründe vastu, kõige nõrgem ohvri enda algatatud ülekannete puhul." },
     },
   },
   "/disclosures/botguard-disassembled": {
@@ -131,13 +131,13 @@ export const routeMeta = {
   },
   "/disclosures/the-pin-that-cannot-be-delegated": {
     en: { title: "The PIN that cannot be delegated — Tom Kristian Abel", description: "Why an AI agent cannot enter your Smart-ID PIN: SK's terms, the remote-QSCD practice statement, eIDAS Articles 26 and 32, and the OAuth-style pattern instead." },
-    et: { title: "PIN, mida ei saa delegeerida — Tom Kristian Abel", description: "Miks AI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK tingimused, kaug-QSCD praktika avaldus, eIDASe artiklid 26 ja 32 ning OAuthi-laadne muster." },
+    et: { title: "PIN, mida ei saa delegeerida — Tom Kristian Abel", description: "Miks TI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK tingimused, kaug-QSCD praktika avaldus, eIDASe artiklid 26 ja 32 ning OAuthi-laadne muster." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-08",
       dateModified: "2026-10-04",
       en: { headline: "The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS", abstract: "Why an AI agent cannot enter your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Articles 26 and 32 read side by side. Why the better reading ties sole control to the moment of signing, what can lawfully be delegated instead, and the OAuth-style pattern that works." },
-      et: { headline: "PIN, mida ei saa delegeerida — Smart-ID, AI-agendid ja eIDAS", abstract: "Miks AI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse praktika avaldus ning eIDASe artiklid 26 ja 32 kõrvuti loetuna. Miks parem tõlgendus seob ainukontrolli allkirja andmise hetkega, mida võib selle asemel delegeerida ja milline OAuthi-laadne muster töötab." },
+      et: { headline: "PIN, mida ei saa delegeerida — Smart-ID, TI-agendid ja eIDAS", abstract: "Miks TI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse tavadokument ning eIDASe artiklid 26 ja 32 kõrvuti loetuna. Miks parem tõlgendus seob ainukontrolli allkirja andmise hetkega, mida võib selle asemel delegeerida ja milline OAuthi-laadne muster töötab." },
     },
   },
   "/disclosures/the-evolution-of-cyber-fraud-in-estonia": {
@@ -148,18 +148,18 @@ export const routeMeta = {
       datePublished: "2026-08-26",
       dateModified: "2026-10-04",
       en: { headline: "The evolution of cyber fraud in Estonia, 2017–2026", abstract: "How Estonia's small language held the fraud industry at arm's length, and what happened when the barrier fell in late 2024: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes. Police-reported losses rose from about €8 million in 2023 to €29 million in 2025, with €13.2 million more in the first half of 2026, as banks began rolling out Smart-ID+." },
-      et: { headline: "Küberpettuste areng Eestis, 2017–2026", abstract: "Kuidas Eesti väike keel hoidis pettuste tööstust eemal ja mis juhtus, kui barjäär 2024. aasta lõpus langes: värvatud emakeelekõnelejad, tööstuslikud vishing-kõnekeskused, kullerivõrgustikud ja tehisintellekti süvavõltsingud. Politseile teatatud kahju kasvas umbes 8 miljonilt eurolt 2023. aastal 29 miljonini 2025. aastal ja 2026. aasta esimesel poolaastal lisandus 13,2 miljonit, samal ajal kui pangad hakkasid kasutusele võtma Smart-ID+." },
+      et: { headline: "Küberpettuste areng Eestis, 2017–2026", abstract: "Kuidas Eesti väike keel hoidis pettuste tööstust eemal ja mis juhtus, kui barjäär 2024. aasta lõpus langes: värvatud emakeelekõnelejad, tööstuslikud kõneõngitsuskeskused, kullerivõrgustikud ja tehisintellekti süvavõltsingud. Politseile teatatud kahju kasvas umbes 8 miljonilt eurolt 2023. aastal 29 miljonini 2025. aastal ja 2026. aasta esimesel poolaastal lisandus 13,2 miljonit, samal ajal kui pangad hakkasid kasutusele võtma Smart-ID+." },
     },
   },
   "/disclosures/russian-cyber-ops-estonia-hosting": {
     en: { title: "The Gray Space: Russian-Linked Proxies — Tom Kristian Abel", description: "In September 2026 QualityNetwork OÜ, a named Fineproxy operator, became a RIPE LIR. An OSINT reference on that network, Qurium's DDoS reports and their limits." },
-    et: { title: "Hall ruum: Venemaaga seotud proksitaristu — Tom Kristian Abel", description: "2026. aasta septembris sai Fineproxy üks käitaja QualityNetwork OÜ RIPE LIR-iks. OSINT-viitetöö sellest võrgust, Quriumi DDoS-raportitest ja nende piiridest." },
+    et: { title: "Hall ala: Venemaaga seotud proksitaristu — Tom Kristian Abel", description: "2026. aasta septembris sai Fineproxy üks käitaja QualityNetwork OÜ RIPE LIR-iks. OSINT-viitetöö sellest võrgust, Quriumi DDoS-raportitest ja nende piiridest." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-14",
       dateModified: "2026-10-04",
       en: { headline: "The Gray Space: Russian-Linked Proxy and Hosting Infrastructure in Estonia", abstract: "In September 2026 QualityNetwork OÜ, a named operator of the Fineproxy proxy service, became a RIPE LIR and was allocated former Region40 prefixes. An OSINT reference tracing that network through Qurium's DDoS reports (Azerbaijan 2018–2019, Rappler 2023), what the record does and does not show about Vault Dweller OÜ's withdrawn AS203834, and why none of it is proven Russian state activity." },
-      et: { headline: "Hall ruum: Venemaaga seotud proksi- ja majutustaristu Eestis", abstract: "2026. aasta septembris sai Fineproxy proksiteenuse üks nimetatud käitaja QualityNetwork OÜ RIPE LIR-iks ja talle eraldati endised Region40 plokid. OSINT-viitetöö jälgib seda võrku Quriumi DDoS-raportite kaudu (Aserbaidžaan 2018–2019, Rappler 2023), kirjeldab, mida avalikud andmed Vault Dweller OÜ tagasi võetud AS203834 kohta näitavad ja mida mitte, ning miks ükski neist ei ole tõendatud Venemaa riiklik tegevus." },
+      et: { headline: "Hall ala: Venemaaga seotud proksi- ja majutustaristu Eestis", abstract: "2026. aasta septembris sai Fineproxy proksiteenuse üks nimetatud käitaja QualityNetwork OÜ RIPE LIR-iks ja talle eraldati endised Region40 plokid. OSINT-viitetöö jälgib seda võrku Quriumi DDoS-raportite kaudu (Aserbaidžaan 2018–2019, Rappler 2023), kirjeldab, mida avalikud andmed Vault Dweller OÜ tagasi võetud AS203834 kohta näitavad ja mida mitte, ning miks ükski neist ei ole tõendatud Venemaa riiklik tegevus." },
     },
   },
   "/about": {
@@ -195,7 +195,7 @@ export const routeMeta = {
       datePublished: "2026-09-22",
       dateModified: "2026-10-04",
       en: { headline: "The Nine Dimensions of Zero Trust", abstract: "Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it." },
-      et: { headline: "Null-usalduse üheksa mõõdet", abstract: "Nullusaldus ei ole küpsusmudel, vaid üheksamõõtmeline konfiguratsiooniruum: usaldusankur, identiteet, jõustamine, atesteerimine, reageerimine, poliitika levitamine, jälgitavus, seisund ja inimlik järjepidevus. Ülevaade morfoloogilisest maatriksist ja sellest, kuidas lugeda organisatsiooni tegelikku asukohta selles." },
+      et: { headline: "Nullusalduse üheksa mõõdet", abstract: "Nullusaldus ei ole küpsusmudel, vaid üheksamõõtmeline konfiguratsiooniruum: usaldusankur, identiteet, jõustamine, atesteerimine, reageerimine, poliitika levitamine, jälgitavus, seisund ja inimlik järjepidevus. Ülevaade morfoloogilisest maatriksist ja sellest, kuidas lugeda organisatsiooni tegelikku asukohta selles." },
     },
   },
   "/disclosures/the-fortune-500-illusion-of-control": {
@@ -221,14 +221,14 @@ export const routeMeta = {
     },
   },
   "/disclosures/saas-glued-lean-defense": {
-    en: { title: "SaaS-Glued Lean Defense — Tom Kristian Abel", description: "A composite breach trace of the small-team SaaS architecture: MFA fatigue to session theft, and five fixes one operator can start in an afternoon." },
-    et: { title: "SaaS-i külge liimitud lahja kaitse — Tom Kristian Abel", description: "Väikese meeskonna SaaS-arhitektuuri üldistatud rünnakujälg: MFA-väsitusründest seansivarguseni ja viis parandust, mida üks inimene saab kohe alustada." },
+    en: { title: "SaaS-Glued Lean Defense — Tom Kristian Abel", description: "A composite breach trace of the small-team SaaS architecture: MFA fatigue to session theft, and six fixes one operator can start in an afternoon." },
+    et: { title: "SaaS-i külge liimitud lahja kaitse — Tom Kristian Abel", description: "Väikese meeskonna SaaS-arhitektuuri üldistatud rünnakujälg: MFA-väsitusründest seansivarguseni ja kuus parandust, mida üks inimene saab kohe alustada." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
       dateModified: "2026-10-04",
-      en: { headline: "SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D", abstract: "A composite, step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, the OAuth grant cascade, and five fixes one operator can start in an afternoon." },
-      et: { headline: "SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg", abstract: "Väikese meeskonna SaaS-arhitektuuri üldistatud rünnakujälg samm-sammult: MFA väsitusründest seansivarguseni, SaaS-i pimeala, mida identiteediteadlik proksi ei kata, OAuth-volituste kaskaad ja viis parandust, mida üks inimene saab ühe pärastlõunaga alustada." },
+      en: { headline: "SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D", abstract: "A composite, step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, the OAuth grant cascade, and six fixes one operator can start in an afternoon." },
+      et: { headline: "SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg", abstract: "Väikese meeskonna SaaS-arhitektuuri üldistatud rünnakujälg samm-sammult: MFA väsitusründest seansivarguseni, SaaS-i pimeala, mida identiteediteadlik proksi ei kata, OAuth-volituste kaskaad ja kuus parandust, mida üks inimene saab ühe pärastlõunaga alustada." },
     },
   },
   "/disclosures/identity-is-the-root-proof-is-the-gate": {
