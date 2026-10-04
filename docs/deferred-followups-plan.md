@@ -1,5 +1,9 @@
 # Plan: open items left after #51 and #53
 
+**Done 4 Oct 2026** except signing: PR-A #54, Dependabot (#49 merged; #46, #47, #48, #50
+closed, superseded by #55–#57 and #59), PR-B #58, PR-C #60. Still open: the verification texts
+have no `.asc` yet. Sign them by hand (see `note.txt`).
+
 Status 4 Oct 2026. Covers everything still open: the archetype scores, the 15 deferred review
 items, Dependabot #46–#50 and `.decisions.log`. Each item ends in a fix, a closure with a reason,
 or a named decision for the author. Nothing stays deferred.
