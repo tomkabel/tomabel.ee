@@ -18,7 +18,7 @@ const title: Bi = {
 
 const standfirst: Bi = {
   en: 'A composite analytical archetype from the Zero Trust Octagon framework, traced end to end: a typosquatted dependency enters through a pull request, passes the only verification gate the architecture has, and arrives in production holding a cryptographically valid identity. The detection was fast. The prevention did not exist.',
-  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: tüposquat-sõltuvus siseneb pull requesti kaudu, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
+  et: 'Zero Trust Octagoni raamistiku koondanalüütiline arhetüüp, jälgitud algusest lõpuni: trükiveapüügiga sõltuvus siseneb pull requesti kaudu, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse krüptograafiliselt kehtiva identiteediga. Avastamine oli kiire. Ennetust ei olnud olemas.',
 };
 
 const openingParagraphs: Bi[] = [
@@ -64,7 +64,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'A developer needs a small utility library and installs one whose name differs from a well-known package by a single character — a typosquat, fictional here. Plausible documentation, believable version history, a few hundred downloads, and a post-install script that does nothing on installation. It waits.',
-        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra — tüposquat, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist ja paigaldusjärgne skript, mis paigaldamise ajal midagi ei tee. See ootab.',
+        et: 'Arendaja vajab väikest abiteeki ja paigaldab sellise, mille nimi erineb tuntud paki omast ühe tähemärgi võrra — trükiveapüük, siin väljamõeldud. Usutav dokumentatsioon, usutav versiooniajalugu, paarsada allalaadimist ja paigaldusjärgne skript, mis paigaldamise ajal midagi ei tee. See ootab.',
       },
       {
         en: 'The pull request opens, the test suite passes because the code is inert under test, and the merge lands. The GitOps controller deploys the new containers with no attestation at admission: the only verification that ever happened is that CI built it, and CI was not what was subverted. The provenance record is accurate and useless.',

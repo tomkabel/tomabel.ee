@@ -13,18 +13,18 @@ type EssaySection = {
 
 const title: Bi = {
   en: 'The Nine Dimensions of Zero Trust',
-  et: 'Null-usalduse üheksa mõõdet',
+  et: 'Nullusalduse üheksa mõõdet',
 };
 
 const standfirst: Bi = {
   en: 'Zero trust is usually sold as a ladder: traditional, advanced, optimal. That shape is wrong. A real deployment is a point in a nine-dimensional configuration space, and each axis is a separate architectural decision someone either made deliberately or inherited by accident.',
-  et: 'Null-usaldust müüakse tavaliselt redelina: tavapärane, edasijõudnud, optimaalne. See kuju on vale. Tegelik juurutus on punkt üheksamõõtmelises konfiguratsiooniruumis ja iga telg on eraldi arhitektuuriotsus, mille keegi kas tegi teadlikult või päris kogemata.',
+  et: 'Nullusaldust müüakse tavaliselt küpsusredelina: tavapärane, edasijõudnud, optimaalne. See kuju on vale. Tegelik juurutus on punkt üheksamõõtmelises konfiguratsiooniruumis ja iga telg on eraldi arhitektuuriotsus, mille keegi kas tegi teadlikult või päris kogemata.',
 };
 
 const openingParagraphs: Bi[] = [
   {
     en: '"Are we zero trust?" has no answer. It is a branding question, and vendors answer it for money. The morphological matrix replaces it with a question that does have an answer: where are we positioned on each of nine independent axes, and is that position deliberate?',
-    et: '"Kas meil on null-usaldus?" ei ole küsimus, millel oleks vastus. See on brändiküsimus ja müüjad vastavad sellele raha eest. Morfoloogiline maatriks asendab selle küsimusega, millel vastus on: kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?',
+    et: '"Kas meil on nullusaldus?" ei ole küsimus, millel oleks vastus. See on brändiküsimus ja müüjad vastavad sellele raha eest. Morfoloogiline maatriks asendab selle küsimusega, millel vastus on: kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?',
   },
 ];
 
@@ -34,7 +34,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'Most zero-trust guidance, including CISA\'s maturity model, presents stages: traditional, advanced, optimal. Program managers like it because it produces a progress bar. Architecturally it is misleading, because it implies one correct destination and one road to it.',
-        et: 'Enamik null-usalduse juhendeid, sealhulgas CISA küpsusmudel, esitab etappe: tavapärane, edasijõudnud, optimaalne. Programmijuhtidele meeldib see, sest sellest saab edenemisriba. Arhitektuuriliselt on see eksitav, sest see eeldab üht õiget sihtkohta ja üht teed selleni.',
+        et: 'Enamik nullusalduse juhendeid, sealhulgas CISA küpsusmudel, esitab etappe: tavapärane, edasijõudnud, optimaalne. Programmijuhtidele meeldib see, sest sellest saab edenemisriba. Arhitektuuriliselt on see eksitav, sest see eeldab üht õiget sihtkohta ja üht teed selleni.',
       },
       {
         en: 'A solo operator running a remote company and a Fortune 500 with a nine-figure budget face different adversaries and inherit different legacies. A ladder cannot express that; a configuration space can. The matrix has nine dimensions, each with a range of realistic positions, and every deployment maps to exactly one value on each, whether or not anyone wrote it down.',
@@ -64,7 +64,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'D3 asks where policy is actually evaluated: the network perimeter, the service mesh sidecar, the application or API gateway, the data itself through cryptographic policy envelopes, the silicon or hypervisor, or bilateral enforcement where client and server evaluate policy independently and the request proceeds only if both allow. Each position removes a class of bypass rather than replacing the one below it, and the last is where most commercial zero trust quietly stops: unilateral enforcement, where the server decides and the client obeys, is the norm, and it is not zero trust.',
-        et: 'D3 küsib, kus poliitikat tegelikult hinnatakse: võrgu perimeeter, teenusvõrgustiku kõrvalkonteiner, rakendus või API-lüüs, andmed ise, mis kannavad krüptograafiliselt seotud reegleid, räni või hüperviisor või kahepoolne vastastikune jõustamine, kus klient ja server hindavad poliitikat sõltumatult ja päring läheb läbi ainult siis, kui mõlemad lubavad. Iga asukoht eemaldab ühe möödahiilimise klassi, mitte ei asenda eelmist, ja viimane on koht, kus enamik ärilist null-usaldust vaikselt lõpeb: ühepoolne jõustamine, kus server otsustab ja klient kuuletub, on norm ja see ei ole null-usaldus.',
+        et: 'D3 küsib, kus poliitikat tegelikult hinnatakse: võrgu perimeeter, teenusvõrgustiku kõrvalkonteiner, rakendus või API-lüüs, andmed ise, mis kannavad krüptograafiliselt seotud reegleid, räni või hüperviisor või kahepoolne vastastikune jõustamine, kus klient ja server hindavad poliitikat sõltumatult ja päring läheb läbi ainult siis, kui mõlemad lubavad. Iga asukoht eemaldab ühe möödahiilimise klassi, mitte ei asenda eelmist, ja viimane on koht, kus enamik ärilist nullusaldust vaikselt lõpeb: ühepoolne jõustamine, kus server otsustab ja klient kuuletub, on norm ja see ei ole nullusaldus.',
       },
       {
         en: 'D4 is the evidence behind the verdict, running from none at all through single-source attestation and cascading attestation from silicon upward, to a heterogeneous triple where a kernel probe, a hypervisor monitor and hardware counters emit separately signed observations that no single vulnerability can forge together. Single-source attestation is the root cause of the stolen-token-equals-total-breach pattern: if the only evidence is that a token validates, whoever holds the token is the user.',
@@ -73,7 +73,7 @@ const sections: EssaySection[] = [
     ],
   },
   {
-    heading: { en: 'D5 and D6: response and the speed of policy', et: 'D5 ja D6: reageering ja poliitika kiirus' },
+    heading: { en: 'D5 and D6: response and the speed of policy', et: 'D5 ja D6: reageerimine ja poliitika kiirus' },
     paragraphs: [
       {
         en: 'D5 is the highest-leverage dimension in the matrix, because it determines whether a detection produces business damage or intelligence. Its positions are hard deny, graceful degradation, micro-friction, auto-escalation to a human, a static honeypot, and trickle-truth, where the attacker is served convincing synthetic data through an environment that keeps working normally and never signals that they were caught.',
@@ -102,7 +102,7 @@ const sections: EssaySection[] = [
       },
       {
         en: 'D9, human continuity, was not in the original framework. Its positions are a single point of failure, a rotation of two or three, real shift coverage, and full automation. A deployment whose response is auto-escalation to a human, with one person on call, has a bimodal response time: minutes when that person is at their desk, half an hour or more when they are asleep. Averaging the two describes no incident that ever happened. Human availability is an architectural parameter.',
-        et: 'D9 ehk inimeste järjepidevus ei kuulunud algsesse raamistikku; see tuli välja üksikoperaatori juhtumi kaardistamisel. Asukohad on üksik tõrkepunkt, kahe või kolme inimese rotatsioon, tõeline vahetuste kate ja täielik automatiseerimine. Juurutusel, mille reageering on automaatne eskaleerimine inimesele ja kus valves on üks inimene, on kahetipuline reageerimisaeg: minutid, kui see inimene on laua taga, ja pool tundi või rohkem, kui ta magab. Nende kahe keskmine ei kirjelda ühtegi tegelikku intsidenti. Inimeste kättesaadavus on arhitektuuriparameeter.',
+        et: 'D9 ehk inimeste järjepidevus ei kuulunud algsesse raamistikku; see tuli välja üksikoperaatori juhtumi kaardistamisel. Asukohad on üksik tõrkepunkt, kahe või kolme inimese rotatsioon, tõeline vahetuste kate ja täielik automatiseerimine. Juurutusel, mille reageerimine on automaatne eskaleerimine inimesele ja kus valves on üks inimene, on kahetipuline reageerimisaeg: minutid, kui see inimene on laua taga, ja pool tundi või rohkem, kui ta magab. Nende kahe keskmine ei kirjelda ühtegi tegelikku intsidenti. Inimeste kättesaadavus on arhitektuuriparameeter.',
       },
     ],
   },
@@ -124,7 +124,7 @@ const sections: EssaySection[] = [
     paragraphs: [
       {
         en: 'The most common mistake in using the matrix is treating the nine dimensions as independent choices. Values co-vary, and the space contains two dominant clusters. The low-maturity cluster is software PKI, single-source attestation, push distribution, hard deny, implicit observability and a siloed organization. Those six hold each other down. Upgrade attestation alone and you detect more, more accurately, and feed the better detections into a response that produces outages. The high-maturity cluster is the mirror image, each value enabling the next. This is why single-dimension upgrades disappoint and why attestation and response must move together. Posture moves first in practice, because it is free.',
-        et: 'Kõige levinum viga maatriksi kasutamisel on üheksa mõõtme käsitlemine sõltumatute valikutena. Väärtused varieeruvad koos ja ruum sisaldab kahte valitsevat kobarat. Madala küpsuse kobar on tarkvaraline PKI, üheallikaline atesteerimine, tõukepõhine levitamine, kõva keeld, kaudne jälgitavus ja killustatud organisatsioon. Need kuus hoiavad üksteist all. Paranda ainult atesteerimist ja sa tuvastad rohkem ja täpsemini ja suunad paremad tuvastused reageeringusse, mis tekitab katkestusi. Kõrge küpsuse kobar on peegelpilt, kus iga väärtus võimaldab järgmist. Just seetõttu valmistavad ühe mõõtme parandused pettumuse ja seetõttu peavad atesteerimine ja reageering liikuma koos. Praktikas liigub hoiak esimesena, sest see on tasuta.',
+        et: 'Kõige levinum viga maatriksi kasutamisel on üheksa mõõtme käsitlemine sõltumatute valikutena. Väärtused varieeruvad koos ja ruum sisaldab kahte valitsevat kobarat. Madala küpsuse kobar on tarkvaraline PKI, üheallikaline atesteerimine, tõukepõhine levitamine, kõva keeld, kaudne jälgitavus ja killustatud organisatsioon. Need kuus hoiavad üksteist all. Paranda ainult atesteerimist ja sa tuvastad rohkem ja täpsemini ja suunad paremad tuvastused reageerimisse, mis tekitab katkestusi. Kõrge küpsuse kobar on peegelpilt, kus iga väärtus võimaldab järgmist. Just seetõttu valmistavad ühe mõõtme parandused pettumuse ja seetõttu peavad atesteerimine ja reageerimine liikuma koos. Praktikas liigub hoiak esimesena, sest see on tasuta.',
       },
     ],
   },
@@ -137,11 +137,11 @@ const sections: EssaySection[] = [
       },
       {
         en: 'It also does not replace the axioms. A configuration can be coherent, deliberate, well documented and still fail, because a defensible position does not survive a violated axiom. Unilateral enforcement fails bilateral symmetry however good the attestation feeding it. A single responder paired with human-escalation response fails Byzantine fault tolerance. The matrix tells you where you are; the axioms tell you whether that position can hold.',
-        et: 'Samuti ei asenda see aksioome. Konfiguratsioon võib olla sidus, teadlik, hästi dokumenteeritud ja ikkagi läbi kukkuda, sest kaitstav asukoht ei pea rikutud aksioomile vastu. Ühepoolne jõustamine rikub kahepoolset sümmeetriat olenemata sellest, kui hea on seda toitev atesteerimine. Üks reageerija koos inimesele eskaleeriva reageeringuga rikub Bütsantsi tõrketaluvust. Maatriks ütleb, kus sa oled; aksioomid ütlevad, kas seal saab püsida.',
+        et: 'Samuti ei asenda see aksioome. Konfiguratsioon võib olla sidus, teadlik, hästi dokumenteeritud ja ikkagi läbi kukkuda, sest kaitstav asukoht ei pea rikutud aksioomile vastu. Ühepoolne jõustamine rikub kahepoolset sümmeetriat olenemata sellest, kui hea on seda toitev atesteerimine. Üks reageerija koos inimesele eskaleeriva reageerimisega rikub Bütsantsi tõrketaluvust. Maatriks ütleb, kus sa oled; aksioomid ütlevad, kas seal saab püsida.',
       },
       {
         en: 'That is the point. "Are we zero trust?" is unanswerable and useless. "Where are we positioned on each of nine independent axes, and is that position deliberate?" is answerable, uncomfortable, and produces a document that survives contact with an auditor, an incident, and a vendor renewal.',
-        et: 'Selles ongi mõte. "Kas meil on null-usaldus?" on vastuseta ja seega kasutu. "Kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?" on vastatav, ebamugav ja annab dokumendi, mis peab vastu kohtumisele audiitori, intsidendi ja müüjalepingu pikendamisega.',
+        et: 'Selles ongi mõte. "Kas meil on nullusaldus?" on vastuseta ja seega kasutu. "Kus me asume igal üheksal sõltumatul teljel ja kas see asukoht on teadlik?" on vastatav, ebamugav ja annab dokumendi, mis peab vastu kohtumisele audiitori, intsidendi ja müüjalepingu pikendamisega.',
       },
     ],
   },
@@ -156,7 +156,7 @@ export default function NineDimensionsZeroTrustPage() {
       <ArticleHeader
         backTo="/disclosures"
         back={<>← {isEn ? 'Back to disclosures' : 'Tagasi avalikustatute juurde'}</>}
-        kicker={isEn ? 'Framework Analysis · Zero Trust' : 'Raamistiku analüüs · Null-usaldus'}
+        kicker={isEn ? 'Framework Analysis · Zero Trust' : 'Raamistiku analüüs · Nullusaldus'}
         title={title[language]}
         standfirst={standfirst[language]}
         meta={[<>
@@ -185,7 +185,7 @@ export default function NineDimensionsZeroTrustPage() {
             <p>
               {isEn ? 'The eight axioms are covered in ' : 'Kaheksa aksioomi on käsitletud kirjutises '}
               <Link to="/disclosures/zero-trust-octagon" className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
-                {isEn ? 'The Zero Trust Octagon' : 'Null-usalduse oktagon'}
+                {isEn ? 'The Zero Trust Octagon' : 'Nullusalduse oktagon'}
               </Link>
               {isEn
                 ? ', which also summarizes the four deployment archetypes. This page is the matrix itself.'
@@ -218,7 +218,7 @@ export default function NineDimensionsZeroTrustPage() {
             <ul className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <li>
                 <Link to="/disclosures/zero-trust-octagon" className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent">
-                  {isEn ? 'The Zero Trust Octagon' : 'Null-usalduse oktagon'}
+                  {isEn ? 'The Zero Trust Octagon' : 'Nullusalduse oktagon'}
                 </Link>
                 {isEn ? ' — the eight axioms the matrix is validated against.' : ' — kaheksa aksioomi, mille vastu maatriksit valideeritakse.'}
               </li>
