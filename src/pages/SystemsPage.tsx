@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
 import { projects, type Project, type ProjectCategory } from '../content/site';
@@ -62,21 +61,6 @@ export default function SystemsPage() {
   const { language } = useTranslation();
   const isEn = language === 'en';
   const [filter, setFilter] = useState<Filter>('all');
-  const { hash } = useLocation();
-
-  // This page loads lazily, after the router has already handled the
-  // navigation, so a #project fragment has to be resolved once it mounts.
-  useEffect(() => {
-    if (!hash) return;
-    let id: string;
-    try {
-      id = decodeURIComponent(hash.slice(1));
-    } catch {
-      return; // malformed fragment: stay at the top
-    }
-    document.getElementById(id)?.scrollIntoView();
-  }, [hash]);
-
   const available = FILTER_ORDER.filter((c) => projects.some((p) => p.category === c));
   const shown = filter === 'all' ? projects : projects.filter((p) => p.category === filter);
 

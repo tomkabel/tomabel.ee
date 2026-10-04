@@ -38,8 +38,8 @@ export default function EntryRow({
         <span className="text-accent">{type[language]}</span>
         {/* Each "·" part ("Published …", "Updated …", "N min read") wraps as a
             unit; the whole line as one nowrap run overflowed narrow screens. */}
-        {meta?.[language].split(' · ').map((part) => (
-          <span key={part} className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span>{part}</span>
+        {meta?.[language]?.split(/\s+·\s+/).map((part, i) => (
+          <span key={i} className="whitespace-nowrap"><span aria-hidden className="mr-3 text-subtle">·</span> {part}</span>
         ))}
         {englishOnly ? (
           <span className="whitespace-nowrap text-warning"><span aria-hidden className="mr-3 text-subtle">·</span>{t.app.englishOnly}</span>

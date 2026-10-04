@@ -44,22 +44,40 @@ function LegacyDisclosureRedirect() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const lastPath = React.useRef(pathname);
   React.useEffect(() => {
-    // A #fragment is a deep link into the page; the page scrolls to it.
-    if (!window.location.hash) window.scrollTo(0, 0);
+    // A #fragment is a deep link: scroll to its target once the (lazy) page
+    // has rendered it, else start at the top. A malformed fragment counts as none.
+    let id = '';
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch {
+      /* malformed */
+    }
+    let frame = 0;
+    let tries = 0;
+    const seek = () => {
+      const target = id ? document.getElementById(id) : null;
+      if (target) target.scrollIntoView();
+      // ponytail: ~1s of frames for the lazy chunk; observe the DOM if pages get slower
+      else if (id && tries++ < 60) frame = requestAnimationFrame(seek);
+      else window.scrollTo(0, 0);
+    };
+    seek();
     // SPA route change: move focus to the content landmark so keyboard and
     // screen-reader users start the new view (WCAG 2.4.3). Not on first load,
     // where the first Tab must still reach the skip link and the nav.
-    if (lastPath.current === pathname) return;
-    lastPath.current = pathname;
-    const main = document.getElementById('main-content');
-    if (main) {
-      main.setAttribute('tabindex', '-1');
-      (main as HTMLElement).focus({ preventScroll: true });
+    if (lastPath.current !== pathname) {
+      lastPath.current = pathname;
+      const main = document.getElementById('main-content');
+      if (main) {
+        main.setAttribute('tabindex', '-1');
+        (main as HTMLElement).focus({ preventScroll: true });
+      }
     }
-  }, [pathname]);
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash]);
   return null;
 }
 

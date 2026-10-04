@@ -38,7 +38,15 @@ const redirectRoutes = { '/cookies': '/privacy' };
 // broke (an empty lazy page, a thrown boundary) — fail rather than ship it.
 async function withBody(html, path) {
   const target = redirectRoutes[path];
-  if (target) return html.replace('</head>', () => `<noscript><meta http-equiv="refresh" content="0; url=${target}" /></noscript>\n    </head>`);
+  if (target) {
+    if (!html.includes('</head>')) {
+      console.error(`FAIL: shell for ${path} has no </head>`);
+      process.exit(1);
+    }
+    // noindex keeps the redirect stub out of search; the refresh lands on the canonical URL.
+    const tags = `<meta name="robots" content="noindex" />\n    <noscript><meta http-equiv="refresh" content="0; url=${attr(pageUrl(target))}" /></noscript>`;
+    return html.replace('</head>', () => `${tags}\n    </head>`);
+  }
   const body = await render(path);
   const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   if (text.length < 500) {
