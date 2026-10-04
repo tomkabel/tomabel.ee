@@ -1,7 +1,6 @@
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
 import PgpCard from '../components/site/pgp-card';
-import CrossNav from '../components/site/cross-nav';
 import { bio, site } from '../content/site';
 
 export default function AboutPage() {
@@ -60,15 +59,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <CrossNav
-        to="/my-story"
-        label={language === 'en' ? 'My story' : 'Minu lugu'}
-        blurb={language === 'en'
-          ? 'How I got here, in three acts: charged by Estonia’s cybercrime police as a young man, the pivot from selling the gap to closing it, and the evidence.'
-          : 'Kuidas ma siia jõudsin, kolmes vaatuses: noorena esitatud kahtlustus, pööre turvalõhe müümiselt selle sulgemisele ja tõendid.'}
-        cta={language === 'en' ? 'Read my story' : 'Loe minu lugu'}
-      />
     </>
   );
 }

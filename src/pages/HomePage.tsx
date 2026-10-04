@@ -52,11 +52,14 @@ export default function HomePage() {
           <p className="label text-muted-foreground lg:col-span-3 lg:pt-2">
             {language === 'en' ? 'The fault line' : 'Murdejoon'}
           </p>
-          <blockquote className="lg:col-span-9">
-            <p className="max-w-measure font-serif text-2xl leading-normal text-foreground">
-              {site.introStrip[language]}
-            </p>
-          </blockquote>
+          <div className="lg:col-span-9">
+            <blockquote>
+              <p className="max-w-measure font-serif text-2xl leading-normal text-foreground">
+                {site.introStrip.quote[language]}
+              </p>
+            </blockquote>
+            <p className="prose-measure mt-6 text-muted">{site.introStrip.body[language]}</p>
+          </div>
         </div>
       </section>
 

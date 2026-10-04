@@ -105,7 +105,8 @@ pure white.
   with the serif title and a ruled dateline, and it is the only article header. Don't hand-roll
   a new one.
 - **Nav:** opaque, no blur. Sentence-case links whose underline draws in on hover and stays in
-  signal colour for the current page; "Contact" jumps to the footer's `#contact` list. Icon
+  signal colour for the current page; "Contact" jumps to the footer's `#contact` list, which
+  holds contact channels only (About and My story are their own footer group). Icon
   buttons are 44×44; the connection button shows its "Your connection" label at `lg+`.
 - **Loader:** a hairline indeterminate scan bar with `role="status"`. No pulsing dots.
 

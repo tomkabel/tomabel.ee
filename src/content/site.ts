@@ -26,9 +26,17 @@ export const site = {
       et: 'Olen Tom Kristian Abel, süsteemiarhitekt ja turvauurija. Pöördprojekteerin, kuidas autentimine ja brauserikaitse ebaõnnestuvad, ning kavandan süsteemid, mis minu leitu üle elavad.',
     },
   },
+  // The fault line, in the author's words: one sentence as the pull quote,
+  // the specifics as reading text under it.
   introStrip: {
-    en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies. I spent years exploiting that gap. Now I close it, in public, and answer for all of it.",
-    et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib. Aastaid kasutasin seda lõhet ära. Nüüd sulgen selle, avalikult, ja võtan kõige eest vastutuse.",
+    quote: {
+      en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies.",
+      et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib.",
+    },
+    body: {
+      en: "I’ve spent years on both sides of that gap — first exploiting it, now closing it. These days I research identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), reverse engineer anti-fraud systems at the opcode level, and ship production platforms built secure-by-design. I disclose what I find, in public, and I take responsibility for all of it.",
+      et: "Olen aastaid veetnud mõlemal pool seda lõhet — algul seda ära kasutades, nüüd sulgedes. Tänapäeval uurin identiteediprotokolle (FIDO2 / WebAuthn, eIDAS, Smart-ID), pöördprojekteerin pettusevastaseid süsteeme opkoodi tasemel ja tarnin tootmisplatvorme, mis on turvalised disaini järgi, mitte lootuse peale. Avaldan oma leiud avalikult ja võtan kõige eest vastutuse.",
+    },
   },
   contact: {
     github: 'https://github.com/tomkabel',
