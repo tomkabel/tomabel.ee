@@ -43,6 +43,11 @@ function LegacyDisclosureRedirect() {
   return <Navigate to={slug ? `/disclosures/${slug}` : '/disclosures'} replace />;
 }
 
+function focusWithoutScroll(el: HTMLElement) {
+  if (el.tabIndex < 0 && !el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+  el.focus({ preventScroll: true });
+}
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   const navigationType = useNavigationType();
@@ -60,26 +65,37 @@ function ScrollToTop() {
     // ponytail: poll up to 3s for the lazy chunk; observe the DOM if pages get slower
     const deadline = performance.now() + 3000;
     const startY = window.scrollY;
-    const seek = () => {
-      if (window.scrollY !== startY) return; // the reader scrolled; leave them there
-      const target = id ? document.getElementById(id) : null;
-      if (target) target.scrollIntoView();
-      else if (id && performance.now() < deadline) frame = requestAnimationFrame(seek);
-      else window.scrollTo(0, 0);
-    };
-    // Back/forward without a fragment: let the browser restore its position.
-    if (id || navigationType !== 'POP') seek();
     // SPA route change: move focus to the content landmark so keyboard and
     // screen-reader users start the new view (WCAG 2.4.3). Not on first load,
     // where the first Tab must still reach the skip link and the nav.
-    if (lastPath.current !== pathname) {
-      lastPath.current = pathname;
+    const routeChanged = lastPath.current !== pathname;
+    lastPath.current = pathname;
+    const focusMain = () => {
       const main = document.getElementById('main-content');
-      if (main) {
-        main.setAttribute('tabindex', '-1');
-        (main as HTMLElement).focus({ preventScroll: true });
+      if (main && routeChanged) focusWithoutScroll(main);
+    };
+    const seek = () => {
+      if (window.scrollY !== startY) return focusMain(); // the reader scrolled; leave them there
+      const target = id ? document.getElementById(id) : null;
+      if (target) {
+        target.scrollIntoView();
+        // Web fonts change line heights after first paint, so the first scroll
+        // can land short. Re-aim once they load, unless the reader moved.
+        const landedY = window.scrollY;
+        void document.fonts.ready.then(() => {
+          if (window.scrollY === landedY) target.scrollIntoView();
+        });
+        // The next Tab continues from the target, not from the top.
+        focusWithoutScroll(target);
+      } else if (id && performance.now() < deadline) frame = requestAnimationFrame(seek);
+      else {
+        window.scrollTo(0, 0);
+        focusMain();
       }
-    }
+    };
+    // Back/forward without a fragment: let the browser restore its position.
+    if (id || navigationType !== 'POP') seek();
+    else focusMain();
     return () => cancelAnimationFrame(frame);
   }, [pathname, hash, navigationType]);
   return null;
@@ -185,8 +201,8 @@ function App({ location }: { location?: string }) {
             <Route path="/disclosures/saas-glued-lean-defense" element={<Layout><Lazy><SaasGluedLeanDefenseResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/identity-is-the-root-proof-is-the-gate" element={<Layout><Lazy><IdentityRootProofGateResearchPage /></Lazy></Layout>} />
 
-            {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; server
-                301s live in public/_redirects for hosts that honor it. */}
+            {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; GitHub
+                Pages can't send real 301s (the Worker will, i18n plan PR-1). */}
             <Route path="/research" element={<Navigate to="/disclosures" replace />} />
             <Route path="/writing" element={<Navigate to="/disclosures" replace />} />
             <Route path="/projects" element={<Navigate to="/systems" replace />} />

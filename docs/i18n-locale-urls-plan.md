@@ -130,7 +130,7 @@ fail-open fallback, and so does the canonical gate's `redirectRoutes` exemption.
 `redirectRoutes` from `spa-routes.mjs` to `route-meta.ts` (exported) so the build, the Worker and
 `bilingualPaths()` share it.
 
-**1.3 Delete `public/_redirects`** (GitHub Pages ignores it). Fix the App.tsx comment that points
+**1.3 Delete `public/_redirects`** (GitHub Pages ignores it). Done in PR-B of `deferred-followups-plan.md`. Fix the App.tsx comment that points
 at it. The client legacy `<Navigate>` routes stay, permanently (Rollback, PR-3).
 
 **1.4 Deploy the Worker from CI: job `worker` in `static.yml`.**

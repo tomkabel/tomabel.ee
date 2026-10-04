@@ -66,7 +66,8 @@ export default function SiteFooter() {
           </div>
         </div>
         <div className="mt-16 flex flex-col gap-2 border-t border-border pt-6 label text-subtle md:flex-row md:justify-between">
-          <span>&copy; {new Date().getFullYear()} Tom Kristian Abel · <span className="whitespace-nowrap">ProksiAbel OÜ</span></span>
+          {/* Build year in prerendered HTML, visit year after hydration. */}
+          <span suppressHydrationWarning>&copy; {new Date().getFullYear()} Tom Kristian Abel · <span className="whitespace-nowrap">ProksiAbel OÜ</span></span>
           <span>{language === 'en' ? 'Personally accountable.' : 'Isiklikult vastutav.'}</span>
         </div>
       </div>

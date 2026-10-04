@@ -223,77 +223,77 @@ const sources = [
   {
     label: 'Tom Kristian Abel, "SoK: Where Input Enters — Client-Side Anti-Automation When AI Agents Drive Unmodified Browsers", commit f037d68',
     url: 'https://github.com/tomkabel/google-botguard-security-research/blob/f037d68254323547c50f88e038a8bf5cb98363e9/paper.md',
-    note: 'manuscript as of 24 September 2026; tiers in §4.2, testbed measurements in §5.7, centralization in §6',
+    note: { en: 'manuscript as of 24 September 2026; tiers in §4.2, testbed measurements in §5.7, centralization in §6', et: 'käsikiri 24. septembri 2026 seisuga; tasemed jaotises 4.2, katsekeskkonna mõõtmised jaotises 5.7, tsentraliseerumine jaotises 6' },
   },
   {
     label: 'OpenAI, "Introducing Operator" (23 January 2025)',
     url: 'https://openai.com/index/introducing-operator/',
-    note: 'trained to ask the user to take over when solving CAPTCHAs',
+    note: { en: 'trained to ask the user to take over when solving CAPTCHAs', et: 'õpetatud CAPTCHA lahendamisel paluma kasutajal juhtimine üle võtta' },
   },
   {
     label: 'Google, Gemini 2.5 Computer Use model announcement (October 2025)',
     url: 'https://blog.google/technology/google-deepmind/gemini-computer-use-model/',
-    note: 'bypassing CAPTCHAs listed among high-risk actions the safety controls block',
+    note: { en: 'bypassing CAPTCHAs listed among high-risk actions the safety controls block', et: 'CAPTCHA-st möödahiilimine on loetletud kõrge riskiga toimingute hulgas, mida turvakontrollid blokeerivad' },
   },
   {
     label: 'mezha, report on ChatGPT agent and the Turnstile checkbox (29 July 2025)',
     url: 'https://mezha.ua/en/news/chatgpt-agent-clicks-not-a-robot-verification-303662/',
-    note: 'ChatGPT agent reported passing the Cloudflare Turnstile checkbox',
+    note: { en: 'ChatGPT agent reported passing the Cloudflare Turnstile checkbox', et: 'ChatGPT agent läbis teadete järgi Cloudflare Turnstile’i märkeruudu' },
   },
   {
     label: 'Plesner, Vontobel and Wattenhofer, "Breaking reCAPTCHAv2" (arXiv, September 2024)',
     url: 'https://arxiv.org/abs/2409.08831',
-    note: 'machine-learning solver for reCAPTCHA v2 image challenges',
+    note: { en: 'machine-learning solver for reCAPTCHA v2 image challenges', et: 'masinõppel põhinev lahendaja reCAPTCHA v2 pildiülesannetele' },
   },
   {
     label: 'Motoyama et al., "Re: CAPTCHAs — Understanding CAPTCHA-Solving Services in an Economic Context", USENIX Security 2010',
     url: 'https://www.usenix.org/legacy/event/sec10/tech/full_papers/Motoyama.pdf',
-    note: 'human solving prices of roughly $0.50–$2 per thousand',
+    note: { en: 'human solving prices of roughly $0.50–$2 per thousand', et: 'inimeste lahendatud ülesannete hind umbes 0,50–2 dollarit tuhande kohta' },
   },
   {
     label: '2Captcha, pricing',
     url: 'https://2captcha.com/pricing',
-    note: 'current list prices per thousand solves, checked 4 October 2026',
+    note: { en: 'current list prices per thousand solves, checked 4 October 2026', et: 'kehtivad hinnakirjahinnad tuhande lahenduse kohta, kontrollitud 4. oktoobril 2026' },
   },
   {
     label: 'Cloudflare, "Eliminating CAPTCHAs on iPhones and Macs using new standard" (8 June 2022)',
     url: 'https://blog.cloudflare.com/eliminating-captchas-on-iphones-and-macs-using-new-standard/',
-    note: 'Private Access Tokens: Apple as attester, Cloudflare and Fastly as issuers',
+    note: { en: 'Private Access Tokens: Apple as attester, Cloudflare and Fastly as issuers', et: 'Private Access Tokens: Apple tõendajana, Cloudflare ja Fastly väljastajatena' },
   },
   {
     label: 'IETF, draft-ietf-privacypass-rate-limit-tokens-06 (expired)',
     url: 'https://datatracker.ietf.org/doc/draft-ietf-privacypass-rate-limit-tokens/',
-    note: 'rate-limited token issuance; the draft has lapsed',
+    note: { en: 'rate-limited token issuance; the draft has lapsed', et: 'kiiruspiiranguga märkide väljastamine; mustandi kehtivus on lõppenud' },
   },
   {
     label: '9to5Google, report on Google dropping Web Environment Integrity (2 November 2023)',
     url: 'https://9to5google.com/2023/11/02/google-chrome-web-integrity-api/',
-    note: 'WEI no longer being considered by the Chrome team',
+    note: { en: 'WEI no longer being considered by the Chrome team', et: 'Chrome’i meeskond WEI-d enam ei kaalu' },
   },
   {
     label: 'Google Workspace Updates, DBSC generally available in Chrome for Windows (28 May 2026)',
     url: 'https://workspaceupdates.googleblog.com/2026/05/prevent-account-takeovers-with-DBSC-now-generally-available-in-the-Chrome-browser-for-Windows.html',
-    note: 'DBSC as an account-takeover and cookie-theft control',
+    note: { en: 'DBSC as an account-takeover and cookie-theft control', et: 'DBSC kui kaitse kontode ülevõtmise ja küpsiste varguse vastu' },
   },
   {
     label: 'Cloudflare, press release announcing PACT (22 June 2026)',
     url: 'https://www.cloudflare.com/press/press-releases/2026/cloudflare-collaborates-with-leading-browsers-to-develop-a-privacy-first-protocol-for-the-global-internet/',
-    note: 'primary announcement of Private Access Control Tokens',
+    note: { en: 'primary announcement of Private Access Control Tokens', et: 'Private Access Control Tokensi algne teadaanne' },
   },
   {
     label: 'Bob Rudis, "PACT: The Open Web Doesn\'t Need Another Trust Oligopoly" (23 June 2026)',
     url: 'https://ai.rud.is/posts/2026-06-23-pact-the-open-web-doesnt-need-another-trust-oligopoly/',
-    note: 'source of the argument that tokens become mandatory without anyone deciding it',
+    note: { en: 'source of the argument that tokens become mandatory without anyone deciding it', et: 'allikas väitele, et märgid muutuvad kohustuslikuks, ilma et keegi seda otsustaks' },
   },
   {
     label: 'Cloudflare blog, signed agents (28 August 2025)',
     url: 'https://blog.cloudflare.com/signed-agents/',
-    note: 'signed agents and Web Bot Auth',
+    note: { en: 'signed agents and Web Bot Auth', et: 'allkirjastatud agendid ja Web Bot Auth' },
   },
   {
     label: 'IETF Web Bot Auth (webbotauth) working group',
     url: 'https://datatracker.ietf.org/wg/webbotauth/about/',
-    note: 'standards work on cryptographic identification of agents',
+    note: { en: 'standards work on cryptographic identification of agents', et: 'agentide krüptograafilise tuvastamise standardimine' },
   },
 ];
 
@@ -378,7 +378,7 @@ function VlmAntiFraudResearchPage() {
                   >
                     {source.label}
                   </a>
-                  <span className="text-muted-foreground"> — {source.note}</span>
+                  <span className="text-muted-foreground"> — {source.note[language]}</span>
                 </p>
               ))}
             </div>

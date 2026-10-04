@@ -157,7 +157,7 @@ Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercia
 
 Corrections, 4 October 2026: the Executive Order 14028 citation is now sec. 3(a) and 3(b)(ii), not 3(c); DTM-25-003 formalized a Zero Trust Portfolio Management Office that has existed since 2022 rather than establishing it; the unsupported "VPN-less access" requirement, the CNSA 2.0 attribution for P-256, the draft title of SP 800-207A, the broken DoD Strategy link and the "every claim checked" sentence were removed or corrected. The archetype scores, the dimension value lists, the RSA survey description and the signature-size ratio (38- to 72-fold) were also corrected to match the companion pages.
 
-Research conduct follows the site’s 
+Research conduct follows the site’s security research policy.
 
 ## Sources
 

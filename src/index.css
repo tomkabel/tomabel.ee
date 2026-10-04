@@ -114,6 +114,10 @@
     outline: 2px solid oklch(var(--signal));
     outline-offset: 3px;
   }
+  /* Script-focused landmarks and deep-link targets aren't controls; no ring. */
+  [tabindex='-1']:focus-visible {
+    outline: none;
+  }
 
   [id] {
     scroll-margin-top: 5rem;

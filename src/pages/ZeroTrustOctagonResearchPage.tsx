@@ -3,6 +3,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
@@ -253,9 +254,8 @@ const disclosureParagraphs = [
   'This report describes no live system under test and discloses no vulnerability. The framework is the author’s own work, built on public standards and public incident reporting; the engineering reference implementation that accompanies the book is the author’s own project. No vendor was consulted or compensated, and the framework names no product as a solution. Where the book makes estimates (cost floors, triage loads), they are labeled as estimates in the source and treated as such here.',
   'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Several recommendations here fall in that category.',
   'Corrections, 4 October 2026: the Executive Order 14028 citation is now sec. 3(a) and 3(b)(ii), not 3(c); DTM-25-003 formalized a Zero Trust Portfolio Management Office that has existed since 2022 rather than establishing it; the unsupported "VPN-less access" requirement, the CNSA 2.0 attribution for P-256, the draft title of SP 800-207A, the broken DoD Strategy link and the "every claim checked" sentence were removed or corrected. The archetype scores, the dimension value lists, the RSA survey description and the signature-size ratio (38- to 72-fold) were also corrected to match the companion pages.',
-  'Research conduct follows the site’s ',
+  'Research conduct follows the site’s security research policy.',
 ];
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 export default function ZeroTrustOctagonResearchPage() {
   return (
@@ -382,19 +382,11 @@ export default function ZeroTrustOctagonResearchPage() {
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]}</p>
-              <p>{disclosureParagraphs[1]}</p>
-              <p>{disclosureParagraphs[2]}</p>
-              <p>
-                {disclosureParagraphs[3]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  security research policy
-                </a>
-                .
-              </p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <PolicyText text={paragraph} />
+                </p>
+              ))}
             </div>
           </section>
         </div>
@@ -402,7 +394,7 @@ export default function ZeroTrustOctagonResearchPage() {
 
       <ArticleProof
         slug="zero-trust-octagon"
-        expectedSha256="d282d82ecb2d37d2766a585f06a0f546861aa8d7bbdb3adc3aa51729a452381b"
+        expectedSha256="8cf24d67e27eccaeaa2e96db01bda55b66671af425a23c7466de50943f0310f4"
       />
     </article>
   );

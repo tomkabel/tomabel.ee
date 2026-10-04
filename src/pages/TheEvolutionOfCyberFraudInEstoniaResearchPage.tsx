@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type Bi = { en: string; et: string };
 
@@ -328,8 +329,8 @@ const disclosureParagraphs: Bi[] = [
     et: 'See raport on kokkuvõte avalikest teadetest ja statistikast. See ei kirjelda ühtegi testitavat töötavat süsteemi, ei avalikusta ühtegi turvaauku ega sisalda ühtegi privaatset ega kliendimaterjali. Kõik viidatud juhtumid olid enne selle raporti valmimist juba avalikud Eesti ja ingliskeelses meedias. Arvud on omistatud asutusele, kes need avaldas; kus asutused on eri meelt, on mõlemad arvud koos allikatega esitatud.',
   },
   {
-    en: "Research conduct follows the site's ",
-    et: 'Uurimistöö järgib saidi ',
+    en: "Research conduct follows the site's security research policy.",
+    et: 'Uurimistöö järgib saidi turvauuringute põhimõtteid.',
   },
   {
     en: "Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. The conclusions also point to the author's own Smart-ID research.",
@@ -340,7 +341,6 @@ const disclosureParagraphs: Bi[] = [
     et: 'Parandused, 4. oktoober 2026: varasem versioon tõlgendas SEB 2024. aasta esimese poolaasta andmeid tõendina, et keelebarjäär oli juba langenud; SEB sõnul tehti telefonipettusi siis peamiselt vene keeles ja nihe on nüüd politsei ütluste põhjal dateeritud 2024. aasta lõppu. Lisaks eemaldasin RIA ja PPA arvude erinevuse põhjendamata selgituse, parandasin väite, et petukõned moodustasid 2025. aasta kahjust "enamiku" (tegelikult suurim kategooria, umbes 40 protsenti), omistasin viie kuni kümne miljoni vahemiku ERR-ile, piirasin SEB kahe kolmandiku suuruse kõneõngitsuse osakaalu Lätiga, kitsendasin käsitletavat perioodi aastatele 2017–2026 ning lisasin 2026. aasta politseiandmed ja Smart-ID+ kasutuselevõtu.',
   },
 ];
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
   const { language } = useTranslation();
@@ -447,19 +447,10 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
               {isEn ? 'Disclosure status' : 'Avalikustamise staatus'}
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]?.[language]}</p>
-              <p>
-                {disclosureParagraphs[1]?.[language]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  {isEn ? 'security research policy' : 'turvauuringute põhimõtteid'}
-                </a>
-                .
-              </p>
-              {disclosureParagraphs.slice(2).map((paragraph) => (
-                <p key={paragraph.en}>{paragraph[language]}</p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph.en}>
+                  <PolicyText text={paragraph[language]} />
+                </p>
               ))}
             </div>
           </section>
@@ -468,7 +459,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
 
       <ArticleProof
         slug="the-evolution-of-cyber-fraud-in-estonia"
-        expectedSha256="801904fadb49940a54fdf07fc99b22b27e95ad4f2fbbe2cf33c04f3c45df79d3"
+        expectedSha256="8b2068b35918aa25538ab61f1f54a6c55a219ce4af2576e8b163057115b5fcb7"
       />
     </article>
   );

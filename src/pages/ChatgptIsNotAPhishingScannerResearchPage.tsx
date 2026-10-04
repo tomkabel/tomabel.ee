@@ -2,6 +2,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader } from '../components/site/article';
+import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
@@ -187,11 +188,10 @@ const sources = [
 
 const disclosureParagraphs = [
   "This report examines a public claim made in a public discussion and checks it against vendor documentation and public threat research. The exchange took place publicly in June 2026; the reply is paraphrased. The thread is described rather than linked, so that the respondent is not identified. The original text is recorded in the author's working notes, which are available on request.",
-  'The author wrote the original post under review and adjudicates the dispute in this report; the reply\'s accurate parts are stated as such, and the author\'s own claims are held to the same standard. The respondent was not contacted before publication and is therefore not named. No private correspondence, client material, or non-public data was used, no live system was tested, no suspicious URL was fetched, and no vulnerability is disclosed. If any error is pointed out, the piece will be corrected. Research conduct follows the site\'s ',
+  'The author wrote the original post under review and adjudicates the dispute in this report; the reply\'s accurate parts are stated as such, and the author\'s own claims are held to the same standard. The respondent was not contacted before publication and is therefore not named. No private correspondence, client material, or non-public data was used, no live system was tested, no suspicious URL was fetched, and no vulnerability is disclosed. If any error is pointed out, the piece will be corrected. Research conduct follows the site\'s security research policy.',
   'Disclosure: the author runs ProksiAbel OÜ, which builds Proksimity, a commercial server-side traffic identity-assurance product. Its classification techniques overlap with those TDS operators use to decide which visitors to cloak.',
   "Corrections, 4 October 2026: the advice under test is now described as a general tip, since it has no single published source, and the respondent is no longer named. Claude's web search is no longer described as a toggle; the vendor section now covers OpenAI's January 2026 link-safety post and Gemini URL Context's \"unsafe\" moderation check; the claim that a consumer chat cannot call Safe Browsing or VirusTotal, and the unsourced claim that assistant fetches usually come from outside the target geography, were corrected; and the Safe Browsing, Claude and Gemini grounding links were updated.",
 ];
-const disclosurePolicyUrl = 'https://tomabel.ee/disclosure/';
 
 export default function ChatgptIsNotAPhishingScannerResearchPage() {
   return (
@@ -257,19 +257,10 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
               Disclosure status
             </h2>
             <div className="mt-6 space-y-6 text-lg leading-relaxed text-muted">
-              <p>{disclosureParagraphs[0]}</p>
-              <p>
-                {disclosureParagraphs[1]}
-                <a
-                  href={disclosurePolicyUrl}
-                  className="text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
-                >
-                  security research policy
-                </a>
-                .
-              </p>
-              {disclosureParagraphs.slice(2).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+              {disclosureParagraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <PolicyText text={paragraph} />
+                </p>
               ))}
             </div>
           </section>
@@ -278,7 +269,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
       <ArticleProof
         slug="chatgpt-is-not-a-phishing-scanner"
-        expectedSha256="726789a2c0093da0dd2550213f62b3b21cd6de614e186a2992025e4cf98b4daf"
+        expectedSha256="cdc2aa2c61daa94f2e059d52851707091f7ad09cd01e67a8297d02cdb5276da0"
       />
     </article>
   );

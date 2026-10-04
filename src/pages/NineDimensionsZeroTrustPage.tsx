@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArticleHeader } from '../components/site/article';
+import { ArticleHeader, ProtocolTable } from '../components/site/article';
 import { useTranslation } from '../i18n/LanguageContext';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
@@ -9,6 +9,7 @@ type Bi = { en: string; et: string };
 type EssaySection = {
   heading: Bi;
   paragraphs: Bi[];
+  table?: { columns: Bi[]; rows: Bi[][] };
 };
 
 type Source = { label: Bi; url: string; note?: Bi };
@@ -128,10 +129,64 @@ const sections: EssaySection[] = [
         et: 'D7 seire usaldus: kaudne, järjekorranumbriga kontrollitud vastuvõtt, kaks konveierit, Merkle-puuga atesteeritud telemeetria, heterogeensete vaatlejate konsensus. D8 organisatsiooni hoiak: killustatud, sulandunud, majanduslik leping, eelduslikult ekslik, harjutusväljakul karastatud. D9 inimeste järjepidevus: üksik tõrkepunkt, väike rotatsioon, ööpäevaringne turbekeskus, täielik automatiseerimine.',
       },
       {
-        en: 'The matrix also maps onto assessments you may already have. CISA\'s Identity pillar lands mainly on D2, Devices on D1, D4 and D7, Networks on D3, Applications and Workloads on D2 and D4, and Data on D3\'s cryptographic position. Under NIS2, the access-control, asset-management and multi-factor authentication measures of Article 21 and Implementing Regulation (EU) 2024/2690 fall mostly on D2, D3 and D4, so an existing NIS2 evidence pack is a reasonable first draft of a reading.',
-        et: 'Maatriksi saab siduda ka hindamistega, mis sul ehk juba olemas on. CISA identiteedisammas langeb peamiselt D2-le, seadmete sammas D1-le, D4-le ja D7-le, võrkude sammas D3-le, rakenduste ja töökoormuste sammas D2-le ja D4-le ning andmete sammas D3 krüptograafilisele asukohale. NIS2 puhul langevad artikli 21 ja rakendusmääruse (EL) 2024/2690 ligipääsukontrolli, varahalduse ja mitmikautentimise meetmed peamiselt D2-le, D3-le ja D4-le, nii et olemasolev NIS2 tõendipakett on lugemise mõistlik esimene mustand.',
+        en: 'The matrix also maps onto assessments you may already have. The CISA column follows the book\'s crosswalk (Appendix E), which ties each function of the five ZTMM pillars and the three cross-cutting capabilities to the dimensions it exercises. The NIS2 column is the author\'s reading of the minimum measures in Article 21(2), points (a) to (j); the book does not map NIS2. Its access-control, asset-management and multi-factor authentication measures, points (i) and (j), detailed further in Implementing Regulation (EU) 2024/2690, fall on D2, D3 and D4, so an existing NIS2 evidence pack is a reasonable first draft of a reading.',
+        et: 'Maatriksi saab siduda ka hindamistega, mis sul ehk juba olemas on. CISA veerg järgib raamatu vastavustabelit (lisa E), mis seob nullusalduse küpsusmudeli viie samba iga funktsiooni ja kolm läbivat võimekust mõõtmetega, mida need puudutavad. NIS2 veerg on autori tõlgendus artikli 21 lõike 2 punktides a–j loetletud miinimummeetmetest; raamat NIS2-ga vastavust ei esita. Ligipääsukontrolli, varahalduse ja mitmikautentimise meetmed (punktid i ja j, mida täpsustab rakendusmäärus (EL) 2024/2690) langevad D2-le, D3-le ja D4-le, nii et olemasolev NIS2 tõendipakett on lugemise mõistlik esimene mustand.',
       },
     ],
+    table: {
+      columns: [
+        { en: 'Dimension', et: 'Mõõde' },
+        { en: 'CISA ZTMM 2.0 (book, Appendix E)', et: 'CISA ZTMM 2.0 (raamat, lisa E)' },
+        { en: 'NIS2 Art. 21(2) (author\'s reading)', et: 'NIS2 art 21 lg 2 (autori tõlgendus)' },
+      ],
+      rows: [
+        [
+          { en: 'D1 trust anchor', et: 'D1 usaldusankur' },
+          { en: 'Devices: compliance monitoring, asset and supply chain. Networks: traffic encryption. Applications: software supply chain. Data: categorization, encryption.', et: 'Seadmed: vastavuse seire, vara ja tarneahel. Võrgud: liikluse krüpteerimine. Rakendused: tarkvara tarneahel. Andmed: liigitamine, krüpteerimine.' },
+          { en: '(d) supply chain security; (h) cryptography and encryption', et: 'd) tarneahela turvalisus; h) krüptograafia ja krüpteerimine' },
+        ],
+        [
+          { en: 'D2 identity model', et: 'D2 identiteedimudel' },
+          { en: 'Identity: authentication, lifecycle, access control. Applications: authorization. Data: access.', et: 'Identiteet: autentimine, elukaar, ligipääsukontroll. Rakendused: autoriseerimine. Andmed: ligipääs.' },
+          { en: '(i) access control; (j) multi-factor or continuous authentication', et: 'i) ligipääsukontroll; j) mitmikautentimine või pidev autentimine' },
+        ],
+        [
+          { en: 'D3 enforcement layer', et: 'D3 jõustamiskiht' },
+          { en: 'Identity: ICAM integration. Devices: resource access. Networks: segmentation, traffic encryption. Applications: access. Data: access.', et: 'Identiteet: ICAM-i lõimimine. Seadmed: ligipääs ressurssidele. Võrgud: segmentimine, liikluse krüpteerimine. Rakendused: ligipääs. Andmed: ligipääs.' },
+          { en: '(i) access control', et: 'i) ligipääsukontroll' },
+        ],
+        [
+          { en: 'D4 attestation', et: 'D4 atesteerimine' },
+          { en: 'Identity: authentication. Devices: compliance monitoring, resource access. Applications: authorization. Cross-cutting: visibility and analytics.', et: 'Identiteet: autentimine. Seadmed: vastavuse seire, ligipääs ressurssidele. Rakendused: autoriseerimine. Läbiv: nähtavus ja analüütika.' },
+          { en: '(i) asset management; (j) multi-factor or continuous authentication', et: 'i) varahaldus; j) mitmikautentimine või pidev autentimine' },
+        ],
+        [
+          { en: 'D5 violation response', et: 'D5 reageerimine rikkumisele' },
+          { en: 'Devices and Applications: threat protection. Networks: resilience. Data: availability. Cross-cutting: automation and orchestration.', et: 'Seadmed ja rakendused: ohutõrje. Võrgud: vastupidavus. Andmed: käideldavus. Läbiv: automatiseerimine ja orkestreerimine.' },
+          { en: '(b) incident handling; (c) business continuity and crisis management', et: 'b) intsidentide käsitlemine; c) talitluspidevus ja kriisiohjamine' },
+        ],
+        [
+          { en: 'D6 policy distribution', et: 'D6 poliitika levitamine' },
+          { en: 'Identity: access control. Applications: software supply chain. Cross-cutting: automation and orchestration.', et: 'Identiteet: ligipääsukontroll. Rakendused: tarkvara tarneahel. Läbiv: automatiseerimine ja orkestreerimine.' },
+          { en: '(a) risk-analysis and security policies; (e) acquisition, development and maintenance', et: 'a) riskianalüüsi ja infoturbe põhimõtted; e) soetamine, arendus ja hooldus' },
+        ],
+        [
+          { en: 'D7 observability trust', et: 'D7 seire usaldus' },
+          { en: 'Networks: visibility and analytics. Data: inventory. Cross-cutting: visibility and analytics.', et: 'Võrgud: nähtavus ja analüütika. Andmed: inventuur. Läbiv: nähtavus ja analüütika.' },
+          { en: '(b) incident handling; (f) assessing the effectiveness of measures', et: 'b) intsidentide käsitlemine; f) meetmete tõhususe hindamine' },
+        ],
+        [
+          { en: 'D8 organizational posture', et: 'D8 organisatsiooni hoiak' },
+          { en: 'Cross-cutting: governance.', et: 'Läbiv: juhtimine.' },
+          { en: '(a) security policies; (g) cyber hygiene and training; (i) human resources security', et: 'a) infoturbe põhimõtted; g) küberhügieen ja koolitus; i) personaliturve' },
+        ],
+        [
+          { en: 'D9 human continuity', et: 'D9 inimeste järjepidevus' },
+          { en: 'Not mapped in the book.', et: 'Raamatus vastavust ei ole.' },
+          { en: '(c) business continuity and crisis management; (i) human resources security', et: 'c) talitluspidevus ja kriisiohjamine; i) personaliturve' },
+        ],
+      ],
+    },
   },
   {
     heading: { en: 'Reading a real position, not an aspirational one', et: 'Tegeliku, mitte soovitud asukoha lugemine' },
@@ -204,6 +259,16 @@ const sources: Source[] = [
     url: 'https://www.enisa.europa.eu/publications/NIS2-technical-implementation-guidance',
   },
   {
+    label: { en: 'Zero-Trust Octagon, Appendix E: CISA ZTMM v2.0 crosswalk', et: 'Zero-Trust Octagon, lisa E: CISA ZTMM v2.0 vastavustabel' },
+    url: 'https://github.com/tomkabel/zero-trust-octagon/blob/main/docs/appendix/appendix-e-cisa-ztmm-crosswalk.md',
+    note: { en: 'source of the CISA column', et: 'CISA veeru allikas' },
+  },
+  {
+    label: { en: 'Directive (EU) 2022/2555 (NIS2), Article 21(2)', et: 'Direktiiv (EL) 2022/2555 (NIS2), artikli 21 lõige 2' },
+    url: 'https://eur-lex.europa.eu/eli/dir/2022/2555/oj',
+    note: { en: 'minimum cybersecurity risk-management measures, points (a) to (j)', et: 'küberturvalisuse riskijuhtimise miinimummeetmed, punktid a–j' },
+  },
+  {
     label: { en: 'Morphological analysis (Zwicky; Ritchey)', et: 'Morfoloogiline analüüs (Zwicky; Ritchey)' },
     url: 'https://en.wikipedia.org/wiki/Morphological_analysis_(problem-solving)',
   },
@@ -228,8 +293,8 @@ const disclosureParagraphs: Bi[] = [
     et: 'See on raamistiku kirjeldus. See ei kirjelda ühtegi testitavat töötavat süsteemi ega avalikusta ühtegi haavatavust. Huvide avalikustamine: autor juhib ettevõtet ProksiAbel OÜ, mis arendab Proksimityt, kommertslikku serveripoolset liikluse identiteedi tagamise toodet. Mitu siinset soovitust kuulub sellesse kategooriasse.',
   },
   {
-    en: 'Corrections, 4 October 2026: CISA\'s model has four stages, not three; the dimensions are coupled, not independent; the D2, D4, D6, D7 and D8 value lists and the single-responder response time (about three minutes awake, 25 minutes or more asleep) now match the Octagon overview; and "every cloud IAM is PKI underneath" was corrected.',
-    et: 'Parandused, 4. oktoober 2026: CISA mudelil on neli etappi, mitte kolm; mõõtmed on omavahel seotud, mitte sõltumatud; D2, D4, D6, D7 ja D8 väärtuste loendid ning ühe reageerija reageerimisaeg (ärkvel umbes kolm minutit, magades 25 minutit või rohkem) vastavad nüüd oktagoni ülevaatele; ja väide, et iga pilve IAM on all PKI, parandati.',
+    en: 'Corrections, 4 October 2026: CISA\'s model has four stages, not three; the dimensions are coupled, not independent; the D2, D4, D6, D7 and D8 value lists and the single-responder response time (about three minutes awake, 25 minutes or more asleep) now match the Octagon overview; and "every cloud IAM is PKI underneath" was corrected. Later on 4 October 2026: the CISA mapping, which had put Devices on D7 and Data on D3 alone, was replaced by a table that follows the book\'s Appendix E crosswalk, with a NIS2 Article 21(2) column.',
+    et: 'Parandused, 4. oktoober 2026: CISA mudelil on neli etappi, mitte kolm; mõõtmed on omavahel seotud, mitte sõltumatud; D2, D4, D6, D7 ja D8 väärtuste loendid ning ühe reageerija reageerimisaeg (ärkvel umbes kolm minutit, magades 25 minutit või rohkem) vastavad nüüd oktagoni ülevaatele; ja väide, et iga pilve IAM on all PKI, parandati. Hiljem 4. oktoobril 2026: CISA vastavus, mis oli sidunud seadmete samba D7-ga ja andmete samba ainult D3-ga, asendati tabeliga, mis järgib raamatu lisa E vastavustabelit ja sisaldab NIS2 artikli 21 lõike 2 veergu.',
   },
 ];
 
@@ -296,6 +361,12 @@ export default function NineDimensionsZeroTrustPage() {
                   <p key={paragraph.en}>{paragraph[language]}</p>
                 ))}
               </div>
+              {section.table ? (
+                <ProtocolTable
+                  columns={section.table.columns.map((c) => c[language])}
+                  rows={section.table.rows.map((row) => row.map((cell) => cell[language]))}
+                />
+              ) : null}
             </section>
           ))}
 
