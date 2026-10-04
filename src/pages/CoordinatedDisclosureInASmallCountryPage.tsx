@@ -186,7 +186,7 @@ export default function CoordinatedDisclosureInASmallCountryPage() {
               </li>
               <li>
                 <Link
-                  to="/about"
+                  to="/my-story"
                   className="-my-2.5 inline-block py-2.5 text-accent underline decoration-border underline-offset-4 hover:decoration-accent"
                 >
                   My story

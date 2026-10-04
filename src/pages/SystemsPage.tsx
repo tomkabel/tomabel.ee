@@ -67,7 +67,14 @@ export default function SystemsPage() {
   // This page loads lazily, after the router has already handled the
   // navigation, so a #project fragment has to be resolved once it mounts.
   useEffect(() => {
-    if (hash) document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+    if (!hash) return;
+    let id: string;
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch {
+      return; // malformed fragment: stay at the top
+    }
+    document.getElementById(id)?.scrollIntoView();
   }, [hash]);
 
   const available = FILTER_ORDER.filter((c) => projects.some((p) => p.category === c));
