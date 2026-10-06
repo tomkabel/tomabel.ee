@@ -573,39 +573,36 @@ export const projects: Project[] = [
   // ── AI & Retrieval Systems ─────────────────────────────────────────────────
   {
     name: 'Discord RAG pipeline',
-    stack: 'Retrieval · FastAPI',
+    stack: 'Retrieval · FastAPI · private',
     category: 'ai-ml',
     tags: ['RAG', 'LanceDB', 'BM25'],
     blurb: {
       en: 'A role-based retrieval pipeline over FastAPI: LanceDB vector search and BM25 combined into hybrid retrieval, with RBAC-aware filtering so access control is part of the query, not an afterthought.',
       et: 'Rollipõhine hankekonveier FastAPI peal: LanceDB vektorotsing ja BM25 ühendatud hübriidhankeks, RBAC-teadliku filtreerimisega, nii et pääsuhaldus on osa päringust, mitte järelmõte.',
     },
-    href: 'https://github.com/tomkabel/discord-rag-pipeline',
-    repo: 'https://github.com/tomkabel/discord-rag-pipeline',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'deepgram-batch',
-    stack: 'Go · Deepgram Nova-3',
+    stack: 'Go · Deepgram Nova-3 · private',
     category: 'ai-ml',
     tags: ['Go', 'Speech-to-Text', '50+ languages'],
     blurb: {
       en: 'A CLI for batch speech-to-text jobs across 50+ languages on Deepgram Nova-3. Built to process entire directory archives, not single files.',
       et: 'Käsurea tööriist hulgi-kõnetuvastuseks 50+ keeles Deepgram Nova-3 peal. Ehitatud tervete kaustaarhiivide töötlemiseks, mitte üksikute failide jaoks.',
     },
-    href: 'https://github.com/tomkabel/deepgram-batch',
-    repo: 'https://github.com/tomkabel/deepgram-batch',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'lovable-codebase-agent',
-    stack: 'Python · codemod',
+    stack: 'Python · codemod · private',
     category: 'ai-ml',
     tags: ['Python', 'Codegen', 'Refactor'],
     blurb: {
       en: 'An AST-based cleanup tool for raw Lovable.dev exports. It strips vendor wrappers, removes dead dependencies, migrates SSR setups to SSG, and generates standard CI workflows.',
       et: 'AST-põhine puhastustööriist toorete Lovable.dev ekspordifailide jaoks. Eemaldab tarnija kestad, kustutab surnud sõltuvused, teisendab SSR-seadistused SSG-ks ja loob standardsed CI-töövood.',
     },
-    href: 'https://github.com/tomkabel/lovable-codebase-agent',
-    repo: 'https://github.com/tomkabel/lovable-codebase-agent',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'SKILL Lab',
@@ -628,8 +625,7 @@ export const projects: Project[] = [
       en: "A zero-dependency timezone tracker and cost calculator for DeepSeek’s discounted off-peak pricing windows.",
       et: 'Sõltuvusteta ajavööndijälgija ja kulukalkulaator DeepSeeki tipuväliste soodushinnaperioodide jaoks.',
     },
-    href: 'https://github.com/tomkabel/deepseek-offpeak',
-    repo: 'https://github.com/tomkabel/deepseek-offpeak',
+    href: 'https://github.com/tomkabel',
     live: 'https://deepseek-offpeak.pages.dev',
   },
   {
@@ -647,27 +643,25 @@ export const projects: Project[] = [
   // ── Systems & Infrastructure ───────────────────────────────────────────────
   {
     name: 'Vooglaadija',
-    stack: 'FastAPI · collaborative',
+    stack: 'FastAPI · collaborative · private',
     category: 'systems',
     tags: ['FastAPI', 'Redis', 'Observability'],
     blurb: {
       en: 'A media-extraction service backed by Redis task queues, JWT auth, and rate limiting, with an HTMX frontend and SSE streaming. Instrumented with Prometheus, OpenTelemetry, and Sentry inside a 7-container Docker Compose setup.',
       et: 'Meediafailide eraldamise teenus Redis-ülesandejärjekordade, JWT-autentimise ja kiiruspiiranguga, HTMX-liidese ja SSE-voogedastusega. Instrumenteeritud Prometheuse, OpenTelemetry ja Sentryga 7-konteinerilises Docker Compose seadistuses.',
     },
-    href: 'https://github.com/tomkabel/vooglaadija',
-    repo: 'https://github.com/tomkabel/vooglaadija',
+    href: 'https://github.com/tomkabel',
   },
   {
     name: 'scripts',
-    stack: 'Shell · ops',
+    stack: 'Shell · ops · private',
     category: 'systems',
     tags: ['Bash', 'Server Setup', 'Ops'],
     blurb: {
       en: "Tom’s Awesome Scripts — a battle-worn collection of bash for server setup and management. The stuff you’d otherwise copy-paste at 2am, made idempotent and safe.",
       et: "Tom’s Awesome Scripts — lahingus karastunud bash-skriptide kogu serveri seadistamiseks ja haldamiseks. Skriptid, mida muidu kopeeriksid kell 2 öösel, tehtud idempotentseks ja turvaliseks.",
     },
-    href: 'https://github.com/tomkabel/scripts',
-    repo: 'https://github.com/tomkabel/scripts',
+    href: 'https://github.com/tomkabel',
   },
 
   // ── Research & Frameworks ──────────────────────────────────────────────────
@@ -688,15 +682,14 @@ export const projects: Project[] = [
   // ── Foundations ────────────────────────────────────────────────────────────
   {
     name: 'tartu-progeksam-2025',
-    stack: 'Python · education',
+    stack: 'Python · education · private',
     category: 'foundations',
     tags: ['Python', 'Education'],
     blurb: {
       en: 'Questions and clean Python solutions for the University of Tartu 2025 programming exam. A study resource, worked end to end.',
       et: 'Tartu Ülikooli 2025. aasta programmeerimiseksami küsimused ja puhtad Python-lahendused. Õppematerjal, läbi töötatud algusest lõpuni.',
     },
-    href: 'https://github.com/tomkabel/tartu-progeksam-2025',
-    repo: 'https://github.com/tomkabel/tartu-progeksam-2025',
+    href: 'https://github.com/tomkabel',
   },
 ];
 
@@ -713,8 +706,8 @@ export const bio = {
       et: 'Mida ma alles jätsin, oli nägemisviis. Kui oled autentimise elatise teenimiseks lahti võtnud, ei saa sa enam mittenäha, kui habras suurem osa sellest on — ja sa tüdined vaatamast, kuidas samu süsteeme samadel viisidel lahti võetakse. Nii et nüüd suunan samad oskused teisele poole: uurin, kuidas identiteediprotokollid ja brauserikaitsed ebaõnnestuvad (FIDO2 / WebAuthn, eIDAS, Smart-ID, pettusevastased VM-id), avalikustan oma leiud vastutustundlikult ja kavandan süsteeme, mis on turvalised disaini järgi, mitte lootuse peale.',
     },
     {
-      en: "These days I’m Lead Systems Architect and CTO at MatX, where I build production platforms under the threat models I write — zero-trust architecture, phishing-resistant authentication, and GDPR/NIS2 compliance treated as engineering, not paperwork. I work in English and Estonian, and most of my research orbits Estonia’s authentication and anti-fraud landscape, because it’s one of the most digitized in the world and therefore one of the most interesting to defend.",
-      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MatX-is, kus ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — nullusalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
+      en: "These days I’m Lead Systems Architect and CTO at MATx (matx.ee), a maths-learning platform that spots students’ learning gaps early. There I build production platforms under the threat models I write — zero-trust architecture, phishing-resistant authentication, and GDPR/NIS2 compliance treated as engineering, not paperwork. I work in English and Estonian, and most of my research orbits Estonia’s authentication and anti-fraud landscape, because it’s one of the most digitized in the world and therefore one of the most interesting to defend.",
+      et: 'Tänapäeval olen juhtiv süsteemiarhitekt ja CTO MATx-is (matx.ee). See on matemaatikaõppe platvorm, mis märkab õpilaste õpilünki varakult. Seal ehitan tootmisplatvorme nende ohumudelite alusel, mida ise kirjutan — nullusalduse arhitektuur, õngitsemiskindel autentimine ja GDPR/NIS2 vastavus, mida käsitletakse inseneritööna, mitte paberimäärimisena. Töötan inglise ja eesti keeles ning suurem osa minu uuringutest tiirleb Eesti autentimis- ja pettusevastase maastiku ümber, sest see on üks kõige digiteeritumaid maailmas ja seega üks huvitavamaid, mida kaitsta.',
     },
   ],
   kratt: {

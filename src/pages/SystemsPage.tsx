@@ -53,6 +53,7 @@ function statusOf(p: Project, isEn: boolean): { label: string; tone: string; liv
   const s = p.stack.toLowerCase();
   if (s.includes('live')) return { label: isEn ? 'Live' : 'Töös', tone: 'text-accent', live: true };
   if (s.includes('disclosed')) return { label: isEn ? 'Disclosed' : 'Avalikustatud', tone: 'text-warning' };
+  if (s.includes('private')) return { label: isEn ? 'Private source' : 'Suletud lähtekood', tone: 'text-muted-foreground' };
   if (p.repo) return { label: isEn ? 'Open source' : 'Avatud lähtekood', tone: 'text-muted-foreground' };
   return { label: isEn ? 'Reference' : 'Viide', tone: 'text-muted-foreground' };
 }
