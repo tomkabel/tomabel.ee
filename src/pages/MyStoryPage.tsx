@@ -16,8 +16,8 @@ const acts: { heading: L; paragraphs: L[] }[] = [
         et: 'Keskkriminaalpolitsei esitas mulle kahtlustuse. Olin noor, oskasin asju lõhkuda ja ma tegin seda.',
       },
       {
-        en: "I sold my skills to people who used them to get into accounts that weren't theirs, and I told myself the line I was standing on was a legal one. It wasn't. The case ended in a conviction in 2024.",
-        et: 'Müüsin oma oskusi inimestele, kes kasutasid neid võõrastesse kontodesse sissepääsemiseks, ja ütlesin endale, et joon, millel seisan, on seaduslik. Ei olnud. Asi lõppes 2024. aastal süüdimõistmisega.',
+        en: "I sold my skills to people who used them to get into accounts that weren't theirs, and I told myself the line I was standing on was a legal one. It wasn't. In November 2024 Harju County Court convicted me of preparing computer crime: I had built a modified version of the Evilginx phishing toolkit and sold it. The sentence was ten months in prison, five served and five suspended, and the probation ended in November 2025.",
+        et: 'Müüsin oma oskusi inimestele, kes kasutasid neid võõrastesse kontodesse sissepääsemiseks, ja ütlesin endale, et joon, millel seisan, on seaduslik. Ei olnud. 2024. aasta novembris mõistis Harju Maakohus mind süüdi arvutikuriteo ettevalmistamises: olin ehitanud Evilginxi andmepüügitööriista muudetud versiooni ja seda müünud. Karistus oli kümme kuud vangistust, millest viis kandsin ära ja viis jäi tingimisi; katseaeg lõppes 2025. aasta novembris.',
       },
       {
         en: "I take full responsibility for my actions during that time. I'm not going to narrate the case here, name anyone involved, or describe what the tools did. None of that would make this page more honest. The short version is enough: I had a rare skill, no direction for it, and I pointed it at the wrong things.",
