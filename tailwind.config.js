@@ -86,8 +86,10 @@ export default {
       },
       keyframes: {
         'rise-in': {
-          from: { opacity: '0', transform: 'translateY(8px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+          // Transform only: an opacity:0 start hides the LCP text for the whole
+          // animation and delays LCP by ~600 ms on mobile.
+          from: { transform: 'translateY(8px)' },
+          to: { transform: 'translateY(0)' },
         },
         scan: {
           from: { transform: 'translateX(-100%)' },

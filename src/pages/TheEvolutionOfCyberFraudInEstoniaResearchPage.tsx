@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import { useTranslation } from '../i18n/LanguageContext';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
@@ -354,17 +354,19 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
         kicker={isEn ? 'Research · Reference Paper · Anti-Fraud' : 'Uurimus · Viitetöö · Pettusevastane'}
         title={title[language]}
         standfirst={standfirst[language]}
+        published="2026-08-26"
+        updated="2026-10-04"
         meta={[<>
               {isEn ? 'Published · August 26, 2026' : 'Avaldatud · 26. august 2026'}
             </>, <>
               {isEn ? 'Updated · October 4, 2026' : 'Uuendatud · 4. oktoober 2026'}
             </>, <>
               {isEn ? '16 min read' : '16 min lugemist'}
-            </>, <>Tom Kristian Abel</>]}
+            </>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail
               sections={sections.map((s) => ({ id: sectionSlug(s.heading.en), heading: s.heading[language] }))}
@@ -387,7 +389,7 @@ export default function TheEvolutionOfCyberFraudInEstoniaResearchPage() {
               id={sectionSlug(section.heading.en)}
               className="mt-16 max-w-measure scroll-mt-24"
             >
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading[language]}
               </h2>

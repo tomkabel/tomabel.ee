@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import { useTranslation } from '../i18n/LanguageContext';
 import WorkCard from '../components/site/work-card';
 import { featuredWork, site, disclosures, englishOnlyArticles } from '../content/site';
@@ -24,7 +24,7 @@ export default function HomePage() {
           {/* Past tense recedes, present tense carries full ink: the tonal
               step is the argument, not decoration. */}
           <h1 className="animate-rise-in font-display text-7xl text-foreground lg:col-span-10" style={{ animationDelay: '80ms' }}>
-            <span className="block text-muted-foreground">{site.hero.line1[language]}</span>
+            <span className="block text-muted-foreground">{site.hero.line1[language]}</span>{' '}
             <span className="block">{site.hero.line2[language]}</span>
           </h1>
           {/* Column 4 is the page's one interior reading edge: the intro, the

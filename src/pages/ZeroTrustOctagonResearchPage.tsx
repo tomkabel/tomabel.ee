@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
@@ -15,7 +15,7 @@ const standfirst =
   '"Zero trust" is the most overused phrase in security. Vendors sell it as a product, compliance teams measure it as a maturity scale, and CISOs certify their organizations as "advanced" while the breach reports pile up. This report takes the opposite route: zero trust as a set of eight axioms, a nine-dimension morphological matrix for mapping any real deployment, and four archetypal breach traces that show where designs fail. The framework’s central findings: the axioms every non-aspirational archetype in the model violates, epistemic integrity and continuous verification among them, are among the costliest to satisfy, and the most common defensive response pattern makes incidents worse.';
 
 const openingParagraphs = [
-  'This report is a synthesis of a longer work, the Zero-Trust Octagon, a vendor-neutral book project I have been writing since early 2025 and publish openly at github.com/tomkabel/zero-trust-octagon. The book walks through the theory, the architecture space, four full attack traces, and implementation decision trees. This report compresses the framework to its testable core: what the axioms are, how the matrix works, and what applying it to archetypal deployments finds.',
+  'The Zero-Trust Octagon is a vendor-neutral framework of eight axioms and a nine-dimension morphological matrix for mapping real zero trust deployments. This report is a synthesis of a longer work, the book of the same name, a vendor-neutral book project I have been writing since early 2025 and publish openly at github.com/tomkabel/zero-trust-octagon. The book walks through the theory, the architecture space, four full attack traces, and implementation decision trees. This report compresses the framework to its testable core: what the axioms are, how the matrix works, and what applying it to archetypal deployments finds.',
   'None of this starts from zero. John Kindervag’s 2010 Forrester report "No More Chewy Centers" named the zero trust model, and Google’s BeyondCorp papers (from 2014) showed it working without a privileged corporate network. Neither was a product. The framework here builds on that line and on public standards and reporting: NIST SP 800-207 and SP 800-207A, CISA’s Zero Trust Maturity Model (ZTMM) 2.0, OMB M-22-09, the DoD Zero Trust Strategy (2022) and its execution roadmap, NIST FIPS 204 (ML-DSA) and the draft NIST IR 8547 for the post-quantum timeline, the RSA 2026 ID IQ Report for industry self-assessment data, and public incident reporting for the supply-chain cases cited. External claims are linked in the sources list, and corrections are logged at the end of the page. Where a figure comes from the book’s own analysis rather than a public source, it is labeled as such.',
   'Two limits apply. First, the axioms are a design requirement, not a score: an architecture either satisfies all eight or it is not zero trust, and there is no partial credit. The audit records partial satisfaction so you can see how close an axiom is, but a partial is still a fail. Second, this is not a product review. No vendor is named as good or bad here. The framework’s point is that the product is never the architecture.',
 ];
@@ -266,11 +266,13 @@ export default function ZeroTrustOctagonResearchPage() {
         kicker={<>Research · Framework · Zero-Trust</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>24 min read</>, <>Tom Kristian Abel</>]}
+        published="2026-08-11"
+        updated="2026-10-04"
+        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>24 min read</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
@@ -293,7 +295,7 @@ export default function ZeroTrustOctagonResearchPage() {
 
           {sections.map((section, i) => (
             <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -394,7 +396,7 @@ export default function ZeroTrustOctagonResearchPage() {
 
       <ArticleProof
         slug="zero-trust-octagon"
-        expectedSha256="4b4debfb2ebfb4a61b9b1d2e0182030ed78dbc9795efff85a3eb28421b90a6e5"
+        expectedSha256="f95f9c7b437816bac11e7abec6e3ef32c964b7aed64f5cafc54ca278ab2d96e3"
       />
     </article>
   );

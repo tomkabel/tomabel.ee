@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Link, { withSlash } from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { Globe, Activity } from 'lucide-react';
 import Telemetry from './telemetry';
@@ -23,7 +24,7 @@ export default function SiteNav() {
   const [telemetryOpen, setTelemetryOpen] = React.useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background px-6">
+    <nav aria-label={t.nav.primary} className="sticky top-0 z-50 border-b border-border bg-background px-6">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
         <Link to="/" className="group flex min-h-11 items-center gap-2.5">
           <span
@@ -40,7 +41,7 @@ export default function SiteNav() {
         <div className="flex items-center gap-2 md:gap-4">
           <div className="hidden gap-7 text-sm font-medium text-muted-foreground md:flex">
             {links.map((l) => {
-              const isActive = location.pathname === l.to;
+              const isActive = withSlash(location.pathname) === withSlash(l.to);
               return (
                 <Link
                   key={l.to}
@@ -115,7 +116,7 @@ export default function SiteNav() {
         >
           <div className="grid px-6 py-2">
             {links.map((l) => {
-              const isActive = location.pathname === l.to;
+              const isActive = withSlash(location.pathname) === withSlash(l.to);
               return (
                 <Link
                   key={l.to}

@@ -10,7 +10,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 // Node 22.18+ loads .ts directly (type stripping), so the build and the app
 // share one metadata module with no copy to drift.
-import { jsonLdFor, metaFor, pageUrl, routeMeta } from '../src/content/route-meta.ts';
+import { articleMetaFor, jsonLdFor, lastmodFor, metaFor, pageUrl, routeMeta } from '../src/content/route-meta.ts';
 // Built by `vite build --ssr src/entry-server.tsx` (see package.json "build").
 import { render } from '../dist-ssr/entry-server.js';
 
@@ -94,8 +94,14 @@ for (const route of routes) {
   // base Person/WebSite block instead of replacing it.
   if (jsonLd) {
     const json = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
-    html = html.replace('</head>', () => `<script type="application/ld+json">${json}</script>\n    </head>`);
+    // id="seo-jsonld": Seo.tsx removes that element before re-injecting, so
+    // hydration replaces this block instead of duplicating it.
+    html = html.replace('</head>', () => `<script type="application/ld+json" id="seo-jsonld">${json}</script>\n    </head>`);
   }
+  const articleTags = Object.entries(articleMetaFor(`/${route}`) ?? {})
+    .map(([property, content]) => `<meta property="${property}" content="${attr(content)}" data-seo-article />`)
+    .join('\n    ');
+  if (articleTags) html = html.replace('</head>', () => `${articleTags}\n    </head>`);
 
   writeFileSync(`pub/${route}/index.html`, await withBody(html, `/${route}`));
 }
@@ -131,10 +137,35 @@ writeFileSync('pub/index.html', await withBody(shellTemplate, '/'));
 
 console.log(`spa-routes: emitted ${routes.length + 1} prerendered route shells with per-route meta`);
 
-// GH Pages fallback for unknown paths: serve a noindex copy of the shell.
-// HTTP 404 + noindex keeps unknown URLs out of the index.
-const notFound = shellTemplate.replace(
-  '</head>',
-  '    <meta name="robots" content="noindex" />\n  </head>',
-);
+// GH Pages fallback for unknown paths: serve a noindex copy of the shell with
+// the not-found title/description and no canonical (the home canonical would
+// tell search engines every unknown URL is the homepage). HTTP 404 + noindex
+// keeps unknown URLs out of the index.
+const nf = metaFor('/__not-found__', 'en');
+const notFound = shellTemplate
+  .replace(/<title>[^<]*<\/title>/, () => `<title>${attr(nf.title)}</title>`)
+  .replace(/<meta name="description" content="[^"]*" \/>/, () => `<meta name="description" content="${attr(nf.description)}" />`)
+  .replace(/\s*<link rel="canonical" href="[^"]*" \/>/, '')
+  .replace(/<meta property="og:title" content="[^"]*" \/>/, () => `<meta property="og:title" content="${attr(nf.title)}" />`)
+  .replace(/<meta property="og:description" content="[^"]*" \/>/, () => `<meta property="og:description" content="${attr(nf.description)}" />`)
+  .replace(/\s*<meta property="og:url" content="[^"]*" \/>/, '')
+  .replace(/\s*<meta name="twitter:url" content="[^"]*" \/>/, '')
+  .replace('</head>', '    <meta name="robots" content="noindex" />\n  </head>');
+if (notFound.includes('rel="canonical"')) {
+  console.error('FAIL: 404.html still carries a canonical');
+  process.exit(1);
+}
 writeFileSync('pub/404.html', notFound);
+
+// sitemap.xml from routeMeta: every route with an indexable page, lastmod from
+// the same git dates as JSON-LD dateModified. Cookies/redirect stubs are noindex.
+const freq = { '/': ['weekly', '1.0'], '/disclosures': ['monthly', '0.9'], '/systems': ['monthly', '0.8'], '/about': ['yearly', '0.6'] };
+const sitemapPaths = Object.keys(routeMeta).filter((p) => !redirectRoutes[p] && p !== '/cookies');
+const entry = (p) => {
+  const [cf, pr] = freq[p] ?? (routeMeta[p].ld?.type === 'AboutPage' || ['/privacy', '/terms', '/disclosure'].includes(p) ? ['yearly', '0.5'] : ['yearly', '0.7']);
+  return `  <url>\n    <loc>${pageUrl(p)}</loc>\n    <lastmod>${lastmodFor(p)}</lastmod>\n    <changefreq>${cf}</changefreq>\n    <priority>${pr}</priority>\n  </url>`;
+};
+writeFileSync(
+  'pub/sitemap.xml',
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map(entry).join('\n')}\n</urlset>\n`,
+);

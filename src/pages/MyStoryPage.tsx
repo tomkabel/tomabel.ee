@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import { useTranslation } from '../i18n/LanguageContext';
 import SectionHeader from '../components/site/section-header';
 

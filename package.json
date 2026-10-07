@@ -9,9 +9,10 @@
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/page-dates.mjs",
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr",
     "canonical": "node scripts/canonical-text.mjs",
-    "postbuild": "node scripts/spa-routes.mjs",
+    "postbuild": "node scripts/spa-routes.mjs && node scripts/check-links.mjs",
     "sbom:gen": "pnpm sbom --sbom-format cyclonedx --lockfile-only > pub/sbom.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",

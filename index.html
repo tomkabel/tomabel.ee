@@ -14,6 +14,12 @@
     <meta property="og:title" content="Tom Kristian Abel — Security Researcher & Systems Architect" />
     <meta property="og:description" content="I broke authentication for a living. Now I build the kind that doesn't. Research, projects, and writing by Tom Kristian Abel." />
     <meta property="og:image" content="https://tomabel.ee/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tom Kristian Abel — Security Researcher & Systems Architect" />
+    <meta property="og:site_name" content="Tom Kristian Abel" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="et_EE" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tomabel.ee/" />
     <meta name="twitter:title" content="Tom Kristian Abel — Security Researcher & Systems Architect" />
@@ -22,60 +28,55 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Tom Kristian Abel",
-      "jobTitle": "Lead Systems Architect & CTO",
-      "description": "Systems architect and security researcher focused on identity protocols, browser defenses, and zero-trust architecture.",
-      "url": "https://tomabel.ee/",
-      "email": "tom@tomabel.ee",
-      "knowsAbout": [
-        "Authentication",
-        "FIDO2",
-        "WebAuthn",
-        "eIDAS",
-        "Smart-ID",
-        "Reverse Engineering",
-        "Zero Trust Architecture",
-        "TLS Fingerprinting"
-      ],
-      "worksFor": { "@type": "Organization", "name": "MATx", "url": "https://matx.ee" },
-      "sameAs": [
-        "https://github.com/tomkabel",
-        "https://www.linkedin.com/in/hr-abel"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://tomabel.ee/#person",
+          "name": "Tom Kristian Abel",
+          "jobTitle": "Security Researcher & Systems Architect",
+          "description": "Systems architect and security researcher focused on identity protocols, browser defenses, and zero-trust architecture.",
+          "url": "https://tomabel.ee/",
+          "image": "https://tomabel.ee/og-image.png",
+          "email": "tom@tomabel.ee",
+          "knowsAbout": ["Authentication", "FIDO2", "WebAuthn", "eIDAS", "Smart-ID", "Reverse Engineering", "Zero Trust Architecture", "TLS Fingerprinting"],
+          "worksFor": [
+            { "@id": "https://tomabel.ee/#organization" },
+            { "@type": "Organization", "name": "MATx", "url": "https://matx.ee" }
+          ],
+          "sameAs": ["https://github.com/tomkabel", "https://www.linkedin.com/in/hr-abel"],
+          "mainEntityOfPage": "https://tomabel.ee/about/"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://tomabel.ee/#organization",
+          "name": "ProksiAbel OÜ",
+          "legalName": "ProksiAbel OÜ",
+          "url": "https://tomabel.ee/",
+          "logo": { "@type": "ImageObject", "url": "https://tomabel.ee/og-image.png", "width": 1200, "height": 630 },
+          "email": "tom@tomabel.ee",
+          "telephone": "+37256666981",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Pargi tn 2 Sindi",
+            "addressLocality": "Tori vald",
+            "addressRegion": "Pärnumaa",
+            "postalCode": "86705",
+            "addressCountry": "EE"
+          },
+          "identifier": { "@type": "PropertyValue", "name": "Estonian Business Registry Code", "value": "17017826" },
+          "sameAs": ["https://github.com/tomkabel"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tomabel.ee/#website",
+          "name": "tomabel.ee",
+          "alternateName": "Tom Kristian Abel",
+          "url": "https://tomabel.ee/",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://tomabel.ee/#organization" },
+          "author": { "@id": "https://tomabel.ee/#person" }
+        }
       ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "ProksiAbel OÜ",
-      "url": "https://tomabel.ee/",
-      "email": "tom@tomabel.ee",
-      "telephone": "+37256666981",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Pargi tn 2 Sindi",
-        "addressLocality": "Tori vald",
-        "addressRegion": "Pärnumaa",
-        "postalCode": "86705",
-        "addressCountry": "EE"
-      },
-      "identifier": {
-        "@type": "PropertyValue",
-        "name": "Estonian Business Registry Code",
-        "value": "17017826"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "tomabel.ee",
-      "url": "https://tomabel.ee/",
-      "inLanguage": ["en", "et"],
-      "publisher": { "@type": "Organization", "name": "ProksiAbel OÜ", "url": "https://tomabel.ee/" }
     }
     </script>
     <title>Tom Kristian Abel — Security Researcher & Systems Architect</title>

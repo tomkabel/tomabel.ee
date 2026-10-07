@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from './site/link';
 import { useTranslation } from '../i18n';
 
 export default function NotFound() {

@@ -16,6 +16,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Commit Mono 400, latin, woff2 only. The fontsource CSS also lists a .woff
+   fallback that Vite would emit as a dead 57 KB asset. 500/700 are not shipped:
+   the only bold mono uses are two 1-glyph badges (synthesised bold is fine). */
+@font-face {
+  font-family: 'Commit Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../node_modules/@fontsource/commit-mono/files/commit-mono-latin-400-normal.woff2') format('woff2');
+}
+
 @layer base {
   :root {
     /* Surface ladder, lowest to highest (L C H). */

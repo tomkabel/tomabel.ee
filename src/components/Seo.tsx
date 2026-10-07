@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from '../i18n/LanguageContext';
-import { jsonLdFor, metaFor, pageUrl, routeMeta } from '../content/route-meta';
+import { articleMetaFor, jsonLdFor, metaFor, pageUrl, routeMeta } from '../content/route-meta';
 
 function setMeta(selector: string, attribute: string, value: string) {
   document.querySelector(selector)?.setAttribute(attribute, value);
@@ -29,6 +29,17 @@ export default function Seo() {
     setMeta('meta[name="twitter:title"]', 'content', meta.title);
     setMeta('meta[name="twitter:description"]', 'content', meta.description);
     setMeta('meta[name="twitter:url"]', 'content', url);
+
+    setMeta('meta[property="og:locale"]', 'content', language === 'et' ? 'et_EE' : 'en_US');
+    setMeta('meta[property="og:locale:alternate"]', 'content', language === 'et' ? 'en_US' : 'et_EE');
+    document.querySelectorAll('meta[data-seo-article]').forEach((el) => el.remove());
+    for (const [property, content] of Object.entries(articleMetaFor(key) ?? {})) {
+      const el = document.createElement('meta');
+      el.setAttribute('property', property);
+      el.setAttribute('content', content);
+      el.setAttribute('data-seo-article', '');
+      document.head.appendChild(el);
+    }
 
     document.getElementById('seo-jsonld')?.remove();
     const jsonLd = jsonLdFor(key, language);

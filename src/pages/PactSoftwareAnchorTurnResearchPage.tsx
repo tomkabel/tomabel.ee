@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
@@ -19,7 +19,7 @@ const standfirst =
   "On June 22, 2026, Cloudflare announced PACT, Private Access Control Tokens, together with Mozilla Firefox, Google Chrome, Microsoft Edge, and Shopify. The goal is to replace CAPTCHAs and behavioral tracking with privacy-preserving rate limiting: sites that already know something scarce about a user, such as a subscription or an account in good standing, vouch for them anonymously, and other sites rate-limit the resulting credential without learning who the user is. The anonymous-credential cryptography is not where I expect this to fail. The hard part is governance: who may vouch, on what basis, and how a site tells a good voucher from a bad one. That decision has not been made. PACT is a proposal, not a product. This report reads it the way I read every client-side trust system: as a claim about what a machine can prove, and about who is allowed to make that claim on behalf of the web.";
 
 const openingParagraphs = [
-  'This report is a critical analysis of the public record as of August 2026, rechecked in October 2026. Primary sources: Cloudflare\u2019s announcement; Mozilla\u2019s technical design post (Dennis Jackson, June 23, 2026); the PACT proposal and design discussion in the W3C Anti-Fraud Community Group (antifraudcg/proposals #22 and the antifraudcg/pact repository); and the IETF Privacy Pass specifications and drafts (RFCs 9576\u20139578 and the ARC and ACT drafts). Third-party analyses are cited where I use their arguments. Every factual claim below is attributed to the source it came from, and claims that could not be verified are marked as such.',
+  'PACT (Private Access Control Tokens) is a proposal announced by Cloudflare on June 22, 2026 with Mozilla Firefox, Google Chrome, Microsoft Edge and Shopify, for privacy-preserving rate limiting without CAPTCHAs or behavioral tracking, and is under design discussion in the W3C Anti-Fraud Community Group. The anonymous-credential cryptography is not where I expect it to fail; the unresolved question is who may vouch for a user. This report is a critical analysis of the public record as of August 2026, rechecked in October 2026. Primary sources: Cloudflare\u2019s announcement; Mozilla\u2019s technical design post (Dennis Jackson, June 23, 2026); the PACT proposal and design discussion in the W3C Anti-Fraud Community Group (antifraudcg/proposals #22 and the antifraudcg/pact repository); and the IETF Privacy Pass specifications and drafts (RFCs 9576\u20139578 and the ARC and ACT drafts). Third-party analyses are cited where I use their arguments. Every factual claim below is attributed to the source it came from, and claims that could not be verified are marked as such.',
   'Two limits apply. PACT is design discussion, not specification. The repository contains problem statements, architecture sketches, and open issues, and anything I say about the design could change by the time you read this. And this report touches no live system. PACT is not deployed anywhere as of this writing; there is nothing to probe and no vulnerability to disclose. The analysis is about the proposal\u2019s structure, not its current implementation.',
 ];
 
@@ -229,11 +229,13 @@ export default function PactSoftwareAnchorTurnResearchPage() {
         kicker={<>Research · Critical Analysis · Anti-Fraud</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · August 28, 2026</>, <>Updated · October 4, 2026</>, <>14 min read</>, <>Tom Kristian Abel</>]}
+        published="2026-08-28"
+        updated="2026-10-04"
+        meta={[<>Published · August 28, 2026</>, <>Updated · October 4, 2026</>, <>14 min read</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
@@ -248,7 +250,7 @@ export default function PactSoftwareAnchorTurnResearchPage() {
 
           {sections.map((section, i) => (
             <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -315,7 +317,7 @@ export default function PactSoftwareAnchorTurnResearchPage() {
 
       <ArticleProof
         slug="pact-software-anchor-turn"
-        expectedSha256="04897da9a945a2b55d028e53d897dce9215ff27f4143558180dfb63e8086575b"
+        expectedSha256="d048ad41e737588ec5937dca15d50409b93b180f7acdd60bbdf454d46817a305"
       />
     </article>
   );

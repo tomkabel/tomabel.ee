@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from './link';
 
 /**
  * Editorial building blocks for long-form reader pages: the masthead, callouts,
@@ -17,6 +17,9 @@ export function ArticleHeader({
   title,
   standfirst,
   meta,
+  published,
+  updated,
+  keyFindings,
 }: {
   backTo: string;
   back: ReactNode;
@@ -24,6 +27,11 @@ export function ArticleHeader({
   title: ReactNode;
   standfirst: ReactNode;
   meta: ReactNode[];
+  /** ISO dates. When given, meta[0]/meta[1] render as <time> and a byline linking to /about/ is appended. */
+  published?: string;
+  updated?: string;
+  /** Optional answer-first block: self-contained, sourced claims. Omit when the article has none. */
+  keyFindings?: ReactNode[];
 }) {
   return (
     <header className="border-b border-border bg-sunken px-6 pb-section-tight pt-section-tight">
@@ -34,10 +42,26 @@ export function ArticleHeader({
         <p className="label mb-5 font-bold text-accent">{kicker}</p>
         <h1 className="font-display text-5xl text-foreground">{title}</h1>
         <p className="prose-measure mt-8 text-lg text-muted">{standfirst}</p>
+        {keyFindings?.length ? (
+          <section aria-labelledby="key-findings" className="prose-measure mt-8">
+            <h2 id="key-findings" className="label mb-3 font-bold text-accent">Key findings</h2>
+            <ul className="list-disc space-y-2 pl-5 text-base leading-relaxed text-muted">
+              {keyFindings.map((k, i) => (
+                <li key={i}>{k}</li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
         <ul className="label mt-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-border pt-5 text-muted-foreground">
-          {meta.map((m, i) => (
-            <li key={i}>{m}</li>
-          ))}
+          {meta.map((m, i) => {
+            const iso = i === 0 ? published : i === 1 ? updated : undefined;
+            return <li key={i}>{iso ? <time dateTime={iso}>{m}</time> : m}</li>;
+          })}
+          {published ? (
+            <li>
+              <Link to="/about/" rel="author" className="link-draw hover:text-accent">Tom Kristian Abel</Link>
+            </li>
+          ) : null}
         </ul>
       </div>
     </header>

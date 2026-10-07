@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from './link';
 import type { FeaturedWork } from '../../content/site';
 import { englishOnlyArticles } from '../../content/site';
 import { useTranslation } from '../../i18n/LanguageContext';

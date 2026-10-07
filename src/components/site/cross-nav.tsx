@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from './link';
 
 // A bottom-of-index pointer to the sibling editorial surface, stating the
 // distinction (rigorous research vs. opinionated essays) so a visitor never has

@@ -42,3 +42,14 @@ Nine skills run in parallel against all 27 sitemap URLs plus robots.txt, llms.tx
 | /disclosures/smart-id-achilles-heel/ | 76 | 100 | 92 | 100 |
 | /about/ | 76 | 100 | 92 | 100 |
 | /systems/ | 79 | 100 | 92 | 100 |
+
+## Fix status (2026-10-07)
+
+| # | Status | Log |
+|---|--------|-----|
+| 1, 12 (footer), 14 (UI) | done | fix-01-links-footer-ui.md |
+| 3, 7, 8, 9, 12 (meta), 14 (404) | done; per-article og-image not done | fix-02-metadata-schema-dates.md |
+| 6, 11, 13 | done in repo; worker needs `wrangler deploy` | fix-03-cwv-worker-cloudflare.md |
+| 4, 5 | Cloudflare dashboard steps documented, not applied | fix-03-cwv-worker-cloudflare.md |
+| 10 | template done 19/19; content 4/19 (claims the pages do not state were left out) | fix-04-answer-first-content.md |
+| 2 | schema claim corrected; `/et/` URLs + hreflang pending | fix-05-estonian-locale.md |

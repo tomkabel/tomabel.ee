@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import { ArticleHeader } from '../components/site/article';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
@@ -118,11 +118,13 @@ export default function KrattProblemPage() {
         kicker={<>Essay · Ethics · Offensive Security</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>5 min read</>, <>Tom Kristian Abel</>]}
+        published="2026-08-11"
+        updated="2026-10-04"
+        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>5 min read</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
@@ -145,7 +147,7 @@ export default function KrattProblemPage() {
 
           {sections.map((section, i) => (
             <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/site/link';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
@@ -15,6 +15,14 @@ type ReportSection = {
 const title = "The Achilles' heel of Estonia's e-state — Smart-ID / eID research";
 const standfirst =
   "Estonia's e-state runs on an authentication system with two very different halves. The cryptographic core is strong: endpoint-level attacks against Smart-ID fail by design. The other half, the approval screen a user actually looks at, is soft. This report covers both. It walks through why a MITM or SK-endpoint-replacement attack is infeasible (certificate pinning, IP+UUID authentication, the ACSP_V2 authentication-signature protocol; signing uses RAW_DIGEST_SIGNATURE), then examines the interactive signing-relay class of attack against Smart-ID+ cross-device flows, where a victim is shown a legitimate login through a live remote browser and ends up authorizing their own fraud. The gap between the two halves is where the e-state's trust model currently fails.";
+
+const keyFindings = [
+  'The cryptographic core resists MITM and SK-endpoint replacement by design: certificate pinning, IP+UUID relying-party authentication and the ACSP_V2 authentication-signature protocol.',
+  'The soft half is the approval screen: an interactive signing relay shows the victim a legitimate login through a live remote browser, and the victim authorizes their own fraud.',
+  'Smart-ID+ reached Estonian banks a year after SK made it available to integrators: Bigbank launched it on 11 June 2026 and LHV rolled out Smart-ID+ login from 16 June 2026; SEB expects it within 2026.',
+  'RIA reported that people in Estonia lost 29 million euros to fraudsters in 2025, three times the year before by RIA\u2019s count.',
+  'The relay vectors were reported to SK ID Solutions in November 2025; formal memoranda went to RIA, TTJA and AKI on 8 April 2026. SK disputes the finding, and operational detail is deliberately left out of the report.',
+];
 
 const openingParagraphs = [
   'Two research threads feed this report. The first is a MITM feasibility analysis (May 2026) built on the public SK-EID relying-party API documentation: endpoint authentication, signature protocols, and the official response-verification checklist. The second is my analysis of the Smart-ID+ cross-device QR flow, carried out with a containerized proof of concept in a research environment: Docker, local test domains, and SK\u2019s public DEMO environment, which SK documents for testing Smart-ID integrations (a demo app and the "bank123" demo portal). I reported the relay vectors to SK in November 2025, before anything was published; the dated record is in the disclosure section at the end. No live bank system was attacked or probed during this research. Operational detail is deliberately left out of this report; the point is the class of attack and what it means, not a step-by-step playbook.',
@@ -261,11 +269,14 @@ export default function SmartIdAchillesHeelResearchPage() {
         kicker={<>Research · Disclosed Research · Smart-ID</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>19 min read</>, <>Tom Kristian Abel</>]}
+        keyFindings={keyFindings}
+        published="2026-08-11"
+        updated="2026-10-04"
+        meta={[<>Published · August 11, 2026</>, <>Updated · October 4, 2026</>, <>19 min read</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
@@ -288,7 +299,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
           {sections.map((section, i) => (
             <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -363,7 +374,7 @@ export default function SmartIdAchillesHeelResearchPage() {
 
       <ArticleProof
         slug="smart-id-achilles-heel"
-        expectedSha256="700289dab2165d770264b3c8ef13dbbf95e2a3d582e99c2e0c8dab9c3c2a951a"
+        expectedSha256="68ef15aa9b9a63c5e8d95f44d14dae1fd2a089a7c72b9f19c1429395b45db69e"
       />
     </article>
   );

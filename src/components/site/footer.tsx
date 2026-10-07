@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom';
+import Link from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { site } from '../../content/site';
+
+const legalLinks = [
+  { to: '/privacy', label: { en: 'Privacy', et: 'Privaatsus' } },
+  { to: '/terms', label: { en: 'Terms', et: 'Tingimused' } },
+  { to: '/disclosure', label: { en: 'Disclosure policy', et: 'Avalikustamise poliitika' } },
+] as const;
 
 export default function SiteFooter() {
   const { language } = useTranslation();
@@ -8,7 +14,7 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-border px-6">
       <div className="mx-auto max-w-6xl py-16">
-        <div className="grid gap-12 md:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <p className="font-display text-lg text-foreground">
               {site.languages[language]}
@@ -34,6 +40,20 @@ export default function SiteFooter() {
                   {language === 'en' ? 'My story' : 'Minu lugu'}
                 </Link>
               </li>
+            </ul>
+          </div>
+          <div>
+            <p className="mb-2 label font-bold text-muted-foreground">
+              {language === 'en' ? 'Legal' : 'Õigusinfo'}
+            </p>
+            <ul className="grid font-mono text-sm">
+              {legalLinks.map((l) => (
+                <li key={l.to}>
+                  <Link className="inline-flex min-h-11 min-w-11 items-center text-foreground transition-colors hover:text-accent" to={l.to}>
+                    {l.label[language]}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           {/* The nav's "Contact" item targets this list from any page. */}

@@ -13,6 +13,7 @@ export const translations = {
       },
     },
     nav: {
+      primary: 'Primary',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       switchLanguage: 'Switch to Estonian',
@@ -350,6 +351,7 @@ export const translations = {
       },
     },
     nav: {
+      primary: 'Peamenüü',
       openMenu: 'Ava menüü',
       closeMenu: 'Sulge menüü',
       switchLanguage: 'Lülitu inglise keelele',

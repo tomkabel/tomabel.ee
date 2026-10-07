@@ -14,6 +14,7 @@ const standfirst =
   'The advice sounds practical: when a suspicious link lands in your inbox, paste it into ChatGPT and let the model tell you whether it is phishing. This report reads that advice as "hand the assistant the URL and treat its answer as a verdict", and it defines a phishing scanner as a tool that returns a verdict from purpose-built reputation, registration, and redirect signals. Checked against what mainstream assistants actually document, the advice fails on both halves. An LLM is an explanation layer, not a scanner, and professional phishing quietly defeats single-fetch checks. VirusTotal, Google\'s Safe Browsing site-status page, and RDAP lookups are a better first check than a chat, though cloaking can fool scanners too, and the advice people repeat should say so.';
 
 const openingParagraphs = [
+  "Verdict: pasting a suspicious link into ChatGPT is not a reliable phishing check. An LLM is an explanation layer, not a scanner, and professional phishing, which runs through traffic distribution systems that show decoys to the wrong visitors, defeats single-fetch checks. VirusTotal, Google's Safe Browsing site-status page and RDAP lookups are a better first check, though cloaking can fool scanners too. The rest of this report checks the tip as it is commonly phrased.",
   "The advice under test is a general tip, not one person's statement: when a link looks suspicious, paste it into ChatGPT and ask whether it is phishing. I have no single published source for it to cite, so this report checks the tip as it is commonly phrased rather than any one author's version of it.",
   "The report started from a public exchange in June 2026. In a public post I argued that \"paste the suspicious page into ChatGPT\" is not good advice, because professional phishing runs through traffic distribution systems that show decoys to the wrong visitors. A security-awareness practitioner pushed back publicly. They said that in their experience language models typically do not look only at the content of the page, but also at the link, the domain's age, and publicly available reviews, and that results can depend a lot on the model and the mode used for the analysis. They agreed VirusTotal is the more thorough tool and the better recommendation. The reply is paraphrased here; the original is recorded in the working notes for this report. Both claims deserve a fair check.",
   'The exchange has one structural fact the reader should know up front: I wrote the original post under review, so this report adjudicates a dispute I am a party to. Both my claims and the reply are held to the same evidentiary standard, and where the reply is accurate, this report says so.',
@@ -202,11 +203,13 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
         kicker={<>Research · Fact Check · Phishing</>}
         title={title}
         standfirst={standfirst}
-        meta={[<>Published · September 6, 2026</>, <>Updated · October 4, 2026</>, <>11 min read</>, <>Tom Kristian Abel</>]}
+        published="2026-09-06"
+        updated="2026-10-04"
+        meta={[<>Published · September 6, 2026</>, <>Updated · October 4, 2026</>, <>11 min read</>]}
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-12">
-        <aside className="lg:col-span-3">
+        <aside aria-label="Article navigation" className="lg:col-span-3">
           <div className="sticky top-24">
             <ReaderRail sections={sections} backHref="/disclosures" backLabel="All disclosures" />
           </div>
@@ -221,7 +224,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
           {sections.map((section, i) => (
             <section key={section.heading} id={sectionSlug(section.heading)} className="mt-16 max-w-measure scroll-mt-24">
-              <p className="mb-4 label font-medium text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <p aria-hidden data-n={String(i + 1).padStart(2, '0')} className="mb-4 label font-medium text-accent before:content-[attr(data-n)]" />
               <h2 className="font-display text-3xl leading-tight text-foreground">
                 {section.heading}
               </h2>
@@ -269,7 +272,7 @@ export default function ChatgptIsNotAPhishingScannerResearchPage() {
 
       <ArticleProof
         slug="chatgpt-is-not-a-phishing-scanner"
-        expectedSha256="cdc2aa2c61daa94f2e059d52851707091f7ad09cd01e67a8297d02cdb5276da0"
+        expectedSha256="9e7bd61e9fc912d620249df30d3e34047a65c60c8ec5e685c4e469cc5034d4c3"
       />
     </article>
   );

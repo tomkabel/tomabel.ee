@@ -26,6 +26,7 @@ const tmpDir = join(root, 'node_modules/.canonical-text');
 const CONTENT_EXPORTS = [
   'title',
   'standfirst',
+  'keyFindings',
   'openingParagraphs',
   'sections',
   'sources',
@@ -102,6 +103,11 @@ function renderCanonical(mod, { slug, url }) {
   for (const lang of langs) {
     if (lang) lines.push(`# ${LANGUAGE_HEADINGS[lang]}`, '', pick(mod.title, lang), '');
     if (mod.standfirst) lines.push(pick(mod.standfirst, lang), '');
+    if (mod.keyFindings?.length) {
+      lines.push('Key findings', '');
+      for (const k of mod.keyFindings) lines.push(`- ${pick(k, lang)}`);
+      lines.push('');
+    }
     for (const p of mod.openingParagraphs ?? []) lines.push(pick(p, lang), '');
 
     for (const section of mod.sections ?? []) {

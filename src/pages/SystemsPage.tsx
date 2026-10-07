@@ -159,13 +159,14 @@ function TechTags({ tags }: { tags: string[] }) {
   );
 }
 
-function ProjectLinks({ links }: { links: ProjectLink[] }) {
+function ProjectLinks({ links, name }: { links: ProjectLink[]; name: string }) {
   return (
     <div className="flex flex-wrap gap-x-5 gap-y-2">
       {links.map((l) => (
         <a
           key={`${l.label}-${l.url}`}
           href={l.url}
+          aria-label={`${l.label}: ${name}`}
           target="_blank"
           rel="noopener noreferrer"
           className="label inline-flex min-h-11 items-center gap-1.5 font-bold text-foreground transition-colors hover:text-accent"
@@ -225,7 +226,7 @@ function ProjectCard({
 
       {links.length > 0 ? (
         <div className="border-t border-border pt-2">
-          <ProjectLinks links={links} />
+          <ProjectLinks links={links} name={p.name} />
         </div>
       ) : null}
     </li>

@@ -4,9 +4,6 @@ import App from './App.tsx';
 import ErrorBoundary from './components/ErrorBoundary.tsx';
 import { initialLanguage } from './i18n/LanguageContext.tsx';
 import '@fontsource-variable/geist';
-import '@fontsource/commit-mono/400.css';
-import '@fontsource/commit-mono/500.css';
-import '@fontsource/commit-mono/700.css';
 import '@fontsource-variable/newsreader/opsz.css';
 import './index.css';
 

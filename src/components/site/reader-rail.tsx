@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { sectionSlug } from './section-slug';
 
@@ -110,9 +110,11 @@ export default function ReaderRail({
                       : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground'
                   }`}
                 >
-                  <span className={`font-mono text-xs ${active ? 'text-accent' : 'text-subtle'}`}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span
+                    aria-hidden
+                    data-n={String(i + 1).padStart(2, '0')}
+                    className={`font-mono text-xs before:content-[attr(data-n)] ${active ? 'text-accent' : 'text-subtle'}`}
+                  />
                   <span>{s.heading}</span>
                 </a>
               </li>

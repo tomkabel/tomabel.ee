@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { englishOnlyArticles } from '../../content/site';
 

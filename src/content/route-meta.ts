@@ -7,6 +7,8 @@
 // Imports carry explicit .ts extensions so node (tests, build script) can load
 // this module without a bundler.
 import type { Language } from '../i18n/translations.ts';
+// Last-commit date per route, written by scripts/page-dates.mjs (prebuild).
+import pageDates from './page-dates.json' with { type: 'json' };
 
 export const SITE_URL = 'https://tomabel.ee';
 
@@ -16,11 +18,27 @@ type Ld = {
   // AboutPage renders as a single node; the article types get a breadcrumb.
   type: 'BlogPosting' | 'ScholarlyArticle' | 'AboutPage';
   datePublished: string;
-  // Last substantive revision; omitted when the page has not changed since publication.
-  dateModified?: string;
   en: { headline: string; abstract: string };
   et?: { headline: string; abstract: string };
 };
+
+export const PERSON_ID = `${SITE_URL}/#person`;
+export const ORG_ID = `${SITE_URL}/#organization`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+// ponytail: one shared 1200x630 image; per-article cards need an image
+// generator (satori/resvg/sharp), which the repo does not carry.
+export const OG_IMAGE = `${SITE_URL}/og-image.png`;
+
+// Last substantive revision = last commit touching the page component, only
+// when it is later than the publication date.
+export const modifiedFor = (path: string): string | undefined => {
+  const published = (routeMeta as Record<string, RouteMeta>)[path]?.ld?.datePublished;
+  const modified = (pageDates as Record<string, string>)[path];
+  return modified && (!published || modified > published) ? modified : undefined;
+};
+// Sitemap lastmod: the same git date, never earlier than publication.
+export const lastmodFor = (path: string): string =>
+  modifiedFor(path) ?? (routeMeta as Record<string, RouteMeta>)[path]?.ld?.datePublished ?? (pageDates as Record<string, string>)[path]!;
 
 export type RouteMeta = { en: PageMeta; et?: PageMeta; ld?: Ld };
 
@@ -30,11 +48,11 @@ export const routeMeta = {
     et: { title: "Tom Kristian Abel — turvauurija ja süsteemiarhitekt", description: "Tom Kristian Abel, turvauurija ja süsteemiarhitekt. Pöördprojekteerin autentimise nurjumist ja ehitan süsteeme, mis leitud puudustele vastu peavad." },
   },
   "/disclosures": {
-    en: { title: "Research — Tom Kristian Abel", description: "Vulnerability research, teardowns, architecture frameworks and essays. Work on live systems states its disclosure status." },
+    en: { title: "Security Research & Essays — Tom Kristian Abel", description: "Vulnerability research, teardowns, architecture frameworks and essays. Work on live systems states its disclosure status." },
     et: { title: "Uuringud — Tom Kristian Abel", description: "Turvanõrkuste uuringud, käsukooditasemel analüüsid, arhitektuuriraamistikud ja esseed. Elavaid süsteeme puudutavatel uuringutel on märgitud avalikustamise seis." },
   },
   "/systems": {
-    en: { title: "Systems — Tom Kristian Abel", description: "Tools, security products, and backend services I have built and deployed — from a Go TLS-fingerprinting proxy to production identity platforms." },
+    en: { title: "Systems & Security Tooling — Tom Kristian Abel", description: "Tools, security products, and backend services I have built and deployed — from a Go TLS-fingerprinting proxy to production identity platforms." },
     et: { title: "Süsteemid — Tom Kristian Abel", description: "Tööriistad, turvalahendused ja taustateenused, mille olen ehitanud ja juurutanud: Go TLS-sõrmejälgede proksiserverist kuni identiteediplatvormideni." },
   },
   "/disclosures/i-used-to-break-authentication": {
@@ -42,7 +60,6 @@ export const routeMeta = {
     ld: {
       type: "BlogPosting",
       datePublished: "2026-06-22",
-      dateModified: "2026-10-04",
       en: { headline: "I used to break authentication. Here's what that taught me about building it.", abstract: "The thesis essay for this site: why understanding offense is a prerequisite for credible defense, worked through one example from the Smart-ID relay research." },
     },
   },
@@ -51,16 +68,14 @@ export const routeMeta = {
     ld: {
       type: "BlogPosting",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "What client-side trust is actually worth", abstract: "Using the BotGuard teardown as a case study: the structural reason any defense that runs on a machine you don't control is negotiable, and what to do about it." },
     },
   },
   "/disclosures/the-kratt-problem": {
-    en: { title: "The kratt problem — Tom Kristian Abel", description: "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. On ethics, idleness, and aiming tools right." },
+    en: { title: "The kratt problem: offensive tools and ethics — Tom Kristian Abel", description: "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. On ethics, idleness, and aiming tools right." },
     ld: {
       type: "BlogPosting",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "The kratt problem", abstract: "Offensive capability as a folkloric kratt: tireless while it has direction, dangerous the moment it doesn't. A short piece on ethics, idleness, and pointing tools in the right direction." },
     },
   },
@@ -69,7 +84,6 @@ export const routeMeta = {
     ld: {
       type: "BlogPosting",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "Coordinated disclosure in a small country", abstract: "What it's actually like to disclose a flaw in critical digital infrastructure when everyone in the room knows each other: the legal exposure, the incentives, and why owning your own story is the only real protection." },
     },
   },
@@ -79,7 +93,6 @@ export const routeMeta = {
     ld: {
       type: "BlogPosting",
       datePublished: "2026-09-06",
-      dateModified: "2026-10-04",
       en: { headline: "The fix that doesn't need SK", abstract: "The Achilles' heel report lists five fixes for the Smart-ID signing relay, each needing a regulator, the banks, or a legislature or court to move first. A sixth, not new but under-used: checking each session against the account's device and network history, which a bank can run today and PSD2 RTS Art. 2 already requires. Strongest against attacker-session vishing and the cross-device relay; weakest against victim-initiated transfers." },
       et: { headline: "Parandus, mis SK-d ei vaja", abstract: "Raport „Eesti e-riigi Achilleuse kand“ loetleb viis parandust Smart-ID allkirjastamise vahendusrünnete vastu ja igaüks neist vajab, et regulaator, pangad või seadusandja või kohus teeks esimese sammu. Kuues, mitte uus, kuid alakasutatud: iga seansi võrdlemine konto seadme- ja võrguajalooga, mida pank saab teha juba täna ja mida PSD2 RTS art 2 juba nõuab. Kõige tugevam ründaja seansiga kõneõngitsuse ja seadmeülese vahendusründe vastu, kõige nõrgem ohvri enda algatatud ülekannete puhul." },
     },
@@ -89,7 +102,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "BotGuard, disassembled — reverse engineering Google's anti-fraud VM", abstract: "A teardown of Google's BotGuard anti-fraud VM from public research, built on Cypa's VM analysis and LuanRT's PO-token research: the register-based bytecode machine, its timing-based anti-debug and anti-logger layers, and the structural binding gap at the end of the chain — a token bound to site, lifetime and content, but not to the machine." },
     },
   },
@@ -98,16 +110,14 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "The Achilles' heel of Estonia's e-state — Smart-ID / eID research", abstract: "Protocol-level analysis of Estonia's Smart-ID: why MITM and endpoint-replacement attacks fail by design, and how the approval layer fails instead, including the interactive signing-relay class of attack against Smart-ID+ cross-device QR flows." },
     },
   },
   "/disclosures/zero-trust-octagon": {
-    en: { title: "Zero-Trust Octagon — Tom Kristian Abel", description: "A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs." },
+    en: { title: "Zero-Trust Octagon architecture framework — Tom Kristian Abel", description: "A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs." },
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-11",
-      dateModified: "2026-10-04",
       en: { headline: "Zero-Trust Octagon — a framework from first principles", abstract: "A zero-trust architecture framework built from first principles: 8 axioms, a 9-dimension morphological matrix, and archetypal breach walkthroughs." },
     },
   },
@@ -116,7 +126,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-28",
-      dateModified: "2026-10-04",
       en: { headline: "PACT and the software-anchor turn — a critical analysis of Private Access Control Tokens", abstract: "PACT, announced in June 2026 by Cloudflare with Firefox, Chrome, Edge, and Shopify, is, as its designers describe it, privacy-preserving rate limiting: Anchors vouch anonymously, Moderators enforce the limit. The ACT/ARC cryptography is sound. Who may act as an Anchor, and how sites judge them, is still undecided." },
     },
   },
@@ -125,7 +134,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-06",
-      dateModified: "2026-10-04",
       en: { headline: "ChatGPT is not a phishing scanner", abstract: "A fact check of the advice to paste a suspicious link into ChatGPT. What ChatGPT, Claude, and Gemini actually document about checking links, domain age, and reviews; why TDS and AI-targeted cloaking can serve an assistant's fetch a decoy page; and why VirusTotal and Google's Safe Browsing site-status page are a better first check, though not a final verdict." },
     },
   },
@@ -135,7 +143,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-08",
-      dateModified: "2026-10-04",
       en: { headline: "The PIN that cannot be delegated — Smart-ID, AI agents, and eIDAS", abstract: "Why an AI agent cannot enter your Smart-ID PIN: SK ID Solutions' own terms, the remote-QSCD practice statement, and eIDAS Articles 26 and 32 read side by side. Why the better reading ties sole control to the moment of signing, what can lawfully be delegated instead, and the OAuth-style pattern that works." },
       et: { headline: "PIN, mida ei saa delegeerida — Smart-ID, TI-agendid ja eIDAS", abstract: "Miks TI-agent ei tohi sinu eest Smart-ID PIN-koodi sisestada: SK ID Solutionsi enda tingimused, kaug-QSCD teenuse tavadokument ning eIDASe artiklid 26 ja 32 kõrvuti loetuna. Miks parem tõlgendus seob ainukontrolli allkirja andmise hetkega, mida võib selle asemel delegeerida ja milline OAuthi-laadne muster töötab." },
     },
@@ -146,7 +153,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-08-26",
-      dateModified: "2026-10-04",
       en: { headline: "The evolution of cyber fraud in Estonia, 2017–2026", abstract: "How Estonia's small language held the fraud industry at arm's length, and what happened when the barrier fell in late 2024: recruited native speakers, industrialized vishing call centers, courier networks, and AI deepfakes. Police-reported losses rose from about €8 million in 2023 to €29 million in 2025, with €13.2 million more in the first half of 2026, as banks began rolling out Smart-ID+." },
       et: { headline: "Küberpettuste areng Eestis, 2017–2026", abstract: "Kuidas Eesti väike keel hoidis pettuste tööstust eemal ja mis juhtus, kui barjäär 2024. aasta lõpus langes: värvatud emakeelekõnelejad, tööstuslikud kõneõngitsuskeskused, kullerivõrgustikud ja tehisintellekti süvavõltsingud. Politseile teatatud kahju kasvas umbes 8 miljonilt eurolt 2023. aastal 29 miljonini 2025. aastal ja 2026. aasta esimesel poolaastal lisandus 13,2 miljonit, samal ajal kui pangad hakkasid kasutusele võtma Smart-ID+." },
     },
@@ -157,17 +163,16 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-14",
-      dateModified: "2026-10-04",
       en: { headline: "The Gray Space: Russian-Linked Proxy and Hosting Infrastructure in Estonia", abstract: "In September 2026 QualityNetwork OÜ, a named operator of the Fineproxy proxy service, became a RIPE LIR and was allocated former Region40 prefixes. An OSINT reference tracing that network through Qurium's DDoS reports (Azerbaijan 2018–2019, Rappler 2023), what the record does and does not show about Vault Dweller OÜ's withdrawn AS203834, and why none of it is proven Russian state activity." },
       et: { headline: "Hall ala: Venemaaga seotud proksi- ja majutustaristu Eestis", abstract: "2026. aasta septembris sai Fineproxy proksiteenuse üks nimetatud käitaja QualityNetwork OÜ RIPE LIR-iks ja talle eraldati endised Region40 plokid. OSINT-viitetöö jälgib seda võrku Quriumi DDoS-raportite kaudu (Aserbaidžaan 2018–2019, Rappler 2023), kirjeldab, mida avalikud andmed Vault Dweller OÜ tagasi võetud AS203834 kohta näitavad ja mida mitte, ning miks ükski neist ei ole tõendatud Venemaa riiklik tegevus." },
     },
   },
   "/about": {
-    en: { title: "About — Tom Kristian Abel", description: "The way of seeing — background, philosophy, and how to work with Tom Kristian Abel." },
+    en: { title: "About Tom Kristian Abel — Security Researcher", description: "The way of seeing: background, philosophy, and how to work with Tom Kristian Abel, a security researcher and systems architect based in Estonia." },
     et: { title: "Minust — Tom Kristian Abel", description: "Visioon: taust, põhimõtted ja see, kuidas Tom Kristian Abeliga koostööd teha." },
   },
   "/my-story": {
-    en: { title: "My story — Tom Kristian Abel", description: "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the evidence." },
+    en: { title: "My story: from breaking authentication to building it", description: "How I got here, in three acts: charged by Estonia's cybercrime police as a young man, the pivot from selling the gap to closing it, and the evidence." },
     et: { title: "Minu lugu — Tom Kristian Abel", description: "Kuidas ma siia jõudsin, kolmes vaatuses: noorena esitatud kahtlustus, pööre turvalõhe müümiselt selle sulgemisele ja tõendid." },
     ld: {
       type: "AboutPage",
@@ -182,7 +187,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "How client-side anti-fraud actually works, and what VLM agents change", abstract: "Fifteen years of bot detection assumes an automated client must forge something a real browser produces naturally. A vision-language model driving a stock browser forges nothing inside it. The five defensive paradigms, how much of each survives operator synthesis, measurements from a small testbed, and the attestation centralization problem." },
       et: { headline: "Kuidas kliendipoolne pettusetõrje tegelikult töötab ja mida muudavad visuaal-keelemudelil põhinevad agendid", abstract: "Viisteist aastat robotituvastust eeldab, et automaatne klient peab matkima midagi, mida päris brauser tekitab loomulikult. Visuaal-keelemudel, mis juhib muutmata brauserit, ei võltsi selle sees midagi. Viis kaitseparadigmat, kui palju igaühest operaatori sünteesi üle elab, väikese katsekeskkonna mõõtmised ja atesteerimise tsentraliseerimise probleem." },
     },
@@ -193,7 +197,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "The Nine Dimensions of Zero Trust", abstract: "Zero trust is not a maturity ladder. It is a nine-dimensional configuration space: trust anchor, identity, enforcement, attestation, response, policy distribution, observability, posture and human continuity. A walkthrough of the morphological matrix and how to read an organization real position on it." },
       et: { headline: "Nullusalduse üheksa mõõdet", abstract: "Nullusaldus ei ole küpsusmudel, vaid üheksamõõtmeline konfiguratsiooniruum: usaldusankur, identiteet, jõustamine, atesteerimine, reageerimine, poliitika levitamine, jälgitavus, seisund ja inimlik järjepidevus. Ülevaade morfoloogilisest maatriksist ja sellest, kuidas lugeda organisatsiooni tegelikku asukohta selles." },
     },
@@ -204,7 +207,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "The Fortune 500 Illusion of Control", abstract: "A full breach trace of Archetype B from the Zero-Trust Octagon: the enterprise with the largest security budget, the most tooling and the most attestations, taken from a stolen session cookie to full database exfiltration in twenty minutes." },
       et: { headline: "Fortune 500 kontrolliillusioon", abstract: "Raamistiku Zero-Trust Octagon arhetüübi B täielik rünnakuteekond: suurima turbe-eelarve, kõige rohkemate tööriistade ja vastavustunnistustega ettevõte, varastatud seansiküpsisest kuni täieliku andmebaasi väljavõtteni kahekümne minutiga." },
     },
@@ -215,7 +217,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "Move Fast, Fix It In Prod: A Full Breach Trace of the Startup Archetype", abstract: "A composite supply-chain and CI/CD breach trace of Archetype C, the velocity-optimised startup: a malicious dependency robs the CI pipeline, passes the only verification gate the architecture has, and reaches production with a valid workload identity. An analytical model, not a real incident." },
       et: { headline: "Liigu kiiresti, paranda toodangus: idufirma arhetüübi täielik rünnaku jälg", abstract: "Kiirusele optimeeritud idufirma (arhetüüp C) üldistatud tarneahela ja CI/CD rünnakuteekond: pahatahtlik sõltuvus röövib CI-konveieri, läbib ainsa kontrollpunkti, mis arhitektuuril on, ja jõuab toodangusse kehtiva töökoormuse identiteediga. Analüütiline mudel, mitte tegelik intsident." },
     },
@@ -226,7 +227,6 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "SaaS-Glued Lean Defense: The Full Breach Trace for Archetype D", abstract: "A composite, step-by-step breach trace of the small-team SaaS architecture: MFA fatigue to session theft, the SaaS blind spot an identity-aware proxy never covers, the OAuth grant cascade, and six fixes one operator can start in an afternoon." },
       et: { headline: "SaaS-i külge liimitud lahja kaitse: arhetüübi D täielik rünnakujälg", abstract: "Väikese meeskonna SaaS-arhitektuuri üldistatud rünnakujälg samm-sammult: MFA väsitusründest seansivarguseni, SaaS-i pimeala, mida identiteediteadlik proksi ei kata, OAuth-volituste kaskaad ja kuus parandust, mida üks inimene saab ühe pärastlõunaga alustada." },
     },
@@ -237,25 +237,24 @@ export const routeMeta = {
     ld: {
       type: "ScholarlyArticle",
       datePublished: "2026-09-22",
-      dateModified: "2026-10-04",
       en: { headline: "Identity Is the Root. Proof Is the Gate.", abstract: "Every control in a zero-trust architecture is downstream of identity, so the proof taken at the gate is the ceiling on everything above it. On authentication events versus continuous proof, the six distinct claims people call authenticated, and why phishing-resistant credentials are necessary but not sufficient." },
       et: { headline: "Identiteet on juur. Tõend on värav.", abstract: "Iga kontroll nullusaldusarhitektuuris asub identiteedist allavoolu, seega seab väravas nõutud tõend lae kõigele selle kohal. Autentimissündmused versus pidev tõendamine, kuus erinevat väidet, mida nimetatakse autendituks, ja miks õngitsuskindlad mandaadid on vajalikud, kuid mitte piisavad." },
     },
   },
   "/privacy": {
-    en: { title: "Privacy Policy — Tom Kristian Abel", description: "What little data tomabel.ee collects and how it is handled. No cross-site tracking." },
+    en: { title: "Privacy Policy: what tomabel.ee collects — Tom Kristian Abel", description: "What little data tomabel.ee collects, how it is handled and why there is no cross-site tracking, in plain language, with contact details for questions." },
     et: { title: "Privaatsuspoliitika — Tom Kristian Abel", description: "Kui vähe andmeid tomabel.ee kogub ja kuidas neid käsitletakse. Saitideülest jälgimist ei ole." },
   },
   "/terms": {
-    en: { title: "Terms of Service — Tom Kristian Abel", description: "The rules for using tomabel.ee." },
+    en: { title: "Terms of Service for tomabel.ee — Tom Kristian Abel", description: "The terms for using tomabel.ee, the research site of Tom Kristian Abel: intellectual property, user obligations, disclaimer and contact details." },
     et: { title: "Kasutustingimused — Tom Kristian Abel", description: "Reeglid tomabel.ee kasutamiseks." },
   },
   "/disclosure": {
-    en: { title: "Security Research Policy — ProksiAbel OÜ", description: "How we handle security research: rules, disclosure process, and how to contact us." },
+    en: { title: "Security Research Policy — ProksiAbel OÜ", description: "How ProksiAbel OÜ handles security research: the rules we follow, our coordinated disclosure process, and how to contact us securely, with PGP." },
     et: { title: "Turvauuringute poliitika — ProksiAbel OÜ", description: "Kuidas me turvauuringuid teeme: reeglid, avalikustamisprotsess ja kuidas meiega ühendust võtta." },
   },
   "/cookies": {
-    en: { title: "Cookie Policy — Tom Kristian Abel", description: "Cookies (or lack thereof) on tomabel.ee." },
+    en: { title: "Cookie Policy for tomabel.ee — Tom Kristian Abel", description: "Which cookies tomabel.ee sets, or the lack thereof: what is stored in your browser and why." },
     et: { title: "Küpsised — Tom Kristian Abel", description: "Küpsised (või nende puudumine) saidil tomabel.ee." },
   },
 } satisfies Record<string, RouteMeta>;
@@ -297,34 +296,31 @@ export function jsonLdFor(path: string, language: Language): object | null {
   const lang: Language = ld[language] ? language : 'en';
   const copy = ld[lang] ?? ld.en;
   const url = pageUrl(path);
-  const author = { '@type': 'Person', name: 'Tom Kristian Abel', url: `${SITE_URL}/` };
+  const author = { '@type': 'Person', '@id': PERSON_ID, name: 'Tom Kristian Abel', url: `${SITE_URL}/` };
+  const publisher = { '@type': 'Organization', '@id': ORG_ID, name: 'ProksiAbel OÜ', url: `${SITE_URL}/` };
+  const isPartOf = { '@type': 'WebSite', '@id': WEBSITE_ID };
+  const dateModified = modifiedFor(path);
+  const common = {
+    description: copy.abstract,
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    image: [OG_IMAGE],
+    datePublished: ld.datePublished,
+    ...(dateModified && { dateModified }),
+    author,
+    publisher,
+    inLanguage: lang,
+    isPartOf,
+  };
 
   if (ld.type === 'AboutPage') {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'AboutPage',
-      name: copy.headline,
-      description: copy.abstract,
-      url,
-      datePublished: ld.datePublished,
-      author,
-      inLanguage: lang,
-    };
+    return { '@context': 'https://schema.org', '@type': 'AboutPage', '@id': url, name: copy.headline, ...common };
   }
   const [home, index] = CRUMBS[lang];
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': ld.type,
-        headline: copy.headline,
-        description: copy.abstract,
-        url,
-        datePublished: ld.datePublished,
-        ...(ld.dateModified && { dateModified: ld.dateModified }),
-        author,
-        inLanguage: lang,
-      },
+      { '@type': ld.type, '@id': `${url}#article`, headline: copy.headline, ...common },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -334,5 +330,18 @@ export function jsonLdFor(path: string, language: Language): object | null {
         ],
       },
     ],
+  };
+}
+
+// <meta property> tags that only article routes carry; shared by the build
+// (scripts/spa-routes.mjs) and the runtime (Seo.tsx) so they cannot drift.
+export function articleMetaFor(path: string): Record<string, string> | null {
+  const ld = (routeMeta as Record<string, RouteMeta>)[path]?.ld;
+  if (!ld) return null;
+  const modified = modifiedFor(path);
+  return {
+    'article:published_time': ld.datePublished,
+    ...(modified && { 'article:modified_time': modified }),
+    'article:author': `${SITE_URL}/about/`,
   };
 }
