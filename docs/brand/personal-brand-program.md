@@ -260,17 +260,30 @@ different measurement channel than this host's egress.
    including a risk-gate reference and a traceability script. Adopt it as the operational wrapper;
    artisanal steps in this plan that duplicate it are marked in §2.
 
-### Phase 2 — Baseline audit
+### Phase 2 — Baseline audit · **done 2026-10-24** → `01-audit.md`
 
-- [ ] `brand-audit` over the current state: site, LinkedIn, GitHub, press footprint → 6-dimension
-      scorecard. Independently, write down what the public currently thinks he does (from the SERP
-      and AI-answer snapshots) alongside what he intends them to think
-- [ ] Fold in the P1 findings from `tomabel-disclosures-review.md` that are brand-visible
-      (three versions of the past, missing COI line, undated pages, dead links, "always disclosed
-      responsibly" claim)
+- [x] `brand-audit` 6-dimension scorecard over the live state (site source, LinkedIn, GitHub,
+      press footprint), every score carrying quoted evidence
+      → **17/30**: positioning 2 · visual 4 · messaging 3 · voice 3 · audience 2 · differentiation 3
+- [x] Intent-vs-perception delta written explicitly, using the AI-answer snapshot as the perception
+      instrument and the press framings as corroboration
+- [x] P1 findings from `tomabel-disclosures-review.md` checked against the live repo rather than
+      assumed: dates, COI line, the "disclosed responsibly" overclaim, dead links, index blurbs,
+      fraud-paper figures, §5 past-wording, §7 archetype scoring
 
-**Acceptance:** a scorecard per dimension with the evidence behind each score, plus an explicit
-intent-vs-perception delta. This is the "before" measurement Phase 8 compares against.
+**Acceptance:** a scorecard per dimension with the evidence behind each score ✓, plus an explicit
+intent-vs-perception delta ✓. **Met.**
+
+**The audit's headline:** execution clarity is well ahead of position clarity. Machines and press have
+absorbed his *history* accurately and his *work* partially; neither has absorbed the *idea*. Five
+concrete defects carry most of the score loss: four incompatible role framings across surfaces (About
+says CTO at MATx, LinkedIn says founding engineer of ProksiAbel OÜ, GitHub says authentication
+security researcher, schema says both), a surviving "disclose what I find responsibly" claim on the
+page the essays point to as canonical, an uncorroborated MATx CTO title, a social card that predates
+the design system with no portrait anywhere, and an under-deployed proof layer (`public/verification/`
+signed article copies on 7 of 19 pages). The audit also corrects one thing phase 1 assumed: several
+review findings thought open are in fact fixed — fraud-paper figures, per-figure attribution, and the
+archetype axiom scoring (which carries its own dated corrections changelog).
 
 ### Phase 3 — Derived brand context
 

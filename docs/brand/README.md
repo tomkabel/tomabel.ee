@@ -7,6 +7,7 @@ Working folder for the personal brand system of Tom Kristian Abel, built from
 |---|---|
 | `personal-brand-program.md` | The plan: library analysis, skill selection, evidence corpus, phases, gates |
 | `00-evidence/source-register.md` | Source register — one row per public source, verification status, and claim status per statement |
+| `01-audit.md` | Phase 2 baseline audit: 6-dimension scorecard (17/30), remediation check against the disclosures review, intent-vs-perception delta |
 | `00-evidence/statements-and-quotes.md` | Coded verbatim quotes, the current brand copy, and the measured voice signals |
 | `00-evidence/serp-and-ai-snapshot-2026-10-24.md` | Perception baseline: AI answer (captured) + ranked SERP (capture failed, documented) |
 | `00-evidence/gaps.md` | Ranked open questions, each with the default that will be used if unanswered |

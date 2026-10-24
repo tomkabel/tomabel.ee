@@ -2,6 +2,9 @@
 
 Filled in phase order. Names are fixed so cross-references stay stable.
 
+Phase artifacts live at their phase number: `00-evidence/` (phase 1) and `../01-audit.md` (phase 2).
+This folder holds the skill outputs from phase 4 onward, which are the strategy documents proper.
+
 | File | Skill | Phase |
 |---|---|---|
 | `01-personal-brand-strategy.md` | `personal-brand` (9 parts) | 4 |
