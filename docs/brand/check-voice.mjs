@@ -67,7 +67,7 @@ const BANNED = [
 ];
 
 function splitSources(raw) {
-  const m = raw.search(/^#{1,6}\s*(sources|allikad)\s*$/im);
+  const m = raw.search(/^\s*#{0,6}\s*\*{0,2}(sources|allikad)\*{0,2}\s*$/im);
   return m === -1 ? [raw, ''] : [raw.slice(0, m), raw.slice(m)];
 }
 
@@ -86,6 +86,10 @@ function proseOf(raw) {
       if (/^\s*\|/.test(line)) return false;
       if (/^\s*>/.test(line)) return false;
       if (/^\s*https?:\/\//.test(line)) return false;
+      // A citation list is not prose: a line carrying three or more [S-nn] references (the
+      // bibliography style used across this folder) or a bare "Sources"/"Allikad" label.
+      if ((line.match(/\[S-\d\d\]/g) ?? []).length >= 3) return false;
+      if (/^\s*\*{0,2}(sources|allikad)\*{0,2}\s*:?\s*$/i.test(line)) return false;
       return true;
     })
     .join('\n')
@@ -199,7 +203,7 @@ for (const r of results) {
       `R2 sentence avg <= ${lim.avg}w`,
       r.sents >= 5 ? `${f2(r.avg)}w` : `n/a (${r.sents} sentence${r.sents === 1 ? '' : 's'}: R2 is a rate, R3 governs)`),
     note(r, r.unexempted.length === 0, `R3 sentences > ${LONG.cap}w must be enumerated`, `${r.unexempted.length} violation(s)`),
-    line(r.unexemptedHard.length === 0, `R3b no unquoted sentence > ${LONG.hardCap}w`, `${r.unexemptedHard.length}`),
+    line(r.unexemptedHard.length === 0, `R3b no unquoted sentence > ${LONG.hardCap}w`,    `${r.unexemptedHard.length}${r.unexemptedHard.length ? ' -> ' + r.unexemptedHard.map((s) => `"${s.trim().slice(0, 90)}…" (${words(s)}w)`).join('; ') : ''}`),
     line(r.ticPer1k <= lim.tic, `R4 not X, but Y <= ${lim.tic}/1k`, `${r.tics} (${f2(r.ticPer1k)}/1k)`),
     line(r.supPer1k <= lim.sup, `R5 superlatives <= ${lim.sup}/1k`, `${r.sup} (${f2(r.supPer1k)}/1k)`),
     line(r.closersPer1k <= LONG.closers, `R6 one-line closers <= ${LONG.closers}/1k`, `${r.closers} (${f2(r.closersPer1k)}/1k)`),
