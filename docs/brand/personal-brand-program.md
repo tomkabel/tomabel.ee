@@ -285,16 +285,20 @@ signed article copies on 7 of 19 pages). The audit also corrects one thing phase
 review findings thought open are in fact fixed — fraud-paper figures, per-figure attribution, and the
 archetype axiom scoring (which carries its own dated corrections changelog).
 
-### Phase 3 — Derived brand context
+### Phase 3 — Derived brand context · **done 2026-10-24** (private)
 
-**Unblocked 2026-10-24:** all ten gaps are decided (`decisions.md`), so the context file can be
-written from evidence plus decisions rather than from guesses. Three decisions created prerequisites
-that phase 3 must respect: the company-status check (P-1), the legal review of the single sentence
-(P-2), and the handle sweep before any new copy (P-5).
+**Unblocked 2026-10-24:** all ten gaps are decided (`decisions.md`), so the context file was written
+from evidence plus decisions rather than from guesses. Three decisions created prerequisites that the
+later phases respect: the company-status check (P-1), the legal review of the single sentence (P-2),
+and the handle sweep before any new copy (P-5).
 
-- [ ] Write `.agents/brand-context.md` (the path every other skill reads) from the dossier only
-- [ ] Any field the corpus cannot settle gets `[unverified → needs Tom]`, never a plausible filler
-- [ ] Aim for ≤12 open questions, each with a proposed default, so this can be answered in one pass
+- [x] `.agents/brand-context.md` written from the dossier and the decisions, symlinked to the private
+      repo so the skill path still resolves while the content stays private (decision G-10)
+- [x] No plausible fillers: fields the corpus cannot settle carry `[unverified → needs Tom]`
+- [x] P-1 probed and **failed**: the e-Äriregister page carries a deletion notice published in
+      Ametlikud Teadaanded for ProksiAbel OÜ. Recorded; G-4 now rests on an entity on a clock
+- [x] P-5 run: the local handle/alias sweep found two unregistered aliases and one handle of
+      ambiguous ownership (`[S-34]`), none of which may be asserted in brand copy either way
 
 **Acceptance:** the file exists, every field either cites a source ID or is marked unverified.
 **Gate:** Tom reviews the open questions. This is the one place in the whole plan that genuinely
@@ -310,6 +314,13 @@ needs him — everything downstream inherits these answers.
 
 **Acceptance:** each document passes the traceability rule; positioning statement names a territory
 narrower than "security researcher" (the `identity-reframing` skill's standing critique).
+
+**Done 2026-10-24.** `outputs/01-personal-brand-strategy.md`, `02-audience.md`, `03-positioning.md`.
+Primary noun decided (authentication-security researcher); category named (verification-claim
+research, `[ASSUMED]` with a fallback branch); one-sentence position is 23 words and names the claim
+layer. The writers re-verified inherited audit findings against the live repo and corrected three that
+had moved, and one of them found a new defect the audit missed (the homepage intro strip's aggregate
+claim), which is now fixed.
 
 ### Phase 5 — Voice, messaging, story
 
@@ -370,6 +381,23 @@ write about him consistently without asking.
 - [ ] Fix the brand-visible P1 items before publishing anything that leans on those articles
 
 **Acceptance:** each surface updated, screenshot or URL recorded in the folder.
+
+---
+
+## 5b. Phases 5-9 — completion summary (2026-10-24)
+
+| Phase | Artefacts | State |
+|---|---|---|
+| 5 — voice, messaging, story | `outputs/04-voice.md`, `05-messaging.md`, `06-story.md` | done. Voice derived from the measured corpus, with the audit's tics turned into quota rules and a falsifiable checker (`check-voice.mjs`). Story uses the frozen case sentence by reference; no new wording authored (G-2). |
+| 6 — architecture, transition, peers | `outputs/07-architecture.md`, `08-transition.md`, `09-peers.md` | done. Endorsed-brand recommendation; naming system and governance; the §07 P-1 failure analysis (what breaks if the company is deleted, with a fallback ladder); three transition narratives; 10 named peers with per-fact verification levels. |
+| 7 — the book | `outputs/10-personal-brand-book.md` | done. Foundation, the Cyber-Kratt definition, the four beliefs, verbal identity, messaging, brand in use, bios in EN and ET, the consolidated do-not list, governance and the ledger spec. |
+| 8 — measurement, AI visibility | `outputs/11-measurement.md`, `12-ai-visibility.md` | **in flight** (dispatched 2026-10-24, running at the time of writing). The brief requires a measurement channel that works, after the ranked-SERP capture failed from this host, and a file-level `ai-seo` audit with a prioritised fix list. |
+| 9 — roll out | `outputs/13-surface-kit.md` + live edits | done for what is not blocked. Shipped: Cyber-Kratt defined on About (G-3/P-4), ORCID added to the entity graph, the GitHub profile README corrected (72 profiles, plus the disclosure-posture line). Paste-ready: LinkedIn headline, About, experience edits. Deferred with a reason: the disclosure-ledger page (a claim record with missing rows is worse than none) and every company-asserting surface (**P-1**). |
+
+**Verification for the whole run:** `check-traceability.mjs` OK (34 sources defined, 32 cited, 0
+undefined); `check-voice.mjs` 0 failures across 12 documents, with both negative controls firing;
+`pnpm build` exit 0 (28 prerendered route shells, links clean); `pnpm typecheck` clean; `pnpm test`
+8/8.
 
 ---
 

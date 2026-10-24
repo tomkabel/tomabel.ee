@@ -19,6 +19,7 @@ This folder holds the skill outputs from phase 4 onward, which are the strategy 
 | `10-personal-brand-book.md` | `brand-guidelines` + `brand-identity` §01/§05/§07 | 7 |
 | `11-measurement.md` | `brand-measurement` | 8 |
 | `12-ai-visibility.md` | `ai-seo` | 8 |
+| `13-surface-kit.md` | phase-9 rollout: paste-ready copy, ledger spec | 9 |
 
 Each file ends with a **Sources** section listing the `[S-nn]` IDs it used.
 A claim line with no source ID is a defect, not a judgement call.
