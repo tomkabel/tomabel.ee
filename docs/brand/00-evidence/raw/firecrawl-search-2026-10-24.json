@@ -1,0 +1,27 @@
+{
+ "\"Tom Kristian Abel\"": [
+  {
+   "error": "AttributeError(\"'list' object has no attribute 'get'\")"
+  }
+ ],
+ "Tom Kristian Abel küberkurjategija kohus": [
+  {
+   "error": "AttributeError(\"'list' object has no attribute 'get'\")"
+  }
+ ],
+ "Äritehnoloogia Tom Kristian Abel LinkedIn vangi": [
+  {
+   "error": "AttributeError(\"'list' object has no attribute 'get'\")"
+  }
+ ],
+ "ProksiAbel OÜ registrikood": [
+  {
+   "error": "AttributeError(\"'list' object has no attribute 'get'\")"
+  }
+ ],
+ "kood/Jõhvi Cyber-Kratt": [
+  {
+   "error": "AttributeError(\"'list' object has no attribute 'get'\")"
+  }
+ ]
+}
