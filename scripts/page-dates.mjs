@@ -22,14 +22,19 @@ const imports = Object.fromEntries(
     .map((m) => [m[1] ?? m[3], `src/${m[2] ?? m[4]}`]),
 );
 const dates = {};
-for (const m of app.matchAll(/<Route path="(\/[^"*:]*)" element=\{<Layout>(.*?)<\/Layout>\}/g)) {
+for (const m of app.matchAll(/<Route path="(\/[^"*:]*)" element=\{<Layout>(.*?)<\/Layout>}/g)) {
   const component = [...m[2].matchAll(/<(\w+)/g)].map((x) => x[1]).find((n) => !['Lazy', 'Layout'].includes(n));
   const base = imports[component];
   if (!base) throw new Error(`page-dates: no import found for ${m[1]} (${component})`);
-  const date = git('log', '-1', '--format=%cs', '--', `${base}.tsx`);
+  // A page's date must also move when shared content it renders moves. Pages that read
+  // src/content/site.ts (bio, blurbs, hero copy) were silently dated by their component
+  // alone, so a copy change in site.ts left "Updated" stale.
+  const source = readFileSync(`${base}.tsx`, 'utf-8');
+  const extras = /from '\.\.\/content\/site'|from "\.\.\/content\/site"/.test(source) ? ['src/content/site.ts'] : [];
+  const date = git('log', '-1', '--format=%cs', '--', `${base}.tsx`, ...extras);
   if (!date) throw new Error(`page-dates: no git history for ${base}.tsx`);
   dates[m[1]] = date;
 }
-dates['/'] = git('log', '-1', '--format=%cs', '--', 'src/pages/HomePage.tsx');
+dates['/'] = git('log', '-1', '--format=%cs', '--', 'src/pages/HomePage.tsx', 'src/content/site.ts');
 writeFileSync(out, JSON.stringify(Object.fromEntries(Object.entries(dates).sort()), null, 2) + '\n');
 console.log(`page-dates: wrote ${Object.keys(dates).length} routes`);
