@@ -362,16 +362,26 @@ that does not require him to retell the case.
 **Acceptance:** a single document from which anyone (Tom, a conference organiser, an editor) can
 write about him consistently without asking.
 
-### Phase 8 — Measurement and presence
+### Phase 8 — Measurement and presence · **done 2026-10-24**
 
-- [ ] `brand-measurement` → `docs/brand/outputs/11-measurement.md`: baseline, metrics a person can
-      actually move, quarterly calendar. Re-run the Phase 2 snapshots as the comparison
-- [ ] `ai-seo` audit → `docs/brand/outputs/12-ai-visibility.md`: does an AI assistant describe him
-      correctly, does it cite him, does it conflate him with the 2024 case, is Person schema on the
-      site accurate
-- [ ] Google Alerts on name variants; quarterly SERP + AI-answer re-snapshot
+- [x] `brand-measurement` → `docs/brand/outputs/11-measurement.md`: baseline table, five metric
+      families, calendar, noise floors, pre-registered query set, report template
+- [x] `ai-seo` audit → `docs/brand/outputs/12-ai-visibility.md`: eleven file-level findings with a
+      prioritised fix list, reproducible probe commands, and reconciliation with the 2026-10-07 audit
+- [x] Google Alerts on name variants; quarterly SERP + AI-answer re-snapshot
 
-**Acceptance:** a dated before/after pair for at least three queries, plus the metric set.
+**Acceptance:** a dated before/after pair for at least three queries, plus the metric set. **Partly
+met:** the AI-answer channel is captured today (three dated runs, one differing from the phase-1
+baseline in lead framing and source mix), and the metric set exists. The ranked SERP has no
+trustworthy capture from this host, so the document rules out publishing a ranking number measured
+here and prescribes the channel that would work instead.
+
+**Findings that change the surface work:** the deployed Cloudflare worker is a revision behind the
+repo, so the machine-facing behaviour verified in the tree is not what a crawler or agent meets;
+`llms.txt` had drifted from the repo (it said 65+ profiles and described About as the kratt metaphor,
+both fixed here); visible "Updated" dates are hand-written while structured-data dates are generated
+from git, so they can disagree on the same page; and Estonian content is machine-invisible (no `/et/`
+routes, no `hreflang`).
 
 ### Phase 9 — Roll out to surfaces
 
@@ -391,7 +401,7 @@ write about him consistently without asking.
 | 5 — voice, messaging, story | `outputs/04-voice.md`, `05-messaging.md`, `06-story.md` | done. Voice derived from the measured corpus, with the audit's tics turned into quota rules and a falsifiable checker (`check-voice.mjs`). Story uses the frozen case sentence by reference; no new wording authored (G-2). |
 | 6 — architecture, transition, peers | `outputs/07-architecture.md`, `08-transition.md`, `09-peers.md` | done. Endorsed-brand recommendation; naming system and governance; the §07 P-1 failure analysis (what breaks if the company is deleted, with a fallback ladder); three transition narratives; 10 named peers with per-fact verification levels. |
 | 7 — the book | `outputs/10-personal-brand-book.md` | done. Foundation, the Cyber-Kratt definition, the four beliefs, verbal identity, messaging, brand in use, bios in EN and ET, the consolidated do-not list, governance and the ledger spec. |
-| 8 — measurement, AI visibility | `outputs/11-measurement.md`, `12-ai-visibility.md` | **in flight** (dispatched 2026-10-24, running at the time of writing). The brief requires a measurement channel that works, after the ranked-SERP capture failed from this host, and a file-level `ai-seo` audit with a prioritised fix list. |
+| 8 — measurement, AI visibility | `outputs/11-measurement.md`, `12-ai-visibility.md` | done. Measurement: the eleven-number baseline, five metric families, noise floors, a pre-registered query set, and an explicit ruling that no ranking number from this host may be published (the ranked-SERP channel failed here; the doc prescribes a manual two-pass browser capture or a paid API with an acceptance probe). AI visibility: eleven file-level findings, the strongest being that the deployed worker is a revision behind the repo, so the machine-facing fixes exist in the tree and not on the site. |
 | 9 — roll out | `outputs/13-surface-kit.md` + live edits | done for what is not blocked. Shipped: Cyber-Kratt defined on About (G-3/P-4), ORCID added to the entity graph, the GitHub profile README corrected (72 profiles, plus the disclosure-posture line). Paste-ready: LinkedIn headline, About, experience edits. Deferred with a reason: the disclosure-ledger page (a claim record with missing rows is worse than none) and every company-asserting surface (**P-1**). |
 
 **Verification for the whole run:** `check-traceability.mjs` OK (34 sources defined, 32 cited, 0

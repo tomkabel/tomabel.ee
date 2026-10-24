@@ -127,7 +127,8 @@ function analyse(path) {
   const emProse = (authored.match(/\u2014/g) ?? []).length;
   const emSrc = (sourcePart.match(/\u2014/g) ?? []).length;
   const tics = (authored.match(/\bnot\b[^.;!?]{1,140}?\bbut\b/gi) ?? []).length;
-  const lower = authored.toLowerCase();
+  // "leading indicator" is an analytics term of art, not the marketing adjective it looks like.
+  const lower = authored.toLowerCase().replace(/leading indicator/g, 'early signal');
   const sup = SUPERLATIVES.reduce((n, s) => n + (lower.split(s).length - 1), 0);
 
   // banned phrases quoted inside "..." are vendor language being dismissed, not used;

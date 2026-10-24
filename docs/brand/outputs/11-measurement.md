@@ -1,4 +1,4 @@
-# 11 · Brand measurement — the framework one person can run
+# 11 · Brand measurement: the framework one person can run
 
 Phase 8, deliverable 1 of 2. Built on the `brand-measurement` skill, scoped down to what a single
 person with no budget and no analytics tooling can actually execute, and bound to the decisions in
@@ -73,9 +73,11 @@ way:
 - **Row 7 (press mentions), unchanged but worth a note.** The Delfi topic page `[S-13]` now
   aggregates only the May 2026 award article rather than the 2024 coverage. Whether that is
   ranking or tag aggregation is unknown, so it stays a qualitative note, not a metric.
-- **Row 9 (ORCID works), unchanged and now actionable.** The Person node in `index.html` still does
-  not list the ORCID at all (see `12-ai-visibility.md`, finding P0-3). Zero works is a work problem;
-  a missing `sameAs` is a five-line markup problem.
+- **Row 9 (ORCID works), unchanged, and the markup half is now in flight.** An ORCID exists with zero
+  works `[S-20]`, which is a work problem. The markup problem (no ORCID in the entity graph) was
+  closed in the repository on 2026-10-24 (`ba41bad`, `index.html:46`) and is **not live** as of
+  17:05 the same day, so the identifier a machine reads today is still absent
+  (`12-ai-visibility.md`, finding P0-3).
 
 **A twelfth number that is not a metric but a gate:** signed article copies, 7 of 19 `[S-01]`.
 
@@ -149,7 +151,7 @@ site** (no analytics script, tag manager or Search Console verification token an
 `index.html`, `src/`, or `worker/`; the privacy policy states there is no cross-site tracking), so
 traffic-derived metrics are not available. Whether Cloudflare zone analytics or Search Console
 is configured out of band is `[unverified - needs Tom]`, and if Search Console can be verified it
-becomes the single best inbound source: it is free, first-party, and shows the queries that
+becomes the highest-value inbound source: it is free, first-party, and shows the queries that
 actually reach the site.
 
 **Target direction.** The share of inbound that is peer or public sector, not the total. At this
@@ -258,7 +260,7 @@ as BLOCKED.
 |---|---|---|
 | GitHub API (stars, forks, followers, repo list per account) | works, free, scriptable | metric rows 1 to 3 |
 | LinkedIn profile (connections, 7-day appearances, views, impressions) | works, manual | metric rows 4 to 6 |
-| Search Console | `[unverified - needs Tom]` | if verifiable, the best inbound source |
+| Search Console | `[unverified - needs Tom]` | if verifiable, the highest-value inbound source |
 | Press search for new articles about him | manual, low cost | metric row 7 |
 | ORCID record `[S-20]` | works, manual | metric row 9 |
 | CFP platforms (pretalx and similar) | account access required | §3.4 |
@@ -267,6 +269,34 @@ as BLOCKED.
 There is no site analytics, so "inbound quality" is measured from conversations, not from sessions.
 That is a deliberate consequence of the site's privacy stance, and the framework accepts the
 limitation rather than proposing tracking to fill it.
+
+### 4.4 · Channel D: mention monitoring (Google Alerts and its equivalents)
+
+The plan's third phase-8 item is alerts on name variants, and it is the cheapest part of the whole
+system: setup is ten minutes, the running cost is the discipline of reading the mail.
+
+Set one alert per variant, delivery as they happen, region Estonia plus worldwide, language both:
+
+| Alert query | Catches |
+|---|---|
+| `"Tom Kristian Abel"` | full-name mentions, the primary watch |
+| `"Tom Abel" turvauurija` | Estonian coverage that drops the middle name |
+| `"Tom Abel" ProksiAbel` | company and commercial mentions |
+| `"tomabel.ee"` | citing and scraping of the site itself |
+| `"ProksiAbel"` | the company surface, including registry changes |
+| `"Cyber-Kratt"` | the label, which has no third-party definition yet `[S-28]` |
+| `"M41KL-N41TT"` | the archived handle `[S-19]`, still the most damaging live artifact |
+| `"Tom Abel" Proksimity` | the product surface, `[unverified - needs Tom]` as to volume |
+
+Two rules for reading it. First, an alert is a monitor, not a rank tracker: it tells you a page
+exists, not where it ranks, and it must not be reported as a SERP result. Second, deduplicate by URL
+before counting, because aggregators and syndication produce the same article several times, and the
+count in metric row 7 is unique articles, not mentions.
+
+The same job can be done from a feed reader instead of email (any RSS reader plus a Google News query
+feed per variant), which makes the quarterly count a matter of counting unread items rather than
+searching a mailbox. Either way, the output feeds metric row 7 and metric family 3.1, and nothing
+else in this framework depends on it.
 
 ---
 
@@ -420,8 +450,8 @@ Run before and after any content work, and paste the output into the quarterly r
 ls public/verification/*.txt | wc -l        # currently 7
 ls public/verification/*.asc | wc -l        # currently 7
 
-# did the machine layer build clean?
-node scripts/spa-routes.mjs 2>&1 | tail -1  # emitted route shells with per-route meta
+# did the machine layer build clean? (reads pub/, so run it after a build)
+pnpm build 2>&1 | tail -3                   # expect "emitted 28 prerendered route shells"
 
 # citation integrity of the brand outputs
 node docs/brand/check-traceability.mjs      # every [S-nn] must resolve
