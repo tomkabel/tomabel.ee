@@ -1,8 +1,8 @@
 {
-  "/": "2026-10-07",
-  "/about": "2026-10-06",
+  "/": "2026-10-24",
+  "/about": "2026-10-24",
   "/disclosure": "2026-09-23",
-  "/disclosures": "2026-10-07",
+  "/disclosures": "2026-10-24",
   "/disclosures/botguard-disassembled": "2026-10-07",
   "/disclosures/chatgpt-is-not-a-phishing-scanner": "2026-10-07",
   "/disclosures/coordinated-disclosure-in-a-small-country": "2026-10-07",
@@ -24,6 +24,6 @@
   "/disclosures/zero-trust-octagon": "2026-10-07",
   "/my-story": "2026-10-07",
   "/privacy": "2026-09-23",
-  "/systems": "2026-10-07",
+  "/systems": "2026-10-24",
   "/terms": "2026-09-23"
 }
