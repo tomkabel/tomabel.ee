@@ -9,11 +9,10 @@
 
 **Live re-check before writing.** The register snapshots and the phase-2 audit were captured earlier
 on 2026-10-24. Every surface finding inherited from the audit was re-verified against the live
-repository before it was used here, and the two audit findings that describe Persona 3 (the
-unreconciled MATx title and `/systems` linking private repositories) have both moved: commit
-`51c74cf` reconciled the title on the About body, and commit `6d045db` (6 October 2026) removed the
-dead links and labelled the cards "Private source". The underlying evidence gap is unchanged, since
-the repositories themselves remain private.
+repository before it was used here. The two audit findings that describe Persona 3 have both moved:
+commit `51c74cf` reconciled the MATx title on the About body, and commit `6d045db` (6 October 2026)
+removed the dead links and labelled the cards "Private source". The underlying evidence gap is
+unchanged, since the repositories themselves remain private.
 
 **Citation rule.** Every factual or self-descriptive claim carries an `[S-nn]` reference into
 `00-evidence/source-register.md`, or is marked `[unverified → needs Tom]`. Audience claims are the

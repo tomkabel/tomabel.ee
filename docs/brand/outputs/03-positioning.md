@@ -114,12 +114,12 @@ sector second, hiring third (`G-7`).
 
 **The competitive moat, stated without inflation.** The moat is not skill, and any positioning built
 on skill is a table stake in a field of skilled people (`.agents/brand-context.md` §2;
-`01-audit.md` §2 D6). It is a combination that cannot be assembled quickly: receipts that are
-historical rather than repeatable (a dated disclosure timeline with named recipients across 18 pages,
-signed and hash-verifiable article text, dated corrections, `[S-01]`, `[S-02]`, `[S-07]`), an
-opcode-level finding inside a production anti-fraud system rather than a demonstration against a
-test target (`[S-01]`), and an arc that a competitor cannot adopt because it is a lived history rather
-than a claim (`[S-06]`, `[S-12]`).
+`01-audit.md` §2 D6). It is a combination that cannot be assembled quickly. The receipts are
+historical rather than repeatable: a dated disclosure timeline with named recipients across 18 pages,
+signed and hash-verifiable article text, dated corrections (`[S-01]`, `[S-02]`, `[S-07]`). The finding
+sits inside a production anti-fraud system rather than a demonstration against a test target
+(`[S-01]`). And the arc cannot be adopted by a competitor, because it is a lived history rather than a
+claim (`[S-06]`, `[S-12]`).
 
 **Two honest weaknesses inside the moat.**
 

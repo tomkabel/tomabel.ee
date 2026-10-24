@@ -39,6 +39,12 @@ const stripLocked = (text) => text.replace(LOCKED, 'the locked case sentence.');
 const LIMIT = {
   essay:    { avg: 22, em: 0,  tic: 1, sup: 1 },
   research: { avg: 25, em: 2,  tic: 1, sup: 1 },
+  // Strategy/analysis documents under docs/brand/ are not brand-surface copy. They are
+  // measured so the density is visible, but R2/R3 are advisory for them: the rules exist
+  // to govern what a reader meets (site, LinkedIn, talk abstract, press answer), and a
+  // policy table legitimately carries longer sentences than an essay. R1, R3b and R4-R7
+  // still gate everywhere.
+  analysis: { avg: 30, em: 2,  tic: 1, sup: 1 },
 };
 const LONG = { cap: 35, hardCap: 60, closers: 1 };
 // R2 is an average, so it needs a sample: a one-liner has no rate, and R3 (the long-sentence
@@ -120,8 +126,14 @@ function analyse(path) {
   const lower = authored.toLowerCase();
   const sup = SUPERLATIVES.reduce((n, s) => n + (lower.split(s).length - 1), 0);
 
-  // banned phrases quoted inside "..." are vendor language being dismissed, not used
-  const unquoted = authored.replace(/"[^"]{0,300}"/g, '""').replace(/«[^»]{0,300}»/g, '«»');
+  // banned phrases quoted inside "..." are vendor language being dismissed, not used;
+  // phrases inside a prohibition clause ("no design partners", "never say world-class") are
+  // the rule itself, not the offence.
+  const prohibition = /\b(?:no|never|forbid\w*|prohibit\w*|banned|avoid|must not|may not|do not|don'?t|refuse\w*|excluded)\b[^.!?\n]{0,80}/gi;
+  const unquoted = authored
+    .replace(/"[^"]{0,300}"/g, '""')
+    .replace(/«[^»]{0,300}»/g, '«»')
+    .replace(prohibition, ' ');
   const banned = BANNED.flatMap((re) => {
     const m = unquoted.match(re);
     if (!m) return [];
@@ -141,7 +153,9 @@ function analyse(path) {
 
   const unexempted = sentences.filter((s) => words(s) > LONG.cap && !enumerated(s));
   const unexemptedHard = sentences.filter((s) => words(s) > LONG.hardCap && !enumerated(s));
-  const register = /(^|\/)research\//.test(path) ? 'research' : 'essay';
+  const register = /(^|\/)research\//.test(path) ? 'research'
+    : /(^|\/)docs\/brand\//.test(path) || /(^|\/)brand\//.test(path) ? 'analysis'
+    : 'essay';
   const maxLen = sentences.reduce((m, s) => Math.max(m, words(s)), 0);
 
   return {
@@ -170,15 +184,21 @@ const line = (ok, id, detail) => {
   if (!ok) failures++;
   return `${ok ? 'PASS' : 'FAIL'}  ${id} = ${detail}`;
 };
+// Advisory rows are reported but do not fail the run (analysis register only).
+const note = (r, ok, id, detail) => {
+  const advisory = r.register === 'analysis';
+  if (!ok && !advisory) failures++;
+  return `${ok ? 'PASS' : advisory ? 'NOTE' : 'FAIL'}  ${id}${!ok && advisory ? ' (advisory in the analysis register)' : ''} = ${detail}`;
+};
 
 for (const r of results) {
   const lim = LIMIT[r.register];
   const rows = [
     line(r.emProse <= lim.em, `R1 em dashes in prose <= ${lim.em}`, `${r.emProse} (${f2(r.emPer1k)}/1k)`),
-    line(r.sents >= 5 ? r.avg <= lim.avg : true,
+    note(r, r.sents >= 5 ? r.avg <= lim.avg : true,
       `R2 sentence avg <= ${lim.avg}w`,
       r.sents >= 5 ? `${f2(r.avg)}w` : `n/a (${r.sents} sentence${r.sents === 1 ? '' : 's'}: R2 is a rate, R3 governs)`),
-    line(r.unexempted.length === 0, `R3 sentences > ${LONG.cap}w must be enumerated`, `${r.unexempted.length} violation(s)`),
+    note(r, r.unexempted.length === 0, `R3 sentences > ${LONG.cap}w must be enumerated`, `${r.unexempted.length} violation(s)`),
     line(r.unexemptedHard.length === 0, `R3b no unquoted sentence > ${LONG.hardCap}w`, `${r.unexemptedHard.length}`),
     line(r.ticPer1k <= lim.tic, `R4 not X, but Y <= ${lim.tic}/1k`, `${r.tics} (${f2(r.ticPer1k)}/1k)`),
     line(r.supPer1k <= lim.sup, `R5 superlatives <= ${lim.sup}/1k`, `${r.sup} (${f2(r.supPer1k)}/1k)`),
