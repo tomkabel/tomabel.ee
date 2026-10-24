@@ -711,8 +711,8 @@ export const bio = {
     },
   ],
   kratt: {
-    en: "In Estonian folklore a kratt is a servant assembled from spare parts that works tirelessly for its maker — and turns on you the moment you leave it idle. That’s offensive capability in one image. It’s only useful pointed in the right direction, so I do that pointing in public, and I stand behind my work and my opinions personally.",
-    et: 'Eesti rahvapärimuses on kratt varuosadest kokku pandud teener, kes töötab väsimatult oma tegija heaks — ja pöördub su vastu hetkel, kui jätad ta jõude. See on ründevõimekus ühes pildis. See on kasulik ainult õiges suunas suunatuna, nii et teen seda suunamist avalikult ning seisan oma töö ja arvamuste taga isiklikult.',
+    en: "Cyber-Kratt is the name for the way this work gets done, not for who employs whom. In Estonian folklore a kratt is a servant assembled from spare parts that works tirelessly for its maker — and turns on you the moment you leave it idle. That’s offensive capability in one image. It’s only useful pointed somewhere, so I do the pointing in public, and I stand behind my work and my opinions personally. It is not a company, not a product, and not a job title.",
+    et: 'Cyber-Kratt on nimetus selle töö tegemise viisi jaoks, mitte selle jaoks, kes keda palkab. Eesti rahvapärimuses on kratt varuosadest kokku pandud teener, kes töötab väsimatult oma tegija heaks — ja pöördub su vastu hetkel, kui jätad ta jõude. See on ründevõimekus ühes pildis. Sellest on kasu ainult siis, kui see on kuhugi suunatud, nii et suunan seda avalikult ning seisan oma töö ja arvamuste taga isiklikult. See ei ole ettevõte, ei ole toode ega ametinimetus.',
   },
 };
 
