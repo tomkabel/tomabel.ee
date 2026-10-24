@@ -81,3 +81,5 @@ docs/design-audit/screens/
 docs/brand/00-evidence
 docs/brand/decisions
 docs/brand/.decisions.log
+# brand context is private (decision G-10); the symlink target lives in tomkabel/tomabel-brand
+.agents/brand-context.md
