@@ -287,6 +287,11 @@ archetype axiom scoring (which carries its own dated corrections changelog).
 
 ### Phase 3 — Derived brand context
 
+**Unblocked 2026-10-24:** all ten gaps are decided (`decisions.md`), so the context file can be
+written from evidence plus decisions rather than from guesses. Three decisions created prerequisites
+that phase 3 must respect: the company-status check (P-1), the legal review of the single sentence
+(P-2), and the handle sweep before any new copy (P-5).
+
 - [ ] Write `.agents/brand-context.md` (the path every other skill reads) from the dossier only
 - [ ] Any field the corpus cannot settle gets `[unverified → needs Tom]`, never a plausible filler
 - [ ] Aim for ≤12 open questions, each with a proposed default, so this can be answered in one pass

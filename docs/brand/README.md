@@ -6,15 +6,20 @@ Working folder for the personal brand system of Tom Kristian Abel, built from
 | Path | What it is |
 |---|---|
 | `personal-brand-program.md` | The plan: library analysis, skill selection, evidence corpus, phases, gates |
-| `00-evidence/source-register.md` | Source register — one row per public source, verification status, and claim status per statement |
+| `decisions.md` | The ten open questions, decided 2026-10-24 by rubric — picks verbatim, divergences marked, prerequisites listed |
 | `01-audit.md` | Phase 2 baseline audit: 6-dimension scorecard (17/30), remediation check against the disclosures review, intent-vs-perception delta |
-| `00-evidence/statements-and-quotes.md` | Coded verbatim quotes, the current brand copy, and the measured voice signals |
-| `00-evidence/serp-and-ai-snapshot-2026-10-24.md` | Perception baseline: AI answer (captured) + ranked SERP (capture failed, documented) |
-| `00-evidence/gaps.md` | Ranked open questions, each with the default that will be used if unanswered |
-| `00-evidence/extracts/` | The only passages that may be quoted in an output, each tagged with claim status |
-| `00-evidence/raw/` | Untouched captures: press pages, GitHub READMEs, LinkedIn profile, search JSON, voice stats |
+| `00-evidence/` → private | Source register (33 sources), coded quote bank, extracts, raw captures, gaps, SERP/AI snapshot. **Moved to the private repo `tomkabel/tomabel-brand`** per decision G-10; a symlink keeps the phases runnable locally. |
+| `decisions/` → private | The ten rubric payloads (option sets, bands, hard constraints) |
+| `.decisions.log` → private | Machine-readable record: picks, divergences, stability readings |
 | `outputs/01-…` … `outputs/12-…` | Numbered skill outputs, in the order named in the plan |
 | `check-traceability.mjs` | `node docs/brand/check-traceability.mjs` — every `[S-nn]` reference must resolve to a register row (script adopted from the `brand-strategy-development` skill) |
+
+**The split (decision G-10, 2026-10-24).** This repo is public. Strategy and sensitive evidence —
+the curated `do-not-use` list, the LinkedIn capture, the pre-decisional gap analysis, the decision
+payloads — live in `tomkabel/tomabel-brand` (private). Everything meant to be read stays here: the
+plan, the audit, the decision record and, from phase 4, the outputs. Note that the evidence was
+committed publicly once (commit `e68aa48`) before the split; it is gone from the tip, not from
+history.
 
 **Rules that apply to everything in this folder**
 

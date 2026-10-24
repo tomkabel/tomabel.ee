@@ -75,3 +75,9 @@ identity-rebrand-plan.md
 
 # Design-audit screenshots (26MB, regenerate with docs/design-audit/shoot.py)
 docs/design-audit/screens/
+
+# Brand workspace split (decision G-10, 2026-10-24): strategy and sensitive evidence
+# live in the private repo tomkabel/tomabel-brand. Local symlinks keep the phases runnable.
+docs/brand/00-evidence
+docs/brand/decisions
+docs/brand/.decisions.log
