@@ -72,6 +72,18 @@ phase5*.md
 phase5-source/
 phase*-handoff-prompt.md
 identity-rebrand-plan.md
+# Same class: working drafts that end up at the worktree root — the 19-page
+# disclosures editorial review, the article clippings and the STE100/plain
+# rewrite experiments. Source of record is the private repo tomkabel/tomabel-brand.
+/tomabel-disclosures-review.md
+/russian-cyber-ops-estonia*.md
+
+# Local agent/dev tooling output (machine-local, regenerate freely)
+.playwright-mcp/
+# Symlink farm into .agents/skills/ (already ignored above); committing these
+# would land 33 dangling symlinks in the repo.
+.hermes/skills/
+/note.txt
 
 # Design-audit screenshots (26MB, regenerate with docs/design-audit/shoot.py)
 docs/design-audit/screens/
