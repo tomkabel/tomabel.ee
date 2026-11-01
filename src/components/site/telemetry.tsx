@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { X } from 'lucide-react';
 import { useTranslation } from '../../i18n/LanguageContext';
 
@@ -23,6 +23,16 @@ type State =
   | { kind: 'live'; data: Connection }
   | { kind: 'unavailable' };
 
+// The last connection the visitor opted in to fetching, shared with the hero's
+// ambient layer so it can show the real JA4 instead of a placeholder.
+let observed: Connection | undefined;
+const listeners = new Set<() => void>();
+const subscribe = (fn: () => void) => {
+  listeners.add(fn);
+  return () => listeners.delete(fn);
+};
+export const useObservedConnection = () => useSyncExternalStore(subscribe, () => observed, () => undefined);
+
 // Opt-in slide-over. Fetches ONLY on open (never on page load), renders only
 // real fields, and degrades to an honest "unreachable" line — never fake values.
 export default function Telemetry({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -41,6 +51,8 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
         const data: unknown = await res.json();
         if (!isConnection(data)) throw new Error('malformed payload');
         setState({ kind: 'live', data });
+        observed = data;
+        listeners.forEach((fn) => fn());
       } catch {
         if (!controller.signal.aborted) setState({ kind: 'unavailable' });
       }

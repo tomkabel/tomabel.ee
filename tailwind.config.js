@@ -28,7 +28,7 @@ export default {
       '3xl': ['var(--step-5)', { lineHeight: '1.2' }],
       '4xl': ['var(--step-6)', { lineHeight: '1.12' }],
       '5xl': ['var(--step-7)', { lineHeight: '1.08' }],
-      '7xl': ['var(--step-8)', { lineHeight: '1.02' }],
+      '7xl': ['var(--step-8)', { lineHeight: '1.08' }],
     },
     extend: {
       fontFamily: {
@@ -51,6 +51,7 @@ export default {
         muted: tone('ink-muted'),
         'muted-foreground': tone('ink-soft'),
         subtle: tone('ink-faint'),
+        dim: tone('ink-dim'),
         border: 'var(--line)',
         'border-strong': 'var(--line-strong)',
         accent: tone('signal'),
