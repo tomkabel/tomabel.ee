@@ -66,7 +66,8 @@ export function TelemetryLayer() {
     ['LOCALE_CLAIM', client?.locale ?? pending],
     ['HARDWARE_CLAIM', client?.hardware ?? pending],
     ['NAVIGATOR_WEBDRIVER', client?.webdriver ?? pending],
-    ['SESSION_BINDING', 'NO_TOKEN_BINDING_DETECTED (MITM_VULNERABLE)'],
+    // Nothing here tests token binding, so no result is claimed.
+    ['SESSION_BINDING', 'UNOBSERVED // NOT TESTED'],
   ];
 
   return (

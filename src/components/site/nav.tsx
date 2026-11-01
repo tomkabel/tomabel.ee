@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Link, { withSlash } from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { Globe } from 'lucide-react';
-import Telemetry from './telemetry';
+import Telemetry, { useObservedConnection } from './telemetry';
 
 // One label per destination: /disclosures is "Research" everywhere, including
 // the hero CTA and the index heading.
@@ -22,6 +22,10 @@ export default function SiteNav() {
   const { language, setLanguage, t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
   const [telemetryOpen, setTelemetryOpen] = React.useState(false);
+  // Green only once the inspector has a successful live result; neutral before
+  // that and after a failed fetch.
+  const connection = useObservedConnection();
+  const live = connection !== undefined && connection.live !== false;
 
   return (
     <nav aria-label={t.nav.primary} className="sticky top-0 z-50 border-b border-border bg-background px-6">
@@ -78,7 +82,7 @@ export default function SiteNav() {
             aria-label={t.telemetry.title}
             title={t.telemetry.title}
           >
-            <span aria-hidden className="pulse-dot" />
+            <span aria-hidden className="pulse-dot" data-live={live || undefined} />
             <span aria-hidden className="hidden lg:inline">{t.telemetry.title}</span>
           </button>
 

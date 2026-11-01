@@ -189,13 +189,17 @@
     background-size: 100% 1px;
   }
 
-  /* 6px live-status dot on the connection inspector. The pulse is opacity
-     only (no glow, no scale) and stops under prefers-reduced-motion. */
+  /* 6px status dot on the connection inspector: neutral until the inspector
+     has a live result, then emerald with an opacity-only pulse (no glow, no
+     scale) that stops under prefers-reduced-motion. */
   .pulse-dot {
     width: 6px;
     height: 6px;
     flex: none;
     border-radius: 9999px;
+    background-color: oklch(var(--ink-faint));
+  }
+  .pulse-dot[data-live] {
     background-color: oklch(var(--signal));
     animation: pulse-dot 2.4s ease-in-out infinite;
   }

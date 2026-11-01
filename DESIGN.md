@@ -121,15 +121,17 @@ pure white.
   holds contact channels only (About and My story are their own footer group). Icon
   buttons are 44×44; the connection button shows its "Your connection" label at `lg+`.
 - **Loader:** a hairline indeterminate scan bar with `role="status"`.
-- **Connection inspector** (nav): a 6px emerald `.pulse-dot` (opacity-only pulse, the site's one
-  live dot). Hover/focus sets `data-inspect` on `<html>` and lights the hero telemetry; click
+- **Connection inspector** (nav): a 6px `.pulse-dot`, neutral (`ink-faint`) until the drawer
+  gets a successful live result, then emerald with an opacity-only pulse (the site's one live
+  dot). A failed fetch returns it to neutral. Hover/focus sets `data-inspect` on `<html>` and lights the hero telemetry; click
   opens the opt-in drawer (`telemetry.tsx`), which fetches only on open.
 - **Homepage instrumentation** (`components/site/protocol.tsx`), all `aria-hidden` and
   `pointer-events: none`:
   - `TelemetryLayer`: top-right of the hero, xl+ only. An intercepted-handshake diagram
     (claimed identity vs observed telemetry) and a field list. Client values are read in the
     browser after hydration and never sent anywhere; the JA4 row stays "UNOBSERVED" until the
-    visitor opens the inspector. Never fabricate visitor values.
+    visitor opens the inspector, and SESSION_BINDING reads "NOT TESTED" because nothing tests
+    it. Never fabricate visitor values or test results.
   - `FaultLine`: a hairline across the viewport, offset 6px either side of an emerald node,
     labelled `[ LAYER 7: CLAIMED ]` / `[ OPCODE / TLS: VERIFIED ]`. The break follows the pointer.
   - Card schematics (`WorkCard schematic`): ≤72px-tall line drawings in the band above the
