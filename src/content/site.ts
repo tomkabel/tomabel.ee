@@ -8,40 +8,16 @@ export const site = {
     en: 'Systems architect and security researcher.',
     et: 'Süsteemiarhitekt ja turvauurija.',
   },
-  hero: {
-    eyebrow: {
-      en: 'Tom Kristian Abel · Estonia',
-      et: 'Tom Kristian Abel · Eesti',
-    },
-    line1: {
-      en: 'I broke authentication for a living.',
-      et: 'Elatise teenimiseks murdsin autentimist.',
-    },
-    line2: {
-      en: 'Now I build the kind that doesn’t.',
-      et: 'Nüüd ehitan sellist, mis ei murdu.',
-    },
-    intro: {
-      en: "I’m Tom Kristian Abel, a systems architect and security researcher. I reverse engineer how authentication and browser defenses fail, then design the systems that survive what I find.",
-      et: 'Olen Tom Kristian Abel, süsteemiarhitekt ja turvauurija. Pöördprojekteerin, kuidas autentimine ja brauserikaitse ebaõnnestuvad, ning kavandan süsteemid, mis minu leitu üle elavad.',
-    },
-  },
-  // The fault line, in the author's words: one sentence as the pull quote,
-  // the specifics as reading text under it.
-  introStrip: {
-    quote: {
-      en: "Most of my work lives at one fault line: the gap between what a system claims to verify and what it actually verifies.",
-      et: "Suurem osa minu tööst elab ühel murdejoonel: lõhe selle vahel, mida süsteem väidab end kontrollivat, ja mida ta tegelikult kontrollib.",
-    },
-    body: {
-      en: "I’ve spent years on both sides of that gap — first exploiting it, now closing it. These days I research identity protocols (FIDO2 / WebAuthn, eIDAS, Smart-ID), reverse engineer anti-fraud systems at the opcode level, and ship production platforms built secure-by-design. I publish what I find, and I take responsibility for all of it.",
-      et: "Olen aastaid veetnud mõlemal pool seda lõhet — algul seda ära kasutades, nüüd sulgedes. Tänapäeval uurin identiteediprotokolle (FIDO2 / WebAuthn, eIDAS, Smart-ID), pöördprojekteerin pettusevastaseid süsteeme opkoodi tasemel ja tarnin tootmisplatvorme, mis on turvalised disaini järgi, mitte lootuse peale. Avaldan oma leiud avalikult ja võtan kõige eest vastutuse.",
-    },
-  },
   contact: {
     github: 'https://github.com/tomkabel',
     linkedin: 'https://www.linkedin.com/in/hr-abel',
     email: 'mailto:tom@tomabel.ee',
+  },
+  // Business register facts, same as the legal pages (translations.ts).
+  company: {
+    name: 'ProksiAbel OÜ',
+    registryCode: '17017826',
+    seat: { en: 'Sindi, Pärnu County', et: 'Sindi, Pärnumaa' },
   },
   disclaimer: {
     en: 'ProksiAbel OÜ maintains strict client confidentiality. I, personally, am publicly accountable for my research and opinions.',
@@ -50,6 +26,165 @@ export const site = {
   languages: {
     en: 'Estonia-based. I write in English and Estonian.',
     et: 'Asun Eestis. Kirjutan inglise ja eesti keeles.',
+  },
+};
+
+// ─── Homepage (ProksiAbel OÜ) ────────────────────────────────────────────────
+
+// Mailto subjects pre-fill the two conversion paths so the inbox can triage.
+export const briefingHref = `${site.contact.email}?subject=Executive%20briefing`;
+export const assessmentHref = `${site.contact.email}?subject=Zero-trust%20assessment`;
+
+export const home = {
+  hero: {
+    kicker: {
+      en: 'Adversarial engineering & authentication defense',
+      et: 'Ründeinseneeria ja autentimise kaitse',
+    },
+    title: {
+      en: 'Defend the session layer with the engineer who deconstructed it.',
+      et: 'Kaitse seansikihti inseneriga, kes selle lahti võttis.',
+    },
+    intro: {
+      en: 'Standard multi-factor authentication is no longer a perimeter. ProksiAbel OÜ provides enterprise red-teaming, reverse-engineered AiTM resilience, and deep proxy telemetry across Estonia and the EU.',
+      et: 'Tavapärane mitmikautentimine ei ole enam turvaperimeeter. ProksiAbel OÜ pakub ettevõtetele punase meeskonna teste, pöördprojekteerimisel põhinevat AiTM-vastupidavust ja sügavat proksitelemeetriat Eestis ja kogu ELis.',
+    },
+    primary: { en: 'Request zero-trust assessment', et: 'Telli nullusalduse hindamine' },
+    secondary: { en: 'Explore fingerprintproxy documentation', et: 'Ava fingerprintproxy dokumentatsioon' },
+  },
+  // Legend under the hero schematic. Text lives in HTML, not inside the SVG,
+  // so it never scales below the 12px floor on small screens.
+  schematic: {
+    label: {
+      en: 'Schematic: chaotic request vectors from the left meet a glass proxy membrane. Three are dropped at the membrane; the rest leave on the right as an ordered grid of verified sessions.',
+      et: 'Skeem: vasakult saabuvad korrapäratud päringuvektorid jõuavad klaasist proksimembraanini. Kolm neist peatatakse membraanil, ülejäänud väljuvad paremalt korrastatud ruudustikuna kinnitatud seanssidest.',
+    },
+    ingress: { en: 'Unverified ingress', et: 'Kontrollimata sisend' },
+    membrane: { en: 'Proxy membrane', et: 'Proksimembraan' },
+    egress: { en: 'Verified sessions', et: 'Kinnitatud seansid' },
+    checks: [
+      { k: 'TLS', v: { en: 'Handshake inspected · JA4', et: 'Kätlus kontrollitud · JA4' } },
+      { k: 'BIND', v: { en: 'Token bound to origin', et: 'Märgis seotud päritoluga' } },
+      { k: 'BOT', v: { en: 'Automation dropped', et: 'Automaatika peatatud' } },
+    ],
+  },
+  anatomy: {
+    kicker: { en: 'AiTM resilience', et: 'AiTM-vastupidavus' },
+    title: { en: 'The anatomy of modern session compromise', et: 'Tänapäevase seansiründe anatoomia' },
+    body: [
+      {
+        en: 'A reverse-proxy phishing framework such as Evilginx does not imitate the login page. It relays it. The victim’s browser holds a TLS session with the attacker’s host, and the attacker’s host holds a second one with the real identity provider. Every page, every one-time code and every push approval is genuine, forwarded in real time.',
+        et: 'Pöördproksil põhinev andmepüügiraamistik, näiteks Evilginx, ei jäljenda sisselogimislehte. See vahendab seda. Ohvri brauser hoiab TLS-seanssi ründaja serveriga ja ründaja server teist seanssi päris identiteedipakkujaga. Iga leht, iga ühekordne kood ja iga tõukekinnitus on ehtne ning edastatakse reaalajas.',
+      },
+      {
+        en: 'When the user completes MFA, the identity provider issues a session cookie, and the proxy in the middle keeps a copy. Replayed from the attacker’s browser, that cookie needs neither the password nor the second factor. The session is already authenticated.',
+        et: 'Kui kasutaja läbib mitmikautentimise, väljastab identiteedipakkuja seansiküpsise ja vahel olev proksi jätab endale koopia. Ründaja brauserist taasesitatuna ei vaja see küpsis enam parooli ega teist tegurit. Seanss on juba autenditud.',
+      },
+      {
+        en: 'The controls that hold bind authentication to something a relay cannot forward: the origin the browser actually connected to (FIDO2 / WebAuthn), a key that never leaves the device (DBSC, token binding), or a network fingerprint that disagrees with the client it claims to be. ProksiAbel OÜ knows where each of these holds and where it leaks, because its founder built and tuned the relays they exist to stop.',
+        et: 'Vastu peavad kontrollid, mis seovad autentimise millegagi, mida vahendaja edasi saata ei saa: päritoluga, millega brauser tegelikult ühendus (FIDO2 / WebAuthn), võtmega, mis seadmest ei lahku (DBSC, märgise sidumine), või võrgusõrmejäljega, mis ei klapi kliendiga, kelleks päring end nimetab. ProksiAbel OÜ teab, kus igaüks neist peab ja kus lekib, sest selle asutaja ehitas ja häälestas just neid vahendajaid, mille peatamiseks need kontrollid on loodud.',
+      },
+    ],
+    // Assumption on the left, observed reality on the right.
+    pairs: [
+      {
+        from: { en: 'Legacy MFA assumptions', et: 'Pärandloogikaga MFA eeldused' },
+        fromBody: { en: 'A second factor proves the right person is present.', et: 'Teine tegur tõendab, et kohal on õige inimene.' },
+        to: { en: 'AiTM proxy reality', et: 'AiTM-proksi tegelikkus' },
+        toBody: {
+          en: 'The proxy relays the prompt and keeps the session cookie the factor produced. Presence was proven, for the attacker’s benefit.',
+          et: 'Proksi vahendab kinnituspäringut ja jätab endale teguri abil saadud seansiküpsise. Kohalolek tõendati, kuid kasu sai ründaja.',
+        },
+      },
+      {
+        from: { en: 'Standard WAF rules', et: 'Tavapärased WAF-reeglid' },
+        fromBody: { en: 'Block on IP reputation, request rate and known signatures.', et: 'Blokeeri IP maine, päringusageduse ja teadaolevate signatuuride järgi.' },
+        to: { en: 'TLS & behavioral fingerprinting', et: 'TLS- ja käitumissõrmejäljed' },
+        toBody: {
+          en: 'A relay speaks with its own TLS stack. JA3 / JA4, HTTP/2 settings and header order contradict the browser its User-Agent names.',
+          et: 'Vahendaja räägib oma TLS-pinuga. JA3 / JA4, HTTP/2 seaded ja päiste järjekord ei klapi brauseriga, mida User-Agent väidab.',
+        },
+      },
+      {
+        from: { en: 'Compliance checklists', et: 'Vastavuse kontrollnimekirjad' },
+        fromBody: { en: 'MFA enabled. Phishing training completed. Box ticked.', et: 'MFA sisse lülitatud. Andmepüügikoolitus läbitud. Linnuke kirjas.' },
+        to: { en: 'Adversarial red-teaming', et: 'Punase meeskonna rünnakutestid' },
+        toBody: {
+          en: 'A live relay campaign against your own tenant, under signed rules of engagement, shows which sessions survive and which do not.',
+          et: 'Elav vahendajakampaania teie enda keskkonna vastu, allkirjastatud töökorra alusel, näitab, millised seansid peavad vastu ja millised mitte.',
+        },
+      },
+    ],
+  },
+  capabilities: {
+    kicker: { en: 'Architecture', et: 'Arhitektuur' },
+    title: { en: 'Core capabilities and proprietary tooling', et: 'Põhivõimekused ja omaloodud tööriistad' },
+    aitm: {
+      title: { en: 'AiTM & MFA resilience auditing', et: 'AiTM- ja MFA-vastupidavuse audit' },
+      body: {
+        en: 'Simulated adversary-in-the-middle campaigns, tailored to your identity provider, that harden Entra ID, Okta and custom OIDC deployments and move sign-in to FIDO2 / WebAuthn with the token bound to the origin.',
+        et: 'Teie identiteedipakkujale kohandatud simuleeritud vahendajarünnakud, mis karastavad Entra ID, Okta ja kohandatud OIDC lahendusi ning viivad sisselogimise FIDO2 / WebAuthn peale, kus märgis on seotud päritoluga.',
+      },
+      tags: ['Entra ID', 'Okta', 'OIDC', 'FIDO2 / WebAuthn'],
+    },
+    fingerprint: {
+      title: { en: 'fingerprintproxy engine', et: 'fingerprintproxy mootor' },
+      body: {
+        en: 'An open-source Go proxy that reproduces the TLS ClientHello of real browsers, with MITM interception and a configuration API. In an engagement it answers one question: does your bot and proxy detection still hold when automated traffic looks exactly like a browser at the TLS layer?',
+        et: 'Avatud lähtekoodiga Go-proksi, mis taastoodab päris brauserite TLS ClientHello sõnumi ning toetab MITM-pealtkuulamist ja seadistus-API-t. Testis vastab see ühele küsimusele: kas teie robotite ja proksite tuvastus peab ka siis, kui automaatne liiklus näeb TLS-kihis välja täpselt nagu brauser?',
+      },
+      specs: [
+        { k: { en: 'Profiles', et: 'Profiilid' }, v: '65+' },
+        { k: { en: 'Fingerprints', et: 'Sõrmejäljed' }, v: 'JA3 · JA4' },
+        { k: { en: 'Runtime', et: 'Keel' }, v: 'Go' },
+        { k: { en: 'Interception', et: 'Pealtkuulamine' }, v: 'MITM' },
+      ],
+    },
+    redteam: {
+      title: { en: 'Bespoke red-teaming & offensive engineering', et: 'Rätsepatöös punase meeskonna testid ja ründeinseneeria' },
+      body: {
+        en: 'Full-scope adversarial simulations built on real exploit mechanics, not on the output of an automated vulnerability scanner.',
+        et: 'Täismahus rünnakusimulatsioonid, mis tuginevad päris ärakasutusmehhanismidele, mitte automaatse haavatavusskanneri väljundile.',
+      },
+    },
+    zerotrust: {
+      title: { en: 'Zero-trust architecture consulting', et: 'Nullusalduse arhitektuuri nõustamine' },
+      body: {
+        en: 'Authentication flows designed on the assumption that the network and the proxy layer are already compromised. Grounded in the Zero-Trust Octagon, an open framework of eight axioms and nine design dimensions.',
+        et: 'Autentimisvood, mis on kavandatud eeldusel, et võrk ja proksikiht on juba kompromiteeritud. Aluseks on Zero-Trust Octagon, avatud raamistik kaheksa aksioomi ja üheksa disainimõõtmega.',
+      },
+      cta: { en: 'Read the framework', et: 'Loe raamistikku' },
+    },
+  },
+  principal: {
+    kicker: { en: 'The principal', et: 'Asutaja' },
+    title: { en: 'Ground-truth expertise. Institutional transparency.', et: 'Kogemusest sündinud asjatundlikkus. Läbipaistvus kui põhimõte.' },
+    body: [
+      {
+        en: 'Tom Kristian Abel did not learn session hijacking from a textbook. He spent years reverse engineering browser security, TLS fingerprinting and anti-fraud systems, and for part of that time he built and sold a modified version of the Evilginx reverse-proxy toolkit. On 20 November 2024 Harju County Court convicted him of preparing computer crime. He served the custodial part of the sentence and takes full responsibility for it.',
+        et: 'Tom Kristian Abel ei õppinud seansside kaaperdamist õpikust. Ta pöördprojekteeris aastaid brauserite turvet, TLS-sõrmejälgi ja pettusevastaseid süsteeme ning osa sellest ajast ehitas ja müüs Evilginxi pöördproksi tööriista muudetud versiooni. 20. novembril 2024 mõistis Harju Maakohus ta süüdi arvutikuriteo ettevalmistamises. Ta kandis ära karistuse vangistusosa ja võtab selle eest täieliku vastutuse.',
+      },
+      {
+        en: 'What that work left behind is ground truth: an exact, practical understanding of how an adversary-in-the-middle relay is built, tuned and hidden, and of which controls actually stop it. That knowledge now works only for defenders. He publishes his research, reports findings through coordinated disclosure, including to SK ID Solutions and RIA, and takes engagements solely under signed rules of engagement.',
+        et: 'Sellest tööst jäi alles kogemuslik tõde: täpne ja praktiline arusaam, kuidas vahendajarünnaku proksi ehitatakse, häälestatakse ja peidetakse ning millised kontrollid seda päriselt peatavad. Nüüd teenib see teadmine ainult kaitsjaid. Ta avaldab oma uuringud, teatab leidudest kooskõlastatud avalikustamise kaudu, muu hulgas SK ID Solutionsile ja RIA-le, ning võtab töid vastu üksnes allkirjastatud töökorra alusel.',
+      },
+    ],
+    facts: [
+      { k: { en: 'Role', et: 'Roll' }, v: { en: 'Founder, ProksiAbel OÜ', et: 'Asutaja, ProksiAbel OÜ' } },
+      { k: { en: 'Based', et: 'Asukoht' }, v: { en: 'Tallinn · Pärnu County', et: 'Tallinn · Pärnumaa' } },
+      { k: { en: 'Focus', et: 'Fookus' }, v: { en: 'Session layer, TLS, identity protocols', et: 'Seansikiht, TLS, identiteediprotokollid' } },
+    ],
+    story: { en: 'The full account, in his words', et: 'Kogu lugu tema enda sõnadega' },
+    work: { en: 'Published work', et: 'Avaldatud tööd' },
+  },
+  footer: {
+    ethicsTitle: { en: 'Rules of engagement', et: 'Töökord' },
+    ethics: {
+      en: 'Every offensive engagement runs under a signed rules-of-engagement agreement and written authorisation from the owner of the systems in scope, within Estonian and EU law. Findings outside an engagement go through coordinated disclosure.',
+      et: 'Iga ründetest toimub allkirjastatud töökorra ja testitavate süsteemide omaniku kirjaliku loa alusel, Eesti ja Euroopa Liidu õiguse piires. Väljaspool tellitud tööd tehtud leiud lähevad kooskõlastatud avalikustamisse.',
+    },
+    operating: { en: 'Operating in Tallinn & the EU', et: 'Tegutseb Tallinnas ja ELis' },
+    registered: { en: 'Registered in', et: 'Registreeritud:' },
   },
 };
 

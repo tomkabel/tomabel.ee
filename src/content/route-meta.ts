@@ -44,8 +44,8 @@ export type RouteMeta = { en: PageMeta; et?: PageMeta; ld?: Ld };
 
 export const routeMeta = {
   "/": {
-    en: { title: "Tom Kristian Abel — Security Researcher & Systems Architect", description: "Tom Kristian Abel — Security Researcher & Systems Architect. I reverse engineer how authentication fails, then build systems that survive what I find." },
-    et: { title: "Tom Kristian Abel — turvauurija ja süsteemiarhitekt", description: "Tom Kristian Abel, turvauurija ja süsteemiarhitekt. Pöördprojekteerin autentimise nurjumist ja ehitan süsteeme, mis leitud puudustele vastu peavad." },
+    en: { title: "ProksiAbel OÜ — AiTM Resilience & Red-Teaming · Tom Kristian Abel", description: "Red-teaming, AiTM resilience audits and TLS fingerprint telemetry from Tom Kristian Abel, who once built the session-hijacking proxies that MFA fails against." },
+    et: { title: "ProksiAbel OÜ — AiTM-vastupidavus ja punane meeskond", description: "Punase meeskonna testid, AiTM-vastupidavuse auditid ja TLS-sõrmejälgede telemeetria. Tom Kristian Abel ehitas kunagi proksisid, millele MFA alla jääb." },
   },
   "/disclosures": {
     en: { title: "Security Research & Essays — Tom Kristian Abel", description: "Vulnerability research, teardowns, architecture frameworks and essays. Work on live systems states its disclosure status." },

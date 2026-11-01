@@ -1,66 +1,57 @@
-/* tomabel.ee — Technical Editorial Design Tokens
+/* tomabel.ee — "Glass Proxy" Design Tokens
  *
  * Every colour, radius, type step, duration and section rhythm lives here as a
  * custom property; tailwind.config.js only maps utility names onto these.
  *
- * Colour is derived from the instrument the work is about, not a stock palette:
- * the two accents are the classic CRT phosphors (P1 green for signal, P3 amber
- * for caution) and the surfaces are the blue-black of an unlit screen. The
- * surface ladder climbs in lightness AND drifts in hue from cold blue (258°)
- * toward the phosphor (225°), so elevation reads as "closer to the signal"
- * rather than as grey steps. Colours are OKLCH channel triplets so Tailwind's
- * `/alpha` modifiers keep working: oklch(var(--x) / <alpha-value>).
+ * Nordic slate and glass: a blue-black Baltic surface ladder, platinum ink, and
+ * one refraction accent (arctic cyan) used for active state and data beams
+ * only. Glass panes (.glass) are the single translucent material. Colours are
+ * OKLCH channel triplets so Tailwind's `/alpha` modifiers keep working:
+ * oklch(var(--x) / <alpha-value>).
  */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Commit Mono 400, latin, woff2 only. The fontsource CSS also lists a .woff
-   fallback that Vite would emit as a dead 57 KB asset. 500/700 are not shipped:
-   the only bold mono uses are two 1-glyph badges (synthesised bold is fine). */
-@font-face {
-  font-family: 'Commit Mono';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url('../node_modules/@fontsource/commit-mono/files/commit-mono-latin-400-normal.woff2') format('woff2');
-}
-
 @layer base {
   :root {
     /* Surface ladder, lowest to highest (L C H). */
-    --sunken: 0.125 0.008 258; /* code wells, scrims, masthead band */
-    --canvas: 0.15 0.009 255; /* page background */
-    --surface-1: 0.182 0.011 248; /* resting cards, strips */
-    --surface-2: 0.212 0.013 240; /* hovered cards, asides */
-    --surface-3: 0.245 0.015 232; /* pressed / selected */
-    --overlay: 0.28 0.016 225; /* drawers over content */
+    --sunken: 0.144 0.014 262; /* #070A10 wells, scrims, masthead band */
+    --canvas: 0.168 0.018 264; /* #0B0F17 Deep Baltic Slate */
+    --surface-1: 0.217 0.026 261; /* #131A26 Brushed Obsidian */
+    --surface-2: 0.255 0.031 260; /* #1A2332 hovered, asides */
+    --surface-3: 0.291 0.035 259; /* #212C3D pressed / selected */
+    --overlay: 0.323 0.038 259; /* #283447 drawers over content */
 
-    /* Ink ladder. Contrast vs --canvas: 17.3 / 9.7 / 7.4 / 5.9 : 1 (all AA). */
-    --ink: 0.955 0.006 250;
-    --ink-muted: 0.775 0.018 252;
-    --ink-soft: 0.7 0.02 252;
-    --ink-faint: 0.64 0.022 252;
+    /* Ink ladder. Contrast vs canvas / surface-1: 18.3/16.7, 12.9/11.8,
+       7.5/6.8, 6.2/5.6 : 1 (all AA). */
+    --ink: 0.984 0.003 248; /* #F8FAFC Crisp Platinum */
+    --ink-muted: 0.869 0.02 253; /* #CBD5E1 */
+    --ink-soft: 0.711 0.035 257; /* #94A3B8 Muted Steel */
+    --ink-faint: 0.661 0.038 256; /* #8494AA */
+    --silver: 0.929 0.013 256; /* #E2E8F0 Institutional Silver */
 
-    /* Phosphor accents: tonal steps, not one flat swatch. */
-    --signal: 0.795 0.15 163; /* P1 green, 11:1 on canvas */
-    --signal-strong: 0.865 0.13 165; /* hover / pressed */
-    --signal-ink: 0.21 0.04 163; /* text on a signal fill, 9.8:1 */
-    --caution: 0.83 0.135 75; /* P3 amber */
+    /* Refraction accent: tonal steps, not one flat swatch. */
+    --signal: 0.754 0.139 233; /* #38BDF8 Arctic Cyan, 9:1 on canvas */
+    --signal-strong: 0.828 0.101 230; /* #7DD3FC hover / pressed */
+    --signal-ink: 0.293 0.063 243; /* #082F49 text on a signal fill, 6.5:1 */
+    --caution: 0.83 0.135 75; /* amber */
     --fault: 0.715 0.165 22; /* integrity mismatch only */
 
-    --line: oklch(0.955 0.006 250 / 0.08);
-    --line-strong: oklch(0.955 0.006 250 / 0.14);
+    --line: oklch(1 0 0 / 0.08);
+    --line-strong: oklch(1 0 0 / 0.14);
+    --glass: oklch(1 0 0 / 0.03);
 
-    /* Type. Display is an optical-size serif (a publication voice for
-       research); UI and body run in a grotesk; data in a monospace. */
+    /* Type. Swiss neo-grotesque for headings and UI, monospace for registry
+       and telemetry data. The serif survives only in long personal passages. */
     --font-sans: 'Geist Variable', 'Geist Variable fallback', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Newsreader Variable', 'Newsreader Variable fallback', Charter, 'Iowan Old Style', Georgia, serif;
-    --font-mono: 'Commit Mono', 'Commit Mono fallback', ui-monospace, 'SFMono-Regular', monospace;
-    --weight-display: 540;
-    --tracking-display: -0.018em;
-    --tracking-label: 0.14em;
+    --font-display: var(--font-sans);
+    --font-serif: 'Newsreader Variable', 'Newsreader Variable fallback', Charter, 'Iowan Old Style', Georgia, serif;
+    --font-mono: 'Geist Mono Variable', 'Geist Mono Variable fallback', ui-monospace, 'SFMono-Regular', monospace;
+    --weight-display: 560;
+    --tracking-display: -0.03em;
+    --tracking-label: 0.08em;
 
     /* Fluid scale: each step interpolates between a 375px and a 1440px
        viewport, so there are no breakpoint jumps. */
@@ -179,6 +170,67 @@
     transform: translateY(1px);
   }
 
+  /* The bordered secondary: hairline silver edge that picks up a soft cyan
+     halo on hover. Used for the nav CTA. */
+  .btn-outline {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-control);
+    border: 1px solid var(--line-strong);
+    background-color: var(--glass);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: oklch(var(--silver));
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-slow) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+  }
+  .btn-outline:hover {
+    border-color: oklch(var(--signal) / 0.5);
+    color: oklch(var(--ink));
+    box-shadow: 0 0 24px -6px oklch(var(--signal) / 0.45);
+  }
+
+  /* The one translucent material. A pane of frosted glass over the slate. */
+  .glass {
+    background-color: var(--glass);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  /* Light refracting across the pane's edge on hover: a cyan highlight slides
+     along a masked 1px border. Slow and once, never looping. */
+  .glass-edge {
+    position: relative;
+    isolation: isolate;
+  }
+  .glass-edge::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(115deg, transparent 30%, oklch(var(--signal) / 0.7) 50%, transparent 70%) 150% 0 / 300% 100% no-repeat;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      background-position 1200ms var(--ease-out);
+    pointer-events: none;
+  }
+  .glass-edge:hover::before,
+  .glass-edge:focus-within::before {
+    opacity: 1;
+    background-position: -50% 0;
+  }
+
   /* Editorial link underline that draws in from the left on hover. */
   .link-draw {
     background-image: linear-gradient(currentColor, currentColor);
@@ -200,6 +252,15 @@
     line-height: 1.65;
   }
 
+  /* A short light packet travelling a path (pathLength=100) in the hero
+     schematic. Slow and linear: data in transit, not a glitch. */
+  .beam {
+    fill: none;
+    stroke-dasharray: 5 95;
+    stroke-dashoffset: 100;
+    animation: beam 6s linear infinite;
+  }
+
   .arrow-shift {
     display: inline-block;
     transition: transform var(--dur-base) var(--ease-out);
@@ -210,7 +271,16 @@
   }
 }
 
+@keyframes beam {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .beam {
+    display: none;
+  }
   *,
   *::before,
   *::after {

@@ -34,7 +34,7 @@ export default defineConfig({
       fallbacks: {
         'Geist Variable': ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial'],
         'Newsreader Variable': ['Georgia', 'Times New Roman'],
-        'Commit Mono': ['Courier New'],
+        'Geist Mono Variable': ['Courier New'],
       },
     }),
   ],

@@ -34,7 +34,7 @@ export default {
       fontFamily: {
         sans: 'var(--font-sans)',
         display: 'var(--font-display)',
-        serif: 'var(--font-display)',
+        serif: 'var(--font-serif)',
         mono: 'var(--font-mono)',
       },
       letterSpacing: {
@@ -49,6 +49,7 @@ export default {
         overlay: tone('overlay'),
         foreground: tone('ink'),
         muted: tone('ink-muted'),
+        silver: tone('silver'),
         'muted-foreground': tone('ink-soft'),
         subtle: tone('ink-faint'),
         border: 'var(--line)',
