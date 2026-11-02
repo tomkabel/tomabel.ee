@@ -51,7 +51,7 @@ export function Figure({
     <figure className={`my-10 ${className}`}>
       <div className="overflow-hidden rounded-card border border-border bg-surface">
         {title ? <p className="label border-b border-border px-5 py-3 text-muted-foreground">{title}</p> : null}
-        <div className="p-4 sm:p-6">{children}</div>
+        <div className="overflow-x-auto p-4 sm:p-6 [&_svg]:min-w-[34rem]" tabIndex={0} role="group" aria-label={typeof title === 'string' ? title : undefined}>{children}</div>
       </div>
       {caption ? (
         <figcaption className="mt-3 font-mono text-xs leading-relaxed text-muted-foreground">
@@ -192,7 +192,7 @@ export function SplitFigure({
       </div>
       <div className="p-5 ring-1 ring-inset ring-accent/40 sm:p-6">
         <p className="label mb-4 text-accent">{afterLabel}</p>
-        {after}
+        <div className="mx-auto max-w-md">{after}</div>
       </div>
     </div>
   );

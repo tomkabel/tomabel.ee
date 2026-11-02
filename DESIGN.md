@@ -1,14 +1,14 @@
 ---
-name: Tom Kristian Abel — Technical Editorial
+name: Tom Kristian Abel — The Way of Seeing
 description: Personal research hub and portfolio for a security researcher and systems architect.
 source-of-truth: src/index.css (:root tokens), mapped to utilities in tailwind.config.js
 colors:  # OKLCH "L C H"; utilities use oklch(var(--x) / <alpha-value>)
-  sunken: "0.125 0.008 258"   # code wells, mastheads, interlude band, scrims
-  canvas: "0.15 0.009 255"    # page background (#090B0F, also theme-color)
-  surface-1: "0.182 0.011 248"
-  surface-2: "0.212 0.013 240"
-  surface-3: "0.245 0.015 232"
-  overlay: "0.28 0.016 225"
+  sunken: "0.125 0.004 170"   # code wells, figure thumbnails, mastheads, scrims
+  canvas: "0.152 0.004 164"   # page background (#0A0C0B, also theme-color)
+  surface-1: "0.194 0.008 182"  # #111615 cards and figure frames
+  surface-2: "0.224 0.010 173"
+  surface-3: "0.260 0.012 178"  # #1E2624, also the solid --line border
+  overlay: "0.29 0.012 178"
   ink: "0.955 0.006 250"        # 17.3:1 on canvas
   ink-muted: "0.775 0.018 252"  # 9.7:1
   ink-soft: "0.7 0.02 252"      # 7.4:1
@@ -28,7 +28,9 @@ motion: { ease-out: "cubic-bezier(0.2,0.7,0.2,1)", fast: 120ms, base: 200ms, slo
 spacing: { section: "clamp(4rem, 2.6rem + 6vw, 7.5rem)", section-tight: "clamp(3rem, 2.3rem + 3vw, 5rem)" }
 ---
 
-# Design System: Technical Editorial
+# Design System: The Way of Seeing
+
+Current direction: `docs/redesign-plan.md` (2026-11-02), reference images in `img3/`.
 
 Audit trail for this system: `docs/design-audit/01…05`.
 
@@ -46,9 +48,9 @@ phosphors: **P1 green** (`signal`) marks what is live or interactive, **P3 amber
 marks what needs care (disclosed, 404, the Kratt aside). `fault` red is used only for integrity
 mismatches.
 
-**Surface ladder.** Six steps from `sunken` to `overlay`. Lightness rises *and* hue drifts from
-cold blue (258° at `sunken`) to 225° at `overlay`, i.e. toward the `signal` phosphor green (163°)
-without reaching it, so higher surfaces read as closer to the signal.
+**Surface ladder.** Six steps from `sunken` to `overlay`, all near-neutral green-black (hue
+164–182°, chroma ≤ 0.012) taken from the reference set. Lightness carries the hierarchy; the
+border (`--line`) is the solid `#1E2624` step, not a translucent white.
 Use one step up for hover or raised, and `sunken` for wells and bands. Never use pure black or
 pure white.
 
@@ -56,6 +58,8 @@ pure white.
 - Signal colour covers well under 10% of any screen. It goes on labels, links, focus and live
   status, never on headings or large fills. The one exception is `.btn-primary`.
 - Colour sits on the label, not on the container. No coloured side stripes on cards, asides or quotes.
+  Exceptions, each a full 1px border, never a stripe: the SECURE-BY-DESIGN pane, the KRATT callout
+  (amber) and the homepage PGP card (emerald).
 - Every text step passes WCAG AA on every surface. The lowest is `ink-faint` at 5.9:1.
 
 ## 3. Typography
@@ -109,6 +113,22 @@ pure white.
   holds contact channels only (About and My story are their own footer group). Icon
   buttons are 44×44; the connection button shows its "Your connection" label at `lg+`.
 - **Loader:** a hairline indeterminate scan bar with `role="status"`. No pulsing dots.
+
+## 5a. Figures
+
+Diagrams are the content; there is no ambient animation layer. Source: `src/components/site/figure.tsx`.
+
+- `Figure` frames one schematic: `surface-1` card, mono title bar, numbered mono caption beneath.
+- `SequenceDiagram` (lanes + messages), `FlowGraph` (explicitly placed nodes and straight edges, no
+  auto-layout), `SplitFigure` (SECURE-BY-HOPE over SECURE-BY-DESIGN).
+- Colour is semantic only: `kind: 'attack'` → amber (attacker / failing path), `'verified'` →
+  emerald, `'neutral'` → `ink-soft`. Never use amber or emerald in a figure for decoration.
+- Every SVG has a `<desc>` and a fixed `viewBox` + `aspect-ratio`; it renders in the prerendered
+  HTML. In-article figures get `min-width: 34rem` and scroll horizontally on narrow screens; card
+  thumbnails and the hero use a 420-unit viewBox so their labels stay legible at 375px.
+- A figure draws only what its article claims, and the caption repeats the article's caveats
+  (PoC scope, untested results). Figure data lives in `src/content/schematics.tsx` (cards, hero)
+  and `src/content/article-figures.tsx` (articles).
 
 ## 6. Motion
 

@@ -3,11 +3,14 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader } from '../components/site/article';
+import type { ReactNode } from 'react';
+import { OctagonFigure } from '../content/article-figures';
 import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
   heading: string;
   paragraphs: string[];
+  after?: ReactNode;
 };
 
 const title = 'Zero-Trust Octagon — a framework from first principles';
@@ -34,6 +37,7 @@ const sections: ReportSection[] = [
   },
   {
     heading: 'The eight axioms',
+    after: <OctagonFigure />,
     paragraphs: [
       'An axiom is a statement accepted as true, from which everything else is derived. The Octagon asks what must be true about any system that claims to distrust by default, verify continuously, and survive the compromise of its own components. The answer, after stripping away vendor names and implementation patterns, is eight invariants:',
       '1. No intrinsic trust. Trust is a transient verdict rendered independently for each access decision, based on the entity’s current provable state. Not a property of position, ownership, or history. Trust decays continuously, and the system must be able to deny an entity that was trusted one second ago.',
@@ -304,6 +308,7 @@ export default function ZeroTrustOctagonResearchPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {section.after}
             </section>
           ))}
 

@@ -94,6 +94,7 @@ export function HeroBefore({ l }: { l: Language }) {
 export function HeroAfter({ l }: { l: Language }) {
   return (
     <SequenceDiagram
+      width={420}
       lanes={[l === 'en' ? 'authenticator' : 'autentija', l === 'en' ? 'browser' : 'brauser', 'server']}
       desc={l === 'en'
         ? 'WebAuthn: the server sends a challenge, the browser binds it to the origin, the authenticator signs with a device key, and the server verifies the signature with the registered public key.'

@@ -30,12 +30,12 @@
 @layer base {
   :root {
     /* Surface ladder, lowest to highest (L C H). */
-    --sunken: 0.125 0.008 258; /* code wells, scrims, masthead band */
+    --sunken: 0.125 0.004 170; /* code wells, scrims, masthead band */
     --canvas: 0.152 0.004 164; /* page background */
     --surface-1: 0.194 0.008 182; /* resting cards, strips */
     --surface-2: 0.224 0.010 173; /* hovered cards, asides */
     --surface-3: 0.260 0.012 178; /* pressed / selected */
-    --overlay: 0.28 0.016 225; /* drawers over content */
+    --overlay: 0.29 0.012 178; /* drawers over content */
 
     /* Ink ladder. Contrast vs --canvas: 17.3 / 9.7 / 7.4 / 5.9 : 1 (all AA). */
     --ink: 0.955 0.006 250;

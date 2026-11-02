@@ -1,5 +1,9 @@
 # Redesign plan: "The way of seeing" (2026-11-02)
 
+Status: phases 0–5 shipped on `design/way-of-seeing`. Figures are live in 4 articles
+(Smart-ID, BotGuard, Zero-Trust Octagon, The fix that doesn't need SK); the other ~16 articles
+still need theirs (see Phase 3).
+
 Supersedes the `design/living-protocol` direction. Reference set: `img3/`. The favored
 samples (the ones saved twice) are expert4, expert9, expert10, `-032043-099`,
 `-033758-727`, `-033936-588`, `-034148-341`.

@@ -3,6 +3,7 @@ import { useTranslation } from '../i18n/LanguageContext';
 import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
+import { SessionHistoryFixFigure } from '../content/article-figures';
 import { ArticleHeader } from '../components/site/article';
 
 type Bi = { en: string; et: string };
@@ -147,6 +148,7 @@ export default function TheFixThatDoesntNeedSkPage() {
                   <p key={paragraph.en}>{paragraph[language]}</p>
                 ))}
               </div>
+              {section.heading.en === 'What the sixth fix notices' ? <SessionHistoryFixFigure l={language} /> : null}
             </section>
           ))}
 

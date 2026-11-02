@@ -16,6 +16,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
+> **Stale below.** The radar/Three.js/OGL description is from an old version. The real site is page-based (`src/pages/*`, shared chrome in `src/components/site/*`, content in `src/content/*`). Current design system: `DESIGN.md`; figure system: `src/components/site/figure.tsx`; redesign plan: `docs/redesign-plan.md`.
+
 ### Routing & Layouts
 
 React Router v7 with `BrowserRouter`. Two layout types:
