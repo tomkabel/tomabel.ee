@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader, Callout, CodeBlock } from '../components/site/article';
+import { PortableTokenFigure } from '../content/article-figures';
 import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
@@ -101,6 +102,8 @@ const sections: ReportSection[] = [
       'The reason is architectural, not cryptographic. The server never sees the machine that produced the token. It sees a claim written by that machine, and there is no way to cryptographically verify that claim against the machine; at best it can be weighted against server-side heuristics.',
     ],
     after: (
+      <>
+      <PortableTokenFigure />
       <Callout label="Note — the binding gap">
         <p>
           Google binds its tokens to a site, a short single-use lifetime and, for PO tokens, a
@@ -110,6 +113,7 @@ const sections: ReportSection[] = [
           token-harvesting class and has not been independently reproduced.
         </p>
       </Callout>
+      </>
     ),
   },
   {

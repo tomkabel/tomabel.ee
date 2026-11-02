@@ -4,6 +4,7 @@ import ReaderRail from '../components/site/reader-rail';
 import { sectionSlug } from '../components/site/section-slug';
 import ArticleProof from '../components/site/article-proof';
 import { ArticleHeader, ProtocolTable } from '../components/site/article';
+import { SmartIdRelayFigure } from '../content/article-figures';
 import { PolicyText } from '../components/site/policy-link';
 
 type ReportSection = {
@@ -75,6 +76,8 @@ const sections: ReportSection[] = [
       'A caveat. This attack class was implemented as a proof of concept in a research environment against SK\u2019s public DEMO environment, with automation for the relay pipeline. I reported the QR/MITM relay vectors to SK in November 2025. On 5 December 2025 SK replied that the weakness was "known to us during development" and that "for a certain period we have consciously accepted this risk". A CVE was requested; SK disputes the finding, calling it an "architectural feature". The pipeline was implemented and the mechanism demonstrated piecewise in the research environment; an end-to-end run of the full relay chain was still pending when this report was written. The claim here is not that this exact chain has been run against a live bank; it is that the architecture of cross-device QR flows makes the relay possible, and that the verification-code mitigation does not stop it. The production flow does not change the underlying design.',
     ],
     after: (
+      <>
+      <SmartIdRelayFigure />
       <ProtocolTable
         columns={['#', 'Actor', 'What happens']}
         rows={[
@@ -87,6 +90,7 @@ const sections: ReportSection[] = [
         ]}
         caption={"Interactive signing-relay \u2014 the verification code is real, but it is bound to the attacker's display, not the bank's."}
       />
+      </>
     ),
   },
   {

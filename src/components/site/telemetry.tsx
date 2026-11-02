@@ -25,13 +25,12 @@ type State =
 
 // Opt-in slide-over. Fetches ONLY on open (never on page load), renders only
 // real fields, and degrades to an honest "unreachable" line — never fake values.
-export default function Telemetry({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { t } = useTranslation();
+// Shared fetch: the nav slide-over and the homepage strip both read the same
+// endpoint. Runs only while `enabled`.
+export function useConnection(enabled: boolean): State {
   const [state, setState] = useState<State>({ kind: 'loading' });
-  const panelRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (!open) return;
+    if (!enabled) return;
     const controller = new AbortController();
     (async () => {
       setState({ kind: 'loading' });
@@ -46,7 +45,43 @@ export default function Telemetry({ open, onClose }: { open: boolean; onClose: (
       }
     })();
     return () => controller.abort();
-  }, [open]);
+  }, [enabled]);
+  return state;
+}
+
+// Homepage strip. Opt-in like the slide-over: nothing is fetched until the
+// reader asks. Only a successful live result renders values; a failure or
+// live:false says so plainly instead of showing an invented bar.
+export function ConnectionStrip() {
+  const { language } = useTranslation();
+  const [asked, setAsked] = useState(false);
+  const state = useConnection(asked);
+  const en = language === 'en';
+  const box = 'flex min-h-11 flex-wrap items-center gap-x-6 gap-y-1 rounded-control border border-border bg-surface px-5 py-3 font-mono text-xs text-muted-foreground';
+  if (!asked) {
+    return (
+      <button type="button" onClick={() => setAsked(true)} className={`${box} w-full text-left transition-colors duration-fast hover:border-accent/40 hover:text-foreground`}>
+        <span>{en ? 'Inspect your TLS connection' : 'Vaata oma TLS-ühendust'}</span>
+        <span className="text-subtle">{en ? 'sends one request to proksimity.proksiabel.ee' : 'saadab ühe päringu aadressile proksimity.proksiabel.ee'}</span>
+      </button>
+    );
+  }
+  if (state.kind === 'loading') return <p className={box} aria-live="polite">{en ? 'reading handshake…' : 'loen käepigistust…'}</p>;
+  const tls = state.kind === 'live' && state.data.live !== false ? state.data.tls : undefined;
+  const ja4 = state.kind === 'live' && state.data.live !== false ? state.data.ja4 : undefined;
+  const items = [tls?.version, tls?.alpn, tls?.negotiated, ja4 && `JA4 ${ja4}`].filter((v): v is string => !!v);
+  return (
+    <p className={box} aria-live="polite">
+      <span>{en ? 'your connection, observed' : 'sinu ühendus, vaadeldud'}</span>
+      {items.length ? items.map((v) => <span key={v} className="break-all text-accent">{v}</span>) : <span>{en ? 'not observed — endpoint unreachable' : 'ei vaadeldud — teenus pole kättesaadav'}</span>}
+    </p>
+  );
+}
+
+export default function Telemetry({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { t } = useTranslation();
+  const state = useConnection(open);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   // Focus management: on open, remember what was focused (the nav trigger),
   // move focus into the panel, trap Tab/Shift+Tab within it, and restore focus
