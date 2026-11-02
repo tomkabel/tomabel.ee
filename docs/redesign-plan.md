@@ -60,9 +60,7 @@ then a TLS inspector strip, then the research index, then the KRATT callout, the
 then the footer.
 - Research index: a 2-column grid of cards. Each card has a FlowGraph thumbnail, a mono
   date and read-time in emerald, a serif title, a one-line dek and an amber tag.
-- TLS strip: show only true facts. Read `performance.getEntriesByType('navigation')`
-  `nextHopProtocol`, or show static facts that are verifiable from the Cloudflare
-  config. No invented "Status: SECURE" theatre (see commit 3a25a75).
+- TLS strip: reuse the telemetry.tsx `connection.json` fetch; render only when live. No invented "Status: SECURE" theatre (see 3a25a75).
 - Remove WorkCard and the essay-row variants they replace.
 
 ### Phase 3: Article template (2 days)
@@ -98,9 +96,8 @@ then the footer.
   boxes and lines only.
 - Any new dependency. SVG plus Tailwind covers everything here.
 
-## Open decisions
-1. Hero headline: "The way of seeing." in both languages, or an Estonian equivalent?
-2. Research index: a 2×2 card grid (expert9) or an editorial list (expert10)?
-   Recommendation: grid for the 4 featured posts, then a list for the archive.
-3. TLS strip: live `nextHopProtocol` only, or drop the strip entirely if it can't be
-   honest?
+## Decisions (tiltrank, 2026-11-02; log: docs/.decisions.log)
+1. Hero headline: localized pair. EN "The way of seeing." / ET "Vaatevinkel."
+2. Research index: hybrid. 4 featured schematic cards, then an editorial archive list.
+3. TLS strip: reuse the existing `connection.json` inspector (`src/components/site/telemetry.tsx`).
+   Render the strip only on a live result; on failure or `live:false` it is absent, not empty.
