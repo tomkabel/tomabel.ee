@@ -1,9 +1,20 @@
+import type { ReactNode } from 'react';
 import Link from './link';
 import type { FeaturedWork } from '../../content/site';
 import { englishOnlyArticles } from '../../content/site';
 import { useTranslation } from '../../i18n/LanguageContext';
 
-export default function WorkCard({ item, className = '' }: { item: FeaturedWork; className?: string }) {
+export default function WorkCard({
+  item,
+  className = '',
+  schematic,
+}: {
+  item: FeaturedWork;
+  className?: string;
+  // Decorative line drawing in the top-right corner, above the title (xl+
+  // only, where that band is clear). 12% at rest, 35% on hover.
+  schematic?: ReactNode;
+}) {
   const { language, t } = useTranslation();
   const title = item.title[language];
   const blurb = item.blurb[language];
@@ -16,8 +27,16 @@ export default function WorkCard({ item, className = '' }: { item: FeaturedWork;
   return (
     <Link
       to={item.href}
-      className={`group grid grid-rows-[auto_auto_1fr_auto] gap-y-4 rounded-card border border-border-strong bg-surface p-8 transition-[background-color,border-color] duration-base hover:border-accent/40 hover:bg-surface-2 ${className}`}
+      className={`group relative isolate grid grid-rows-[auto_auto_1fr_auto] gap-y-4 overflow-hidden rounded-card border border-border bg-surface p-8 transition-[background-color,border-color] duration-base hover:border-accent/35 hover:bg-surface-2 ${className}`}
     >
+      {schematic ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-6 top-4 -z-10 hidden select-none text-foreground opacity-[.12] transition-opacity duration-slow group-hover:opacity-[.35] xl:block"
+        >
+          {schematic}
+        </div>
+      ) : null}
       <p className="label mb-6 text-muted-foreground">
         {item.impact[language]}
         {language !== 'en' && englishOnlyArticles.has(item.href) ? (

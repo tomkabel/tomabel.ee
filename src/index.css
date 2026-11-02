@@ -1,66 +1,62 @@
-/* tomabel.ee — Technical Editorial Design Tokens
+/* tomabel.ee — Living Protocol Design Tokens
  *
  * Every colour, radius, type step, duration and section rhythm lives here as a
  * custom property; tailwind.config.js only maps utility names onto these.
  *
- * Colour is derived from the instrument the work is about, not a stock palette:
- * the two accents are the classic CRT phosphors (P1 green for signal, P3 amber
- * for caution) and the surfaces are the blue-black of an unlit screen. The
- * surface ladder climbs in lightness AND drifts in hue from cold blue (258°)
- * toward the phosphor (225°), so elevation reads as "closer to the signal"
- * rather than as grey steps. Colours are OKLCH channel triplets so Tailwind's
- * `/alpha` modifiers keep working: oklch(var(--x) / <alpha-value>).
+ * An abyssal matte canvas, stark optical-white ink, and one emerald signal
+ * used only for the primary action, live status and fault-line vectors. The
+ * surface ladder is near-neutral but drifts in hue toward the emerald (145° to
+ * 165°) as it rises, so elevation reads as "closer to the signal" rather than
+ * as grey steps. Colours are OKLCH channel triplets so Tailwind's `/alpha`
+ * modifiers keep working: oklch(var(--x) / <alpha-value>).
  */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Commit Mono 400, latin, woff2 only. The fontsource CSS also lists a .woff
-   fallback that Vite would emit as a dead 57 KB asset. 500/700 are not shipped:
-   the only bold mono uses are two 1-glyph badges (synthesised bold is fine). */
-@font-face {
-  font-family: 'Commit Mono';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url('../node_modules/@fontsource/commit-mono/files/commit-mono-latin-400-normal.woff2') format('woff2');
-}
-
 @layer base {
   :root {
     /* Surface ladder, lowest to highest (L C H). */
-    --sunken: 0.125 0.008 258; /* code wells, scrims, masthead band */
-    --canvas: 0.15 0.009 255; /* page background */
-    --surface-1: 0.182 0.011 248; /* resting cards, strips */
-    --surface-2: 0.212 0.013 240; /* hovered cards, asides */
-    --surface-3: 0.245 0.015 232; /* pressed / selected */
-    --overlay: 0.28 0.016 225; /* drawers over content */
+    --sunken: 0.097 0 0; /* #030303 code wells, scrims, masthead band */
+    --canvas: 0.122 0 0; /* #060606 page background */
+    --surface-1: 0.157 0.003 145; /* #0C0D0C resting cards, strips */
+    --surface-2: 0.184 0.004 165; /* #111312 hovered cards, asides */
+    --surface-3: 0.211 0.004 165; /* pressed / selected */
+    --overlay: 0.237 0.004 165; /* drawers over content */
 
-    /* Ink ladder. Contrast vs --canvas: 17.3 / 9.7 / 7.4 / 5.9 : 1 (all AA). */
-    --ink: 0.955 0.006 250;
-    --ink-muted: 0.775 0.018 252;
-    --ink-soft: 0.7 0.02 252;
-    --ink-faint: 0.64 0.022 252;
+    /* Ink ladder (zinc). Contrast vs --canvas: 18.5 / 9.8 / 7.9 / 6.2 : 1.
+       --ink-dim (#71717A, 4.2:1) is AA only for large text: the hero's past-
+       tense line and the ambient telemetry layer, nothing else. */
+    --ink: 0.968 0.003 286;
+    --ink-muted: 0.772 0.011 286;
+    --ink-soft: 0.712 0.013 286;
+    --ink-faint: 0.65 0.013 286;
+    --ink-dim: 0.552 0.014 286;
 
-    /* Phosphor accents: tonal steps, not one flat swatch. */
-    --signal: 0.795 0.15 163; /* P1 green, 11:1 on canvas */
-    --signal-strong: 0.865 0.13 165; /* hover / pressed */
-    --signal-ink: 0.21 0.04 163; /* text on a signal fill, 9.8:1 */
-    --caution: 0.83 0.135 75; /* P3 amber */
+    /* Emerald signal: tonal steps, not one flat swatch. */
+    --signal: 0.696 0.149 162; /* #10B981, 8:1 on canvas */
+    --signal-strong: 0.773 0.153 163; /* hover / pressed */
+    --signal-ink: 0.122 0 0; /* text on a signal fill, 8:1 */
+    --caution: 0.83 0.135 75; /* amber */
     --fault: 0.715 0.165 22; /* integrity mismatch only */
 
-    --line: oklch(0.955 0.006 250 / 0.08);
-    --line-strong: oklch(0.955 0.006 250 / 0.14);
+    --line: oklch(1 0 0 / 0.07);
+    --line-strong: oklch(1 0 0 / 0.12);
 
-    /* Type. Display is an optical-size serif (a publication voice for
-       research); UI and body run in a grotesk; data in a monospace. */
-    --font-sans: 'Geist Variable', 'Geist Variable fallback', ui-sans-serif, system-ui, sans-serif;
+    /* Ambient telemetry: resting and inspected opacity of the hero's
+       background data layer. */
+    --telemetry-rest: 0.14;
+    --telemetry-lit: 0.6;
+
+    /* Type. Display is an optical-size editorial serif; UI and body run in a
+       neo-grotesque; protocol data in a monospace. */
+    --font-sans: 'Inter Variable', 'Inter Variable fallback', ui-sans-serif, system-ui, sans-serif;
     --font-display: 'Newsreader Variable', 'Newsreader Variable fallback', Charter, 'Iowan Old Style', Georgia, serif;
-    --font-mono: 'Commit Mono', 'Commit Mono fallback', ui-monospace, 'SFMono-Regular', monospace;
+    --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono Variable fallback', ui-monospace, 'SFMono-Regular', monospace;
     --weight-display: 540;
-    --tracking-display: -0.018em;
-    --tracking-label: 0.14em;
+    --tracking-display: -0.02em;
+    --tracking-label: 0.08em;
 
     /* Fluid scale: each step interpolates between a 375px and a 1440px
        viewport, so there are no breakpoint jumps. */
@@ -153,14 +149,14 @@
     letter-spacing: var(--tracking-label);
   }
 
-  /* The one filled button. Depth comes from a lit top edge and a shaded
-     bottom edge; it settles 1px when pressed. */
+  /* The one filled button: a solid emerald pill. Depth comes from a lit top
+     edge and a shaded bottom edge; it settles 1px when pressed. */
   .btn-primary {
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
     gap: 0.5rem;
-    border-radius: var(--radius-control);
+    border-radius: 9999px;
     background-color: oklch(var(--signal));
     padding: 0.625rem 1.25rem;
     font-weight: 600;
@@ -192,12 +188,112 @@
   .link-draw:hover {
     background-size: 100% 1px;
   }
+
+  /* 6px status dot on the connection inspector: neutral until the inspector
+     has a live result, then emerald with an opacity-only pulse (no glow, no
+     scale) that stops under prefers-reduced-motion. */
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    flex: none;
+    border-radius: 9999px;
+    background-color: oklch(var(--ink-faint));
+  }
+  .pulse-dot[data-live] {
+    background-color: oklch(var(--signal));
+    animation: pulse-dot 2.4s ease-in-out infinite;
+  }
+
+  /* The hero's ambient telemetry: decorative, behind the copy, never a
+     target. Hovering or focusing the nav's connection inspector sets
+     [data-inspect] on <html> and the layer comes up from 14% to 60%.
+     --px/--py (-1..1) come from the pointer for a few pixels of parallax. */
+  .telemetry-layer {
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 28rem;
+    pointer-events: none;
+    user-select: none;
+    color: oklch(var(--ink-dim));
+    opacity: var(--telemetry-rest);
+    transform: translate3d(calc(var(--px, 0) * -10px), calc(var(--py, 0) * -6px), 0);
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+  :root[data-inspect] .telemetry-layer {
+    opacity: var(--telemetry-lit);
+  }
+  .telemetry-layer svg * {
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* The fault line: one hairline across the viewport, displaced where the
+     claimed layer and the verified layer stop agreeing. --fx is the break
+     point (0..1), following the pointer and resting at the centre. */
+  .fault-line {
+    --fx: 0.5;
+    position: relative;
+    height: 4.5rem;
+  }
+  .fault-line > .seg {
+    position: absolute;
+    height: 1px;
+    background-color: var(--line-strong);
+  }
+  .fault-line > .seg-claimed {
+    left: 0;
+    top: calc(50% - 3px);
+    width: calc(var(--fx) * 100% - 6px);
+  }
+  .fault-line > .seg-verified {
+    right: 0;
+    top: calc(50% + 3px);
+    width: calc((1 - var(--fx)) * 100% - 6px);
+  }
+  .fault-line > .node,
+  .fault-line > .tag {
+    position: absolute;
+    left: calc(var(--fx) * 100%);
+    transform: translateX(-50%);
+  }
+  .fault-line > .node {
+    top: calc(50% - 3px);
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background-color: oklch(var(--signal));
+  }
+  .fault-line > .tag {
+    white-space: nowrap;
+  }
+  .fault-line > .tag-claimed {
+    bottom: calc(50% + 0.75rem);
+  }
+  .fault-line > .tag-verified {
+    top: calc(50% + 0.75rem);
+  }
+  .fault-line > * {
+    transition:
+      left var(--dur-base) var(--ease-out),
+      width var(--dur-base) var(--ease-out);
+  }
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes octagon-turn {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @layer utilities {
   .prose-measure {
     max-width: var(--measure);
-    line-height: 1.65;
+    line-height: 1.6;
   }
 
   .arrow-shift {

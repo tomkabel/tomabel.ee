@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
 import Link from '../components/site/link';
 import { useTranslation } from '../i18n/LanguageContext';
 import WorkCard from '../components/site/work-card';
 import { featuredWork, site, disclosures, englishOnlyArticles } from '../content/site';
+import { ApprovalSequence, BytecodeGraph, FaultLine, HashStream, Octagon, TelemetryLayer } from '../components/site/protocol';
 
 // The homepage essay teaser pulls from the same unified disclosures source,
 // filtered to the essay kind — no parallel essays array to drift.
@@ -11,12 +13,21 @@ const essays = disclosures.filter((d) => d.kind === 'essay');
 // reading rhythm instead of four identical tiles.
 const featuredSpan = (i: number) => (i % 4 === 0 || i % 4 === 3 ? 'lg:col-span-7' : 'lg:col-span-5');
 
+// Each featured entry's background schematic, keyed by its link.
+const schematics: Record<string, ReactNode> = {
+  '/disclosures/botguard-disassembled': <BytecodeGraph />,
+  '/disclosures/smart-id-achilles-heel': <ApprovalSequence />,
+  '/systems#fingerprintproxy': <HashStream />,
+  '/disclosures/zero-trust-octagon': <Octagon />,
+};
+
 export default function HomePage() {
   const { language } = useTranslation();
 
   return (
     <>
-      <header className="px-6 pb-section pt-section">
+      <header className="relative isolate overflow-hidden px-6 pb-section pt-section">
+        <TelemetryLayer />
         <div className="mx-auto grid max-w-6xl gap-y-10 lg:grid-cols-12">
           <p className="label animate-rise-in text-muted-foreground lg:col-span-12">
             {site.hero.eyebrow[language]}
@@ -24,7 +35,7 @@ export default function HomePage() {
           {/* Past tense recedes, present tense carries full ink: the tonal
               step is the argument, not decoration. */}
           <h1 className="animate-rise-in font-display text-7xl text-foreground lg:col-span-10" style={{ animationDelay: '80ms' }}>
-            <span className="block text-muted-foreground">{site.hero.line1[language]}</span>{' '}
+            <span className="block text-dim">{site.hero.line1[language]}</span>{' '}
             <span className="block">{site.hero.line2[language]}</span>
           </h1>
           {/* Column 4 is the page's one interior reading edge: the intro, the
@@ -47,18 +58,22 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="bg-sunken px-6 py-section" aria-label={language === 'en' ? 'Introduction' : 'Sissejuhatus'}>
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-12">
-          <p className="label text-muted-foreground lg:col-span-3 lg:pt-2">
-            {language === 'en' ? 'The fault line' : 'Murdejoon'}
-          </p>
-          <div className="lg:col-span-9">
-            <blockquote>
-              <p className="max-w-measure font-serif text-2xl leading-normal text-foreground">
-                {site.introStrip.quote[language]}
-              </p>
-            </blockquote>
-            <p className="prose-measure mt-6 text-muted">{site.introStrip.body[language]}</p>
+      <section aria-label={language === 'en' ? 'Introduction' : 'Sissejuhatus'}>
+        {/* The section edge is the thesis: claimed above, verified below. */}
+        <FaultLine />
+        <div className="px-6 pb-section pt-section-tight">
+          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-12">
+            <p className="label text-muted-foreground lg:col-span-3 lg:pt-2">
+              {language === 'en' ? 'The fault line' : 'Murdejoon'}
+            </p>
+            <div className="lg:col-span-9">
+              <blockquote>
+                <p className="max-w-measure font-serif text-2xl leading-normal text-foreground">
+                  {site.introStrip.quote[language]}
+                </p>
+              </blockquote>
+              <p className="prose-measure mt-6 text-muted">{site.introStrip.body[language]}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -75,7 +90,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12">
             {featuredWork.map((w, i) => (
-              <WorkCard key={w.href + w.title.en} item={w} className={featuredSpan(i)} />
+              <WorkCard key={w.href + w.title.en} item={w} className={featuredSpan(i)} schematic={schematics[w.href]} />
             ))}
           </div>
         </div>
@@ -136,16 +151,17 @@ function HomeEssayRowContent({
   const { t } = useTranslation();
   return (
     <>
-      <h3 className="font-display text-2xl text-foreground">
+      {/* On hover the title slides 8px and the arrow and date take the signal. */}
+      <h3 className="font-display text-2xl text-foreground transition-transform duration-base group-hover:translate-x-2">
         <span className="link-draw">{essay.title[language]}</span>
         {essay.href ? (
-          <span className="ml-2 inline-block font-mono text-sm text-subtle opacity-0 transition-[opacity,transform] duration-base group-hover:translate-x-1 group-hover:opacity-100">
+          <span className="ml-2 inline-block font-mono text-sm text-subtle opacity-0 transition-[opacity,color] duration-base group-hover:text-accent group-hover:opacity-100">
             →
           </span>
         ) : null}
       </h3>
       {/* Metadata sits directly under the title, not pinned across a void. */}
-      <span className="label text-muted-foreground">
+      <span className="label text-muted-foreground transition-colors duration-base group-hover:text-accent">
         {essay.meta?.[language]}
         {language !== 'en' && essay.href && englishOnlyArticles.has(essay.href) ? (
           <span className="text-warning"> · {t.app.englishOnly}</span>

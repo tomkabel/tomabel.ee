@@ -2,8 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Link, { withSlash } from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
-import { Globe, Activity } from 'lucide-react';
-import Telemetry from './telemetry';
+import { Globe } from 'lucide-react';
+import Telemetry, { useObservedConnection } from './telemetry';
 
 // One label per destination: /disclosures is "Research" everywhere, including
 // the hero CTA and the index heading.
@@ -22,6 +22,10 @@ export default function SiteNav() {
   const { language, setLanguage, t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
   const [telemetryOpen, setTelemetryOpen] = React.useState(false);
+  // Green only once the inspector has a successful live result; neutral before
+  // that and after a failed fetch.
+  const connection = useObservedConnection();
+  const live = connection !== undefined && connection.live !== false;
 
   return (
     <nav aria-label={t.nav.primary} className="sticky top-0 z-50 border-b border-border bg-background px-6">
@@ -65,15 +69,20 @@ export default function SiteNav() {
             </a>
           </div>
 
-          {/* The icon alone did not say what it opens; at lg+ the name is shown,
-              below that it stays in the accessible name and tooltip. */}
+          {/* The dot alone did not say what it opens; at lg+ the name is shown,
+              below that it stays in the accessible name and tooltip. Hover or
+              focus lights up the homepage's ambient telemetry layer. */}
           <button
             onClick={() => setTelemetryOpen(true)}
-            className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-control px-2 text-sm font-medium text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-accent"
+            onPointerEnter={inspect}
+            onPointerLeave={uninspect}
+            onFocus={inspect}
+            onBlur={uninspect}
+            className="flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-control px-2 text-sm font-medium text-muted-foreground transition-colors duration-fast hover:bg-surface hover:text-accent"
             aria-label={t.telemetry.title}
             title={t.telemetry.title}
           >
-            <Activity aria-hidden className="size-3.5" />
+            <span aria-hidden className="pulse-dot" data-live={live || undefined} />
             <span aria-hidden className="hidden lg:inline">{t.telemetry.title}</span>
           </button>
 
@@ -146,6 +155,9 @@ export default function SiteNav() {
     </nav>
   );
 }
+
+const inspect = () => document.documentElement.setAttribute('data-inspect', '');
+const uninspect = () => document.documentElement.removeAttribute('data-inspect');
 
 function localize<T extends { en: string; et: string }>(obj: T, lang: 'en' | 'et'): string {
   return obj[lang];
