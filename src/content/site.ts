@@ -9,6 +9,10 @@ export const site = {
     et: 'Süsteemiarhitekt ja turvauurija.',
   },
   hero: {
+    headline: {
+      en: 'The way of seeing.',
+      et: 'Vaatevinkel.',
+    },
     eyebrow: {
       en: 'Tom Kristian Abel · Estonia',
       et: 'Tom Kristian Abel · Eesti',
