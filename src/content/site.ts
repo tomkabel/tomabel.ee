@@ -433,6 +433,19 @@ export const disclosures: Disclosure[] = [
   },
   {
     kind: 'essay',
+    title: { en: 'What awareness training actually verifies', et: 'Mida teadlikkuskoolitus tegelikult kontrollib' },
+    blurb: {
+      en: 'Cyber awareness training is bought as NIS2 and DORA evidence, but a platform can only observe completion and an in-course risk score. Two field studies (Lain et al. 2022, Ho et al. 2025) find neither predicts whether a phish fails. Worked through RiskSight, an Estonian vendor whose published methodology is detailed enough to test, with a four-question test any buyer can put to any vendor.',
+      et: 'Küberteadlikkuse koolitust ostetakse NIS2 ja DORA tõendina, kuid platvorm näeb ainult lõpetamist ja kursusesisest riskiskoori. Kaks väliuuringut (Lain jt 2022, Ho jt 2025) leiavad, et kumbki ei ennusta, kas õngitsus nurjub. Läbi mängitud RiskSighti näitel, Eesti tarnija, kelle avaldatud metoodika on piisavalt üksikasjalik testimiseks, koos nelja küsimusega, mille ostja võib esitada igale tarnijale.',
+    },
+    tags: ['Awareness Training', 'Phishing', 'NIS2', 'DORA', 'Estonia'],
+    keywords: 'security awareness training, phishing simulation, NIS2, DORA, RiskSight, Estonia, human firewall, phishing-resistant MFA, Lain Kostiainen Capkun, Grant Ho',
+    type: { en: 'Essay', et: 'Essee' },
+    meta: { en: 'Published 13 Nov 2026 · 12 min read', et: 'Avaldatud 13. november 2026 · 12 min lugemist' },
+    href: '/disclosures/what-awareness-training-actually-verifies',
+  },
+  {
+    kind: 'essay',
     title: { en: 'Identity Is the Root. Proof Is the Gate.', et: 'Identiteet on juur. Tõend on värav.' },
     blurb: {
       en: 'Every other control in a zero-trust architecture consumes an identity claim it did not produce. This is why the quality of the proof at the gate sets the ceiling, why strong cryptography still fails at the approval layer, and why phishing resistance alone does not close the gap.',
