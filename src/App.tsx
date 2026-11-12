@@ -35,6 +35,7 @@ const Fortune500IllusionResearchPage = React.lazy(() => import('./pages/Fortune5
 const MoveFastFixItInProdResearchPage = React.lazy(() => import('./pages/MoveFastFixItInProdResearchPage'));
 const SaasGluedLeanDefenseResearchPage = React.lazy(() => import('./pages/SaasGluedLeanDefenseResearchPage'));
 const IdentityRootProofGateResearchPage = React.lazy(() => import('./pages/IdentityRootProofGateResearchPage'));
+const WhatAwarenessTrainingActuallyVerifiesPage = React.lazy(() => import('./pages/WhatAwarenessTrainingActuallyVerifiesPage'));
 
 // Old /research/<slug> and /writing/<slug> deep links now live under
 // /disclosures/<slug> (slug unchanged). Preserve the leaf, swap the parent.
@@ -200,6 +201,7 @@ function App({ location }: { location?: string }) {
             <Route path="/disclosures/move-fast-fix-it-in-prod" element={<Layout><Lazy><MoveFastFixItInProdResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/saas-glued-lean-defense" element={<Layout><Lazy><SaasGluedLeanDefenseResearchPage /></Lazy></Layout>} />
             <Route path="/disclosures/identity-is-the-root-proof-is-the-gate" element={<Layout><Lazy><IdentityRootProofGateResearchPage /></Lazy></Layout>} />
+            <Route path="/disclosures/what-awareness-training-actually-verifies" element={<Layout><Lazy><WhatAwarenessTrainingActuallyVerifiesPage /></Lazy></Layout>} />
 
             {/* Legacy IA (pre-consolidation). Client-side 301-equivalent; GitHub
                 Pages can't send real 301s (the Worker will, i18n plan PR-1). */}

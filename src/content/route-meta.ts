@@ -253,6 +253,16 @@ export const routeMeta = {
     en: { title: "Security Research Policy — ProksiAbel OÜ", description: "How ProksiAbel OÜ handles security research: the rules we follow, our coordinated disclosure process, and how to contact us securely, with PGP." },
     et: { title: "Turvauuringute poliitika — ProksiAbel OÜ", description: "Kuidas me turvauuringuid teeme: reeglid, avalikustamisprotsess ja kuidas meiega ühendust võtta." },
   },
+  "/disclosures/what-awareness-training-actually-verifies": {
+    en: { title: "What awareness training actually verifies — Tom Kristian Abel", description: "Awareness training is bought as NIS2/DORA evidence but measures completion and a self-assessed score, not whether attacks fail. Tested on RiskSight's method." },
+    et: { title: "Mida teadlikkuskoolitus tegelikult kontrollib — Tom Kristian Abel", description: "Teadlikkuskoolitust ostetakse NIS2/DORA tõendina, kuid see mõõdab lõpetamist ja enesehinnangut, mitte ründe nurjumist. Testitud RiskSighti metoodika peal." },
+    ld: {
+      type: "BlogPosting",
+      datePublished: "2026-11-13",
+      en: { headline: "What awareness training actually verifies", abstract: "Cyber awareness training is bought as NIS2 and DORA evidence, but a platform can only observe completion and an in-course risk score. Two field studies (Lain et al. 2022, Ho et al. 2025) find neither predicts whether a phish fails. Worked through RiskSight, an Estonian vendor whose published methodology is detailed enough to test, with a four-question test any buyer can put to any vendor." },
+      et: { headline: "Mida teadlikkuskoolitus tegelikult kontrollib", abstract: "Küberteadlikkuse koolitust ostetakse NIS2 ja DORA tõendina, kuid platvorm näeb ainult lõpetamist ja kursusesisest riskiskoori. Kaks väliuuringut (Lain jt 2022, Ho jt 2025) leiavad, et kumbki ei ennusta, kas õngitsus nurjub. Läbi mängitud RiskSighti näitel koos nelja küsimusega, mille ostja võib esitada igale tarnijale." },
+    },
+  },
   "/cookies": {
     en: { title: "Cookie Policy for tomabel.ee — Tom Kristian Abel", description: "Which cookies tomabel.ee sets, or the lack thereof: what is stored in your browser and why." },
     et: { title: "Küpsised — Tom Kristian Abel", description: "Küpsised (või nende puudumine) saidil tomabel.ee." },
