@@ -253,6 +253,16 @@ export const routeMeta = {
     en: { title: "Security Research Policy — ProksiAbel OÜ", description: "How ProksiAbel OÜ handles security research: the rules we follow, our coordinated disclosure process, and how to contact us securely, with PGP." },
     et: { title: "Turvauuringute poliitika — ProksiAbel OÜ", description: "Kuidas me turvauuringuid teeme: reeglid, avalikustamisprotsess ja kuidas meiega ühendust võtta." },
   },
+  "/disclosures/what-awareness-training-actually-verifies": {
+    en: { title: "What awareness training actually verifies — Tom Kristian Abel", description: "NIS2 requires awareness training and a way to assess whether measures work. RiskSight's public method shows completion, not attack or reporting outcomes." },
+    et: { title: "Mida teadlikkuskoolitus tegelikult kontrollib — Tom Kristian Abel", description: "NIS2 nõuab teadlikkuskoolitust ja meetmete tõhususe hindamist. RiskSighti avalik metoodika näitab lõpetamist, mitte ründe- ega teavitamistulemusi." },
+    ld: {
+      type: "BlogPosting",
+      datePublished: "2026-11-13",
+      en: { headline: "What awareness training actually verifies", abstract: "NIS2 and DORA require awareness measures but do not specify a phishing effectiveness metric. RiskSight's public methodology documents completion and an in-course risk level, while its public pages do not disclose a quantified, baseline-controlled phishing outcome. Ho et al. and Lain et al. found null or adverse results for the training formats and conditions they studied. A worked example with a buyer test." },
+      et: { headline: "Mida teadlikkuskoolitus tegelikult kontrollib", abstract: "NIS2 ja DORA nõuavad teadlikkusmeetmeid, kuid ei määra õngitsuse tõhususe mõõdikut. RiskSighti avalik metoodika dokumenteerib lõpetamist ja kursusesisest riskitaset, kuid avalikud lehed ei avalda mõõdetud ega lähtetasemega seotud õngitsuse tulemust. Ho jt ja Lain jt leidsid uuritud koolitusvormide ja tingimuste puhul null- või vastupidise tulemuse. Läbi mängitud näide koos ostja testiga." },
+    },
+  },
   "/cookies": {
     en: { title: "Cookie Policy for tomabel.ee — Tom Kristian Abel", description: "Which cookies tomabel.ee sets, or the lack thereof: what is stored in your browser and why." },
     et: { title: "Küpsised — Tom Kristian Abel", description: "Küpsised (või nende puudumine) saidil tomabel.ee." },
