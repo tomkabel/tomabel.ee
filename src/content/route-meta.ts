@@ -254,13 +254,13 @@ export const routeMeta = {
     et: { title: "Turvauuringute poliitika — ProksiAbel OÜ", description: "Kuidas me turvauuringuid teeme: reeglid, avalikustamisprotsess ja kuidas meiega ühendust võtta." },
   },
   "/disclosures/what-awareness-training-actually-verifies": {
-    en: { title: "What awareness training actually verifies — Tom Kristian Abel", description: "Awareness training is bought as NIS2/DORA evidence but measures completion and a self-assessed score, not whether attacks fail. Tested on RiskSight's method." },
-    et: { title: "Mida teadlikkuskoolitus tegelikult kontrollib — Tom Kristian Abel", description: "Teadlikkuskoolitust ostetakse NIS2/DORA tõendina, kuid see mõõdab lõpetamist ja enesehinnangut, mitte ründe nurjumist. Testitud RiskSighti metoodika peal." },
+    en: { title: "What awareness training actually verifies — Tom Kristian Abel", description: "NIS2 requires awareness training and a way to assess whether measures work. RiskSight's public method shows completion, not attack or reporting outcomes." },
+    et: { title: "Mida teadlikkuskoolitus tegelikult kontrollib — Tom Kristian Abel", description: "NIS2 nõuab teadlikkuskoolitust ja meetmete tõhususe hindamist. RiskSighti avalik metoodika näitab lõpetamist, mitte ründe- ega teavitamistulemusi." },
     ld: {
       type: "BlogPosting",
       datePublished: "2026-11-13",
-      en: { headline: "What awareness training actually verifies", abstract: "Cyber awareness training is bought as NIS2 and DORA evidence, but a platform can only observe completion and an in-course risk score. Two field studies (Lain et al. 2022, Ho et al. 2025) find neither predicts whether a phish fails. Worked through RiskSight, an Estonian vendor whose published methodology is detailed enough to test, with a four-question test any buyer can put to any vendor." },
-      et: { headline: "Mida teadlikkuskoolitus tegelikult kontrollib", abstract: "Küberteadlikkuse koolitust ostetakse NIS2 ja DORA tõendina, kuid platvorm näeb ainult lõpetamist ja kursusesisest riskiskoori. Kaks väliuuringut (Lain jt 2022, Ho jt 2025) leiavad, et kumbki ei ennusta, kas õngitsus nurjub. Läbi mängitud RiskSighti näitel koos nelja küsimusega, mille ostja võib esitada igale tarnijale." },
+      en: { headline: "What awareness training actually verifies", abstract: "NIS2 and DORA require awareness measures but do not specify a phishing effectiveness metric. RiskSight's public methodology documents completion and an in-course risk level, while its public pages do not disclose a quantified, baseline-controlled phishing outcome. Ho et al. and Lain et al. found null or adverse results for the training formats and conditions they studied. A worked example with a buyer test." },
+      et: { headline: "Mida teadlikkuskoolitus tegelikult kontrollib", abstract: "NIS2 ja DORA nõuavad teadlikkusmeetmeid, kuid ei määra õngitsuse tõhususe mõõdikut. RiskSighti avalik metoodika dokumenteerib lõpetamist ja kursusesisest riskitaset, kuid avalikud lehed ei avalda mõõdetud ega lähtetasemega seotud õngitsuse tulemust. Ho jt ja Lain jt leidsid uuritud koolitusvormide ja tingimuste puhul null- või vastupidise tulemuse. Läbi mängitud näide koos ostja testiga." },
     },
   },
   "/cookies": {
