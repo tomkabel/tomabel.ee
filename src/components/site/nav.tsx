@@ -4,6 +4,7 @@ import Link, { withSlash } from './link';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { Globe, Activity } from 'lucide-react';
 import Telemetry from './telemetry';
+import Brand from './brand';
 
 // One label per destination: /disclosures is "Research" everywhere, including
 // the hero CTA and the index heading.
@@ -26,16 +27,8 @@ export default function SiteNav() {
   return (
     <nav aria-label={t.nav.primary} className="sticky top-0 z-50 border-b border-border bg-background px-6">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
-        <Link to="/" className="group flex min-h-11 items-center gap-2.5">
-          <span
-            aria-hidden
-            className="grid size-6 place-items-center rounded-hair border border-border-strong bg-surface font-mono text-xs font-bold leading-none text-accent transition-colors duration-fast group-hover:border-accent/50 group-hover:bg-surface-2"
-          >
-            /
-          </span>
-          <span className="font-display tracking-tight text-foreground">
-            tomabel.ee
-          </span>
+        <Link to="/" className="group flex min-h-11 items-center gap-3">
+          <Brand />
         </Link>
 
         <div className="flex items-center gap-2 md:gap-4">

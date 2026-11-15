@@ -1,4 +1,5 @@
 import Link from './link';
+import Brand from './brand';
 import { useTranslation } from '../../i18n/LanguageContext';
 import { site } from '../../content/site';
 
@@ -16,6 +17,9 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-6xl py-16">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
+            <Link to="/" className="group mb-6 inline-flex min-h-11 items-center gap-3">
+              <Brand />
+            </Link>
             <p className="font-display text-lg text-foreground">
               {site.languages[language]}
             </p>
